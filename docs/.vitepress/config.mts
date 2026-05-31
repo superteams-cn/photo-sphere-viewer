@@ -118,8 +118,21 @@ export default defineConfig({
   themeConfig: {
     logo: '/favicon.png',
     aside: true,
-    outline: 'deep',
+    outline: {
+      label: '本页目录',
+      level: 'deep',
+    },
     externalLinkIcon: true,
+    returnToTopLabel: '返回顶部',
+    sidebarMenuLabel: '菜单',
+    skipToContentLabel: '跳到内容',
+    darkModeSwitchLabel: '主题',
+    lightModeSwitchTitle: '切换到浅色模式',
+    darkModeSwitchTitle: '切换到深色模式',
+    docFooter: {
+      prev: '上一页',
+      next: '下一页',
+    },
     editLink: {
       pattern: 'https://github.com/mistic100/Photo-Sphere-Viewer/edit/main/docs/:path',
       text: '在 GitHub 上编辑此页',
@@ -133,6 +146,50 @@ export default defineConfig({
         appId: '5AVMW192FM',
         apiKey: 'd443b6c08ed5353575f503b7a57f5bbf',
         indexName: 'photo-sphere-viewer',
+        placeholder: '搜索文档',
+        translations: {
+          button: {
+            buttonText: '搜索',
+            buttonAriaLabel: '搜索',
+          },
+          modal: {
+            searchBox: {
+              resetButtonTitle: '清除搜索条件',
+              resetButtonAriaLabel: '清除搜索条件',
+              cancelButtonText: '取消',
+              cancelButtonAriaLabel: '取消',
+            },
+            startScreen: {
+              recentSearchesTitle: '最近搜索',
+              noRecentSearchesText: '暂无最近搜索',
+              saveRecentSearchButtonTitle: '保存这条搜索',
+              removeRecentSearchButtonTitle: '从历史记录中删除这条搜索',
+              favoriteSearchesTitle: '收藏搜索',
+              removeFavoriteSearchButtonTitle: '从收藏中删除这条搜索',
+            },
+            errorScreen: {
+              titleText: '无法获取结果',
+              helpText: '请检查网络连接。',
+            },
+            footer: {
+              selectText: '选择',
+              submitQuestionText: '提交',
+              selectKeyAriaLabel: '回车键',
+              navigateText: '导航',
+              navigateUpKeyAriaLabel: '向上箭头',
+              navigateDownKeyAriaLabel: '向下箭头',
+              closeText: '关闭',
+              closeKeyAriaLabel: 'Esc 键',
+              searchByText: '搜索服务',
+            },
+            noResultsScreen: {
+              noResultsText: '没有找到相关结果',
+              suggestedQueryText: '可以试试',
+              reportMissingResultsText: '觉得应该有结果？',
+              reportMissingResultsLinkText: '反馈缺失内容。',
+            },
+          },
+        },
       },
     },
 
@@ -254,6 +311,7 @@ export default defineConfig({
   },
 
   markdown: {
+    codeCopyButtonTitle: '复制代码',
     config(md) {
       codeDemo(md);
       dialog(md);

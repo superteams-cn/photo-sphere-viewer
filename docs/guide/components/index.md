@@ -1,10 +1,10 @@
-# Reusable components
+# 可复用组件
 
-You can easily reuse Photo Sphere Viewer internal components from your custom navbar buttons, plugins, or wherever in your application.
+你可以在自定义导航栏按钮、插件或应用中的任意位置轻松复用 Photo Sphere Viewer 的内部组件。
 
-The reusables components are:
+可复用组件包括：
 
-- [panel](panel.md): display HTML content on a sidebar on the right of the viewer
-- [notification](notification.md): display a small message above the navbar
-- [overlay](overlay.md): display a message with an illustration on top of the viewer
-- [tooltip](tooltip.md): add custom tooltips over the viewer
+- [面板](panel.md)：在 viewer 右侧边栏显示 HTML 内容
+- [通知](notification.md)：在导航栏上方显示一条简短消息
+- [覆盖层](overlay.md)：在 viewer 上方显示带插图的消息
+- [工具提示](tooltip.md)：在 viewer 上方添加自定义提示框

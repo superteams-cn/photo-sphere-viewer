@@ -1,6 +1,6 @@
-# Third party plugins
+# 第三方插件
 
-The following plugins are made by the community.
+以下插件由社区维护。
 
 :::: gallery
 
@@ -9,7 +9,7 @@ The following plugins are made by the community.
 
 ### [Lensflare](https://www.npmjs.com/package/photo-sphere-viewer-lensflare-plugin)
 
-By Elia Lazzari
+作者：Elia Lazzari
 :::
 
 ::::

@@ -1,27 +1,27 @@
-# Introduction to plugins
+# 插件介绍
 
-Plugins are used to add new functionalities to Photo Sphere Viewer. They can access all internal APIs of the viewer as well as the Three.js renderer to make the viewer even more awesome.
+插件用于为 Photo Sphere Viewer 添加新功能。它们可以访问 viewer 的内部 API，也可以访问 Three.js 渲染器，从而扩展更多能力。
 
-## Import official plugins
+## 导入官方插件
 
-Official plugins (listed on the left menu) are available in various `@photo-sphere-viewer/***-plugin` packages. Some plugins also have an additional CSS file.
+官方插件（左侧菜单列出的项目）分别发布在不同的 `@photo-sphere-viewer/***-plugin` 包中。部分插件还会附带额外的 CSS 文件。
 
-**Example for the Markers plugin:**
+**Markers 插件示例：**
 
 ::::: tabs
 
-:::: tab Import from a CDN
+:::: tab 从 CDN 导入
 
 ```html:line-numbers
 <head>
-    <!-- stylesheets of PSV core -->
+    <!-- PSV 核心样式 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/markers-plugin/index.min.css" />
 </head>
 
 <script type="importmap">
     {
         "imports": {
-            // imports of PSV core and three
+            // 导入 PSV 核心和 three
             "@photo-sphere-viewer/markers-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/markers-plugin/index.module.js"
         }
     }
@@ -41,7 +41,7 @@ Official plugins (listed on the left menu) are available in various `@photo-sphe
 
 ::::
 
-:::: tab Install with NPM and a build tool
+:::: tab 使用 NPM 和构建工具安装
 
 ```js:line-numbers
 import { Viewer } from '@photo-sphere-viewer/core';
@@ -54,17 +54,17 @@ const viewer = new Viewer({
 });
 ```
 
-::: tip Stylesheet
-Import `@photo-sphere-viewer/markers-plugin/index.css` with the prefered way depending on your tooling.
+::: tip 样式表
+请根据你的工具链，用推荐方式导入 `@photo-sphere-viewer/markers-plugin/index.css`。
 :::
 
 ::::
 
 :::::
 
-## Using a plugin
+## 使用插件
 
-All plugins consists of a JavaScript class which must be provided to the `plugins` array. Some plugins will also take a configuration object provided with the static method `withConfig`.
+所有插件都由一个 JavaScript 类组成，并且必须传入 `plugins` 数组。部分插件还支持通过静态方法 `withConfig` 传入配置对象。
 
 ```js:line-numbers
 const viewer = new Viewer({
@@ -78,9 +78,9 @@ const viewer = new Viewer({
 });
 ```
 
-### Methods and events
+### 方法和事件
 
-After initialization the plugin instance can be obtained with the `getPlugin` method, allowing to call methods on the plugin and subscribe to events.
+初始化后，可以通过 `getPlugin` 方法获取插件实例，从而调用插件方法并订阅事件。
 
 ```js:line-numbers
 const markersPlugin = viewer.getPlugin(MarkersPlugin);
@@ -92,9 +92,9 @@ markersPlugin.addEventListener('select-marker', () => {
 });
 ```
 
-### Update options
+### 更新选项
 
-Some plugins allow their configuration to be modified after init with the `setOption()` and `setOptions()` methods. The updatable configuration properties are documented on each plugin page.
+部分插件允许在初始化后通过 `setOption()` 和 `setOptions()` 方法修改配置。每个插件页面都会列出支持动态更新的配置属性。
 
 ```js:line-numbers
 markersPlugin.setOption('gotoMarkerSpeed', '3rpm');

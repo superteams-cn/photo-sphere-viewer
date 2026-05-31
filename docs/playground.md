@@ -3,7 +3,7 @@ footer: false
 aside: false
 ---
 
-# Playground
+# 调试台
 
 <script setup>
 import Playground from '@components/Playground.vue';

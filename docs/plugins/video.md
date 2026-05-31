@@ -1,27 +1,27 @@
-# VideoPlugin <Badge text="Styles"/>
+# VideoPlugin <Badge text="样式"/>
 
 <Badges module="video-plugin"/>
 
 ::: module
 <ApiButton page="modules/VideoPlugin.html"/>
-Adds controls to the video [adapters](../guide/adapters/).
+为视频[适配器](../guide/adapters/)添加播放控制。
 
 这个插件由 [@photo-sphere-viewer/video-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/video-plugin) 包提供。
 :::
 
 ## 用法
 
-To use this plugin you must also load one of the video adapters : [equirectangular](../guide/adapters/equirectangular-video.md) or [cubemap](../guide/adapters/cubemap-video.md).
+使用此插件时，还必须加载一个视频适配器：[等距柱状视频](../guide/adapters/equirectangular-video.md)或[立方体视频](../guide/adapters/cubemap-video.md)。
 
 启用后，它会向查看器添加多个元素：
 
-- Play/pause button
-- Volume button
-- Time indicator in the navbar
-- Progressbar above the navbar
-- Play button in the center of the viewer
+- 播放/暂停按钮
+- 音量按钮
+- 导航栏中的时间指示器
+- 导航栏上方的进度条
+- viewer 中央的播放按钮
 
-It also supports advanced autorotate with timed `keypoints`.
+它还支持带时间点 `keypoints` 的高级自动旋转。
 
 ```js:line-numbers
 import { VideoPlugin } from '@photo-sphere-viewer/video-plugin';
@@ -58,14 +58,14 @@ packages:
 
 :::
 
-## Configuration
+## 配置
 
 #### `keypoints`
 
-- type: `Array<{ position, time }>`
-- updatable: no, use `setKeypoints()` method
+- 类型：`Array<{ position, time }>`
+- 可更新：否，请使用 `setKeypoints()` 方法
 
-Defines timed keypoints that will be used by the autorotate button.
+定义带时间点的关键点，供自动旋转按钮使用。
 
 ```js:line-numbers
 keypoints: [
@@ -75,30 +75,30 @@ keypoints: [
 ];
 ```
 
-::: warning
-The usage of keypoints requires to load the [Autorotate plugin](./autorotate.md).
+::: warning 注意
+使用关键点需要加载 [Autorotate 插件](./autorotate.md)。
 :::
 
 #### `progressbar`
 
-- type: `boolean`
-- default: `true`
-- updatable: no
+- 类型：`boolean`
+- 默认：`true`
+- 可更新：否
 
-Displays a progressbar on top of the navbar.
+在导航栏上方显示进度条。
 
 #### `bigbutton`
 
-- type: `boolean`
-- default: `true`
-- updatable: no
+- 类型：`boolean`
+- 默认：`true`
+- 可更新：否
 
-Displays a big "play" button in the center of the viewer.
+在 viewer 中央显示一个大的“播放”按钮。
 
 #### `lang`
 
-- type: `object`
-- default:
+- 类型：`object`
+- 默认：
 
 ```js
 lang: {
@@ -143,51 +143,51 @@ const viewer = new Viewer({
 });
 ```
 
-## Methods
+## 方法
 
 #### `setKeypoints(keypoints)`
 
-Changes the keypoints.
+修改关键点。
 
-## Events
+## 事件
 
 #### `play-pause(playing)`
 
-Triggered when the video starts playing or is paused.
+视频开始播放或暂停时触发。
 
 #### `volume-change(volume)`
 
-Triggered when the video volume changes.
+视频音量变化时触发。
 
 #### `progress(time, duration, progress)`
 
-Triggered when the video play progression changes.
+视频播放进度变化时触发。
 
-## Buttons
+## 按钮
 
-This plugin adds buttons to the default navbar:
+此插件会向默认导航栏添加按钮：
 
-- `videoPlay` allows to play/pause the video
-- `videoVolume` allows to change the volume/mute the video
-- `videoTime` shows the video time and duration (not a real button)
+- `videoPlay` 用于播放/暂停视频
+- `videoVolume` 用于调节音量或静音
+- `videoTime` 显示视频当前时间和总时长（并非真正的按钮）
 
-If you use a [custom navbar](../guide/navbar.md) you will need to manually add the buttons to the list.
+如果你使用了[自定义导航栏](../guide/navbar.md)，需要手动把这些按钮添加到列表中。
 
-## SCSS variables
+## SCSS 变量
 
-| variable                    | default                              | description                                                      |
-| --------------------------- | ------------------------------------ | ---------------------------------------------------------------- |
-| $progressbar-height         | 3px                                  | Height of the progress bar                                       |
-| $progressbar-height-active  | 5px                                  | Height of the progress bar on mouse hover                        |
-| $progressbar-progress-color | core.$buttons-color                  | Color of the playing progress bar                                |
-| $progressbar-buffer-color   | core.$buttons-active-background      | Color of the buffer progress bar                                 |
-| $progressbar-handle-size    | 9px                                  | Size of the seek handle                                          |
-| $progressbar-handle-color   | white                                | Color of the seek handle                                         |
-| $volume-height              | 80px                                 | Height of the volume control                                     |
-| $volume-width               | $progressbar-height-active           | Width of the volume control                                      |
-| $volume-bar-color           | $progressbar-progress-color          | Color of the volume controle                                     |
-| $volume-track-color         | $progressbar-buffer-color            | Background color of the volume control                           |
-| $volume-handle-size         | $progressbar-handle-size             | Size of the volume handle                                        |
-| $volume-handle-color        | $progressbar-handle-color            | Color of the volume handle                                       |
-| $bigbutton-color            | core.$buttons-color                  | Color of the central play button                                 |
-| $bigbutton-size             | (portrait: 20vw,<br>landscape: 10vw) | Size if the central play button, depending on screen orientation |
+| 变量                        | 默认值                               | 说明                             |
+| --------------------------- | ------------------------------------ | -------------------------------- |
+| $progressbar-height         | 3px                                  | 进度条高度                       |
+| $progressbar-height-active  | 5px                                  | 鼠标悬停时的进度条高度           |
+| $progressbar-progress-color | core.$buttons-color                  | 已播放进度条颜色                 |
+| $progressbar-buffer-color   | core.$buttons-active-background      | 缓冲进度条颜色                   |
+| $progressbar-handle-size    | 9px                                  | 拖动手柄尺寸                     |
+| $progressbar-handle-color   | white                                | 拖动手柄颜色                     |
+| $volume-height              | 80px                                 | 音量控件高度                     |
+| $volume-width               | $progressbar-height-active           | 音量控件宽度                     |
+| $volume-bar-color           | $progressbar-progress-color          | 音量控件颜色                     |
+| $volume-track-color         | $progressbar-buffer-color            | 音量控件背景色                   |
+| $volume-handle-size         | $progressbar-handle-size             | 音量手柄尺寸                     |
+| $volume-handle-color        | $progressbar-handle-color            | 音量手柄颜色                     |
+| $bigbutton-color            | core.$buttons-color                  | 中央播放按钮颜色                 |
+| $bigbutton-size             | (portrait: 20vw,<br>landscape: 10vw) | 中央播放按钮尺寸，取决于屏幕方向 |

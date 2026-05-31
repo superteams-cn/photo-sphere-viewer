@@ -1,13 +1,13 @@
-# Events
+# 事件
 
-## Presentation
+## 介绍
 
-Photo Sphere Viewer objects (`Viewer` and plugins) all implement the [EventTarget API](https://developer.mozilla.org/docs/Web/API/EventTarget) to dispatch events. It also implements a custom TypeScript interface which allows events to be strongly typed.
+Photo Sphere Viewer 对象（`Viewer` 和插件）都实现了 [EventTarget API](https://developer.mozilla.org/docs/Web/API/EventTarget) 用于派发事件，同时也提供自定义 TypeScript 接口，让事件具备强类型。
 
-Event listeners are called with a single `Event` subclass which has additional properties. Notably :
+事件监听器会收到一个带额外属性的 `Event` 子类。主要属性包括：
 
-- `type` is the name of the event
-- `target` is a reference to the viewer (or plugin) itself
+- `type`：事件名称
+- `target`：viewer（或插件）自身的引用
 
 ```js:line-numbers
 import { events } from '@photo-sphere-viewer/core';
@@ -23,17 +23,17 @@ viewer.addEventListener(events.PositionUpdateEvent.type, (e) => {
 viewer.addEventListener('position-updated', ({ position }) => ());
 ```
 
-The full list of events is available in the [API Reference](/api/modules/Core.events.html){target=\_blank}.
+完整事件列表见 [API 参考](/api/modules/Core.events.html){target=\_blank}。
 
-## Main events
+## 主要事件
 
-This section describes the most useful events available.
+本节介绍最常用的事件。
 
 ### `click(data)` | `dblclick(data)`
 
 - data: [`ClickData`](/api/types/Core.ClickData.html){target=\_blank}
 
-Triggered when the user clicks on the viewer (excluding the navbar and the side panel), it contains many information about where the user clicked including a [marker](../plugins/markers.md) if the `clickEventOnMarker` option is enabled.
+用户点击 viewer 时触发（不含导航栏和侧边面板）。事件中包含点击位置的详细信息；如果启用了 `clickEventOnMarker` 选项，还会包含对应的[标记](../plugins/markers.md)。
 
 ```js:line-numbers
 viewer.addEventListener('click', ({ data }) => {
@@ -41,11 +41,11 @@ viewer.addEventListener('click', ({ data }) => {
 });
 ```
 
-A `click` event is always fired before a `dblclick`.
+`click` 事件一定会先于 `dblclick` 触发。
 
 ### `position-updated(position)`
 
-Triggered when the view yaw and/or pitch change.
+视图的 yaw 或 pitch 发生变化时触发。
 
 ```js:line-numbers
 viewer.addEventListener('position-updated', ({ position }) => {
@@ -55,7 +55,7 @@ viewer.addEventListener('position-updated', ({ position }) => {
 
 ### `ready`
 
-Triggered once when the panorama image has been loaded and the viewer is ready to perform the first render.
+全景图加载完成且 viewer 准备好进行首次渲染时触发一次。
 
 ```js:line-numbers
 viewer.addEventListener('ready', () => {
@@ -65,7 +65,7 @@ viewer.addEventListener('ready', () => {
 
 ### `zoom-updated(zoomLevel)`
 
-Triggered when the zoom level changes.
+缩放级别变化时触发。
 
 ```js:line-numbers
 viewer.addEventListener('zoom-updated', ({ zoomLevel }) => {

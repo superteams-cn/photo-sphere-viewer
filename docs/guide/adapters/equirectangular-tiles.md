@@ -1,11 +1,11 @@
-# Equirectangular tiles
+# 等距柱状瓦片
 
 <Badges module="equirectangular-tiles-adapter"/>
 
 ::: module
-Reduce the initial loading time and used bandwidth by slicing big equirectangular panoramas into many smaller tiles.
+通过把大型等距柱状全景图切分为许多更小的瓦片，减少初始加载时间和带宽占用。
 
-This adapter is available in the [@photo-sphere-viewer/equirectangular-tiles-adapter](https://www.npmjs.com/package/@photo-sphere-viewer/equirectangular-tiles-adapter) package.
+此适配器由 [@photo-sphere-viewer/equirectangular-tiles-adapter](https://www.npmjs.com/package/@photo-sphere-viewer/equirectangular-tiles-adapter) 包提供。
 :::
 
 ```js:line-numbers
@@ -25,7 +25,7 @@ const viewer = new Viewer({
 });
 ```
 
-## Example
+## 示例
 
 ::: code-demo
 
@@ -39,93 +39,93 @@ packages:
 
 :::
 
-::: tip Positions definitions
-With this adapter, pixel positions refer to the full size of the panorama (first level when using multi-levels tiles).
+::: tip 位置定义
+使用此适配器时，像素位置基于全景图的完整尺寸（使用多级瓦片时，指第一级尺寸）。
 :::
 
-## Configuration
+## 配置
 
 #### `baseBlur`
 
-- type: `boolean`
-- default: `true`
+- 类型：`boolean`
+- 默认值：`true`
 
-Applies a blur filter to the base image (option `baseUrl`).
+对基础图片（`baseUrl` 选项）应用模糊滤镜。
 
 #### `showErrorTile`
 
-- type: `boolean`
-- default: `true`
+- 类型：`boolean`
+- 默认值：`true`
 
-Shows a warning sign on tiles that cannot be loaded.
+在无法加载的瓦片上显示警告标志。
 
 #### `antialias`
 
-- type: `boolean`
-- default: `true`
+- 类型：`boolean`
+- 默认值：`true`
 
-Applies antialiasing to high resolutions tiles.
+对高分辨率瓦片应用抗锯齿。
 
 #### `resolution`
 
-See the [equirectangular adapter configuration](./equirectangular.md#resolution).
+见[等距柱状适配器配置](./equirectangular.md#resolution)。
 
-## Panorama options
+## 全景图选项
 
-When using this adapter, the `panorama` option and the `setPanorama()` method accept an object to configure the tiles.
+使用此适配器时，`panorama` 选项和 `setPanorama()` 方法接受一个用于配置瓦片的对象。
 
-You may choose to provide a single tiles configuration or multiple configurations which will be applied at different zoom levels, this allows to serve files adapted to the current zoom level and achieve very high resolutions without consuming too much bandwidth.
+你可以提供单个瓦片配置，也可以提供多个会在不同缩放级别应用的配置。这样可以按当前缩放级别提供合适文件，在不过度占用带宽的情况下实现很高的分辨率。
 
 :::: tabs
 
-::: tab Single level
+::: tab 单级
 
-#### `width` (required)
+#### `width` (必填)
 
-- type: `number`
+- 类型：`number`
 
-Total width of the panorama, the height is always width / 2.
+全景图总宽度，高度始终为宽度的一半。
 
-#### `cols` (required)
+#### `cols` (必填)
 
-- type: `number`
+- 类型：`number`
 
-Number of columns, must be power of two (4, 8, 16, 32, 64) and the maximum value is 64.
+列数，必须是 2 的幂（4、8、16、32、64），最大值为 64。
 
-#### `rows` (required)
+#### `rows` (必填)
 
-- type: `number`
+- 类型：`number`
 
-Number of rows, must be power of two (2, 4, 8, 16, 32) and the maximum value is 32.
+行数，必须是 2 的幂（2、4、8、16、32），最大值为 32。
 
-#### `tileUrl` (required)
+#### `tileUrl` (必填)
 
-- type: `function: (col, row) => string`
+- 类型：`function: (col, row) => string`
 
-Function used to build the URL of a tile.
-If the function returns `null` the corresponding tile will not be loaded.
+用于构建瓦片 URL 的函数。
+如果函数返回 `null`，对应瓦片将不会加载。
 
-#### `baseUrl` (recommended)
+#### `baseUrl` (建议)
 
-- type: `string`
+- 类型：`string`
 
-URL of a low resolution complete panorama image to display while the tiles are loading.
+低分辨率完整全景图的 URL，用于在瓦片加载期间显示。
 
 #### `basePanoData`
 
-- type: `object | function<Image, object>`
+- 类型：`object | function<Image, object>`
 
-Panorama configuration associated to low resolution first image, following the same format as [`panoData` configuration object](../config.md#panodata).
+与低分辨率首图关联的全景图配置，格式与 [`panoData` 配置对象](../config.md#panodata)相同。
 
 :::
 
-::: tab Multiple levels
+::: tab 多级
 
-#### `levels` (required)
+#### `levels` (必填)
 
-- type: `array`
+- 类型：`array`
 
-Array of available tiles configurations. Each element is an object with `width`, `cols` and `rows` (see "Single level"). The best size will be choosen depending on the current zoom level and viewer size.
+可用瓦片配置数组。每个元素都是包含 `width`、`cols` 和 `rows` 的对象（见“单级”）。系统会根据当前缩放级别和 viewer 尺寸选择最合适的尺寸。
 
 ```js:line-numbers
 levels: [
@@ -147,34 +147,34 @@ levels: [
 ]
 ```
 
-#### `tileUrl` (required)
+#### `tileUrl` (必填)
 
-- type: `function: (col, row, level) => string`
+- 类型：`function: (col, row, level) => string`
 
-Function used to build the URL of a tile.
-If the function returns `null` the corresponding tile will not be loaded.
+用于构建瓦片 URL 的函数。
+如果函数返回 `null`，对应瓦片将不会加载。
 
-#### `baseUrl` (recommended)
+#### `baseUrl` (建议)
 
-- type: `string`
+- 类型：`string`
 
-URL of a low resolution complete panorama image to display while the tiles are loading.
+低分辨率完整全景图的 URL，用于在瓦片加载期间显示。
 
 #### `basePanoData`
 
-- type: `object | function<Image, object>`
+- 类型：`object | function<Image, object>`
 
-Panorama configuration associated to low resolution first image, following the same format as [`panoData` configuration object](../config.md#panodata).
+与低分辨率首图关联的全景图配置，格式与 [`panoData` 配置对象](../config.md#panodata)相同。
 
 :::
 
 ::::
 
-## Preparing the panorama
+## 准备全景图
 
-The tiles can be easily generated using [ImageMagick](https://imagemagick.org) tool.
+可以使用 [ImageMagick](https://imagemagick.org) 工具轻松生成瓦片。
 
-Let's say you have a 12.000x6.000 pixels panorama you want to split in 16 columns and 8 rows, use the following command:
+假设你有一张 12,000×6,000 像素的全景图，并希望将其切分为 16 列、8 行，可以使用以下命令：
 
 ```
 magick.exe panorama.jpg \
@@ -184,8 +184,8 @@ magick.exe panorama.jpg \
   %[filename:orig]_%[filename:tile].jpg
 ```
 
-You can also use this [online tool](https://pinetools.com/split-image).
+也可以使用这个[在线工具](https://pinetools.com/split-image)。
 
-::: tip Performances
-It is recommanded to not exceed tiles with a size of 1024x1024 pixels, thus limiting the maximum panorama size to 65.536x32.768 pixels (2 Gigapixels).
+::: tip 性能
+建议瓦片尺寸不要超过 1024×1024 像素，因此最大全景尺寸限制为 65,536×32,768 像素（2 十亿像素）。
 :::

@@ -1,5 +1,5 @@
-# Frameworks
+# 框架
 
-The following framework implementations are made by the community.
+以下框架实现由社区维护。
 
-- [`react-photo-sphere-viewer`](https://www.npmjs.com/package/react-photo-sphere-viewer) by Elia Lazzari
+- [`react-photo-sphere-viewer`](https://www.npmjs.com/package/react-photo-sphere-viewer)，作者 Elia Lazzari

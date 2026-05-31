@@ -1,11 +1,11 @@
-# Cubemap
+# 立方体贴图
 
 <Badges module="cubemap-adapter"/>
 
 ::: module
-[Cube mapping](https://en.wikipedia.org/wiki/Cube_mapping) is a kind of projection where the environment is mapped to the six faces of a cube around the viewer.
+[立方体贴图](https://en.wikipedia.org/wiki/Cube_mapping)是一种投影方式，会把环境映射到围绕 viewer 的立方体六个面上。
 
-This adapter is available in the [@photo-sphere-viewer/cubemap-adapter](https://www.npmjs.com/package/@photo-sphere-viewer/cubemap-adapter) package.
+此适配器由 [@photo-sphere-viewer/cubemap-adapter](https://www.npmjs.com/package/@photo-sphere-viewer/cubemap-adapter) 包提供。
 :::
 
 ```js:line-numbers
@@ -24,7 +24,7 @@ const viewer = new Viewer({
 });
 ```
 
-## Example
+## 示例
 
 ::: code-demo
 
@@ -38,17 +38,17 @@ packages:
 
 :::
 
-::: tip Positions definitions
-With this adapter, pixel positions require an additional `textureFace` attribute (example: `{ textureFace: 'front', textureX: 200, textureY: 800 }`).
+::: tip 位置定义
+使用此适配器时，像素位置需要额外提供 `textureFace` 属性（例如：`{ textureFace: 'front', textureX: 200, textureY: 800 }`）。
 :::
 
-## Panorama options
+## 全景图选项 {#panorama-options}
 
-When using this adapter, the `panorama` option and the `setPanorama()` method accept three types of cubemaps.
+使用此适配器时，`panorama` 选项和 `setPanorama()` 方法接受三种类型的立方体贴图。
 
-### Separate files
+### 分离文件
 
-Each face is in a separate file, all files will be loaded before showing the panorama.
+每个面位于独立文件中；显示全景图前会先加载所有文件。
 
 ::: code-group
 
@@ -86,13 +86,13 @@ panorama: {
 
 :::
 
-::: tip Partial cubemap
-It is possible to skip the loading of one or more faces by providing a `null` URL.
+::: tip 局部立方体贴图
+可以为一个或多个面提供 `null` URL，从而跳过对应面的加载。
 :::
 
-### Stripe
+### 条带
 
-All faces are in a single file arranged in an horizontal stripe. The default stripe order is `left, front, right, back, top, bottom` but it can be changed with the `order` field.
+所有面都位于同一个文件中，并按水平条带排列。默认条带顺序为 `left, front, right, back, top, bottom`，也可以通过 `order` 字段修改。
 
 ![](/images/cubemap-stripe.png)
 
@@ -107,9 +107,9 @@ panorama: {
 }
 ```
 
-### Polyhedron net
+### 多面体展开图
 
-All faces are in a single file arranged in an horizontal "T" unfolded cube.
+所有面都位于同一个文件中，并按水平“T”形立方体展开图排列。
 
 ![](/images/cubemap-net.png)
 

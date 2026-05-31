@@ -1,9 +1,9 @@
-# Cubemap video
+# 立方体视频
 
 <Badges module="cubemap-video-adapter"/>
 
 ::: module
-This adapter is available in the [@photo-sphere-viewer/cubemap-video-adapter](https://www.npmjs.com/package/@photo-sphere-viewer/cubemap-video-adapter) package.
+此适配器由 [@photo-sphere-viewer/cubemap-video-adapter](https://www.npmjs.com/package/@photo-sphere-viewer/cubemap-video-adapter) 包提供。
 :::
 
 ```js:line-numbers
@@ -18,11 +18,11 @@ const viewer = new Viewer({
 });
 ```
 
-::: warning
-This adapter requires to use the [VideoPlugin](../../plugins/video.md).
+::: warning 注意
+此适配器需要配合 [VideoPlugin](../../plugins/video.md) 使用。
 :::
 
-## Example
+## 示例
 
 ::: code-demo
 
@@ -41,49 +41,49 @@ packages:
 
 :::
 
-::: tip Positions definitions
-This adapter does not support pixel positions, only `yaw`+`pitch`.
+::: tip 位置定义
+此适配器不支持像素位置，只支持 `yaw` + `pitch`。
 :::
 
-## Configuration
+## 配置
 
 #### `autoplay`
 
-- type: `boolean`
-- default: `false`
+- 类型：`boolean`
+- 默认值：`false`
 
-Automatically starts the video on load.
+加载后自动开始播放视频。
 
 #### `muted`
 
-- type: `boolean`
-- default: `false`
+- 类型：`boolean`
+- 默认值：`false`
 
-Mute the video by default.
+默认将视频静音。
 
-## Panorama options
+## 全景图选项
 
-When using this adapter, the `panorama` option and the `setPanorama()` method accept an object to configure the video.
+使用此适配器时，`panorama` 选项和 `setPanorama()` 方法接受一个用于配置视频的对象。
 
-#### `source` (required)
+#### `source` (必填)
 
-- type: `string | MediaStream | HTMLVideoElement`
+- 类型：`string | MediaStream | HTMLVideoElement`
 
-Path of the video file. The video must not be larger than 4096 pixels or it won't be displayed on handled devices.
+视频文件路径。视频尺寸不得大于 4096 像素，否则无法在手持设备上显示。
 
-It can also be an existing `MediaStream`, for example to display the feed of an USB 360° camera, or a pre-existing `HTMLVideoElement` for more control over video playback.
+也可以传入已有的 `MediaStream`，例如显示 USB 360° 相机的画面；也可以传入已有的 `HTMLVideoElement`，以便更精细地控制视频播放。
 
 #### `equiangular`
 
-- type: `boolean`
-- default: `true`
+- 类型：`boolean`
+- 默认值：`true`
 
-Set to `true` when using an equiangular cubemap (EAC), which is the format used by Youtube. Set to `false` when using a standard cubemap.
+使用等角立方体贴图（EAC）时设为 `true`，这是 YouTube 使用的格式。使用标准立方体贴图时设为 `false`。
 
-### Video format
+### 视频格式
 
-This adapter supports video files consisting of a grid of the six faces of the cube, as used by Youtube for example.
+此适配器支持由立方体六个面组成网格的视频文件，例如 YouTube 使用的格式。
 
-The layout of a frame must be as follow:
+单帧布局必须如下：
 
 ![cubemap-video](/images/cubemap-video.png)

@@ -1,32 +1,32 @@
-# Adapters
+# 适配器
 
-Adapters are small pieces of code responsible to load the panorama texture(s) in the Three.js scene.
+适配器是一组小型代码模块，负责在 Three.js 场景中加载全景纹理。
 
-The supported adapters are:
+当前支持的适配器包括：
 
-- [equirectangular](equirectangular.md): the default adapter, used to load full or partial equirectangular panoramas
-- [equirectangular tiles](equirectangular-tiles.md): used to load tiled equirectangular panoramas
-- [equirectangular video](equirectangular-video.md): used to load equirectangular videos
-- [cubemap](cubemap.md): used to load cubemaps projections (six textures)
-- [cubemap tiles](cubemap-tiles.md): used to load tiled cubemap panoramas
-- [cubemap video](cubemap-video.md): used to load cubemap video
-- [dual fisheye](dual-fisheye.md): used to display raw files of 360 cameras like the Ricoh Theta Z1
+- [等距柱状图](equirectangular.md)：默认适配器，用于加载完整或局部的等距柱状全景图
+- [等距柱状瓦片](equirectangular-tiles.md)：用于加载瓦片化的等距柱状全景图
+- [等距柱状视频](equirectangular-video.md)：用于加载等距柱状视频
+- [立方体贴图](cubemap.md)：用于加载立方体投影（六张纹理）
+- [立方体瓦片](cubemap-tiles.md)：用于加载瓦片化的立方体全景图
+- [立方体视频](cubemap-video.md)：用于加载立方体视频
+- [双鱼眼](dual-fisheye.md)：用于展示 Ricoh Theta Z1 等 360 相机的原始文件
 
-## Import an adapter
+## 导入适配器
 
-Official adapters are available in various `@photo-sphere-viewer/***-adapter` packages. All adapters consist of a JavaScrpt class which must be provided to the `adapter` option. Some adapters will also take a configuration object provided with the static method `withConfig`.
+官方适配器分别发布在不同的 `@photo-sphere-viewer/***-adapter` 包中。所有适配器都由一个 JavaScript 类组成，并且必须传入 `adapter` 选项。部分适配器还支持通过静态方法 `withConfig` 传入配置对象。
 
-**Example for the Cubemap adapter:**
+**立方体贴图适配器示例：**
 
 :::: tabs
 
-::: tab Import from a CDN
+::: tab 从 CDN 导入
 
 ```html:line-numbers
 <script type="importmap">
     {
         "imports": {
-            // imports of PSV core and three
+            // 导入 PSV 核心和 three
             "@photo-sphere-viewer/cubemap-adapter": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/cubemap-adapter/index.module.js"
         }
     }
@@ -37,19 +37,19 @@ Official adapters are available in various `@photo-sphere-viewer/***-adapter` pa
     import { CubemapAdapter } from '@photo-sphere-viewer/cubemap-adapter';
 
     new Viewer({
-        adapter: CubemapAdapter,
-        // OR
-        adapter: CubemapAdapter.withConfig({
-            // optional adapter config
-        }),
-        panorama: // specific to the adapter,
-    });
+       adapter: CubemapAdapter,
+       // 或者
+       adapter: CubemapAdapter.withConfig({
+           // 可选的适配器配置
+       }),
+       panorama: // 适配器专属的全景图配置,
+   });
 </script>
 ```
 
 :::
 
-::: tab Install with NPM and a build tool
+::: tab 使用 NPM 和构建工具安装
 
 ```js:line-numbers
 import { Viewer } from '@photo-sphere-viewer/core';
@@ -57,7 +57,7 @@ import { CubemapAdapter } from '@photo-sphere-viewer/cubemap-adapter';
 
 new Viewer({
     adapter: CubemapAdapter,
-    panorama: // specific to the adapter,
+    panorama: // 适配器专属的全景图配置,
 });
 ```
 

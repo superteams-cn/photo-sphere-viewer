@@ -1,16 +1,16 @@
-# Configuration
+# 配置
 
-::: tip Angles definitions
-Photo Sphere Viewer uses a lot of angles for its configuration, most of them can be defined in radians by using a simple number (`3.5`) or in degrees using the "deg" suffix (`'55deg'`).
+::: tip 角度定义
+Photo Sphere Viewer 的配置中会大量使用角度，其中大多数既可以用普通数字表示弧度（`3.5`），也可以用 `"deg"` 后缀表示角度（`'55deg'`）。
 :::
 
 ## 标准选项
 
-#### `container` (required)
+#### `container` (必填)
 
-- type: `HTMLElement | string`
+- 类型：`HTMLElement | string`
 
-HTML element which will contain the panorama, or identifier of the element.
+用于容纳全景图的 HTML 元素，或该元素的标识符。
 
 ```js
 container: document.querySelector('.viewer');
@@ -18,116 +18,116 @@ container: '.viewer'; // will target [class="viewer"]
 container: 'viewer'; // will target [id="viewer"]
 ```
 
-#### `panorama` (required)
+#### `panorama` (必填)
 
-- type: `*`
+- 类型：`*`
 
-Path to the panorama. Must be a single URL for the default equirectangular adapter. Other adapters support other values.
+全景图路径。对于默认的等距柱状适配器，必须是单个 URL；其他适配器支持其他类型的值。
 
 #### `adapter`
 
-- default: `equirectangular`
+- 默认值：`equirectangular`
 
-Which [adapter](./adapters/) used to load the panorama.
+用于加载全景图的[适配器](./adapters/)。
 
 #### `plugins`
 
-- type: `array`
+- 类型：`array`
 
-List of enabled [plugins](../plugins/).
+已启用的[插件](../plugins/)列表。
 
 #### `caption`
 
-- type: `string`
+- 类型：`string`
 
-A text displayed in the navbar. If the navbar is disabled, the caption won't be visible.
+显示在导航栏中的文本。如果禁用了导航栏，说明文字将不可见。
 
-_**Note:** the content is rendered as HTML. If your content may include untrusted input it should be sanitized before being passed to `caption`._
+_**注意：** 内容会按 HTML 渲染。如果内容可能包含不可信输入，请先清理后再传入 `caption`。_
 
 #### `description`
 
-- type: `string`
+- 类型：`string`
 
-A text displayed in the side panel when the user clicks the "i" button. HTML is allowed.
+用户点击“i”按钮时显示在侧边面板中的文本。允许使用 HTML。
 
-_**Note:** the content is rendered as HTML. If your content may include untrusted input it should be sanitized before being passed to `description`._
+_**注意：** 内容会按 HTML 渲染。如果内容可能包含不可信输入，请先清理后再传入 `description`。_
 
 #### `downloadUrl`
 
-- type: `string`
-- default: `=panorama` for equirectangular panoramas
+- 类型：`string`
+- 默认值：等距柱状全景图为 `=panorama`
 
-Define the file which will be downloaded with the `download` button. This is particularly useful for adapters that use multiple files, like the CubemapAdapter or the EquirectangularTilesAdapter.
+定义通过 `download` 按钮下载的文件。对于使用多个文件的适配器（如 CubemapAdapter 或 EquirectangularTilesAdapter），这尤其有用。
 
 #### `downloadName`
 
-- type: `string`
-- default: `=downloadUrl` filename
+- 类型：`string`
+- 默认值：`=downloadUrl` 文件名
 
-Overrides the filename when downloading the panorama. This is mostly useful if the panorama is provided as base64.
+覆盖下载全景图时使用的文件名。当全景图以 base64 提供时，这通常很有用。
 
 #### `size`
 
-- type: `{ width: integer, height: integer }`
+- 类型：`{ width: integer, height: integer }`
 
-The final size of the panorama container. By default the size of `container` is used and is followed when resized.
+全景图容器的最终尺寸。默认使用 `container` 的尺寸，并在其尺寸变化时随之更新。
 
 #### `navbar`
 
-Configuration of the [navbar](./navbar.md).
+[导航栏](./navbar.md)配置。
 
 #### `minFov`
 
-- type: `integer`
-- default: `30`
+- 类型：`integer`
+- 默认值：`30`
 
-Minimal field of view (maximum zoom), between 1 and `maxFov`.
+最小视场角（最大缩放），取值介于 1 和 `maxFov` 之间。
 
 #### `maxFov`
 
-- type: `integer`
-- default: `90`
+- 类型：`integer`
+- 默认值：`90`
 
-Maximal field of view (minimum zoom), between `minFov` and 180.
+最大视场角（最小缩放），取值介于 `minFov` 和 180 之间。
 
 #### `defaultZoomLvl`
 
-- type: `integer`
-- default: `50`
+- 类型：`integer`
+- 默认值：`50`
 
-Initial zoom level, between 0 (for `maxFov`) and 100 (for `minfov`).
+初始缩放级别，取值介于 0（对应 `maxFov`）和 100（对应 `minfov`）之间。
 
 #### `fisheye`
 
-- type: `boolean | double`
-- default: `false`
+- 类型：`boolean | double`
+- 默认值：`false`
 
-Enable fisheye effect with `true` or specify the effect strength (`true` = `1.0`).
+设为 `true` 可启用鱼眼效果，也可以指定效果强度（`true` = `1.0`）。
 
 <DemoButton href="/demos/basic/fisheye.html"/>
 
-::: warning
-This mode can have side-effects on markers rendering and some adapters.
+::: warning 注意
+此模式可能会对标记渲染和部分适配器产生副作用。
 :::
 
 #### `defaultYaw`
 
-- type: `double | string`
-- default: `0`
+- 类型：`double | string`
+- 默认值：`0`
 
-Initial horizontal angle, between 0 and 2π.
+初始水平角度，取值介于 0 和 2π 之间。
 
 #### `defaultPitch`
 
-- type: `double | string`
-- default: `0`
+- 类型：`double | string`
+- 默认值：`0`
 
-Initial vertical angle, between -π/2 and π/2.
+初始垂直角度，取值介于 -π/2 和 π/2 之间。
 
 #### `lang`
 
-- type: `object`
-- default:
+- 类型：`object`
+- 默认值：
 
 ```js:line-numbers
 lang: {
@@ -155,75 +155,75 @@ lang: {
 
 #### `loadingImg`
 
-- type: `string`
+- 类型：`string`
 
-Path to an image displayed in the center of the loader.
+显示在加载器中央的图片路径。
 
 #### `loadingTxt`
 
-- type: `string`
-- default: `lang.loading`
+- 类型：`string`
+- 默认值：`lang.loading`
 
-Text displayed in the center of the loader, only used if `loadingImg` is not provided.
+显示在加载器中央的文本，仅在未提供 `loadingImg` 时使用。
 
 #### `mousewheel`
 
-- type: `boolean`
-- default: `true`
+- 类型：`boolean`
+- 默认值：`true`
 
-Enables zoom with the mouse wheel.
+启用鼠标滚轮缩放。
 
 #### `mousemove`
 
-- type: `boolean`
-- default: `true`
+- 类型：`boolean`
+- 默认值：`true`
 
-Enables panorama rotation with mouse click+move or with a finger swipe on touch screens.
+启用通过鼠标点击并拖动，或在触摸屏上用手指滑动来旋转全景图。
 
 #### `keyboard`
 
-- type: `boolean | 'fullscreen' | 'always'`
-- default: `'fullscreen'` (same as `true`)
+- 类型：`boolean | 'fullscreen' | 'always'`
+- 默认值：`'fullscreen'`（等同于 `true`）
 
-Enables keyboard controls when in fullscreen or always. The different keys can be configured with [`keyboardActions`](#keyboardactions).
+在全屏时或始终启用键盘控制。不同按键可通过 [`keyboardActions`](#keyboardactions) 配置。
 
-::: warning
-Keys are listened globally to the page, and thus can be in conflict with other components if configured to `'always'`.
+::: warning 注意
+按键会在页面全局监听，因此如果配置为 `'always'`，可能会与其他组件冲突。
 :::
 
 #### `mousewheelCtrlKey`
 
-- type: `boolean`
-- default: `false`
+- 类型：`boolean`
+- 默认值：`false`
 
-Requires to use the ctrl key to zoom the panorama. This allows to scroll on the page without interfering with the viewer. If enabled, an overlay asking the user to use ctrl + scroll is displayed when ctrl key is not pressed.
+要求按住 ctrl 键才能缩放全景图。这样可以在页面中滚动而不干扰 viewer。启用后，如果未按下 ctrl 键，会显示一个覆盖层，提示用户使用 ctrl + 滚动。
 
 #### `touchmoveTwoFingers`
 
-- type: `boolean`
-- default: `false`
+- 类型：`boolean`
+- 默认值：`false`
 
-Requires two fingers to rotate the panorama. This allows standard touch-scroll navigation in the page containing the viewer. If enabled, an overlay asking the user to use two fingers is displayed when only one finger is detected.
+要求使用双指旋转全景图。这样在包含 viewer 的页面中仍可使用标准触摸滚动导航。启用后，如果只检测到一根手指，会显示一个覆盖层，提示用户使用双指。
 
-## Advanced options
+## 高级选项
 
 #### `sphereCorrection`
 
-- type: `{ pan: double | string, tilt: double | string, roll: double | string }`
-- default: `{ pan:0, tilt:0, roll: 0 }`
+- 类型：`{ pan: double | string, tilt: double | string, roll: double | string }`
+- 默认值：`{ pan:0, tilt:0, roll: 0 }`
 
-Allows to fix the panorama orientation.
+用于修正全景图方向。
 
-**Note:** if the XMP data contains pose heading/pitch/roll data, they will be applied before `sphereCorrection`.
+**注意：** 如果 XMP 数据包含姿态 heading/pitch/roll 数据，它们会在 `sphereCorrection` 之前应用。
 
 ![pan-tilt-toll](/images/pan-tilt-roll.png)
 
 #### `panoData`
 
-- type: `PanoData | function<Image, PanoData, PanoData>`
+- 类型：`PanoData | function<Image, PanoData, PanoData>`
 
-Overrides XMP data found in the panorama file.
-All parameters are optional.
+覆盖全景图文件中找到的 XMP 数据。
+所有参数都是可选的。
 
 ```js:line-numbers
 panoData: {
@@ -236,7 +236,7 @@ panoData: {
 }
 ```
 
-It can also be a function to dynamically compute the cropping config depending on the loaded image (note that a [default setting](./adapters/equirectangular.md#default-parameters) is already applied when no data is found).
+它也可以是一个函数，用于根据已加载图片动态计算裁剪配置（注意：找不到数据时，系统已经会应用一个[默认设置](./adapters/equirectangular.md#default-parameters)）。
 
 ```js:line-numbers
 panoData: (image, xmpData) => ({
@@ -251,42 +251,42 @@ panoData: (image, xmpData) => ({
 
 #### `defaultTransition`
 
-- type: `TransitionOptions`
-- default: `{ speed: 1500, rotation: true, effect: "fade" }`
+- 类型：`TransitionOptions`
+- 默认值：`{ speed: 1500, rotation: true, effect: "fade" }`
 
-Configures the default transition between panoramas. All parameters can be changed when calling `setPanorama()` method.
+配置全景图之间的默认过渡效果。调用 `setPanorama()` 方法时可以修改所有参数。
 
-Possible `effect` are `fade, black, white`.  
-The `speed` is either a duration in milliseconds or a string containing the speed in revolutions per minute (`2rpm`).
+可用的 `effect` 包括 `fade, black, white`。
+`speed` 可以是以毫秒为单位的持续时间，也可以是包含每分钟转数的字符串（`2rpm`）。
 
 <DemoButton href="/demos/basic/transition.html"></DemoButton>
 
 #### `moveSpeed`
 
-- type: `double`
-- default `1`
+- 类型：`double`
+- 默认值：`1`
 
-Speed multiplicator for panorama moves. Used for click move, touch move and navbar buttons.
+全景图移动速度倍数。用于点击移动、触摸移动和导航栏按钮。
 
 #### `zoomSpeed`
 
-- type: `double`
-- default `1`
+- 类型：`double`
+- 默认值：`1`
 
-Speed multiplicator for panorama zooms. Used for mouse wheel, touch pinch and navbar buttons.
+全景图缩放速度倍数。用于鼠标滚轮、触摸捏合和导航栏按钮。
 
 #### `moveInertia`
 
-- type: `boolean | number`
-- default: `0.8`
+- 类型：`boolean | number`
+- 默认值：`0.8`
 
-Applies damping to the camera movement, higher value mean stronger damping (`true` is default damping factor, `false` is not damping).
+对相机移动应用阻尼。数值越高，阻尼越强（`true` 表示默认阻尼系数，`false` 表示无阻尼）。
 
 #### `requestHeaders`
 
-- type: `object | function<string, object>`
+- 类型：`object | function<string, object>`
 
-Sets the HTTP headers when loading the images files.
+加载图片文件时设置 HTTP 头。
 
 ```js
 requestHeaders: {
@@ -294,7 +294,7 @@ requestHeaders: {
 }
 ```
 
-It can also be a function to dynamically set the request headers before every call. This can be useful when adding a Bearer, which is temporarily valid, to the Authorization header.
+也可以是一个函数，用于在每次请求前动态设置请求头。当需要向 Authorization 头添加临时有效的 Bearer 时，这会很有用。
 
 ```js
 requestHeaders: (url) => ({
@@ -304,12 +304,12 @@ requestHeaders: (url) => ({
 
 #### `withCredentials`
 
-- type: `boolean | function<string, boolean>`
-- default: `false`
+- 类型：`boolean | function<string, boolean>`
+- 默认值：`false`
 
-Use credentials for HTTP requests.
+为 HTTP 请求使用凭据。
 
-It can also be a function to dynamically change the option before every call.
+也可以是一个函数，用于在每次请求前动态改变该选项。
 
 ```js
 withCredentials: (url) => !url.includes('amazonaws');
@@ -317,8 +317,8 @@ withCredentials: (url) => !url.includes('amazonaws');
 
 #### `keyboardActions`
 
-- type: `object`
-- default:
+- 类型：`object`
+- 默认值：
 
 ```js:line-numbers
 keyboardActions: {
@@ -333,15 +333,15 @@ keyboardActions: {
 }
 ```
 
-Configure keyboard actions. It is a map defining key code->action. The key can include modifiers like `Ctrl`, `Shift`, `Alt` or `Meta` separated with a `+` symbol.
+配置键盘动作。它是一个定义 key code -> action 的映射。按键可以包含 `Ctrl`、`Shift`、`Alt` 或 `Meta` 等修饰键，并用 `+` 分隔。
 
-::: tip
-Use [Key.js](https://keyjs.dev/) wbesite to determine exact combination of a keystroke.
+::: tip 提示
+可使用 [Key.js](https://keyjs.dev/) 网站确定按键的准确组合。
 
-_Note:_ Use `Plus` instead of `+` when configuring the plus key with a modifier, for example `Shift+Plus`.
+_注意：_ 当配置带修饰键的加号键时，请使用 `Plus` 而不是 `+`，例如 `Shift+Plus`。
 :::
 
-You can also configure an arbitrary callback to any key, it receives the viewer itself and the original keyboard event as parameters.
+也可以为任意按键配置回调函数；回调会接收 viewer 自身和原始键盘事件作为参数。
 
 ```js:line-numbers
 import { DEFAULTS } from '@photo-sphere-viewer/core';
@@ -359,30 +359,30 @@ keyboardActions: {
 
 <DemoButton href="/demos/advanced/keyboard-actions.html"/>
 
-::: warning
-Keyboard actions will only be available in fullscreen by default, this can be changed with the [`keyboard` option](#keyboard).
+::: warning 注意
+键盘动作默认只在全屏模式下可用，可通过 [`keyboard` 选项](#keyboard)修改。
 :::
 
 #### `canvasBackground`
 
-- type: `string`
-- default: `#000`
+- 类型：`string`
+- 默认值：`#000`
 
-Background of the canvas, which will be visible when using cropped panoramas. Can be any valid CSS `background` value.
+画布背景。在使用裁剪全景图时会显示出来。可以是任何有效的 CSS `background` 值。
 
 #### `rendererParameters`
 
-- type: [`WebGLRendererParameters`](https://threejs.org/docs/#api/en/renderers/WebGLRenderer)
-- default: `{ alpha: true, antialias: true }`
+- 类型：[`WebGLRendererParameters`](https://threejs.org/docs/#api/en/renderers/WebGLRenderer)
+- 默认值：`{ alpha: true, antialias: true }`
 
-Configuration of the ThreeJS WebGLRenderer.
+ThreeJS WebGLRenderer 的配置。
 
-## Cache
+## 缓存
 
-Photo Sphere Viewer contains a cache system to save resources when switching back and forth between multiple panoramas.
-This cache is global and shared across viewers (_note:_ is not related to ThreeJS Cache, which should not be enabled).
+Photo Sphere Viewer 包含一个缓存系统，用于在多个全景图之间来回切换时节省资源。
+该缓存是全局的，并在各个 viewer 之间共享（_注意：_ 它与 ThreeJS Cache 无关，后者不应启用）。
 
-To get the cache instance, import it from `@photo-sphere-viewer/core`, then you can configure it.
+要获取缓存实例，请从 `@photo-sphere-viewer/core` 导入它，然后即可进行配置。
 
 ```js
 import { Cache } from '@photo-sphere-viewer/core';
@@ -394,23 +394,23 @@ Cache.maxItems = 3;
 
 #### `enabled`
 
-- type: `boolean`
-- default: `true`
+- 类型：`boolean`
+- 默认值：`true`
 
-Allows to completely disable the cache.
+允许完全禁用缓存。
 
 #### `ttl`
 
-- type: `number`
-- default: `600`
+- 类型：`number`
+- 默认值：`600`
 
-Maximum retention duration in minutes.
+最大保留时长，单位为分钟。
 
 #### `maxItems`
 
-- type: `number`
-- default: `10`
+- 类型：`number`
+- 默认值：`10`
 
-Maximum number of items stored in the case.
+缓存中存储的最大条目数。
 
-_Note:_ the actual number of files will be greater with cubemap and tiles adapters.
+_注意：_ 使用立方体贴图和瓦片适配器时，实际文件数量会更多。

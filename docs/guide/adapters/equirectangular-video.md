@@ -1,9 +1,9 @@
-# Equirectangular video
+# 等距柱状视频
 
 <Badges module="equirectangular-video-adapter"/>
 
 ::: module
-This adapter is available in the [@photo-sphere-viewer/equirectangular-video-adapter](https://www.npmjs.com/package/@photo-sphere-viewer/equirectangular-video-adapter) package.
+此适配器由 [@photo-sphere-viewer/equirectangular-video-adapter](https://www.npmjs.com/package/@photo-sphere-viewer/equirectangular-video-adapter) 包提供。
 :::
 
 ```js:line-numbers
@@ -18,11 +18,11 @@ const viewer = new Viewer({
 });
 ```
 
-::: warning
-This adapter requires to use the [VideoPlugin](../../plugins/video.md).
+::: warning 注意
+此适配器需要配合 [VideoPlugin](../../plugins/video.md) 使用。
 :::
 
-## Example
+## 示例
 
 ::: code-demo
 
@@ -41,37 +41,37 @@ packages:
 
 :::
 
-## Configuration
+## 配置
 
 #### `autoplay`
 
-- type: `boolean`
-- default: `false`
+- 类型：`boolean`
+- 默认值：`false`
 
-Automatically starts the video on load.
+加载后自动开始播放视频。
 
 #### `muted`
 
-- type: `boolean`
-- default: `false`
+- 类型：`boolean`
+- 默认值：`false`
 
-Mute the video by default.
+默认将视频静音。
 
 #### `resolution`
 
-See the [equirectangular adapter configuration](./equirectangular.md#resolution).
+见[等距柱状适配器配置](./equirectangular.md#resolution)。
 
-## Panorama options
+## 全景图选项
 
-When using this adapter, the `panorama` option and the `setPanorama()` method accept an object to configure the video.
+使用此适配器时，`panorama` 选项和 `setPanorama()` 方法接受一个用于配置视频的对象。
 
-#### `source` (required)
+#### `source` (必填)
 
-- type: `string | MediaStream | HTMLVideoElement`
+- 类型：`string | MediaStream | HTMLVideoElement`
 
-Path of the video file. The video must not be larger than 4096 pixels or it won't be displayed on handled devices.
+视频文件路径。视频尺寸不得大于 4096 像素，否则无法在手持设备上显示。
 
-It can also be an existing `MediaStream`, for example to display the feed of an USB 360° camera, or a pre-existing `HTMLVideoElement` for more control over video playback.
+也可以传入已有的 `MediaStream`，例如显示 USB 360° 相机的画面；也可以传入已有的 `HTMLVideoElement`，以便更精细地控制视频播放。
 
 ```js:line-numbers
 const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -90,9 +90,9 @@ const viewer = new Viewer({
 
 #### `data`
 
-- type: `object | function<Video, PanoData>`
+- 类型：`object | function<Video, PanoData>`
 
-Can by used to define cropping information if the video does not cover a full sphere.
+如果视频没有覆盖完整球面，可用此项定义裁剪信息。
 
 ```js:line-numbers
 panorama: {

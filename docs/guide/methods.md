@@ -1,16 +1,16 @@
-# Methods
+# 方法
 
-## Presentation
+## 介绍
 
-Many methods are available to control the viewer from your application. The full list of methods is available in the [API Reference](/api/classes/Core.Viewer.html){target=\_blank}.
+你可以在应用中使用许多方法来控制 viewer。完整方法列表见 [API 参考](/api/classes/Core.Viewer.html){target=\_blank}。
 
-::: tip Modular architecture
-Photo Sphere Viewer is internally splitted in multiple components, this has an impact on where are located each method. For example, the methods to control the navbar are in the `navbar` object.
+::: tip 模块化架构
+Photo Sphere Viewer 内部拆分为多个组件，因此不同方法会分布在不同对象上。例如，控制导航栏的方法位于 `navbar` 对象中。
 
-Read more about [reusable components](./components/).
+更多信息见[可复用组件](./components/)。
 :::
 
-It is good practice to wait for the `ready` event before calling any method.
+最佳实践是在调用任何方法前等待 `ready` 事件。
 
 ```js:line-numbers
 viewer.addEventListener('ready', () => {
@@ -21,25 +21,25 @@ viewer.addEventListener('ready', () => {
 }, { once: true });
 ```
 
-## Main methods
+## 主要方法
 
-This section describes the most useful methods available.
+本节介绍最常用的方法。
 
-::: tip Positions definitions
-Some methods takes positionnal arguments, this is either on combination `yaw` and `pitch` (radians or degrees) or `textureX` and `textureY` properties, corresponding to the pixel position on the source panorama file.
+::: tip 位置定义
+部分方法接受位置参数：可以是 `yaw` 与 `pitch` 的组合（弧度或角度），也可以是 `textureX` 与 `textureY` 属性，对应源全景图文件中的像素位置。
 
-When using a [cubemap](./adapters/cubemap.md) you will also have to provide `textureFace`.
+使用[立方体贴图](./adapters/cubemap.md)时，还需要提供 `textureFace`。
 :::
 
 ### `animate(options): Animation`
 
 - options: [`AnimateOptions`](/api/types/Core.AnimateOptions.html){target=\_blank}
 
-Rotate and zoom the view with a smooth animation. You can change the position (`yaw`, `pitch` or `textureX`, `textureY`) and the zoom level (`zoom`).
+通过平滑动画旋转并缩放视图。可以修改位置（`yaw`、`pitch` 或 `textureX`、`textureY`）和缩放级别（`zoom`）。
 
-The `speed` option is either a duration in milliseconds or a string containing the speed in revolutions per minute (`2rpm`).
+`speed` 选项可以是以毫秒为单位的持续时间，也可以是包含每分钟转数的字符串（`2rpm`）。
 
-The method returns a `Animation` object which is a standard Promise with an additional `cancel` method.
+该方法返回一个 `Animation` 对象，它是标准 Promise，并额外提供 `cancel` 方法。
 
 ```js:line-numbers
 viewer.animate({
@@ -53,23 +53,23 @@ viewer.animate({
 
 ### `destroy()`
 
-Remove the viewer from the page and free the memory used by Three.js.
+从页面中移除 viewer，并释放 Three.js 使用的内存。
 
 ### `getPlugin(pluginId): PluginInstance`
 
-Return the instance of plugin, more details on [the dedicated page](../plugins/).
+返回插件实例，更多信息见[插件专页](../plugins/)。
 
 ### `getPosition(): Position`
 
-Return the current position of the view.
+返回当前视图位置。
 
 ### `getZoomLevel(): number`
 
-Return the current zoom level between 0 and 100.
+返回当前缩放级别，范围为 0 到 100。
 
 ### `rotate(position)`
 
-Immediately rotate the view without animation.
+立即旋转视图，不使用动画。
 
 ```js:line-numbers
 // you can also use yaw and pitch
@@ -81,7 +81,7 @@ viewer.rotate({
 
 ### `setOption(option, value)`
 
-Update an option of the viewer. Some options cannot be changed : `panorama`, `panoData`, `container`, `adapter` and `plugins`.
+更新 viewer 的某个选项。部分选项不可更改：`panorama`、`panoData`、`container`、`adapter` 和 `plugins`。
 
 ```js:line-numbers
 viewer.setOption('fisheye', true);
@@ -89,7 +89,7 @@ viewer.setOption('fisheye', true);
 
 ### `setOptions(options)`
 
-Update multiple options at once.
+一次更新多个选项。
 
 ```js:line-numbers
 viewer.setOptions({
@@ -101,9 +101,9 @@ viewer.setOptions({
 
 - options: [`PanoramaOptions`](/api/types/Core.PanoramaOptions.html){target=\_blank}
 
-Change the panorama image with an optional transition animation (enabled by default).
+更换全景图，并可选择使用过渡动画（默认启用）。
 
-The method returns a Promise resolved when the new panorama has finished loading.
+该方法返回一个 Promise，会在新全景图加载完成后 resolve。
 
 ```js:line-numbers
 viewer.setPanorama('image.jpg')
@@ -124,4 +124,4 @@ viewer.setPanorama('image.jpg', {
 
 ### `zoom(level)` | `zoomIn([step = 1])` | `zoomOut([step = 1])`
 
-Change the zoom level without animation.
+更改缩放级别，不使用动画。

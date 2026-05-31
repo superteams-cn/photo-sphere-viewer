@@ -1,27 +1,27 @@
-# MarkersPlugin <Badge text="Styles"/>
+# MarkersPlugin <Badge text="样式"/>
 
 <Badges module="markers-plugin"/>
 
 ::: module
 <ApiButton page="modules/MarkersPlugin.html"/>
-Displays various shapes, images and texts on the viewer.
+在 viewer 上显示各种形状、图片和文字。
 
 这个插件由 [@photo-sphere-viewer/markers-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/markers-plugin) 包提供。
 :::
 
 ## 用法
 
-The plugin provides a powerful markers system allowing to define points of interest on the panorama with optional tooltip and description. Markers can be dynamically added/removed and you can react to user click/tap.
+插件提供了强大的标记系统，可在全景图上定义兴趣点，并可选配提示框与说明内容。标记支持动态添加和移除，也可以响应用户的点击或轻触。
 
-There are five types of markers:
+标记共有五种类型：
 
-- **HTML** defined with the `html`/`element`/`elementLayer` attribute
-- **Images** defined with the `image`/`imageLayer` attribute
-- **Videos** defined with the `videoLayer` attribute
-- **SVGs** defined with the `square`/`rect`/`circle`/`ellipse`/`path` attribute
-- **Dynamic polygons & polylines** defined with the `polygon`/`polygonPixels`/`polyline`/`polylinePixels` attribute
+- **HTML**：通过 `html`、`element` 或 `elementLayer` 属性定义
+- **图片**：通过 `image` 或 `imageLayer` 属性定义
+- **视频**：通过 `videoLayer` 属性定义
+- **SVG**：通过 `square`、`rect`、`circle`、`ellipse` 或 `path` 属性定义
+- **动态多边形与折线**：通过 `polygon`、`polygonPixels`、`polyline` 或 `polylinePixels` 属性定义
 
-Markers can be added at startup with the `markers` option or after load with the various methods.
+可以通过 `markers` 选项在启动时添加标记，也可以在加载后通过各类方法动态添加。
 
 ```js:line-numbers
 import { MarkersPlugin } from '@photo-sphere-viewer/markers-plugin';
@@ -73,17 +73,17 @@ packages:
 
 ::::
 
-## Markers
+## 标记
 
-### Definition
+### 定义
 
-One, and only one, of these options is required for each marker.
+每个标记必须且只能使用以下选项中的一个。
 
 #### `image`
 
-- type: `string`
+- 类型：`string`
 
-Path to an image file. Requires `size` to be defined.
+图片文件路径。需要定义 `size`。
 
 ```js:line-numbers{3}
 {
@@ -96,17 +96,17 @@ Path to an image file. Requires `size` to be defined.
 
 #### `imageLayer`
 
-- type: `string`
+- 类型：`string`
 
-Path to an image file.
+图片文件路径。
 
-::: tip "Layers" positionning
-There is two ways to position `imageLayer` and `videoLayer` markers:
+::: tip "Layers" 定位
+`imageLayer` 与 `videoLayer` 标记有两种定位方式：
 
-- `position` (one value) + `size` + `anchor` (optional) + `rotation` (optional)
-- `position` with four values defining the corners of the image/video
+- `position`（单个值）+ `size` + `anchor`（可选）+ `rotation`（可选）
+- `position` 使用四个值定义图片/视频的四个角
 
-(`elementLayer` can only be positionned with `position` + `rotation`)
+（`elementLayer` 只能通过 `position` + `rotation` 定位）
 
 <DemoButton href="/demos/markers/layers.html"/>
 :::
@@ -131,16 +131,16 @@ There is two ways to position `imageLayer` and `videoLayer` markers:
 }
 ```
 
-::: tip What is the difference between "image" and "imageLayer" ?
-Both allows to display an image but the difference is in the rendering technique.
-An `image` marker is rendered flat above the viewer but and `imageLayer` is rendered inside the panorama itself, this allows for more natural movements and scaling.
+::: tip “image”和“imageLayer”有什么区别？
+`image` 与 `imageLayer` 都能显示图片，区别在于渲染方式。
+`image` 标记会以平面形式绘制在 viewer 上方，而 `imageLayer` 会渲染在全景图内部，因此移动和缩放效果更自然。
 :::
 
 #### `videoLayer`
 
-- type: `string`
+- 类型：`string`
 
-Path to a video file. It is positionned exactly like `imageLayer`. It can be used with the [`chromaKey`](#chromakey) option.
+视频文件路径。定位方式与 `imageLayer` 完全相同。可配合 [`chromaKey`](#chromakey) 选项使用。
 
 ```js:line-numbers{3}
 {
@@ -153,9 +153,9 @@ Path to a video file. It is positionned exactly like `imageLayer`. It can be use
 
 #### `html`
 
-- type: `string`
+- 类型：`string`
 
-HTML content of the marker. It is recommended to define th `size`.
+标记的 HTML 内容。建议定义 `size`。
 
 ```js:line-numbers{3}
 {
@@ -166,13 +166,13 @@ HTML content of the marker. It is recommended to define th `size`.
 }
 ```
 
-_**Note:** the content is rendered as HTML. If your content may include untrusted input it should be sanitized before being passed to `html`._
+_**注意：** 内容会以 HTML 渲染。如果内容可能包含不受信任的输入，应先清理后再传给 `html`。_
 
 #### `element`
 
-- type: `HTMLElement` & [`MarkerElement`](/api/interfaces/MarkersPlugin.MarkerElement.html){target=\_blank}
+- 类型：`HTMLElement` & [`MarkerElement`](/api/interfaces/MarkersPlugin.MarkerElement.html){target=\_blank}
 
-Existing DOM element.
+现有 DOM 元素。
 
 ```js:line-numbers{3}
 {
@@ -182,24 +182,24 @@ Existing DOM element.
 }
 ```
 
-::: tip Custom element markers
-The `element`/`elementLayer` marker accepts [Web Components](https://developer.mozilla.org/docs/Web/API/Web_components/Using_custom_elements).
-If your component has an `updateMarker()` method it will be called by the plugin on each render with a bunch of properties:
+::: tip 自定义元素标记
+`element`/`elementLayer` 标记支持 [Web Components](https://developer.mozilla.org/docs/Web/API/Web_components/Using_custom_elements)。
+如果你的组件包含 `updateMarker()` 方法，插件会在每次渲染时调用它，并传入一组属性：
 
-- `marker`: reference to the marker object itself
-- `position`: computed 2D position in the viewport
-- `viewerPosition`: current camera orientation in yaw+pitch
-- `zoomLevel`: current zoom level
-- `viewerSize`: size of the viewport
+- `marker`：标记对象本身的引用
+- `position`：在视口中计算得到的 2D 位置
+- `viewerPosition`：当前相机朝向，包含 yaw+pitch
+- `zoomLevel`：当前缩放级别
+- `viewerSize`：视口尺寸
 
 <DemoButton href="/demos/markers/custom-element.html"/>
 :::
 
 #### `elementLayer`
 
-- type: `HTMLElement` & [`MarkerElement`](/api/interfaces/MarkersPlugin.MarkerElement.html){target=\_blank}
+- 类型：`HTMLElement` & [`MarkerElement`](/api/interfaces/MarkersPlugin.MarkerElement.html){target=\_blank}
 
-Existing DOM element. Unlike `element`, it is rendered "inside" the scene and has more natural movements and scaling.
+现有 DOM 元素。与 `element` 不同，它会渲染在场景“内部”，移动与缩放效果更自然。
 
 ```js:line-numbers{3}
 {
@@ -214,10 +214,10 @@ Existing DOM element. Unlike `element`, it is rendered "inside" the scene and ha
 
 #### `polygon`
 
-- type: `Array<number[2] | string[2] | SphericalPosition> | Array<Array<...>>`
+- 类型：`Array<number[2] | string[2] | SphericalPosition> | Array<Array<...>>`
 
-Array of points defining the polygon in spherical coordinates (degrees or radians).  
-The polygon can have one or more holes by defined them in a nested array (the syntax is [similar to GeoJSON](https://geojson.readthedocs.io/en/latest/#polygon)).
+用于以球面坐标（角度或弧度）定义多边形的点数组。
+多边形可以通过嵌套数组定义一个或多个孔洞（语法[类似 GeoJSON](https://geojson.readthedocs.io/en/latest/#polygon)）。
 
 ```js:line-numbers{3,8-11}
 {
@@ -236,11 +236,11 @@ The polygon can have one or more holes by defined them in a nested array (the sy
 
 #### `polygonPixels`
 
-- type: `Array<number[2] | PanoramaPosition> | Array<Array<...>>`
+- 类型：`Array<number[2] | PanoramaPosition> | Array<Array<...>>`
 
-Same as `polygon` but in pixel coordinates on the panorama image.  
-The object syntax can be used to define the panorama face when using a cubemap.  
-Holes are also supported (see above).
+与 `polygon` 相同，但使用全景图图片上的像素坐标。
+使用立方体贴图时，可通过对象语法定义全景图面。
+同样支持孔洞（见上文）。
 
 ```js:line-numbers{3,9-11}
 {
@@ -260,9 +260,9 @@ Holes are also supported (see above).
 
 #### `polyline`
 
-- type: `Array<number[2] | string[2] | SphericalPosition>`
+- 类型：`Array<number[2] | string[2] | SphericalPosition>`
 
-Same as `polygon` but generates a polyline.
+与 `polygon` 相同，但生成折线。
 
 ```js:line-numbers{3}
 {
@@ -273,9 +273,9 @@ Same as `polygon` but generates a polyline.
 
 #### `polylinePixels`
 
-- type: `Array<number[2] | PanoramaPosition>`
+- 类型：`Array<number[2] | PanoramaPosition>`
 
-Same as `polygonPixels` but generates a polyline.
+与 `polygonPixels` 相同，但生成折线。
 
 ```js:line-numbers{3}
 {
@@ -286,9 +286,9 @@ Same as `polygonPixels` but generates a polyline.
 
 #### `square`
 
-- type: `integer`
+- 类型：`integer`
 
-Size of the square.
+正方形尺寸。
 
 ```js:line-numbers{3}
 {
@@ -300,9 +300,9 @@ Size of the square.
 
 #### `rect`
 
-- type: `integer[2] | { width: integer, height: integer }`
+- 类型：`integer[2] | { width: integer, height: integer }`
 
-Size of the rectangle.
+矩形尺寸。
 
 ```js:line-numbers{3,9}
 {
@@ -320,9 +320,9 @@ Size of the rectangle.
 
 #### `circle`
 
-- type: `integer`
+- 类型：`integer`
 
-Radius of the circle.
+圆形半径。
 
 ```js:line-numbers{3}
 {
@@ -334,9 +334,9 @@ Radius of the circle.
 
 #### `ellipse`
 
-- type: `integer[2] | { rx: integer, ry: integer }`;
+- 类型：`integer[2] | { rx: integer, ry: integer }`;
 
-Radiuses of the ellipse.
+椭圆半径。
 
 ```js:line-numbers{3,9}
 {
@@ -354,9 +354,9 @@ Radiuses of the ellipse.
 
 #### `path`
 
-- type: `string`
+- 类型：`string`
 
-Definition of the path (0,0 will be placed at the defined `position`).
+路径定义（0,0 会放置在定义的 `position` 处）。
 
 ```js:line-numbers{3}
 {
@@ -366,56 +366,56 @@ Definition of the path (0,0 will be placed at the defined `position`).
 }
 ```
 
-### Options
+### 选项
 
-#### `id` (required)
+#### `id`（必填）
 
-- type: `string`
+- 类型：`string`
 
-Unique identifier of the marker.
+标记的唯一标识符。
 
-#### `position` (required for all but polygons/polylines)
+#### `position`（除多边形/折线外均必填）
 
-- type: `{ yaw, pitch } | { textureX, textureY } | array`
+- 类型：`{ yaw, pitch } | { textureX, textureY } | array`
 
-Position of the marker in **spherical coordinates** (radians/degrees) or **texture coordinates** (pixels).
+标记在**球面坐标**（弧度/角度）或**纹理坐标**（像素）中的位置。
 
-For `imageLayer` and `videoLayer` only it can be defined as an array of four positions (clockwise from top-left) to precisely place the four corners of the element.
+仅对 `imageLayer` 和 `videoLayer`，它可以定义为四个位置组成的数组（从左上角开始顺时针），用于精确放置元素的四个角。
 
-_(This option is ignored for polygons and polylines)._
+_（多边形和折线会忽略此选项。）_
 
-#### `size` (required for images, recommended for html/element)
+#### `size`（图片必填，html/element 推荐）
 
-- type: `{ width, height }`
+- 类型：`{ width, height }`
 
-Size of the marker in pixels.
+标记尺寸，单位为像素。
 
-_(This option is ignored for polygons and polylines)._
+_（多边形和折线会忽略此选项。）_
 
 #### `rotation`
 
-- type: `string | number | { yaw, pitch, roll }`
+- 类型：`string | number | { yaw, pitch, roll }`
 
-Rotation applied to the marker, in degrees or radians.
+应用到标记的旋转角度，可使用角度或弧度。
 
-- For 2D markers (`image`, `element`, `square`, etc.) only `roll` is applicable
-- For 3D markers (`imageLayer`, `videoLayer`, `elementLayer`) all axis are applicable but is ignored if `position` is an array
+- 对 2D 标记（`image`、`element`、`square` 等），只有 `roll` 生效
+- 对 3D 标记（`imageLayer`、`videoLayer`、`elementLayer`），所有轴都生效；但如果 `position` 是数组，则会被忽略
 
-_(This option is ignored for polygons and polylines)._
+_（多边形和折线会忽略此选项。）_
 
 #### `scale`
 
-- type: `double[] | { zoom: double[], yaw: [] }`
-- default: no scaling
+- 类型：`double[] | { zoom: double[], yaw: [] }`
+- 默认：不缩放
 
-Configures the scale of the marker depending on the zoom level and/or the horizontal angle offset. This aims to give a natural feeling to the size of the marker as the users zooms and moves.
+根据缩放级别和/或水平角度偏移配置标记缩放。这样用户缩放和移动时，标记尺寸会显得更自然。
 
-_(This option is ignored for polygons, polylines and layers)._
+_（多边形、折线和图层会忽略此选项。）_
 
 :::: tabs
 
-::: tab Scale by zoom
-Scales depending on zoom level, the array contains `[scale at minimum zoom, scale at maximum zoom]` :
+::: tab 按缩放级别缩放
+根据缩放级别缩放，数组包含 `[最小缩放级别时的缩放, 最大缩放级别时的缩放]`：
 
 ```js
 scale: {
@@ -426,8 +426,8 @@ scale: {
 
 :::
 
-::: tab Scale by angle
-Scales depending on position, the array contains `[scale on center, scale on the side]` :
+::: tab 按角度缩放
+根据位置缩放，数组包含 `[居中时的缩放, 位于侧边时的缩放]`：
 
 ```js
 scale: {
@@ -438,8 +438,8 @@ scale: {
 
 :::
 
-::: tab Scale by zoom & angle
-Of course the two configurations can be combined :
+::: tab 按缩放级别与角度缩放
+两种配置当然可以组合使用：
 
 ```js
 scale: {
@@ -454,49 +454,49 @@ scale: {
 
 #### `hoverScale`
 
-- type: `boolean | number | { amount?: number, duration?: number, easing?: string }`
-- default: `null`
+- 类型：`boolean | number | { amount?: number, duration?: number, easing?: string }`
+- 默认：`null`
 
-Overrides the [global `defaultHoverScale`](#defaulthoverscale). It is merged with the default configuration.  
-Defining `hoverScale: false` allows to disable the scaling for this marker.
+覆盖[全局 `defaultHoverScale`](#defaulthoverscale)。它会与默认配置合并。
+定义 `hoverScale: false` 可以禁用此标记的缩放。
 
-_(This option is ignored for polygons, polylines and layers)._
+_（多边形、折线和图层会忽略此选项。）_
 
 <DemoButton href="/demos/markers/hover-scale.html"/>
 
 #### `opacity`
 
-- type: `number`
-- default: `1`
+- 类型：`number`
+- 默认：`1`
 
-Opacity of the marker.
+标记透明度。
 
 #### `zIndex`
 
-- type: `number`
-- default: `1`
+- 类型：`number`
+- 默认：`1`
 
-Ordering of the marker.
+标记排序层级。
 
-::: warning
-`imageLayer` and `videoLayer` are always renderer first, then `polygon` and `polyline`, then standard markers.
+::: warning 注意
+`imageLayer` 和 `videoLayer` 总是最先渲染，其次是 `polygon` 和 `polyline`，最后是标准标记。
 :::
 
 #### `className`
 
-- type: `string`
+- 类型：`string`
 
-CSS class(es) added to the marker element.
+添加到标记元素上的 CSS 类。
 
-_(This option is ignored for `imageLayer` and `videoLayer` markers)._
+_（`imageLayer` 与 `videoLayer` 标记会忽略此选项。）_
 
 #### `style`
 
-- type: `object`
+- 类型：`object`
 
-CSS properties to set on the marker (background, border, etc.).
+要设置到标记上的 CSS 属性（背景、边框等）。
 
-_(For `imageLayer` and `videoLayer` markers only `cursor` can be configured)._
+_（对 `imageLayer` 与 `videoLayer` 标记，只能配置 `cursor`。）_
 
 ```js:line-numbers
 style: {
@@ -507,10 +507,10 @@ style: {
 
 #### `svgStyle`
 
-- type: `object`
+- 类型：`object`
 
-SVG properties to set on the marker (fill, stroke, etc.).
-_(Only for polygons, polylines and svg markers)._
+要设置到标记上的 SVG 属性（fill、stroke 等）。
+_（仅适用于多边形、折线和 svg 标记。）_
 
 ```js:line-numbers
 svgStyle: {
@@ -520,40 +520,40 @@ svgStyle: {
 }
 ```
 
-::: tip Image and pattern background
-You can define complex SVG backgrounds such as images by using a pattern definition.
+::: tip 图片和图案背景
+可以使用 pattern 定义图片等复杂 SVG 背景。
 
 <DemoButton href="/demos/markers/polygon-pattern.html"/>
 :::
 
 #### `chromaKey`
 
-- type: `object`
-- default: `{ enabled: false }`
+- 类型：`object`
+- 默认：`{ enabled: false }`
 
-Will make a color of the image/video transparent.
+使图片/视频中的某种颜色透明。
 
-_(This option is only applicable to `imagerLayer` and `videoLayer`)._
+_（此选项仅适用于 `imagerLayer` 和 `videoLayer`。）_
 
 <DemoButton href="/demos/markers/chroma-key.html"/>
 
-::: dialog "See details" "Marker chroma key"
+::: dialog "查看详情" "标记色键"
 
-The `chromaKey` marker option allows to define a color which will be transparent (green screen/blue screen).
+`chromaKey` 标记选项可定义一种需要透明化的颜色（绿幕/蓝幕）。
 
 ```ts:line-numbers
 chromaKey: {
     /**
-     * Enable the option
+     * 启用该选项
      */
     enabled: true,
     /**
-     * Select which color to make transparent (default is green)
+     * 选择需要透明化的颜色（默认是绿色）
      */
     color: 0x00ff00,
     color: { r: 0, g: 255, 0 },
     /**
-     * Customize the color detection (default is 0.2 / 0.2)
+     * 自定义颜色检测阈值（默认是 0.2 / 0.2）
      */
     similarity: 0.2,
     smoothness: 0.2,
@@ -564,126 +564,126 @@ chromaKey: {
 
 #### `anchor`
 
-- type: `string`
-- default: `'center center'`
+- 类型：`string`
+- 默认：`'center center'`
 
-Defines where the marker is placed toward its defined position. Any CSS position is valid like `bottom center` or `20% 80%`.
+定义标记相对其指定位置的锚点。任何 CSS 位置都有效，例如 `bottom center` 或 `20% 80%`。
 
-_(This option is ignored for polygons and polylines)._
+_（多边形和折线会忽略此选项。）_
 
 #### `zoomLvl`
 
-- type: `number`
-- default: `undefined`
+- 类型：`number`
+- 默认：`undefined`
 
-The zoom level which will be applied when calling `gotoMarker()` method or when clicking on the marker in the list.
-If not provided, the current zoom level is kept.
+调用 `gotoMarker()` 方法或点击列表中的标记时应用的缩放级别。
+未提供时会保留当前缩放级别。
 
 #### `visible`
 
-- type: `boolean`
-- default: `true`
+- 类型：`boolean`
+- 默认：`true`
 
-Initial visibility of the marker.
+标记的初始可见性。
 
 #### `tooltip`
 
-- type: `string | {content: string, position: string, className: string, trigger: string}`
-- default: `{content: null, position: 'top center', className: null, trigger: 'hover'}`
+- 类型：`string | {content: string, position: string, className: string, trigger: string}`
+- 默认：`{content: null, position: 'top center', className: null, trigger: 'hover'}`
 
-Accepted positions are combinations of `top`, `center`, `bottom` and `left`, `center`, `right`.
+可用位置由 `top`、`center`、`bottom` 与 `left`、`center`、`right` 组合而成。
 
-Possible triggers are `hover` and `click`.
+可用触发方式为 `hover` 和 `click`。
 
 ```js:line-numbers
-tooltip: 'This is a marker' // tooltip with default position and style
+tooltip: '这是一个标记' // 使用默认位置和样式的提示框
 
-tooltip: { // tooltip with custom position
-  content: 'This is marker',
+tooltip: { // 自定义位置的提示框
+  content: '这是一个标记',
   position: 'bottom left',
 }
 
-tooltip: { // tooltip with a custom class shown on click
-  content: 'This is marker',
+tooltip: { // 点击后显示且带自定义 class 的提示框
+  content: '这是一个标记',
   className: 'custom-tooltip',
   trigger: 'click',
 }
 ```
 
-::: tip Advanced tooltips
-With the use of HTML and CSS you make fairly complex tooltips.
+::: tip 高级提示框
+借助 HTML 和 CSS，可以制作相当复杂的提示框。
 
 <DemoButton href="/demos/markers/custom-tooltip.html"/>
 :::
 
 #### `content`
 
-- type: `string`
+- 类型：`string`
 
-HTML content that will be displayed on the side panel when the marker is clicked.
+点击标记时显示在侧边面板中的 HTML 内容。
 
 #### `listContent`
 
-- type: `string`
+- 类型：`string`
 
-The name that appears in the list of markers. If not provided, the tooltip content will be used.
+显示在标记列表中的名称。未提供时会使用提示框内容。
 
 #### `hideList`
 
-- type: `boolean`
-- default: `false`
+- 类型：`boolean`
+- 默认：`false`
 
-Hide the marker in the markers list.
+在标记列表中隐藏该标记。
 
 #### `autoplay`
 
-- type: `boolean`
-- default: `true`
+- 类型：`boolean`
+- 默认：`true`
 
-Autoplay of `videoLayer` markers
+`videoLayer` 标记自动播放。
 
 #### `data`
 
-- type: `any`
+- 类型：`any`
 
-Any custom data you want to attach to the marker. You may access this data in the various [events](#events).
+要附加到标记上的任意自定义数据。可在各类[事件](#events)中访问这些数据。
 
-## Configuration
+## 配置
 
 #### `markers`
 
-- type: `MarkerConfig[]`
-- updatable: no, use `setMarkers()` method
+- 类型：`MarkerConfig[]`
+- 可更新：否，请使用 `setMarkers()` 方法
 
-Initial list of markers.
+初始标记列表。
 
 #### `defaultHoverScale`
 
-- type: `boolean | number | { amount?: number, duration?: number, easing?: string }`
-- default: `null`
+- 类型：`boolean | number | { amount?: number, duration?: number, easing?: string }`
+- 默认：`null`
 
-Default mouse hover scaling applied to all markers, can be overriden with each marker [`hoverScale` parameter](#hoverscale). Defining `defaultHoverScale: true` will use the default configuration of x2 scaling in 100ms with a linear easing.
+应用于所有标记的默认鼠标悬停缩放，可被每个标记的 [`hoverScale` 参数](#hoverscale)覆盖。定义 `defaultHoverScale: true` 时，会使用默认配置：100ms 内以线性缓动放大 2 倍。
 
 #### `gotoMarkerSpeed`
 
-- type: `string|number`
-- default: `'8rpm'`
-- updatable: yes
+- 类型：`string|number`
+- 默认：`'8rpm'`
+- 可更新：是
 
-Default animation speed for `gotoMarker` method.
+`gotoMarker` 方法的默认动画速度。
 
 #### `clickEventOnMarker`
 
-- type: `boolean`
-- default: `false`
-- updatable: yes
+- 类型：`boolean`
+- 默认：`false`
+- 可更新：是
 
-If a `click` event is triggered on the viewer additionally to the `select-marker` event.
+是否在 `select-marker` 事件之外，同时在 viewer 上触发 `click` 事件。
 
 #### `lang`
 
-- type: `object`
-- default:
+- 类型：`object`
+- 默认：
 
 ```js
 lang: {
@@ -694,11 +694,11 @@ lang: {
 
 _注意：这个选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
 
-## Methods
+## 方法
 
 #### `addMarker(properties)`
 
-Adds a new marker to the viewer.
+向 viewer 添加新标记。
 
 ```js:line-numbers
 markersPlugin.addMarker({
@@ -710,15 +710,15 @@ markersPlugin.addMarker({
 
 #### `clearMarkers()`
 
-Removes all markers.
+移除所有标记。
 
 #### `getCurrentMarker(): Marker`
 
-Returns the last marker clicked by the user.
+返回用户最后点击的标记。
 
 #### `gotoMarker(id, [speed]): Promise`
 
-Moves the view to face a specific marker. Default speed is `8rpm`, set it to `0` for an immediate rotation.
+移动视图，使其朝向指定标记。默认速度为 `8rpm`；设为 `0` 可立即旋转。
 
 ```js:line-numbers
 markersPlugin.gotoMarker('marker-1', '4rpm')
@@ -727,19 +727,19 @@ markersPlugin.gotoMarker('marker-1', '4rpm')
 
 #### `hideMarker(id)` | `showMarker(id)` | `toggleMarker(id)`
 
-Changes the visiblity of a marker.
+修改标记的可见性。
 
 #### `removeMarker(id)` | `removeMarkers(ids)`
 
-Removes a marker.
+移除标记。
 
 #### `setMarkers(properties[])`
 
-Replaces all markers by new ones.
+用新标记替换所有标记。
 
 #### `updateMarker(properties)`
 
-Updates a marker with new properties. The type of the marker cannot be changed.
+使用新属性更新标记。标记类型不能更改。
 
 ```js:line-numbers
 markersPlugin.updateMarker({
@@ -750,17 +750,17 @@ markersPlugin.updateMarker({
 
 #### `showMarkerTooltip(id)` | `hideMarkerTooltip(id)`
 
-Allows to always display a tooltip.
+允许始终显示某个提示框。
 
 #### `showAllTooltips()` | `hideAllTooltips()` | `toggleAllTooltips()`
 
-Allows to always display all tooltips.
+允许始终显示所有提示框。
 
-## Events
+## 事件
 
 #### `select-marker(marker, doubleClick, rightClick)`
 
-Triggered when the user clicks on a marker.
+用户点击标记时触发。
 
 ```js:line-numbers
 markersPlugin.addEventListener('select-marker', ({ marker }) => {
@@ -770,11 +770,11 @@ markersPlugin.addEventListener('select-marker', ({ marker }) => {
 
 #### `unselect-marker(marker)`
 
-Triggered when a marker was selected and the user clicks elsewhere.
+某个标记已选中且用户点击其他位置时触发。
 
 #### `marker-visibility(marker, visible)`
 
-Triggered when the visibility of a marker changes.
+标记可见性变化时触发。
 
 ```js:line-numbers
 markersPlugin.addEventListener('marker-visibility', ({ marker, visible }) => {
@@ -784,13 +784,13 @@ markersPlugin.addEventListener('marker-visibility', ({ marker, visible }) => {
 
 #### `enter-marker(marker)` | `leave-marker(marker)`
 
-Triggered when the user puts the cursor hover or away a marker.
+用户将光标移入或移出标记时触发。
 
-## Buttons
+## 按钮
 
-This plugin adds buttons to the default navbar:
+此插件会向默认导航栏添加按钮：
 
-- `markers` allows to hide/show all markers
-- `markersList` allows to open a list of all markers on the left panel
+- `markers` 用于隐藏/显示所有标记
+- `markersList` 用于在左侧面板打开所有标记的列表
 
-If you use a [custom navbar](../guide/navbar.md) you will need to manually add the buttons to the list.
+如果你使用了[自定义导航栏](../guide/navbar.md)，需要手动把这些按钮添加到列表中。

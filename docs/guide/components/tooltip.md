@@ -1,15 +1,15 @@
-# Tooltip
+# 工具提示
 
 ::: module
 <ApiButton page="classes/Core.Tooltip.html"/>
-Add custom tooltips over the viewer.
+在 viewer 上方添加自定义提示框。
 :::
 
-To add a tooltip you must call `viewer.createTooltip()`, this will a return a tooltip instance with methods : `move()`, `update()` and `hide()`. This allows to have multiple tooltips at the same time.
+要添加工具提示，必须调用 `viewer.createTooltip()`。它会返回一个工具提示实例，实例提供 `move()`、`update()` 和 `hide()` 方法，因此可以同时显示多个工具提示。
 
-## Example
+## 示例
 
-This example adds a persistent tooltip following the cursor.
+此示例添加一个跟随光标的持久工具提示。
 
 ::: code-demo
 
@@ -21,40 +21,40 @@ title: PSV Tooltip Demo
 
 :::
 
-## Methods
+## 方法
 
 ### `viewer.createTooltip(config)`
 
-Create a tooltip.
+创建工具提示。
 
-| option                            | type     |                                                                                                                                      |
-| --------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `content` (required)              | `string` | HTML content of the tooltip.                                                                                                         |
-| `top` & `left` (required)         | `number` | Pixel coordinates of the tooltip relative to the top-left corner of the viewer.                                                      |
-| `position` (default `top center`) | `string` | Tooltip position toward it's arrow tip. Accepted values are combinations of `top`, `center`, `bottom` and `left`, `center`, `right`. |
-| `className`                       | `string` | Additional CSS class added to the tooltip.                                                                                           |
-| `data`                            | `any`    | User data associated to the tooltip (useful for events).                                                                             |
+| 选项                               | 类型     |                                                                                                              |
+| ---------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------ |
+| `content` (必填)                   | `string` | 工具提示的 HTML 内容。                                                                                       |
+| `top` & `left` (必填)              | `number` | 工具提示相对于 viewer 左上角的像素坐标。                                                                     |
+| `position`（默认值：`top center`） | `string` | 工具提示相对于箭头尖端的位置。可接受的值由 `top`、`center`、`bottom` 和 `left`、`center`、`right` 组合而成。 |
+| `className`                        | `string` | 添加到工具提示上的额外 CSS 类。                                                                              |
+| `data`                             | `any`    | 与工具提示关联的用户数据（常用于事件）。                                                                     |
 
-_**Note:** the content is rendered as HTML. If your content may include untrusted input it should be sanitized before being passed to `content`._
+_**注意：** 内容会按 HTML 渲染。如果内容可能包含不可信输入，请先清理后再传入 `content`。_
 
 ### `tooltip.move(config)`
 
-Updates the position of the tooltip, the parameters are the same `top`, `left` and `position` as above.
+更新工具提示的位置，参数与上文的 `top`、`left` 和 `position` 相同。
 
 ### `tooltip.update(content)`
 
-Updates the content of the tooltip.
+更新工具提示内容。
 
 ### `tooltip.hide()`
 
-Hide and destroy the tooltip.
+隐藏并销毁工具提示。
 
-## Events
+## 事件
 
 ### `show-tooltip(data)`
 
-Triggered when a tooltip is shown.
+工具提示显示时触发。
 
 ### `hide-tooltip(data)`
 
-Triggered when a tooltip is hidden.
+工具提示隐藏时触发。

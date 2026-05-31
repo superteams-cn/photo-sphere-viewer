@@ -1,24 +1,24 @@
-# Writing a plugin
+# 编写插件
 
-::: tip Full featured example
-You can find a complete example of plugin implementation in the [examples](https://github.com/mistic100/Photo-Sphere-Viewer/tree/main/examples/custom-plugin) folder of the project.
+::: tip 完整功能示例
+你可以在项目的 [examples](https://github.com/mistic100/Photo-Sphere-Viewer/tree/main/examples/custom-plugin) 文件夹中找到一个完整的插件实现示例。
 :::
 
-## Syntax
+## 语法
 
-The recommended way to create your own plugin is as an ES6 class extending `AbstractPlugin` provided by `@photo-sphere-viewer/core` package.
+推荐将自定义插件创建为一个 ES6 类，并继承 `@photo-sphere-viewer/core` 包提供的 `AbstractPlugin`。
 
-**Requirements:**
+**要求：**
 
-- The plugin class **must** take a `Viewer` object as first parameter and pass it to the `super` constructor.
-- It **must** have a `static id` property.
-- It **must** implement the `init` method to perform initialization, like subscribing to events.
-- It **must** implement the `destroy` method which is used to cleanup the plugin when the viewer is unloaded.
-- The constructor **can** take an `config` object as second parameter.
+- 插件类的第一个参数**必须**是 `Viewer` 对象，并将其传给 `super` 构造函数。
+- 它**必须**包含 `static id` 属性。
+- 它**必须**实现 `init` 方法，用于执行初始化，例如订阅事件。
+- 它**必须**实现 `destroy` 方法，用于在 viewer 卸载时清理插件。
+- 构造函数**可以**接收 `config` 对象作为第二个参数。
 
-In the plugin you have access to `this.viewer` which is the instance of the viewer, check the [API Reference](/api/classes/Core.Viewer.html){target=\_blank} for more information.
+在插件中可以访问 `this.viewer`，它是 viewer 实例。更多信息请查看 [API Reference](/api/classes/Core.Viewer.html){target=\_blank}。
 
-Your plugin is also an `EventTarget` with `addEventListener`, `removeEventListener` and `dispatchEvent` methods.
+插件本身也是一个 `EventTarget`，包含 `addEventListener`、`removeEventListener` 和 `dispatchEvent` 方法。
 
 ```js:line-numbers
 import { AbstractPlugin } from '@photo-sphere-viewer/core';
@@ -45,19 +45,19 @@ export class CustomPlugin extends AbstractPlugin {
 }
 ```
 
-Beside this main class, you can use any number of ES modules to split your code.
+除了这个主类之外，你可以使用任意数量的 ES 模块来拆分代码。
 
-### Typed events
+### 类型化事件
 
-When developping in TypeScript it is handy to be able to strongly type each event you emit. That's why `AbstractPlugin` takes an optional template type representing the list of dispatchable events. All events must extends `TypedEvent` which is also a templated class to be able to type the `target` property.
+使用 TypeScript 开发时，为每个发出的事件提供强类型会很方便。因此，`AbstractPlugin` 接收一个可选模板类型，用来表示可派发事件列表。所有事件都必须继承 `TypedEvent`；它同样是模板类，以便为 `target` 属性提供类型。
 
 ```ts:line-numbers
 /**
- * Declare the events classes
+ * 声明事件类
  */
 export class CustomPluginEvent extends TypedEvent<CustomPlugin> {
-    static override readonly type = 'custom-event'; // recommended for constant access
-    override type: 'custom-event'; // required for typings
+    static override readonly type = 'custom-event'; // 推荐用于常量访问
+    override type: 'custom-event'; // 类型声明需要
 
     constructor(public readonly value: boolean) {
         super(CustomPluginEvent.type);
@@ -65,7 +65,7 @@ export class CustomPluginEvent extends TypedEvent<CustomPlugin> {
 }
 
 /**
- * Declare the union of all events
+ * 声明所有事件的联合类型
  */
 export type CustomPluginEvents = CustomPluginEvent;
 
@@ -91,9 +91,9 @@ viewer.getPlugin(CustomPlugin)
     });
 ```
 
-## Packaging
+## 打包
 
-The simplest way to package your plugin is by using [rollup.js](https://rollupjs.org) with the following configuration:
+打包插件最简单的方式是使用 [rollup.js](https://rollupjs.org)，配置如下：
 
 ```js:line-numbers
 export default {
@@ -117,9 +117,9 @@ export default {
 };
 ```
 
-### Stylesheets
+### 样式表
 
-If your plugin requires custom CSS, import the stylesheet directly in your main Javascript file and add this rollup plugin to your configuration (here I use a SASS loader):
+如果插件需要自定义 CSS，请在主 Javascript 文件中直接导入样式表，并将这个 rollup 插件加入配置（这里使用 SASS 加载器）：
 
 ```js
 require('rollup-plugin-postcss')({
@@ -129,27 +129,27 @@ require('rollup-plugin-postcss')({
 });
 ```
 
-## Buttons
+## 按钮
 
-Your plugin may need to add a new button in the navbar. This section will describe how to create a button and how to register it.
+你的插件可能需要在导航栏中添加新按钮。本节说明如何创建并注册按钮。
 
-### Creating a button
+### 创建按钮
 
-Photo Sphere Viewer buttons **must** extend `AbstractButton`, check the [API Reference](/api/classes/Core.AbstractButton.html){target=\_blank} for more information.
+Photo Sphere Viewer 按钮**必须**继承 `AbstractButton`。更多信息请查看 [API Reference](/api/classes/Core.AbstractButton.html){target=\_blank}。
 
-**Requirements:**
+**要求：**
 
-- The button class **must** take a `Navbar` object as first parameter and pass it to the `super` constructor.
-- It **must** have a `static id` property.
-- It **must** implement the `destroy` method which is used to cleanup the button when the viewer is unloaded.
-- It **must** implement the `onClick` method to perform an action.
-- It **can** implement the `isSupported` method to inform the viewer if the action is possible depending on the environment.
-- It **must** provide the button configuration to `super` :
-  - `className` : CSS class name applied to the button
-  - `icon` : SVG of the icon
-  - `iconActive` : SVG of the icon when the button is active (defaults `icon`)
-  - `collapsable` : indicates the button can be collapsed in the menu on small screens (defaults `false`)
-  - `tabbable` : indicates the button can be activated with the keyboard (defaults `true`)
+- 按钮类的第一个参数**必须**是 `Navbar` 对象，并将其传给 `super` 构造函数。
+- 它**必须**包含 `static id` 属性。
+- 它**必须**实现 `destroy` 方法，用于在 viewer 卸载时清理按钮。
+- 它**必须**实现 `onClick` 方法来执行操作。
+- 它**可以**实现 `isSupported` 方法，用于根据环境告知 viewer 该操作是否可用。
+- 它**必须**向 `super` 提供按钮配置：
+  - `className`：应用到按钮上的 CSS 类名
+  - `icon`：图标 SVG
+  - `iconActive`：按钮激活时的图标 SVG（默认为 `icon`）
+  - `collapsable`：表示按钮是否可在小屏幕上折叠到菜单中（默认为 `false`）
+  - `tabbable`：表示按钮是否可通过键盘激活（默认为 `true`）
 
 ```js:line-numbers
 import { AbstractButton } from '@photo-sphere-viewer/core';
@@ -185,9 +185,9 @@ export class CustomButton extends AbstractButton {
 }
 ```
 
-### Registering the button
+### 注册按钮
 
-In your main plugin file call `registerButton`. This will only make the button available but not display it by default, the user will have to declare it in its `navbar` configuration.
+在插件主文件中调用 `registerButton`。这只会让按钮变为可用，但默认不会显示；用户仍需要在自己的 `navbar` 配置中声明它。
 
 ```js
 import { registerButton } from '@photo-sphere-viewer/core';
@@ -196,9 +196,9 @@ import { CustomButton } from './CustomButton';
 registerButton(CustomButton);
 ```
 
-### Manage icons
+### 管理图标
 
-If your button uses an icon, it is recommended to use an external SVG and bundle it with your code. This can be done with de following rollup plugin:
+如果按钮使用图标，建议使用外部 SVG，并将它与代码一起打包。可通过以下 rollup 插件实现：
 
 ```js
 require('rollup-plugin-string').string({
@@ -206,24 +206,24 @@ require('rollup-plugin-string').string({
 });
 ```
 
-This allows to get SVG files as string with `import`.
+这样就可以通过 `import` 将 SVG 文件作为字符串获取。
 
 ```js
 import iconContent from './icon.svg';
 ```
 
-::: tip Icon color
-To be correctly displayed in the navbar, the icon must use `fill="currentColor"` and/or `stroke="currentColor"`.
+::: tip 图标颜色
+为了在导航栏中正确显示，图标必须使用 `fill="currentColor"` 和/或 `stroke="currentColor"`。
 :::
 
-## Naming and publishing
+## 命名和发布
 
-If you intend to publish your plugin on npmjs.org please respect the following naming:
+如果你打算将插件发布到 npmjs.org，请遵循以下命名方式：
 
-- class name : `[[Name]]Plugin`
-- NPM package name : `photo-sphere-viewer-[[name]]-plugin`
+- 类名：`[[Name]]Plugin`
+- NPM 包名：`photo-sphere-viewer-[[name]]-plugin`
 
-Your `package.json` must be properly configured to allow application bundlers to get the right file, and `@photo-sphere-viewer/core` must be declared as dependency.
+必须正确配置 `package.json`，以便应用构建工具获取正确文件；同时必须将 `@photo-sphere-viewer/core` 声明为依赖。
 
 ```json:line-numbers
 {
@@ -238,4 +238,4 @@ Your `package.json` must be properly configured to allow application bundlers to
 }
 ```
 
-You can now make a PR to add it to the list of [3rd party plugins](./third-party.md).
+现在可以发起 PR，将它添加到[第三方插件](./third-party.md)列表中。

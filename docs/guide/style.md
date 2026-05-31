@@ -1,8 +1,8 @@
-# Style
+# 样式
 
-Photo Sphere Viewer comes with a default darkish theme. You can customize it by building yourself the stylesheet from the SCSS source and some variables overrides.
+Photo Sphere Viewer 自带默认的深色主题。你可以从 SCSS 源码自行构建样式表，并覆盖部分变量来完成自定义。
 
-The source files use SASS modules and must be imported with `@use` in order to override variables.
+源码文件使用 SASS modules；要覆盖变量，必须通过 `@use` 导入。
 
 ```scss:line-numbers
 // main stylesheet
@@ -17,118 +17,118 @@ The source files use SASS modules and must be imported with `@use` in order to o
 ....
 ```
 
-The following sections list all available variables for the core. Plugins variables are listed on each corresponding plugin page.
+以下小节列出了 core 可用的全部变量。插件变量会列在各自对应的插件页面中。
 
-## Global
+## 全局
 
-| variable               | default              | description                                                 |
-| ---------------------- | -------------------- | ----------------------------------------------------------- |
-| $main-background       | radial-gradient(...) | Background of the viewer, visible when no panorama is set   |
-| $element-focus-outline | 2px solid #007cff    | Outline applied to focusable elements (navbar, panel, etc.) |
+| 变量                   | 默认值               | 说明                                     |
+| ---------------------- | -------------------- | ---------------------------------------- |
+| $main-background       | radial-gradient(...) | viewer 背景，在未设置全景图时可见        |
+| $element-focus-outline | 2px solid #007cff    | 应用于可聚焦元素的轮廓（导航栏、面板等） |
 
-## Loader
+## 加载器
 
-| variable         | default                 | description                      |
-| ---------------- | ----------------------- | -------------------------------- |
-| $loader-color    | rgba(255, 255, 255, .7) | Color of the loader bar and text |
-| $loader-bg-color | rgba(61, 61, 61, .5)    | Color of the loader background   |
-| $loader-width    | 150px                   | Size of the loader               |
-| $loader-tickness | 10px                    | Thickness of the loader bar      |
-| $loader-border   | 3px                     | Inner border of the loader       |
-| $loader-font     | 600 16px sans-serif     | Font of the loading text         |
+| 变量             | 默认值                  | 说明               |
+| ---------------- | ----------------------- | ------------------ |
+| $loader-color    | rgba(255, 255, 255, .7) | 加载条和文字的颜色 |
+| $loader-bg-color | rgba(61, 61, 61, .5)    | 加载器背景颜色     |
+| $loader-width    | 150px                   | 加载器尺寸         |
+| $loader-tickness | 10px                    | 加载条厚度         |
+| $loader-border   | 3px                     | 加载器内边框       |
+| $loader-font     | 600 16px sans-serif     | 加载文字字体       |
 
-## Navbar
+## 导航栏
 
-| variable            | default                 | description                    |
-| ------------------- | ----------------------- | ------------------------------ |
-| $navbar-height      | 40px                    | Height of the navbar           |
-| $navbar-background  | rgba(61, 61, 61, .5)    | Background color of the navbar |
-| $caption-font       | 16px sans-serif         | Font of the caption            |
-| $caption-text-color | rgba(255, 255, 255, .7) | Text color of the caption      |
+| 变量                | 默认值                  | 说明           |
+| ------------------- | ----------------------- | -------------- |
+| $navbar-height      | 40px                    | 导航栏高度     |
+| $navbar-background  | rgba(61, 61, 61, .5)    | 导航栏背景颜色 |
+| $caption-font       | 16px sans-serif         | 说明文字字体   |
+| $caption-text-color | rgba(255, 255, 255, .7) | 说明文字颜色   |
 
-#### Buttons
+#### 按钮
 
-| variable                   | default                 | description                                 |
-| -------------------------- | ----------------------- | ------------------------------------------- |
-| $buttons-height            | 20px                    | Inner height of the buttons                 |
-| $buttons-color             | rgba(255, 255, 255, .7) | Icon color of the buttons                   |
-| $buttons-background        | transparent             | Background color of the buttons             |
-| $buttons-active-background | rgba(255, 255, 255, .2) | Background color of the buttons when active |
-| $buttons-disabled-opacity  | .5                      | Opacity of disabled buttons                 |
-| $buttons-hover-scale       | 1.2                     | Scale applied to buttons on mouse hover     |
-| $buttons-hover-scale-delay | 200ms                   | Duration of the scale animation             |
+| 变量                       | 默认值                  | 说明                           |
+| -------------------------- | ----------------------- | ------------------------------ |
+| $buttons-height            | 20px                    | 按钮内部高度                   |
+| $buttons-color             | rgba(255, 255, 255, .7) | 按钮图标颜色                   |
+| $buttons-background        | transparent             | 按钮背景颜色                   |
+| $buttons-active-background | rgba(255, 255, 255, .2) | 按钮激活时的背景颜色           |
+| $buttons-disabled-opacity  | .5                      | 禁用按钮的不透明度             |
+| $buttons-hover-scale       | 1.2                     | 鼠标悬停时应用于按钮的缩放比例 |
+| $buttons-hover-scale-delay | 200ms                   | 缩放动画持续时间               |
 
-#### Zoom range
+#### 缩放范围
 
-| variable                    | default | description                           |
-| --------------------------- | ------- | ------------------------------------- |
-| $zoom-range-width           | 80px    | Size of the zoom range                |
-| $zoom-range-tickness        | 1px     | Tickness of the zoom range            |
-| $zoom-range-diameter        | 7px     | Size of the zoom handle               |
-| $zoom-range-media-min-width | 600px   | Hides the zoom range on small screens |
+| 变量                        | 默认值 | 说明                       |
+| --------------------------- | ------ | -------------------------- |
+| $zoom-range-width           | 80px   | 缩放范围控件尺寸           |
+| $zoom-range-tickness        | 1px    | 缩放范围控件厚度           |
+| $zoom-range-diameter        | 7px    | 缩放手柄尺寸               |
+| $zoom-range-media-min-width | 600px  | 在小屏幕上隐藏缩放范围控件 |
 
-## Tooltip
+## 工具提示
 
-| variable                | default              | description                            |
-| ----------------------- | -------------------- | -------------------------------------- |
-| $tooltip-background     | rgba(61, 61, 61, .8) | Background of tooltips                 |
-| $tooltip-radius         | 4px                  | Border radius of the tooltips          |
-| $tooltip-padding        | .5em 1em             | Content padding of the tooltips        |
-| $tooltip-arrow-size     | 7px                  | Tooltips' arrow size                   |
-| $tooltip-max-width      | 200px                | Maximum width of the tooltips' content |
-| $tooltip-text-color     | rgb(255, 255, 255)   | Text color of the tooltips             |
-| $tooltip-font           | 14px sans-serif      | Font of the tooltips                   |
-| $tooltip-text-shadow    | 0 1px #000           | Shadow applied to the tooltips' text   |
-| $tooltip-shadow-color   | rgba(90, 90, 90, .7) | Color of the tooltips' shadow          |
-| $tooltip-shadow-offset  | 3px                  | Size of the tooltips' shadow           |
-| $tooltip-animate-offset | 5px                  | Distance travelled on show animation   |
-| $tooltip-animate-delay  | 100ms                | Duration of the show animation         |
+| 变量                    | 默认值               | 说明                     |
+| ----------------------- | -------------------- | ------------------------ |
+| $tooltip-background     | rgba(61, 61, 61, .8) | 工具提示背景             |
+| $tooltip-radius         | 4px                  | 工具提示圆角             |
+| $tooltip-padding        | .5em 1em             | 工具提示内容内边距       |
+| $tooltip-arrow-size     | 7px                  | 工具提示箭头尺寸         |
+| $tooltip-max-width      | 200px                | 工具提示内容最大宽度     |
+| $tooltip-text-color     | rgb(255, 255, 255)   | 工具提示文字颜色         |
+| $tooltip-font           | 14px sans-serif      | 工具提示字体             |
+| $tooltip-text-shadow    | 0 1px #000           | 应用于工具提示文字的阴影 |
+| $tooltip-shadow-color   | rgba(90, 90, 90, .7) | 工具提示阴影颜色         |
+| $tooltip-shadow-offset  | 3px                  | 工具提示阴影尺寸         |
+| $tooltip-animate-offset | 5px                  | 显示动画中的移动距离     |
+| $tooltip-animate-delay  | 100ms                | 显示动画持续时间         |
 
-## Panel
+## 面板
 
-| variable             | default              | description                     |
-| -------------------- | -------------------- | ------------------------------- |
-| $panel-background    | rgba(10, 10, 10, .7) | Background of the panel         |
-| $panel-width         | 400px                | Default width of the panel      |
-| $panel-padding       | 1em                  | Content padding of the panel    |
-| $panel-text-color    | rgb(220, 220, 220)   | Default text color of the panel |
-| $panel-font          | 16px sans-serif      | Default font of the panel       |
-| $panel-animate-delay | 100ms                | Duration of the show animation  |
+| 变量                 | 默认值               | 说明             |
+| -------------------- | -------------------- | ---------------- |
+| $panel-background    | rgba(10, 10, 10, .7) | 面板背景         |
+| $panel-width         | 400px                | 面板默认宽度     |
+| $panel-padding       | 1em                  | 面板内容内边距   |
+| $panel-text-color    | rgb(220, 220, 220)   | 面板默认文字颜色 |
+| $panel-font          | 16px sans-serif      | 面板默认字体     |
+| $panel-animate-delay | 100ms                | 显示动画持续时间 |
 
-#### Menu
+#### 菜单
 
-| variable                     | default                 | description                                |
-| ---------------------------- | ----------------------- | ------------------------------------------ |
-| $panel-title-font            | 24px sans-serif         | Font of the menu title                     |
-| $panel-title-icon-size       | 24px                    | Size of the menu title icon                |
-| $panel-title-margin          | 24px                    | Margin of the menu title                   |
-| $panel-menu-item-height      | 1.5em                   | Minimum eight of an item in the menu       |
-| $panel-menu-item-padding     | .5em 1em                | Padding of an item in the menu             |
-| $panel-menu-odd-background   | rgba(255, 255, 255, .1) | Background color of odd items in the menu  |
-| $panel-menu-even-background  | transparent             | Background color of even items in the menu |
-| $panel-menu-hover-background | rgba(255, 255, 255, .2) | Background color of items on mouse hover   |
+| 变量                         | 默认值                  | 说明                     |
+| ---------------------------- | ----------------------- | ------------------------ |
+| $panel-title-font            | 24px sans-serif         | 菜单标题字体             |
+| $panel-title-icon-size       | 24px                    | 菜单标题图标尺寸         |
+| $panel-title-margin          | 24px                    | 菜单标题外边距           |
+| $panel-menu-item-height      | 1.5em                   | 菜单项最小高度           |
+| $panel-menu-item-padding     | .5em 1em                | 菜单项内边距             |
+| $panel-menu-odd-background   | rgba(255, 255, 255, .1) | 奇数菜单项背景颜色       |
+| $panel-menu-even-background  | transparent             | 偶数菜单项背景颜色       |
+| $panel-menu-hover-background | rgba(255, 255, 255, .2) | 鼠标悬停时菜单项背景颜色 |
 
-## Notification
+## 通知
 
-| variable                    | default             | description                               |
-| --------------------------- | ------------------- | ----------------------------------------- |
-| $notification-position-from | -$navbar-height     | Position of the notification when hidden  |
-| $notification-position-to   | $navbar-height \* 2 | Position of the notification when visible |
-| $notification-animate-delay | 200ms               | Duration of the show animation            |
-| $notification-background    | $tooltip-background | Background color of the notification      |
-| $notification-radius        | $tooltip-radius     | Border radius of the notification         |
-| $notification-padding       | $tooltip-padding    | Content padding of the notification       |
-| $notification-font          | $tooltip-font       | Font of the notification                  |
-| $notification-text-color    | $tooltip-text-color | Text color of the notification            |
+| 变量                        | 默认值              | 说明             |
+| --------------------------- | ------------------- | ---------------- |
+| $notification-position-from | -$navbar-height     | 通知隐藏时的位置 |
+| $notification-position-to   | $navbar-height \* 2 | 通知可见时的位置 |
+| $notification-animate-delay | 200ms               | 显示动画持续时间 |
+| $notification-background    | $tooltip-background | 通知背景颜色     |
+| $notification-radius        | $tooltip-radius     | 通知圆角         |
+| $notification-padding       | $tooltip-padding    | 通知内容内边距   |
+| $notification-font          | $tooltip-font       | 通知字体         |
+| $notification-text-color    | $tooltip-text-color | 通知文字颜色     |
 
-## Overlay
+## 覆盖层
 
-| variable             | default                            | description                                      |
-| -------------------- | ---------------------------------- | ------------------------------------------------ |
-| $overlay-opacity     | .8                                 | Opacity of the overlay                           |
-| $overlay-icon-color  | rgb(48, 48, 48)                    | Color of the overlay icon (if SVG)               |
-| $overlay-title-font  | 30px sans-serif                    | Font of the overlay title                        |
-| $overlay-title-color | black                              | Color of the overlay title                       |
-| $overlay-text-font   | 20px sans-serif                    | Font of the overlay text                         |
-| $overlay-text-color  | rgba(0, 0, 0, .8)                  | Color of the overlay text                        |
-| $overlay-image-size  | (portrait: 50%,<br>landscape: 33%) | Image/Icon size, depending on screen orientation |
+| 变量                 | 默认值                             | 说明                          |
+| -------------------- | ---------------------------------- | ----------------------------- |
+| $overlay-opacity     | .8                                 | 覆盖层不透明度                |
+| $overlay-icon-color  | rgb(48, 48, 48)                    | 覆盖层图标颜色（如果是 SVG）  |
+| $overlay-title-font  | 30px sans-serif                    | 覆盖层标题字体                |
+| $overlay-title-color | black                              | 覆盖层标题颜色                |
+| $overlay-text-font   | 20px sans-serif                    | 覆盖层文本字体                |
+| $overlay-text-color  | rgba(0, 0, 0, .8)                  | 覆盖层文本颜色                |
+| $overlay-image-size  | (portrait: 50%,<br>landscape: 33%) | 图片/图标尺寸，取决于屏幕方向 |

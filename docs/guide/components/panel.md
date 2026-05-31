@@ -1,13 +1,13 @@
-# Panel
+# 面板
 
 ::: module
 <ApiButton page="classes/Core.Panel.html"/>
-Display HTML content on a sidebar on the right of the viewer.
+在 viewer 右侧边栏显示 HTML 内容。
 :::
 
-## Example
+## 示例
 
-This example adds a custom button to toggle a panel.
+此示例添加一个自定义按钮，用于切换面板。
 
 :::: code-demo
 
@@ -24,40 +24,40 @@ title: PSV Panel Demo
 
 ::::
 
-## Methods
+## 方法
 
 ### `show(config)`
 
-Open the side panel.
+打开侧边面板。
 
-| option                            | type                    |                                                                                                                                                                                                                         |
-| --------------------------------- | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                              | `string`                | Unique identifier of the panel, this will be used to `hide` the panel only if the content has not been replaced by something else. It will be used to store the width defined by the user when using the resize handle. |
-| `content` (required)              | `string`                | HTML content of the panel.                                                                                                                                                                                              |
-| `noMargin` (default&nbsp;`false`) | `boolean`               | Remove the default margins inside the panel.                                                                                                                                                                            |
-| `width` (default&nbsp;`400px`)    | `string`                | Initial width of the panel (example: `100%`, `600px`).                                                                                                                                                                  |
-| `clickHandler(target)`            | `function<HTMLElement>` | Function called when the user clicks inside the panel or presses the Enter key while an element focused.                                                                                                                |
+| 选项                           | 类型                    |                                                                                                                                |
+| ------------------------------ | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `id`                           | `string`                | 面板的唯一标识符；仅当内容尚未被其他内容替换时，才会用它来 `hide` 对应面板。使用调整大小手柄时，它也会用于保存用户定义的宽度。 |
+| `content` (必填)               | `string`                | 面板的 HTML 内容。                                                                                                             |
+| `noMargin` (默认&nbsp;`false`) | `boolean`               | 移除面板内部的默认外边距。                                                                                                     |
+| `width` (默认&nbsp;`400px`)    | `string`                | 面板初始宽度（例如：`100%`、`600px`）。                                                                                        |
+| `clickHandler(target)`         | `function<HTMLElement>` | 用户在面板内点击，或某个元素获得焦点时按下 Enter 键后调用的函数。                                                              |
 
-::: tip Content focus
-After openning, the first focusable element (`a`, `button` or anything with `tabindex`) will be focused, allowing the user to navigate with the Tab key and activate the `clickHandler` with the `Enter` key.
+::: tip 内容焦点
+打开后，第一个可聚焦元素（`a`、`button` 或任何带 `tabindex` 的元素）会获得焦点，用户可用 Tab 键导航，并用 `Enter` 键触发 `clickHandler`。
 :::
 
-_**Note:** the content is rendered as HTML. If your content may include untrusted input it should be sanitized before being passed to `content`._
+_**注意：** 内容会按 HTML 渲染。如果内容可能包含不可信输入，请先清理后再传入 `content`。_
 
 ### `hide([id])`
 
-Hide the panel, without condition if `id` is not provided, or only if the last `show` was called with the same `id`.
+隐藏面板。如果未提供 `id`，则无条件隐藏；如果提供了 `id`，则仅当上一次 `show` 使用了相同 `id` 时才隐藏。
 
 ### `isVisible([id]): boolean`
 
-Check if the panel is opened.
+检查面板是否已打开。
 
-## Events
+## 事件
 
 ### `show-panel(id)`
 
-Triggered when the panel is shown.
+面板显示时触发。
 
 ### `hide-panel(id)`
 
-Triggered when the panel is hidden.
+面板隐藏时触发。

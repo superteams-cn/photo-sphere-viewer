@@ -1,13 +1,13 @@
-# Notification
+# 通知
 
 ::: module
 <ApiButton page="classes/Core.Notification.html"/>
-Display a small message above the navbar.
+在导航栏上方显示一条简短消息。
 :::
 
-## Example
+## 示例
 
-This example consistently displays new notifications.
+此示例会持续显示新的通知。
 
 ::: code-demo
 
@@ -19,32 +19,32 @@ title: PSV Notification Demo
 
 :::
 
-## Methods
+## 方法
 
 ### `show(config)`
 
-Show the notification.
+显示通知。
 
-| option               | type     |                                                                                                                                                  |
-| -------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `id`                 | `string` | Unique identifier of the notification, this will be used to `hide` the notification only if the content has not been replaced by something else. |
-| `content` (required) | `string` | HTML content of the notification.                                                                                                                |
-| `timeout`            | `number` | Auto-hide delay in milliseconds.                                                                                                                 |
+| 选项             | 类型     |                                                                              |
+| ---------------- | -------- | ---------------------------------------------------------------------------- |
+| `id`             | `string` | 通知的唯一标识符；仅当内容尚未被其他内容替换时，才会用它来 `hide` 对应通知。 |
+| `content` (必填) | `string` | 通知的 HTML 内容。                                                           |
+| `timeout`        | `number` | 自动隐藏延迟，单位为毫秒。                                                   |
 
 ### `hide([id])`
 
-Hide the notification, without condition if `id` is not provided, or only if the last `show` was called with the same `id`.
+隐藏通知。如果未提供 `id`，则无条件隐藏；如果提供了 `id`，则仅当上一次 `show` 使用了相同 `id` 时才隐藏。
 
 ### `isVisible([id]): boolean`
 
-Check if the notification is visible.
+检查通知是否可见。
 
-## Events
+## 事件
 
 ### `show-notification(id)`
 
-Triggered when the notification is shown.
+通知显示时触发。
 
 ### `hide-notification(id)`
 
-Triggered when the notification is hidden.
+通知隐藏时触发。

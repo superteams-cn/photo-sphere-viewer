@@ -1,34 +1,34 @@
-# Development
+# 开发
 
-Photo Sphere Viewer is developped in [TypeScript](https://www.typescriptlang.org/) and [SASS](https://sass-lang.com/).
-The repository is a [Turborepo](https://turbo.build/repo) mono-repo containing the core package as well as official adapters and plugins.
-The building process is based on [tsup](https://tsup.egoist.dev/) (toolkit based on esbuild) with a bunch of customizations.
-The documentation is created with [VitePress](https://vitepress.dev/) and [TypeDoc](https://typedoc.org/).
-Files are linted with [ESLint](https://eslint.org/) and [Stylelint](https://stylelint.io/).
-Tests are executed with [Mocha](https://mochajs.org/) and [Cypress](https://www.cypress.io/).
-You will need [Node.js 24](https://nodejs.org/) and [pnpm](https://pnpm.io/).
+Photo Sphere Viewer 使用 [TypeScript](https://www.typescriptlang.org/) 和 [SASS](https://sass-lang.com/) 开发。
+本仓库是一个 [Turborepo](https://turbo.build/repo) monorepo，包含核心包以及官方适配器和插件。
+构建流程基于 [tsup](https://tsup.egoist.dev/)（基于 esbuild 的工具包），并包含一系列自定义配置。
+文档使用 [VitePress](https://vitepress.dev/) 和 [TypeDoc](https://typedoc.org/) 生成。
+文件使用 [ESLint](https://eslint.org/) 和 [Stylelint](https://stylelint.io/) 进行 lint。
+测试使用 [Mocha](https://mochajs.org/) 和 [Cypress](https://www.cypress.io/) 执行。
+你需要安装 [Node.js 24](https://nodejs.org/) 和 [pnpm](https://pnpm.io/)。
 
-## Commands
+## 命令
 
-- launch the dev server with `pnpm serve`
-  - watch only some packages with `pnpm serve-filter`
-- launch the documentation with `pnpm doc:serve`
-- launch the Cypress runner with `pnpm e2e:open`
-- register all package for npm link with `pnpm npm-link`
-- execute the linters with `pnpm lint`
-- execute the unit tests with `pnpm test`
-- execute the e2e tests with `pnpm e2e:run`
-- build all the packages with `pnpm build`
-- build the documentation with `pnpm doc:build`
+- 使用 `pnpm serve` 启动开发服务器
+  - 使用 `pnpm serve-filter` 只监听部分包
+- 使用 `pnpm doc:serve` 启动文档
+- 使用 `pnpm e2e:open` 启动 Cypress runner
+- 使用 `pnpm npm-link` 为 npm link 注册所有包
+- 使用 `pnpm lint` 执行 linters
+- 使用 `pnpm test` 执行单元测试
+- 使用 `pnpm e2e:run` 执行 e2e 测试
+- 使用 `pnpm build` 构建所有包
+- 使用 `pnpm doc:build` 构建文档
 
-## Credits
+## 致谢
 
-These are the various photos and videos used across the demos:
+以下是各个演示中使用的照片和视频来源：
 
-- sphere, sphere-tiles, cubemap, cubemap-tiles: [Damien Sorel (me!)](https://galerie.strangeplanet.fr/picture.php?/1802/category/81)
+- sphere、sphere-tiles、cubemap、cubemap-tiles：[Damien Sorel（我本人）](https://galerie.strangeplanet.fr/picture.php?/1802/category/81)
 - sphere-tiles-24k, cubemap-tiles-24k: [Greg Zaal](https://polyhaven.com/a/cannon)
 - artist-workshop: [Oliksiy Yakovlyev](https://polyhaven.com/a/artist_workshop)
 - equirectangular-video: [Mettle Communications](https://www.mettle.com/360vr-master-series-free-360-downloads-page)
 - cubemap-video: [The Dalí Museum](https://www.youtube.com/watch?v=zQ2-oJOkTKc)
-- tour : Pixexid (dead link)
+- tour：Pixexid（链接已失效）
 - dualfisheye: [Jonna Luostari](https://jonnaluostari.com)

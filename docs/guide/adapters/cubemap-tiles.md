@@ -1,11 +1,11 @@
-# Cubemap tiles
+# 立方体瓦片
 
 <Badges module="cubemap-tiles-adapter"/>
 
 ::: module
-Reduce the initial loading time and used bandwidth by slicing big cubemap panoramas into many small tiles.
+通过把大型立方体全景图切分为许多小瓦片，减少初始加载时间和带宽占用。
 
-This adapter is available in the [@photo-sphere-viewer/cubemap-tiles-adapter](https://www.npmjs.com/package/@photo-sphere-viewer/cubemap-tiles-adapter) package.
+此适配器由 [@photo-sphere-viewer/cubemap-tiles-adapter](https://www.npmjs.com/package/@photo-sphere-viewer/cubemap-tiles-adapter) 包提供。
 :::
 
 ```js:line-numbers
@@ -31,7 +31,7 @@ const viewer = new Viewer({
 });
 ```
 
-## Example
+## 示例
 
 ::: code-demo
 
@@ -46,81 +46,81 @@ packages:
 
 :::
 
-::: tip Positions definitions
-With this adapter, pixel positions require an additional `textureFace` attribute (example: `{ textureFace: 'front', textureX: 200, textureY: 800 }`). The position refers to the full size of the face (first level when using multi-levels tiles).
+::: tip 位置定义
+使用此适配器时，像素位置需要额外提供 `textureFace` 属性（例如：`{ textureFace: 'front', textureX: 200, textureY: 800 }`）。该位置基于单个面的完整尺寸（使用多级瓦片时，指第一级尺寸）。
 :::
 
-## Configuration
+## 配置
 
 #### `baseBlur`
 
-- type: `boolean`
-- default: `true`
+- 类型：`boolean`
+- 默认值：`true`
 
-Applies a blur filter to the base image (option `baseUrl`).
+对基础图片（`baseUrl` 选项）应用模糊滤镜。
 
 #### `showErrorTile`
 
-- type: `boolean`
-- default: `true`
+- 类型：`boolean`
+- 默认值：`true`
 
-Shows a warning sign on tiles that cannot be loaded.
+在无法加载的瓦片上显示警告标志。
 
 #### `antialias`
 
-- type: `boolean`
-- default: `true`
+- 类型：`boolean`
+- 默认值：`true`
 
-Applies antialiasing to high resolutions tiles.
+对高分辨率瓦片应用抗锯齿。
 
-## Panorama options
+## 全景图选项
 
-When using this adapter, the `panorama` option and the `setPanorama()` method accept an object to configure the tiles.
+使用此适配器时，`panorama` 选项和 `setPanorama()` 方法接受一个用于配置瓦片的对象。
 
-You may choose to provide a single tiles configuration or multiple configurations which will be applied at different zoom levels, this allows to serve files adapted to the current zoom level and achieve very high resolutions without consuming too much bandwidth.
+你可以提供单个瓦片配置，也可以提供多个会在不同缩放级别应用的配置。这样可以按当前缩放级别提供合适文件，在不过度占用带宽的情况下实现很高的分辨率。
 
 :::: tabs
 
-::: tab Single level
+::: tab 单级
 
-#### `faceSize` (required)
+#### `faceSize` (必填)
 
-- type: `number`
+- 类型：`number`
 
-Size in pixel of a face of the cube.
+立方体单个面的像素尺寸。
 
-#### `nbTiles` (required)
+#### `nbTiles` (必填)
 
-- type: `number`
+- 类型：`number`
 
-Number of columns and rows on a face. Each tile must be square. Must be power of two (2, 4, 8, 16) and the maximum value is 16.
+单个面上的列数和行数。每个瓦片都必须是正方形。该值必须是 2 的幂（2、4、8、16），最大值为 16。
 
-#### `tileUrl` (required)
+#### `tileUrl` (必填)
 
-- type: `function: (face, col, row) => string`
+- 类型：`function: (face, col, row) => string`
 
-Function used to build the URL of a tile. `face` will be one of `'left'|'front'|'right'|'back'|'top'|'bottom'`.
-If the function returns `null` the corresponding tile will not be loaded.
+用于构建瓦片 URL 的函数。`face` 会是 `'left'|'front'|'right'|'back'|'top'|'bottom'` 之一。
+如果函数返回 `null`，对应瓦片将不会加载。
 
 #### `flipTopBottom`
 
-See the [cubemap adapter configuration](./cubemap.md#panorama-options).
+见[立方体贴图适配器配置](./cubemap.md#panorama-options)。
 
-#### `baseUrl` (recommended)
+#### `baseUrl` (建议)
 
-- type: `any`
+- 类型：`any`
 
-URL of a low resolution complete panorama image to display while the tiles are loading. It accepts the same format as the standard [cubemap adapter](./cubemap.md#panorama-options).
+低分辨率完整全景图的 URL，用于在瓦片加载期间显示。它接受与标准[立方体贴图适配器](./cubemap.md#panorama-options)相同的格式。
 
 :::
 
-::: tab Multiple levels
+::: tab 多级
 
-#### `levels` (required)
+#### `levels` (必填)
 
-- type: `array`
+- 类型：`array`
 
-Array of available tiles configurations. Each element is an object with `faceSize` and `nbTiles` (see "Single level"). The best size will be choosen depending on the current zoom level and viewer size.
+可用瓦片配置数组。每个元素都是包含 `faceSize` 和 `nbTiles` 的对象（见“单级”）。系统会根据当前缩放级别和 viewer 尺寸选择最合适的尺寸。
 
 ```js:line-numbers
 levels: [
@@ -139,32 +139,32 @@ levels: [
 ]
 ```
 
-#### `tileUrl` (required)
+#### `tileUrl` (必填)
 
-- type: `function: (face, col, row, level) => string`
+- 类型：`function: (face, col, row, level) => string`
 
-Function used to build the URL of a tile. `face` will be one of `'left'|'front'|'right'|'back'|'top'|'bottom'`.
-If the function returns `null` the corresponding tile will not be loaded.
+用于构建瓦片 URL 的函数。`face` 会是 `'left'|'front'|'right'|'back'|'top'|'bottom'` 之一。
+如果函数返回 `null`，对应瓦片将不会加载。
 
 #### `flipTopBottom`
 
-See the [cubemap adapter configuration](./cubemap.md#panorama-options).
+见[立方体贴图适配器配置](./cubemap.md#panorama-options)。
 
-#### `baseUrl` (recommended)
+#### `baseUrl` (建议)
 
-- type: `any`
+- 类型：`any`
 
-URL of a low resolution complete panorama image to display while the tiles are loading. It accepts the same format as the standard [cubemap adapter](./cubemap.md#panorama-options).
+低分辨率完整全景图的 URL，用于在瓦片加载期间显示。它接受与标准[立方体贴图适配器](./cubemap.md#panorama-options)相同的格式。
 
 :::
 
 ::::
 
-## Preparing the panorama
+## 准备全景图
 
-The tiles can be easily generated using [ImageMagick](https://imagemagick.org) tool.
+可以使用 [ImageMagick](https://imagemagick.org) 工具轻松生成瓦片。
 
-Let's say you have a cubemap where each face is 6.000x6.000 pixels and you want to split them into 8x8 tiles, use the following command for each face:
+假设你有一个每个面为 6,000×6,000 像素的立方体贴图，并希望将每个面切分为 8×8 个瓦片，可以对每个面使用以下命令：
 
 ```
 magick.exe front.jpg \
@@ -174,8 +174,8 @@ magick.exe front.jpg \
   %[filename:orig]_%[filename:tile].jpg
 ```
 
-You can also use this [online tool](https://pinetools.com/split-image).
+也可以使用这个[在线工具](https://pinetools.com/split-image)。
 
-::: tip Performances
-It is recommanded to not exceed tiles with a size of 1024x1024 pixels, thus limiting the maximum panorama size to 16.384x16.384 pixels by face (1.6 Gigapixels in total).
+::: tip 性能
+建议瓦片尺寸不要超过 1024×1024 像素，因此每个面的最大全景尺寸限制为 16,384×16,384 像素（总计 1.6 十亿像素）。
 :::

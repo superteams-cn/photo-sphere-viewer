@@ -1,4 +1,4 @@
-# SettingsPlugin <Badge text="Styles"/>
+# SettingsPlugin <Badge text="样式"/>
 
 <Badges module="settings-plugin"/>
 
@@ -93,19 +93,19 @@ settings.addSetting({
 });
 ```
 
-## Configuration
+## 配置
 
 #### `persist`
 
-- type: `boolean`
-- default: `false`
-- updatable: no
+- 类型：`boolean`
+- 默认：`false`
+- 可更新：否
 
-Should the settings be persisted. The persistence storage can be configured.
+是否持久化设置。持久化存储可单独配置。
 
 #### `storage`
 
-- type:
+- 类型：
 
 ```ts:line-numbers
 {
@@ -114,15 +114,15 @@ Should the settings be persisted. The persistence storage can be configured.
 }
 ```
 
-- default: LocalStorage with key `psvSettings`
-- updatable: no
+- 默认：使用键名 `psvSettings` 的 LocalStorage
+- 可更新：否
 
-Custom storage solution, for example LocalForage, NgRx, HTTP service, etc.
+自定义存储方案，例如 LocalForage、NgRx、HTTP 服务等。
 
 #### `lang`
 
-- type: `object`
-- default:
+- 类型：`object`
+- 默认：
 
 ```js
 lang: {
@@ -132,11 +132,11 @@ lang: {
 
 _注意：这个选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
 
-## Events
+## 事件
 
 #### `setting-changed(settingId, settingValue)`
 
-Triggered when the resolution is changed.
+设置项变化时触发。
 
 ```js:line-numbers
 settingsPlugin.addEventListener('setting-changed', ({ settingId, settingValue }) => {
@@ -144,24 +144,24 @@ settingsPlugin.addEventListener('setting-changed', ({ settingId, settingValue })
 });
 ```
 
-## Buttons
+## 按钮
 
-This plugin adds buttons to the default navbar:
+此插件会向默认导航栏添加按钮：
 
-- `settings` allows to open the settings panel
+- `settings` 用于打开设置面板
 
-If you use a [custom navbar](../guide/navbar.md) you will need to manually add the buttons to the list.
+如果你使用了[自定义导航栏](../guide/navbar.md)，需要手动把这些按钮添加到列表中。
 
-## SCSS variables
+## SCSS 变量
 
-| variable          | default                           | description                               |
-| ----------------- | --------------------------------- | ----------------------------------------- |
-| $font             | core.$caption-font                | Font of settings                          |
-| $text-color       | core.$panel-text-color            | Text color of settings                    |
-| $background       | core.$panel-background            | Background color of settings              |
-| $item-height      | core.$panel-menu-item-height      | Height of each settings item              |
-| $item-padding     | core.$panel-menu-item-padding     | Padding of each settings item             |
-| $hover-background | core.$panel-menu-hover-background | Background color of items on mouse hover  |
-| $badge-font       | 10px / .9 monospace               | Font of the badge displayed on the button |
-| $badge-text-color | white                             | Text color if the badge                   |
-| $badge-background | #111                              | Background color of the badge             |
+| 变量              | 默认值                            | 说明                     |
+| ----------------- | --------------------------------- | ------------------------ |
+| $font             | core.$caption-font                | 设置项字体               |
+| $text-color       | core.$panel-text-color            | 设置项文字颜色           |
+| $background       | core.$panel-background            | 设置面板背景色           |
+| $item-height      | core.$panel-menu-item-height      | 每个设置项的高度         |
+| $item-padding     | core.$panel-menu-item-padding     | 每个设置项的内边距       |
+| $hover-background | core.$panel-menu-hover-background | 鼠标悬停时设置项的背景色 |
+| $badge-font       | 10px / .9 monospace               | 按钮上徽标的字体         |
+| $badge-text-color | white                             | 徽标文字颜色             |
+| $badge-background | #111                              | 徽标背景色               |

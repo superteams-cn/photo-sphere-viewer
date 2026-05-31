@@ -4,12 +4,12 @@
 
 ::: module
 <ApiButton page="modules/GyroscopePlugin.html"/>
-Adds gyroscope controls on mobile devices.
+在移动设备上启用陀螺仪控制。
 
 这个插件由 [@photo-sphere-viewer/gyroscope-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/gyroscope-plugin) 包提供。
 :::
 
-## Usage
+## 用法
 
 启用后，插件会添加一个新的“陀螺仪”按钮；只有在陀螺仪 API 可用时才会显示。
 
@@ -23,56 +23,56 @@ const viewer = new Viewer({
 });
 ```
 
-::: tip
-The gyroscope API only works on HTTPS domains.
+::: tip 提示
+陀螺仪 API 只能在 HTTPS 域名下使用。
 :::
 
-::: warning
-There are known inconsistencies of orientation data accross devices. If the panorama is not displayed in the expected orientation, this plugin is not faulty.
+::: warning 注意
+不同设备返回的方向数据存在已知差异。如果全景图没有按预期方向显示，通常不是插件本身的问题。
 :::
 
-## Example
+## 示例
 
-[Open in a new tab](/demos/plugin-gyroscope.html){target=\_blank}
+[在新标签页打开](/demos/plugin-gyroscope.html){target=\_blank}
 
-## Configuration
+## 配置
 
 #### `touchmove`
 
-- type: `boolean`
-- default: `true`
-- updatable: yes
+- 类型：`boolean`
+- 默认：`true`
+- 可更新：是
 
-Allows to pan horizontally the camera when the gyroscope is enabled (requires global `mousemove=true`).
+启用陀螺仪时，允许水平平移相机（需要全局 `mousemove=true`）。
 
 #### `roll`
 
-- type: `boolean`
-- default: `true`
-- updatable: yes
+- 类型：`boolean`
+- 默认：`true`
+- 可更新：是
 
-Applies camera roll (rotation on Z axis).
+应用相机横滚（绕 Z 轴旋转）。
 
 #### `absolutePosition`
 
-- type: `boolean`
-- default: `false`
-- updatable: no
+- 类型：`boolean`
+- 默认：`false`
+- 可更新：否
 
-By default the camera will keep its current horizontal position when the gyroscope is enabled. Turn this option `true` to enable absolute positionning and only use the device orientation.
+默认情况下，启用陀螺仪后相机会保留当前水平位置。将此选项设为 `true` 后，会启用绝对定位，只使用设备方向。
 
 #### `moveMode`
 
-- type: `smooth` | `fast`
-- default: `smooth`
-- updatable: yes
+- 类型：`smooth` | `fast`
+- 默认：`smooth`
+- 可更新：是
 
-How the gyroscope data is used to rotate the panorama.
+控制陀螺仪数据如何驱动全景图旋转。
 
 #### `lang`
 
-- type: `object`
-- default:
+- 类型：`object`
+- 默认：
 
 ```js
 lang: {
@@ -80,12 +80,12 @@ lang: {
 }
 ```
 
-_Note: this option is not part of the plugin but is merged with the main [`lang`](../guide/config.md#lang) object._
+_注意：这个选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
 
-## Buttons
+## 按钮
 
-This plugin adds buttons to the default navbar:
+此插件会向默认导航栏添加按钮：
 
-- `gyroscope` allows to toggle the gyroscope control
+- `gyroscope` 用于开关陀螺仪控制
 
-If you use a [custom navbar](../guide/navbar.md) you will need to manually add the buttons to the list.
+如果你使用了[自定义导航栏](../guide/navbar.md)，需要手动把这些按钮添加到列表中。

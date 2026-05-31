@@ -1,10 +1,10 @@
-# Navbar customization
+# 导航栏自定义
 
 <DemoButton href="/demos/basic/custom-navbar.html"/>
 
-## Core buttons
+## 核心按钮
 
-The `navbar` option is an array which can contain the following elements:
+`navbar` 选项是一个数组，可以包含以下元素：
 
 - `zoomOut`
 - `zoomRange`
@@ -20,70 +20,70 @@ The `navbar` option is an array which can contain the following elements:
 - `caption`
 - `fullscreen`
 
-## Plugins buttons
+## 插件按钮
 
-Some [plugins](../plugins/) add new buttons to the navbar and will be automatically shown if you don't override the `navbar` option. However if you do, you will have to manually add said buttons in your configuration. The buttons codes are documented on each plugin page.
+部分[插件](../plugins/)会向导航栏添加新按钮；如果没有覆盖 `navbar` 选项，它们会自动显示。如果你覆盖了该选项，则需要在配置中手动加入这些按钮。各插件页面会列出对应按钮代码。
 
-## Custom buttons
+## 自定义按钮
 
-You can also add as many custom buttons you want. A custom button is an object with the following options:
+你也可以添加任意数量的自定义按钮。自定义按钮是一个对象，支持以下选项：
 
-#### `content` (required)
+#### `content` (必填)
 
-- type : `string | HTMLElement` & [`NavbarButtonElement`](/api/interfaces/Core.NavbarButtonElement.html){target=\_blank}
+- 类型：`string | HTMLElement` & [`NavbarButtonElement`](/api/interfaces/Core.NavbarButtonElement.html){target=\_blank}
 
-Content of the button. Preferably a square image or SVG icon.
+按钮内容，建议使用正方形图片或 SVG 图标。
 
-::: tip Custom navbar elements
-The `content` can be an existing element in a the DOM or a [Web Component](https://developer.mozilla.org/docs/Web/API/Web_components/Using_custom_elements).
-If your component has an `attachViewer()` method it will be called with the instance of the viewer as first parameter.
+::: tip 自定义导航栏元素
+`content` 可以是 DOM 中已有的元素，也可以是 [Web Component](https://developer.mozilla.org/docs/Web/API/Web_components/Using_custom_elements)。
+如果组件提供了 `attachViewer()` 方法，它会以 viewer 实例作为第一个参数被调用。
 
 <DemoButton href="/demos/advanced/navbar-element.html"></DemoButton>
 :::
 
-_**Note:** the content is rendered as HTML. If your content may include untrusted input it should be sanitized before being passed to `content`._
+_**注意：** 内容会按 HTML 渲染。如果内容可能包含不可信输入，请先清理后再传入 `content`。_
 
 #### `onClick(viewer)`
 
-- type : `function(Viewer)`
+- 类型：`function(Viewer)`
 
-Function called when the button is clicked.
+按钮被点击时调用的函数。
 
 #### `id`
 
-- type : `string`
+- 类型：`string`
 
-Unique identifier of the button, usefull when using the `navbar.getButton()` method.
+按钮的唯一标识符，在使用 `navbar.getButton()` 方法时很有用。
 
 #### `title`
 
-- type : `string`
+- 类型：`string`
 
-Tooltip displayed when the mouse is over the button.
+鼠标悬停在按钮上时显示的提示文本。
 
-For translation purposes it can be a key in the main [`lang`](./config.md#lang) object.
+为了方便翻译，它可以是主 [`lang`](./config.md#lang) 对象中的键。
 
 #### `className`
 
-- type : `string`
+- 类型：`string`
 
-CSS class added to the button.
+添加到按钮上的 CSS 类。
 
 #### `disabled`
 
-- type : `boolean`
-- default : `false`
+- 类型：`boolean`
+- 默认值：`false`
 
-Initially disable the button.
+初始状态下禁用按钮。
 
 #### `visible`
 
-- type : `boolean`
-- default : `true`
+- 类型：`boolean`
+- 默认值：`true`
 
-Initially show the button.
+初始状态下显示按钮。
 
-The API allows to change the visibility of the button at any time:
+API 允许随时更改按钮可见性：
 
 ```js
 viewer.navbar.getButton('my-button').show();

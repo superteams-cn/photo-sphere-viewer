@@ -1,17 +1,17 @@
-# CompassPlugin <Badge text="Styles"/>
+# CompassPlugin <Badge text="样式"/>
 
 <Badges module="compass-plugin"/>
 
 ::: module
 <ApiButton page="modules/CompassPlugin.html"/>
-Adds a compass on the viewer to represent which portion of the sphere is currently visible.
+在 viewer 上添加指南针，用于表示当前可见的球面区域。
 
 这个插件由 [@photo-sphere-viewer/compass-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/compass-plugin) 包提供。
 :::
 
 ## 用法
 
-The plugin can be configured with a list of `hotspots` which are small dots on the compass. It can also display markers positions.
+插件可以配置一组 `hotspots`，它们会以小点显示在指南针上；也可以显示标记的位置。
 
 ```js:line-numbers
 import { CompassPlugin } from '@photo-sphere-viewer/compass-plugin';
@@ -43,102 +43,102 @@ packages:
 
 :::
 
-::: tip
-The north is always at yaw=0, if you need to change where is the north you can use `panoData.poseHeading` or `sphereCorrection.pan` option.
+::: tip 提示
+北方始终位于 yaw=0。如果需要调整北方方向，可以使用 `panoData.poseHeading` 或 `sphereCorrection.pan` 选项。
 :::
 
-## Configuration
+## 配置
 
 #### `size`
 
-- type: `string`
-- default: `'120px'`
-- updatable: yes
+- 类型：`string`
+- 默认：`'120px'`
+- 可更新：是
 
-The size of the widget, can be declared in `px`, `rem`, `vh`, etc.
+组件尺寸，可以使用 `px`、`rem`、`vh` 等单位。
 
 #### `position`
 
-- type: `string`
-- default: `'top left'`
-- updatable: yes
+- 类型：`string`
+- 默认：`'top left'`
+- 可更新：是
 
-Position of the widget, accepted positions are combinations of `top`, `center`, `bottom` and `left`, `center`, `right`.
+组件位置，可由 `top`、`center`、`bottom` 与 `left`、`center`、`right` 组合而成。
 
 #### `navigation`
 
-- type: `boolean`
-- default: `true`
-- updatable: yes
+- 类型：`boolean`
+- 默认：`true`
+- 可更新：是
 
-Allows to click on the compass to rotate the viewer.
+允许点击指南针来旋转 viewer。
 
 #### `resetPitch`
 
-- type: `boolean`
-- default: `true`
-- updatable: yes
+- 类型：`boolean`
+- 默认：`true`
+- 可更新：是
 
-Reset viewer pitch to `defaultPitch` when using the compass navigation.
+使用指南针导航时，将 viewer 的俯仰角重置为 `defaultPitch`。
 
 #### `hotspots`
 
-- type: `CompassHotspot[]`
-- default: `null`
-- updatable: yes
+- 类型：`CompassHotspot[]`
+- 默认：`null`
+- 可更新：是
 
 指南针上可见的小点。每个点包含一个位置（`yaw`/`pitch` 或 `textureX`/`textureY`）以及可选的 `color`，它会覆盖全局 `hotspotColor`。
 
-::: tip
-[Markers](./markers.md) can be displayed on the compass by defining their `compass` data, which can be `true` or a specific color.
+::: tip 提示
+通过定义标记的 `compass` 数据，可以在指南针上显示 [Markers](./markers.md)。该值可以是 `true` 或指定颜色。
 
 <DemoButton href="/demos/compass/markers.html"/>
 :::
 
 #### `backgroundSvg`
 
-- type: `string`
-- default: SVG provided by the plugin
-- updatable: yes
+- 类型：`string`
+- 默认：插件提供的 SVG
+- 可更新：是
 
-SVG used as background of the compass (must be square).
+指南针背景使用的 SVG（必须为正方形）。
 
 #### `coneColor`
 
-- type: `string`
-- default: `'rgba(255, 255, 255, 0.2)'`
-- updatable: yes
+- 类型：`string`
+- 默认：`'rgba(255, 255, 255, 0.2)'`
+- 可更新：是
 
-Color of the cone of the compass.
+指南针视锥的颜色。
 
 #### `navigationColor`
 
-- type: `string`
-- default: `'rgba(255, 0, 0, 0.2)'`
-- updatable: yes
+- 类型：`string`
+- 默认：`'rgba(255, 0, 0, 0.2)'`
+- 可更新：是
 
-Color of the navigation cone.
+导航视锥的颜色。
 
 #### `hotspotColor`
 
-- type: `string`
-- default: `'rgba(0, 0, 0, 0.5)'`
-- updatable: yes
+- 类型：`string`
+- 默认：`'rgba(0, 0, 0, 0.5)'`
+- 可更新：是
 
-Default color of hotspots.
+热点的默认颜色。
 
 #### `className`
 
-- type: `string`
-- updatable: yes
+- 类型：`string`
+- 可更新：是
 
-CSS class(es) added to the compass element.
+添加到指南针元素上的 CSS 类。
 
-## Methods
+## 方法
 
 #### `setHotspots(hotspots)`
 
-Changes the hotspots.
+修改热点。
 
 ```js
 compassPlugin.setHotspots([{ yaw: '0deg' }, { yaw: '10deg', color: 'red' }]);
@@ -146,4 +146,4 @@ compassPlugin.setHotspots([{ yaw: '0deg' }, { yaw: '10deg', color: 'red' }]);
 
 #### `clearHotspots()`
 
-Removes all hotspots.
+移除所有热点。

@@ -1,15 +1,15 @@
-# VirtualTourPlugin <Badge text="Styles"/>
+# VirtualTourPlugin <Badge text="样式"/>
 
 <Badges module="virtual-tour-plugin"/>
 
 ::: module
 <ApiButton page="modules/VirtualTourPlugin.html"/>
-Create virtual tours by linking multiple panoramas.
+通过连接多个全景图创建虚拟导览。
 
 这个插件由 [@photo-sphere-viewer/virtual-tour-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/virtual-tour-plugin) 包提供。
 :::
 
-## Usage
+## 用法
 
 ```js:line-numbers
 import { VirtualTourPlugin } from '@photo-sphere-viewer/virtual-tour-plugin';
@@ -26,14 +26,14 @@ const viewer = new Viewer({
 });
 ```
 
-The plugin uses a list of nodes which contains a `panorama` with one or more `links` to other nodes and additional options.
+插件使用一组节点；每个节点包含一个 `panorama`、一个或多个指向其他节点的 `links`，以及额外选项。
 
-The nodes can be provided all at once or asynchronously as the user navigates.
+节点既可以一次性全部提供，也可以随着用户导航异步加载。
 
 :::: tabs
 
-::: tab Client mode
-In client mode you must provide all the `nodes` at once, you can also change the nodes with the `setNodes` method.
+::: tab 客户端模式
+客户端模式下必须一次性提供所有 `nodes`，也可以通过 `setNodes` 方法替换节点。
 
 ```js:line-numbers
 nodes: [
@@ -44,8 +44,8 @@ nodes: [
 
 :::
 
-::: tab Server mode
-In server mode you provide the `getNode` function which returns a Promise to load the data of a node.
+::: tab 服务端模式
+服务端模式下需要提供 `getNode` 函数，它返回一个 Promise，用于加载节点数据。
 
 ```js:line-numbers
 startNodeId: 'node-1',
@@ -59,12 +59,12 @@ getNode: async (nodeId) => {
 
 ::::
 
-There are two different ways to define the position of the links : the manual mode and the GPS mode.
+链接位置有两种定义方式：手动模式和 GPS 模式。
 
 :::: tabs
 
-::: tab Manual mode
-In manual mode each link must have `yaw`/`pitch` or `textureX`/`textureY` coordinates to be placed at the correct location on the panorama. This works exactly like the placement of markers.
+::: tab 手动模式
+在手动模式下，每个链接都必须包含 `yaw`/`pitch` 或 `textureX`/`textureY` 坐标，才能放置到全景图的正确位置。这与标记的放置方式完全相同。
 
 ```js:line-numbers
 const node = {
@@ -81,8 +81,8 @@ const node = {
 
 :::
 
-::: tab GPS mode
-In GPS mode each node has positionning coordinates and the links are placed automatically.
+::: tab GPS 模式
+在 GPS 模式下，每个节点都有定位坐标，链接会自动放置。
 
 ```js:line-numbers
 const node = {
@@ -102,11 +102,11 @@ const node = {
 
 ::::
 
-::: tip
-The [Gallery plugin](./gallery.md), [Map plugin](./map.md), [Plan plugin](./plan.md) and [Compass plugin](./compass.md) plugins can be easily integrated with the virtual tour.
+::: tip 提示
+[Gallery 插件](./gallery.md)、[Map 插件](./map.md)、[Plan 插件](./plan.md)和 [Compass 插件](./compass.md)都可以轻松集成到虚拟导览中。
 :::
 
-## Example
+## 示例
 
 ::: code-demo
 
@@ -125,220 +125,220 @@ packages:
 
 :::
 
-## Nodes
+## 节点
 
-### Definition
+### 定义
 
-#### `id` (required)
+#### `id`（必填）
 
-- type: `string`
+- 类型：`string`
 
-Unique identifier of the node
+节点的唯一标识符。
 
-#### `panorama` (required)
+#### `panorama`（必填）
 
-Refer to the main [config page](../guide/config.md#panorama-required).
+请参考主[配置页面](../guide/config.md#panorama-required)。
 
 #### `caption` / `description` / `panoData` / `sphereCorrection`
 
-Refer to the main [config page](../guide/config.md).
+请参考主[配置页面](../guide/config.md)。
 
-#### `links` (required in client mode)
+#### `links`（客户端模式必填）
 
-- type: `array`
+- 类型：`array`
 
-Definition of the links of this node. [See below](#links).
+此节点的链接定义。[见下文](#links)。
 
-#### `gps` (required in GPS mode)
+#### `gps`（GPS 模式必填）
 
-- type: `number[]`
+- 类型：`number[]`
 
-GPS coordinates of this node as an array of two or three values (`[longitude, latitude, altitude?]`).
+此节点的 GPS 坐标，由两个或三个值组成的数组表示（`[longitude, latitude, altitude?]`）。
 
-::: warning Projection system
-Only the [ESPG:4326 projection](https://epsg.io/4326) is supported.
+::: warning 投影系统
+仅支持 [ESPG:4326 投影](https://epsg.io/4326)。
 :::
 
 #### `name`
 
-- type: `string`
+- 类型：`string`
 
-Short name of this node, used in links tooltips and the GalleryPlugin.
+此节点的短名称，用于链接提示框和 GalleryPlugin。
 
 #### `showInGallery`
 
-- type: `boolean`
-- default: `true`
+- 类型：`boolean`
+- 默认：`true`
 
-Display this node in the GalleryPlugin.
+在 GalleryPlugin 中显示此节点。
 
 #### `thumbnail`
 
-- type: `string`
+- 类型：`string`
 
-Thumbnail for the nodes list in the GalleryPlugin.
+GalleryPlugin 节点列表中使用的缩略图。
 
 #### `markers`
 
-- type: `MarkerConfig[]`
+- 类型：`MarkerConfig[]`
 
-Additional markers displayed on this node, requires the [Markers plugin](./markers.md).
+显示在此节点上的额外标记，需要 [Markers 插件](./markers.md)。
 
-The markers can be positioned with the classic `position` option (yaw + pitch) or, if `positionMode=gps`, with the `gps` option (longitude + latitude + altitude).
+标记可以使用经典的 `position` 选项（yaw + pitch）定位；如果 `positionMode=gps`，也可以使用 `gps` 选项（经度 + 纬度 + 高度）定位。
 
-#### `map` (client mode only)
+#### `map`（仅客户端模式）
 
-Configuration of the hotspot when using the [Map plugin](map.md). See [global configuration](#map-client-mode-only-1) for details.
+使用 [Map 插件](map.md)时的热点配置。详见[全局配置](#map-client-mode-only-1)。
 
-Set to `false` to hide the node from the map (note: if `positionMode=manual` this can lead to undesired positionning of the map).
+设为 `false` 可在地图上隐藏该节点（注意：如果 `positionMode=manual`，这可能导致地图定位不符合预期）。
 
-#### `plan` (client+GPS mode only)
+#### `plan`（仅客户端 + GPS 模式）
 
-Configuration of the hotspot when using the [Plan plugin](plan.md). The node will be automatically placed on the map but you can customize [the style of the hotspot](plan.md#hotspots-1).
+使用 [Plan 插件](plan.md)时的热点配置。节点会自动放置在地图上，但你可以自定义[热点样式](plan.md#hotspots-1)。
 
-Set to `false` to hide the node from the plan.
+设为 `false` 可在 plan 中隐藏该节点。
 
 #### `data`
 
-- type: `any`
+- 类型：`any`
 
-Any custom data you want to attach to the node.
+要附加到节点上的任意自定义数据。
 
-### Links
+### 链接
 
-#### `nodeId` (required)
+#### `nodeId`（必填）
 
-- type: `string`
+- 类型：`string`
 
-Identifier of the target node.
+目标节点的标识符。
 
-#### `position` (required in manual mode)
+#### `position`（手动模式必填）
 
-- type: `{ yaw, pitch } | { textureX, textureY }`
+- 类型：`{ yaw, pitch } | { textureX, textureY }`
 
-Position of the link in **spherical coordinates** (radians/degrees) or **texture coordinates** (pixels).
+链接在**球面坐标**（弧度/角度）或**纹理坐标**（像素）中的位置。
 
-#### `gps` (required in GPS+server mode)
+#### `gps`（GPS + 服务端模式必填）
 
-- type: `number[]`
+- 类型：`number[]`
 
-Define the GPS coordinates of the target node. It must be provided in order to position the link without having to load the target node.
+定义目标节点的 GPS 坐标。必须提供此项，才能在不加载目标节点的情况下定位链接。
 
 #### `linkOffset`
 
-- type: `{ yaw?, pitch?, depth? }`
+- 类型：`{ yaw?, pitch?, depth? }`
 
-Offset added to the final link position, to move the marker/arrow without affecting where the viewer is rotated before going to the next node.
+添加到最终链接位置的偏移量，用于移动标记/箭头，同时不影响进入下一个节点前 viewer 旋转到的位置。
 
-`depth` is only used in 3D render mode to manage overlapping arrows. Note that overlapping arrows are automatically made transparent (depending on `arrowsPosition.linkOverlapAngle`).
+`depth` 仅在 3D 渲染模式下用于处理重叠箭头。注意，重叠箭头会自动变透明（取决于 `arrowsPosition.linkOverlapAngle`）。
 
 #### `arrowStyle`
 
-Overrides the global style of the arrow used to display the link. See global configuration for details.
+覆盖用于显示链接的箭头全局样式。详见全局配置。
 
 #### `data`
 
-- type: `any`
+- 类型：`any`
 
-Any custom data you want to attach to the link.
+要附加到链接上的任意自定义数据。
 
-## Configuration
+## 配置
 
 #### `dataMode`
 
-- type: `'client' | 'server'`
-- default: `'client'`
-- updatable: no
+- 类型：`'client' | 'server'`
+- 默认：`'client'`
+- 可更新：否
 
-Configure how the nodes configuration is provided.
+配置节点配置的提供方式。
 
 #### `positionMode`
 
-- type: `'manual' | 'gps'`
-- default: `'manual'`
-- updatable: no
+- 类型：`'manual' | 'gps'`
+- 默认：`'manual'`
+- 可更新：否
 
-Configure how the links between nodes are positionned.
+配置节点之间链接的定位方式。
 
 #### `renderMode`
 
-- type: `'2d' | '3d'`
-- default: `'3d'`
-- updatable: no
+- 类型：`'2d' | '3d'`
+- 默认：`'3d'`
+- 可更新：否
 
-How the links are displayed.
+链接的显示方式。
 
-#### `nodes` (client mode only)
+#### `nodes`（仅客户端模式）
 
-- type: `array`
-- updatable: no
+- 类型：`array`
+- 可更新：否
 
-Initial list of nodes. You can also call `setNodes` method later.
+初始节点列表。也可以稍后调用 `setNodes` 方法。
 
-#### `getNode(nodeId)` (required in server mode)
+#### `getNode(nodeId)`（服务端模式必填）
 
-- type: `function(nodeId: string) => Promise<Node>`
-- updatable: no
+- 类型：`function(nodeId: string) => Promise<Node>`
+- 可更新：否
 
-Callback to load the configuration of a node.
+用于加载节点配置的回调。
 
-#### `startNodeId` (required in server mode)
+#### `startNodeId`（服务端模式必填）
 
-- type: `string`
-- updatable: no
+- 类型：`string`
+- 可更新：否
 
-Id of the initially loaded node. If empty the first node will be displayed. You can also call `setCurrentNode` method later.
+初始加载节点的 id。留空时会显示第一个节点。也可以稍后调用 `setCurrentNode` 方法。
 
 #### `preload`
 
-- type: `boolean | function(node: Node, link: NodeLink) => boolean`
-- default: `false`
-- updatable: no
+- 类型：`boolean | function(node: Node, link: NodeLink) => boolean`
+- 默认：`false`
+- 可更新：否
 
-Enable the preloading of linked nodes, can be a function that returns true or false for each link.
+启用链接节点的预加载。也可以是一个函数，为每个链接返回 true 或 false。
 
 #### `transitionOptions`
 
-- type: `object | function`
-- default: `{ showLoader: true, speed: '20rpm', effect: 'fade', rotation: true }`
-- updatable: no
+- 类型：`object | function`
+- 默认：`{ showLoader: true, speed: '20rpm', effect: 'fade', rotation: true }`
+- 可更新：否
 
-Configuration of the transition between nodes. Can be a callback.
+节点之间的过渡配置。可以是回调函数。
 
-::: dialog "See details" "Virtual tour transitionOptions"
+::: dialog "查看详情" "虚拟导览 transitionOptions"
 
-`transitionOptions` can be defined as a static object or a function called before switching to a new node.
+`transitionOptions` 可以定义为静态对象，也可以定义为切换到新节点前调用的函数。
 
-The default behaviour is to rotate the view to face the direction of the link and perform a fade-in transition to the next node.
+默认行为是将视图旋转到链接方向，并以淡入效果过渡到下一个节点。
 
-**If defined as an object, the type is:**
+**如果定义为对象，类型为：**
 
 ```ts:line-numbers
 {
     /**
-     * Show the loader while loading the new panorama
+     * 加载新全景图时显示加载器
      * @default true
      */
     showLoader?: boolean;
     /**
-     * Enable transition between nodes
+     * 启用节点之间的过渡
      * @default 'fade'
      */
     effect?: 'none' | 'fade' | 'black' | 'white';
     /**
-     * Speed or duration of the transition between nodes
+     * 节点过渡的速度或持续时间
      * @default '20rpm'
      */
     speed?: string | number;
     /**
-     * Enable rotation in the direction of the next node
+     * 启用朝向下一个节点方向的旋转
      * @default true
      */
     rotation?: boolean;
 }
 ```
 
-**If defined as a function, the signature is:**
+**如果定义为函数，签名为：**
 
 ```ts:line-numbers
 (toNode: Node, fromNode?: Node, fromLink?: NodeLink) => ({
@@ -363,48 +363,48 @@ The default behaviour is to rotate the view to face the direction of the link an
 
 #### `linksOnCompass`
 
-- type: `boolean`
-- default: `true`
-- updatable: no
+- 类型：`boolean`
+- 默认：`true`
+- 可更新：否
 
-If the [Compass plugin](./compass.md) is enabled, displays the links on the compass.
+如果启用了 [Compass 插件](./compass.md)，则在指南针上显示链接。
 
 #### `showLinkTooltip`
 
-- type: `boolean`
-- default: `true`
-- updatable: no
+- 类型：`boolean`
+- 默认：`true`
+- 可更新：否
 
-Should a tooltip be displayed on each link. The default tooltip contains `name` + `thumbnail` + `caption`, it is customizable with the [getLinkTooltip](#getlinktooltipcontent-link-node) option.
+是否在每个链接上显示提示框。默认提示框包含 `name` + `thumbnail` + `caption`，可通过 [getLinkTooltip](#getlinktooltipcontent-link-node) 选项自定义。
 
 #### `getLinkTooltip(content, link, node)`
 
-- type: `function(string, link, node) => string`
-- default: `null`
-- updatable: no
+- 类型：`function(string, link, node) => string`
+- 默认：`null`
+- 可更新：否
 
-Callback used to replace/modify the tooltip for a link. The first parameter is the default tooltip content.
+用于替换/修改链接提示框的回调。第一个参数是默认提示框内容。
 
-#### `map` (client mode only)
+#### `map`（仅客户端模式）
 
-Configuration when using the [Map plugin](./map.md).
+使用 [Map 插件](./map.md)时的配置。
 
-::::: dialog "See details" "Virtual tour map"
+::::: dialog "查看详情" "虚拟导览地图"
 
-Using the Map plugin allows to show the position of each node on a map. It requires some additional configuration, especially when working with GPS coordinates.
+使用 Map 插件可以在地图上显示每个节点的位置。这需要一些额外配置，尤其是在使用 GPS 坐标时。
 
-::: warning Map image
-The map image must be configured with `map.imageUrl` inside the VirtualTour plugin configuration. The `imageUrl` in the Map plugin is ignored.
+::: warning 地图图片
+地图图片必须通过 VirtualTour 插件配置中的 `map.imageUrl` 设置。Map 插件中的 `imageUrl` 会被忽略。
 :::
 
 :::: tabs
 
-::: tab Configure the map manually
+::: tab 手动配置地图
 
-This configuration is **required** if `positionMode=manual` but can also be used with `positionMode=gps`.
+如果 `positionMode=manual`，此配置**必填**；它也可以与 `positionMode=gps` 一起使用。
 
-To define the position of the node on the map you have to configure its `map` property with `x` and `y`.  
-You can also configure other things like `color`, `image` and `size`. Please refer to the [Hotspots section](map.md#hotspots-1) of the Map plugin.
+要定义节点在地图上的位置，必须在其 `map` 属性中配置 `x` 和 `y`。
+还可以配置 `color`、`image`、`size` 等内容。请参考 Map 插件的[热点部分](map.md#hotspots-1)。
 
 ```js:line-numbers{10}
 plugins: [
@@ -425,11 +425,11 @@ plugins: [
 
 :::
 
-::: tab Configure the map with GPS
+::: tab 使用 GPS 配置地图
 
-This configuration can **only** be used if `positionMode=gps`.
+此配置**只能**在 `positionMode=gps` 时使用。
 
-You have to provide additional metadata about the map for the automatic positionning to work : its `size` in pixels and its `extent` (GPS bounds).
+必须提供地图的额外元数据，自动定位才能工作：以像素为单位的 `size`，以及 `extent`（GPS 边界）。
 
 ```js:line-numbers{5-6,13}
 plugins: [
@@ -451,7 +451,7 @@ plugins: [
 ],
 ```
 
-Each node can still have a `map` property to override `color`, `image` and `size`.
+每个节点仍可包含 `map` 属性，用于覆盖 `color`、`image` 和 `size`。
 
 :::
 
@@ -461,12 +461,12 @@ Each node can still have a `map` property to override `color`, `image` and `size
 
 #### `arrowStyle`
 
-- type: `object`
-- updatable: no
+- 类型：`object`
+- 可更新：否
 
-Style of the arrow used to display links.
+用于显示链接的箭头样式。
 
-Default value is:
+默认值为：
 
 ```js:line-numbers
 {
@@ -475,14 +475,14 @@ Default value is:
 }
 ```
 
-You can also use `image` (path to an image file) and add custom CSS with `style` and `className`.
+也可以使用 `image`（图片文件路径），并通过 `style` 和 `className` 添加自定义 CSS。
 
-#### `arrowsPosition` (3d mode only)
+#### `arrowsPosition`（仅 3d 模式）
 
-- type: `object`
-- updatable: no
+- 类型：`object`
+- 可更新：否
 
-Default value is:
+默认值为：
 
 ```js:line-numbers
 {
@@ -497,15 +497,15 @@ Default value is:
 }
 ```
 
-## Methods
+## 方法
 
-#### `setNodes(nodes, [startNodeId])` (client mode only)
+#### `setNodes(nodes, [startNodeId])`（仅客户端模式）
 
-Changes the nodes and display the first one (or the one designated by `startNodeId`).
+修改节点并显示第一个节点（或由 `startNodeId` 指定的节点）。
 
-#### `updateNode(node)` (client mode only)
+#### `updateNode(node)`（仅客户端模式）
 
-Updates a single node. If it is the current node, the viewer will be updated accordingly. All attributes or optionnal but `id`.
+更新单个节点。如果它是当前节点，viewer 会相应更新。除 `id` 外，所有属性都是可选的。
 
 ```js:line-numbers
 virtualTourPlugin.updateNode({
@@ -517,11 +517,11 @@ virtualTourPlugin.updateNode({
 
 #### `setCurrentNode(nodeId, [options])`
 
-Changes the current node. `options` allows to override the default `transitionOptions`.
+修改当前节点。`options` 可用于覆盖默认的 `transitionOptions`。
 
 #### `gotoLink(nodeId, [speed]): Promise`
 
-Moves the view to face a specific link. Default speed is `8rpm`, set it to `0` for an immediate rotation.
+移动视图，使其朝向指定链接。默认速度为 `8rpm`；设为 `0` 可立即旋转。
 
 ```js:line-numbers
 virtualTourPlugin.gotoLink('2', '4rpm')
@@ -530,17 +530,17 @@ virtualTourPlugin.gotoLink('2', '4rpm')
 
 #### `getCurrentNode()`
 
-Returns the current node.
+返回当前节点。
 
 #### `getLinkPosition(nodeId): Position`
 
-Returns the position of a link in the viewer.
+返回链接在 viewer 中的位置。
 
-## Events
+## 事件
 
 #### `node-changed(node, data)`
 
-Triggered when the current node is changed.
+当前节点变化时触发。
 
 ```js:line-numbers
 virtualTourPlugin.addEventListener('node-changed', ({ node, data }) => {
@@ -554,12 +554,12 @@ virtualTourPlugin.addEventListener('node-changed', ({ node, data }) => {
 
 #### `enter-arrow(link, node)` | `leave-arrow(link, node)`
 
-Triggered when the user puts the cursor hover or away an arrow.
+用户将光标移入或移出箭头时触发。
 
-## SCSS variables
+## SCSS 变量
 
-| variable           | default                                    | description                             |
-| ------------------ | ------------------------------------------ | --------------------------------------- |
-| $link-button-color | rgba(255, 255, 255, 0.8)                   | Color of the default arrow image        |
-| $link-button-ring  | rgb(97, 170, 242)                          | Color of the ring effect on mouse hover |
-| $link-shadow       | drop-shadow(0 10px 2px rgba(0, 0, 0, 0.7)) | Shadow applied to all arrows            |
+| 变量               | 默认值                                     | 说明                     |
+| ------------------ | ------------------------------------------ | ------------------------ |
+| $link-button-color | rgba(255, 255, 255, 0.8)                   | 默认箭头图片颜色         |
+| $link-button-ring  | rgb(97, 170, 242)                          | 鼠标悬停时环形效果的颜色 |
+| $link-shadow       | drop-shadow(0 10px 2px rgba(0, 0, 0, 0.7)) | 应用于所有箭头的阴影     |

@@ -1,11 +1,11 @@
-# Equirectangular
+# 等距柱状图
 
 ::: module
-[Equirectangular projection](https://en.wikipedia.org/wiki/Equirectangular_projection) is one of the simplest way to create the texture of a sphere. It is the default projection used by most 360° cameras.
+[等距柱状投影](https://en.wikipedia.org/wiki/Equirectangular_projection)是创建球体纹理最简单的方式之一，也是大多数 360° 相机使用的默认投影方式。
 :::
 
-::: tip
-There is no need to declare the equirectangular adapter as it is the default one, unless you want to change its configuration.
+::: tip 提示
+等距柱状适配器是默认适配器，除非需要修改其配置，否则无需显式声明。
 :::
 
 ```js:line-numbers
@@ -17,68 +17,68 @@ const viewer = new Viewer({
 });
 ```
 
-## Configuration
+## 配置
 
 #### `useXmpData`
 
-- type: `boolean`
-- default `true`
+- 类型：`boolean`
+- 默认值：`true`
 
-Read real image size from XMP data, must be kept `true` if the panorama has been cropped after shot. This is used for [cropped panorama](#cropped-panorama).
+从 XMP 数据读取真实图片尺寸。如果全景图在拍摄后经过裁剪，必须保持为 `true`。此选项用于[裁剪全景图](#cropped-panorama)。
 
 #### `resolution`
 
-- type: `number`
-- default: `64`
+- 类型：`number`
+- 默认值：`64`
 
-The number of faces of the sphere geometry used to display the panorama, higher values can reduce deformations on straight lines at the cost of performances.
+用于显示全景图的球体几何体面数。数值越高，越能减少直线变形，但会牺牲性能。
 
-_Note: the actual number of faces is `resolution² / 2`._
+_注意：实际面数为 `resolution² / 2`。_
 
-## Cropped panorama
+## 裁剪全景图 {#cropped-panorama}
 
-**Photo Sphere Viewer** supports cropped panorama given the appropriate configuration is provided. Cropped panoramas are not covering the whole 360°×180° sphere area but only a smaller portion. For example you might have a image covering 360° horizontally but only 90° vertically, or a semi sphere (180°×180°)
+只要提供合适的配置，**Photo Sphere Viewer** 就支持裁剪全景图。裁剪全景图并不会覆盖完整的 360°×180° 球面区域，而只覆盖其中一部分。例如，你可能有一张水平覆盖 360°、垂直只覆盖 90° 的图片，或一张半球图片（180°×180°）。
 
-These incomplete panoramas are handled in two ways by Photo Sphere viewer:
+Photo Sphere Viewer 通过两种方式处理这些不完整全景图：
 
-- Read XMP metadata directly from the file with `useXmpData` option (this is the default)
-- Provide the `panoData` configuration object/function
+- 通过 `useXmpData` 选项直接从文件读取 XMP 元数据（默认方式）
+- 提供 `panoData` 配置对象或函数
 
-Use the [Playground](#playground) at the bottom of this page to find the best values for your panorama.
+可以使用本页底部的[调试台](#playground)为你的全景图寻找最佳数值。
 
-### Theory
+### 原理
 
-In both case the data contains six important values:
+两种方式的数据都包含六个重要值：
 
-- Full panorama width
-- Full panorama height
-- Cropped area width
-- Cropped area height
-- Cropped area left
-- Cropped area right
+- 完整全景图宽度
+- 完整全景图高度
+- 裁剪区域宽度
+- 裁剪区域高度
+- 裁剪区域左侧位置
+- 裁剪区域右侧位置
 
-The `Full panorama width` / `Full panorama height` ratio must always be 2:1. `Cropped area width` and `Cropped area height` are the actual size of your image. `Cropped area left` and `Cropped area right` are used to define the cropped area position.
+`完整全景图宽度` / `完整全景图高度` 的比例必须始终为 2:1。`裁剪区域宽度` 和 `裁剪区域高度` 是图片的实际尺寸。`裁剪区域左侧位置` 和 `裁剪区域右侧位置` 用于定义裁剪区域的位置。
 
-The data can also contains angular values:
+数据也可以包含角度值：
 
-- Pose Heading
-- Pose Pitch
-- Pose Roll
-- Initial View Heading
-- Initial View Pitch
-- Initial Horizontal FOV
+- 姿态航向角
+- 姿态俯仰角
+- 姿态翻滚角
+- 初始视图航向角
+- 初始视图俯仰角
+- 初始水平视场角
 
 ![XMP_pano_pixels](/images/XMP_pano_pixels.png)
 
-More information on [Google documentation](https://developers.google.com/streetview/spherical-metadata).
+更多信息见 [Google 文档](https://developers.google.com/streetview/spherical-metadata)。
 
-### Provide cropping data
+### 提供裁剪数据
 
-#### With XMP
+#### 使用 XMP
 
-If you created your panorama with a mobile phone or dedicated 360° camera, it should already contain the correct XMP data. Otherwise you can inject it yourself with tools like [exiftool](https://sno.phy.queensu.ca/~phil/exiftool/).
+如果你使用手机或专用 360° 相机创建全景图，文件中通常已经包含正确的 XMP 数据。否则，也可以使用 [exiftool](https://sno.phy.queensu.ca/~phil/exiftool/) 等工具自行注入。
 
-The XMP payload is as follow:
+XMP 载荷如下：
 
 ```xml:line-numbers
 <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
@@ -107,15 +107,15 @@ The XMP payload is as follow:
 <?xpacket end="r"?>
 ```
 
-To write the XMP data to an image file, paste it in a text file and use this command:
+要把 XMP 数据写入图片文件，请先将其粘贴到文本文件中，然后使用以下命令：
 
 ```bash
 exiftool -tagsfromfile data.xmp -all:all panorama.jpg
 ```
 
-#### Manually
+#### 手动提供
 
-You can also directly pass the values to Photo Sphere Viewer with the `panoData` parameter.
+也可以通过 `panoData` 参数直接把这些值传给 Photo Sphere Viewer。
 
 ```js:line-numbers
 const viewer = new Viewer({
@@ -146,9 +146,9 @@ const viewer = new Viewer({
 });
 ```
 
-#### Default parameters
+#### 默认参数 {#default-parameters}
 
-If the image does not have a 2:1 ratio and no XMP data are found and no `panoData` is provided, a best effort is done to display the image without distortion. The exact algorithm is as follow:
+如果图片不是 2:1 比例，且没有找到 XMP 数据，也未提供 `panoData`，系统会尽量以无畸变方式显示图片。具体算法如下：
 
 ```js:line-numbers
 const fullWidth = Math.max(img.width, img.height * 2);
@@ -166,9 +166,9 @@ panoData = {
 };
 ```
 
-### Playground
+### 调试台 {#playground}
 
-Use this demo to find the best values for your image.
+使用此演示为你的图片寻找最佳数值。
 
 <script setup>
 import CropPlayground from '@components/CropPlayground.vue';

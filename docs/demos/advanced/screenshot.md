@@ -37,6 +37,6 @@ new Viewer({
 
 :::
 
-::: warning
+::: warning 注意
 这个示例使用了 Photo Sphere Viewer 的内部 API。TypeScript 用户需要添加 `// @ts-ignore`。
 :::

@@ -4,13 +4,13 @@
 
 ::: module
 <ApiButton page="modules/ResolutionPlugin.html"/>
-Adds a button to choose between multiple resolutions of the panorama. **Requires the [Settings plugin](./settings.md).**
+添加一个按钮，用于在多个全景图分辨率之间切换。**需要配合 [Settings 插件](./settings.md) 使用。**
 
 这个插件由 [@photo-sphere-viewer/resolution-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/resolution-plugin) 包提供。
 :::
 
-::: warning
-ResolutionPlugin is not compatible with GalleryPlugin.
+::: warning 注意
+ResolutionPlugin 与 GalleryPlugin 不兼容。
 :::
 
 ## 用法
@@ -61,38 +61,38 @@ packages:
 
 :::
 
-## Configuration
+## 配置
 
 #### `resolutions`
 
-- type: `object[]`
-- updatable: no, use `setResolutions()` method
+- 类型：`object[]`
+- 可更新：否，请使用 `setResolutions()` 方法
 
-List of available resolutions. Each resolution consists of an object with the properties `id`, `label`, `panorama` and `panoData` (optional).
+可用分辨率列表。每个分辨率都是一个对象，包含 `id`、`label`、`panorama` 以及可选的 `panoData` 属性。
 
 #### `defaultResolution`
 
-- type: `string`
-- updatable: no
+- 类型：`string`
+- 可更新：否
 
-The id of the default resolution to load. If not provided the first resolution will be used.
+默认加载的分辨率 id。未提供时会使用第一个分辨率。
 
-::: warning
-If a `panorama` is initially configured on the viewer, this setting is ignored.
+::: warning 注意
+如果 viewer 初始配置了 `panorama`，此设置会被忽略。
 :::
 
 #### `showBadge`
 
-- type: `boolean`
-- default: `true`
-- updatable: no
+- 类型：`boolean`
+- 默认：`true`
+- 可更新：否
 
-Show the resolution id as a badge on the settings button.
+在设置按钮上以徽标形式显示分辨率 id。
 
 #### `lang`
 
-- type: `object`
-- default:
+- 类型：`object`
+- 默认：
 
 ```js
 lang: {
@@ -102,17 +102,17 @@ lang: {
 
 _注意：这个选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
 
-## Methods
+## 方法
 
 #### `setResolutions(resolutions, defaultResolution?)`
 
-Changes the available resolutions.
+修改可用分辨率。
 
-## Events
+## 事件
 
 #### `resolution-changed(id)`
 
-Triggered when the resolution is changed.
+分辨率变化时触发。
 
 ```js:line-numbers
 resolutionPlugin.addEventListener('resolution-changed', ({ resolutionId }) => {

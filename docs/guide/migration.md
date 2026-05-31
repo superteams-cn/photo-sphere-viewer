@@ -1,22 +1,22 @@
-# Migration from v4
+# 从 v4 迁移
 
-This page is here to help you to migrate from Photo Sphere Viewer 4 to Photo Sphere Viewer 5.
+本页用于帮助你从 Photo Sphere Viewer 4 迁移到 Photo Sphere Viewer 5。
 
-## Packages, ESM and ES6
+## 包、ESM 和 ES6
 
-The previous `photo-sphere-viewer` package has been splitted in to multiple packages. `@photo-sphere-viewer/core` contains the core functionnality (mainly the `Viewer` class) and other packages contain plugins and adapters.
+旧版 `photo-sphere-viewer` 包已拆分为多个包。`@photo-sphere-viewer/core` 包含核心功能（主要是 `Viewer` 类），其他包则包含插件和适配器。
 
-`@photo-sphere-viewer` packages use modern ES6 syntax, which is supported by all major browsers. This means you will need a transpiler like Babel if you want to support oldest browsers.
+`@photo-sphere-viewer` 包使用现代 ES6 语法，主流浏览器均已支持。如果需要支持较旧的浏览器，则需要使用 Babel 等转译工具。
 
-Each package contains the following files :
+每个包都包含以下文件：
 
-- **index.cjs** : CJS bundle
-- **index.module.js** : ESM bundle
-- **index.d.ts** : TypeScript declaration
-- **index.css** (optional) : stylesheet
-- **index.scss** (optional) : SASS source
+- **index.cjs**：CJS 打包文件
+- **index.module.js**：ESM 打包文件
+- **index.d.ts**：TypeScript 声明
+- **index.css**（可选）：样式表
+- **index.scss**（可选）：SASS 源码
 
-Here is the full list of packages you might need :
+以下是你可能需要的完整包列表：
 
 - @photo-sphere-viewer/core
 - @photo-sphere-viewer/cubemap-adapter
@@ -36,23 +36,23 @@ Here is the full list of packages you might need :
 - @photo-sphere-viewer/virtual-tour-plugin
 - @photo-sphere-viewer/visible-range-plugin
 
-## Options
+## 选项
 
-### Positions
+### 位置
 
-Photo Sphere Viewer uses two coordinates systems : spherical (longitude + latitude) and pixels on the source image (x + y). Theses options have been renamed to avoid confusion with GPS system.
+Photo Sphere Viewer 使用两套坐标系：球面坐标（longitude + latitude）和源图片上的像素坐标（x + y）。为避免与 GPS 坐标系混淆，这些选项已重命名。
 
 - `longitude` → `yaw`
 - `latitude` → `pitch`
 - `x` → `textureX`
 - `y` → `textureY`
 
-### Renamed options
+### 重命名的选项
 
 - `defaultLong` → `defaultYaw`
 - `defaultLat` → `defaultPitch`
 
-### Renamed markers
+### 重命名的标记
 
 - `polygonRad` → `polygon`
 - `polygonPx` → `polygonPixels`
@@ -61,17 +61,17 @@ Photo Sphere Viewer uses two coordinates systems : spherical (longitude + latitu
 
 ## 自动旋转
 
-All the automatic rotation features have been moved to [a new plugin](../plugins/autorotate.md). The `autorotateXxx` options have been removed.
+所有自动旋转功能都已迁移到[新插件](../plugins/autorotate.md)。`autorotateXxx` 选项已移除。
 
-## Events
+## 事件
 
-For this version, Photo Sphere Viewer dropped uEvent library to rely exclusively on the native events system.
+在此版本中，Photo Sphere Viewer 移除了 uEvent 库，完全改用原生事件系统。
 
-This means you will have to update all your usage of `on()`, `off()`, and `once()` methods. Let's see that with some examples.
+这意味着你需要更新所有对 `on()`、`off()` 和 `once()` 方法的用法。下面通过示例说明。
 
 :::: tabs
 
-::: tab On/Off Before
+::: tab On/Off 迁移前
 
 ```js
 viewer.on('position-updated', (e, position) => {
@@ -83,7 +83,7 @@ viewer.off('position-updated');
 
 :::
 
-::: tab On/Off After
+::: tab On/Off 迁移后
 
 ```js
 const handler = ({ position }) => {
@@ -97,7 +97,7 @@ viewer.removeEventListener('position-updated', handler);
 
 :::
 
-::: tab Once Before
+::: tab Once 迁移前
 
 ```js
 viewer.once('ready', () => {
@@ -107,7 +107,7 @@ viewer.once('ready', () => {
 
 :::
 
-::: tab Once After
+::: tab Once 迁移后
 
 ```js
 viewer.addEventListener(
@@ -125,7 +125,7 @@ viewer.addEventListener(
 
 ## TypeScript
 
-### Renamed types
+### 重命名的类型
 
 - `ViewerOptions` → `ViewerConfig`
 - `ViewerProps` → `ViewerState`
@@ -144,10 +144,10 @@ viewer.addEventListener(
 - `ResolutionPluginOptions` → `ResolutionPluginConfig`
 - `SettingsPluginOptions` → `SettingsPluginConfig`
 - `VideoPluginOptions` → `VideoPluginConfig`
-- `AutorotateKeypoint` (video plugin) → `VideoKeypoint`
+- `AutorotateKeypoint`（视频插件）→ `VideoKeypoint`
 - `VisibleRangePluginOptions` → `VisibleRangePluginConfig`
 
-### Deleted types
+### 删除的类型
 
 - `TooltipRenderer`
 - `CubemapArray`

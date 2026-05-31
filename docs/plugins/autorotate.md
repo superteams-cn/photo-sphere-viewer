@@ -4,7 +4,7 @@
 
 ::: module
 <ApiButton page="modules/AutorotatePlugin.html"/>
-Adds an automatic rotation of the panorama, which starts automatically on idle or with a click on a button. The rotation can also be configured to visit specific points.
+为全景图添加自动旋转功能，可在用户空闲时自动启动，也可通过按钮启动。旋转过程还可以配置为依次访问指定位置。
 
 这个插件由 [@photo-sphere-viewer/autorotate-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/autorotate-plugin) 包提供。
 :::
@@ -31,11 +31,11 @@ const viewer = new Viewer({
 
 :::
 
-::: tab Keypoints
+::: tab 关键点
 
-In keypoints mode the plugin is configured with a list of `keypoints` which can be either a position object (either `yaw`/`pitch` or `textureX`/`textureY`) or the identifier of an existing [marker](./markers.md).
+在关键点模式下，插件通过 `keypoints` 列表配置。列表项可以是位置对象（`yaw`/`pitch` 或 `textureX`/`textureY`），也可以是现有[标记](./markers.md)的标识符。
 
-It is also possible to configure each keypoint with a pause time and a tooltip.
+还可以为每个关键点配置停留时间和提示框。
 
 ```js:line-numbers
 const viewer = new Viewer({
@@ -49,11 +49,11 @@ const viewer = new Viewer({
                 {
                     position: { yaw: Math.PI, pitch: Math.PI / 6 },
                     pause: 5000,
-                    tooltip: 'This is interesting',
+                    tooltip: '这里值得一看',
                 },
 
                 {
-                    markerId: 'another-marker', // will use the marker tooltip if any
+                    markerId: 'another-marker', // 如果标记有提示框，将复用该提示框
                     pause: 2500,
                 },
             ],
@@ -82,7 +82,7 @@ packages:
 
 :::
 
-### Keypoints
+### 关键点
 
 ::: code-demo
 
@@ -100,60 +100,60 @@ packages:
 
 :::
 
-## Configuration
+## 配置
 
 #### `autostartDelay`
 
-- type: `integer`
-- default: `2000`
-- updatable: yes
+- 类型：`integer`
+- 默认：`2000`
+- 可更新：是
 
-Delay after which the automatic rotation will begin, in milliseconds.
+自动旋转开始前的延迟，单位为毫秒。
 
 #### `autostartOnIdle`
 
-- type: `boolean`
-- default: `true`
-- updatable: yes
+- 类型：`boolean`
+- 默认：`true`
+- 可更新：是
 
-Restarts the automatic rotation if the user is idle for `autostartDelay`.
+如果用户空闲达到 `autostartDelay`，则重新启动自动旋转。
 
-**Note:** the rotation won't restart of the user explicitly clicks on the navbar button.
+**注意：** 如果用户明确点击过导航栏按钮，旋转不会自动重新启动。
 
 #### `autorotateSpeed`
 
-- type: `string`
-- default: `2rpm`
-- updatable: yes
+- 类型：`string`
+- 默认：`2rpm`
+- 可更新：是
 
-Speed of the automatic rotation. Can be a negative value to reverse the rotation.
+自动旋转速度。可以使用负值反转旋转方向。
 
 #### `autorotatePitch`
 
-- type: `double | string`
-- default: `defaultPitch`
-- updatable: yes
+- 类型：`double | string`
+- 默认：`defaultPitch`
+- 可更新：是
 
-Vertical angle at which the automatic rotation is performed. If `null` the current pitch is kept.
+执行自动旋转时使用的垂直角度。如果为 `null`，则保留当前俯仰角。
 
 #### `autorotateZoomLvl`
 
-- type: `number`
-- default: `null`
-- updatable: yes
+- 类型：`number`
+- 默认：`null`
+- 可更新：是
 
-Zoom level at which the automatic rotation is performed. If `null` the current zoom is kept.
+执行自动旋转时使用的缩放级别。如果为 `null`，则保留当前缩放级别。
 
 #### `keypoints`
 
-- type: `AutorotateKeypoint[]`
-- updatable: no, use `setKeypoints()` method
+- 类型：`AutorotateKeypoint[]`
+- 可更新：否，请使用 `setKeypoints()` 方法
 
-Initial keypoints, does the same thing as calling `setKeypoints()` just after initialisation.
+初始关键点。效果等同于初始化后立即调用 `setKeypoints()`。
 
-::: dialog "See details" "Keypoints configuration"
+::: dialog "查看详情" "关键点配置"
 
-Keypoints are defined either by a `position` or a `markerId` (requires the [markers plugin](./markers.md)).
+关键点可通过 `position` 或 `markerId` 定义（后者需要[标记插件](./markers.md)）。
 
 ```ts:line-numbers
 {
@@ -177,16 +177,16 @@ Keypoints are defined either by a `position` or a `markerId` (requires the [mark
 
 #### `startFromClosest`
 
-- type: `boolean`
-- default: `true`
-- updatable: yes
+- 类型：`boolean`
+- 默认：`true`
+- 可更新：是
 
-Start from the closest keypoint instead of the first keypoint of the array.
+从最近的关键点开始，而不是从数组中的第一个关键点开始。
 
 #### `lang`
 
-- type: `object`
-- default:
+- 类型：`object`
+- 默认：
 
 ```js
 lang: {
@@ -196,26 +196,26 @@ lang: {
 
 _注意：这个选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
 
-## Methods
+## 方法
 
 #### `setKeypoints(keypoints)`
 
-Changes or remove the keypoints.
+修改或移除关键点。
 
 #### `start()` / `stop()` / `toggle()`
 
-As it says.
+按方法名所示启动、停止或切换自动旋转。
 
-## Events
+## 事件
 
 #### `autorotate(autorotateEnabled)`
 
-Triggered when the automatic rotation is enabled/disabled.
+自动旋转启用或禁用时触发。
 
-## Buttons
+## 按钮
 
-This plugin adds buttons to the default navbar:
+此插件会向默认导航栏添加按钮：
 
-- `autorotate` allows to toggle the rotation on and off
+- `autorotate` 用于开启或关闭自动旋转
 
-If you use a [custom navbar](../guide/navbar.md) you will need to manually add the buttons to the list.
+如果你使用了[自定义导航栏](../guide/navbar.md)，需要手动把这些按钮添加到列表中。

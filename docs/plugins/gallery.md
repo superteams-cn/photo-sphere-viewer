@@ -1,21 +1,21 @@
-# GalleryPlugin <Badge text="Styles"/>
+# GalleryPlugin <Badge text="样式"/>
 
 <Badges module="gallery-plugin"/>
 
 ::: module
 <ApiButton page="modules/GalleryPlugin.html"/>
-Adds a gallery on the bottom of the viewer to navigate between multiple panoramas.
+在 viewer 底部添加图库，用于在多个全景图之间导航。
 
 这个插件由 [@photo-sphere-viewer/gallery-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/gallery-plugin) 包提供。
 :::
 
-::: warning
-GalleryPlugin is not compatible with ResolutionPlugin.
+::: warning 注意
+GalleryPlugin 与 ResolutionPlugin 不兼容。
 :::
 
-## Usage
+## 用法
 
-The plugin has a list of `items`, each configuring the corresponding panorama, a name and a thumbnail.
+插件维护一个 `items` 列表，每个项目配置对应的全景图、名称和缩略图。
 
 ```js:line-numbers
 import { GalleryPlugin } from '@photo-sphere-viewer/gallery-plugin';
@@ -42,7 +42,7 @@ const viewer = new Viewer({
 });
 ```
 
-## Example
+## 示例
 
 ::: code-demo
 
@@ -57,51 +57,51 @@ packages:
 
 :::
 
-## Configuration
+## 配置
 
 #### `items`
 
-- type: `GalleryItem[]`
-- updatable: no, use `setItems()` method
+- 类型：`GalleryItem[]`
+- 可更新：否，请使用 `setItems()` 方法
 
-The list of items, see below.
+项目列表，详见下文。
 
 #### `navigationArrows`
 
-- type: `boolean`
-- default: `false`
-- updatable: no
+- 类型：`boolean`
+- 默认：`false`
+- 可更新：否
 
-Displays navigation arrows on the sides of the gallery.
+在图库两侧显示导航箭头。
 
 #### `visibleOnLoad`
 
-- type: `boolean`
-- default: `false`
-- updatable: no
+- 类型：`boolean`
+- 默认：`false`
+- 可更新：否
 
-Displays the gallery when loading the first panorama. The user will be able to toggle the gallery with the navbar button.
+加载第一个全景图时显示图库。用户之后可以通过导航栏按钮切换图库显示状态。
 
 #### `hideOnClick`
 
-- type: `boolean`
-- default: `true`
-- updatable: yes
+- 类型：`boolean`
+- 默认：`true`
+- 可更新：是
 
-Hides the gallery when the user clicks on an item (forced to `true` on screens < 500px).
+用户点击项目后隐藏图库（屏幕宽度小于 500px 时强制为 `true`）。
 
 #### `thumbnailSize`
 
-- type: `{ width: number, height: number }`
-- default: `{ width: 200, height: 100 }`
-- updatable: yes
+- 类型：`{ width: number, height: number }`
+- 默认：`{ width: 200, height: 100 }`
+- 可更新：是
 
-Size of the thumbnails.
+缩略图尺寸。
 
 #### `lang`
 
-- type: `object`
-- default:
+- 类型：`object`
+- 默认：
 
 ```js
 lang: {
@@ -109,69 +109,69 @@ lang: {
 }
 ```
 
-_Note: this option is not part of the plugin but is merged with the main [`lang`](../guide/config.md#lang) object._
+_注意：这个选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
 
-### Items
+### 项目
 
-#### `id` (required)
+#### `id`（必填）
 
-- type: `number|string`
+- 类型：`number|string`
 
-Unique identifier of the item.
+项目的唯一标识符。
 
-#### `thumbnail` (recommended)
+#### `thumbnail`（推荐）
 
-- type: `string`
-- default: `''`
+- 类型：`string`
+- 默认：`''`
 
-URL of the thumbnail.
+缩略图 URL。
 
 #### `name`
 
-- type: `string`
-- default: `''`
+- 类型：`string`
+- 默认：`''`
 
-Text visible over the thumbnail.
+显示在缩略图上的文字。
 
-#### `panorama` (required)
+#### `panorama`（必填）
 
-Refer to the main [config page](../guide/config.md#panorama-required).
+请参考主[配置页面](../guide/config.md#panorama-required)。
 
 #### `options`
 
-- type: `PanoramaOptions`
-- default: `null`
+- 类型：`PanoramaOptions`
+- 默认：`null`
 
-Any option supported by the [setPanorama()](../guide/methods.md#setpanorama-panorama-options-promise) method.
+[setPanorama()](../guide/methods.md#setpanorama-panorama-options-promise) 方法支持的任意选项。
 
-## Methods
+## 方法
 
 #### `setItems(items)`
 
-Changes the list of items.
+修改项目列表。
 
-## Buttons
+## 按钮
 
-This plugin adds buttons to the default navbar:
+此插件会向默认导航栏添加按钮：
 
-- `gallery` allows to toggle the gallery panel
+- `gallery` 用于切换图库面板
 
-If you use a [custom navbar](../guide/navbar.md) you will need to manually add the buttons to the list.
+如果你使用了[自定义导航栏](../guide/navbar.md)，需要手动把这些按钮添加到列表中。
 
-## SCSS variables
+## SCSS 变量
 
-| variable            | default                       | description                                                  |
-| ------------------- | ----------------------------- | ------------------------------------------------------------ |
-| $breakpoint         | 500px                         | Screen size below which the gallery is displayed full-height |
-| $padding            | 15px                          | Padding of the container                                     |
-| $border             | 1px solid core.$buttons-color | Border between the gallery and the navbar                    |
-| $background         | core.$navbar-background       | Background of the gallery                                    |
-| $item-radius        | 5px                           | Corner radius of gallery items                               |
-| $item-active-border | 3px solid white               | Border of active gallery item                                |
-| $title-font         | core.$caption-font            | Font of the gallery item title                               |
-| $title-color        | core.$caption-text-color      | Color of the gallery item title                              |
-| $title-background   | rgba(0, 0, 0, .6)             | Background of the gallery item title                         |
-| $thumb-hover-scale  | 1.2                           | Scale factor of thumbnails on mouse hover                    |
-| $arrow-color        | rgba(255, 255, 255, 0.6)      | Color of the navigation arrows                               |
-| $arrow-background   | rgba(0, 0, 0, 0.6)            | Color of the gradient behind navigation arrows               |
-| $scrollbar-color    | $arrow-color                  | Color of the scrollbar (browser support needed)              |
+| 变量                | 默认值                        | 说明                             |
+| ------------------- | ----------------------------- | -------------------------------- |
+| $breakpoint         | 500px                         | 低于此屏幕尺寸时，图库以全高显示 |
+| $padding            | 15px                          | 容器内边距                       |
+| $border             | 1px solid core.$buttons-color | 图库与导航栏之间的边框           |
+| $background         | core.$navbar-background       | 图库背景                         |
+| $item-radius        | 5px                           | 图库项目圆角                     |
+| $item-active-border | 3px solid white               | 当前图库项目边框                 |
+| $title-font         | core.$caption-font            | 图库项目标题字体                 |
+| $title-color        | core.$caption-text-color      | 图库项目标题颜色                 |
+| $title-background   | rgba(0, 0, 0, .6)             | 图库项目标题背景                 |
+| $thumb-hover-scale  | 1.2                           | 鼠标悬停时缩略图的缩放比例       |
+| $arrow-color        | rgba(255, 255, 255, 0.6)      | 导航箭头颜色                     |
+| $arrow-background   | rgba(0, 0, 0, 0.6)            | 导航箭头背后渐变的颜色           |
+| $scrollbar-color    | $arrow-color                  | 滚动条颜色（需要浏览器支持）     |

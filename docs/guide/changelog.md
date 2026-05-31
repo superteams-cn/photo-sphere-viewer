@@ -1,4 +1,4 @@
-# Changelog
+# 更新日志
 
 <script setup>
 import Changelog from '@components/Changelog.vue';
@@ -6,4 +6,4 @@ import Changelog from '@components/Changelog.vue';
 
 <Changelog/>
 
-[Older releases](https://github.com/mistic100/Photo-Sphere-Viewer/releases?page=3)
+[更早版本](https://github.com/mistic100/Photo-Sphere-Viewer/releases?page=3)

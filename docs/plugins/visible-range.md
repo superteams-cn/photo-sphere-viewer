@@ -4,14 +4,14 @@
 
 ::: module
 <ApiButton page="modules/VisibleRangePlugin.html"/>
-Locks the visible area of the panorama.
+锁定全景图的可见区域。
 
 这个插件由 [@photo-sphere-viewer/visible-range-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/visible-range-plugin) 包提供。
 :::
 
-## Usage
+## 用法
 
-The plugin allows to define `horizontalRange` and `verticalRange` to lock to viewable zone. It affects manual moves and automatic rotation.
+插件允许通过 `horizontalRange` 与 `verticalRange` 定义可见范围，从而锁定可视区域。它会影响手动移动和自动旋转。
 
 ```js:line-numbers
 import { VisibleRangePlugin } from '@photo-sphere-viewer/visible-range-plugin';
@@ -31,13 +31,13 @@ visibleRangePlugin.setHorizontalRange(['0deg', '180deg']);
 visibleRangePlugin.setVerticalRange(null);
 ```
 
-Alternatively, if `usePanoData` is set to `true`, the visible range is limited to the [cropped panorama data](../guide/adapters/equirectangular.md#cropped-panorama) provided to the viewer.
+另外，如果将 `usePanoData` 设为 `true`，可见范围会受传入 viewer 的[裁剪全景图数据](../guide/adapters/equirectangular.md#cropped-panorama)限制。
 
-## Example
+## 示例
 
-### Custom range
+### 自定义范围
 
-This example is locked between -90° and 90° on the horizontal axis and between -60° and 60° on the vertical axis.
+此示例将水平轴锁定在 -90° 到 90° 之间，将垂直轴锁定在 -60° 到 60° 之间。
 
 ::: code-demo
 
@@ -51,9 +51,9 @@ packages:
 
 :::
 
-### From `panoData`
+### 来自 `panoData`
 
-This example uses the actual size of a cropped panorama to define the visible ranges.
+此示例使用裁剪全景图的实际尺寸来定义可见范围。
 
 ::: code-demo
 
@@ -67,38 +67,38 @@ packages:
 
 :::
 
-## Configuration
+## 配置
 
 #### `horizontalRange`
 
-- type: `double[]|string[]`
-- default: `null`
-- updatable: no, use `setHorizontalRange()` plugin
+- 类型：`double[]|string[]`
+- 默认：`null`
+- 可更新：否，请使用 `setHorizontalRange()` 插件
 
-Visible horizontal range as two angles.
+可见水平范围，由两个角度表示。
 
 #### `verticalRange`
 
-- type: `double[]|string[]`
-- default: `null`
-- updatable: no, use `setVerticalRange()` plugin
+- 类型：`double[]|string[]`
+- 默认：`null`
+- 可更新：否，请使用 `setVerticalRange()` 插件
 
-Visible vertical range as two angles.
+可见垂直范围，由两个角度表示。
 
 #### `usePanoData`
 
-- type: `boolean`
-- default: `false`
-- updatable: yes
+- 类型：`boolean`
+- 默认：`false`
+- 可更新：是
 
-Use cropped panorama data as visible range immediately after load.
+加载后立即使用裁剪全景图数据作为可见范围。
 
-## Methods
+## 方法
 
 #### `setHorizontalRange(range)` | `setVerticalRange(range)`
 
-Change or remove the ranges.
+修改或移除范围。
 
 #### `setRangesFromPanoData()`
 
-Use cropped panorama data as visible range.
+使用裁剪全景图数据作为可见范围。

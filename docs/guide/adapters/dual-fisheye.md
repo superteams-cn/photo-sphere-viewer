@@ -1,9 +1,9 @@
-# Dual fisheye
+# 双鱼眼
 
 ::: module
-"Dual fisheye" is the raw file format used by many 360 cameras brands.
+“Dual fisheye” 是许多 360 相机品牌使用的原始文件格式。
 
-This adapter is available in the main `@photo-sphere-viewer/core` package.
+此适配器由主 `@photo-sphere-viewer/core` 包提供。
 :::
 
 ```js
@@ -15,7 +15,7 @@ const viewer = new Viewer({
 });
 ```
 
-## Example
+## 示例
 
 ::: code-demo
 
@@ -29,18 +29,17 @@ packages:
 
 :::
 
-::: warning
-This adapter is currently only tested for raw files of the Ricoh Theta Z1, it might evolve in the future if more configuration is needed
-to support other cameras. Feel free to open an issue with some examples files.
+::: warning 注意
+此适配器目前只针对 Ricoh Theta Z1 的原始文件测试过。若未来需要支持其他相机并引入更多配置，它可能会继续演进。欢迎提交 issue，并附上一些示例文件。
 :::
 
-## Configuration
+## 配置
 
 #### `resolution`
 
-- type: `number`
-- default: `64`
+- 类型：`number`
+- 默认值：`64`
 
-The number of faces of the sphere geometry used to display the panorama, higher values can reduce deformations on straight lines at the cost of performances.
+用于显示全景图的球体几何体面数。数值越高，越能减少直线变形，但会牺牲性能。
 
-_Note: the actual number of faces is `resolution² / 2`._
+_注意：实际面数为 `resolution² / 2`。_
