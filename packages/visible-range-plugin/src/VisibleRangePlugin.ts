@@ -134,7 +134,7 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
   setVerticalRange(range: Range | null) {
     // range must have two values
     if (range && range.length !== 2) {
-      utils.logWarn('vertical range must have exactly two elements');
+      utils.logWarn('verticalRange 必须恰好包含两个元素。');
       range = null;
     }
 
@@ -143,7 +143,7 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
       this.config.verticalRange = range.map((angle) => utils.parseAngle(angle, true)) as any;
 
       if (this.config.verticalRange[0] > this.config.verticalRange[1]) {
-        utils.logWarn('vertical range values must be ordered');
+        utils.logWarn('verticalRange 的值必须按顺序排列。');
         this.config.verticalRange = [this.config.verticalRange[1], this.config.verticalRange[0]] as any;
       }
 
@@ -161,7 +161,7 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
   setHorizontalRange(range: Range | null) {
     // horizontal range must have two values
     if (range && range.length !== 2) {
-      utils.logWarn('horizontal range must have exactly two elements');
+      utils.logWarn('horizontalRange 必须恰好包含两个元素。');
       range = null;
     }
 

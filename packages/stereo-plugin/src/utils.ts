@@ -11,7 +11,7 @@ export function getOrientation(): 'landscape' | 'portrait' {
       case 'portrait-secondary':
         return 'portrait';
       default:
-        throw new Error('unknown');
+        throw new Error('未知错误');
     }
   } catch {
     if (window.innerHeight > window.innerWidth) {

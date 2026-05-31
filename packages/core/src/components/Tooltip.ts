@@ -28,7 +28,7 @@ export type TooltipPosition = {
 };
 
 /**
- * Configuration for {@link Viewer.createTooltip}
+ * {@link Viewer.createTooltip} 的配置
  */
 export type TooltipConfig = TooltipPosition & {
   /**
@@ -141,7 +141,7 @@ export class Tooltip extends AbstractComponent {
    * @internal
    */
   override toggle() {
-    throw new PSVError('Tooltip cannot be toggled');
+    throw new PSVError('提示框不能切换显示状态。');
   }
 
   /**
@@ -150,7 +150,7 @@ export class Tooltip extends AbstractComponent {
    */
   override show(config: TooltipConfig) {
     if (this.state.state !== TooltipState.NONE) {
-      throw new PSVError('Initialized tooltip cannot be re-initialized');
+      throw new PSVError('已初始化的提示框不能再次初始化。');
     }
 
     if (config.className) {
@@ -195,7 +195,7 @@ export class Tooltip extends AbstractComponent {
    */
   move(config: TooltipPosition) {
     if (this.state.state !== TooltipState.SHOWING && this.state.state !== TooltipState.READY) {
-      throw new PSVError('Uninitialized tooltip cannot be moved');
+      throw new PSVError('未初始化的提示框不能移动。');
     }
 
     config.box = config.box ?? this.state.config?.box ?? { width: 0, height: 0 };

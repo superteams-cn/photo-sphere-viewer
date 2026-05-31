@@ -198,7 +198,7 @@ export class PlanComponent extends AbstractComponent {
           }
           acc[layer.name] = layer.layer;
         } else {
-          utils.logWarn(`Layer #${i} is missing "urlTemplate" or "layer" property.`);
+          utils.logWarn(`图层 #${i} 缺少 "urlTemplate" 或 "layer" 属性。`);
         }
         return acc;
       },
@@ -206,7 +206,7 @@ export class PlanComponent extends AbstractComponent {
     );
 
     if (!Object.values(this.state.layers).length) {
-      utils.logWarn(`No layer configured, fallback to OSM.`);
+      utils.logWarn(`未配置图层，回退到 OSM。`);
       this.state.layers[OSM_LABEL] = new TileLayer(OSM_URL, { attribution: OSM_ATTRIBUTION });
     }
 

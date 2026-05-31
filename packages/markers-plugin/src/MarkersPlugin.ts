@@ -87,7 +87,7 @@ function getMarkerCtor(config: MarkerConfig): typeof Marker {
     case 'path':
       return MarkerSvg;
     default:
-      throw new PSVError('invalid marker type');
+      throw new PSVError('无效的标记类型。');
   }
 }
 
@@ -143,7 +143,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
     this.css3DContainer = new CSS3DContainer(viewer);
     this.container.appendChild(this.css3DContainer.element);
 
-    // Markers events via delegation
+    // 通过事件委托处理标记事件
     this.container.addEventListener('mouseenter', this, true);
     this.container.addEventListener('mouseleave', this, true);
     this.container.addEventListener('mousemove', this, true);
@@ -348,7 +348,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
    */
   addMarker(config: MarkerConfig, render = true) {
     if (this.markers[config.id]) {
-      throw new PSVError(`marker "${config.id}" already exists`);
+      throw new PSVError(`标记 "${config.id}" 已存在。`);
     }
 
     // @ts-ignore
@@ -383,7 +383,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
     const id = typeof markerId === 'object' ? markerId.id : markerId;
 
     if (!this.markers[id]) {
-      throw new PSVError(`cannot find marker "${id}"`);
+      throw new PSVError(`找不到标记 "${id}"。`);
     }
 
     return this.markers[id];
@@ -489,7 +489,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Rotate the view to face the marker
+   * 旋转视图，使其朝向标记
    */
   gotoMarker(markerId: string | MarkerConfig, speed: string | number = this.config.gotoMarkerSpeed): Promise<void> {
     const marker = this.getMarker(markerId);

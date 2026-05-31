@@ -10,7 +10,7 @@ const PANEL_MIN_WIDTH = 200;
 const PANEL_CLASS_NO_INTERACTION = 'psv-panel-content--no-interaction';
 
 /**
- * Configuration for {@link Panel.show}
+ * {@link Panel.show} 的配置
  */
 export type PanelConfig = {
   /**
@@ -146,7 +146,7 @@ export class Panel extends AbstractComponent {
    * @internal
    */
   override toggle() {
-    throw new PSVError('Panel cannot be toggled');
+    throw new PSVError('面板不能切换显示状态。');
   }
 
   /**

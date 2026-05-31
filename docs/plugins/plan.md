@@ -165,7 +165,7 @@ configureLeaflet(map) {
 
 热点样式。
 
-::: dialog "查看详情" "Plan 热点样式"
+::: dialog "查看详情" "平面图热点样式"
 
 热点默认显示为可配置尺寸和颜色的圆点，也可以显示为图片。
 
@@ -349,7 +349,7 @@ mapPlugin.setCoordinates([6.79077, 44.58041]);
 
 ```js:line-numbers
 planPlugin.addEventListener('select-hotspot', ({ hotspotId }) => {
-    console.log(`Clicked on hotspot ${hotspotId}`);
+    console.log(`点击热点 ${hotspotId}`);
 });
 ```
 

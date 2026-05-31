@@ -44,7 +44,7 @@ export type AutorotatePluginConfig = {
    */
   autorotatePitch?: number | string;
   /**
-   * Zoom level at which the automatic rotation is performed.
+   * 执行自动旋转时使用的缩放级别。
    * @default current zoom level
    */
   autorotateZoomLvl?: number;

@@ -7,13 +7,13 @@ export class ClientSideDatasource extends AbstractDatasource {
     if (this.nodes[nodeId]) {
       return this.nodes[nodeId];
     } else {
-      throw new PSVError(`Node ${nodeId} not found`);
+      throw new PSVError(`未找到节点 ${nodeId}。`);
     }
   }
 
   setNodes(rawNodes: VirtualTourNode[]) {
     if (!rawNodes?.length) {
-      throw new PSVError('No nodes provided');
+      throw new PSVError('未提供节点。');
     }
 
     const nodes: Record<string, VirtualTourNode> = {};
@@ -23,7 +23,7 @@ export class ClientSideDatasource extends AbstractDatasource {
       this.checkNode(node);
 
       if (nodes[node.id]) {
-        throw new PSVError(`Duplicate node ${node.id}`);
+        throw new PSVError(`节点 ${node.id} 重复。`);
       }
 
       nodes[node.id] = node;
@@ -39,7 +39,7 @@ export class ClientSideDatasource extends AbstractDatasource {
 
     rawNodes.forEach((node) => {
       if (!linkedNodes[node.id]) {
-        utils.logWarn(`Node ${node.id} is never linked to`);
+        utils.logWarn(`节点 ${node.id} 没有被任何链接指向。`);
       }
     });
 
@@ -48,12 +48,12 @@ export class ClientSideDatasource extends AbstractDatasource {
 
   updateNode(rawNode: Partial<VirtualTourNode> & { id: VirtualTourNode['id'] }) {
     if (!rawNode.id) {
-      throw new PSVError('No id given for node');
+      throw new PSVError('节点缺少 id。');
     }
 
     const node = this.nodes[rawNode.id];
     if (!node) {
-      throw new PSVError(`Node ${rawNode.id} does not exist`);
+      throw new PSVError(`节点 ${rawNode.id} 不存在。`);
     }
 
     Object.assign(node, rawNode);
@@ -68,7 +68,7 @@ export class ClientSideDatasource extends AbstractDatasource {
   private __checkLinks(node: VirtualTourNode, nodes: Record<string, VirtualTourNode>) {
     node.links.forEach((link) => {
       if (!nodes[link.nodeId]) {
-        throw new PSVError(`Target node ${link.nodeId} of node ${node.id} does not exists`);
+        throw new PSVError(`节点 ${node.id} 的目标节点 ${link.nodeId} 不存在。`);
       }
 
       link.gps = link.gps || nodes[link.nodeId].gps;

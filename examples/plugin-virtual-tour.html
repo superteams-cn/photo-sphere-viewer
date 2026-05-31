@@ -231,7 +231,7 @@
             // server mode (mock)
             // dataMode: 'server',
             // getNode: (nodeId) => {
-            //     console.log('GET node ' + nodeId);
+            //     console.log('获取节点 ' + nodeId);
             //     return new Promise((resolve) => {
             //         setTimeout(() => resolve({
             //             ...nodesById[nodeId],
@@ -250,22 +250,22 @@
       const markers = viewer.getPlugin(MarkersPlugin);
 
       virtualTour.addEventListener('enter-arrow', ({ link }) => {
-        console.log(`enter link ${link.nodeId}`);
+        console.log(`进入链接 ${link.nodeId}`);
       });
 
       virtualTour.addEventListener('leave-arrow', ({ link }) => {
-        console.log(`leave link ${link.nodeId}`);
+        console.log(`离开链接 ${link.nodeId}`);
       });
 
       markers.addEventListener('enter-marker', ({ marker }) => {
         if (marker.data?.tourLink) {
-          console.log(`enter link ${marker.data.tourLink.nodeId}`);
+          console.log(`进入链接 ${marker.data.tourLink.nodeId}`);
         }
       });
 
       markers.addEventListener('leave-marker', ({ marker }) => {
         if (marker.data?.tourLink) {
-          console.log(`leave link ${marker.data.tourLink.nodeId}`);
+          console.log(`离开链接 ${marker.data.tourLink.nodeId}`);
         }
       });
 

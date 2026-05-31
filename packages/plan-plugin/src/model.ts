@@ -124,7 +124,7 @@ export type PlanPluginConfig = {
   pinSize?: number;
 
   /**
-   * Default style of hotspots
+   * 热点默认样式
    */
   spotStyle?: PlanHotspotStyle;
 

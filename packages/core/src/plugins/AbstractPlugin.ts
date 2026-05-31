@@ -86,12 +86,12 @@ export abstract class AbstractConfigurablePlugin<
 
     for (let [key, value] of Object.entries(options) as Array<[keyof TConfig, any]>) {
       if (!(key in parser.defaults)) {
-        logWarn(`${id}: Unknown option "${key as string}"`);
+        logWarn(`${id}: 未知选项 "${key as string}"。`);
         continue;
       }
 
       if (readonly.includes(key as string)) {
-        logWarn(`${id}: Option "${key as string}" cannot be updated`);
+        logWarn(`${id}: 选项 "${key as string}" 不能更新。`);
         continue;
       }
 

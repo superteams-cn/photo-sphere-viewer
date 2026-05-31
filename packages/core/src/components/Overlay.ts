@@ -5,11 +5,11 @@ import type { Viewer } from '../Viewer';
 import { AbstractComponent } from './AbstractComponent';
 
 /**
- * Configuration for {@link Overlay.show}
+ * {@link Overlay.show} 的配置
  */
 export type OverlayConfig = {
   /**
-   * unique identifier to use with {@link Overlay.hide} and {@link Overlay.isVisible}
+   * 与 {@link Overlay.hide} 和 {@link Overlay.isVisible} 搭配使用的唯一标识
    */
   id?: string;
   /**
@@ -32,7 +32,7 @@ export type OverlayConfig = {
 };
 
 /**
- * Overlay component
+ * 覆盖层组件
  */
 export class Overlay extends AbstractComponent {
   /**
@@ -112,7 +112,7 @@ export class Overlay extends AbstractComponent {
    * @internal
    */
   override toggle() {
-    throw new PSVError('Overlay cannot be toggled');
+    throw new PSVError('覆盖层不能切换显示状态。');
   }
 
   /**

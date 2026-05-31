@@ -32,7 +32,7 @@ const getConfig = utils.getConfigParser<AutorotatePluginConfig, ParsedAutorotate
   {
     autostartOnIdle: (autostartOnIdle, { rawConfig }) => {
       if (autostartOnIdle && utils.isNil(rawConfig.autostartDelay)) {
-        utils.logWarn('autostartOnIdle requires a non null autostartDelay');
+        utils.logWarn('autostartOnIdle 需要非空的 autostartDelay。');
         return false;
       }
       return autostartOnIdle;
@@ -183,7 +183,7 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
       this.keypoints = null;
     } else {
       if (keypoints.length < 2) {
-        throw new PSVError('At least two points are required');
+        throw new PSVError('至少需要两个点。');
       }
 
       this.keypoints = keypoints.map((pt, i) => {
@@ -214,14 +214,14 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
 
         if (keypoint.markerId) {
           if (!this.markers) {
-            throw new PSVError(`Keypoint #${i} references a marker but the markers plugin is not loaded`);
+            throw new PSVError(`关键点 #${i} 引用了标记，但尚未加载 markers 插件。`);
           }
           const marker = this.markers.getMarker(keypoint.markerId);
           keypoint.position = serializePt(marker.state.position);
         } else if (position) {
           keypoint.position = serializePt(this.viewer.dataHelper.cleanPosition(position));
         } else {
-          throw new PSVError(`Keypoint #${i} is missing marker or position`);
+          throw new PSVError(`关键点 #${i} 缺少 marker 或 position。`);
         }
 
         return keypoint;

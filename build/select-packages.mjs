@@ -1,6 +1,6 @@
 /**
- * Prompts for the packages to use
- * Returns the '--filter' arguments for Turbo
+ * 选择要使用的包
+ * 返回供 Turbo 使用的 '--filter' 参数
  */
 
 import enquirer from 'enquirer';
@@ -12,7 +12,7 @@ const packages = fs.readdirSync(PACKAGES_DIR).filter((name) => name !== 'shared'
 
 const prompt = new enquirer.MultiSelect({
   name: 'packages',
-  message: 'Select which packages to build',
+  message: '请选择要构建的包',
   choices: [{ name: 'core', disabled: true }, ...packages],
   stdout: process.stderr,
 });

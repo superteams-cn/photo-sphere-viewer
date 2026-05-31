@@ -764,7 +764,7 @@ markersPlugin.updateMarker({
 
 ```js:line-numbers
 markersPlugin.addEventListener('select-marker', ({ marker }) => {
-    console.log(`Clicked on marker ${marker.id}`);
+    console.log(`点击标记 ${marker.id}`);
 });
 ```
 
@@ -778,7 +778,7 @@ markersPlugin.addEventListener('select-marker', ({ marker }) => {
 
 ```js:line-numbers
 markersPlugin.addEventListener('marker-visibility', ({ marker, visible }) => {
-    console.log(`Marker ${marker.id} is ${visible ? 'visible' : 'not visible'}`);
+    console.log(`标记 ${marker.id} 当前${visible ? '可见' : '不可见'}`);
 });
 ```
 

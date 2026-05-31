@@ -576,7 +576,7 @@ export class MapComponent extends AbstractComponent {
           hotspotPos.x += center.x - hotspot.x * this.state.imgScale;
           hotspotPos.y += center.y - hotspot.y * this.state.imgScale;
         } else {
-          utils.logWarn(`Hotspot ${hotspot['id']} is missing position (yaw+distance or x+y)`);
+          utils.logWarn(`热点 ${hotspot['id']} 缺少位置（yaw+distance 或 x+y）。`);
           return;
         }
 

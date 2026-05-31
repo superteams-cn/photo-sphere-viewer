@@ -97,17 +97,17 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
    */
   addSetting(setting: Setting) {
     if (!setting.id) {
-      throw new PSVError('Missing setting id');
+      throw new PSVError('缺少设置 id。');
     }
     if (!setting.type) {
-      throw new PSVError('Missing setting type');
+      throw new PSVError('缺少设置类型。');
     }
     if (this.settings.some((s) => s.id === setting.id)) {
-      throw new PSVError(`Setting "${setting.id}" already exists`);
+      throw new PSVError(`设置 "${setting.id}" 已存在。`);
     }
 
     if (setting.badge && this.settings.some((s) => s.badge)) {
-      utils.logWarn('More than one setting with a badge are declared, the result is unpredictable.');
+      utils.logWarn('声明了多个带徽标的设置，结果可能不可预测。');
     }
 
     this.settings.push(setting);

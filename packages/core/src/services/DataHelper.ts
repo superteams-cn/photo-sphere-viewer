@@ -154,7 +154,7 @@ export class DataHelper extends AbstractService {
    */
   textureCoordsToSphericalCoords(point: PanoramaPosition): Position {
     if (!this.state.textureData?.panoData) {
-      throw new PSVError('Current adapter does not support texture coordinates or no texture has been loaded');
+      throw new PSVError('当前适配器不支持纹理坐标，或尚未加载纹理。');
     }
 
     const result = this.viewer.adapter.textureCoordsToSphericalCoords(point, this.state.textureData.panoData);
@@ -178,7 +178,7 @@ export class DataHelper extends AbstractService {
    */
   sphericalCoordsToTextureCoords(position: Position): PanoramaPosition {
     if (!this.state.textureData?.panoData) {
-      throw new PSVError('Current adapter does not support texture coordinates or no texture has been loaded');
+      throw new PSVError('当前适配器不支持纹理坐标，或尚未加载纹理。');
     }
 
     if (
@@ -306,7 +306,7 @@ export class DataHelper extends AbstractService {
   cleanPosition(position: ExtendedPosition): Position {
     if ('yaw' in position || 'pitch' in position) {
       if (!('yaw' in position) || !('pitch' in position)) {
-        throw new PSVError(`Position is missing 'yaw' or 'pitch'`);
+        throw new PSVError(`位置缺少 'yaw' 或 'pitch'。`);
       }
       return {
         yaw: parseAngle(position.yaw),

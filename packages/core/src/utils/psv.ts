@@ -28,16 +28,16 @@ export function invertResolvableBoolean(value: ResolvableBoolean): ResolvableBoo
 }
 
 /**
- * Builds an Error with name 'AbortError'
+ * 构建名称为 'AbortError' 的 Error
  */
 export function getAbortError(): Error {
-  const error = new Error('Loading was aborted.');
+  const error = new Error('加载已中止。');
   error.name = 'AbortError';
   return error;
 }
 
 /**
- * Tests if an Error has name 'AbortError'
+ * 判断 Error 的名称是否为 'AbortError'
  */
 export function isAbortError(err: Error): boolean {
   return err?.name === 'AbortError';
@@ -252,7 +252,7 @@ export function parseSpeed(speed: string | number): number {
 
       // Unknown unit
       default:
-        throw new PSVError(`Unknown speed unit "${speedUnit}"`);
+        throw new PSVError(`未知速度单位 "${speedUnit}"。`);
     }
   } else {
     parsed = speed;
@@ -292,7 +292,7 @@ export function parseAngle(angle: string | number, zeroCenter = false, halfCircl
       .match(/^(-?[0-9]+(?:\.[0-9]*)?)(.*)$/);
 
     if (!match) {
-      throw new PSVError(`Unknown angle "${angle}"`);
+      throw new PSVError(`未知角度 "${angle}"。`);
     }
 
     const value = parseFloat(match[1]);
@@ -309,7 +309,7 @@ export function parseAngle(angle: string | number, zeroCenter = false, halfCircl
           parsed = value;
           break;
         default:
-          throw new PSVError(`Unknown angle unit "${unit}"`);
+          throw new PSVError(`未知角度单位 "${unit}"。`);
       }
     } else {
       parsed = value;
@@ -317,7 +317,7 @@ export function parseAngle(angle: string | number, zeroCenter = false, halfCircl
   } else if (typeof angle === 'number' && !isNaN(angle)) {
     parsed = angle;
   } else {
-    throw new PSVError(`Unknown angle "${angle}"`);
+    throw new PSVError(`未知角度 "${angle}"。`);
   }
 
   parsed = wrap(zeroCenter ? parsed + Math.PI : parsed, Math.PI * 2);
@@ -412,7 +412,7 @@ export function getConfigParser<T extends Record<string, any>, U extends T = T>(
           defValue: defaults[key],
         });
       } else if (!(key in defaults)) {
-        logWarn(`Unknown option ${key as string}`);
+        logWarn(`未知选项 ${key as string}`);
         continue;
       }
 
@@ -516,23 +516,23 @@ export function mergePanoData(width: number, height: number, newPanoData?: PanoD
 
   // sanity checks
   if (Math.abs(panoData.fullWidth - panoData.fullHeight * 2) > 1) {
-    logWarn('Invalid panoData, fullWidth should be twice fullHeight');
+    logWarn('无效的 panoData，fullWidth 应为 fullHeight 的两倍。');
     panoData.fullHeight = Math.round(panoData.fullWidth / 2);
   }
   if (panoData.croppedX + panoData.croppedWidth > panoData.fullWidth) {
-    logWarn('Invalid panoData, croppedX + croppedWidth > fullWidth');
+    logWarn('无效的 panoData，croppedX + croppedWidth 大于 fullWidth。');
     panoData.croppedX = panoData.fullWidth - panoData.croppedWidth;
   }
   if (panoData.croppedY + panoData.croppedHeight > panoData.fullHeight) {
-    logWarn('Invalid panoData, croppedY + croppedHeight > fullHeight');
+    logWarn('无效的 panoData，croppedY + croppedHeight 大于 fullHeight。');
     panoData.croppedY = panoData.fullHeight - panoData.croppedHeight;
   }
   if (panoData.croppedX < 0) {
-    logWarn('Invalid panoData, croppedX < 0');
+    logWarn('无效的 panoData，croppedX 小于 0。');
     panoData.croppedX = 0;
   }
   if (panoData.croppedY < 0) {
-    logWarn('Invalid panoData, croppedY < 0');
+    logWarn('无效的 panoData，croppedY 小于 0。');
     panoData.croppedY = 0;
   }
 

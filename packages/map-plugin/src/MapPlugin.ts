@@ -199,7 +199,7 @@ export class MapPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Open the map
+   * 打开地图
    */
   open() {
     if (this.component.collapsed) {
@@ -267,7 +267,7 @@ export class MapPlugin extends AbstractConfigurablePlugin<
       if (!hotspot.id) {
         hotspot.id = HOTSPOT_GENERATED_ID + i++;
       } else if (ids.includes(hotspot.id)) {
-        utils.logWarn(`Duplicated hotspot id "${hotspot.id}`);
+        utils.logWarn(`热点 id "${hotspot.id}" 重复。`);
       } else {
         ids.push(hotspot.id);
       }
@@ -307,7 +307,7 @@ export class MapPlugin extends AbstractConfigurablePlugin<
         if ('distance' in hotspot) {
           hotspot.yaw = marker.state.position.yaw;
         } else if (!('x' in hotspot) || !('y' in hotspot)) {
-          utils.logWarn(`Marker #${marker.id} "map" data is missing position (distance or x+y)`);
+          utils.logWarn(`标记 #${marker.id} 的 "map" 数据缺少位置（distance 或 x+y）。`);
           return null;
         }
 

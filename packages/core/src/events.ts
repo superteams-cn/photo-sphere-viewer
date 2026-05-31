@@ -418,7 +418,7 @@ export class ZoomUpdatedEvent extends ViewerEvent {
 /**
  * Base class for events on three.js objects
  *
- * Note: {@link Viewer#observeObjects} must be called for these events to be dispatched
+ * 注意：必须调用 {@link Viewer#observeObjects} 才会派发这些事件
  */
 export abstract class ObjectEvent extends ViewerEvent {
   /** @internal */
@@ -436,7 +436,7 @@ export abstract class ObjectEvent extends ViewerEvent {
 /**
  * @event Triggered when the cursor enters an object in the scene
  *
- * Note: {@link Viewer#observeObjects} must be called for this event to be dispatched
+ * 注意：必须调用 {@link Viewer#observeObjects} 才会派发此事件
  */
 export class ObjectEnterEvent extends ObjectEvent {
   static override readonly type = 'enter-object';
@@ -451,7 +451,7 @@ export class ObjectEnterEvent extends ObjectEvent {
 /**
  * @event Triggered when the cursor leaves an object in the scene
  *
- * Note: {@link Viewer#observeObjects} must be called for this event to be dispatched
+ * 注意：必须调用 {@link Viewer#observeObjects} 才会派发此事件
  */
 export class ObjectLeaveEvent extends ObjectEvent {
   static override readonly type = 'leave-object';
@@ -466,7 +466,7 @@ export class ObjectLeaveEvent extends ObjectEvent {
 /**
  * @event Triggered when the cursor moves over an object in the scene
  *
- * Note: {@link Viewer#observeObjects} must be called for this event to be dispatched
+ * 注意：必须调用 {@link Viewer#observeObjects} 才会派发此事件
  */
 export class ObjectHoverEvent extends ObjectEvent {
   static override readonly type = 'hover-object';

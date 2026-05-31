@@ -17,7 +17,7 @@ export function cleanCubemapArray<T>(panorama: T[]): T[] {
   const cleanPanorama: T[] = [];
 
   if (panorama.length !== 6) {
-    throw new PSVError('A cubemap array must contain exactly 6 images.');
+    throw new PSVError('立方体贴图数组必须恰好包含 6 张图片。');
   }
 
   // reorder images
@@ -35,7 +35,7 @@ export function cleanCubemap<T>(cubemap: Record<CubemapFaces, T>): T[] {
   const cleanPanorama: T[] = [];
 
   if (!isCubemap(cubemap)) {
-    throw new PSVError('A cubemap object must contain exactly left, front, right, back, top, bottom images.');
+    throw new PSVError('立方体贴图对象必须恰好包含 left、front、right、back、top、bottom 六张图片。');
   }
 
   // transform into array

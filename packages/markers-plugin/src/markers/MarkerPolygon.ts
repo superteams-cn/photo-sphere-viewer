@@ -126,7 +126,7 @@ export class MarkerPolygon extends AbstractDomMarker {
       }
 
       if (this.isPolyline && actualPoly.length > 1) {
-        throw new PSVError(`polylines cannot have holes`);
+        throw new PSVError(`折线不能包含孔洞。`);
       }
 
       if (this.isPixels) {

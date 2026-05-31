@@ -46,7 +46,7 @@ export class Dynamic {
     this.current = config.defaultValue;
 
     if (this.wrap && this.min !== 0) {
-      throw new PSVError('invalid config');
+      throw new PSVError('无效配置。');
     }
 
     if (this.fn) {

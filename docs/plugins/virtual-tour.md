@@ -544,10 +544,10 @@ virtualTourPlugin.gotoLink('2', '4rpm')
 
 ```js:line-numbers
 virtualTourPlugin.addEventListener('node-changed', ({ node, data }) => {
-    console.log(`Current node is ${node.id}`);
+    console.log(`当前节点为 ${node.id}`);
     if (data.fromNode) {
         // other data are available
-        console.log(`Previous node was ${data.fromNode.id}`);
+        console.log(`上一节点为 ${data.fromNode.id}`);
     }
 });
 ```

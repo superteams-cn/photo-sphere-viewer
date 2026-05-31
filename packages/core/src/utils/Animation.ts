@@ -1,7 +1,7 @@
 import { type EASING, EASINGS } from '../data/constants';
 
 /**
- * Options for {@link Animation}
+ * {@link Animation} 的选项
  */
 export type AnimationOptions<T> = {
   /**

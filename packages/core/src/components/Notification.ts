@@ -4,7 +4,7 @@ import { HideNotificationEvent, ShowNotificationEvent } from '../events';
 import { AbstractComponent } from './AbstractComponent';
 
 /**
- * Configuration for {@link Notification.show}
+ * {@link Notification.show} 的配置
  */
 export type NotificationConfig = {
   /**
@@ -63,7 +63,7 @@ export class Notification extends AbstractComponent {
    * @internal
    */
   override toggle() {
-    throw new PSVError('Notification cannot be toggled');
+    throw new PSVError('通知不能切换显示状态。');
   }
 
   /**

@@ -70,13 +70,13 @@ export function checkPanoramaConfig(
   data: { CUBE_SEGMENTS: number },
 ) {
   if (typeof panorama !== 'object' || !panorama.tileUrl) {
-    throw new PSVError('Invalid panorama configuration, are you using the right adapter?');
+    throw new PSVError('无效的全景图配置，请确认是否使用了正确的适配器。');
   }
   if (isMultiTiles(panorama)) {
     panorama.levels.forEach((level) => {
       checkTile(level, data);
       if ('zoomRange' in level) {
-        utils.logWarn('CubemapTilesAdapter: "zoomRange" property is deprecated and must be removed');
+        utils.logWarn('CubemapTilesAdapter："zoomRange" 属性已废弃，请移除。');
       }
     });
     panorama.levels.sort((a, b) => a.faceSize - b.faceSize);
@@ -87,13 +87,13 @@ export function checkPanoramaConfig(
 
 function checkTile(tile: CubemapTilesPanorama | CubemapTileLevel, data: { CUBE_SEGMENTS: number }) {
   if (!tile.faceSize || !tile.nbTiles) {
-    throw new PSVError('Invalid panorama configuration, are you using the right adapter?');
+    throw new PSVError('无效的全景图配置，请确认是否使用了正确的适配器。');
   }
   if (tile.nbTiles > data.CUBE_SEGMENTS) {
-    throw new PSVError(`Panorama nbTiles must not be greater than ${data.CUBE_SEGMENTS}.`);
+    throw new PSVError(`全景图 nbTiles 不能大于 ${data.CUBE_SEGMENTS}。`);
   }
   if (!MathUtils.isPowerOfTwo(tile.nbTiles)) {
-    throw new PSVError('Panorama nbTiles must be power of 2.');
+    throw new PSVError('全景图 nbTiles 必须是 2 的幂。');
   }
 }
 

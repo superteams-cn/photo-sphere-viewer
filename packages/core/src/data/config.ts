@@ -8,7 +8,7 @@ import { ConfigParsers, clone, getConfigParser, logWarn, parseAngle } from '../u
 import { ACTIONS, KEY_CODES } from './constants';
 
 /**
- * Default options
+ * 默认选项
  */
 export const DEFAULTS: Required<ParsedViewerConfig> = {
   panorama: null,
@@ -20,7 +20,7 @@ export const DEFAULTS: Required<ParsedViewerConfig> = {
   downloadUrl: null,
   downloadName: null,
   loadingImg: null,
-  loadingTxt: '', // empty string => `lang.loading`
+  loadingTxt: '', // 空字符串 => `lang.loading`
   size: null,
   fisheye: 0,
   minFov: 30,
@@ -98,7 +98,7 @@ export const READONLY_OPTIONS: Record<ReadonlyViewerConfig, string> = {
 export const CONFIG_PARSERS: ConfigParsers<ViewerConfig, ParsedViewerConfig> = {
   container: (container) => {
     if (!container) {
-      throw new PSVError('No value given for container.');
+      throw new PSVError('未提供 container。');
     }
     return container;
   },
@@ -111,10 +111,10 @@ export const CONFIG_PARSERS: ConfigParsers<ViewerConfig, ParsedViewerConfig> = {
       adapter = [adapterInterop(adapter), null];
     }
     if (!adapter[0]) {
-      throw new PSVError('An undefined value was given for adapter.');
+      throw new PSVError('adapter 收到了 undefined 值。');
     }
     if (!(adapter[0] as any).id) {
-      throw new PSVError(`Adapter has no id.`);
+      throw new PSVError(`适配器缺少 id。`);
     }
     return adapter;
   },
@@ -132,7 +132,7 @@ export const CONFIG_PARSERS: ConfigParsers<ViewerConfig, ParsedViewerConfig> = {
   minFov: (minFov, { rawConfig }) => {
     // minFov and maxFov must be ordered
     if (rawConfig.maxFov < minFov) {
-      logWarn('maxFov cannot be lower than minFov');
+      logWarn('maxFov 不能小于 minFov。');
       minFov = rawConfig.maxFov;
     }
     // minFov between 1 and 179
@@ -207,10 +207,10 @@ export const CONFIG_PARSERS: ConfigParsers<ViewerConfig, ParsedViewerConfig> = {
         plugin = [pluginInterop(plugin), null];
       }
       if (!plugin[0]) {
-        throw new PSVError(`An undefined value was given for plugin ${i}.`);
+        throw new PSVError(`插件 ${i} 收到了 undefined 值。`);
       }
       if (!(plugin[0] as any).id) {
-        throw new PSVError(`Plugin ${i} has no id.`);
+        throw new PSVError(`插件 ${i} 缺少 id。`);
       }
       return plugin;
     });

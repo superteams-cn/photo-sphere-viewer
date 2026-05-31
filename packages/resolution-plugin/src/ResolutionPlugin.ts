@@ -55,7 +55,7 @@ export class ResolutionPlugin extends AbstractPlugin<ResolutionPluginEvents> {
     this.settings = this.viewer.getPlugin('settings');
 
     if (!this.settings) {
-      throw new PSVError('Resolution plugin requires the Settings plugin');
+      throw new PSVError('Resolution 插件需要配合 Settings 插件使用。');
     }
 
     this.settings.addSetting({
@@ -109,13 +109,13 @@ export class ResolutionPlugin extends AbstractPlugin<ResolutionPluginEvents> {
 
     resolutions.forEach((resolution) => {
       if (!resolution.id) {
-        throw new PSVError('Missing resolution id');
+        throw new PSVError('缺少分辨率 id。');
       }
       if (!resolution.label) {
-        throw new PSVError('Missing resolution label');
+        throw new PSVError('缺少分辨率标签。');
       }
       if (!resolution.panorama) {
-        throw new PSVError('Missing resolution panorama');
+        throw new PSVError('缺少分辨率全景图。');
       }
       this.resolutionsById[resolution.id] = resolution;
     });
@@ -145,7 +145,7 @@ export class ResolutionPlugin extends AbstractPlugin<ResolutionPluginEvents> {
    */
   setResolution(id: string): Promise<unknown> {
     if (!this.resolutionsById[id]) {
-      throw new PSVError(`Resolution "${id}" unknown`);
+      throw new PSVError(`未知分辨率 "${id}"。`);
     }
 
     return this.__setResolutionIfExists(id);

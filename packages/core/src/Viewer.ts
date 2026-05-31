@@ -102,7 +102,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
     // init
     this.parent = getElement(config.container);
     if (!this.parent) {
-      throw new PSVError(`"container" element not found.`);
+      throw new PSVError(`未找到 "container" 元素。`);
     }
 
     // @ts-ignore

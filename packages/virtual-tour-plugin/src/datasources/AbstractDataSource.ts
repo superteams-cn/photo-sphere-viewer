@@ -24,19 +24,19 @@ export abstract class AbstractDatasource {
    */
   protected checkNode(node: VirtualTourNode) {
     if (!node.id) {
-      throw new PSVError('No id given for node');
+      throw new PSVError('节点缺少 id。');
     }
     if (!node.panorama) {
-      throw new PSVError(`No panorama provided for node ${node.id}`);
+      throw new PSVError(`节点 ${node.id} 缺少 panorama。`);
     }
     if (this.plugin.isGps && !(node.gps?.length >= 2)) {
-      throw new PSVError(`No GPS position provided for node ${node.id}`);
+      throw new PSVError(`节点 ${node.id} 缺少 GPS 位置。`);
     }
     if (!this.plugin.isGps && node.markers?.some((marker) => marker.gps && !marker.position)) {
-      throw new PSVError(`Cannot use GPS positioning for markers in manual mode`);
+      throw new PSVError(`手动模式下不能对标记使用 GPS 定位。`);
     }
     if (!node.links) {
-      utils.logWarn(`Node ${node.id} has no links`);
+      utils.logWarn(`节点 ${node.id} 没有链接。`);
       node.links = [];
     }
   }
@@ -46,16 +46,16 @@ export abstract class AbstractDatasource {
    */
   protected checkLink(node: VirtualTourNode, link: VirtualTourLink) {
     if (!link.nodeId) {
-      throw new PSVError(`Link of node ${node.id} has no target id`);
+      throw new PSVError(`节点 ${node.id} 的链接缺少目标 id。`);
     }
     if (link.nodeId === node.id) {
-      throw new PSVError(`Node ${node.id} links to itself`);
+      throw new PSVError(`节点 ${node.id} 链接到了自身。`);
     }
     if (!this.plugin.isGps && !utils.isExtendedPosition(link.position)) {
-      throw new PSVError(`No position provided for link ${link.nodeId} of node ${node.id}`);
+      throw new PSVError(`节点 ${node.id} 的链接 ${link.nodeId} 缺少位置。`);
     }
     if (this.plugin.isGps && !link.gps) {
-      throw new PSVError(`No GPS position provided for link ${link.nodeId} of node ${node.id}`);
+      throw new PSVError(`节点 ${node.id} 的链接 ${link.nodeId} 缺少 GPS 位置。`);
     }
   }
 }

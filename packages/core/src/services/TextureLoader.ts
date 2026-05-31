@@ -7,7 +7,7 @@ import { AbortableImageLoader } from '../lib/ImageLoader';
 import { AbstractService } from './AbstractService';
 
 /**
- * Image and texture loading system
+ * 图片与纹理加载系统
  */
 export class TextureLoader extends AbstractService {
   private readonly fileLoader: FileLoader;
@@ -33,7 +33,7 @@ export class TextureLoader extends AbstractService {
   }
 
   /**
-   * Cancels current HTTP requests
+   * 取消当前 HTTP 请求
    * @internal
    */
   abortLoading() {
@@ -42,7 +42,7 @@ export class TextureLoader extends AbstractService {
   }
 
   /**
-   * Loads a Blob with FileLoader
+   * 使用 FileLoader 加载 Blob
    */
   loadFile(url: string, onProgress?: (p: number) => void, cacheKey?: string): Promise<Blob> {
     const cached = Cache.get(url, cacheKey);
@@ -52,7 +52,7 @@ export class TextureLoader extends AbstractService {
         onProgress?.(100);
         return Promise.resolve(cached);
       } else {
-        // unlikely case when the image has already been loaded with the ImageLoader
+        // 罕见情况：图片已经通过 ImageLoader 加载
         Cache.remove(url, cacheKey);
       }
     }
@@ -85,7 +85,7 @@ export class TextureLoader extends AbstractService {
   }
 
   /**
-   * Loads an image with ImageLoader or with FileLoader if progress is tracked or if request headers are configured
+   * 使用 ImageLoader 加载图片；如果需要进度或请求头，则使用 FileLoader
    */
   loadImage(url: string, onProgress?: (p: number) => void, cacheKey?: string): Promise<HTMLImageElement> {
     const cached = Cache.get(url, cacheKey);
@@ -134,7 +134,7 @@ export class TextureLoader extends AbstractService {
     if (this.viewer.adapter.supportsPreload(panorama)) {
       return this.viewer.adapter.loadTexture(panorama, false);
     } else {
-      return Promise.reject(new PSVError('Current adapter does not support preload'));
+      return Promise.reject(new PSVError('当前适配器不支持预加载。'));
     }
   }
 

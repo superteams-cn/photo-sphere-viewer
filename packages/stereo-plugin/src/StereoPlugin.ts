@@ -62,7 +62,7 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
     this.plan = this.viewer.getPlugin('plan');
 
     if (!this.gyroscope) {
-      throw new PSVError('Stereo plugin requires the Gyroscope plugin');
+      throw new PSVError('Stereo 插件需要配合 Gyroscope 插件使用。');
     }
 
     this.viewer.addEventListener(events.StopAllEvent.type, this);
@@ -192,9 +192,9 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
         .then((wakeLock: WakeLockSentinel) => {
           this.state.wakeLock = wakeLock;
         })
-        .catch(() => utils.logWarn('Cannot acquire WakeLock'));
+        .catch(() => utils.logWarn('无法获取 WakeLock。'));
     } else {
-      utils.logWarn('WakeLock is not available');
+      utils.logWarn('WakeLock 不可用。');
     }
   }
 

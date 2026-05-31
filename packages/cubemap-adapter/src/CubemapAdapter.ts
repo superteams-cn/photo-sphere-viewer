@@ -56,7 +56,7 @@ export class CubemapAdapter extends AbstractAdapter<CubemapPanorama, CubemapData
    */
   override textureCoordsToSphericalCoords(point: PanoramaPosition, data: CubemapData): Position {
     if (utils.isNil(point.textureX) || utils.isNil(point.textureY) || utils.isNil(point.textureFace)) {
-      throw new PSVError(`Texture position is missing 'textureX', 'textureY' or 'textureFace'`);
+      throw new PSVError(`纹理位置缺少 'textureX'、'textureY' 或 'textureFace'`);
     }
 
     const u = 2 * (point.textureX / data.faceSize - 0.5);
@@ -149,7 +149,7 @@ export class CubemapAdapter extends AbstractAdapter<CubemapPanorama, CubemapData
 
   async loadTexture(panorama: CubemapPanorama, loader = true): Promise<CubemapTextureData> {
     if (this.viewer.config.fisheye) {
-      utils.logWarn('fisheye effect with cubemap texture can generate distorsion');
+      utils.logWarn('立方体贴图启用鱼眼效果可能产生畸变。');
     }
 
     let cleanPanorama: CubemapSeparate | CubemapStripe | CubemapNet;
@@ -177,7 +177,7 @@ export class CubemapAdapter extends AbstractAdapter<CubemapPanorama, CubemapData
         break;
 
       default:
-        throw new PSVError('Invalid cubemap panorama, are you using the right adapter?');
+        throw new PSVError('无效的立方体贴图全景图，请确认是否使用了正确的适配器。');
     }
 
     return {
@@ -235,7 +235,7 @@ export class CubemapAdapter extends AbstractAdapter<CubemapPanorama, CubemapData
 
   private createCubemapTexture(img: HTMLImageElement): Texture {
     if (img.width !== img.height) {
-      utils.logWarn('Invalid cubemap image, the width should equal the height');
+      utils.logWarn('无效的立方体贴图图片，宽度应等于高度。');
     }
 
     // resize image
@@ -271,7 +271,7 @@ export class CubemapAdapter extends AbstractAdapter<CubemapPanorama, CubemapData
     );
 
     if (img.width !== img.height * 6) {
-      utils.logWarn('Invalid cubemap image, the width should be six times the height');
+      utils.logWarn('无效的立方体贴图图片，宽度应为高度的六倍。');
     }
 
     const ratio = Math.min(1, SYSTEM.maxCanvasWidth / img.height);
@@ -309,7 +309,7 @@ export class CubemapAdapter extends AbstractAdapter<CubemapPanorama, CubemapData
     );
 
     if (img.width / 4 !== img.height / 3) {
-      utils.logWarn('Invalid cubemap image, the width should be 4/3rd of the height');
+      utils.logWarn('无效的立方体贴图图片，宽度应为高度的 4/3。');
     }
 
     const ratio = Math.min(1, SYSTEM.maxCanvasWidth / (img.width / 4));

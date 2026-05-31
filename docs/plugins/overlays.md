@@ -146,6 +146,6 @@ _注意：_ 此处提供的 `fullWidth` 不一定与基础全景图相同，`cro
 
 ```js:line-numbers
 overlaysPlugin.addEventListener('overlay-click', ({ overlayId }) => {
-    console.log(`Clicked on overlay ${overlayId}`);
+    console.log(`点击覆盖层 ${overlayId}`);
 });
 ```

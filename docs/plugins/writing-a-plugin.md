@@ -70,11 +70,11 @@ export class CustomPluginEvent extends TypedEvent<CustomPlugin> {
 export type CustomPluginEvents = CustomPluginEvent;
 
 /**
- * Provide the events type
+ * 提供事件类型
  */
 export class CustomPlugin extends AbstractPlugin<CustomPluginEvents> {
     /**
-     * Dispatch
+     * 派发事件
      */
     method() {
         this.dispatch(new CustomPluginEvent(true));
@@ -82,7 +82,7 @@ export class CustomPlugin extends AbstractPlugin<CustomPluginEvents> {
 }
 
 /**
- * Listen
+ * 监听事件
  */
 viewer.getPlugin(CustomPlugin)
     .addEventListener(CustomPluginEvent.type, ({ value, target }) => {

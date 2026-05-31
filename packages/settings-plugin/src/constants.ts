@@ -15,7 +15,7 @@ export const SETTING_DATA_KEY = utils.dasherize(SETTING_DATA);
 export const OPTION_DATA_KEY = utils.dasherize(OPTION_DATA);
 
 /**
- * Setting item template, by type
+ * 按类型区分的设置项模板
  */
 export const SETTINGS_TEMPLATE_: Record<Setting['type'], any> = {
   options: (setting: OptionsSetting, lang: ViewerConfig['lang']) => {
@@ -34,7 +34,7 @@ export const SETTINGS_TEMPLATE_: Record<Setting['type'], any> = {
 };
 
 /**
- * Settings list template
+ * 设置列表模板
  */
 export const SETTINGS_TEMPLATE = (settings: Setting[], lang: ViewerConfig['lang']) => `
 <ul class="psv-settings-list">
@@ -52,7 +52,7 @@ ${settings
 `;
 
 /**
- * Settings options template
+ * 设置选项模板
  */
 export const SETTING_OPTIONS_TEMPLATE = (setting: OptionsSetting, lang: ViewerConfig['lang']) => {
   const current = setting.current();

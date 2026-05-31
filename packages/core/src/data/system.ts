@@ -70,10 +70,10 @@ export const SYSTEM = {
     }
 
     if (!SYSTEM.isWebGLSupported) {
-      throw new PSVError('WebGL 2 is not supported.');
+      throw new PSVError('不支持 WebGL 2。');
     }
     if (SYSTEM.maxTextureWidth === 0) {
-      throw new PSVError('Unable to detect system capabilities');
+      throw new PSVError('无法检测系统能力。');
     }
   },
 };
@@ -179,6 +179,6 @@ function getMaxCanvasWidth(maxWidth: number): number {
   if (pass) {
     return width;
   } else {
-    throw new PSVError('Unable to detect system capabilities');
+    throw new PSVError('无法检测系统能力。');
   }
 }

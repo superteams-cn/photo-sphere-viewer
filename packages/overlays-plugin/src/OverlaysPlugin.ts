@@ -121,7 +121,7 @@ export class OverlaysPlugin extends AbstractConfigurablePlugin<
    */
   addOverlay(config: OverlayConfig) {
     if (!config.path) {
-      throw new PSVError(`Missing overlay "path"`);
+      throw new PSVError(`缺少覆盖层 "path"。`);
     }
 
     const parsedConfig: OverlayConfig = {
@@ -132,7 +132,7 @@ export class OverlaysPlugin extends AbstractConfigurablePlugin<
     };
 
     if (this.state.overlays[parsedConfig.id]) {
-      throw new PSVError(`Overlay "${parsedConfig.id} already exists.`);
+      throw new PSVError(`覆盖层 "${parsedConfig.id}" 已存在。`);
     }
 
     if (typeof config.path === 'string') {
@@ -147,7 +147,7 @@ export class OverlaysPlugin extends AbstractConfigurablePlugin<
    */
   removeOverlay(id: string) {
     if (!this.state.overlays[id]) {
-      utils.logWarn(`Overlay "${id}" not found`);
+      utils.logWarn(`未找到覆盖层 "${id}"。`);
       return;
     }
 
@@ -264,7 +264,7 @@ export class OverlaysPlugin extends AbstractConfigurablePlugin<
       } else if (this.config.cubemapAdapter) {
         this.cubemapAdapter = new this.config.cubemapAdapter(this.viewer) as CubemapAdapter;
       } else {
-        throw new PSVError(`Cubemap overlays are only applicable with cubemap adapters`);
+        throw new PSVError(`立方体覆盖层仅适用于立方体贴图适配器。`);
       }
     }
 

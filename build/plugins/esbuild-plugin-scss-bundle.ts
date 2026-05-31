@@ -4,7 +4,7 @@ import { glob } from 'glob';
 import path from 'path';
 
 /**
- * Copy SCSS files and generates main index.scss
+ * 复制 SCSS 文件并生成主 index.scss
  */
 export function scssBundlePlugin(): Plugin {
   return {
@@ -23,13 +23,13 @@ export function scssBundlePlugin(): Plugin {
         const outdir = build.initialOptions.outdir;
         const banner = build.initialOptions.banner.css;
 
-        console.log('SCSS', 'Copy files');
+        console.log('SCSS', '复制文件');
 
         return mkdir(outdir + '/styles', { recursive: true })
           .then(() => glob(`${path.dirname(scssFile)}/*.scss`))
           .then((files) =>
             Promise.all([
-              // copy each file fixing paths to core
+              // 复制每个文件，并修正指向 core 的路径
               ...files.map((file) =>
                 readFile(file, 'utf-8').then((content) => {
                   content = content.replace(new RegExp(`../../../core/src/styles`, 'g'), `../../core/styles`);

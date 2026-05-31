@@ -11,7 +11,7 @@ export class ServerSideDatasource extends AbstractDatasource {
     super(plugin, viewer);
 
     if (!plugin.config.getNode) {
-      throw new PSVError('Missing getNode() option.');
+      throw new PSVError('缺少 getNode() 选项。');
     }
 
     this.nodeResolver = plugin.config.getNode;

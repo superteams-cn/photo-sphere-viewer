@@ -66,27 +66,27 @@ class Step {
 }
 
 /**
- * Events handler
+ * 事件处理器
  * @internal
  */
 export class EventsHandler extends AbstractService {
   private readonly data = {
-    /** start x position of the click/touch */
+    /** 点击/触摸的起始 x 坐标 */
     startMouseX: 0,
-    /** start y position of the click/touch */
+    /** 点击/触摸的起始 y 坐标 */
     startMouseY: 0,
-    /** current x position of the cursor */
+    /** 指针当前 x 坐标 */
     mouseX: 0,
-    /** current y position of the cursor */
+    /** 指针当前 y 坐标 */
     mouseY: 0,
-    /** current distance between fingers */
+    /** 当前双指距离 */
     pinchDist: 0,
-    /** accumulator for smooth movement */
+    /** 平滑移动累加器 */
     moveDelta: { yaw: 0, pitch: 0, zoom: 0 },
     accumulatorFactor: 0,
-    /** when the Ctrl key is pressed */
+    /** Ctrl 键是否按下 */
     ctrlKeyDown: false,
-    /** temporary storage of click data between two clicks */
+    /** 两次点击之间临时保存的点击数据 */
     dblclickData: null as ClickData,
     dblclickTimeout: null as ReturnType<typeof setTimeout>,
     longtouchTimeout: null as ReturnType<typeof setTimeout>,

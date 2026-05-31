@@ -183,15 +183,15 @@
       });
 
       markers.addEventListener('enter-marker', ({ marker }) => {
-        console.log('enter', marker.id);
+        console.log('进入标记', marker.id);
       });
 
       markers.addEventListener('leave-marker', ({ marker }) => {
-        console.log('leave', marker.id);
+        console.log('离开标记', marker.id);
       });
 
       markers.addEventListener('marker-visibility', ({ marker, visible }) => {
-        console.log('marker-visibility', marker.id, visible);
+        console.log('标记可见性', marker.id, visible);
       });
 
       window.viewer = viewer;

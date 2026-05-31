@@ -51,19 +51,19 @@ const getConfig = utils.getConfigParser<VirtualTourPluginConfig>(
   {
     dataMode(dataMode) {
       if (dataMode !== 'client' && dataMode !== 'server') {
-        throw new PSVError('VirtualTourPlugin: invalid dataMode');
+        throw new PSVError('VirtualTourPlugin：无效的 dataMode。');
       }
       return dataMode;
     },
     positionMode(positionMode) {
       if (positionMode !== 'gps' && positionMode !== 'manual') {
-        throw new PSVError('VirtualTourPlugin: invalid positionMode');
+        throw new PSVError('VirtualTourPlugin：无效的 positionMode。');
       }
       return positionMode;
     },
     renderMode(renderMode) {
       if (renderMode !== '3d' && renderMode !== '2d') {
-        throw new PSVError('VirtualTourPlugin: invalid renderMode');
+        throw new PSVError('VirtualTourPlugin：无效的 renderMode。');
       }
       return renderMode;
     },
@@ -76,11 +76,11 @@ const getConfig = utils.getConfigParser<VirtualTourPluginConfig>(
     map(map, { rawConfig }) {
       if (map) {
         if (rawConfig.dataMode === 'server') {
-          utils.logWarn('VirtualTourPlugin: The map cannot be used in server side mode');
+          utils.logWarn('VirtualTourPlugin：服务端模式不能使用地图。');
           return null;
         }
         if (!map.imageUrl) {
-          utils.logWarn('VirtualTourPlugin: configuring the map requires at least "imageUrl"');
+          utils.logWarn('VirtualTourPlugin：配置地图至少需要 "imageUrl"。');
           return null;
         }
         if (!('recenter' in map)) {
@@ -174,7 +174,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
       this.map = this.viewer.getPlugin('map');
 
       if (this.config.map && !this.map) {
-        utils.logWarn('The map is configured on the VirtualTourPlugin but the MapPlugin is not loaded.');
+        utils.logWarn('VirtualTourPlugin 已配置地图，但尚未加载 MapPlugin。');
       }
     }
 
@@ -248,7 +248,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
    */
   setNodes(nodes: VirtualTourNode[], startNodeId?: string) {
     if (this.isServerSide) {
-      throw new PSVError('Cannot set nodes in server side mode');
+      throw new PSVError('服务端模式不能设置节点。');
     }
 
     this.__hideTooltip();
@@ -260,7 +260,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
       startNodeId = nodes[0].id;
     } else if (!this.datasource.nodes[startNodeId]) {
       startNodeId = nodes[0].id;
-      utils.logWarn(`startNodeId not found is provided nodes, resetted to ${startNodeId}`);
+      utils.logWarn(`提供的节点中未找到 startNodeId，已重置为 ${startNodeId}。`);
     }
     this.setCurrentNode(startNodeId);
 
@@ -440,7 +440,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Rotate the view to face the link
+   * 旋转视图，使其朝向链接
    */
   async gotoLink(nodeId: string, speed: string | number = '8rpm'): Promise<void> {
     const position = this.getLinkPosition(nodeId);
@@ -456,26 +456,26 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Returns the position of a link in the viewer
+   * 返回链接在查看器中的位置
    */
   getLinkPosition(nodeId: string): Position {
     const link = this.state.currentNode?.links.find((link) => link.nodeId === nodeId);
 
     if (!link) {
-      throw new PSVError(`Cannot find link "${nodeId}"`);
+      throw new PSVError(`找不到链接 "${nodeId}"。`);
     }
 
     return this.__getLinkPosition(this.state.currentNode, link);
   }
 
   /**
-   * Updates a node (client mode only)
-   * All properties but "id" are optional, the new config will be merged with the previous
-   * @throws {@link PSVError} if not in client mode
+   * 更新节点（仅客户端模式）
+   * 除 "id" 以外所有属性均可选，新配置会与旧配置合并
+   * @throws {@link PSVError} 非客户端模式时抛出
    */
   updateNode(newNode: Partial<VirtualTourNode> & { id: VirtualTourNode['id'] }) {
     if (this.isServerSide) {
-      throw new PSVError('Cannot update node in server side mode');
+      throw new PSVError('服务端模式不能更新节点。');
     }
 
     const node = (this.datasource as ClientSideDatasource).updateNode(newNode);
@@ -770,7 +770,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
           }),
         );
       } else {
-        utils.logWarn(`Node ${node.id} markers ignored because the plugin is not loaded.`);
+        utils.logWarn(`由于插件未加载，节点 ${node.id} 的标记已被忽略。`);
       }
     }
   }

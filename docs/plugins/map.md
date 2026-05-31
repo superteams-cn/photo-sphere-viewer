@@ -376,7 +376,7 @@ mapPlugin.setCenter({ x: 500, y: 500 });
 
 ```js
 mapPlugin.addEventListener('select-hotspot', ({ hotspotId }) => {
-  console.log(`Clicked on hotspot ${hotspotId}`);
+  console.log(`点击热点 ${hotspotId}`);
 });
 ```
 

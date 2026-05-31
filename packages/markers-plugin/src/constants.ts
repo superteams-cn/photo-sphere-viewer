@@ -33,7 +33,7 @@ export const ID_PANEL_MARKER = 'marker';
 export const ID_PANEL_MARKERS_LIST = 'markersList';
 
 /**
- * Default configuration for the "hoverScale" parameters
+ * "hoverScale" 参数的默认配置
  * @internal
  */
 export const DEFAULT_HOVER_SCALE = {

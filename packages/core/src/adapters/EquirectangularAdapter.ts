@@ -8,7 +8,7 @@ import { createTexture, getConfigParser, getXMPValue, isNil, mergePanoData } fro
 import { AbstractAdapter, AdapterConstructor } from './AbstractAdapter';
 
 /**
- * Configuration for {@link EquirectangularAdapter}
+ * {@link EquirectangularAdapter} 的配置
  */
 export type EquirectangularAdapterConfig = {
   /**
@@ -40,7 +40,7 @@ const getConfig = getConfigParser<EquirectangularAdapterConfig>(
   {
     resolution: (resolution) => {
       if (!resolution || !MathUtils.isPowerOfTwo(resolution)) {
-        throw new PSVError('EquirectangularAdapter resolution must be power of two.');
+        throw new PSVError('EquirectangularAdapter 的 resolution 必须是 2 的幂。');
       }
       return resolution;
     },
@@ -90,7 +90,7 @@ export class EquirectangularAdapter extends AbstractAdapter<
 
   override textureCoordsToSphericalCoords(point: PanoramaPosition, data: PanoData): Position {
     if (isNil(point.textureX) || isNil(point.textureY)) {
-      throw new PSVError(`Texture position is missing 'textureX' or 'textureY'`);
+      throw new PSVError(`纹理位置缺少 'textureX' 或 'textureY'。`);
     }
 
     const relativeX = ((point.textureX + data.croppedX) / data.fullWidth) * Math.PI * 2;
@@ -125,7 +125,7 @@ export class EquirectangularAdapter extends AbstractAdapter<
     useXmpPanoData = this.config.useXmpData,
   ): Promise<EquirectangularTextureData> {
     if (typeof panorama !== 'string' && (typeof panorama !== 'object' || !panorama.path)) {
-      return Promise.reject(new PSVError('Invalid panorama url, are you using the right adapter?'));
+      return Promise.reject(new PSVError('无效的全景图 URL，请确认是否使用了正确的适配器。'));
     }
 
     let cleanPanorama: EquirectangularPanorama;

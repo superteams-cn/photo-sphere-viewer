@@ -1,6 +1,6 @@
 /**
- * Copy the contents of each package "dist" folders to a root "dist" folder
- * In order to prepare the creation of the release ZIP
+ * 将各个包的 "dist" 目录内容复制到根 "dist" 目录
+ * 用于准备发布 ZIP
  */
 
 import path from 'path';
@@ -16,7 +16,7 @@ fs.readdirSync(PACKAGES_DIR)
     const source = path.join(PACKAGES_DIR, name, DIST_DIR);
     const destination = path.join(DIST_DIR, name);
 
-    console.log(`copy ${name}`);
+    console.log(`复制 ${name}`);
 
     fs.copySync(source, destination, {
       filter(name) {
@@ -30,5 +30,5 @@ fs.readdirSync(PACKAGES_DIR)
     });
   });
 
-console.log(`COPY ${LICENSE_FILE}`);
+console.log(`复制 ${LICENSE_FILE}`);
 fs.copySync(LICENSE_FILE, path.join(DIST_DIR, LICENSE_FILE));

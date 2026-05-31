@@ -43,7 +43,7 @@ const AVAILABLE_GROUPS: Record<string, ButtonConstructor[]> = {};
  */
 export function registerButton(button: ButtonConstructor, defaultPosition?: string) {
   if (!button.id) {
-    throw new PSVError('Button id is required');
+    throw new PSVError('必须提供按钮 id。');
   }
 
   AVAILABLE_BUTTONS[button.id] = button;
@@ -65,7 +65,7 @@ export function registerButton(button: ButtonConstructor, defaultPosition?: stri
         const [id, pos] = defaultPosition.split(':');
         const idx = navbar.indexOf(id);
         if (!id || !pos || idx === -1) {
-          throw new PSVError(`Invalid defaultPosition ${defaultPosition}`);
+          throw new PSVError(`无效的 defaultPosition：${defaultPosition}`);
         }
         navbar.splice(idx + (pos === 'right' ? 1 : 0), 0, button.id);
       }
@@ -149,7 +149,7 @@ export class Navbar extends AbstractComponent {
           new buttonCtor(this);
         });
       } else {
-        logWarn(`Unknown button ${button}`);
+        logWarn(`未知按钮 ${button}`);
       }
     });
 
@@ -187,7 +187,7 @@ export class Navbar extends AbstractComponent {
     });
 
     if (!button && warnNotFound) {
-      logWarn(`button "${id}" not found in the navbar`);
+      logWarn(`导航栏中未找到按钮 "${id}"。`);
     }
 
     return button as AbstractButton;

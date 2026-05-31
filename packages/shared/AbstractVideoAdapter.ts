@@ -63,11 +63,11 @@ export abstract class AbstractVideoAdapter<
 
   async loadTexture(panorama: AbstractVideoPanorama): Promise<AbstractVideoTextureData> {
     if (typeof panorama !== 'object' || !panorama.source) {
-      return Promise.reject(new PSVError('Invalid panorama configuration, are you using the right adapter?'));
+      return Promise.reject(new PSVError('无效的全景图配置，请确认是否使用了正确的适配器。'));
     }
 
     if (!this.viewer.getPlugin('video')) {
-      return Promise.reject(new PSVError('Video adapters require VideoPlugin to be loaded too.'));
+      return Promise.reject(new PSVError('视频适配器还需要加载 VideoPlugin。'));
     }
 
     const video =

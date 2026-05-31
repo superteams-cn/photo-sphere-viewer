@@ -199,7 +199,7 @@ export class PlanPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Open the map
+   * 打开地图
    */
   open() {
     if (this.component.collapsed) {
@@ -244,7 +244,7 @@ export class PlanPlugin extends AbstractConfigurablePlugin<
       if (!hotspot.id) {
         hotspot.id = HOTSPOT_GENERATED_ID + i++;
       } else if (ids.includes(hotspot.id)) {
-        utils.logWarn(`Duplicated hotspot id "${hotspot.id}`);
+        utils.logWarn(`热点 id "${hotspot.id}" 重复。`);
       } else {
         ids.push(hotspot.id);
       }
@@ -287,7 +287,7 @@ export class PlanPlugin extends AbstractConfigurablePlugin<
         };
 
         if (!hotspot.coordinates) {
-          utils.logWarn(`Marker #${marker.id} "plan" data is missing GPS coordinates`);
+          utils.logWarn(`标记 #${marker.id} 的 "plan" 数据缺少 GPS 坐标。`);
           return null;
         }
 

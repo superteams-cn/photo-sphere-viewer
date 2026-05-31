@@ -175,7 +175,7 @@ async function cancelDeploy(deploy) {
 }
 
 /**
- * Upload new files to Netlify
+ * 上传新文件到 Netlify
  */
 async function uploadFiles(dir, files, deploy) {
   if (!deploy.required.length) {
@@ -194,7 +194,7 @@ async function uploadFiles(dir, files, deploy) {
     queue.push((cb) => {
       const file = fileByHash[hash];
 
-      console.log(`Upload ${file}`);
+      console.log(`上传 ${file}`);
 
       retryFetch(`https://api.netlify.com/api/v1/deploys/${deploy.id}/files/${encodeURIComponent(file)}`, {
         method: 'PUT',
@@ -224,7 +224,7 @@ async function uploadFiles(dir, files, deploy) {
 }
 
 /**
- * Upload new functions to Netlify
+ * 上传新函数到 Netlify
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function uploadFunctions(dir, functions, deploy) {
@@ -285,5 +285,5 @@ async function retryFetch(url, params) {
     }
   }
 
-  throw new Error();
+  throw new Error('命令无效。');
 }

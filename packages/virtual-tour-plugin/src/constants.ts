@@ -10,7 +10,7 @@ export const LOADING_TOOLTIP = {
 };
 
 /**
- * Default style of the link arrow
+ * 链接箭头的默认样式
  */
 export const DEFAULT_ARROW: VirtualTourArrowStyle = {
   element: () => {

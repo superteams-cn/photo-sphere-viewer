@@ -78,13 +78,13 @@ export function checkPanoramaConfig(
   data: { SPHERE_SEGMENTS: number; SPHERE_HORIZONTAL_SEGMENTS: number },
 ) {
   if (typeof panorama !== 'object' || !panorama.tileUrl) {
-    throw new PSVError('Invalid panorama configuration, are you using the right adapter?');
+    throw new PSVError('无效的全景图配置，请确认是否使用了正确的适配器。');
   }
   if (isMultiTiles(panorama)) {
     panorama.levels.forEach((level) => {
       checkTile(level, data);
       if ('zoomRange' in level) {
-        utils.logWarn('EquirectangularTilesAdapter: "zoomRange" property is deprecated and must be removed');
+        utils.logWarn('EquirectangularTilesAdapter："zoomRange" 属性已废弃，请移除。');
       }
     });
     panorama.levels.sort((a, b) => a.width - b.width);
@@ -98,16 +98,16 @@ function checkTile(
   data: { SPHERE_SEGMENTS: number; SPHERE_HORIZONTAL_SEGMENTS: number },
 ) {
   if (!tile.width || !tile.cols || !tile.rows) {
-    throw new PSVError('Invalid panorama configuration, are you using the right adapter?');
+    throw new PSVError('无效的全景图配置，请确认是否使用了正确的适配器。');
   }
   if (tile.cols > data.SPHERE_SEGMENTS) {
-    throw new PSVError(`Panorama cols must not be greater than ${data.SPHERE_SEGMENTS}.`);
+    throw new PSVError(`全景图 cols 不能大于 ${data.SPHERE_SEGMENTS}。`);
   }
   if (tile.rows > data.SPHERE_HORIZONTAL_SEGMENTS) {
-    throw new PSVError(`Panorama rows must not be greater than ${data.SPHERE_HORIZONTAL_SEGMENTS}.`);
+    throw new PSVError(`全景图 rows 不能大于 ${data.SPHERE_HORIZONTAL_SEGMENTS}。`);
   }
   if (!MathUtils.isPowerOfTwo(tile.cols) || !MathUtils.isPowerOfTwo(tile.rows)) {
-    throw new PSVError('Panorama cols and rows must be powers of 2.');
+    throw new PSVError('全景图 cols 与 rows 必须是 2 的幂。');
   }
 }
 

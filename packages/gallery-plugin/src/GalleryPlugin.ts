@@ -167,10 +167,10 @@ export class GalleryPlugin extends AbstractConfigurablePlugin<
     } else {
       items.forEach((item, i) => {
         if (!item.id) {
-          throw new PSVError(`Item ${i} has no "id".`);
+          throw new PSVError(`第 ${i} 项缺少 "id"。`);
         }
         if (!item.panorama) {
-          throw new PSVError(`Item "${item.id}" has no "panorama".`);
+          throw new PSVError(`项目 "${item.id}" 缺少 "panorama"。`);
         }
       });
     }

@@ -3,25 +3,25 @@ import { utils } from '@photo-sphere-viewer/core';
 import { GalleryItem } from './model';
 
 /**
- * Property name added to gallery items
+ * 添加到图库项目上的属性名
  * @internal
  */
 export const GALLERY_ITEM_DATA = 'psvGalleryItem';
 
 /**
- * Property name added to gallery items (dash-case)
+ * 添加到图库项目上的属性名（短横线格式）
  * @internal
  */
 export const GALLERY_ITEM_DATA_KEY = utils.dasherize(GALLERY_ITEM_DATA);
 
 /**
- * Class added to active gallery items
+ * 添加到当前图库项目上的类名
  * @internal
  */
 export const ACTIVE_CLASS = 'psv-gallery-item--active';
 
 /**
- * Gallery template
+ * 图库模板
  * @internal
  */
 export const ITEMS_TEMPLATE = (items: GalleryItem[], size: Size) => `

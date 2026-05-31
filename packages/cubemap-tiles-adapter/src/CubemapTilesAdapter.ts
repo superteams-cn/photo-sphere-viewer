@@ -108,7 +108,7 @@ export class CubemapTilesAdapter extends AbstractAdapter<
     this.config = getConfig(config);
 
     if (!CubemapAdapter) {
-      throw new PSVError('CubemapTilesAdapter requires CubemapAdapter');
+      throw new PSVError('CubemapTilesAdapter 需要配合 CubemapAdapter 使用。');
     }
 
     this.adapter = new CubemapAdapter(this.viewer, {

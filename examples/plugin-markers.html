@@ -286,7 +286,7 @@
                 tooltip: '折线',
               });
 
-              // embedded images
+              // 嵌入图片
               a.push({
                 id: 'imageLayer',
                 imageLayer: baseUrl + 'pictos/tent.png',
@@ -305,10 +305,10 @@
                 tooltip: '嵌入场景、水平朝向的图片',
               });
 
-              // HTML & image markers
+              // HTML 与图片标记
               a.push({
                 id: 'html-img-demo',
-                html: 'HTML & Image demo',
+                html: 'HTML 与图片示例',
                 scale: [0.5, 1.5],
                 className: 'demo-label',
                 position: { yaw: 0.5, pitch: -0.42 },
@@ -317,7 +317,7 @@
 
               a.push({
                 id: 'html',
-                html: `<code>HTML</code> content <img src="${baseUrl}pictos/pin-blue.png" style="height: 24px; vertical-align: top;"/>`,
+                html: `<code>HTML</code> 内容 <img src="${baseUrl}pictos/pin-blue.png" style="height: 24px; vertical-align: top;"/>`,
                 anchor: 'bottom right',
                 style: {
                   color: 'white',
@@ -509,7 +509,7 @@
       });
 
       markers.addEventListener('select-marker', ({ marker, doubleClick, rightClick }) => {
-        console.log('select', marker.id);
+        console.log('选中标记', marker.id);
 
         if (marker.data && marker.data.deletable) {
           if (doubleClick) {
@@ -524,27 +524,27 @@
       });
 
       markers.addEventListener('unselect-marker', ({ marker }) => {
-        console.log('unselect', marker.id);
+        console.log('取消选中标记', marker.id);
       });
 
       markers.addEventListener('enter-marker', ({ marker }) => {
-        console.log('enter', marker.id);
+        console.log('进入标记', marker.id);
       });
 
       markers.addEventListener('leave-marker', ({ marker }) => {
-        console.log('leave', marker.id);
+        console.log('离开标记', marker.id);
       });
 
       markers.addEventListener('select-marker-list', ({ marker }) => {
-        console.log('select-list', marker.id);
+        console.log('从列表选择标记', marker.id);
       });
 
       markers.addEventListener('goto-marker-done', ({ marker }) => {
-        console.log('goto-done', marker.id);
+        console.log('跳转完成', marker.id);
       });
 
       markers.addEventListener('marker-visibility', ({ marker, visible }) => {
-        console.log('marker-visibility', marker.id, visible);
+        console.log('标记可见性', marker.id, visible);
       });
 
       window.viewer = viewer;

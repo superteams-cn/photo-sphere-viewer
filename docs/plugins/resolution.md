@@ -116,6 +116,6 @@ _注意：这个选项不属于插件自身配置，而是会合并到主 [`lang
 
 ```js:line-numbers
 resolutionPlugin.addEventListener('resolution-changed', ({ resolutionId }) => {
-    console.log(`Current resolution: ${resolutionId}`);
+    console.log(`当前分辨率：${resolutionId}`);
 });
 ```

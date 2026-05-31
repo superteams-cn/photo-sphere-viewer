@@ -66,7 +66,7 @@ export abstract class AbstractAdapter<TPanorama, TData, TTexture, TMesh extends 
   // @ts-ignore unused parameter
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   textureCoordsToSphericalCoords(point: PanoramaPosition, data: TData): Position {
-    throw new PSVError('Current adapter does not support texture coordinates.');
+    throw new PSVError('当前适配器不支持纹理坐标。');
   }
 
   /**
@@ -76,7 +76,7 @@ export abstract class AbstractAdapter<TPanorama, TData, TTexture, TMesh extends 
   // @ts-ignore unused parameter
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   sphericalCoordsToTextureCoords(position: Position, data: TData): PanoramaPosition {
-    throw new PSVError('Current adapter does not support texture coordinates.');
+    throw new PSVError('当前适配器不支持纹理坐标。');
   }
 
   /**

@@ -52,7 +52,7 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
     super(viewer, config);
 
     if (!(this.viewer.adapter.constructor as typeof AbstractAdapter).id.includes('video')) {
-      throw new PSVError('VideoPlugin can only be used with a video adapter.');
+      throw new PSVError('VideoPlugin 只能与视频适配器配合使用。');
     }
 
     if (this.config.progressbar) {
@@ -322,7 +322,7 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
    */
   setKeypoints(keypoints?: VideoKeypoint[] | null) {
     if (!this.autorotate) {
-      throw new PSVError('Video keypoints required the AutorotatePlugin');
+      throw new PSVError('视频关键点需要配合 AutorotatePlugin 使用。');
     }
 
     if (!keypoints) {
@@ -332,7 +332,7 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
     }
 
     if (keypoints.length < 2) {
-      throw new PSVError('At least two points are required');
+      throw new PSVError('至少需要两个点。');
     }
 
     this.state.keypoints = utils.clone(keypoints);
@@ -342,11 +342,11 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
         if (pt.position) {
           pt.position = this.viewer.dataHelper.cleanPosition(pt.position);
         } else {
-          throw new PSVError(`Keypoint #${i} is missing marker or position`);
+          throw new PSVError(`关键点 #${i} 缺少 marker 或 position。`);
         }
 
         if (utils.isNil(pt.time)) {
-          throw new PSVError(`Keypoint #${i} is missing time`);
+          throw new PSVError(`关键点 #${i} 缺少 time。`);
         }
       });
 

@@ -76,7 +76,7 @@ const viewer = new Viewer({
 
 ```js
 lang: {
-    gyroscope: 'Gyroscope',
+    gyroscope: '陀螺仪',
 }
 ```
 
