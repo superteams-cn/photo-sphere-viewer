@@ -1,5 +1,5 @@
 /**
- * Transforms a string to dash-case
+ * 将字符串转换为短横线写法
  * @see https://github.com/shahata/dasherize
  */
 export function dasherize(str: string): string {
@@ -25,7 +25,7 @@ export function throttle<T extends (...args: any) => any>(callback: T, wait: num
 }
 
 /**
- * Test if an object is a plain object
+ * 判断对象是否为普通对象
  * 判断对象是否为普通对象，即由内置 Object 构造函数创建，
  * 并直接继承自 Object.prototype 或 null。
  * @see https://github.com/lodash/lodash/blob/master/isPlainObject.js
@@ -89,14 +89,14 @@ export function deepmerge<T>(target: T, src: T): T {
 }
 
 /**
- * Deeply clones an object
+ * 深度克隆对象
  */
 export function clone<T>(src: T): T {
   return deepmerge(null as T, src);
 }
 
 /**
- * Tests of an object is empty
+ * 判断对象是否为空
  */
 export function isEmpty(obj: any): boolean {
   return !obj || (Object.keys(obj).length === 0 && obj.constructor === Object);

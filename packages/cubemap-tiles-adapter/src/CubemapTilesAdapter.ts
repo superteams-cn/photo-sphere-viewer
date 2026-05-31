@@ -223,10 +223,10 @@ export class CubemapTilesAdapter extends AbstractAdapter<
   }
 
   createMesh(): Group {
-    // mesh for the base panorama
+    // 基础全景图网格
     const baseMesh = this.adapter.createMesh();
 
-    // mesh for the tiles
+    // 瓦片网格
     const cubeSize = CONSTANTS.SPHERE_RADIUS * 2;
     const geometry = new BoxGeometry(cubeSize, cubeSize, cubeSize, CUBE_SEGMENTS, CUBE_SEGMENTS, CUBE_SEGMENTS)
       .scale(1, 1, -1)
@@ -305,7 +305,7 @@ export class CubemapTilesAdapter extends AbstractAdapter<
   }
 
   /**
-   * Compute visible tiles and load them
+   * 计算并加载可见瓦片
    */
   private __refresh() {
     if (!this.state.geom || this.state.inTransition) {
@@ -327,7 +327,7 @@ export class CubemapTilesAdapter extends AbstractAdapter<
       if (this.viewer.renderer.isObjectVisible(vertexPosition)) {
         const face = Math.floor(i / NB_VERTICES_BY_PLANE);
 
-        // compute position of the segment (6 vertices)
+        // 计算片段位置（6 个顶点）
         const segmentIndex = Math.floor((i - face * NB_VERTICES_BY_PLANE) / 6);
         const segmentRow = Math.floor(segmentIndex / CUBE_SEGMENTS);
         const segmentCol = segmentIndex - segmentRow * CUBE_SEGMENTS;
@@ -362,7 +362,7 @@ export class CubemapTilesAdapter extends AbstractAdapter<
               tilesToLoad[id] = tile;
               break;
             } else {
-              // if no url is returned, try a lower tile level
+              // 未返回 URL 时，尝试更低一级的瓦片
               config = getTileConfigByIndex(panorama, config.level - 1, { CUBE_SEGMENTS });
             }
           }
@@ -375,7 +375,7 @@ export class CubemapTilesAdapter extends AbstractAdapter<
   }
 
   /**
-   * Loads tiles and change existing tiles priority
+   * 加载瓦片并调整现有瓦片优先级
    */
   private __loadTiles(tiles: CubemapTile[]) {
     this.queue.disableAllTasks();
@@ -395,7 +395,7 @@ export class CubemapTilesAdapter extends AbstractAdapter<
   }
 
   /**
-   * Loads and draw a tile
+   * 加载并绘制瓦片
    */
   private __loadTile(tile: CubemapTile, task: Task): Promise<any> {
     return this.viewer.textureLoader
@@ -432,28 +432,28 @@ export class CubemapTilesAdapter extends AbstractAdapter<
 
     for (let c = 0; c < tile.config.facesByTile; c++) {
       for (let r = 0; r < tile.config.facesByTile; r++) {
-        // position of the face
+        // 面的位置
         const faceCol = tile.col * tile.config.facesByTile + c;
         const faceRow = tile.row * tile.config.facesByTile + r;
 
-        // first vertex for this face (6 vertices in total)
+        // 该面的第一个顶点（共 6 个顶点）
         const firstVertex = tile.face * NB_VERTICES_BY_PLANE + 6 * (CUBE_SEGMENTS * faceRow + faceCol);
 
-        // in case of error, skip the face if already showing valid data
+        // 发生错误时，如果该面已有可用数据，则跳过
         if (isError && this.state.faces[firstVertex] > ERROR_LEVEL) {
           continue;
         }
-        // skip this face if its already showing an higher resolution
+        // 如果该面已显示更高分辨率，则跳过
         if (this.state.faces[firstVertex] > tile.config.level) {
           continue;
         }
         this.state.faces[firstVertex] = isError ? ERROR_LEVEL : tile.config.level;
 
-        // swap material
+        // 替换材质
         const matIndex = this.state.geom.groups.find((g) => g.start === firstVertex).materialIndex;
         this.state.materials[matIndex] = material;
 
-        // define new uvs
+        // 定义新的 UV
         let top = 1 - r / tile.config.facesByTile;
         let bottom = 1 - (r + 1) / tile.config.facesByTile;
         let left = c / tile.config.facesByTile;
@@ -496,7 +496,7 @@ export class CubemapTilesAdapter extends AbstractAdapter<
   }
 
   /**
-   * Clears loading queue, dispose all materials
+   * 清空加载队列并释放全部材质
    */
   private __cleanup() {
     this.queue.clear();

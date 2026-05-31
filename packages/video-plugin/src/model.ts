@@ -17,7 +17,7 @@ export type VideoPluginConfig = {
    */
   bigbutton?: boolean;
   /**
-   * defines autorotate timed keypoints
+   * 定义带时间点的自动旋转关键点
    */
   keypoints?: VideoKeypoint[];
 };

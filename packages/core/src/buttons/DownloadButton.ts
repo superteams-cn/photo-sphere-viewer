@@ -40,7 +40,7 @@ export class DownloadButton extends AbstractButton {
   }
 
   onClick() {
-    // nothing
+    // 无操作
   }
 
   override checkSupported() {

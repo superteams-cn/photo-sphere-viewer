@@ -58,6 +58,6 @@ export class TimeCaption extends AbstractButton {
   }
 
   onClick(): void {
-    // nothing
+    // 无操作
   }
 }

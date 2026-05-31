@@ -518,7 +518,7 @@ describe('utils:psv:mergePanoData', () => {
     assertDeepEqualLenient(
       mergePanoData(2000, 500, {
         fullWidth: 2000,
-        fullHeight: 990, // KO
+        fullHeight: 990, // 异常值
         croppedWidth: 2000,
         croppedHeight: 500,
         croppedX: 0,
@@ -543,7 +543,7 @@ describe('utils:psv:mergePanoData', () => {
         croppedWidth: 2000,
         croppedHeight: 500,
         croppedX: 0,
-        croppedY: 1000, // KO
+        croppedY: 1000, // 异常值
       }),
       {
         fullWidth: 2000,
@@ -562,7 +562,7 @@ describe('utils:psv:mergePanoData', () => {
         croppedWidth: 2000,
         croppedHeight: 500,
         croppedX: 0,
-        croppedY: -500, // KO
+        croppedY: -500, // 异常值
       }),
       {
         fullWidth: 2000,
@@ -582,7 +582,7 @@ describe('utils:psv:mergePanoData', () => {
         fullHeight: 1000,
         croppedWidth: 1000,
         croppedHeight: 1000,
-        croppedX: 1500, // KO
+        croppedX: 1500, // 异常值
         croppedY: 0,
       }),
       {
@@ -601,7 +601,7 @@ describe('utils:psv:mergePanoData', () => {
         fullHeight: 1000,
         croppedWidth: 1000,
         croppedHeight: 1000,
-        croppedX: -500, // KO
+        croppedX: -500, // 异常值
         croppedY: 0,
       }),
       {

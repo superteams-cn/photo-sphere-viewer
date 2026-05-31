@@ -4,52 +4,51 @@ import type { MarkersPlugin } from '@photo-sphere-viewer/markers-plugin';
 import { callPlugin, callViewer, checkPosition, waitViewerReady } from '../../utils';
 import { BASE_URL, NO_LOG } from '../../utils/constants';
 
-describe('plugin: compass', () => {
+describe('插件：指南针', () => {
   beforeEach(() => {
     cy.visit('e2e/plugins/compass.html');
     waitViewerReady();
-    // createBaseSnapshot();
   });
 
-  it('should destroy', () => {
-    callViewer('destroy').then((viewer) => viewer.destroy());
+  it('应能销毁查看器', () => {
+    callViewer('销毁').then((viewer) => viewer.destroy());
   });
 
-  it('should have a compass', () => {
+  it('应显示指南针', () => {
     cy.get('.psv-compass').should('be.visible').compareScreenshots('base');
   });
 
-  it('should hide the compass', () => {
-    callCompass('hide compass').then((compass) => compass.hide());
+  it('应能隐藏指南针', () => {
+    callCompass('隐藏指南针').then((compass) => compass.hide());
 
     cy.get('.psv-compass').should('not.be.visible');
 
-    callCompass('show compass').then((compass) => compass.show());
+    callCompass('显示指南针').then((compass) => compass.show());
 
     cy.get('.psv-compass').should('be.visible');
   });
 
-  it('should pan & zoom', () => {
-    callViewer('rotate 90deg')
+  it('应支持平移与缩放', () => {
+    callViewer('旋转 90 度')
       .then((viewer) => viewer.rotate({ pitch: 0, yaw: '90deg' }))
       .wait(200);
 
     cy.get('.psv-compass').compareScreenshots('rotate');
 
-    callViewer('zoom 100%')
+    callViewer('缩放到 100%')
       .then((viewer) => viewer.zoom(100))
       .wait(200);
 
     cy.get('.psv-compass').compareScreenshots('zoom');
   });
 
-  it('should show navigation cone', () => {
+  it('应显示导航锥形视野', () => {
     withCompassPosition(({ element, x, y, width, height }) => {
-      // center-right
+      // 中右
       const enterPoint = { clientX: x + width, clientY: y + height * 0.5 };
-      // above bottom-center
+      // 底部居中偏上
       const clickPoint = { clientX: x + width * 0.5, clientY: y + height * 0.75 };
-      // bottom-center
+      // 底部居中
       const leavePoint = { clientX: x + width * 0.5, clientY: y + height };
 
       element
@@ -66,8 +65,8 @@ describe('plugin: compass', () => {
     checkPosition({ yaw: Math.PI, pitch: 0 });
   });
 
-  it('should disable navigation', () => {
-    callCompass('disable navigation').then((compass) => compass.setOption('navigation', false));
+  it('应能禁用导航', () => {
+    callCompass('禁用导航').then((compass) => compass.setOption('navigation', false));
 
     withCompassPosition(({ element, x, y, width, height }) => {
       const point = { clientX: x + width * 0.5, clientY: y + height * 0.75 };
@@ -83,8 +82,8 @@ describe('plugin: compass', () => {
     checkPosition({ yaw: 0, pitch: 0 });
   });
 
-  it('should reset pitch on click', () => {
-    callViewer('move down')
+  it('点击时应能重置俯仰角', () => {
+    callViewer('向下移动')
       .then((viewer) => viewer.rotate({ yaw: 0, pitch: -1 }))
       .wait(200);
 
@@ -96,7 +95,7 @@ describe('plugin: compass', () => {
 
     checkPosition({ yaw: Math.PI / 2, pitch: -1 });
 
-    callCompass('set resetPitch').then((compass) => compass.setOption('resetPitch', true));
+    callCompass('设置 resetPitch').then((compass) => compass.setOption('resetPitch', true));
 
     withCompassPosition(({ element, x, y, width, height }) => {
       const point = { clientX: x + width * 0.5, clientY: y + height * 0.75 };
@@ -107,8 +106,8 @@ describe('plugin: compass', () => {
     checkPosition({ yaw: Math.PI, pitch: 0 });
   });
 
-  it('should change the navigationColor', () => {
-    callCompass('set navigationColor').then((compass) => compass.setOption('navigationColor', 'rgba(0, 255, 0, 0.5)'));
+  it('应能修改 navigationColor', () => {
+    callCompass('设置 navigationColor').then((compass) => compass.setOption('navigationColor', 'rgba(0, 255, 0, 0.5)'));
 
     withCompassPosition(({ element, x, y, width, height }) => {
       const point = { clientX: x + width * 0.5, clientY: y + height * 0.75 };
@@ -117,20 +116,20 @@ describe('plugin: compass', () => {
     });
   });
 
-  it('should change the coneColor', () => {
-    callCompass('set coneColor').then((compass) => compass.setOption('coneColor', '#00000055'));
+  it('应能修改 coneColor', () => {
+    callCompass('设置 coneColor').then((compass) => compass.setOption('coneColor', '#00000055'));
 
     cy.get('.psv-compass').compareScreenshots('set-coneColor');
   });
 
-  it('should change the size', () => {
-    callCompass('set size').then((compass) => compass.setOption('size', '300px'));
+  it('应能修改尺寸', () => {
+    callCompass('设置尺寸').then((compass) => compass.setOption('size', '300px'));
 
     cy.get('.psv-compass').compareScreenshots('set-size');
   });
 
-  it('should change the backgroundSvg', () => {
-    callCompass('set backgroundSvg').then((compass) =>
+  it('应能修改 backgroundSvg', () => {
+    callCompass('设置 backgroundSvg').then((compass) =>
       compass.setOption(
         'backgroundSvg',
         '<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="rgba(0, 0, 0, .5)"/></svg>',
@@ -140,7 +139,7 @@ describe('plugin: compass', () => {
     cy.get('.psv-compass').compareScreenshots('set-backgroundSvg');
   });
 
-  it('should change the position', () => {
+  it('应能修改位置', () => {
     const size = 120;
     const margin = 10;
     const nav = 40;
@@ -158,7 +157,7 @@ describe('plugin: compass', () => {
       ['bottom center', { x: vw / 2 - size / 2, y: vh - nav - margin - size }],
       ['bottom right', { x: vw - size - margin, y: vh - nav - margin - size }],
     ].forEach(([position, coords]: [string, Point]) => {
-      callCompass(`set position ${position}`).then((compass) => compass.setOption('position', position));
+      callCompass(`设置位置 ${position}`).then((compass) => compass.setOption('position', position));
 
       cy.get('.psv-compass').should((compass) => {
         const { x, y } = compass[0].getBoundingClientRect();
@@ -166,7 +165,7 @@ describe('plugin: compass', () => {
       });
     });
 
-    callViewer('hide navbar')
+    callViewer('隐藏导航栏')
       .then((viewer) => viewer.navbar.hide())
       .wait(200);
 
@@ -175,7 +174,7 @@ describe('plugin: compass', () => {
       ['bottom center', { x: vw / 2 - size / 2, y: vh - margin - size }],
       ['bottom right', { x: vw - size - margin, y: vh - margin - size }],
     ].forEach(([position, coords]: [string, Point]) => {
-      callCompass(`set position ${position}`).then((compass) => compass.setOption('position', position));
+      callCompass(`设置位置 ${position}`).then((compass) => compass.setOption('position', position));
 
       cy.get('.psv-compass')
         .then((element) => {
@@ -186,10 +185,10 @@ describe('plugin: compass', () => {
     });
   });
 
-  it('should show hotspots', () => {
-    callCompass('set hotspots').then((compass) => {
+  it('应显示热点', () => {
+    callCompass('设置热点').then((compass) => {
       compass.setHotspots([
-        // @ts-ignore missing pitch
+        // @ts-ignore 缺少 pitch
         { yaw: 0 },
         { yaw: Math.PI / 2, pitch: 0 },
         { yaw: Math.PI, pitch: -1 },
@@ -200,8 +199,8 @@ describe('plugin: compass', () => {
     cy.get('.psv-compass').compareScreenshots('hotspots');
   });
 
-  it('should set hotspots color', () => {
-    callCompass('set hotspots').then((compass) => {
+  it('应能设置热点颜色', () => {
+    callCompass('设置热点').then((compass) => {
       compass.setOption('hotspotColor', 'green');
 
       compass.setHotspots([
@@ -215,8 +214,8 @@ describe('plugin: compass', () => {
     cy.get('.psv-compass').compareScreenshots('hotspots-color');
   });
 
-  it('should display markers', () => {
-    callMarkers('set markers').then((markers) => {
+  it('应显示标记', () => {
+    callMarkers('设置标记').then((markers) => {
       markers.setMarkers([
         {
           id: 'image',

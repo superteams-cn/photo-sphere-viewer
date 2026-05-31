@@ -233,7 +233,7 @@ export class Marker3D extends Marker {
 
     material.chromaKey = this.config.chromaKey;
     mesh.renderOrder = 1000 + this.config.zIndex;
-    mesh.geometry.boundingBox = null; // reset box for Renderer.isObjectVisible
+    mesh.geometry.boundingBox = null; // 为 Renderer.isObjectVisible 重置包围盒
   }
 
   /**

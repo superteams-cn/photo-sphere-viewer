@@ -13,7 +13,7 @@ export enum SliderDirection {
  */
 export type SliderUpdateData = {
   /**
-   * slider progression for 0-1
+   * 0 到 1 之间的滑块进度
    */
   readonly value: number;
 
@@ -39,7 +39,7 @@ export type SliderUpdateData = {
 };
 
 /**
- * Helper to make sliders elements
+ * 用于创建滑块元素的辅助工具
  */
 export class Slider {
   private mousedown = false;

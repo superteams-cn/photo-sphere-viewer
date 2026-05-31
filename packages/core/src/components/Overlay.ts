@@ -13,15 +13,15 @@ export type OverlayConfig = {
    */
   id?: string;
   /**
-   * SVG image/icon displayed above the text
+   * 显示在文本上方的 SVG 图片或图标
    */
   image?: string;
   /**
-   * main message
+   * 主消息
    */
   title: string;
   /**
-   * secondary message
+   * 次要消息
    */
   text?: string;
   /**

@@ -1,16 +1,15 @@
 import { callViewer, checkPosition, checkZoom, waitViewerReady } from '../../utils';
 import { BASE_URL, NO_LOG } from '../../utils/constants';
 
-describe('core: buttons', () => {
+describe('核心：按钮', () => {
   beforeEach(() => {
     localStorage.photoSphereViewer_touchSupport = 'false';
     cy.visit('e2e/core/navbar.html');
     waitViewerReady();
-    // createBaseSnapshot();
   });
 
-  // does not work in headless mode
-  it.skip('should enter and exit fullscreen', () => {
+  // 无头模式下无法工作
+  it.skip('应能进入和退出全屏', () => {
     cy.get('.psv-fullscreen-button').click();
     cy.wait(500);
 
@@ -21,22 +20,22 @@ describe('core: buttons', () => {
     cy.document().its('fullscreenElement').should('be.null');
   });
 
-  it('should zoom with buttons', () => {
+  it('应能通过按钮缩放', () => {
     checkZoom(50);
 
     cy.get('[title="放大"]').click();
     cy.wait(500);
 
-    callViewer('check zoom >50').then((viewer) => expect(viewer.getZoomLevel()).gt(50));
+    callViewer('检查缩放 >50').then((viewer) => expect(viewer.getZoomLevel()).gt(50));
 
     cy.get('[title="缩小"]').trigger('mousedown');
     cy.wait(1000);
     cy.get('[title="缩小"]').trigger('mouseup');
 
-    callViewer('check zoom <50').then((viewer) => expect(viewer.getZoomLevel()).lt(50));
+    callViewer('检查缩放 <50').then((viewer) => expect(viewer.getZoomLevel()).lt(50));
   });
 
-  it('should zoom with slider', () => {
+  it('应能通过滑块缩放', () => {
     withZoomHandlePosition(({ element, x, y, width, height }) => {
       const clickPoint = { clientX: x + width * 0.5, clientY: y + height * 0.5 };
       const movePoint = { clientX: clickPoint.clientX + 20, clientY: clickPoint.clientY };
@@ -56,42 +55,42 @@ describe('core: buttons', () => {
     checkZoom(0);
   });
 
-  it('should move left/right with buttons', () => {
-    callViewer('set yaw =PI').then((viewer) => viewer.rotate({ yaw: Math.PI, pitch: 0 }));
+  it('应能通过按钮左右移动', () => {
+    callViewer('设置 yaw = PI').then((viewer) => viewer.rotate({ yaw: Math.PI, pitch: 0 }));
 
     cy.get('[title="向右移动"]').click();
     cy.wait(500);
 
-    callViewer('check yaw >PI').then((viewer) => expect(viewer.getPosition().yaw).gt(Math.PI));
+    callViewer('检查 yaw > PI').then((viewer) => expect(viewer.getPosition().yaw).gt(Math.PI));
 
     cy.get('[title="向左移动"]').trigger('mousedown');
     cy.wait(1000);
     cy.get('[title="向左移动"]').trigger('mouseup');
 
-    callViewer('check zoom <Math.PI').then((viewer) => expect(viewer.getPosition().yaw).lt(Math.PI));
+    callViewer('检查 yaw < PI').then((viewer) => expect(viewer.getPosition().yaw).lt(Math.PI));
   });
 
-  it('should move up/down with buttons', () => {
+  it('应能通过按钮上下移动', () => {
     checkPosition({ yaw: 0, pitch: 0 });
 
     cy.get('[title="向上移动"]').click();
     cy.wait(500);
 
-    callViewer('check pitch >0').then((viewer) => expect(viewer.getPosition().pitch).gt(0));
+    callViewer('检查 pitch > 0').then((viewer) => expect(viewer.getPosition().pitch).gt(0));
 
     cy.get('[title="向下移动"]').trigger('mousedown');
     cy.wait(1000);
     cy.get('[title="向下移动"]').trigger('mouseup');
 
-    callViewer('check pitch <0').then((viewer) => expect(viewer.getPosition().pitch).lt(0));
+    callViewer('检查 pitch < 0').then((viewer) => expect(viewer.getPosition().pitch).lt(0));
   });
 
-  it('should download the panorama', () => {
+  it('应能下载全景图', () => {
     cy.get('.psv-download-button')
       .should('have.attr', 'href', BASE_URL + 'sphere-small.jpg')
       .should('have.attr', 'download', 'sphere-small.jpg');
 
-    callViewer('set downloadName/downloadUrl').then((viewer) =>
+    callViewer('设置 downloadName/downloadUrl').then((viewer) =>
       viewer.setOptions({
         downloadUrl: 'panorama-download.jpg',
         downloadName: 'my-panorama.jpg',
@@ -104,7 +103,7 @@ describe('core: buttons', () => {
 
     const png64 =
       'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
-    callViewer('set downloadUrl base64').then((viewer) =>
+    callViewer('设置 base64 downloadUrl').then((viewer) =>
       viewer.setOptions({
         downloadUrl: png64,
         downloadName: null,

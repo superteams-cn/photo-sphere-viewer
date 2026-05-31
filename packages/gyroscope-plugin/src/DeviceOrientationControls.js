@@ -6,7 +6,7 @@ const _q0 = new Quaternion();
 const _q1 = new Quaternion(-Math.sqrt(0.5), 0, 0, Math.sqrt(0.5)); // - PI/2 around the x-axis
 
 /**
- * Copied from three.js examples before deletion in r134
+ * 复制自 three.js examples 中 r134 删除前的版本
  * (deleted because of constructors/OS inconsistencies)
  * @internal
  */
@@ -33,14 +33,14 @@ export class DeviceOrientationControls {
     this.deviceOrientation = {};
     this.screenOrientation = 0;
 
-    this.alphaOffset = 0; // radians
+    this.alphaOffset = 0; // 弧度
 
     const onDeviceOrientationChangeEvent = function (event) {
       scope.deviceOrientation = event;
     };
 
     const onDeviceOrientationAbsoluteChangeEvent = function (event) {
-      // if the 'deviceorientationabsolute' event is supported, automatically remove the 'deviceorientation' listener
+      // 如果支持 'deviceorientationabsolute' 事件，则自动移除 'deviceorientation' 监听器
       if (nonAbsoluteListener) {
         window.removeEventListener('deviceorientation', onDeviceOrientationChangeEvent);
         nonAbsoluteListener = false;
@@ -65,7 +65,7 @@ export class DeviceOrientationControls {
     };
 
     this.connect = function () {
-      onScreenOrientationChangeEvent(); // run once on load
+      onScreenOrientationChangeEvent(); // 加载时运行一次
 
       // iOS 13+
 

@@ -113,7 +113,7 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
     this.settings.push(setting);
 
     if (this.component.isVisible()) {
-      this.showSettings(); // re-render
+      this.showSettings(); // 重新渲染
     }
 
     this.updateButton();
@@ -140,7 +140,7 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
           }
 
           default:
-          // noop
+          // 空操作
         }
 
         this.updateButton();
@@ -157,7 +157,7 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
       this.settings.splice(idx, 1);
 
       if (this.component.isVisible()) {
-        this.component.show(); // re-render
+        this.component.show(); // 重新渲染
       }
 
       this.updateButton();
@@ -212,7 +212,7 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
    * @internal
    */
   toggleSettingValue(setting: ToggleSetting) {
-    const newValue = !setting.active(); // in case "toggle" is async
+    const newValue = !setting.active(); // 兼容异步 "toggle"
 
     setting.toggle();
 

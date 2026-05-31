@@ -2,7 +2,7 @@ import { utils } from '@photo-sphere-viewer/core';
 import { BufferGeometry, LineSegments, Material, MeshBasicMaterial, Object3D, WireframeGeometry } from 'three';
 
 /**
- * Generates an material for errored tiles
+ * 为出错瓦片生成材质
  * @internal
  */
 export function buildErrorMaterial(): MeshBasicMaterial {
@@ -22,7 +22,7 @@ export function buildErrorMaterial(): MeshBasicMaterial {
 }
 
 /**
- * Creates a wireframe geometry, for debug
+ * 创建用于调试的线框几何体
  * @internal
  */
 export function createWireFrame(geometry: BufferGeometry): Object3D {

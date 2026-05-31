@@ -99,7 +99,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   constructor(config: ViewerConfig) {
     super();
 
-    // init
+    // 初始化
     this.parent = getElement(config.container);
     if (!this.parent) {
       throw new PSVError(`未找到 "container" 元素。`);

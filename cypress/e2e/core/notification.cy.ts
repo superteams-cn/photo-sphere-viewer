@@ -2,14 +2,13 @@ import { type Notification } from '@photo-sphere-viewer/core';
 import { callViewer, checkEventHandler, listenViewerEvent, waitViewerReady } from '../../utils';
 import { NO_LOG } from '../../utils/constants';
 
-describe('core: notification', () => {
+describe('核心：通知', () => {
   beforeEach(() => {
     cy.visit('e2e/core/base.html');
     waitViewerReady();
-    // createBaseSnapshot();
   });
 
-  it('should show/hide the notification', () => {
+  it('应能显示和隐藏通知', () => {
     const showNotificationHandler = listenViewerEvent('show-notification');
     const hideNotificationHandler = listenViewerEvent('hide-notification');
 
@@ -18,13 +17,13 @@ describe('core: notification', () => {
     checkNotificationVisibleApi(true);
     cy.get('.psv-notification').should('be.visible').should('have.class', 'psv-notification--visible');
 
-    callNotification('hide notification').then((notification) => notification.hide());
+    callNotification('隐藏通知').then((notification) => notification.hide());
     checkEventHandler(hideNotificationHandler, { notificationId: null });
     checkNotificationVisibleApi(false);
     cy.get('.psv-notification').should('not.be.visible').should('not.have.class', 'psv-notification--visible');
   });
 
-  it('should hide on click', () => {
+  it('点击时应隐藏', () => {
     callNotification('显示通知').then((notification) => notification.show('内容'));
     cy.get('.psv-notification').should('be.visible');
 
@@ -32,7 +31,7 @@ describe('core: notification', () => {
     cy.get('.psv-notification').should('not.be.visible');
   });
 
-  it('should show the notification with id', () => {
+  it('应能显示带 id 的通知', () => {
     const showNotificationHandler = listenViewerEvent('show-notification');
     const hideNotificationHandler = listenViewerEvent('hide-notification');
 
@@ -70,7 +69,7 @@ describe('core: notification', () => {
     checkNotificationVisibleApi(false);
   });
 
-  it('should hide on timeout', () => {
+  it('超时后应隐藏', () => {
     cy.clock();
 
     callNotification('显示通知').then((notification) =>
@@ -93,10 +92,10 @@ describe('core: notification', () => {
   }
 
   function checkNotificationVisibleApi(visible: boolean, id?: string) {
-    callNotification(
-      `check ${id ? `notification "${id}"` : 'any notification'} ${visible ? 'visible' : 'not visible'}`,
-    ).then((notification) => {
-      expect(notification.isVisible(id)).to.eq(visible);
-    });
+    callNotification(`检查${id ? `通知 "${id}"` : '任意通知'}是否${visible ? '可见' : '不可见'}`).then(
+      (notification) => {
+        expect(notification.isVisible(id)).to.eq(visible);
+      },
+    );
   }
 });

@@ -110,7 +110,7 @@ export abstract class AbstractAdapter<TPanorama, TData, TTexture, TMesh extends 
   abstract disposeTexture(textureData: TextureData<TTexture, TPanorama, TData>): void;
 
   /**
-   * Cleanup a mesh from memory
+   * 从内存中清理网格
    */
   abstract disposeMesh(mesh: TMesh): void;
 }

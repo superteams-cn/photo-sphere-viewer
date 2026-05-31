@@ -238,7 +238,7 @@ export class CubemapAdapter extends AbstractAdapter<CubemapPanorama, CubemapData
       utils.logWarn('无效的立方体贴图图片，宽度应等于高度。');
     }
 
-    // resize image
+    // 调整图片尺寸
     if (this.config.blur || img.width > SYSTEM.maxTextureWidth) {
       const ratio = Math.min(1, SYSTEM.maxCanvasWidth / img.width);
 
@@ -316,12 +316,12 @@ export class CubemapAdapter extends AbstractAdapter<CubemapPanorama, CubemapData
     const tileWidth = Math.floor((img.width / 4) * ratio);
 
     const pts = [
-      [0, 1 / 3], // left
-      [1 / 2, 1 / 3], // right
-      [1 / 4, 0], // top
-      [1 / 4, 2 / 3], // bottom
-      [3 / 4, 1 / 3], // back
-      [1 / 4, 1 / 3], // front
+      [0, 1 / 3], // 左
+      [1 / 2, 1 / 3], // 右
+      [1 / 4, 0], // 上
+      [1 / 4, 2 / 3], // 下
+      [3 / 4, 1 / 3], // 后
+      [1 / 4, 1 / 3], // 前
     ];
 
     const textures: Texture[] = [];

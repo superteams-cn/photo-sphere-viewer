@@ -1,5 +1,5 @@
 /**
- * Helper for pressable things (buttons, keyboard)
+ * 可按压对象（按钮、键盘）的辅助工具
  * 当按压提前结束且时长不足时，稍作等待后再执行
  * @internal
  */

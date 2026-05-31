@@ -5,7 +5,7 @@ import { NO_LOG } from '../../utils/constants';
 type ToggleSettingWithValue = ToggleSetting & { v: boolean };
 type OptionsSettingWithValue = OptionsSetting & { v: string };
 
-describe('plugin: settings', () => {
+describe('插件：设置', () => {
   let toggleSetting: ToggleSettingWithValue;
   let optionSetting: OptionsSettingWithValue;
 
@@ -17,14 +17,14 @@ describe('plugin: settings', () => {
     toggleSetting = withToggleSetting();
     optionSetting = withOptionsSetting();
 
-    callSettings('add settings').then((settings) => {
+    callSettings('添加设置').then((settings) => {
       settings.addSetting(toggleSetting);
       settings.addSetting(optionSetting);
     });
   });
 
   it('应能销毁', () => {
-    callViewer('destroy').then((viewer) => viewer.destroy());
+    callViewer('销毁').then((viewer) => viewer.destroy());
   });
 
   it('应添加导航栏按钮', () => {
@@ -42,7 +42,7 @@ describe('plugin: settings', () => {
   });
 
   it('应能移除设置', () => {
-    callSettings('remove settings').then((settings) => {
+    callSettings('移除设置').then((settings) => {
       settings.removeSetting(toggleSetting.id);
       settings.removeSetting(optionSetting.id);
     });
@@ -58,7 +58,7 @@ describe('plugin: settings', () => {
       ['download settings caption', 'left', '0px'],
       ['caption settings fullscreen', 'right', '0px'],
     ].forEach(([navbar, prop, value]) => {
-      callViewer(`navbar "${navbar}"`).then((viewer) => viewer.setOption('navbar', navbar));
+      callViewer(`导航栏 "${navbar}"`).then((viewer) => viewer.setOption('navbar', navbar));
 
       cy.get('.psv-settings-button').click();
 
@@ -133,7 +133,7 @@ describe('plugin: settings', () => {
   });
 
   it('缺少属性时应抛出异常', () => {
-    callSettings('set settings').then((settings) => {
+    callSettings('设置配置').then((settings) => {
       expect(() => settings.addSetting({ ...withToggleSetting(), id: null })).to.throw('缺少设置 id。');
 
       expect(() => settings.addSetting({ ...withToggleSetting(), type: null })).to.throw('缺少设置类型。');
@@ -146,7 +146,7 @@ describe('plugin: settings', () => {
     cy.visit('e2e/plugins/settings.html?persist=true');
     waitViewerReady();
 
-    callSettings('set settings').then((settings) => {
+    callSettings('设置配置').then((settings) => {
       settings.addSetting(toggleSetting);
       settings.addSetting(optionSetting);
     });
@@ -164,7 +164,7 @@ describe('plugin: settings', () => {
 
     const settingChangedHandler = listenSettingsEvent('setting-changed');
 
-    callSettings('set settings').then((settings) => {
+    callSettings('设置配置').then((settings) => {
       settings.addSetting(withToggleSetting());
       settings.addSetting(withOptionsSetting());
     });
@@ -184,7 +184,7 @@ describe('plugin: settings', () => {
     name: Parameters<SettingsPlugin['addEventListener']>[0],
   ): Cypress.Agent<sinon.SinonStub> {
     const handler = cy.stub();
-    callSettings(`listen "${name}"`).then((settings) => settings.addEventListener(name, handler));
+    callSettings(`监听 "${name}"`).then((settings) => settings.addEventListener(name, handler));
     return handler;
   }
 

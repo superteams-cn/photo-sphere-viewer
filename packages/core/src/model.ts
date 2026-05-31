@@ -317,7 +317,7 @@ export type NavbarCustomButton = {
 };
 
 /**
- * Viewer configuration
+ * 查看器配置
  * @see https://photo-sphere-viewer.js.org/guide/config.html
  */
 export type ViewerConfig = {
@@ -389,7 +389,7 @@ export type ViewerConfig = {
 };
 
 /**
- * Viewer configuration after applying parsers
+ * 查看器配置 after applying parsers
  */
 export type ParsedViewerConfig = Omit<
   ViewerConfig,
@@ -415,11 +415,11 @@ export type ParsedViewerConfig = Omit<
 };
 
 /**
- * Readonly viewer configuration
+ * 只读查看器配置
  */
 export type ReadonlyViewerConfig = 'panorama' | 'panoData' | 'container' | 'adapter' | 'plugins';
 
 /**
- * Updatable viewer configuration
+ * 可更新的查看器配置
  */
 export type UpdatableViewerConfig = Omit<ViewerConfig, ReadonlyViewerConfig>;

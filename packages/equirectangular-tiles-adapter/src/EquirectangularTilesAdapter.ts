@@ -25,10 +25,10 @@ import {
 } from './utils';
 
 /* the faces of the top and bottom rows are made of a single triangle (3 vertices)
- * all other faces are made of two triangles (6 vertices)
- * below is the indexing of each face vertices
+ * 其他面均由两个三角形组成（6 个顶点）
+ * 以下是每个面的顶点索引
  *
- * first row faces:
+ * 第一行面：
  *     ⋀
  *    /0\
  *   /   \
@@ -36,7 +36,7 @@ import {
  * /1     2\
  * ¯¯¯¯¯¯¯¯¯
  *
- * other rows faces:
+ * 其他行面：
  * _________
  * |\1    0|
  * |3\     |
@@ -47,7 +47,7 @@ import {
  * |4    5\|
  * ¯¯¯¯¯¯¯¯¯
  *
- * last row faces:
+ * 最后一行面：
  * _________
  * \1     0/
  *  \     /
@@ -270,10 +270,10 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
   }
 
   createMesh(panoData: EquirectangularTilesPanoData): Group {
-    // mesh for the base panorama
+    // 基础全景图网格
     const baseMesh = this.adapter.createMesh(panoData.baseData ?? panoData);
 
-    // mesh for the tiles
+    // 瓦片网格
     const geometry = new SphereGeometry(
       CONSTANTS.SPHERE_RADIUS,
       this.SPHERE_SEGMENTS,
@@ -286,15 +286,15 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
     geometry.clearGroups();
     let i = 0;
     let k = 0;
-    // first row
+    // 第一行
     for (; i < this.SPHERE_SEGMENTS * NB_VERTICES_BY_SMALL_FACE; i += NB_VERTICES_BY_SMALL_FACE) {
       geometry.addGroup(i, NB_VERTICES_BY_SMALL_FACE, k++);
     }
-    // second to before last rows
+    // 第二行到倒数第二行
     for (; i < this.NB_VERTICES - this.SPHERE_SEGMENTS * NB_VERTICES_BY_SMALL_FACE; i += NB_VERTICES_BY_FACE) {
       geometry.addGroup(i, NB_VERTICES_BY_FACE, k++);
     }
-    // last row
+    // 最后一行
     for (; i < this.NB_VERTICES; i += NB_VERTICES_BY_SMALL_FACE) {
       geometry.addGroup(i, NB_VERTICES_BY_SMALL_FACE, k++);
     }
@@ -365,7 +365,7 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
   }
 
   /**
-   * Compute visible tiles and load them
+   * 计算并加载可见瓦片
    */
   private __refresh() {
     if (!this.state.geom || this.state.inTransition) {
@@ -389,16 +389,16 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
       vertexPosition.applyEuler(this.viewer.renderer.sphereCorrection);
 
       if (this.viewer.renderer.isObjectVisible(vertexPosition)) {
-        // compute position of the segment (3 or 6 vertices)
+        // 计算片段位置（3 或 6 个顶点）
         let segmentIndex;
         if (i < this.SPHERE_SEGMENTS * NB_VERTICES_BY_SMALL_FACE) {
-          // first row
+          // 第一行
           segmentIndex = Math.floor(i / 3);
         } else if (i < this.NB_VERTICES - this.SPHERE_SEGMENTS * NB_VERTICES_BY_SMALL_FACE) {
-          // second to before last rows
+          // 第二行到倒数第二行
           segmentIndex = Math.floor((i / 3 - this.SPHERE_SEGMENTS) / 2) + this.SPHERE_SEGMENTS;
         } else {
-          // last row
+          // 最后一行
           segmentIndex =
             Math.floor((i - this.NB_VERTICES - this.SPHERE_SEGMENTS * NB_VERTICES_BY_SMALL_FACE) / 3) +
             this.SPHERE_HORIZONTAL_SEGMENTS * (this.SPHERE_SEGMENTS - 1);
@@ -408,12 +408,12 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
 
         let config = tileConfig;
         while (config) {
-          // compute the position of the tile
+          // 计算瓦片位置
           const row = Math.floor(segmentRow / config.facesByRow);
           const col = Math.floor(segmentCol / config.facesByCol);
           let angle = vertexPosition.angleTo(this.viewer.state.direction);
           if (row === 0 || row === config.rows - 1) {
-            angle *= 2; // lower priority to top and bottom tiles
+            angle *= 2; // 降低顶部和底部瓦片的优先级
           }
 
           const tile: EquirectangularTile = {
@@ -435,7 +435,7 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
               tilesToLoad[id] = tile;
               break;
             } else {
-              // if no url is returned, try a lower tile level
+              // 未返回 URL 时，尝试更低一级的瓦片
               config = getTileConfigByIndex(panorama, config.level - 1, this);
             }
           }
@@ -448,7 +448,7 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
   }
 
   /**
-   * Loads tiles and change existing tiles priority
+   * 加载瓦片并调整现有瓦片优先级
    */
   private __loadTiles(tiles: EquirectangularTile[]) {
     this.queue.disableAllTasks();
@@ -468,7 +468,7 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
   }
 
   /**
-   * Loads and draw a tile
+   * 加载并绘制瓦片
    */
   private __loadTile(tile: EquirectangularTile, task: Task): Promise<any> {
     return this.viewer.textureLoader
@@ -504,13 +504,13 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
 
     for (let c = 0; c < tile.config.facesByCol; c++) {
       for (let r = 0; r < tile.config.facesByRow; r++) {
-        // position of the face
+        // 面的位置
         const faceCol = tile.col * tile.config.facesByCol + c;
         const faceRow = tile.row * tile.config.facesByRow + r;
         const isFirstRow = faceRow === 0;
         const isLastRow = faceRow === this.SPHERE_HORIZONTAL_SEGMENTS - 1;
 
-        // first vertex for this face (3 or 6 vertices in total)
+        // 该面的第一个顶点（共 3 或 6 个顶点）
         let firstVertex: number;
         if (isFirstRow) {
           firstVertex = faceCol * NB_VERTICES_BY_SMALL_FACE;
@@ -524,21 +524,21 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
             faceCol * NB_VERTICES_BY_FACE;
         }
 
-        // in case of error, skip the face if already showing valid data
+        // 发生错误时，如果该面已有可用数据，则跳过
         if (isError && this.state.faces[firstVertex] > ERROR_LEVEL) {
           continue;
         }
-        // skip this face if its already showing an higher resolution
+        // 如果该面已显示更高分辨率，则跳过
         if (this.state.faces[firstVertex] > tile.config.level) {
           continue;
         }
         this.state.faces[firstVertex] = isError ? ERROR_LEVEL : tile.config.level;
 
-        // swap material
+        // 替换材质
         const matIndex = this.state.geom.groups.find((g) => g.start === firstVertex).materialIndex;
         this.state.materials[matIndex] = material;
 
-        // define new uvs
+        // 定义新的 UV
         const top = 1 - r / tile.config.facesByRow;
         const bottom = 1 - (r + 1) / tile.config.facesByRow;
         const left = c / tile.config.facesByCol;
@@ -584,7 +584,7 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
   }
 
   /**
-   * Clears loading queue, dispose all materials
+   * 清空加载队列并释放全部材质
    */
   private __cleanup() {
     this.queue.clear();

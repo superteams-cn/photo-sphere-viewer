@@ -5,7 +5,7 @@ import path from 'path';
 const testDir = path.join(import.meta.dirname, 'fixtures/generate-coverage-summary');
 
 describe('generate-coverage-summary', () => {
-  it('should generate the summmary', () => {
+  it('应生成覆盖率摘要', () => {
     const result = execSync(`node ${path.join(import.meta.dirname, '../generate-coverage-summary.mjs')}`, {
       cwd: testDir,
       encoding: 'utf-8',

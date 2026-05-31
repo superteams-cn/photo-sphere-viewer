@@ -118,7 +118,7 @@ export function getCacheKey(
   panorama: EquirectangularTilesPanorama | EquirectangularMultiTilesPanorama,
   firstTile: EquirectangularTileConfig,
 ): string {
-  // some tiles might be "null"
+  // 部分瓦片可能为 null
   for (let i = 0; i < firstTile.cols; i++) {
     const url = panorama.tileUrl(i, firstTile.rows / 2, firstTile.level);
     if (url) {

@@ -10,7 +10,7 @@ describe('utils:PressHandler', () => {
     handler.down();
     handler.up(() => {
       const elapsed = new Date().getTime() - start;
-      // sometimes it goes a bit faster on CI runners
+      // 在 CI runner 上偶尔会更快一些
       assert.ok(elapsed >= 98, `Expected ${elapsed} to be greater than 100`);
       done();
     });

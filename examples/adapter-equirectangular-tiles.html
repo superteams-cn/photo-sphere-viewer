@@ -47,7 +47,7 @@
             baseUrl: `${baseUrl}sphere-small.jpg`,
             tileUrl: (col, row) => {
               if (row === 0 || row === 7) {
-                return null; // the tile won't be loaded
+                return null; // 不加载该瓦片
               }
               if (col === 8 && row === 4) {
                 return 'error.jpg';

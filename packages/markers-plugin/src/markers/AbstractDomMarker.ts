@@ -34,7 +34,7 @@ export abstract class AbstractDomMarker extends Marker {
 
     element.id = `psv-marker-${this.config.id}`;
 
-    // reset CSS class
+    // 重置 CSS 类
     element.setAttribute('class', 'psv-marker');
     if (this.state.visible) {
       element.classList.add('psv-marker--visible');
@@ -49,7 +49,7 @@ export abstract class AbstractDomMarker extends Marker {
       utils.addClasses(element, this.config.className);
     }
 
-    // apply style
+    // 应用样式
     element.style.opacity = `${this.config.opacity}`;
     element.style.zIndex = `${30 + this.config.zIndex}`; // 30 is the base z-index in the stylesheet
     if (this.config.style) {

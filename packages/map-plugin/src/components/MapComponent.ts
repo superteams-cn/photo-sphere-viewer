@@ -105,7 +105,7 @@ export class MapComponent extends AbstractComponent {
     this.__setCursor('move');
     canvasContainer.appendChild(this.canvas);
 
-    // overlay
+    // 覆盖层
     this.overlay = document.createElement('div');
     this.overlay.className = 'psv-map__overlay';
     canvasContainer.appendChild(this.overlay);
@@ -115,7 +115,7 @@ export class MapComponent extends AbstractComponent {
     this.container.addEventListener('transitionstart', this);
     this.container.addEventListener('transitionend', this);
 
-    // sub-components
+    // 子组件
     if (this.config.buttons.reset) {
       this.resetButton = new MapResetButton(this);
     }
@@ -130,7 +130,7 @@ export class MapComponent extends AbstractComponent {
     }
     this.zoomToolbar = new MapZoomToolbar(this);
 
-    // render loop
+    // 渲染循环
     const renderLoop = () => {
       if (this.isVisible() && (this.state.needsUpdate || this.state.forceRender)) {
         this.render();
@@ -348,13 +348,13 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-   * Flag for render
+   * 渲染标记
    */
   update(clear = true) {
     this.state.needsUpdate = true;
 
     if (clear) {
-      // clear hotspots status
+      // 清除热点状态
       this.state.hotspotPos = {};
       this.__resetHotspot();
     }
@@ -398,7 +398,7 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-   * Switch collapsed mode
+   * 切换折叠模式
    */
   toggleCollapse() {
     if (this.state.maximized) {
@@ -420,7 +420,7 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-   * Switch maximized mode
+   * 切换最大化模式
    */
   toggleMaximized(dispatchMinimizeEvent = true) {
     if (this.state.collapsed) {
@@ -504,7 +504,7 @@ export class MapComponent extends AbstractComponent {
     const rotation = this.config.rotation;
     const yawAndRotation = this.config.static ? 0 : yaw + rotation;
 
-    // update UI
+    // 更新界面
     if (!this.config.static) {
       if (this.config.shape === 'round') {
         this.overlay.style.transform = `rotate(${-yawAndRotation}rad)`;
@@ -513,7 +513,7 @@ export class MapComponent extends AbstractComponent {
     }
     this.zoomToolbar.setText(this.state.zoom);
 
-    // clear canvas
+    // 清空 canvas
     this.canvas.width = this.container.clientWidth * SYSTEM.pixelRatio;
     this.canvas.height = this.container.clientHeight * SYSTEM.pixelRatio;
 
@@ -582,7 +582,7 @@ export class MapComponent extends AbstractComponent {
 
         const spotPos = projectPoint(hotspotPos, yawAndRotation, zoom);
 
-        // TODO filter out not visible
+        // TODO 过滤不可见项
 
         const x = canvasVirtualCenterX - spotPos.x;
         const y = canvasVirtualCenterY - spotPos.y;

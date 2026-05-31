@@ -86,7 +86,7 @@ export abstract class AbstractMoveButton extends AbstractButton {
   }
 
   onClick() {
-    // nothing
+    // 无操作
   }
 
   override isSupported() {

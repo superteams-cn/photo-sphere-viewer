@@ -117,18 +117,20 @@
 
       const gui = new GUI({ title: '自动旋转插件选项' });
 
-      gui.add(config, 'autostartDelay', 0, 10000, 500);
-      gui.add(config, 'autostartOnIdle');
+      gui.add(config, 'autostartDelay', 0, 10000, 500).name('自动启动延迟');
+      gui.add(config, 'autostartOnIdle').name('空闲时自动启动');
       const overridePitch = gui.add(config2, 'overridePitch');
       const autorotatePitch = gui.add(config, 'autorotatePitch');
       const overrideZoomLvl = gui.add(config2, 'overrideZoomLvl');
       const autorotateZoomLvl = gui.add(config, 'autorotateZoomLvl', 0, 100, 1);
 
       overridePitch.name('覆盖俯仰角');
+      autorotatePitch.name('自动旋转俯仰角');
       overridePitch.onChange((ok) => (ok ? autorotatePitch.show() : autorotatePitch.hide()));
       config2.overridePitch ? autorotatePitch.show() : autorotatePitch.hide();
 
       overrideZoomLvl.name('覆盖缩放级别');
+      autorotateZoomLvl.name('自动旋转缩放级别');
       overrideZoomLvl.onChange((ok) => (ok ? autorotateZoomLvl.show() : autorotateZoomLvl.hide()));
       config2.overrideZoomLvl ? autorotateZoomLvl.show() : autorotateZoomLvl.hide();
 

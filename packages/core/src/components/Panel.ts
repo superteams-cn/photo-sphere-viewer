@@ -27,7 +27,7 @@ export type PanelConfig = {
    */
   noMargin?: boolean;
   /**
-   * initial width
+   * 初始宽度
    */
   width?: string;
   /**
@@ -37,7 +37,7 @@ export type PanelConfig = {
 };
 
 /**
- * Panel component
+ * 面板组件
  */
 export class Panel extends AbstractComponent {
   /**
@@ -80,7 +80,7 @@ export class Panel extends AbstractComponent {
 
     closeBtn.addEventListener('click', () => this.hide());
 
-    // Event for panel resizing
+    // 面板尺寸调整事件
     resizer.addEventListener('mousedown', this);
     resizer.addEventListener('touchstart', this);
     this.viewer.container.addEventListener('mouseup', this);

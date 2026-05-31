@@ -5,7 +5,7 @@ import type { Viewer } from '../Viewer';
 import { AbstractComponent } from './AbstractComponent';
 
 /**
- * Loader component
+ * 加载器组件
  */
 export class Loader extends AbstractComponent {
   private readonly loader: HTMLElement;

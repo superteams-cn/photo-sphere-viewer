@@ -18,7 +18,7 @@
   overflow: hidden;
   transition: transform ease-in-out 0.1s;
   transform: translateY(100%);
-  z-index: psv.$ui-zindex + 1; // above map/plan
+  z-index: psv.$ui-zindex + 1; // 位于地图/平面图之上
   cursor: default;
 
   @at-root .psv--has-navbar & {
@@ -124,7 +124,7 @@
     align-items: center;
     justify-content: center;
     padding: gallery.$padding;
-    z-index: 9; // bellow close button
+    z-index: 9; // 位于关闭按钮之下
     cursor: pointer;
     transition: opacity 0.3s ease-in-out;
 

@@ -2,7 +2,7 @@ import type { GalleryPlugin } from '@photo-sphere-viewer/gallery-plugin';
 import { callPlugin, callViewer, checkPanorama, setPanorama, waitViewerReady } from '../../utils';
 import { BASE_URL, NO_LOG, VIEWPORT_MOBILE } from '../../utils/constants';
 
-describe('plugin: gallery', () => {
+describe('插件：图库', () => {
   beforeEach(() => {
     cy.visit('e2e/plugins/gallery.html');
     waitViewerReady();
@@ -12,24 +12,23 @@ describe('plugin: gallery', () => {
       'key-biscayne-3-thumb.jpg',
       'key-biscayne-4-thumb.jpg',
     );
-    // createBaseSnapshot();
   });
 
-  it('should destroy', () => {
-    callViewer('destroy').then((viewer) => viewer.destroy());
+  it('应能销毁查看器', () => {
+    callViewer('销毁').then((viewer) => viewer.destroy());
   });
 
-  it('should have a gallery', () => {
+  it('应显示图库', () => {
     cy.get('.psv-gallery').should('be.visible').compareScreenshots('base');
   });
 
-  it('should hide gallery on panel open', () => {
+  it('打开面板时应隐藏图库', () => {
     callViewer('打开面板').then((viewer) => viewer.panel.show('中文内容'));
 
     cy.get('.psv-gallery').should('not.be.visible');
   });
 
-  it('should scroll horizontally', () => {
+  it('应能横向滚动', () => {
     cy.get('.psv-gallery')
       .trigger('wheel', { deltaY: 1 })
       .trigger('wheel', { deltaY: 1 })
@@ -41,7 +40,7 @@ describe('plugin: gallery', () => {
     cy.get('.psv-gallery').compareScreenshots('scroll-pan');
   });
 
-  it('should click and drag', () => {
+  it('应支持点击拖动', () => {
     cy.get('.psv-gallery')
       .trigger('mousedown', { clientX: 1200 })
       .trigger('mousemove', { clientX: 100 })
@@ -52,7 +51,7 @@ describe('plugin: gallery', () => {
     cy.get('.psv-gallery').compareScreenshots('scroll-pan');
   });
 
-  it('should display fullscreen on mobile', VIEWPORT_MOBILE, () => {
+  it('在移动端应全屏显示', VIEWPORT_MOBILE, () => {
     waitForAllThumbnails();
 
     cy.get('.psv-gallery').should((gallery) => {
@@ -67,7 +66,7 @@ describe('plugin: gallery', () => {
     cy.get('.psv-gallery').should('not.be.visible');
   });
 
-  it('should add a navbar button', () => {
+  it('应添加导航栏按钮', () => {
     cy.get('.psv-gallery-button')
       .should('be.visible')
       .should('have.class', 'psv-button--active')
@@ -81,7 +80,7 @@ describe('plugin: gallery', () => {
     cy.get('.psv-gallery').should('be.visible');
   });
 
-  it('should highlight the current item', () => {
+  it('应高亮当前项目', () => {
     cy.get('[data-psv-gallery-item=sphere]').should('have.class', 'psv-gallery-item--active');
 
     setPanorama('sphere-test.jpg');
@@ -94,12 +93,12 @@ describe('plugin: gallery', () => {
     cy.get('.psv-gallery-item--active').should('not.exist');
   });
 
-  it('should change the panorama when clicked', () => {
+  it('点击时应切换全景图', () => {
     cy.get('[data-psv-gallery-item=test-sphere]').click();
     waitViewerReady();
 
     checkPanorama('sphere-test.jpg');
-    cy.get('.psv-caption-content').should('have.text', 'Test sphere'); // use name as caption
+    cy.get('.psv-caption-content').should('have.text', 'Test sphere'); // 使用名称作为标题
 
     cy.get('[data-psv-gallery-item=1]').click();
     waitViewerReady();
@@ -107,24 +106,26 @@ describe('plugin: gallery', () => {
     cy.get('.psv-caption-content').should('have.text', '佛罗里达角灯塔，基比斯坎 © Pixexid');
   });
 
-  it('should hide on click', () => {
-    callGallery('set hideOnClick').then((gallery) => gallery.setOption('hideOnClick', true));
+  it('点击后应隐藏', () => {
+    callGallery('设置 hideOnClick').then((gallery) => gallery.setOption('hideOnClick', true));
 
     cy.get('[data-psv-gallery-item=test-sphere]').click();
 
     cy.get('.psv-gallery').should('not.be.visible');
   });
 
-  it('should change thumbnails size', () => {
-    callGallery('set thumbnailSize').then((gallery) => gallery.setOption('thumbnailSize', { width: 100, height: 100 }));
+  it('应能修改缩略图尺寸', () => {
+    callGallery('设置 thumbnailSize').then((gallery) =>
+      gallery.setOption('thumbnailSize', { width: 100, height: 100 }),
+    );
 
     waitForAllThumbnails();
 
     cy.get('.psv-gallery').compareScreenshots('set-thumbnailSize');
   });
 
-  it('should change the items', () => {
-    callGallery('set items').then((gallery) => {
+  it('应能修改项目', () => {
+    callGallery('设置项目').then((gallery) => {
       gallery.setItems([
         {
           id: 1,
@@ -142,18 +143,18 @@ describe('plugin: gallery', () => {
     cy.get('.psv-gallery').compareScreenshots('set-items');
   });
 
-  it('should throw if no "id" or "panorama"', () => {
-    callGallery('set items').then((gallery) => {
+  it('缺少 "id" 或 "panorama" 时应抛出异常', () => {
+    callGallery('设置项目').then((gallery) => {
       expect(() => gallery.setItems([{ id: null, panorama: 'img.jpg' }])).to.throw('Item 0 has no "id".');
 
       expect(() => gallery.setItems([{ id: 'id', panorama: null }])).to.throw('Item "id" has no "panorama".');
     });
   });
 
-  it('should change the items w. custom callback', () => {
+  it('应能通过自定义回调修改项目', () => {
     const callback = cy.stub();
 
-    callGallery('set items').then((gallery) => {
+    callGallery('设置项目').then((gallery) => {
       gallery.setItems(
         [
           {
@@ -171,11 +172,11 @@ describe('plugin: gallery', () => {
       .should('have.class', 'psv-gallery-item--active')
       .then(() => expect(callback).to.be.calledOnceWith('1'));
 
-    // not changed
+    // 未改变
     checkPanorama('sphere-small.jpg');
 
     cy.wrap(callback, NO_LOG).then(() => {
-      cy.log('Reset stub');
+      cy.log('重置 stub');
       callback.reset();
     });
 
@@ -184,15 +185,15 @@ describe('plugin: gallery', () => {
       .then(() => expect(callback).to.not.have.been.called);
   });
 
-  it('should hide the button when no items', () => {
-    callGallery('set items').then((gallery) => gallery.setItems(null));
+  it('没有项目时应隐藏按钮', () => {
+    callGallery('设置项目').then((gallery) => gallery.setItems(null));
 
     cy.get('.psv-gallery-button').should('not.be.visible');
 
     cy.get('.psv-gallery').should('not.be.visible');
   });
 
-  it('should not be visible on load', () => {
+  it('加载时应保持不可见', () => {
     cy.visit('e2e/plugins/gallery.html?visibleOnLoad=false');
     waitViewerReady();
 

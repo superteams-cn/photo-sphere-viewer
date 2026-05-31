@@ -65,7 +65,7 @@ export class AbstractZoomButton extends AbstractButton {
   }
 
   onClick() {
-    // nothing
+    // 无操作
   }
 
   override isSupported() {

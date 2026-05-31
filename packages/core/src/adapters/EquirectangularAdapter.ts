@@ -203,7 +203,7 @@ export class EquirectangularAdapter extends AbstractAdapter<
   }
 
   /**
-   * Reads a Blob as a string
+   * 将 Blob 读取为字符串
    */
   private loadBlobAsString(blob: Blob): Promise<string> {
     return new Promise((resolve, reject) => {

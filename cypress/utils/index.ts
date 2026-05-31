@@ -67,7 +67,7 @@ export function createBaseSnapshot() {
   if (Cypress.config('isInteractive')) {
     Cypress.expose('visualRegressionType', 'base');
   } else {
-    throw new Error(`Unauthorized call to createBaseSnapshot`);
+    throw new Error(`不允许调用 createBaseSnapshot`);
   }
 }
 

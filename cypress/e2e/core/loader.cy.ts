@@ -1,12 +1,11 @@
 import { callViewer } from '../../utils';
 
-describe('core: loader', () => {
+describe('核心：加载器', () => {
   beforeEach(() => {
     cy.visit('e2e/core/loader.html');
-    // createBaseSnapshot();
   });
 
-  it('should have a loader', () => {
+  it('应显示加载器', () => {
     cy.get('.psv-loader')
       .should('be.visible')
       .should('include.text', '加载中...')
@@ -17,17 +16,17 @@ describe('core: loader', () => {
       .compareScreenshots('base');
   });
 
-  it('should hide/show the loader', () => {
-    callViewer('hide loader').then((viewer) => viewer.loader.hide());
+  it('应能隐藏和显示加载器', () => {
+    callViewer('隐藏加载器').then((viewer) => viewer.loader.hide());
 
     cy.get('.psv-loader').should('not.be.visible');
 
-    callViewer('show loader').then((viewer) => viewer.loader.show());
+    callViewer('显示加载器').then((viewer) => viewer.loader.show());
 
     cy.get('.psv-loader').should('be.visible');
   });
 
-  it('should change the loading text and image', () => {
+  it('应能修改加载文本和图片', () => {
     callViewer('set lang.loading').then((viewer) => viewer.setOption('lang', { loading: 'Chargement...' }));
 
     cy.get('.psv-loader').should('include.text', 'Chargement...');
@@ -44,7 +43,7 @@ describe('core: loader', () => {
     cy.get('.psv-loader').compareScreenshots('loading-img');
   });
 
-  it('should change the progression', () => {
+  it('应能修改加载进度', () => {
     [
       [0, 0],
       [45, 45],
@@ -53,7 +52,7 @@ describe('core: loader', () => {
       [-20, 0],
       [150, 100],
     ].forEach(([progress, expected]) => {
-      callViewer(`set progress ${progress}`).then((viewer) => viewer.loader.setProgress(progress));
+      callViewer(`设置进度 ${progress}`).then((viewer) => viewer.loader.setProgress(progress));
 
       cy.get('.psv-loader').compareScreenshots(`progress_${expected}`);
     });

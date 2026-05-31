@@ -83,7 +83,7 @@ export class PlanComponent extends AbstractComponent {
     this.container.addEventListener('transitionstart', this);
     this.container.addEventListener('transitionend', this);
 
-    // sub-components
+    // 子组件
     this.layersButton = new PlanLayersButton(this);
     if (this.config.buttons.reset) {
       this.resetButton = new PlanResetButton(this);
@@ -95,7 +95,7 @@ export class PlanComponent extends AbstractComponent {
       this.closeButton = new PlanCloseButton(this);
     }
 
-    // render loop
+    // 渲染循环
     const renderLoop = () => {
       if (this.isVisible() && (this.state.needsUpdate || this.state.forceRender)) {
         this.map?.invalidateSize();
@@ -337,7 +337,7 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-   * Switch collapsed mode
+   * 切换折叠模式
    */
   toggleCollapse() {
     if (this.state.maximized) {
@@ -359,7 +359,7 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-   * Switch maximized mode
+   * 切换最大化模式
    */
   toggleMaximized(dispatchMinimizeEvent = true) {
     if (this.state.collapsed) {

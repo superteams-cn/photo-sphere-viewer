@@ -1,4 +1,4 @@
-// *** MAIN ***
+// *** 主体 ***
 $main-background-stops:
   #fff 0%,
   #fdfdfd 16%,
@@ -10,7 +10,7 @@ $main-background-stops:
 $main-background: radial-gradient($main-background-stops) !default;
 $element-focus-outline: 2px solid #007cff !default;
 
-// *** LOADER ***
+// *** 加载器 ***
 $loader-bg-color: rgb(61, 61, 61, 0.5) !default;
 $loader-color: rgb(255, 255, 255, 0.7) !default;
 $loader-width: 150px !default;
@@ -18,7 +18,7 @@ $loader-tickness: 10px !default;
 $loader-border: 3px !default;
 $loader-font: 600 16px sans-serif !default;
 
-// *** NAVBAR ***
+// *** 导航栏 ***
 $navbar-height: 40px !default;
 $navbar-background: rgb(61, 61, 61, 0.5) !default;
 
@@ -40,7 +40,7 @@ $zoom-range-tickness: 1px !default;
 $zoom-range-diameter: 7px !default;
 $zoom-range-media-min-width: 600px !default;
 
-// *** TOOLTIP ***
+// *** 工具提示 ***
 $tooltip-background: rgb(61, 61, 61, 0.8) !default;
 $tooltip-animate-offset: 5px !default;
 $tooltip-animate-delay: 100ms !default;
@@ -56,7 +56,7 @@ $tooltip-text-shadow: 0 1px #000 !default;
 $tooltip-shadow-color: rgb(90, 90, 90, 0.7) !default;
 $tooltip-shadow-offset: 3px !default; // 阴影始终位于箭头的相对侧
 
-// *** PANEL ***
+// *** 面板 ***
 $panel-background: rgb(10, 10, 10, 0.7) !default;
 $panel-text-color: rgb(220, 220, 220) !default;
 $panel-font: 16px sans-serif !default;
@@ -64,10 +64,10 @@ $panel-width: 400px !default;
 $panel-padding: 1em !default;
 $panel-animate-delay: 100ms !default;
 
-$panel-resizer-width: 9px !default; // must be odd
+$panel-resizer-width: 9px !default; // 必须为奇数
 $panel-resizer-background: rgb(0, 0, 0, 0.9) !default;
 $panel-resizer-grip-color: #fff !default;
-$panel-resizer-grip-height: 29px !default; // must be odd
+$panel-resizer-grip-height: 29px !default; // 必须为奇数
 $panel-close-button-size: 32px !default;
 $panel-close-button-background: $panel-resizer-background !default;
 $panel-close-button-color: #fff !default;
@@ -84,7 +84,7 @@ $panel-menu-odd-background: rgb(255, 255, 255, 0.1) !default;
 $panel-menu-even-background: transparent !default;
 $panel-menu-hover-background: rgb(255, 255, 255, 0.2) !default;
 
-// *** NOTIFICATION ***
+// *** 通知 ***
 $notification-position-from: -$navbar-height !default;
 $notification-position-to: $navbar-height * 2 !default;
 $notification-animate-delay: 200ms !default;
@@ -94,7 +94,7 @@ $notification-padding: $tooltip-padding !default;
 $notification-font: $tooltip-font !default;
 $notification-text-color: $tooltip-text-color !default;
 
-// *** OVERLAY ***
+// *** 覆盖层 ***
 $overlay-opacity: 0.8 !default;
 $overlay-icon-color: rgb(48, 48, 48) !default;
 $overlay-title-font: 30px sans-serif !default;
@@ -106,7 +106,7 @@ $overlay-image-size: (
   landscape: 33%,
 ) !default;
 
-// *** Z-INDEXES ***
+// *** Z-INDEX ***
 $canvas-zindex: 0 !default;
 $hud-zindex: 10 !default;
 $polygon-marker-zindex: 20 !default;

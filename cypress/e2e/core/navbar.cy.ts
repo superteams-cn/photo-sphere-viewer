@@ -2,19 +2,18 @@ import { type Navbar } from '@photo-sphere-viewer/core';
 import { callViewer, waitViewerReady } from '../../utils';
 import { VIEWPORT_MOBILE } from '../../utils/constants';
 
-describe('core: navbar', () => {
+describe('核心：导航栏', () => {
   beforeEach(() => {
     localStorage.photoSphereViewer_touchSupport = 'false';
     cy.visit('e2e/core/navbar.html');
     waitViewerReady();
-    // createBaseSnapshot();
   });
 
-  it('should have a navbar', () => {
+  it('应显示导航栏', () => {
     cy.get('.psv-navbar').should('be.visible').compareScreenshots('base');
   });
 
-  it('should have a custom button', () => {
+  it('应支持自定义按钮', () => {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
 
@@ -25,23 +24,21 @@ describe('core: navbar', () => {
       });
   });
 
-  it('should update the caption', () => {
+  it('应能更新标题', () => {
     cy.get('.psv-caption-content').should('have.text', '梅康图尔国家公园 © Damien Sorel');
 
-    callViewer('change caption via options').then((viewer) =>
-      viewer.setOption('caption', '<strong>名称：</strong>中文示例'),
-    );
+    callViewer('通过选项修改标题').then((viewer) => viewer.setOption('caption', '<strong>名称：</strong>中文示例'));
 
     cy.get('.psv-caption-content').should('have.text', '名称：中文示例');
 
     cy.get('.psv-navbar').compareScreenshots('update-caption');
 
-    callNavbar('change caption via API').then((navbar) => navbar.setCaption('加载中...'));
+    callNavbar('通过 API 修改标题').then((navbar) => navbar.setCaption('加载中...'));
 
     cy.get('.psv-caption-content').should('have.text', '加载中...');
   });
 
-  it('should show the description in the side panel', () => {
+  it('应在侧边面板中显示说明', () => {
     cy.get('.psv-description-button').click();
 
     cy.get('.psv-panel')
@@ -54,19 +51,19 @@ describe('core: navbar', () => {
 
     cy.get('.psv-panel').should('not.be.visible');
 
-    callViewer('clear description').then((viewer) => viewer.setOption('description', null));
+    callViewer('清空说明').then((viewer) => viewer.setOption('description', null));
 
     cy.get('.psv-description-button').should('not.be.visible');
   });
 
   it(
-    'should hide the caption if not enough space',
+    '空间不足时应隐藏标题',
     {
       viewportWidth: 800,
       viewportHeight: 900,
     },
     () => {
-      callViewer('remove description').then((viewer) => viewer.setOption('description', null));
+      callViewer('移除说明').then((viewer) => viewer.setOption('description', null));
 
       cy.get('.psv-caption-content').should('not.be.visible');
 
@@ -85,7 +82,7 @@ describe('core: navbar', () => {
     },
   );
 
-  it('should display a menu on small screens', VIEWPORT_MOBILE, () => {
+  it('小屏幕上应显示菜单', VIEWPORT_MOBILE, () => {
     ['.psv-caption-content', '.psv-zoom-range', '.psv-download-button', '.custom-button:eq(0)'].forEach((invisible) => {
       cy.get(invisible).should('not.be.visible');
     });
@@ -120,7 +117,7 @@ describe('core: navbar', () => {
     cy.get('.psv-panel').should('not.be.visible');
   });
 
-  it('should translate buttons', () => {
+  it('应能翻译按钮', () => {
     function assertTitles(titles: any) {
       cy.get('.psv-zoom-button:eq(0)').invoke('attr', 'title').should('eq', titles.zoomOut);
       cy.get('.psv-zoom-button:eq(1)').invoke('attr', 'title').should('eq', titles.zoomIn);
@@ -160,24 +157,24 @@ describe('core: navbar', () => {
       fullscreen: 'Plein écran',
       myButton: 'Cliquez ici',
     };
-    callViewer('translate to french').then((viewer) => viewer.setOption('lang', fr));
+    callViewer('切换为法语').then((viewer) => viewer.setOption('lang', fr));
 
     assertTitles(fr);
   });
 
-  it('should hide the navbar', () => {
-    callNavbar('hide navbar').then((navbar) => navbar.hide());
+  it('应能隐藏导航栏', () => {
+    callNavbar('隐藏导航栏').then((navbar) => navbar.hide());
     checkNavbarVisibleApi(false);
     cy.get('.psv-navbar').should('not.be.visible').should('not.have.class', 'psv-navbar--open');
     cy.get('.psv-container').should('not.have.class', 'psv--has-navbar');
 
-    callNavbar('show navbar').then((navbar) => navbar.show());
+    callNavbar('显示导航栏').then((navbar) => navbar.show());
     checkNavbarVisibleApi(true);
     cy.get('.psv-navbar').should('be.visible').should('have.class', 'psv-navbar--open');
     cy.get('.psv-container').should('have.class', 'psv--has-navbar');
   });
 
-  it('should update the buttons', () => {
+  it('应能更新按钮', () => {
     function assertButtons(expected: string[]) {
       cy.get('.psv-button').then(($buttons) => {
         const titles = $buttons
@@ -188,44 +185,44 @@ describe('core: navbar', () => {
       });
     }
 
-    callViewer('change buttons via options').then((viewer) => viewer.setOption('navbar', 'zoom move'));
+    callViewer('通过选项修改按钮').then((viewer) => viewer.setOption('navbar', 'zoom move'));
 
     assertButtons(['缩小', '放大', '向左移动', '向右移动', '向上移动', '向下移动']);
 
     cy.get('.psv-navbar').compareScreenshots('update-buttons');
 
-    callNavbar('change buttons via API').then((navbar) => navbar.setButtons(['download', 'fullscreen']));
+    callNavbar('通过 API 修改按钮').then((navbar) => navbar.setButtons(['download', 'fullscreen']));
 
     assertButtons(['下载', '全屏']);
   });
 
-  it('should hide a button', () => {
-    callNavbar('hide fullscreen button').then((navbar) => navbar.getButton('fullscreen').hide());
+  it('应能隐藏按钮', () => {
+    callNavbar('隐藏全屏按钮').then((navbar) => navbar.getButton('fullscreen').hide());
 
     cy.get('.psv-fullscreen-button').should('not.be.visible');
 
     cy.get('.psv-navbar').compareScreenshots('hide-button');
 
-    callNavbar('show fullscreen button').then((navbar) => navbar.getButton('fullscreen').show());
+    callNavbar('显示全屏按钮').then((navbar) => navbar.getButton('fullscreen').show());
 
     cy.get('.psv-fullscreen-button').should('be.visible');
   });
 
-  it('should disable a button', () => {
-    callNavbar('disable download button').then((navbar) => navbar.getButton('download').disable());
+  it('应能禁用按钮', () => {
+    callNavbar('禁用下载按钮').then((navbar) => navbar.getButton('download').disable());
 
     cy.get('.psv-download-button').should('have.class', 'psv-button--disabled');
 
     cy.get('.psv-navbar').compareScreenshots('disable-button');
 
-    callNavbar('enable download button').then((navbar) => navbar.getButton('download').enable());
+    callNavbar('启用下载按钮').then((navbar) => navbar.getButton('download').enable());
 
     cy.get('.psv-download-button').should('not.have.class', 'psv-button--disabled');
   });
 
-  it('should display a custom element', () => {
+  it('应显示自定义元素', () => {
     cy.document().then((document) => {
-      callNavbar('set custom element').then((navbar) =>
+      callNavbar('设置自定义元素').then((navbar) =>
         navbar.setButtons([
           {
             content: document.createElement('custom-navbar-button'),
@@ -251,7 +248,7 @@ describe('core: navbar', () => {
   }
 
   function checkNavbarVisibleApi(visible: boolean) {
-    callNavbar(`check navbar ${visible ? 'visible' : 'not visible'}`).then((navbar) => {
+    callNavbar(`检查导航栏是否${visible ? '可见' : '不可见'}`).then((navbar) => {
       expect(navbar.isVisible()).to.eq(visible);
     });
   }

@@ -9,42 +9,42 @@ import zoomIn from '../icons/zoom-in.svg';
 import zoomOut from '../icons/zoom-out.svg';
 
 /**
- *  Minimum duration of the animations created with {@link Viewer#animate}
+ * {@link Viewer#animate} 创建动画的最短时长
  */
 export const ANIMATION_MIN_DURATION = 500;
 
 /**
- * Number of pixels below which a mouse move will be considered as a click
+ * 鼠标移动小于该像素数时视为点击
  */
 export const MOVE_THRESHOLD = 4;
 
 /**
- * Delay in milliseconds between two clicks to consider a double click
+ * 两次点击间隔小于该毫秒数时视为双击
  */
 export const DBLCLICK_DELAY = 300;
 
 /**
- * Delay in milliseconds to emulate a long touch
+ * 模拟长按的延迟毫秒数
  */
 export const LONGTOUCH_DELAY = 500;
 
 /**
- * Delay in milliseconds to for the two fingers overlay to appear
+ * 双指提示覆盖层出现前的延迟毫秒数
  */
 export const TWOFINGERSOVERLAY_DELAY = 100;
 
 /**
- * Duration in milliseconds of the "ctrl zoom" overlay
+ * “按住 Ctrl 缩放”覆盖层的显示时长（毫秒）
  */
 export const CTRLZOOM_TIMEOUT = 2000;
 
 /**
- * Radius of the SphereGeometry, Half-length of the BoxGeometry
+ * SphereGeometry 的半径，也是 BoxGeometry 的半边长
  */
 export const SPHERE_RADIUS = 10;
 
 /**
- * Property name added to viewer element
+ * 添加到查看器元素上的属性名
  */
 export const VIEWER_DATA = 'photoSphereViewer';
 
@@ -54,7 +54,7 @@ export const VIEWER_DATA = 'photoSphereViewer';
 export const CAPTURE_EVENTS_CLASS = 'psv--capture-event';
 
 /**
- * Actions available for {@link ViewerConfig['keyboardActions']} configuration
+ * {@link ViewerConfig['keyboardActions']} 配置可用的动作
  */
 export enum ACTIONS {
   ROTATE_UP = 'ROTATE_UP',
@@ -66,7 +66,7 @@ export enum ACTIONS {
 }
 
 /**
- * Internal identifiers for various stuff
+ * 各类内部标识符
  * @internal
  */
 export const IDS = {
@@ -78,7 +78,7 @@ export const IDS = {
 };
 
 /**
- * Subset of keyboard codes
+ * 键盘按键代码子集
  */
 export const KEY_CODES = {
   Enter: 'Enter',
@@ -97,7 +97,7 @@ export const KEY_CODES = {
 };
 
 /**
- * Collection of SVG icons
+ * SVG 图标集合
  */
 export const ICONS = {
   arrow,
@@ -112,7 +112,7 @@ export const ICONS = {
 };
 
 /**
- * String identifiers for easing functions
+ * 缓动函数的字符串标识符
  */
 export type EASING =
   | 'linear'
@@ -139,7 +139,7 @@ export type EASING =
   | 'inOutCirc';
 
 /**
- * Collection of easing functions
+ * 缓动函数集合
  * @see https://gist.github.com/frederickk/6165768
  */
 export const EASINGS: Record<EASING, (t: number) => number> = {

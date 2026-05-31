@@ -2,7 +2,7 @@ import type { ResolutionPlugin } from '@photo-sphere-viewer/resolution-plugin';
 import { callPlugin, callViewer, checkEventHandler, checkPanorama, setPanorama, waitViewerReady } from '../../utils';
 import { BASE_URL } from '../../utils/constants';
 
-describe('plugin: resolution', () => {
+describe('插件：分辨率', () => {
   beforeEach(() => {
     localStorage.photoSphereViewer_touchSupport = 'false';
     cy.visit('e2e/plugins/resolution.html');
@@ -10,7 +10,7 @@ describe('plugin: resolution', () => {
   });
 
   it('应能销毁', () => {
-    callViewer('destroy').then((viewer) => viewer.destroy());
+    callViewer('销毁').then((viewer) => viewer.destroy());
   });
 
   it('应显示设置面板', () => {
@@ -30,7 +30,7 @@ describe('plugin: resolution', () => {
   });
 
   it('应能翻译设置项', () => {
-    callViewer('set lang').then((viewer) => viewer.setOption('lang', { resolution: 'Qualité' }));
+    callViewer('设置语言').then((viewer) => viewer.setOption('lang', { resolution: 'Qualité' }));
 
     cy.get('.psv-settings-button').click();
 
@@ -68,12 +68,12 @@ describe('plugin: resolution', () => {
   it('应能通过 API 切换画质档位', () => {
     const resolutionChangeHandler = listenResolutionEvent('resolution-changed');
 
-    callResolution('set resolution').then((resolution) => resolution.setResolution('HD'));
+    callResolution('设置画质档位').then((resolution) => resolution.setResolution('HD'));
 
     checkPanorama('sphere-small.jpg?hd');
     checkEventHandler(resolutionChangeHandler, { resolutionId: 'HD' });
 
-    callResolution('set bad resolution').then((resolution) => {
+    callResolution('设置无效画质档位').then((resolution) => {
       expect(() => resolution.setResolution('MD')).to.throw('未知画质档位 "MD"。');
     });
   });
@@ -90,7 +90,7 @@ describe('plugin: resolution', () => {
     const resolutionChangeHandler = listenResolutionEvent('resolution-changed');
 
     // 当前全景图存在于新列表中
-    callResolution('set resolutions w.o. default').then((resolution) =>
+    callResolution('设置画质档位列表（无默认值）').then((resolution) =>
       resolution.setResolutions([
         { id: 'large', label: 'large', panorama: BASE_URL + 'sphere-small.jpg?hd' },
         { id: 'small', label: 'small', panorama: BASE_URL + 'sphere-small.jpg' },
@@ -102,7 +102,7 @@ describe('plugin: resolution', () => {
     resolutionChangeHandler.reset();
 
     // 提供默认值
-    callResolution('set resolutions w. default').then((resolution) =>
+    callResolution('设置画质档位列表（有默认值）').then((resolution) =>
       resolution.setResolutions(
         [
           { id: 'large', label: 'large', panorama: BASE_URL + 'sphere-small.jpg?hd' },
@@ -120,7 +120,7 @@ describe('plugin: resolution', () => {
 
     // 当前全景图不存在于新列表中
     setPanorama('sphere-test.jpg');
-    callResolution('set resolutions w.o. default no match').then((resolution) =>
+    callResolution('设置画质档位列表（无默认值且无匹配项）').then((resolution) =>
       resolution.setResolutions([
         { id: 'small', label: 'small', panorama: BASE_URL + 'sphere-small.jpg' },
         { id: 'large', label: 'large', panorama: BASE_URL + 'sphere-small.jpg?hd' },
@@ -133,7 +133,7 @@ describe('plugin: resolution', () => {
   });
 
   it('缺少属性时应抛出异常', () => {
-    callResolution('set resolutions').then((resolution) => {
+    callResolution('设置画质档位列表').then((resolution) => {
       expect(() => resolution.setResolutions([{ id: null, label: 'label', panorama: 'sphere.jpg' }])).to.throw(
         '缺少画质档位 id。',
       );
@@ -156,7 +156,7 @@ describe('plugin: resolution', () => {
     name: Parameters<ResolutionPlugin['addEventListener']>[0],
   ): Cypress.Agent<sinon.SinonStub> {
     const handler = cy.stub();
-    callResolution(`listen "${name}"`).then((resolution) => resolution.addEventListener(name, handler));
+    callResolution(`监听 "${name}"`).then((resolution) => resolution.addEventListener(name, handler));
     return handler;
   }
 });

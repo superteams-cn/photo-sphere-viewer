@@ -161,7 +161,7 @@ export class OverlaysPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Remove all overlays
+   * 移除全部覆盖层
    */
   clearOverlays() {
     Object.keys(this.state.overlays).forEach((id) => {

@@ -141,14 +141,16 @@
 
       const gui = new GUI({ title: '指南针插件选项' });
 
-      gui.add(config, 'size');
-      addTextarea(gui, config, 'backgroundSvg', 10);
-      gui.add(config, 'position', ['top left', 'top right', 'bottom left', 'bottom right']);
-      gui.add(config, 'navigation');
-      gui.add(config, 'resetPitch');
-      addColorPicker(gui, config, 'coneColor');
-      addColorPicker(gui, config, 'navigationColor');
-      addColorPicker(gui, config, 'hotspotColor');
+      gui.add(config, 'size').name('尺寸');
+      addTextarea(gui, config, 'backgroundSvg', 10).name('背景 SVG');
+      gui
+        .add(config, 'position', { 左上: 'top left', 右上: 'top right', 左下: 'bottom left', 右下: 'bottom right' })
+        .name('位置');
+      gui.add(config, 'navigation').name('启用导航');
+      gui.add(config, 'resetPitch').name('重置俯仰角');
+      addColorPicker(gui, config, 'coneColor').name('视野锥颜色');
+      addColorPicker(gui, config, 'navigationColor').name('导航颜色');
+      addColorPicker(gui, config, 'hotspotColor').name('热点颜色');
 
       gui.onChange(() => {
         compass.setOptions({

@@ -37,7 +37,7 @@ export class NavbarCaption extends AbstractButton {
   }
 
   onClick(): void {
-    // nothing
+    // 无操作
   }
 
   /**

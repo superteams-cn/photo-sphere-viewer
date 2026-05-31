@@ -5,23 +5,23 @@ import type { Viewer } from '../Viewer';
  */
 export abstract class AbstractComponent {
   /**
-   * Reference to main controller
+   * 主控制器引用
    */
   protected readonly viewer: Viewer;
 
   /**
-   * All child components
+   * 全部子组件
    * @internal
    */
   readonly children: AbstractComponent[] = [];
 
   /**
-   * Container element
+   * 容器元素
    */
   readonly container: HTMLElement;
 
   /**
-   * Internal properties
+   * 内部属性
    * @internal
    */
   protected readonly state = {

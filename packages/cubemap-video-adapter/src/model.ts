@@ -12,7 +12,7 @@ export type CubemapVideoPanorama = AbstractVideoPanorama & {
 };
 
 /**
- * Size information of a cubemap panorama
+ * 立方体贴图全景图的尺寸信息
  */
 export type CubemapVideoData = {
   isCubemap: true;

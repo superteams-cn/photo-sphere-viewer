@@ -41,7 +41,7 @@ export default {
         delete pkg.devDependencies;
         return pkg;
       },
-      // this is only necessary for this demo, to override the "file" dependency
+      // 仅此演示需要，用于覆盖 "file" 依赖
       additionalDependencies: {
         '@photo-sphere-viewer/core': '^5.0.0',
       },

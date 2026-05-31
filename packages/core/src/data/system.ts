@@ -5,31 +5,31 @@ import { VIEWER_DATA } from './constants';
 const LOCALSTORAGE_TOUCH_SUPPORT = `${VIEWER_DATA}_touchSupport`;
 
 /**
- * General information about the system
+ * 系统能力信息
  */
 export const SYSTEM = {
   /**
-   * Indicates if the system data has been loaded
+   * 系统数据是否已加载
    */
   loaded: false,
 
   /**
-   * Device screen pixel ratio
+   * 设备屏幕像素比
    */
   pixelRatio: 1,
 
   /**
-   * Device supports WebGL
+   * 设备是否支持 WebGL
    */
   isWebGLSupported: false,
 
   /**
-   * Maximum WebGL texture width
+   * WebGL 最大纹理宽度
    */
   maxTextureWidth: 0,
 
   /**
-   * Device supports touch events
+   * 设备是否支持触摸事件
    */
   isTouchEnabled: null as ResolvableBoolean,
 
@@ -44,7 +44,7 @@ export const SYSTEM = {
   isIphone: false,
 
   /**
-   * Maximum canvas width
+   * 最大 canvas 宽度
    */
   get maxCanvasWidth(): number {
     if (this.__maxCanvasWidth === null) {
@@ -54,7 +54,7 @@ export const SYSTEM = {
   },
 
   /**
-   * Loads the system if not already loaded
+   * 在系统信息尚未加载时加载它
    * @internal
    */
   load() {
@@ -79,7 +79,7 @@ export const SYSTEM = {
 };
 
 /**
- * Tries to return a canvas webgl context
+ * 尝试返回 canvas WebGL 上下文
  */
 function getWebGLCtx(): WebGLRenderingContext | null {
   try {
@@ -133,15 +133,15 @@ function isTouchEnabled(): ResolvableBoolean {
 }
 
 /**
- * Gets max canvas width supported by the browser.
- * We only test powers of 2 and height = width / 2 because that's what we need to generate WebGL textures
- * Adapted from https://github.com/jhildenbiddle/canvas-size
+ * 获取浏览器支持的最大 canvas 宽度。
+ * 仅测试 2 的幂，且高度等于宽度的一半，因为生成 WebGL 纹理只需要这种尺寸。
+ * 改编自 https://github.com/jhildenbiddle/canvas-size
  */
 function getMaxCanvasWidth(maxWidth: number): number {
   let width = maxWidth;
   let pass = false;
 
-  // use 1x1 canvas to reduce the time for getImageData to complete
+  // 使用 1x1 canvas 缩短 getImageData 完成时间
   const cropCanvas = document.createElement('canvas');
   const cropCtx = cropCanvas.getContext('2d');
   cropCanvas.width = 1;
@@ -163,10 +163,10 @@ function getMaxCanvasWidth(maxWidth: number): number {
         pass = true;
       }
     } catch {
-      // continue
+      // 继续尝试
     }
 
-    // Release canvas elements (Safari memory usage fix)
+    // 释放 canvas 元素（修复 Safari 内存占用）
     // https://stackoverflow.com/questions/52532614/total-canvas-memory-use-exceeds-the-maximum-limit-safari-12
     testCanvas.width = 0;
     testCanvas.height = 0;

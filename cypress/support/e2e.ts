@@ -81,7 +81,7 @@ Cypress.Commands.add('waitForResources', (...names) => {
         clearInterval(interval);
         clearTimeout(timeout);
 
-        cy.log('Found all resources');
+        cy.log('已找到全部资源');
         resolve();
       }, 100);
     });

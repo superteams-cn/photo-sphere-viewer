@@ -366,7 +366,7 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
 
   /**
    * 达到延迟时间后自动启动
-   * Performs keypoints animation
+   * 执行关键点动画
    */
   private __beforeRender(timestamp: number) {
     if (
@@ -378,7 +378,7 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
     }
 
     if (this.isEnabled() && this.keypoints) {
-      // initialisation
+      // 初始化
       if (!this.state.startTime) {
         this.state.endStep = serializePt(this.viewer.getPosition());
         this.__nextStep();
@@ -507,7 +507,7 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
       this.state.endStep[0] = utils.parseAngle(this.state.endStep[0]);
     }
 
-    // target next point
+    // 目标下一个点
     this.state.startStep = this.state.endStep;
     this.state.endStep = this.state.curve.shift();
 
@@ -516,7 +516,7 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
     this.state.stepDuration = (distance * 1000) / Math.abs(this.config.autorotateSpeed);
 
     if (distance === 0) {
-      // edge case
+      // 边界情况
       this.__nextStep();
     }
   }
@@ -525,7 +525,7 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
     const ellapsed = timestamp - this.state.lastTime;
     this.state.lastTime = timestamp;
 
-    // currently paused
+    // 当前已暂停
     if (this.state.remainingPause) {
       this.state.remainingPause = Math.max(0, this.state.remainingPause - ellapsed);
       if (this.state.remainingPause > 0) {

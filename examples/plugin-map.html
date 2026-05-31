@@ -49,7 +49,7 @@
             center: { x: 807, y: 607 },
             rotation: '135deg',
             defaultZoom: 40,
-            // position: 'top left',
+            // 位置: 'top left',
             // shape: 'square',
             // size: '300px',
             // maxZoom: 300,
@@ -67,7 +67,7 @@
               },
               {
                 yaw: '-45deg',
-                distance: 80, // pixels
+                distance: 80, // 像素
                 tooltip: '热点',
                 zIndex: 10,
               },
@@ -173,11 +173,11 @@
 
       const overlayImage = map.config.overlayImage;
       const config = {
-        // position
+        // 位置
         center: { ...map.config.center },
         rotation: (map.config.rotation / Math.PI) * 180,
 
-        // display
+        // 显示
         shape: map.config.shape,
         size: map.config.size,
         position: map.config.position.join(' '),
@@ -186,13 +186,13 @@
         maxZoom: Math.round(Math.exp(map.config.maxZoom) * 100),
         overlayImage: map.config.overlayImage !== null,
 
-        // pin
+        // 图钉
         pinImage: map.config.pinImage,
         pinSize: map.config.pinSize,
         coneColor: map.config.coneColor,
         coneSize: map.config.coneSize,
 
-        // hotspot
+        // 热点
         spotStyle: {
           size: map.config.spotStyle.size,
           color: map.config.spotStyle.color,
@@ -213,29 +213,31 @@
       position.add(config, 'rotation', 0, 360, 1).name('旋转');
 
       const display = gui.addFolder('显示');
-      display.add(config, 'shape', ['round', 'square']);
-      display.add(config, 'size');
-      display.add(config, 'position', ['top left', 'top right', 'bottom left', 'bottom right']);
+      display.add(config, 'shape', { 圆形: 'round', 方形: 'square' }).name('形状');
+      display.add(config, 'size').name('尺寸');
+      display
+        .add(config, 'position', { 左上: 'top left', 右上: 'top right', 左下: 'bottom left', 右下: 'bottom right' })
+        .name('位置');
       display.add(config, 'minZoom', 10, 100, 1).name('最小缩放');
       display.add(config, 'maxZoom', 10, 400, 1).name('最大缩放');
-      display.add(config, 'static');
-      display.add(config, 'overlayImage');
+      display.add(config, 'static').name('静态模式');
+      display.add(config, 'overlayImage').name('叠加图片');
 
       const pin = gui.addFolder('图钉');
-      addTextarea(pin, config, 'pinImage', 10);
-      pin.add(config, 'pinSize', 5, 100, 1);
-      addColorPicker(pin, config, 'coneColor', false);
-      pin.add(config, 'coneSize', 5, 100, 1);
+      addTextarea(pin, config, 'pinImage', 10).name('图钉图片');
+      pin.add(config, 'pinSize', 5, 100, 1).name('图钉尺寸');
+      addColorPicker(pin, config, 'coneColor', false).name('视野锥颜色');
+      pin.add(config, 'coneSize', 5, 100, 1).name('视野锥尺寸');
 
       const hotspot = gui.addFolder('热点样式');
-      hotspot.add(config.spotStyle, 'size', 5, 50, 1);
-      addColorPicker(hotspot, config.spotStyle, 'color', true);
-      hotspot.add(config.spotStyle, 'borderSize', 0, 20, 1);
-      addColorPicker(hotspot, config.spotStyle, 'borderColor', true);
-      hotspot.add(config.spotStyle, 'hoverSize', 5, 50, 1);
-      addColorPicker(hotspot, config.spotStyle, 'hoverColor', true);
-      hotspot.add(config.spotStyle, 'hoverBorderSize', 0, 20, 1);
-      addColorPicker(hotspot, config.spotStyle, 'hoverBorderColor', true);
+      hotspot.add(config.spotStyle, 'size', 5, 50, 1).name('尺寸');
+      addColorPicker(hotspot, config.spotStyle, 'color', true).name('颜色');
+      hotspot.add(config.spotStyle, 'borderSize', 0, 20, 1).name('边框尺寸');
+      addColorPicker(hotspot, config.spotStyle, 'borderColor', true).name('边框颜色');
+      hotspot.add(config.spotStyle, 'hoverSize', 5, 50, 1).name('悬停尺寸');
+      addColorPicker(hotspot, config.spotStyle, 'hoverColor', true).name('悬停颜色');
+      hotspot.add(config.spotStyle, 'hoverBorderSize', 0, 20, 1).name('悬停边框尺寸');
+      addColorPicker(hotspot, config.spotStyle, 'hoverBorderColor', true).name('悬停边框颜色');
       hotspot.close();
 
       gui.onChange(() => {

@@ -2,14 +2,13 @@ import { type Panel } from '@photo-sphere-viewer/core';
 import { callViewer, checkEventHandler, listenViewerEvent, triggerWindowKeydown, waitViewerReady } from '../../utils';
 import { NO_LOG, VIEWPORT_MOBILE } from '../../utils/constants';
 
-describe('core: panel', () => {
+describe('核心：面板', () => {
   beforeEach(() => {
     cy.visit('e2e/core/base.html');
     waitViewerReady();
-    // createBaseSnapshot();
   });
 
-  it('should show/hide the panel', () => {
+  it('应能显示和隐藏面板', () => {
     const showPanelHandler = listenViewerEvent('show-panel');
     const hidePanelHandler = listenViewerEvent('hide-panel');
 
@@ -18,13 +17,13 @@ describe('core: panel', () => {
     checkPanelVisibleApi(true);
     cy.get('.psv-panel').should('be.visible').should('have.class', 'psv-panel--open');
 
-    callPanel('hide panel').then((panel) => panel.hide());
+    callPanel('隐藏面板').then((panel) => panel.hide());
     checkEventHandler(hidePanelHandler, { panelId: null });
     checkPanelVisibleApi(false);
     cy.get('.psv-panel').should('not.be.visible').should('not.have.class', 'psv-panel--open');
   });
 
-  it('should hide on cross click and esc key', () => {
+  it('点击关闭按钮或按 Esc 时应隐藏', () => {
     callPanel('显示面板').then((panel) => panel.show('内容'));
     cy.get('.psv-panel').should('be.visible');
 
@@ -38,11 +37,11 @@ describe('core: panel', () => {
     cy.get('.psv-panel').should('not.be.visible');
   });
 
-  it('should show the panel with id', () => {
+  it('应能显示带 id 的面板', () => {
     const showPanelHandler = listenViewerEvent('show-panel');
     const hidePanelHandler = listenViewerEvent('hide-panel');
 
-    callPanel('show panel a').then((panel) =>
+    callPanel('显示面板 a').then((panel) =>
       panel.show({
         content: '内容',
         id: 'panel-a',
@@ -53,16 +52,16 @@ describe('core: panel', () => {
     checkPanelVisibleApi(true, 'panel-a');
     checkPanelVisibleApi(false, 'panel-b');
 
-    callPanel('hide panel b').then((panel) => panel.hide('panel-b'));
+    callPanel('隐藏面板 b').then((panel) => panel.hide('panel-b'));
     cy.wrap(hidePanelHandler, NO_LOG).should('not.have.been.called');
     checkPanelVisibleApi(true, 'panel-a');
     cy.get('.psv-panel').should('be.visible');
 
-    callPanel('hide panel a').then((panel) => panel.hide('panel-a'));
+    callPanel('隐藏面板 a').then((panel) => panel.hide('panel-a'));
     checkEventHandler(hidePanelHandler, { panelId: 'panel-a' });
     checkPanelVisibleApi(false, 'panel-a');
 
-    callPanel('show panel b').then((panel) =>
+    callPanel('显示面板 b').then((panel) =>
       panel.show({
         content: '内容',
         id: 'panel-b',
@@ -71,12 +70,12 @@ describe('core: panel', () => {
     checkEventHandler(showPanelHandler, { panelId: 'panel-b' });
     checkPanelVisibleApi(true, 'panel-b');
 
-    callPanel('hide any panel').then((panel) => panel.hide());
+    callPanel('隐藏任意面板').then((panel) => panel.hide());
     checkEventHandler(hidePanelHandler, { panelId: 'panel-b' });
     checkPanelVisibleApi(false);
   });
 
-  it('should show with required with', () => {
+  it('应按指定宽度显示', () => {
     callPanel('显示面板').then((panel) =>
       panel.show({
         content: '内容',
@@ -87,8 +86,8 @@ describe('core: panel', () => {
     checkPanelWidth(640);
   });
 
-  it('should be resizable and store width', () => {
-    callPanel('show panel a').then((panel) =>
+  it('应能调整尺寸并保存宽度', () => {
+    callPanel('显示面板 a').then((panel) =>
       panel.show({
         content: '内容',
         id: 'panel-a',
@@ -105,9 +104,9 @@ describe('core: panel', () => {
       .trigger('mouseup');
     checkPanelWidth(600);
 
-    callPanel('hide panel').then((panel) => panel.hide());
+    callPanel('隐藏面板').then((panel) => panel.hide());
 
-    callPanel('show panel a').then((panel) =>
+    callPanel('显示面板 a').then((panel) =>
       panel.show({
         content: '内容',
         id: 'panel-a',
@@ -115,9 +114,9 @@ describe('core: panel', () => {
     );
     checkPanelWidth(600);
 
-    callPanel('hide panel').then((panel) => panel.hide());
+    callPanel('隐藏面板').then((panel) => panel.hide());
 
-    callPanel('show panel b').then((panel) =>
+    callPanel('显示面板 b').then((panel) =>
       panel.show({
         content: '内容',
         id: 'panel-b',
@@ -126,7 +125,7 @@ describe('core: panel', () => {
     checkPanelWidth(400);
   });
 
-  it('should not be resizable on mobile', VIEWPORT_MOBILE, () => {
+  it('移动端不应允许调整尺寸', VIEWPORT_MOBILE, () => {
     callPanel('显示面板').then((panel) => panel.show('内容'));
 
     cy.get('.psv-panel').should((panel) => {
@@ -137,7 +136,7 @@ describe('core: panel', () => {
     cy.get('.psv-panel-resizer').should('not.be.visible');
   });
 
-  it('should use a custom click handler', () => {
+  it('应使用自定义点击处理器', () => {
     const clickHandler = cy.stub();
 
     callPanel('显示面板').then((panel) =>
@@ -166,13 +165,13 @@ describe('core: panel', () => {
   }
 
   function checkPanelVisibleApi(visible: boolean, id?: string) {
-    callPanel(`check ${id ? `panel "${id}"` : 'any panel'} ${visible ? 'visible' : 'not visible'}`).then((panel) => {
+    callPanel(`检查${id ? `面板 "${id}"` : '任意面板'}是否${visible ? '可见' : '不可见'}`).then((panel) => {
       expect(panel.isVisible(id)).to.eq(visible);
     });
   }
 
   function checkPanelWidth(width: number) {
-    cy.log(`check panel is ${width}px`);
+    cy.log(`检查面板宽度为 ${width}px`);
     cy.get('.psv-panel').should((element) => {
       expect(element[0].offsetWidth).to.be.equal(width);
     });

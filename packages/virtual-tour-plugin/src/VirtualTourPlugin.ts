@@ -312,7 +312,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
         const transitionOptions: VirtualTourTransitionOptions = {
           ...getConfig.defaults.transitionOptions,
           rotateTo: fromLinkPosition,
-          zoomTo: fromLinkPosition ? this.viewer.getZoomLevel() : null, // prevents the adapter to apply InitialHorizontalFOVDegrees
+          zoomTo: fromLinkPosition ? this.viewer.getZoomLevel() : null, // 防止适配器应用 InitialHorizontalFOVDegrees
           ...(typeof this.config.transitionOptions === 'function'
             ? this.config.transitionOptions(node, fromNode, fromLink)
             : this.config.transitionOptions),

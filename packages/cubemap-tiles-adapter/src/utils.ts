@@ -111,7 +111,7 @@ export function getCacheKey(
   panorama: CubemapTilesPanorama | CubemapMultiTilesPanorama,
   firstTile: CubemapTileConfig,
 ): string {
-  // some tiles might be "null"
+  // 部分瓦片可能为 null
   for (let i = 0; i < firstTile.nbTiles; i++) {
     const url = panorama.tileUrl('front', i, firstTile.nbTiles / 2, firstTile.level);
     if (url) {

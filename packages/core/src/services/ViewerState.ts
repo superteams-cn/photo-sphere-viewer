@@ -8,12 +8,12 @@ import type { Animation } from '../utils';
  */
 export class ViewerState {
   /**
-   * when all components are loaded
+   * 所有组件是否已加载
    */
   ready = false;
 
   /**
-   * if the view needs to be renderer
+   * 视图是否需要重新渲染
    */
   needsUpdate = false;
 
@@ -23,7 +23,7 @@ export class ViewerState {
   continuousUpdateCount = 0;
 
   /**
-   * if the keyboard events are currently listened to
+   * 当前是否监听键盘事件
    */
   keyboardEnabled = false;
 
@@ -33,52 +33,52 @@ export class ViewerState {
   direction = new Vector3(0, 0, SPHERE_RADIUS);
 
   /**
-   * current camera roll
+   * 当前相机滚转角
    */
   roll = 0;
 
   /**
-   * vertical FOV
+   * 垂直视场角
    */
   vFov = 60;
 
   /**
-   * horizontal FOV
+   * 水平视场角
    */
   hFov = 60;
 
   /**
-   * renderer aspect ratio
+   * 渲染器宽高比
    */
   aspect = 1;
 
   /**
-   * currently running animation
+   * 当前正在运行的动画
    */
   animation: Animation = null;
 
   /**
-   * currently running transition
+   * 当前正在运行的过渡
    */
   transitionAnimation: Animation = null;
 
   /**
-   * promise of the last "setPanorama()" call
+   * 最近一次调用 `setPanorama()` 的 Promise
    */
   loadingPromise: Promise<any> = null;
 
   /**
-   * time of the last user action
+   * 最近一次用户操作的时间
    */
   idleTime = -1;
 
   /**
-   * registered THREE objects observer
+   * 已注册的 THREE 对象观察器
    */
   objectsObservers: Record<string, Mesh | null> = {};
 
   /**
-   * size of the container
+   * 容器尺寸
    */
   size: Size = {
     width: 0,
@@ -86,12 +86,12 @@ export class ViewerState {
   };
 
   /**
-   * Current panorama texture displayed
+   * 当前显示的全景图纹理
    */
   textureData: TextureData;
 
   /**
-   * Current override of the global cursor
+   * 当前覆盖的全局光标
    */
   cursorOverride: string;
 

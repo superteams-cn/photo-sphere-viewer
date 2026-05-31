@@ -40,7 +40,7 @@ export class DataHelper extends AbstractService {
   }
 
   /**
-   * Converts vertical FOV to zoom level
+   * 将垂直视场角转换为缩放级别
    */
   fovToZoomLevel(fov: number): number {
     const temp = Math.round(((fov - this.config.minFov) / (this.config.maxFov - this.config.minFov)) * 100);
@@ -48,21 +48,21 @@ export class DataHelper extends AbstractService {
   }
 
   /**
-   * Converts zoom level to vertical FOV
+   * 将缩放级别转换为垂直视场角
    */
   zoomLevelToFov(level: number): number {
     return this.config.maxFov + (level / 100) * (this.config.minFov - this.config.maxFov);
   }
 
   /**
-   * Converts vertical FOV to horizontal FOV
+   * 将垂直视场角转换为水平视场角
    */
   vFovToHFov(vFov: number): number {
     return MathUtils.radToDeg(2 * Math.atan(Math.tan(MathUtils.degToRad(vFov) / 2) * this.state.aspect));
   }
 
   /**
-   * Converts horizontal FOV to vertical FOV
+   * 将水平视场角转换为垂直视场角
    */
   hFovToVFov(hFov: number): number {
     return MathUtils.radToDeg(2 * Math.atan(Math.tan(MathUtils.degToRad(hFov) / 2) / this.state.aspect));
@@ -85,7 +85,7 @@ export class DataHelper extends AbstractService {
     const properties: AnimationOptions<{ yaw: any; pitch: any; zoom: any }>['properties'] = {};
     let duration = null;
 
-    // clean/filter position and compute duration
+    // 清理/过滤位置并计算时长
     if (positionProvided) {
       const currentPosition = this.viewer.getPosition();
       const dYaw = getShortestArc(currentPosition.yaw, targetPosition.yaw);
@@ -96,7 +96,7 @@ export class DataHelper extends AbstractService {
       duration = speedToDuration(speed, getAngle(currentPosition, targetPosition));
     }
 
-    // clean/filter zoom and compute duration
+    // 清理/过滤缩放并计算时长
     if (zoomProvided) {
       const currentZoom = this.viewer.getZoomLevel();
       const dZoom = Math.abs(targetZoom - currentZoom);
@@ -104,12 +104,12 @@ export class DataHelper extends AbstractService {
       properties.zoom = { start: currentZoom, end: targetZoom };
 
       if (duration === null) {
-        // if animating zoom only and a speed is given, use an arbitrary PI/4 to compute the duration
+        // 仅缩放且提供速度时，使用约定的 PI/4 计算时长
         duration = speedToDuration(speed, ((Math.PI / 4) * dZoom) / 100);
       }
     }
 
-    // if nothing to animate
+    // 没有需要动画的内容
     if (duration === null) {
       if (typeof speed === 'number') {
         duration = speed;
@@ -149,7 +149,7 @@ export class DataHelper extends AbstractService {
   }
 
   /**
-   * Converts pixel texture coordinates to spherical radians coordinates
+   * 将像素纹理坐标转换为球面弧度坐标
    * @throws {@link Core.PSVError | PSVError} 当前适配器不支持纹理坐标时抛出
    */
   textureCoordsToSphericalCoords(point: PanoramaPosition): Position {
@@ -173,7 +173,7 @@ export class DataHelper extends AbstractService {
   }
 
   /**
-   * Converts spherical radians coordinates to pixel texture coordinates
+   * 将球面弧度坐标转换为像素纹理坐标
    * @throws {@link Core.PSVError | PSVError} 当前适配器不支持纹理坐标时抛出
    */
   sphericalCoordsToTextureCoords(position: Position): PanoramaPosition {
@@ -195,7 +195,7 @@ export class DataHelper extends AbstractService {
   }
 
   /**
-   * Converts spherical radians coordinates to a Vector3
+   * 将球面弧度坐标转换为 Vector3
    */
   sphericalCoordsToVector3(position: Position, vector?: Vector3, distance = SPHERE_RADIUS): Vector3 {
     if (!vector) {
@@ -208,7 +208,7 @@ export class DataHelper extends AbstractService {
   }
 
   /**
-   * Converts a Vector3 to spherical radians coordinates
+   * 将 Vector3 转换为球面弧度坐标
    */
   vector3ToSphericalCoords(vector: Vector3): Position {
     const phi = Math.acos(vector.y / Math.sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z));
@@ -301,7 +301,7 @@ export class DataHelper extends AbstractService {
   }
 
   /**
-   * Converts pixel position to angles if present and ensure boundaries
+   * 若存在像素位置，则转换为角度并确保边界有效
    */
   cleanPosition(position: ExtendedPosition): Position {
     if ('yaw' in position || 'pitch' in position) {
@@ -318,7 +318,7 @@ export class DataHelper extends AbstractService {
   }
 
   /**
-   * Ensure a SphereCorrection object is valid
+   * 确保 SphereCorrection 对象有效
    */
   cleanSphereCorrection(sphereCorrection: SphereCorrection): SphereCorrection<number> {
     return {
@@ -329,7 +329,7 @@ export class DataHelper extends AbstractService {
   }
 
   /**
-   * Parse the pose angles of the pano data
+   * 解析 panoData 中的姿态角
    */
   cleanPanoramaPose(panoData: PanoData): SphereCorrection<number> {
     return {

@@ -30,7 +30,7 @@ export class SettingsComponent extends AbstractComponent {
       case 'transitionend':
         if (e.target === this.container) {
           if (!this.isVisible()) {
-            this.container.innerHTML = ''; // empty content after fade out
+            this.container.innerHTML = ''; // 淡出后清空内容
           } else {
             this.__focusFirstOption();
           }
@@ -118,7 +118,7 @@ export class SettingsComponent extends AbstractComponent {
         switch (setting.type) {
           case 'toggle':
             this.plugin.toggleSettingValue(setting as ToggleSetting);
-            this.__showSettings(true); // re-render
+            this.__showSettings(true); // 重新渲染
             break;
 
           case 'options':
@@ -126,7 +126,7 @@ export class SettingsComponent extends AbstractComponent {
             break;
 
           default:
-          // noop
+          // 空操作
         }
         break;
 
@@ -138,7 +138,7 @@ export class SettingsComponent extends AbstractComponent {
             break;
 
           default:
-          // noop
+          // 空操作
         }
         break;
     }

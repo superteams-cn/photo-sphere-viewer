@@ -2,14 +2,13 @@ import { type Overlay } from '@photo-sphere-viewer/core';
 import { callViewer, checkEventHandler, listenViewerEvent, triggerWindowKeydown, waitViewerReady } from '../../utils';
 import { NO_LOG, VIEWPORT_MOBILE } from '../../utils/constants';
 
-describe('core: overlay', () => {
+describe('核心：覆盖层', () => {
   beforeEach(() => {
     cy.visit('e2e/core/base.html');
     waitViewerReady();
-    // createBaseSnapshot();
   });
 
-  it('should show/hide the overlay', () => {
+  it('应能显示和隐藏覆盖层', () => {
     const showOverlayHandler = listenViewerEvent('show-overlay');
     const hideOverlayHandler = listenViewerEvent('hide-overlay');
 
@@ -18,13 +17,13 @@ describe('core: overlay', () => {
     checkOverlayVisibleApi(true);
     cy.get('.psv-overlay').should('be.visible');
 
-    callOverlay('hide overlay').then((overlay) => overlay.hide());
+    callOverlay('隐藏覆盖层').then((overlay) => overlay.hide());
     checkEventHandler(hideOverlayHandler, { overlayId: null });
     checkOverlayVisibleApi(false);
     cy.get('.psv-overlay').should('not.be.visible');
   });
 
-  it('should hide on click and esc key', () => {
+  it('点击或按 Esc 时应隐藏', () => {
     callOverlay('显示覆盖层').then((overlay) => overlay.show('标题'));
     cy.get('.psv-overlay').should('be.visible');
 
@@ -38,7 +37,7 @@ describe('core: overlay', () => {
     cy.get('.psv-overlay').should('not.be.visible');
   });
 
-  it('should not be dismissible', () => {
+  it('应能禁止关闭', () => {
     callOverlay('显示覆盖层').then((overlay) =>
       overlay.show({
         title: '标题',
@@ -53,11 +52,11 @@ describe('core: overlay', () => {
     cy.get('.psv-overlay').should('be.visible');
   });
 
-  it('should show the overlay with id', () => {
+  it('应能显示带 id 的覆盖层', () => {
     const showOverlayHandler = listenViewerEvent('show-overlay');
     const hideOverlayHandler = listenViewerEvent('hide-overlay');
 
-    callOverlay('show overlay a').then((overlay) =>
+    callOverlay('显示覆盖层 a').then((overlay) =>
       overlay.show({
         title: '标题',
         id: 'overlay-a',
@@ -68,16 +67,16 @@ describe('core: overlay', () => {
     checkOverlayVisibleApi(true, 'overlay-a');
     checkOverlayVisibleApi(false, 'overlay-b');
 
-    callOverlay('hide overlay b').then((overlay) => overlay.hide('overlay-b'));
+    callOverlay('隐藏覆盖层 b').then((overlay) => overlay.hide('overlay-b'));
     cy.wrap(hideOverlayHandler, NO_LOG).should('not.have.been.called');
     checkOverlayVisibleApi(true, 'overlay-a');
     cy.get('.psv-overlay').should('be.visible');
 
-    callOverlay('hide overlay a').then((overlay) => overlay.hide('overlay-a'));
+    callOverlay('隐藏覆盖层 a').then((overlay) => overlay.hide('overlay-a'));
     checkEventHandler(hideOverlayHandler, { overlayId: 'overlay-a' });
     checkOverlayVisibleApi(false, 'overlay-a');
 
-    callOverlay('show overlay b').then((overlay) =>
+    callOverlay('显示覆盖层 b').then((overlay) =>
       overlay.show({
         title: '标题',
         id: 'overlay-b',
@@ -86,16 +85,16 @@ describe('core: overlay', () => {
     checkEventHandler(showOverlayHandler, { overlayId: 'overlay-b' });
     checkOverlayVisibleApi(true, 'overlay-b');
 
-    callOverlay('hide any overlay').then((panel) => panel.hide());
+    callOverlay('隐藏任意覆盖层').then((panel) => panel.hide());
     checkEventHandler(hideOverlayHandler, { overlayId: 'overlay-b' });
     checkOverlayVisibleApi(false);
   });
 
-  it('should show title/text/image', () => {
+  it('应显示标题、文本和图片', () => {
     callOverlay('显示覆盖层').then((overlay) =>
       overlay.show({
-        title: 'Welcome',
-        text: 'This is a demo',
+        title: '欢迎',
+        text: '这是演示内容',
         image: '<img src=https://photo-sphere-viewer.js.org/favicon.png>',
       }),
     );
@@ -114,10 +113,8 @@ describe('core: overlay', () => {
   }
 
   function checkOverlayVisibleApi(visible: boolean, id?: string) {
-    callOverlay(`check ${id ? `overlay "${id}"` : 'any overlay'} ${visible ? 'visible' : 'not visible'}`).then(
-      (overlay) => {
-        expect(overlay.isVisible(id)).to.eq(visible);
-      },
-    );
+    callOverlay(`检查${id ? `覆盖层 "${id}"` : '任意覆盖层'}是否${visible ? '可见' : '不可见'}`).then((overlay) => {
+      expect(overlay.isVisible(id)).to.eq(visible);
+    });
   }
 });

@@ -6,7 +6,7 @@
     height: psv.$zoom-range-tickness;
     margin: psv.$buttons-padding 0;
     padding: #{(psv.$buttons-height - psv.$zoom-range-tickness) * 0.5} 0;
-    max-width: psv.$zoom-range-media-min-width; // trick for JS access
+    max-width: psv.$zoom-range-media-min-width; // 便于 JS 访问的技巧
   }
 
   &-line {

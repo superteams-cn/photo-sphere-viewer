@@ -99,7 +99,7 @@ export class Queue {
         }
       });
 
-      this.start(); // start tasks until max concurrency is reached
+      this.start(); // 启动任务，直到达到最大并发数
     }
   }
 }

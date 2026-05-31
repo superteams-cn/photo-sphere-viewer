@@ -8,21 +8,21 @@ import { AbstractComponent } from './AbstractComponent';
  */
 export type NotificationConfig = {
   /**
-   * unique identifier to use with {@link Notification.hide} and {@link Notification.isVisible}
+   * 唯一标识符，用于 {@link Notification.hide} 和 {@link Notification.isVisible}
    */
   id?: string;
   /**
-   * notification content
+   * 通知内容
    */
   content: string;
   /**
-   * automatically hide the notification after X milliseconds
+   * X 毫秒后自动隐藏通知
    */
   timeout?: number;
 };
 
 /**
- * Notification component
+ * 通知组件
  */
 export class Notification extends AbstractComponent {
   /**

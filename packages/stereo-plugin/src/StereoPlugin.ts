@@ -183,7 +183,7 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
   }
 
   /**
-   * Enables WakeLock
+   * 启用 WakeLock
    */
   private __startWakelock() {
     if ('wakeLock' in navigator) {
@@ -199,7 +199,7 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
   }
 
   /**
-   * Disables WakeLock
+   * 禁用 WakeLock
    */
   private __stopWakelock() {
     if (this.state.wakeLock) {
@@ -258,7 +258,7 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
     try {
       screen.orientation?.unlock();
     } catch {
-      // empty
+      // 空内容
     }
   }
 }

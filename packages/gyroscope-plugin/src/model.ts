@@ -5,7 +5,7 @@ export type GyroscopePluginConfig = {
    */
   touchmove?: boolean;
   /**
-   * applies camera roll (rotation on Z axis)
+   * 应用相机滚转（沿 Z 轴旋转）
    * @default true
    */
   roll?: boolean;

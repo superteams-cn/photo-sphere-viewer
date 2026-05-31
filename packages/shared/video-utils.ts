@@ -1,5 +1,5 @@
 /**
- * Create a standard video element
+ * 创建标准视频元素
  */
 export function createVideo({
   src,

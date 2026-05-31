@@ -9,7 +9,7 @@
 .psv-compass {
   position: absolute;
   margin: compass.$margin;
-  z-index: psv.$ui-zindex - 1; // under map/plan
+  z-index: psv.$ui-zindex - 1; // 位于地图/平面图之下
   cursor: default;
   aspect-ratio: 1;
 

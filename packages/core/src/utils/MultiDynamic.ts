@@ -64,7 +64,7 @@ export class MultiDynamic<T extends Record<string, Dynamic>> {
   }
 
   /**
-   * Starts infinite movements
+   * 开始无限运动
    */
   roll(rolls: Partial<Record<keyof T, boolean>>, speedMult = 1) {
     for (const [name, roll] of Object.entries(rolls)) {
@@ -73,7 +73,7 @@ export class MultiDynamic<T extends Record<string, Dynamic>> {
   }
 
   /**
-   * Stops movements
+   * 停止运动
    */
   stop() {
     for (const d of Object.values(this.dynamics)) {

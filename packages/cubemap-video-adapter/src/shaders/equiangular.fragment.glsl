@@ -1,4 +1,4 @@
-// shamelessly copied from https://github.com/videojs/videojs-vr/blob/main/src/plugin.js
+// 参考自 https://github.com/videojs/videojs-vr/blob/main/src/plugin.js
 
 varying vec2 vUv;
 uniform sampler2D map;

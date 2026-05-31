@@ -18,7 +18,7 @@ export abstract class AbstractService {
   }
 
   /**
-   * Destroys the service
+   * 销毁服务
    * @internal
    */
   // eslint-disable-next-line @typescript-eslint/no-empty-function

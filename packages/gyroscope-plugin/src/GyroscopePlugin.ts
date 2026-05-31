@@ -147,7 +147,7 @@ export class GyroscopePlugin extends AbstractConfigurablePlugin<
           this.controls = new DeviceOrientationControls(new Object3D(), this.config.absolutePosition);
         }
 
-        // reset
+        // 重置
         this.controls.alphaOffset = 0;
 
         this.state.alphaOffset = this.config.absolutePosition ? 0 : null;

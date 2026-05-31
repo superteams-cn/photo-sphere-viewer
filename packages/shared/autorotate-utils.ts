@@ -10,7 +10,7 @@ export function debugCurve(markers: MarkersPlugin, curve: Array<[number, number]
     try {
       markers.removeMarker(marker);
     } catch {
-      // noop
+      // 空操作
     }
   });
 

@@ -130,7 +130,7 @@ async function createDeploy(files, functions) {
 
     return deploy;
   } catch {
-    console.error('Cannot create deploy');
+    console.error('无法创建部署');
     process.exit(1);
   }
 }
@@ -152,7 +152,7 @@ async function publishDeploy(deploy) {
 
     console.log(`Published deploy #${deploy.id} (${deploy.ssl_url}).`);
   } catch {
-    console.warn(`Cannot publish deploy`);
+    console.warn(`无法发布部署`);
   }
 }
 
@@ -170,7 +170,7 @@ async function cancelDeploy(deploy) {
 
     console.log(`Cancelled deploy #${deploy.id} (${deploy.ssl_url}).`);
   } catch {
-    console.warn(`Cannot cancel deploy`);
+    console.warn(`无法取消部署`);
   }
 }
 
@@ -217,7 +217,7 @@ async function uploadFiles(dir, files, deploy) {
       });
     });
   } catch {
-    console.error(`Cannot upload files`);
+    console.error(`无法上传文件`);
     await cancelDeploy(deploy);
     process.exit(1);
   }
@@ -265,7 +265,7 @@ async function uploadFunctions(dir, functions, deploy) {
       });
     });
   } catch {
-    console.error(`Cannot upload functions`);
+    console.error(`无法上传函数`);
     await cancelDeploy(deploy);
     process.exit(1);
   }

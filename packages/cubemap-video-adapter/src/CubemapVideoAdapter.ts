@@ -110,18 +110,18 @@ export class CubemapVideoAdapter extends AbstractVideoAdapter<
            Bottom, Back and Top are rotated 90° clockwise
          */
 
-    // columns
+    // 列
     const a = 0;
     const b = 1 / 3;
     const c = 2 / 3;
     const d = 1;
 
-    // lines
+    // 行
     const A = 1;
     const B = 1 / 2;
     const C = 0;
 
-    // left
+    // 左
     uvs.setXY(0, a, A);
     uvs.setXY(1, a, B);
     uvs.setXY(2, b, A);
@@ -129,7 +129,7 @@ export class CubemapVideoAdapter extends AbstractVideoAdapter<
     uvs.setXY(4, b, B);
     uvs.setXY(5, b, A);
 
-    // right
+    // 右
     uvs.setXY(6, c, A);
     uvs.setXY(7, c, B);
     uvs.setXY(8, d, A);
@@ -137,7 +137,7 @@ export class CubemapVideoAdapter extends AbstractVideoAdapter<
     uvs.setXY(10, d, B);
     uvs.setXY(11, d, A);
 
-    // top
+    // 上
     uvs.setXY(12, d, B);
     uvs.setXY(13, c, B);
     uvs.setXY(14, d, C);
@@ -145,7 +145,7 @@ export class CubemapVideoAdapter extends AbstractVideoAdapter<
     uvs.setXY(16, c, C);
     uvs.setXY(17, d, C);
 
-    // bottom
+    // 下
     uvs.setXY(18, b, B);
     uvs.setXY(19, a, B);
     uvs.setXY(20, b, C);
@@ -153,7 +153,7 @@ export class CubemapVideoAdapter extends AbstractVideoAdapter<
     uvs.setXY(22, a, C);
     uvs.setXY(23, b, C);
 
-    // back
+    // 后
     uvs.setXY(24, c, B);
     uvs.setXY(25, b, B);
     uvs.setXY(26, c, C);
@@ -161,7 +161,7 @@ export class CubemapVideoAdapter extends AbstractVideoAdapter<
     uvs.setXY(28, b, C);
     uvs.setXY(29, c, C);
 
-    // front
+    // 前
     uvs.setXY(30, b, A);
     uvs.setXY(31, b, B);
     uvs.setXY(32, c, A);

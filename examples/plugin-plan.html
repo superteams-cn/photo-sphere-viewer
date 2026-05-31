@@ -47,7 +47,7 @@
         keyboard: 'always',
         plugins: [
           PlanPlugin.withConfig({
-            // position: 'top left',
+            // 位置: 'top left',
             // visibleOnLoad: false,
             // size: {
             //     width: '300px',
@@ -87,8 +87,8 @@
             //     }).addTo(map);
             // },
 
-            // pinImage: baseUrl + 'pictos/pin-blue.png',
-            // pinSize: 25,
+            // 图钉Image: baseUrl + 'pictos/pin-blue.png',
+            // 图钉Size: 25,
 
             spotStyle: {
               // size: 25,
@@ -162,19 +162,19 @@
       window.viewer = viewer;
 
       const config = {
-        // position
+        // 位置
         coordinates: plan.config.coordinates,
         bearing: (plan.config.bearing / Math.PI) * 180,
 
-        // display
+        // 显示
         position: plan.config.position.join(' '),
         size: plan.config.size,
 
-        // pin
+        // 图钉
         pinImage: plan.config.pinImage,
         pinSize: plan.config.pinSize,
 
-        // hotspot
+        // 热点
         spotStyle: {
           size: plan.config.spotStyle.size,
           color: plan.config.spotStyle.color,
@@ -195,23 +195,25 @@
       position.add(config, 'bearing', 0, 360, 1).name('方位角');
 
       const display = gui.addFolder('显示');
-      display.add(config, 'position', ['top left', 'top right', 'bottom left', 'bottom right']);
+      display
+        .add(config, 'position', { 左上: 'top left', 右上: 'top right', 左下: 'bottom left', 右下: 'bottom right' })
+        .name('位置');
       display.add(config.size, 'width').name('宽度');
       display.add(config.size, 'height').name('高度');
 
       const pin = gui.addFolder('图钉');
-      addTextarea(pin, config, 'pinImage', 10);
-      pin.add(config, 'pinSize', 5, 100, 1);
+      addTextarea(pin, config, 'pinImage', 10).name('图钉图片');
+      pin.add(config, 'pinSize', 5, 100, 1).name('图钉尺寸');
 
       const hotspot = gui.addFolder('热点样式');
-      hotspot.add(config.spotStyle, 'size', 5, 50, 1);
-      addColorPicker(hotspot, config.spotStyle, 'color', true);
-      hotspot.add(config.spotStyle, 'borderSize', 0, 20, 1);
-      addColorPicker(hotspot, config.spotStyle, 'borderColor', true);
-      hotspot.add(config.spotStyle, 'hoverSize', 5, 50, 1);
-      addColorPicker(hotspot, config.spotStyle, 'hoverColor', true);
-      hotspot.add(config.spotStyle, 'hoverBorderSize', 0, 20, 1);
-      addColorPicker(hotspot, config.spotStyle, 'hoverBorderColor', true);
+      hotspot.add(config.spotStyle, 'size', 5, 50, 1).name('尺寸');
+      addColorPicker(hotspot, config.spotStyle, 'color', true).name('颜色');
+      hotspot.add(config.spotStyle, 'borderSize', 0, 20, 1).name('边框尺寸');
+      addColorPicker(hotspot, config.spotStyle, 'borderColor', true).name('边框颜色');
+      hotspot.add(config.spotStyle, 'hoverSize', 5, 50, 1).name('悬停尺寸');
+      addColorPicker(hotspot, config.spotStyle, 'hoverColor', true).name('悬停颜色');
+      hotspot.add(config.spotStyle, 'hoverBorderSize', 0, 20, 1).name('悬停边框尺寸');
+      addColorPicker(hotspot, config.spotStyle, 'hoverBorderColor', true).name('悬停边框颜色');
       hotspot.close();
 
       gui.onChange(() => {

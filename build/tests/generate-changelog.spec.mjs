@@ -6,7 +6,7 @@ import path from 'path';
 const testDir = path.join(import.meta.dirname, 'fixtures/generate-changelog');
 
 describe('generate-changelog', () => {
-  it('should generate the changelog', (done) => {
+  it('应生成变更日志', (done) => {
     const gitLog = readFileSync(path.join(testDir, 'git-log.txt'), { encoding: 'utf8' });
 
     const proc = exec(

@@ -174,7 +174,7 @@ export class CompassComponent extends AbstractComponent {
   }
 
   /**
-   * Draw a cone
+   * 绘制锥形视野
    */
   private __drawCone(context: CanvasRenderingContext2D, color: string, yaw: number, fov: number) {
     const a1 = yaw - Math.PI / 2 - fov / 2;
@@ -191,7 +191,7 @@ export class CompassComponent extends AbstractComponent {
   }
 
   /**
-   * Draw a Marker
+   * 绘制标记
    */
   private __drawMarker(context: CanvasRenderingContext2D, marker: Marker) {
     let color = this.config.hotspotColor;
@@ -223,7 +223,7 @@ export class CompassComponent extends AbstractComponent {
   }
 
   /**
-   * Draw a point
+   * 绘制点
    */
   private __drawPoint(context: CanvasRenderingContext2D, color: string, yaw: number, pitch: number) {
     const a = yaw - Math.PI / 2;

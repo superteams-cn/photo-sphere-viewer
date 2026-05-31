@@ -173,7 +173,7 @@ export abstract class AbstractButton extends AbstractComponent {
   checkSupported() {
     resolveBoolean(this.isSupported(), (supported, init) => {
       if (!this.state) {
-        return; // the component has been destroyed
+        return; // 组件已销毁
       }
       this.state.supported = supported;
       if (!init) {
@@ -185,11 +185,11 @@ export abstract class AbstractButton extends AbstractComponent {
   }
 
   /**
-   * Perform action when the navbar size/content changes
+   * 导航栏尺寸或内容变化时执行操作
    * @internal
    */
   autoSize() {
-    // nothing
+    // 无操作
   }
 
   /**

@@ -53,7 +53,7 @@ export function cancelWaitLandscape(id: any) {
     try {
       screen.orientation.removeEventListener('change', id);
     } catch {
-      // empty
+      // 空内容
     }
   }
 }

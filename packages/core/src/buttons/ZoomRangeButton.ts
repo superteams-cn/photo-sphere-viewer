@@ -59,7 +59,7 @@ export class ZoomRangeButton extends AbstractButton {
   }
 
   onClick() {
-    // nothing
+    // 无操作
   }
 
   override isSupported() {
