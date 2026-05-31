@@ -1,30 +1,30 @@
 <template>
   <v-card>
     <v-card-text>
-      <v-file-input label="Panorama image" v-model="file" accept="image/*" />
+      <v-file-input label="全景图图片" v-model="file" accept="image/*" />
 
       <v-row class="no-v-gutters">
         <v-col cols="4">
-          <v-number-input label="Full width" v-model="panoData.fullWidth" :min="0" :disabled="loading" />
+          <v-number-input label="完整宽度" v-model="panoData.fullWidth" :min="0" :disabled="loading" />
         </v-col>
         <v-col cols="4">
-          <v-number-input label="Cropped width" v-model="panoData.croppedWidth" :min="0" :disabled="loading" />
+          <v-number-input label="裁剪宽度" v-model="panoData.croppedWidth" :min="0" :disabled="loading" />
         </v-col>
         <v-col cols="4">
-          <v-number-input label="Cropped X" v-model="panoData.croppedX" :min="0" :disabled="loading" />
+          <v-number-input label="裁剪 X" v-model="panoData.croppedX" :min="0" :disabled="loading" />
         </v-col>
         <v-col cols="4">
-          <v-number-input label="Full height" v-model="panoData.fullHeight" :min="0" :disabled="loading" />
+          <v-number-input label="完整高度" v-model="panoData.fullHeight" :min="0" :disabled="loading" />
         </v-col>
         <v-col cols="4">
-          <v-number-input label="Cropped height" v-model="panoData.croppedHeight" :min="0" :disabled="loading" />
+          <v-number-input label="裁剪高度" v-model="panoData.croppedHeight" :min="0" :disabled="loading" />
         </v-col>
         <v-col cols="4">
-          <v-number-input label="Cropped Y" v-model="panoData.croppedY" :min="0" :disabled="loading" />
+          <v-number-input label="裁剪 Y" v-model="panoData.croppedY" :min="0" :disabled="loading" />
         </v-col>
         <v-col cols="4">
           <SliderInput
-            label="Pose heading"
+            label="姿态朝向"
             v-model="panoData.poseHeading"
             :min="0"
             :max="360"
@@ -35,7 +35,7 @@
         </v-col>
         <v-col cols="4">
           <SliderInput
-            label="Pose pitch"
+            label="姿态俯仰"
             v-model="panoData.posePitch"
             :min="-90"
             :max="90"
@@ -46,7 +46,7 @@
         </v-col>
         <v-col cols="4">
           <SliderInput
-            label="Pose roll"
+            label="姿态翻滚"
             v-model="panoData.poseRoll"
             :min="-180"
             :max="180"
@@ -57,13 +57,13 @@
         </v-col>
       </v-row>
 
-      <v-btn color="primary" @click="apply">Apply</v-btn>
+      <v-btn color="primary" @click="apply">应用</v-btn>
 
       <div v-if="error" class="custom-block danger">
-        <p class="custom-block-title">This image cannot be loaded</p>
+        <p class="custom-block-title">图片无法加载</p>
         <p>
-          An undefined error occurred while loading the panorama. If your image is very big and you are using Firefox
-          please try with Chrome, as Firefox has trouble loading large base64 images.
+          加载全景图时发生未知错误。如果图片很大，并且你正在使用 Firefox，请尝试改用 Chrome，因为 Firefox 处理大型
+          base64 图片时可能会遇到问题。
         </p>
       </div>
     </v-card-text>
@@ -71,8 +71,8 @@
 
   <v-card v-show="!loading" style="margin-top: 20px">
     <v-tabs v-model="currentTab" bg-color="primary">
-      <v-tab value="preview">Preview</v-tab>
-      <v-tab value="data">XMP Data</v-tab>
+      <v-tab value="preview">预览</v-tab>
+      <v-tab value="data">XMP 数据</v-tab>
     </v-tabs>
 
     <v-card-text>

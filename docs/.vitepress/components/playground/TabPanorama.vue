@@ -1,55 +1,55 @@
 <template>
-  <v-file-input label="Panorama image" v-model="file" accept="image/*">
+  <v-file-input label="全景图图片" v-model="file" accept="image/*">
     <template #append>
-      <v-btn variant="tonal" @click="loadDefaultFile">Use demo file</v-btn>
+      <v-btn variant="tonal" @click="loadDefaultFile">使用示例文件</v-btn>
     </template>
   </v-file-input>
 
   <div v-if="error" class="custom-block danger">
-    <p class="custom-block-title">This image cannot be loaded</p>
+    <p class="custom-block-title">图片无法加载</p>
     <p>
-      An undefined error occurred while loading the panorama. If your image is very big and you are using Firefox please
-      try with Chrome, as Firefox has trouble loading large base64 images.
+      加载全景图时发生未知错误。如果图片很大，并且你正在使用 Firefox，请尝试改用 Chrome，因为 Firefox 处理大型 base64
+      图片时可能会遇到问题。
     </p>
   </div>
 
-  <v-text-field label="Caption" v-model="config.caption" clearable :disabled="loading" />
+  <v-text-field label="标题" v-model="config.caption" clearable :disabled="loading" />
 
-  <v-textarea label="Description" v-model="config.description" clearable :rows="2" :disabled="loading" />
+  <v-textarea label="描述" v-model="config.description" clearable :rows="2" :disabled="loading" />
 
-  <Container title="Pano data">
+  <Container title="全景图数据">
     <v-btn-toggle v-model="panoDataMode" :disabled="loading" style="margin-bottom: 20px">
-      <v-btn value="xmp">Use embedded XMP data</v-btn>
-      <v-btn value="manual">Provide manual data</v-btn>
+      <v-btn value="xmp">使用内嵌 XMP 数据</v-btn>
+      <v-btn value="manual">手动填写数据</v-btn>
     </v-btn-toggle>
 
     <v-row class="no-v-gutters" v-if="panoDataMode === 'manual'">
       <v-col cols="4">
-        <v-number-input label="Full width" v-model="config.panoData.fullWidth" :min="0" :disabled="loading" />
+        <v-number-input label="完整宽度" v-model="config.panoData.fullWidth" :min="0" :disabled="loading" />
       </v-col>
       <v-col cols="4">
-        <v-number-input label="Cropped width" v-model="config.panoData.croppedWidth" :min="0" :disabled="loading" />
+        <v-number-input label="裁剪宽度" v-model="config.panoData.croppedWidth" :min="0" :disabled="loading" />
       </v-col>
       <v-col cols="4">
-        <v-number-input label="Cropped X" v-model="config.panoData.croppedX" :min="0" :disabled="loading" />
+        <v-number-input label="裁剪 X" v-model="config.panoData.croppedX" :min="0" :disabled="loading" />
       </v-col>
       <v-col cols="4">
-        <v-number-input label="Full height" v-model="config.panoData.fullHeight" :min="0" :disabled="loading" />
+        <v-number-input label="完整高度" v-model="config.panoData.fullHeight" :min="0" :disabled="loading" />
       </v-col>
       <v-col cols="4">
-        <v-number-input label="Cropped height" v-model="config.panoData.croppedHeight" :min="0" :disabled="loading" />
+        <v-number-input label="裁剪高度" v-model="config.panoData.croppedHeight" :min="0" :disabled="loading" />
       </v-col>
       <v-col cols="4">
-        <v-number-input label="Cropped Y" v-model="config.panoData.croppedY" :min="0" :disabled="loading" />
+        <v-number-input label="裁剪 Y" v-model="config.panoData.croppedY" :min="0" :disabled="loading" />
       </v-col>
     </v-row>
   </Container>
 
-  <Container title="Sphere correction">
+  <Container title="球面校正">
     <v-row class="no-v-gutters">
       <v-col cols="4">
         <SliderInput
-          label="Pan"
+          label="水平偏移"
           v-model="config.sphereCorrection.pan"
           :min="-180"
           :max="180"
@@ -60,7 +60,7 @@
       </v-col>
       <v-col cols="4">
         <SliderInput
-          label="Tilt"
+          label="垂直倾斜"
           v-model="config.sphereCorrection.tilt"
           :min="-90"
           :max="90"
@@ -71,7 +71,7 @@
       </v-col>
       <v-col cols="4">
         <SliderInput
-          label="Roll"
+          label="翻滚角"
           v-model="config.sphereCorrection.roll"
           :min="-180"
           :max="180"

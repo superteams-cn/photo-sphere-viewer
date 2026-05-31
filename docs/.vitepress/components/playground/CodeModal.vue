@@ -1,12 +1,12 @@
 <template>
   <v-dialog v-model="showDialog" width="auto" scrollable class="vp-doc">
-    <v-card title="Code">
+    <v-card title="代码">
       <v-card-text>
         <pre>{{ code }}</pre>
       </v-card-text>
 
       <v-card-actions>
-        <v-btn @click="showDialog = false" variant="tonal">Close</v-btn>
+        <v-btn @click="showDialog = false" variant="tonal">关闭</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

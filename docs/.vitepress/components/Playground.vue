@@ -2,8 +2,8 @@
   <div class="playground-container">
     <v-card class="form">
       <v-tabs v-model="currentTab" bg-color="primary">
-        <v-tab value="panorama">Panorama</v-tab>
-        <v-tab value="config" :disabled="loading">Configuration</v-tab>
+        <v-tab value="panorama">全景图</v-tab>
+        <v-tab value="config" :disabled="loading">配置</v-tab>
       </v-tabs>
 
       <v-card-text>
@@ -18,7 +18,7 @@
       </v-card-text>
 
       <v-card-actions>
-        <v-btn variant="outlined" :disabled="loading" @click="codeModal!.open(config)">See code</v-btn>
+        <v-btn variant="outlined" :disabled="loading" @click="codeModal!.open(config)">查看代码</v-btn>
         <CodeModal ref="codeModal" />
       </v-card-actions>
     </v-card>
@@ -68,7 +68,7 @@ function setPanorama(imageData: string | null) {
     loading.value = true;
     viewer.loader.hide();
     viewer.overlay.show({
-      title: 'Please select a panorama image',
+      title: '请选择一张全景图',
       dissmisable: false,
     });
   }

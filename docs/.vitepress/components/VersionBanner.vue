@@ -6,7 +6,7 @@
 
     <template v-slot:actions>
       <v-btn size="small" variant="elevated" color="primary" @click="changelog()">Changelog</v-btn>
-      <v-btn size="small" variant="text" icon="mdi-close-circle" aria-label="Close" @click="close()"></v-btn>
+      <v-btn size="small" variant="text" icon="mdi-close-circle" aria-label="关闭" @click="close()"></v-btn>
     </template>
   </v-snackbar>
 </template>

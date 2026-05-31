@@ -1,18 +1,18 @@
 <template>
-  <v-select label="Navbar buttons" :items="BUTTONS" multiple v-model="config.navbar" />
+  <v-select label="导航栏按钮" :items="BUTTONS" multiple v-model="config.navbar" />
 
-  <Container title="Position">
+  <Container title="位置">
     <v-row class="no-v-gutters">
       <v-col cols="4">
-        <v-text-field label="Default yaw" v-model="config.defaultYaw" />
+        <v-text-field label="默认 yaw" v-model="config.defaultYaw" />
       </v-col>
       <v-col cols="4">
-        <v-text-field label="Default pitch" v-model="config.defaultPitch" />
+        <v-text-field label="默认 pitch" v-model="config.defaultPitch" />
       </v-col>
       <v-col cols="4"></v-col>
       <v-col cols="4">
         <SliderInput
-          label="Default zoom level"
+          label="默认缩放级别"
           v-model="config.defaultZoomLvl"
           :min="0"
           :max="100"
@@ -22,7 +22,7 @@
       </v-col>
       <v-col cols="8">
         <SliderInput
-          label="Min FOV/Max FOV"
+          label="最小/最大视场角"
           v-model="configFov"
           range
           :min="0"
@@ -32,41 +32,41 @@
         />
       </v-col>
       <v-col cols="4">
-        <v-number-input label="Move speed" v-model="config.moveSpeed" :min="0" :step="0.1" :precision="1" />
+        <v-number-input label="移动速度" v-model="config.moveSpeed" :min="0" :step="0.1" :precision="1" />
       </v-col>
       <v-col cols="4">
-        <v-number-input label="Zoom speed" v-model="config.zoomSpeed" :min="0" :step="0.1" :precision="1" />
+        <v-number-input label="缩放速度" v-model="config.zoomSpeed" :min="0" :step="0.1" :precision="1" />
       </v-col>
       <v-col cols="4">
-        <v-checkbox label="Move inertia" v-model="config.moveInertia" />
+        <v-checkbox label="移动惯性" v-model="config.moveInertia" />
       </v-col>
     </v-row>
   </Container>
 
-  <Container title="Options">
+  <Container title="选项">
     <v-row class="no-v-gutters">
       <v-col cols="4">
-        <v-checkbox label="Mouse wheel" v-model="config.mousewheel" />
+        <v-checkbox label="鼠标滚轮" v-model="config.mousewheel" />
       </v-col>
       <v-col cols="4">
-        <v-checkbox label="Mouse move" v-model="config.mousemove" />
+        <v-checkbox label="鼠标移动" v-model="config.mousemove" />
       </v-col>
       <v-col cols="4">
-        <v-checkbox label="Keyboard (fullscreen)" v-model="config.keyboard" />
+        <v-checkbox label="键盘控制（全屏）" v-model="config.keyboard" />
       </v-col>
       <v-col cols="4">
-        <v-checkbox label="Fisheye" v-model="config.fisheye" />
+        <v-checkbox label="鱼眼效果" v-model="config.fisheye" />
       </v-col>
       <v-col cols="4">
-        <v-checkbox label="Hold Ctrl to zoom" v-model="config.mousewheelCtrlKey" />
+        <v-checkbox label="按住 Ctrl 缩放" v-model="config.mousewheelCtrlKey" />
       </v-col>
       <v-col cols="4">
-        <v-checkbox label="Two fingers move" v-model="config.touchmoveTwoFingers" />
+        <v-checkbox label="双指移动" v-model="config.touchmoveTwoFingers" />
       </v-col>
       <v-col cols="4">
         <v-menu :close-on-content-click="false" @update:modelValue="persistBgColor">
           <template v-slot:activator="{ props }">
-            <v-text-field label="Canvas background" v-bind="props" v-model="config.canvasBackground">
+            <v-text-field label="画布背景" v-bind="props" v-model="config.canvasBackground">
               <template #append-inner>
                 <div class="colorpicker-square" :style="{ backgroundColor: config.canvasBackground }"></div>
               </template>
@@ -92,11 +92,11 @@ export type Config = Omit<ViewerConfig, 'container'> & {
 };
 
 const BUTTONS = [
-  { value: 'zoom', title: 'Zoom' },
-  { value: 'move', title: 'Move' },
-  { value: 'download', title: 'Download' },
-  { value: 'caption', title: 'Caption' },
-  { value: 'fullscreen', title: 'Fullscreen' },
+  { value: 'zoom', title: '缩放' },
+  { value: 'move', title: '移动' },
+  { value: 'download', title: '下载' },
+  { value: 'caption', title: '标题' },
+  { value: 'fullscreen', title: '全屏' },
 ];
 
 const { loading } = defineProps<{ loading: boolean }>();
