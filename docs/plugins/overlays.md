@@ -36,7 +36,7 @@ const viewer = new Viewer({
 ::: code-demo
 
 ```yaml
-title: PSV Overlay Demo
+title: 全景图查看器覆盖层示例
 packages:
   - name: overlays-plugin
 ```

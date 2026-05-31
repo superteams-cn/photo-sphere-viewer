@@ -30,7 +30,7 @@ const viewer = new Viewer({
 ::: code-demo
 
 ```yaml
-title: PSV Equirectangular Tiles Demo
+title: 全景图查看器等距柱状瓦片示例
 packages:
   - name: equirectangular-tiles-adapter
 ```

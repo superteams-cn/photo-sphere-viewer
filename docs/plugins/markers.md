@@ -58,7 +58,7 @@ markersPlugin.addEventListener('select-marker', ({ marker }) => {
 :::: code-demo
 
 ```yaml
-title: PSV Markers Demo
+title: 全景图查看器标记示例
 packages:
   - name: markers-plugin
     style: true

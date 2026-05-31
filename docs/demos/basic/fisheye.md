@@ -6,7 +6,7 @@
 
 ```yaml
 autoload: true
-title: PSV 鱼眼示例
+title: 全景图查看器鱼眼示例
 ```
 
 ```js:line-numbers{11}
@@ -17,7 +17,7 @@ const baseUrl = 'https://photo-sphere-viewer-data.netlify.app/assets/';
 new Viewer({
     container: 'viewer',
     panorama: baseUrl + 'sphere.jpg',
-    caption: 'Parc national du Mercantour <b>&copy; Damien Sorel</b>',
+    caption: '梅康图尔国家公园 <b>&copy; Damien Sorel</b>',
     defaultPitch: 0.6,
     defaultZoomLvl: 20,
     fisheye: true,

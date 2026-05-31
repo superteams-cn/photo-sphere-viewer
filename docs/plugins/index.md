@@ -1,6 +1,6 @@
 # 插件介绍
 
-插件用于为 Photo Sphere Viewer 添加新功能。它们可以访问 viewer 的内部 API，也可以访问 Three.js 渲染器，从而扩展更多能力。
+插件用于为 全景图查看器 添加新功能。它们可以访问 viewer 的内部 API，也可以访问 Three.js 渲染器，从而扩展更多能力。
 
 ## 导入官方插件
 

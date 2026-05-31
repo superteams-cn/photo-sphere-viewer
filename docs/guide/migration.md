@@ -1,6 +1,6 @@
 # 从 v4 迁移
 
-本页用于帮助你从 Photo Sphere Viewer 4 迁移到 Photo Sphere Viewer 5。
+本页用于帮助你从 全景图查看器 4 迁移到 全景图查看器 5。
 
 ## 包、ESM 和 ES6
 
@@ -40,7 +40,7 @@
 
 ### 位置
 
-Photo Sphere Viewer 使用两套坐标系：球面坐标（longitude + latitude）和源图片上的像素坐标（x + y）。为避免与 GPS 坐标系混淆，这些选项已重命名。
+全景图查看器 使用两套坐标系：球面坐标（longitude + latitude）和源图片上的像素坐标（x + y）。为避免与 GPS 坐标系混淆，这些选项已重命名。
 
 - `longitude` → `yaw`
 - `latitude` → `pitch`
@@ -65,7 +65,7 @@ Photo Sphere Viewer 使用两套坐标系：球面坐标（longitude + latitude�
 
 ## 事件
 
-在此版本中，Photo Sphere Viewer 移除了 uEvent 库，完全改用原生事件系统。
+在此版本中，全景图查看器 移除了 uEvent 库，完全改用原生事件系统。
 
 这意味着你需要更新所有对 `on()`、`off()` 和 `once()` 方法的用法。下面通过示例说明。
 

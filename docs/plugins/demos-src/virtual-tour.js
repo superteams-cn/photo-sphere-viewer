@@ -4,12 +4,12 @@ import { GalleryPlugin } from '@photo-sphere-viewer/gallery-plugin';
 import { MarkersPlugin } from '@photo-sphere-viewer/markers-plugin';
 
 const baseUrl = 'https://photo-sphere-viewer-data.netlify.app/assets/';
-const caption = 'Cape Florida Light, Key Biscayne <b>&copy; Pixexid</b>';
+const caption = '佛罗里达角灯塔，基比斯坎 <b>&copy; Pixexid</b>';
 
 const markerLighthouse = {
   id: 'marker-1',
   image: baseUrl + 'pictos/pin-red.png',
-  tooltip: 'Cape Florida Light, Key Biscayne',
+  tooltip: '佛罗里达角灯塔，基比斯坎',
   size: { width: 32, height: 32 },
   anchor: 'bottom center',
   gps: [-80.155973, 25.666601, 29 + 3],

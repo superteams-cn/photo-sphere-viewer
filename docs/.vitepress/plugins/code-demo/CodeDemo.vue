@@ -1,8 +1,8 @@
 <template>
   <v-card>
     <v-tabs v-if="!hideHeader" v-model="currentTab" bg-color="primary">
-      <v-tab value="result">Result</v-tab>
-      <v-tab value="source">Source</v-tab>
+      <v-tab value="result">运行结果</v-tab>
+      <v-tab value="source">源码</v-tab>
 
       <span style="flex: 1"></span>
 
@@ -15,7 +15,7 @@
       <v-tabs-window v-model="currentTab">
         <v-tabs-window-item value="result">
           <div v-if="!show" class="demo-loader">
-            <v-btn @click="show = true" theme="light" color="primary" size="large">Load demo</v-btn>
+            <v-btn @click="show = true" theme="light" color="primary" size="large">加载示例</v-btn>
           </div>
 
           <iframe

@@ -88,11 +88,11 @@ const node = {
 const node = {
     id: 'node-1',
     panorama: '001.jpg',
-    gps: [-80.156479, 25.666725], // optional altitude as 3rd value
+    gps: [-80.156479, 25.666725], // 第三个值可选填高度
     links: [
         {
             nodeId: 'node-2',
-            gps: [-80.156168, 25.666623], // the position of the linked node must be provided here in server mode
+            gps: [-80.156168, 25.666623], // 服务端模式下必须在这里提供目标节点的位置
         },
     ],
 };
@@ -111,7 +111,7 @@ const node = {
 ::: code-demo
 
 ```yaml
-title: PSV Virtual Tour Demo
+title: 全景图查看器虚拟导览示例
 packages:
   - name: virtual-tour-plugin
     style: true
@@ -510,7 +510,7 @@ plugins: [
 ```js:line-numbers
 virtualTourPlugin.updateNode({
     id: 'node-1',
-    caption: 'New caption',
+    caption: '新的标题',
     links: [...newLinks],
 });
 ```

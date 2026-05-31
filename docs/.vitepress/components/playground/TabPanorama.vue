@@ -203,7 +203,7 @@ function loadDefaultFile() {
   }
 
   imageData = SPHERE;
-  config.caption = 'Parc national du Mercantour <b>&copy; Damien Sorel</b>';
+  config.caption = '梅康图尔国家公园 <b>&copy; Damien Sorel</b>';
   computePanoData(6000, 3000);
 
   emit('updateFile', imageData);

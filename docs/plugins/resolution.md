@@ -50,7 +50,7 @@ const viewer = new Viewer({
 ::: code-demo
 
 ```yaml
-title: PSV Resolution Demo
+title: 全景图查看器画质示例
 packages:
   - name: settings-plugin
     style: true

@@ -36,7 +36,7 @@ const viewer = new Viewer({
 ::: code-demo
 
 ```yaml
-title: PSV Map Demo
+title: 全景图查看器地图示例
 packages:
   - name: map-plugin
     style: true

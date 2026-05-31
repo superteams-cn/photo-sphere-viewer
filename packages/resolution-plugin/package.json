@@ -1,7 +1,7 @@
 {
   "name": "@photo-sphere-viewer/resolution-plugin",
   "version": "0.0.0",
-  "description": "Photo Sphere Viewer 画质插件，用于在多个全景图分辨率之间切换。",
+  "description": "全景图查看器画质插件，用于在多个全景图分辨率之间切换。",
   "homepage": "https://photo-sphere-viewer.js.org/plugins/resolution.html",
   "license": "MIT",
   "main": "./src/index.ts",
@@ -19,7 +19,7 @@
     "npm-link": "cd dist && npm link"
   },
   "psv": {
-    "title": "Photo Sphere Viewer / 画质插件",
+    "title": "全景图查看器：画质插件",
     "budget": "10kb"
   }
 }

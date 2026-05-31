@@ -1,7 +1,7 @@
 {
   "name": "@photo-sphere-viewer/virtual-tour-plugin",
   "version": "0.0.0",
-  "description": "Photo Sphere Viewer 虚拟导览插件，用于串联多个全景图。",
+  "description": "全景图查看器虚拟导览插件，用于串联多个全景图。",
   "homepage": "https://photo-sphere-viewer.js.org/plugins/virtual-tour.html",
   "license": "MIT",
   "main": "./src/index.ts",
@@ -19,7 +19,7 @@
     "npm-link": "cd dist && npm link"
   },
   "psv": {
-    "title": "Photo Sphere Viewer / 虚拟导览插件",
+    "title": "全景图查看器：虚拟导览插件",
     "style": true,
     "budget": "50kb"
   }

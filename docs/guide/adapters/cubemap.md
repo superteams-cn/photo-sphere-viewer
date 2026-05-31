@@ -29,7 +29,7 @@ const viewer = new Viewer({
 ::: code-demo
 
 ```yaml
-title: PSV Cubemap Demo
+title: 全景图查看器立方体贴图示例
 packages:
   - name: cubemap-adapter
 ```

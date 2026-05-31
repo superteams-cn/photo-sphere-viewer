@@ -2,7 +2,7 @@ import { CssSize } from '@photo-sphere-viewer/core';
 import type { Layer, Map } from 'leaflet';
 
 /**
- * Definition of GPS coordinates (longitude, latitude, optional altitude)
+ * GPS 坐标定义（经度、纬度，可选高度）
  */
 export type GpsPosition = [number, number, number?];
 

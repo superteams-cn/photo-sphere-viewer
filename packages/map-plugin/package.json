@@ -1,7 +1,7 @@
 {
   "name": "@photo-sphere-viewer/map-plugin",
   "version": "0.0.0",
-  "description": "Photo Sphere Viewer 小地图插件，用于展示全景图位置。",
+  "description": "全景图查看器小地图插件，用于展示全景图位置。",
   "homepage": "https://photo-sphere-viewer.js.org/plugins/map.html",
   "license": "MIT",
   "main": "./src/index.ts",
@@ -23,7 +23,7 @@
     "npm-link": "cd dist && npm link"
   },
   "psv": {
-    "title": "Photo Sphere Viewer / 地图插件",
+    "title": "全景图查看器：地图插件",
     "style": true,
     "budget": "50kb"
   }

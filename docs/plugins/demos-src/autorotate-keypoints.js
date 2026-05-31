@@ -16,7 +16,7 @@ const points = [
 new Viewer({
   container: 'viewer',
   panorama: baseUrl + 'sphere.jpg',
-  caption: 'Parc national du Mercantour <b>&copy; Damien Sorel</b>',
+  caption: '梅康图尔国家公园 <b>&copy; Damien Sorel</b>',
   loadingImg: baseUrl + 'loader.gif',
   touchmoveTwoFingers: true,
   mousewheelCtrlKey: true,

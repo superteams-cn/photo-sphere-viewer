@@ -6,7 +6,7 @@
 
 ```yaml
 autoload: true
-title: PSV 标记元素示例
+title: 全景图查看器标记元素示例
 packages:
   - name: markers-plugin
     style: true
@@ -178,7 +178,7 @@ const baseUrl = 'https://photo-sphere-viewer-data.netlify.app/assets/';
 const viewer = new Viewer({
     container: 'viewer',
     panorama: baseUrl + 'sphere.jpg',
-    caption: 'Parc national du Mercantour <b>&copy; Damien Sorel</b>',
+    caption: '梅康图尔国家公园 <b>&copy; Damien Sorel</b>',
 
     plugins: [
         MarkersPlugin.withConfig({

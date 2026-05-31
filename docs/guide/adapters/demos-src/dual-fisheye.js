@@ -6,7 +6,7 @@ new Viewer({
   container: 'viewer',
   adapter: DualFisheyeAdapter,
   panorama: baseUrl + 'dualfisheye.jpg',
-  caption: 'Kotka archipelago, Finland <b>&copy; Jonna Luostari</b>',
+  caption: '芬兰科特卡群岛 <b>&copy; Jonna Luostari</b>',
   sphereCorrection: { tilt: 0.1 },
   loadingImg: baseUrl + 'loader.gif',
   touchmoveTwoFingers: true,

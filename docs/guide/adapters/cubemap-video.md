@@ -27,7 +27,7 @@ const viewer = new Viewer({
 ::: code-demo
 
 ```yaml
-title: PSV Cubemap Video Demo
+title: 全景图查看器立方体视频示例
 packages:
   - name: cubemap-video-adapter
   - name: video-plugin

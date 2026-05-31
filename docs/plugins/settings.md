@@ -30,7 +30,7 @@ const viewer = new Viewer({
 ::: code-demo
 
 ```yaml
-title: PSV 设置示例
+title: 全景图查看器设置示例
 packages:
   - name: settings-plugin
     style: true

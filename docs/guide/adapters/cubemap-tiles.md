@@ -36,7 +36,7 @@ const viewer = new Viewer({
 ::: code-demo
 
 ```yaml
-title: PSV Cubemap Tiles Demo
+title: 全景图查看器立方体瓦片示例
 packages:
   - name: cubemap-adapter
   - name: cubemap-tiles-adapter

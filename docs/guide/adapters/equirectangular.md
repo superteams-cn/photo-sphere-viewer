@@ -37,9 +37,9 @@ _注意：实际面数为 `resolution² / 2`。_
 
 ## 裁剪全景图 {#cropped-panorama}
 
-只要提供合适的配置，**Photo Sphere Viewer** 就支持裁剪全景图。裁剪全景图并不会覆盖完整的 360°×180° 球面区域，而只覆盖其中一部分。例如，你可能有一张水平覆盖 360°、垂直只覆盖 90° 的图片，或一张半球图片（180°×180°）。
+只要提供合适的配置，**全景图查看器** 就支持裁剪全景图。裁剪全景图并不会覆盖完整的 360°×180° 球面区域，而只覆盖其中一部分。例如，你可能有一张水平覆盖 360°、垂直只覆盖 90° 的图片，或一张半球图片（180°×180°）。
 
-Photo Sphere Viewer 通过两种方式处理这些不完整全景图：
+全景图查看器 通过两种方式处理这些不完整全景图：
 
 - 通过 `useXmpData` 选项直接从文件读取 XMP 元数据（默认方式）
 - 提供 `panoData` 配置对象或函数
@@ -86,18 +86,18 @@ XMP 载荷如下：
   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <rdf:Description rdf:about="" xmlns:GPano="http://ns.google.com/photos/1.0/panorama/">
       <GPano:ProjectionType>equirectangular</GPano:ProjectionType>
-      <!-- cropping information -->
+      <!-- 裁剪信息 -->
       <GPano:FullPanoWidthPixels>6000</GPano:FullPanoWidthPixels>
       <GPano:FullPanoHeightPixels>3000</GPano:FullPanoHeightPixels>
       <GPano:CroppedAreaImageWidthPixels>4000</GPano:CroppedAreaImageWidthPixels>
       <GPano:CroppedAreaImageHeightPixels>2000</GPano:CroppedAreaImageHeightPixels>
       <GPano:CroppedAreaLeftPixels>1000</GPano:CroppedAreaLeftPixels>
       <GPano:CroppedAreaTopPixels>500</GPano:CroppedAreaTopPixels>
-      <!-- pose information -->
+      <!-- 姿态信息 -->
       <GPano:PoseHeadingDegrees>0</GPano:PoseHeadingDegrees>
       <GPano:PosePitchDegrees>0</GPano:PosePitchDegrees>
       <GPano:PoseRollDegrees>0</GPano:PoseRollDegrees>
-      <!-- initial view information -->
+      <!-- 初始视角信息 -->
       <GPano:InitialViewHeadingDegrees>0</GPano:InitialViewHeadingDegrees>
       <GPano:InitialViewPitchDegrees>0</GPano:InitialViewPitchDegrees>
       <GPano:InitialHorizontalFOVDegrees>60</GPano:InitialHorizontalFOVDegrees>
@@ -115,14 +115,14 @@ exiftool -tagsfromfile data.xmp -all:all panorama.jpg
 
 #### 手动提供
 
-也可以通过 `panoData` 参数直接把这些值传给 Photo Sphere Viewer。
+也可以通过 `panoData` 参数直接把这些值传给 全景图查看器。
 
 ```js:line-numbers
 const viewer = new Viewer({
     container: 'viewer',
     panorama: 'path/to/panorama.jpg',
 
-    // cropping information
+    // 裁剪信息
     panoData: {
         fullWidth: 6000,
         fullHeight: 3000, // optional
@@ -132,14 +132,14 @@ const viewer = new Viewer({
         croppedY: 500,
     },
 
-    // pose information
+    // 姿态信息
     // sphereCorrection: {
     //   pan: '0deg',
     //   tilt: '0deg',
     //   roll: '0deg',
     // },
 
-    // initial view information
+    // 初始视角信息
     // defaultYaw: '0deg',
     // defaultPitch: '0deg',
     // defaultZoomLvl: 50,

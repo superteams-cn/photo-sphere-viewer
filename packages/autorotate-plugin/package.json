@@ -1,7 +1,7 @@
 {
   "name": "@photo-sphere-viewer/autorotate-plugin",
   "version": "0.0.0",
-  "description": "Photo Sphere Viewer 自动旋转插件。",
+  "description": "全景图查看器自动旋转插件。",
   "homepage": "https://photo-sphere-viewer.js.org/plugins/autorotate.html",
   "license": "MIT",
   "main": "./src/index.ts",
@@ -23,7 +23,7 @@
     "npm-link": "cd dist && npm link"
   },
   "psv": {
-    "title": "Photo Sphere Viewer / 自动旋转插件",
+    "title": "全景图查看器：自动旋转插件",
     "budget": "20kb"
   }
 }

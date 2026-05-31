@@ -6,7 +6,7 @@
 
 ```yaml
 autoload: true
-title: PSV 地图标记示例
+title: 全景图查看器地图标记示例
 packages:
   - name: map-plugin
     style: true
@@ -24,7 +24,7 @@ const baseUrl = 'https://photo-sphere-viewer-data.netlify.app/assets/';
 const viewer = new Viewer({
     container: 'viewer',
     panorama: baseUrl + 'sphere.jpg',
-    caption: 'Parc national du Mercantour <b>&copy; Damien Sorel</b>',
+    caption: '梅康图尔国家公园 <b>&copy; Damien Sorel</b>',
 
     plugins: [
         MapPlugin.withConfig({

@@ -6,7 +6,7 @@
 
 ```yaml
 autoload: true
-title: PSV 标记图层示例
+title: 全景图查看器标记图层示例
 packages:
   - name: markers-plugin
     style: true
@@ -21,7 +21,7 @@ const baseUrl = 'https://photo-sphere-viewer-data.netlify.app/assets/';
 const viewer = new Viewer({
     container: 'viewer',
     panorama: baseUrl + 'artist-workshop.jpg',
-    caption: 'Artist Workshop <b>&copy; Oliksiy Yakovlyev (HDRI Haven)</b> & Rick Astley',
+    caption: '艺术家工作室 <b>&copy; Oliksiy Yakovlyev (HDRI Haven)</b> & Rick Astley',
     defaultYaw: 2.5,
     defaultPitch: 0.1,
 

@@ -1,7 +1,7 @@
 {
   "name": "@photo-sphere-viewer/cubemap-tiles-adapter",
   "version": "0.0.0",
-  "description": "Photo Sphere Viewer 立方体瓦片适配器。",
+  "description": "全景图查看器立方体瓦片适配器。",
   "homepage": "https://photo-sphere-viewer.js.org/guide/adapters/cubemap-tiles.html",
   "license": "MIT",
   "main": "./src/index.ts",
@@ -20,7 +20,7 @@
     "npm-link": "cd dist && npm link"
   },
   "psv": {
-    "title": "Photo Sphere Viewer / 立方体瓦片适配器",
+    "title": "全景图查看器：立方体瓦片适配器",
     "budget": "20kb"
   }
 }

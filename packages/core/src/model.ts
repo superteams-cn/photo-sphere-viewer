@@ -177,15 +177,15 @@ export type TransitionOptions = {
 };
 
 /**
- * Result of {@link AbstractAdapter.loadTexture}
+ * {@link AbstractAdapter.loadTexture} 的结果
  */
 export type TextureData<TTexture = Texture | Texture[] | Record<string, Texture>, TPanorama = any, TData = any> = {
   /**
-   * Actual texture or list of textures
+   * 实际纹理或纹理列表
    */
   texture: TTexture;
   /**
-   * Original panorama definition
+   * 原始全景图定义
    */
   panorama: TPanorama;
   /**

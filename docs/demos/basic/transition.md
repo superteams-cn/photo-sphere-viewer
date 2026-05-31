@@ -7,7 +7,7 @@
 ```yaml
 autoload: true
 hideHeader: true
-title: PSV 切换过渡示例
+title: 全景图查看器切换过渡示例
 packages:
   - name: lil-gui
     version: '0.20'
@@ -34,7 +34,7 @@ const panos = [
 const viewer = new Viewer({
   container: 'viewer',
   panorama: panos[0],
-  caption: 'Cape Florida Light, Key Biscayne <b>&copy; Pixexid</b>',
+  caption: '佛罗里达角灯塔，基比斯坎 <b>&copy; Pixexid</b>',
 });
 
 let i = 0;

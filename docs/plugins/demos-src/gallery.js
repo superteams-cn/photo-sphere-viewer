@@ -6,7 +6,7 @@ const baseUrl = 'https://photo-sphere-viewer-data.netlify.app/assets/';
 const viewer = new Viewer({
   container: 'viewer',
   panorama: baseUrl + 'sphere.jpg',
-  caption: 'Parc national du Mercantour <b>&copy; Damien Sorel</b>',
+  caption: '梅康图尔国家公园 <b>&copy; Damien Sorel</b>',
   loadingImg: baseUrl + 'loader.gif',
   touchmoveTwoFingers: true,
   mousewheelCtrlKey: true,
@@ -26,7 +26,7 @@ gallery.setItems([
     panorama: baseUrl + 'sphere.jpg',
     thumbnail: baseUrl + 'sphere-small.jpg',
     options: {
-      caption: 'Parc national du Mercantour <b>&copy; Damien Sorel</b>',
+      caption: '梅康图尔国家公园 <b>&copy; Damien Sorel</b>',
     },
   },
   {
@@ -40,7 +40,7 @@ gallery.setItems([
     thumbnail: baseUrl + 'tour/key-biscayne-1-thumb.jpg',
     name: 'Key Biscayne',
     options: {
-      caption: 'Cape Florida Light, Key Biscayne <b>&copy; Pixexid</b>',
+      caption: '佛罗里达角灯塔，基比斯坎 <b>&copy; Pixexid</b>',
     },
   },
 ]);

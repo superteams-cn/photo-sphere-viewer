@@ -26,7 +26,7 @@ describe('core: navbar', () => {
   });
 
   it('should update the caption', () => {
-    cy.get('.psv-caption-content').should('have.text', 'Parc national du Mercantour © Damien Sorel');
+    cy.get('.psv-caption-content').should('have.text', '梅康图尔国家公园 © Damien Sorel');
 
     callViewer('change caption via options').then((viewer) =>
       viewer.setOption('caption', '<strong>名称：</strong>中文示例'),
@@ -46,7 +46,7 @@ describe('core: navbar', () => {
 
     cy.get('.psv-panel')
       .should('be.visible')
-      .should('include.text', 'Parc national du Mercantour © Damien Sorel')
+      .should('include.text', '梅康图尔国家公园 © Damien Sorel')
       .should('include.text', '这是一段中文说明内容，用于验证说明面板的展示效果')
       .compareScreenshots('description');
 
@@ -76,7 +76,7 @@ describe('core: navbar', () => {
 
       cy.get('.psv-notification-content')
         .should('be.visible')
-        .should('have.text', 'Parc national du Mercantour © Damien Sorel')
+        .should('have.text', '梅康图尔国家公园 © Damien Sorel')
         .compareScreenshots('caption-notification', { errorThreshold: 0.1 });
 
       cy.get('.psv-description-button').click();

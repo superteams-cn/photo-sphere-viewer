@@ -13,7 +13,7 @@ import type { MarkerConfig } from '@photo-sphere-viewer/markers-plugin';
 import type { PlanHotspot } from '@photo-sphere-viewer/plan-plugin';
 
 /**
- * Definition of GPS coordinates (longitude, latitude, optional altitude)
+ * GPS 坐标定义（经度、纬度，可选高度）
  */
 export type GpsPosition = [number, number, number?];
 

@@ -2,7 +2,7 @@
 
 ## 介绍
 
-Photo Sphere Viewer 对象（`Viewer` 和插件）都实现了 [EventTarget API](https://developer.mozilla.org/docs/Web/API/EventTarget) 用于派发事件，同时也提供自定义 TypeScript 接口，让事件具备强类型。
+全景图查看器对象（`Viewer` 和插件）都实现了 [EventTarget API](https://developer.mozilla.org/docs/Web/API/EventTarget) 用于派发事件，同时也提供自定义 TypeScript 接口，让事件具备强类型。
 
 事件监听器会收到一个带额外属性的 `Event` 子类。主要属性包括：
 

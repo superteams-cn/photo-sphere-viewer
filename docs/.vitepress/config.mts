@@ -105,7 +105,7 @@ const demoNames: Record<string, string> = {
 export default defineConfig({
   lang: 'zh-CN',
   outDir: '../public',
-  title: 'Photo Sphere Viewer',
+  title: '全景图查看器',
   description: '用于展示 360° 全景图的 JavaScript 库',
   ignoreDeadLinks: [(url) => url.startsWith('/api/')],
 

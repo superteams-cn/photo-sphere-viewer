@@ -34,7 +34,7 @@ const viewer = new Viewer({
 ::: code-demo
 
 ```yaml
-title: PSV Plan Demo
+title: 全景图查看器平面图示例
 packages:
   - name: plan-plugin
     style: true

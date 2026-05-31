@@ -42,7 +42,7 @@ const viewer = new Viewer({
 ::: code-demo
 
 ```yaml
-title: PSV Video Demo
+title: 全景图查看器视频示例
 packages:
   - name: equirectangular-video-adapter
   - name: video-plugin

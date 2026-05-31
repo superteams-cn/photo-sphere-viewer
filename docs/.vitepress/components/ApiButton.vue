@@ -1,7 +1,5 @@
 <template>
-  <v-btn @click="open" style="float: right" color="primary">
-    <v-icon icon="mdi-information" start /> API Reference
-  </v-btn>
+  <v-btn @click="open" style="float: right" color="primary"> <v-icon icon="mdi-information" start /> API 参考 </v-btn>
 </template>
 
 <script setup lang="ts">

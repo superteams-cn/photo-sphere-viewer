@@ -6,7 +6,7 @@
 
 ```yaml
 autoload: true
-title: PSV 标记 Youtube 示例
+title: 全景图查看器标记 Youtube 示例
 packages:
   - name: markers-plugin
     style: true
@@ -28,7 +28,7 @@ iframe.allow = 'fullscreen';
 const viewer = new Viewer({
     container: 'viewer',
     panorama: baseUrl + 'artist-workshop.jpg',
-    caption: 'Artist Workshop <b>&copy; Oliksiy Yakovlyev (HDRI Haven)</b> & Rick Astley',
+    caption: '艺术家工作室 <b>&copy; Oliksiy Yakovlyev (HDRI Haven)</b> & Rick Astley',
     defaultYaw: -0.5,
     defaultPitch: 0.2,
     defaultZoomLvl: 70,

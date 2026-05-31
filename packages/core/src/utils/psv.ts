@@ -44,10 +44,10 @@ export function isAbortError(err: Error): boolean {
 }
 
 /**
- * Displays a warning in the console with "PhotoSphereViewer" prefix
+ * 在控制台显示带“全景图查看器”前缀的警告
  */
 export function logWarn(message: string) {
-  console.warn(`PhotoSphereViewer: ${message}`);
+  console.warn(`全景图查看器：${message}`);
 }
 
 /**
@@ -357,7 +357,7 @@ export type ConfigParsers<T, U extends T = T> = {
 };
 
 /**
- * Result of {@link getConfigParser}
+ * {@link getConfigParser} 的结果
  */
 export type ConfigParser<T, U extends T> = {
   (config: T): U;
@@ -434,7 +434,7 @@ export function getConfigParser<T extends Record<string, any>, U extends T = T>(
  */
 export function checkStylesheet(element: HTMLElement, name: string) {
   if (getStyleProperty(element, `--psv-${name}-loaded`) !== 'true') {
-    console.error(`PhotoSphereViewer: stylesheet "@photo-sphere-viewer/${name}/index.css" is not loaded`);
+    console.error(`全景图查看器：样式表 "@photo-sphere-viewer/${name}/index.css" 未加载`);
   }
 }
 
@@ -444,18 +444,18 @@ export function checkStylesheet(element: HTMLElement, name: string) {
 export function checkVersion(name: string, version: string, coreVersion: string) {
   if (version && version !== coreVersion) {
     console.error(
-      `PhotoSphereViewer: @photo-sphere-viewer/${name} is in version ${version} but @photo-sphere-viewer/core is in version ${coreVersion}`,
+      `全景图查看器：@photo-sphere-viewer/${name} 的版本是 ${version}，但 @photo-sphere-viewer/core 的版本是 ${coreVersion}`,
     );
   }
 }
 
 /**
- * Checks if the viewer is not used insude a closed shadow DOM
+ * 检查查看器是否未被用于封闭的 shadow DOM 内
  */
 export function checkClosedShadowDom(el: Node) {
   do {
     if (el instanceof ShadowRoot && el.mode === 'closed') {
-      console.error(`PhotoSphereViewer: closed shadow DOM detected, the viewer might not work as expected`);
+      console.error(`全景图查看器：检测到封闭的 shadow DOM，查看器可能无法按预期工作`);
       return;
     }
     el = el.parentNode;

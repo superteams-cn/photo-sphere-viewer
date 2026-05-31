@@ -6,7 +6,7 @@
 
 ```yaml
 autoload: true
-title: PSV 入场动画示例
+title: 全景图查看器入场动画示例
 packages:
   - name: autorotate-plugin
 ```
@@ -28,7 +28,7 @@ const animatedValues = {
 const viewer = new Viewer({
     container: 'viewer',
     panorama: baseUrl + 'sphere.jpg',
-    caption: 'Parc national du Mercantour <b>&copy; Damien Sorel</b>',
+    caption: '梅康图尔国家公园 <b>&copy; Damien Sorel</b>',
     defaultPitch: animatedValues.pitch.start,
     defaultYaw: animatedValues.yaw.start,
     defaultZoomLvl: animatedValues.zoom.start,

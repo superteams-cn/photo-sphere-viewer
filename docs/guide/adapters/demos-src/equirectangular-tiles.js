@@ -16,7 +16,7 @@ new Viewer({
       return `${baseUrl}sphere-tiles/image_part_${('000' + num).slice(-3)}.jpg`;
     },
   },
-  caption: 'Parc national du Mercantour <b>&copy; Damien Sorel</b>',
+  caption: '梅康图尔国家公园 <b>&copy; Damien Sorel</b>',
   loadingImg: baseUrl + 'loader.gif',
   touchmoveTwoFingers: true,
   mousewheelCtrlKey: true,

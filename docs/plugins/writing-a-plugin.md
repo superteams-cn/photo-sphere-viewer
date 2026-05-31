@@ -16,7 +16,7 @@
 - 它**必须**实现 `destroy` 方法，用于在 viewer 卸载时清理插件。
 - 构造函数**可以**接收 `config` 对象作为第二个参数。
 
-在插件中可以访问 `this.viewer`，它是 viewer 实例。更多信息请查看 [API Reference](/api/classes/Core.Viewer.html){target=\_blank}。
+在插件中可以访问 `this.viewer`，它是 viewer 实例。更多信息请查看 [API 参考](/api/classes/Core.Viewer.html){target=\_blank}。
 
 插件本身也是一个 `EventTarget`，包含 `addEventListener`、`removeEventListener` 和 `dispatchEvent` 方法。
 
@@ -135,7 +135,7 @@ require('rollup-plugin-postcss')({
 
 ### 创建按钮
 
-Photo Sphere Viewer 按钮**必须**继承 `AbstractButton`。更多信息请查看 [API Reference](/api/classes/Core.AbstractButton.html){target=\_blank}。
+全景图查看器 按钮**必须**继承 `AbstractButton`。更多信息请查看 [API 参考](/api/classes/Core.AbstractButton.html){target=\_blank}。
 
 **要求：**
 

@@ -11,7 +11,7 @@ new Viewer({
   adapter: CubemapVideoAdapter.withConfig({
     muted: true,
   }),
-  caption: 'Dreams of Dalí <b>&copy; The Dalí Museum</b>',
+  caption: '达利之梦 <b>&copy; The Dalí Museum</b>',
   loadingImg: baseUrl + 'loader.gif',
   touchmoveTwoFingers: true,
   mousewheelCtrlKey: true,

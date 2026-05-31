@@ -22,7 +22,7 @@ new Viewer({
       return `${baseUrl}cubemap-tiles/${face}_${('00' + num).slice(-2)}.jpg`;
     },
   },
-  caption: 'Parc national du Mercantour <b>&copy; Damien Sorel</b>',
+  caption: '梅康图尔国家公园 <b>&copy; Damien Sorel</b>',
   loadingImg: baseUrl + 'loader.gif',
   touchmoveTwoFingers: true,
   mousewheelCtrlKey: true,

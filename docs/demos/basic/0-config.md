@@ -6,7 +6,7 @@
 
 ```yaml
 autoload: true
-title: PSV 基础示例
+title: 全景图查看器基础示例
 ```
 
 ```js:line-numbers

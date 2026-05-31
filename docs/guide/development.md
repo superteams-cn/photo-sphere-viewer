@@ -1,6 +1,6 @@
 # 开发
 
-Photo Sphere Viewer 使用 [TypeScript](https://www.typescriptlang.org/) 和 [SASS](https://sass-lang.com/) 开发。
+全景图查看器 使用 [TypeScript](https://www.typescriptlang.org/) 和 [SASS](https://sass-lang.com/) 开发。
 本仓库是一个 [Turborepo](https://turbo.build/repo) monorepo，包含核心包以及官方适配器和插件。
 构建流程基于 [tsup](https://tsup.egoist.dev/)（基于 esbuild 的工具包），并包含一系列自定义配置。
 文档使用 [VitePress](https://vitepress.dev/) 和 [TypeDoc](https://typedoc.org/) 生成。

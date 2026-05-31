@@ -42,7 +42,7 @@ visibleRangePlugin.setVerticalRange(null);
 ::: code-demo
 
 ```yaml
-title: PSV Visible Range Demo
+title: 全景图查看器可视范围示例
 packages:
   - name: visible-range-plugin
 ```
@@ -58,7 +58,7 @@ packages:
 ::: code-demo
 
 ```yaml
-title: PSV Visible Range Demo
+title: 全景图查看器可视范围示例
 packages:
   - name: visible-range-plugin
 ```

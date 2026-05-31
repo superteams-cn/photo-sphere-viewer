@@ -12,7 +12,7 @@
 ::: code-demo
 
 ```yaml
-title: PSV Overlay Demo
+title: 全景图查看器覆盖层示例
 ```
 
 <<< ./demos-src/overlay.js{js:line-numbers}

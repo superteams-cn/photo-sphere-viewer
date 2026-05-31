@@ -3,10 +3,10 @@
 <Badges module="core"/>
 
 ::: tip 调试台
-你可以在 [调试台](../playground.md) 中使用自己的全景图测试 Photo Sphere Viewer。
+你可以在 [调试台](../playground.md) 中使用自己的全景图测试 全景图查看器。
 :::
 
-## 安装 Photo Sphere Viewer
+## 安装 全景图查看器
 
 #### 使用包管理器
 
@@ -16,7 +16,7 @@ pnpm add @photo-sphere-viewer/core
 
 #### 通过 CDN
 
-Photo Sphere Viewer 可通过 [jsDelivr](https://www.jsdelivr.com/?query=@photo-sphere-viewer) 使用。
+全景图查看器 可通过 [jsDelivr](https://www.jsdelivr.com/?query=@photo-sphere-viewer) 使用。
 
 #### 手动下载
 
@@ -105,7 +105,7 @@ const viewer = new Viewer({
 
 ```yaml
 autoload: true
-title: PSV 基础示例
+title: 全景图查看器基础示例
 ```
 
 ```js:line-numbers
@@ -116,7 +116,7 @@ const baseUrl = 'https://photo-sphere-viewer-data.netlify.app/assets/';
 new Viewer({
     container: 'viewer',
     panorama: baseUrl + 'sphere.jpg',
-    caption: 'Parc national du Mercantour <b>&copy; Damien Sorel</b>',
+    caption: '梅康图尔国家公园 <b>&copy; Damien Sorel</b>',
 });
 ```
 

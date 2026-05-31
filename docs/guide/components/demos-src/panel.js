@@ -7,7 +7,7 @@ const PANEL_ID = 'custom-panel';
 const viewer = new Viewer({
   container: 'viewer',
   panorama: baseUrl + 'sphere.jpg',
-  caption: 'Parc national du Mercantour <b>&copy; Damien Sorel</b>',
+  caption: '梅康图尔国家公园 <b>&copy; Damien Sorel</b>',
   loadingImg: baseUrl + 'loader.gif',
   touchmoveTwoFingers: true,
   mousewheelCtrlKey: true,
@@ -15,7 +15,7 @@ const viewer = new Viewer({
     'zoom',
     {
       id: BUTTON_ID,
-      title: 'Toggle panel',
+      title: '切换面板',
       content: '🆘',
       onClick: togglePanel,
     },

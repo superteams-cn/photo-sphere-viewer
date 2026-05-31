@@ -12,7 +12,7 @@
 :::: code-demo
 
 ```yaml
-title: PSV Panel Demo
+title: 全景图查看器面板示例
 ```
 
 ::: code-group

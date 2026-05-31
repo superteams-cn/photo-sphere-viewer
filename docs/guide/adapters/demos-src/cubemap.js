@@ -14,7 +14,7 @@ new Viewer({
     top: baseUrl + 'cubemap/py.jpg',
     bottom: baseUrl + 'cubemap/ny.jpg',
   },
-  caption: 'Parc national du Mercantour <b>&copy; Damien Sorel</b>',
+  caption: '梅康图尔国家公园 <b>&copy; Damien Sorel</b>',
   loadingImg: baseUrl + 'loader.gif',
   touchmoveTwoFingers: true,
   mousewheelCtrlKey: true,

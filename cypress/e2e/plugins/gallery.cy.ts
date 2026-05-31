@@ -104,7 +104,7 @@ describe('plugin: gallery', () => {
     cy.get('[data-psv-gallery-item=1]').click();
     waitViewerReady();
 
-    cy.get('.psv-caption-content').should('have.text', 'Cape Florida Light, Key Biscayne © Pixexid');
+    cy.get('.psv-caption-content').should('have.text', '佛罗里达角灯塔，基比斯坎 © Pixexid');
   });
 
   it('should hide on click', () => {

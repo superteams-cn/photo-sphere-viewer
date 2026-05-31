@@ -12,7 +12,7 @@
 ::: code-demo
 
 ```yaml
-title: PSV Notification Demo
+title: 全景图查看器通知示例
 ```
 
 <<< ./demos-src/notification.js{js:line-numbers}

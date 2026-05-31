@@ -6,7 +6,7 @@
 
 ```yaml
 autoload: true
-title: PSV 截图示例
+title: 全景图查看器截图示例
 ```
 
 ```js:line-numbers
@@ -17,7 +17,7 @@ const baseUrl = 'https://photo-sphere-viewer-data.netlify.app/assets/';
 new Viewer({
     container: 'viewer',
     panorama: baseUrl + 'sphere.jpg',
-    caption: 'Parc national du Mercantour <b>&copy; Damien Sorel</b>',
+    caption: '梅康图尔国家公园 <b>&copy; Damien Sorel</b>',
     navbar: [
         {
             content: '截图',
@@ -38,5 +38,5 @@ new Viewer({
 :::
 
 ::: warning 注意
-这个示例使用了 Photo Sphere Viewer 的内部 API。TypeScript 用户需要添加 `// @ts-ignore`。
+这个示例使用了 全景图查看器 的内部 API。TypeScript 用户需要添加 `// @ts-ignore`。
 :::

@@ -94,7 +94,7 @@ ${html}
 export function getIframeContent({ title, html, js, css, packages }: Params) {
   return `
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -124,7 +124,7 @@ export function getIframeContent({ title, html, js, css, packages }: Params) {
 </head>
 
 <body>
-  <div id="loader">Loading...</div>
+  <div id="loader">加载中...</div>
   ${getFullHtml(html, packages, true)}
 
   <script type="module">
@@ -170,7 +170,7 @@ function getStackBlitzValue({ title, js, css, html, packages }: Params) {
 ${js}`,
     'project[files][styles.css]': getFullCss(css, packages, false),
     'project[files][index.html]': `<!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">

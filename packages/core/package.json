@@ -19,7 +19,7 @@
     "npm-link": "cd dist && npm link"
   },
   "psv": {
-    "title": "Photo Sphere Viewer",
+    "title": "全景图查看器",
     "style": true,
     "budget": "200kb"
   },

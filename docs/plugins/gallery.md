@@ -47,7 +47,7 @@ const viewer = new Viewer({
 ::: code-demo
 
 ```yaml
-title: PSV Gallery Demo
+title: 全景图查看器图库示例
 packages:
   - name: gallery-plugin
     style: true

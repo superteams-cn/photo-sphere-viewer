@@ -65,7 +65,7 @@ import {
 } from './utils';
 
 /**
- * Photo Sphere Viewer controller
+ * 全景图查看器控制器
  */
 export class Viewer extends TypedEventTarget<ViewerEvents> {
   readonly state: ViewerState;

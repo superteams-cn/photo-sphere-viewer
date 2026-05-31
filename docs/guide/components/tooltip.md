@@ -14,7 +14,7 @@
 ::: code-demo
 
 ```yaml
-title: PSV Tooltip Demo
+title: 全景图查看器工具提示示例
 ```
 
 <<< ./demos-src/tooltip.js{js:line-numbers}

@@ -1,4 +1,4 @@
-# Photo Sphere Viewer
+# 全景图查看器
 
 [![NPM version](https://img.shields.io/npm/v/@photo-sphere-viewer/core?logo=npm)](https://www.npmjs.com/package/@photo-sphere-viewer/core)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/mistic100/Photo-Sphere-Viewer/build.yml?branch=main&logo=github)](https://github.com/mistic100/Photo-Sphere-Viewer/actions/workflows/build.yml)

@@ -20,7 +20,7 @@ const viewer = new Viewer({
 ::: code-demo
 
 ```yaml
-title: PSV Dual fisheye Demo
+title: 全景图查看器双鱼眼示例
 packages:
   - name: core
 ```

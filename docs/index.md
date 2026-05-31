@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: Photo Sphere Viewer
+  name: 全景图查看器
   text: 用于展示 360° 全景图的 JavaScript 库
   actions:
     - theme: brand
@@ -32,7 +32,7 @@ features:
 ---
 
 ::: tip 致谢 Jéremy Heleine
-本项目 fork 自 [Jérémy Heleine](http://jeremyheleine.me) 创建的 Photo Sphere Viewer，并在此基础上提供更好的代码架构和更多功能。
+本项目 fork 自 [Jérémy Heleine](http://jeremyheleine.me) 创建的全景图查看器，并在此基础上提供更好的代码架构和更多功能。
 :::
 
 ## 赞助者

@@ -54,7 +54,7 @@ async function fetchAnnouncements(): Promise<any[]> {
 
 function formatAnnouncement(announcement: any, marked: any): Announcement {
   let body = marked.parseInline(announcement.body.split('\r\n')[0], { breaks: true });
-  body += ` <a href="${announcement.url}">Read more.</a>`;
+  body += ` <a href="${announcement.url}">阅读全文。</a>`;
 
   return {
     title: announcement.title,

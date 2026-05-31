@@ -33,7 +33,7 @@ const viewer = new Viewer({
 ::: code-demo
 
 ```yaml
-title: PSV Compass Demo
+title: 全景图查看器指南针示例
 packages:
   - name: compass-plugin
     style: true

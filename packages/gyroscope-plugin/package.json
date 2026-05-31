@@ -1,7 +1,7 @@
 {
   "name": "@photo-sphere-viewer/gyroscope-plugin",
   "version": "0.0.0",
-  "description": "Photo Sphere Viewer 陀螺仪插件，用于移动端控制。",
+  "description": "全景图查看器陀螺仪插件，用于移动端控制。",
   "homepage": "https://photo-sphere-viewer.js.org/plugins/gyroscope.html",
   "license": "MIT",
   "main": "./src/index.ts",
@@ -19,7 +19,7 @@
     "npm-link": "cd dist && npm link"
   },
   "psv": {
-    "title": "Photo Sphere Viewer / 陀螺仪插件",
+    "title": "全景图查看器：陀螺仪插件",
     "budget": "15kb"
   }
 }

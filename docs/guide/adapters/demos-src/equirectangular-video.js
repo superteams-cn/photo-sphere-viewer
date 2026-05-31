@@ -11,7 +11,7 @@ new Viewer({
   adapter: EquirectangularVideoAdapter.withConfig({
     muted: true,
   }),
-  caption: 'Ayutthaya <b>&copy; meetle</b>',
+  caption: '大城府 <b>&copy; meetle</b>',
   loadingImg: baseUrl + 'loader.gif',
   touchmoveTwoFingers: true,
   mousewheelCtrlKey: true,

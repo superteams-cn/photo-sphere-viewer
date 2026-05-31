@@ -73,7 +73,7 @@ const viewer = new Viewer({
 ::: code-demo
 
 ```yaml
-title: PSV Autorotate Demo
+title: 全景图查看器自动旋转示例
 packages:
   - name: autorotate-plugin
 ```
@@ -87,7 +87,7 @@ packages:
 ::: code-demo
 
 ```yaml
-title: PSV Autorotate Keypoints Demo
+title: 全景图查看器自动旋转关键点示例
 packages:
   - name: autorotate-plugin
     imports: AutorotatePlugin
