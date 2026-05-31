@@ -36,7 +36,7 @@ new Viewer({
         {
           coordinates: [6.7783, 44.58506],
           id: 'green-lake',
-          tooltip: 'Lac vert',
+          tooltip: '绿湖',
           color: 'green',
         },
       ],

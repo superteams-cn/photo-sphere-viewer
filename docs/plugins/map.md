@@ -331,7 +331,7 @@ _注意：这个选项不属于插件自身配置，而是会合并到主 [`lang
 
 ```js
 mapPlugin.setHotspots([
-  { id: '1', yaw: '0deg', distance: 120, tooltip: 'Hotspot one' },
+  { id: '1', yaw: '0deg', distance: 120, tooltip: '热点一' },
   { id: '2', x: 150, y: 310, image: 'blue-dot.png' },
 ]);
 ```

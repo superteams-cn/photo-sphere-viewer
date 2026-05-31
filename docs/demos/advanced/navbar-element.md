@@ -45,7 +45,7 @@ input {
 
         const title = document.createElement('span');
         title.id = 'title';
-        title.innerText = 'Zoom';
+        title.innerText = '缩放';
         dom.appendChild(title);
 
         this.input = document.createElement('input');

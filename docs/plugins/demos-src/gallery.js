@@ -32,7 +32,7 @@ gallery.setItems([
   {
     id: 'sphere-test',
     panorama: baseUrl + 'sphere-test.jpg',
-    name: 'Test sphere',
+    name: '测试全景图',
   },
   {
     id: 'key-biscayne',

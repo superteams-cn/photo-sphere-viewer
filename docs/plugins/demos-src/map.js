@@ -24,7 +24,7 @@ new Viewer({
           y: 450,
           id: 'green-lake',
           color: 'green',
-          tooltip: 'Lac vert',
+          tooltip: '绿湖',
         },
         {
           yaw: '-45deg',

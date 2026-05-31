@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PhotoSphereViewer - 标记示例</title>
+    <title>全景图查看器 - 标记示例</title>
 
     <link rel="stylesheet" href="/dist/core/index.css" />
     <link rel="stylesheet" href="/dist/markers-plugin/index.css" />
@@ -128,7 +128,7 @@
       const viewer = new Viewer({
         container: 'photosphere',
         panorama: baseUrl + 'sphere.jpg',
-        caption: 'Parc national du Mercantour <b>&copy; Damien Sorel</b>',
+        caption: '梅康图尔国家公园 <b>&copy; Damien Sorel</b>',
         loadingImg: baseUrl + 'loader.gif',
         navbar: [
           'zoom',
@@ -283,7 +283,7 @@
                   strokeLinejoin: 'round',
                   strokeWidth: '20px',
                 },
-                tooltip: 'Polyline',
+                tooltip: '折线',
               });
 
               // embedded images
@@ -292,7 +292,7 @@
                 imageLayer: baseUrl + 'pictos/tent.png',
                 size: { width: 120, height: 94 },
                 position: { yaw: -0.45, pitch: -0.1 },
-                tooltip: 'Image embedded in the scene',
+                tooltip: '嵌入场景的图片',
               });
 
               a.push({
@@ -302,7 +302,7 @@
                 position: { yaw: 0.37, pitch: -0.2 },
                 opacity: 0.8,
                 rotation: { pitch: Math.PI / 2 },
-                tooltip: 'Image embedded in the scene with "horizontal" orientation',
+                tooltip: '嵌入场景、水平朝向的图片',
               });
 
               // HTML & image markers
@@ -356,7 +356,7 @@
 
               a.push({
                 id: 'circle',
-                tooltip: 'A circle of radius 30',
+                tooltip: '半径为 30 的圆',
                 circle: 30,
                 svgStyle: {
                   fill: 'rgba(255,255,0,0.3)',
@@ -369,7 +369,7 @@
 
               a.push({
                 id: 'ellipse',
-                tooltip: 'An ellipse of radius 60/30',
+                tooltip: '半径为 60/30 的椭圆',
                 ellipse: [60, 30],
                 svgStyle: {
                   fill: 'rgba(255,255,0,0.3)',
@@ -382,7 +382,7 @@
 
               a.push({
                 id: 'rect',
-                tooltip: 'A square a side 60',
+                tooltip: '边长为 60 的正方形',
                 rect: [60, 60],
                 svgStyle: {
                   fill: 'rgba(255,255,0,0.3)',
@@ -395,7 +395,7 @@
 
               a.push({
                 id: 'path',
-                tooltip: 'A custom path',
+                tooltip: '自定义路径',
                 path: 'M 0 0 L 60 60 L 60 0 L 0 60 L 0 0',
                 svgStyle: {
                   fill: 'rgba(255,255,0,0.3)',
@@ -418,7 +418,7 @@
 
               a.push({
                 id: 'scale-0',
-                tooltip: 'No scale',
+                tooltip: '不缩放',
                 scale: false,
                 circle: 20,
                 svgStyle: {
@@ -493,7 +493,7 @@
         if (!data.rightclick) {
           markers.addMarker({
             id: '#' + Math.random(),
-            tooltip: 'Generated marker',
+            tooltip: '生成的标记',
             position: {
               yaw: data.yaw,
               pitch: data.pitch,

@@ -32,7 +32,7 @@ const viewer = new Viewer({
           imageLayer: baseUrl + 'pictos/tent.png',
           size: { width: 120, height: 94 },
           position: { yaw: -0.45, pitch: -0.1 },
-          tooltip: 'Image embedded in the scene',
+          tooltip: '嵌入场景的图片',
         },
         {
           // html marker with custom style
@@ -49,7 +49,7 @@ const viewer = new Viewer({
             textAlign: 'center',
           },
           tooltip: {
-            content: 'An HTML marker',
+            content: 'HTML 标记',
             position: 'right',
           },
         },
@@ -76,7 +76,7 @@ const viewer = new Viewer({
             strokeWidth: '2px',
           },
           tooltip: {
-            content: 'A dynamic polygon marker',
+            content: '动态多边形标记',
             position: 'bottom right',
           },
         },
@@ -99,14 +99,14 @@ const viewer = new Viewer({
             strokeLinejoin: 'round',
             strokeWidth: '10px',
           },
-          tooltip: 'A dynamic polyline marker',
+          tooltip: '动态折线标记',
         },
         {
           // circle marker
           id: 'circle',
           circle: 20,
           position: { textureX: 2500, textureY: 1200 },
-          tooltip: 'A circle marker',
+          tooltip: '圆形标记',
         },
       ],
     }),
@@ -126,7 +126,7 @@ viewer.addEventListener('click', ({ data }) => {
       image: baseUrl + 'pictos/pin-red.png',
       size: { width: 32, height: 32 },
       anchor: 'bottom center',
-      tooltip: 'Generated pin',
+      tooltip: '生成的图钉',
       data: {
         generated: true,
       },

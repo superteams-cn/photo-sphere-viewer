@@ -308,7 +308,7 @@ _**注意：** 内容会以 HTML 渲染。如果内容可能包含不受信任�
 
 ```js:line-numbers
 mapPlugin.setHotspots([
-    { id: '1', coordinates: [6.79077, 44.58041], tooltip: 'Hotspot one' },
+    { id: '1', coordinates: [6.79077, 44.58041], tooltip: '热点一' },
     { id: '2', coordinates: [6.79077, 44.58041], image: 'blue-dot.png' },
 ]);
 ```

@@ -28,7 +28,7 @@ new Viewer({
       keypoints: points.map((pt, i) => ({
         position: pt,
         pause: i % 3 === 1 ? 2000 : 0,
-        tooltip: 'Test tooltip',
+        tooltip: '测试提示框',
       })),
     }),
     MarkersPlugin.withConfig({

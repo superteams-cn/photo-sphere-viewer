@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PhotoSphereViewer - 虚拟导览示例</title>
+    <title>全景图查看器 - 虚拟导览示例</title>
 
     <link rel="stylesheet" href="/dist/core/index.css" />
     <link rel="stylesheet" href="/dist/markers-plugin/index.css" />
@@ -41,12 +41,12 @@
       import { VirtualTourPlugin } from '@photo-sphere-viewer/virtual-tour-plugin';
 
       const baseUrl = 'https://photo-sphere-viewer-data.netlify.app/assets/';
-      const caption = 'Cape Florida Light, Key Biscayne <b>&copy; Pixexid</b>';
+      const caption = '佛罗里达角灯塔，基比斯坎 <b>&copy; Pixexid</b>';
 
       const markerLighthouse = {
         id: 'marker-1',
         image: baseUrl + 'pictos/pin-red.png',
-        tooltip: 'Cape Florida Light, Key Biscayne',
+        tooltip: '佛罗里达角灯塔，基比斯坎',
         size: { width: 32, height: 32 },
         anchor: 'bottom center',
         gps: [-80.155975, 25.66668, 29 + 3],
@@ -63,7 +63,7 @@
           id: '1',
           panorama: baseUrl + 'tour/key-biscayne-1.jpg',
           thumbnail: baseUrl + 'tour/key-biscayne-1-thumb.jpg',
-          name: 'One',
+          name: '第一张',
           caption: `[1] ${caption}`,
           links: [{ nodeId: '2', position: { pitch: 0, yaw: '100deg' } }],
           markers: [
@@ -81,7 +81,7 @@
           id: '2',
           panorama: baseUrl + 'tour/key-biscayne-2.jpg',
           thumbnail: baseUrl + 'tour/key-biscayne-2-thumb.jpg',
-          name: 'Two',
+          name: '第二张',
           caption: `[2] ${caption}`,
           links: [
             { nodeId: '3', position: { pitch: 0, yaw: '120deg' } },
@@ -102,7 +102,7 @@
           id: '3',
           panorama: baseUrl + 'tour/key-biscayne-3.jpg',
           thumbnail: baseUrl + 'tour/key-biscayne-3-thumb.jpg',
-          name: 'Three',
+          name: '第三张',
           caption: `[3] ${caption}`,
           links: [
             { nodeId: '2', position: { pitch: 0, yaw: '310deg' } },
@@ -118,7 +118,7 @@
           id: '4',
           panorama: baseUrl + 'tour/key-biscayne-4.jpg',
           thumbnail: baseUrl + 'tour/key-biscayne-4-thumb.jpg',
-          name: 'Four',
+          name: '第四张',
           caption: `[4] ${caption}`,
           links: [
             { nodeId: '3', position: { pitch: 0, yaw: '40deg' } },
@@ -133,7 +133,7 @@
           id: '5',
           panorama: baseUrl + 'tour/key-biscayne-5.jpg',
           thumbnail: baseUrl + 'tour/key-biscayne-5-thumb.jpg',
-          name: 'Five',
+          name: '第五张',
           caption: `[5] ${caption}`,
           links: [
             { nodeId: '6', position: { pitch: 0, yaw: '280deg' } },
@@ -149,7 +149,7 @@
           id: '6',
           panorama: baseUrl + 'tour/key-biscayne-6.jpg',
           thumbnail: baseUrl + 'tour/key-biscayne-6-thumb.jpg',
-          name: 'Six',
+          name: '第六张',
           caption: `[6] ${caption}`,
           links: [
             { nodeId: '7', position: { pitch: 0, yaw: '-60deg' } },
@@ -164,7 +164,7 @@
           id: '7',
           panorama: baseUrl + 'tour/key-biscayne-7.jpg',
           thumbnail: baseUrl + 'tour/key-biscayne-7-thumb.jpg',
-          name: 'Seven',
+          name: '第七张',
           caption: `[7] ${caption}`,
           links: [{ nodeId: '6', position: { pitch: 0, yaw: '80deg' } }],
           gps: [-80.15709, 25.66634, 3],

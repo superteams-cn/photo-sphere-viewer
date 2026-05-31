@@ -65,10 +65,10 @@ gui.add(config, 'enabled');
 gui.add(config, 'rotation');
 gui.add(config, 'effect', ['fade', 'black', 'white']);
 
-const speed = gui.addFolder('Speed/Duration');
-speed.add(config, 'speed_mode', ['duration', 'speed']).name('Mode');
-speed.add(config, 'speed_duration', 0.5, 10, 0.5).name('Duration (s)');
-speed.add(config, 'speed_speed', 0.5, 10, 0.5).name('Speed (rpm)');
+const speed = gui.addFolder('速度/持续时间');
+speed.add(config, 'speed_mode', ['duration', 'speed']).name('模式');
+speed.add(config, 'speed_duration', 0.5, 10, 0.5).name('持续时间（秒）');
+speed.add(config, 'speed_speed', 0.5, 10, 0.5).name('速度（rpm）');
 
 gui.add(config, 'run').name('运行');
 

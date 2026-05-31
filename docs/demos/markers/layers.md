@@ -38,7 +38,7 @@ const viewer = new Viewer({
                     style: {
                         cursor: 'pointer',
                     },
-                    tooltip: 'Play / Pause',
+                    tooltip: '播放 / 暂停',
                 },
                 {
                     id: 'image',
