@@ -59,7 +59,7 @@ export class Notification extends AbstractComponent {
   }
 
   /**
-   * @throws {@link PSVError} always
+   * @throws {@link Core.PSVError | PSVError} 始终抛出
    * @internal
    */
   override toggle() {

@@ -43,8 +43,8 @@ export class Marker3D extends Marker {
     const mesh = new Mesh(geometry, material);
     mesh.userData = { [MARKER_DATA]: this };
 
-    // overwrite the visible property to be tied to the Marker instance
-    // and do it without context bleed
+    // 覆盖 visible 属性，使其与 Marker 实例绑定
+    // 并避免上下文泄漏
     Object.defineProperty(mesh, 'visible', {
       enumerable: true,
       get: function (this: Object3D) {
@@ -92,16 +92,16 @@ export class Marker3D extends Marker {
       try {
         this.state.position = this.viewer.dataHelper.cleanPosition(this.config.position);
       } catch (e) {
-        throw new PSVError(`invalid marker ${this.id} position`, e);
+        throw new PSVError(`标记 ${this.id} 的位置无效。`, e);
       }
 
       if (!this.config.size) {
-        throw new PSVError(`missing marker ${this.id} size`);
+        throw new PSVError(`标记 ${this.id} 缺少尺寸。`);
       }
 
       this.state.size = this.config.size;
 
-      // 100 is magic number that gives a coherent size at default zoom level
+      // 100 是经验值，可在默认缩放级别下得到协调的尺寸
       mesh.scale.set(this.config.size.width / 100, this.config.size.height / 100, 1);
       mesh.position.set(mesh.scale.x * (0.5 - this.state.anchor.x), mesh.scale.y * (this.state.anchor.y - 0.5), 0);
       mesh.rotation.set(0, 0, 0);
@@ -120,14 +120,14 @@ export class Marker3D extends Marker {
       });
     } else {
       if (this.config.position?.length !== 4) {
-        throw new PSVError(`missing marker ${this.id} position`);
+        throw new PSVError(`标记 ${this.id} 缺少位置。`);
       }
 
       let positions: Position[];
       try {
         positions = this.config.position.map((p) => this.viewer.dataHelper.cleanPosition(p));
       } catch (e) {
-        throw new PSVError(`invalid marker ${this.id} position`, e);
+        throw new PSVError(`标记 ${this.id} 的位置无效。`, e);
       }
 
       const positions3D = positions.map((p) => this.viewer.dataHelper.sphericalCoordsToVector3(p));
@@ -141,7 +141,7 @@ export class Marker3D extends Marker {
       [
         positions3D[0],
         positions3D[1],
-        positions3D[3], // not a mistake!
+        positions3D[3], // 这里不是写错
         positions3D[2],
       ].forEach((v, i) => {
         p.setX(i, v.x);
@@ -228,7 +228,7 @@ export class Marker3D extends Marker {
         }
         break;
 
-      // no default
+      // 无默认值
     }
 
     material.chromaKey = this.config.chromaKey;
@@ -237,7 +237,7 @@ export class Marker3D extends Marker {
   }
 
   /**
-   * For layers positionned by corners, applies offset to the texture in order to keep its proportions
+   * 对于由角点定位的图层，偏移纹理以保持原始比例
    */
   private __setTextureWrap(material: ChromaKeyMaterial) {
     const imageSize: Size = material.userData[MARKER_DATA];

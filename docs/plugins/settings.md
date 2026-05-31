@@ -4,9 +4,9 @@
 
 ::: module
 <ApiButton page="modules/SettingsPlugin.html"/>
-这个插件本身不提供独立功能，但会被其他插件依赖。
+此插件本身不提供独立功能，但会被其他插件依赖。
 
-这个插件由 [@photo-sphere-viewer/settings-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/settings-plugin) 包提供。
+该插件由 [@photo-sphere-viewer/settings-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/settings-plugin) 包提供。
 :::
 
 ## 用法
@@ -130,7 +130,7 @@ lang: {
 }
 ```
 
-_注意：这个选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
+_注意：该选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
 
 ## 事件
 

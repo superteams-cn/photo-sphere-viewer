@@ -15,7 +15,7 @@ const getConfig = utils.getConfigParser<GyroscopePluginConfig>(
   {
     moveMode(moveMode, { defValue }) {
       if (moveMode !== 'smooth' && moveMode !== 'fast') {
-        utils.logWarn(`GyroscopePlugin: invalid moveMode`);
+        utils.logWarn(`陀螺仪插件：moveMode 无效`);
         return defValue;
       } else {
         return moveMode;
@@ -138,11 +138,11 @@ export class GyroscopePlugin extends AbstractConfigurablePlugin<
 
         this.state.moveMode = moveMode;
 
-        // disable inertia
+        // 禁用惯性
         this.state.config_moveInertia = this.viewer.config.moveInertia;
         this.viewer.config.moveInertia = 0;
 
-        // enable gyro controls
+        // 启用陀螺仪控制
         if (!this.controls) {
           this.controls = new DeviceOrientationControls(new Object3D(), this.config.absolutePosition);
         }
@@ -187,7 +187,7 @@ export class GyroscopePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Handles gyro movements
+   * 处理陀螺仪移动
    */
   private __onBeforeRender() {
     if (!this.isEnabled()) {

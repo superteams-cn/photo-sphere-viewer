@@ -1,5 +1,5 @@
 /**
- * Generates README files for typedoc
+ * 为 TypeDoc 生成 README 文件
  */
 
 import path from 'path';
@@ -28,9 +28,9 @@ const DIST_FILE = 'README.md';
     const typedoc = JSON.parse(await readFile(typedocFile, { encoding: 'utf8' }));
 
     const content = `
-NPM package : [${pkg.name}](https://www.npmjs.com/package/${pkg.name})
+NPM 包：[${pkg.name}](https://www.npmjs.com/package/${pkg.name})
 
-Documentation : ${pkg.homepage}
+文档：${pkg.homepage}
 `.trim();
 
     console.log(`create ${destFile}`);
@@ -48,19 +48,19 @@ Documentation : ${pkg.homepage}
   const destFile = path.join(distDir, DIST_FILE);
 
   const content = `
-# Core
+# 核心
 
-- [Viewer](classes/Core.Viewer.html)
-- [events](modules/Core.events.html)
-- [utils](modules/Core.utils.html)
+- {@link Core.Viewer | Viewer}
+- {@link Core.events | events}
+- {@link Core.utils | utils}
 
-# Plugins
+# 插件
 
-${plugins.map((plugin) => `- [${plugin}](modules/${plugin}.html)`).join('\n')}
+${plugins.map((plugin) => `- {@link ${plugin}.${plugin} | ${plugin}}`).join('\n')}
 
-# Adapters
+# 适配器
 
-${adapters.map((adapter) => `- [${adapter}](modules/${adapter}.html)`).join('\n')}
+${adapters.map((adapter) => `- {@link ${adapter}.${adapter} | ${adapter}}`).join('\n')}
 `.trim();
 
   console.log(`create ${destFile}`);

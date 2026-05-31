@@ -24,17 +24,17 @@ if (!VERSION) {
 
   const item = content.body.find(({ id }) => id === 'version');
   if (!item) {
-    console.warn(`Dropdown not found in ${filename}`);
+    console.warn(`在 ${filename} 中未找到下拉选项`);
     return;
   }
 
   const versions = item.attributes.options.filter((v) => v !== OTHER_LABEL);
   if (versions.indexOf(VERSION) !== -1) {
-    console.warn(`Version ${VERSION} already exists in ${filename}`);
+    console.warn(`版本 ${VERSION} 已存在于 ${filename}`);
     return;
   }
 
-  console.log(`Add ${VERSION} in ${filename}`);
+  console.log(`将 ${VERSION} 添加到 ${filename}`);
   versions.unshift(VERSION);
   if (versions.length > MAX_VERSIONS) {
     versions.splice(MAX_VERSIONS, versions.length - MAX_VERSIONS);

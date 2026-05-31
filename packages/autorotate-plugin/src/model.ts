@@ -49,7 +49,7 @@ export type AutorotatePluginConfig = {
    */
   autorotateZoomLvl?: number;
   /**
-   * List of positions to visit
+   * 要访问的位置列表
    */
   keypoints?: AutorotateKeypoint[];
   /**

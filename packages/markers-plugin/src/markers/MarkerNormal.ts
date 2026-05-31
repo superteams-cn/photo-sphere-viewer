@@ -44,7 +44,7 @@ export class MarkerNormal extends AbstractStandardMarker {
     const element = this.domElement;
 
     if (this.config.image && !this.config.size) {
-      throw new PSVError(`missing marker ${this.id} size`);
+      throw new PSVError(`标记 ${this.id} 缺少尺寸。`);
     }
 
     if (this.config.size) {

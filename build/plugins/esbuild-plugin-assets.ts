@@ -4,7 +4,7 @@ import path from 'path';
 import prettyBytes from 'pretty-bytes';
 
 /**
- * Generates static files in output directory
+ * 在输出目录生成静态文件
  */
 export function assetsPlugin(files: Record<string, string | Promise<string>>): Plugin {
   return {

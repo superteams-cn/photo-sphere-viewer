@@ -1,6 +1,6 @@
 # 自定义元素
 
-使用自定义 WebComponent 作为标记。
+使用自定义 Web Component 作为标记。
 
 :::: code-demo
 
@@ -199,7 +199,7 @@ const viewer = new Viewer({
 <custom-marker id="custom-marker-element" style="display: none">
   <img src="https://photo-sphere-viewer-data.netlify.app/assets/sphere-small.jpg" />
   <h2>自定义元素</h2>
-  <p>使用已有元素作为标记。这个 WebComponent 包含自己的动画和提示框。</p>
+  <p>使用已有元素作为标记。这个 Web Component 包含自己的动画和提示框。</p>
 </custom-marker>
 ```
 

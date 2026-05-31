@@ -89,14 +89,14 @@ export class MarkerCSS3D extends AbstractDomMarker {
     super.update(config);
 
     if (!utils.isExtendedPosition(this.config.position)) {
-      throw new PSVError(`missing marker ${this.id} position`);
+      throw new PSVError(`标记 ${this.id} 缺少位置。`);
     }
 
     // 将纹理坐标转换为球面坐标
     try {
       this.state.position = this.viewer.dataHelper.cleanPosition(this.config.position);
     } catch (e) {
-      throw new PSVError(`invalid marker ${this.id} position`, e);
+      throw new PSVError(`标记 ${this.id} 的位置无效。`, e);
     }
 
     // 计算 x/y/z 位置

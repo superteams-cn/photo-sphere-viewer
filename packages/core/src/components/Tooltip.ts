@@ -137,7 +137,7 @@ export class Tooltip extends AbstractComponent {
   }
 
   /**
-   * @throws {@link PSVError} 始终抛出
+   * @throws {@link Core.PSVError | PSVError} 始终抛出
    * @internal
    */
   override toggle() {
@@ -174,7 +174,7 @@ export class Tooltip extends AbstractComponent {
 
   /**
    * 更新提示框内容，并可同时更新位置
-   * @throws {@link PSVError} 配置无效时抛出
+   * @throws {@link Core.PSVError | PSVError} 配置无效时抛出
    */
   update(content: string, config?: TooltipPosition) {
     this.content.innerHTML = content;
@@ -191,7 +191,7 @@ export class Tooltip extends AbstractComponent {
 
   /**
    * 将提示框移动到新位置
-   * @throws {@link PSVError} 配置无效时抛出
+   * @throws {@link Core.PSVError | PSVError} 配置无效时抛出
    */
   move(config: TooltipPosition) {
     if (this.state.state !== TooltipState.SHOWING && this.state.state !== TooltipState.READY) {
@@ -204,7 +204,7 @@ export class Tooltip extends AbstractComponent {
     const t = this.container;
     const a = this.arrow;
 
-    // compute size
+    // 计算尺寸
     const style: TooltipStyle = {
       posClass: cleanCssPosition(config.position, { allowCenter: false, cssOrder: false }) || ['top', 'center'],
       width: this.state.width,
@@ -215,7 +215,7 @@ export class Tooltip extends AbstractComponent {
       arrowLeft: 0,
     };
 
-    // set initial position
+    // 设置初始位置
     this.__computeTooltipPosition(style, config);
 
     // 溢出时修正位置
@@ -383,7 +383,7 @@ export class Tooltip extends AbstractComponent {
         style.arrowLeft = -arrow * 2;
         break;
 
-      // no default
+      // 无默认值
     }
   }
 

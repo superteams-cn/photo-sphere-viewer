@@ -38,5 +38,5 @@ new Viewer({
 :::
 
 ::: warning 注意
-这个示例使用了 全景图查看器的内部 API。TypeScript 用户需要添加 `// @ts-ignore`。
+该示例使用了全景图查看器的内部 API。TypeScript 用户需要添加 `// @ts-ignore`。
 :::

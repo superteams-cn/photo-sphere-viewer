@@ -4,7 +4,7 @@
 
 当前支持的适配器包括：
 
-- [等距柱状图](equirectangular.md)：默认适配器，用于加载完整或局部的等距柱状全景图
+- [等距柱状全景图](equirectangular.md)：默认适配器，用于加载完整或局部的等距柱状全景图
 - [等距柱状瓦片](equirectangular-tiles.md)：用于加载瓦片化的等距柱状全景图
 - [等距柱状视频](equirectangular-video.md)：用于加载等距柱状视频
 - [立方体贴图](cubemap.md)：用于加载立方体投影（六张纹理）

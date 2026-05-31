@@ -183,7 +183,7 @@ export class GalleryComponent extends AbstractComponent {
         break;
 
       case 'click': {
-        // prevent click on drag
+        // 拖动时阻止点击
         const currentMouse = this.isAboveBreakpoint ? (e as MouseEvent).clientX : (e as MouseEvent).clientY;
         if (Math.abs(this.state.initMouse - currentMouse) < 10) {
           this.__click(e);
@@ -235,7 +235,7 @@ export class GalleryComponent extends AbstractComponent {
   }
 
   /**
-   * Handle clicks on items
+   * 处理条目点击
    */
   private __click(e: Event) {
     const item = utils.getMatchingTarget(e, `.psv-gallery-item`);

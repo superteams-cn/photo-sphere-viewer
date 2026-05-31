@@ -1,6 +1,6 @@
 /**
  * 导航栏示例使用的自定义元素
- * 这个示例实现了一个自定义缩放控件
+ * 该示例实现了一个自定义缩放控件
  */
 export class CustomNavbarButton extends HTMLElement {
   constructor() {

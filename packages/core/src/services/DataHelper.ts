@@ -150,7 +150,7 @@ export class DataHelper extends AbstractService {
 
   /**
    * Converts pixel texture coordinates to spherical radians coordinates
-   * @throws {@link PSVError} 当前适配器不支持纹理坐标时抛出
+   * @throws {@link Core.PSVError | PSVError} 当前适配器不支持纹理坐标时抛出
    */
   textureCoordsToSphericalCoords(point: PanoramaPosition): Position {
     if (!this.state.textureData?.panoData) {
@@ -174,7 +174,7 @@ export class DataHelper extends AbstractService {
 
   /**
    * Converts spherical radians coordinates to pixel texture coordinates
-   * @throws {@link PSVError} 当前适配器不支持纹理坐标时抛出
+   * @throws {@link Core.PSVError | PSVError} 当前适配器不支持纹理坐标时抛出
    */
   sphericalCoordsToTextureCoords(position: Position): PanoramaPosition {
     if (!this.state.textureData?.panoData) {

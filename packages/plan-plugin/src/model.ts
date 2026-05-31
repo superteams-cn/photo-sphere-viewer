@@ -8,51 +8,51 @@ export type GpsPosition = [number, number, number?];
 
 export type PlanHotspotStyle = {
   /**
-   * Size of the hotspot
+   * 热点尺寸
    * @default 15
    */
   size?: number;
   /**
-   * SVG or image URL used for hotspot
+   * 热点使用的 SVG 或图片 URL
    */
   image?: string;
   /**
-   * Color of the hotspot when no image is provided
+   * 未提供图片时热点使用的颜色
    * @default 'white'
    */
   color?: string;
   /**
-   * Size of the border
+   * 边框尺寸
    * @default 0
    */
   borderSize?: number;
   /**
-   * Color of the border
+   * 边框颜色
    * @default null
    */
   borderColor?: string;
   /**
-   * Size on mouse hover
+   * 鼠标悬停时的尺寸
    * @default null
    */
   hoverSize?: number;
   /**
-   * SVG or image URL on mouse hover
+   * 鼠标悬停时使用的 SVG 或图片 URL
    * @default null
    */
   hoverImage?: string;
   /**
-   * Color on mouse hover
+   * 鼠标悬停时的颜色
    * @default null
    */
   hoverColor?: string;
   /**
-   * Size of the border on mouse hover
+   * 鼠标悬停时的边框尺寸
    * @default 4
    */
   hoverBorderSize?: number;
   /**
-   * Color of the border on mouse hover
+   * 鼠标悬停时的边框颜色
    * @default 'rgba(255, 255, 255, 0.8)'
    */
   hoverBorderColor?: string;
@@ -65,7 +65,7 @@ export type PlanHotspot = PlanHotspotStyle & {
   coordinates: GpsPosition;
 
   /**
-   * {@link SelectHotspot} 事件使用的唯一标识符
+   * {@link PlanPlugin.events.SelectHotspot | SelectHotspot} 事件使用的唯一标识符
    */
   id?: string;
 
@@ -89,7 +89,7 @@ export type PlanPluginConfig = {
   coordinates?: GpsPosition;
 
   /**
-   * Rotation offset to apply to the central pin
+   * 应用于中心图钉的旋转偏移
    * @default 0
    */
   bearing?: string | number;
@@ -113,12 +113,12 @@ export type PlanPluginConfig = {
   visibleOnLoad?: boolean;
 
   /**
-   * SVG or image URL used for the central pin (must be square)
+   * 中心图钉使用的 SVG 或图片 URL（必须为正方形）
    */
   pinImage?: string;
 
   /**
-   * Size of the central pin
+   * 中心图钉尺寸
    * @default 35
    */
   pinSize?: number;
@@ -135,13 +135,13 @@ export type PlanPluginConfig = {
   defaultZoom?: number;
 
   /**
-   * Define the available layers
+   * 定义可用图层
    * @default OpenStreetMap
    */
   layers?: PlanLayer[];
 
   /**
-   * Let you configure Leaflet from scratch
+   * 允许从零开始配置 Leaflet
    */
   configureLeaflet?: (map: Map) => void;
 

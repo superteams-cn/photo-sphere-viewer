@@ -59,7 +59,7 @@ export abstract class Marker {
     config: MarkerConfig,
   ) {
     if (!config.id) {
-      throw new PSVError('missing marker id');
+      throw new PSVError('缺少标记 id。');
     }
 
     this.type = getMarkerType(config);
@@ -126,7 +126,7 @@ export abstract class Marker {
 
   /**
    * 使用新属性更新标记
-   * @throws {@link PSVError} 配置无效时抛出
+   * @throws {@link Core.PSVError | PSVError} 配置无效时抛出
    * @internal
    */
   update(config: MarkerConfig) {
@@ -232,7 +232,7 @@ export abstract class Marker {
         let width = this.state.size.width;
         let height = this.state.size.height;
 
-        // only apply scaling for "temporary" tooltips
+        // 仅对“临时”提示框应用缩放
         if (this.config.hoverScale && !this.state.staticTooltip) {
           width *= this.config.hoverScale.amount;
           height *= this.config.hoverScale.amount;

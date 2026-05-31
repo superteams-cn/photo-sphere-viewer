@@ -157,7 +157,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
 
     utils.checkStylesheet(this.viewer.container, 'markers-plugin');
 
-    // Viewer events
+    // 查看器事件
     this.viewer.addEventListener(events.ClickEvent.type, this);
     this.viewer.addEventListener(events.DoubleClickEvent.type, this);
     this.viewer.addEventListener(events.RenderEvent.type, this);
@@ -344,7 +344,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
 
   /**
    * 向查看器添加新标记
-   * @throws {@link PSVError} 标记 id 缺失或已存在时抛出
+   * @throws {@link Core.PSVError | PSVError} 标记 id 缺失或已存在时抛出
    */
   addMarker(config: MarkerConfig, render = true) {
     if (this.markers[config.id]) {
@@ -377,7 +377,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
 
   /**
    * 根据标记 id 返回内部标记对象
-   * @throws {@link PSVError} 找不到标记时抛出
+   * @throws {@link Core.PSVError | PSVError} 找不到标记时抛出
    */
   getMarker(markerId: string | MarkerConfig): Marker {
     const id = typeof markerId === 'object' ? markerId.id : markerId;
@@ -450,7 +450,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Removes multiple markers
+   * 移除多个标记
    */
   removeMarkers(markerIds: string[], render = true) {
     markerIds.forEach((markerId) => this.removeMarker(markerId, false));
@@ -461,7 +461,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Replaces all markers
+   * 替换所有标记
    */
   setMarkers(markers: MarkerConfig[] | null, render = true) {
     this.clearMarkers(false);
@@ -476,7 +476,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Removes all markers
+   * 移除所有标记
    */
   clearMarkers(render = true) {
     Object.keys(this.markers).forEach((markerId) => {
@@ -775,7 +775,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
     const threeMarker = this.__getTargetMarker(e.data.objects);
     const stdMarker = this.__getTargetMarker(e.data.target, true);
 
-    // give priority to standard markers which are always on top of Three markers
+    // 优先处理标准标记，因为它们始终位于 Three 标记上方
     const marker = stdMarker || threeMarker;
 
     if (this.state.currentMarker && this.state.currentMarker !== marker) {

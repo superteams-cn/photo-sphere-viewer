@@ -60,7 +60,7 @@ export type MapHotspotStyle = {
 export type MapHotspot = (Point | { yaw: number | string; distance: number }) &
   MapHotspotStyle & {
     /**
-     * {@link SelectHotspot} 事件使用的唯一标识符
+     * {@link MapPlugin.events.SelectHotspot | SelectHotspot} 事件使用的唯一标识符
      */
     id?: string;
 

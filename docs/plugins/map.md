@@ -6,7 +6,7 @@
 <ApiButton page="modules/MapPlugin.html"/>
 在查看器上添加一张交互式地图，支持缩放、平移以及可选热点。
 
-这个插件由 [@photo-sphere-viewer/map-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/map-plugin) 包提供。
+该插件由 [@photo-sphere-viewer/map-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/map-plugin) 包提供。
 :::
 
 ::: tip 提示
@@ -297,7 +297,7 @@ lang: {
 }
 ```
 
-_注意：这个选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
+_注意：该选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
 
 ### 热点
 

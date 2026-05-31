@@ -6,7 +6,7 @@
 <ApiButton page="modules/VirtualTourPlugin.html"/>
 通过连接多个全景图创建虚拟导览。
 
-这个插件由 [@photo-sphere-viewer/virtual-tour-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/virtual-tour-plugin) 包提供。
+该插件由 [@photo-sphere-viewer/virtual-tour-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/virtual-tour-plugin) 包提供。
 :::
 
 ## 用法
@@ -194,7 +194,7 @@ packages:
 
 #### `plan`（仅客户端 + GPS 模式）
 
-使用[平面图插件](plan.md)时的热点配置。节点会自动放置在地图上，但你可以自定义[热点样式](plan.md#hotspots-1)。
+使用[平面图插件](plan.md)时的热点配置。节点会自动放置在地图上，但也可以自定义[热点样式](plan.md#hotspots-1)。
 
 设为 `false` 可在平面图中隐藏该节点。
 

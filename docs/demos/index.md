@@ -153,7 +153,7 @@ aside: false
 
 ### 自定义元素
 
-使用自定义 WebComponent 作为标记。
+使用自定义 Web Component 作为标记。
 :::
 
 ::: item

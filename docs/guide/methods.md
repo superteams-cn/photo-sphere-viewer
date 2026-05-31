@@ -2,7 +2,7 @@
 
 ## 介绍
 
-你可以在应用中调用多种方法来控制查看器。完整方法列表见 [API 参考](/api/classes/Core.Viewer.html){target=\_blank}。
+可以在应用中调用多种方法来控制查看器。完整方法列表见 [API 参考](/api/classes/Core.Viewer.html){target=\_blank}。
 
 ::: tip 模块化架构
 全景图查看器内部拆分为多个组件，因此不同方法会分布在不同对象上。例如，控制导航栏的方法位于 `navbar` 对象中。

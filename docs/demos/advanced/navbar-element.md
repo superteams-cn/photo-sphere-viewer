@@ -1,6 +1,6 @@
 # 导航栏元素
 
-在[导航栏](../../guide/navbar.md)中使用自定义 WebComponent。本示例实现了一个自定义缩放控件。
+在[导航栏](../../guide/navbar.md)中使用自定义 Web Component。本示例实现了一个自定义缩放控件。
 
 :::: code-demo
 

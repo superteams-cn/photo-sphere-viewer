@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Deploys a folder to Netlify
+ * 将文件夹部署到 Netlify
  */
 
 import { createHash } from 'crypto';
@@ -20,21 +20,21 @@ const MAX_RETRIES = 5;
   const config = yargs(process.argv).argv;
 
   if (!process.env.NETLIFY_AUTH_TOKEN) {
-    throw 'Missing env variable NETLIFY_AUTH_TOKEN';
+    throw '缺少环境变量 NETLIFY_AUTH_TOKEN';
   }
   if (!process.env.NETLIFY_SITE_ID) {
-    throw 'Missing env variable NETLIFY_SITE_ID';
+    throw '缺少环境变量 NETLIFY_SITE_ID';
   }
   if (!config.rootFolder) {
-    throw 'Missing --rootFolder';
+    throw '缺少 --rootFolder';
   }
 
   if (!existsSync(config.rootFolder)) {
-    throw `Folder ${config.rootFolder} does not exist`;
+    throw `文件夹 ${config.rootFolder} 不存在`;
   }
 
   const files = await listFilesWithHashes(config.rootFolder, config.exclude, 'sha1');
-  // TODO zip functions
+  // TODO 打包函数
   const functions = {}; // await listFilesWithHashes(config.functionsFolder, null, 'sha256');
 
   const deploy = await createDeploy(files, functions);
@@ -102,7 +102,7 @@ async function listFilesWithHashes(dir, exclude, hashfn) {
 }
 
 /**
- * Creates a new deployment on Netlify
+ * 在 Netlify 上创建新部署
  */
 async function createDeploy(files, functions) {
   try {

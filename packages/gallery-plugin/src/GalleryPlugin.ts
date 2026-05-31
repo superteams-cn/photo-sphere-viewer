@@ -84,7 +84,7 @@ export class GalleryPlugin extends AbstractConfigurablePlugin<
     this.setItems(this.config.items);
     delete this.config.items;
 
-    // buttons are initialized just after plugins
+    // 按钮会在插件之后立即初始化
     setTimeout(() => this.__updateButton());
   }
 
@@ -159,7 +159,7 @@ export class GalleryPlugin extends AbstractConfigurablePlugin<
    * 设置图库项目列表
    * @param items
    * @param [handler] 点击项目时调用的函数；提供后会替代默认行为
-   * @throws {@link PSVError} 配置无效时抛出
+   * @throws {@link Core.PSVError | PSVError} 配置无效时抛出
    */
   setItems(items: GalleryItem[] | null, handler?: (id: GalleryItem['id']) => void) {
     if (!items) {

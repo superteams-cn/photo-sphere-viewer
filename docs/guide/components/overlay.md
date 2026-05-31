@@ -33,7 +33,7 @@ title: 全景图查看器覆盖层示例
 | `image`        | `string`  | 显示在文本上方的 SVG 图标或图片。                                                |
 | `dismissible`  | `boolean` | 覆盖层是否可以通过点击或 Escape 键隐藏（默认值：`true`）。                       |
 
-_**注意：** 内容会按 HTML 渲染。如果内容可能包含不可信输入，请先清理后再传入 `title`、`text` 或 `image`。_
+_**注意：** 内容会以 HTML 渲染。如果内容可能包含不受信任的输入，请先清理后再传入 `title`、`text` 或 `image`。_
 
 ### `hide([id])`
 

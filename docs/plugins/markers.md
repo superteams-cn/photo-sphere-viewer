@@ -6,7 +6,7 @@
 <ApiButton page="modules/MarkersPlugin.html"/>
 在查看器上显示各种形状、图片和文字。
 
-这个插件由 [@photo-sphere-viewer/markers-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/markers-plugin) 包提供。
+该插件由 [@photo-sphere-viewer/markers-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/markers-plugin) 包提供。
 :::
 
 ## 用法
@@ -692,7 +692,7 @@ lang: {
 }
 ```
 
-_注意：这个选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
+_注意：该选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
 
 ## 方法
 

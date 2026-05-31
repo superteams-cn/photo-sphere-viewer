@@ -3,7 +3,7 @@ import type { Marker } from './markers/Marker';
 import icon from './icons/pin-list.svg';
 
 /**
- * Namespace for SVG creation
+ * 用于创建 SVG 的命名空间
  * @internal
  */
 export const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -27,7 +27,7 @@ export const MARKER_DATA_KEY = utils.dasherize(MARKER_DATA);
 export const ID_PANEL_MARKER = 'marker';
 
 /**
- * Panel identifier for markers list
+ * 标记列表面板标识符
  * @internal
  */
 export const ID_PANEL_MARKERS_LIST = 'markersList';

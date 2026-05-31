@@ -3,7 +3,7 @@
 <Badges module="core"/>
 
 ::: tip 调试台
-你可以在 [调试台](../playground.md) 中使用自己的全景图测试全景图查看器。
+可以在 [调试台](../playground.md) 中使用自己的全景图测试全景图查看器。
 :::
 
 ## 安装全景图查看器
@@ -125,5 +125,5 @@ new Viewer({
 `panorama` 必须是照片的 [等距柱状投影](https://en.wikipedia.org/wiki/Equirectangular_projection)。其他模式可以通过 [适配器](./adapters/) 支持。
 
 ::: tip 裁剪全景图
-如果图片没有覆盖完整的 360°×180° 球面，显示时会发生变形。你可以通过提供 [裁剪数据](./adapters/equirectangular.md#cropped-panorama) 修正。
+如果图片没有覆盖完整的 360°×180° 球面，显示时会发生变形。可以通过提供 [裁剪数据](./adapters/equirectangular.md#cropped-panorama) 修正。
 :::

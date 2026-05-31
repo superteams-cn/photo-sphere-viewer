@@ -13,7 +13,6 @@ describe('plugin: settings', () => {
     localStorage.photoSphereViewer_touchSupport = 'false';
     cy.visit('e2e/plugins/settings.html');
     waitViewerReady();
-    // createBaseSnapshot();
 
     toggleSetting = withToggleSetting();
     optionSetting = withOptionsSetting();
@@ -24,17 +23,17 @@ describe('plugin: settings', () => {
     });
   });
 
-  it('should destroy', () => {
+  it('应能销毁', () => {
     callViewer('destroy').then((viewer) => viewer.destroy());
   });
 
-  it('should add a navbar button', () => {
+  it('应添加导航栏按钮', () => {
     cy.get('.psv-settings-button').should('be.visible').click().should('have.class', 'psv-button--active');
 
     cy.get('.psv-settings').should('be.visible').compareScreenshots('base');
   });
 
-  it('should hide settings on panel open', () => {
+  it('打开面板时应隐藏设置', () => {
     cy.get('.psv-settings-button').click();
 
     callViewer('打开面板').then((viewer) => viewer.panel.show('中文内容'));
@@ -42,7 +41,7 @@ describe('plugin: settings', () => {
     cy.get('.psv-settings').should('not.be.visible');
   });
 
-  it('should remove settings', () => {
+  it('应能移除设置', () => {
     callSettings('remove settings').then((settings) => {
       settings.removeSetting(toggleSetting.id);
       settings.removeSetting(optionSetting.id);
@@ -51,7 +50,7 @@ describe('plugin: settings', () => {
     cy.get('.psv-settings-button').should('not.be.visible');
   });
 
-  it('should place the menu close to the button', () => {
+  it('菜单应靠近按钮', () => {
     [
       ['caption settings', 'right', '0px'],
       ['settings caption', 'left', '0px'],
@@ -69,7 +68,7 @@ describe('plugin: settings', () => {
     });
   });
 
-  it('should toggle the toggle', () => {
+  it('应能切换开关项', () => {
     const settingChangedHandler = listenSettingsEvent('setting-changed');
 
     cy.get('.psv-settings-button').click();
@@ -86,7 +85,7 @@ describe('plugin: settings', () => {
     cy.get('.psv-settings').compareScreenshots('base');
   });
 
-  it('should select an option', () => {
+  it('应能选择选项', () => {
     const settingChangedHandler = listenSettingsEvent('setting-changed');
 
     cy.get('.psv-settings-button').click();
@@ -112,7 +111,7 @@ describe('plugin: settings', () => {
     cy.get('.psv-settings').compareScreenshots('option-b');
   });
 
-  it('should navigate with keyboard', () => {
+  it('应支持键盘导航', () => {
     cy.get('.psv-settings-button').trigger('keydown', { key: 'Enter' });
     cy.get('[data-setting-id=toggle-setting]').trigger('keydown', { key: 'Enter' });
 
@@ -123,7 +122,7 @@ describe('plugin: settings', () => {
     cy.get('.psv-settings').should('not.be.visible');
   });
 
-  it('should display a badge', () => {
+  it('应显示徽标', () => {
     cy.get('.psv-settings-button').should('include.text', 'A').compareScreenshots('badge-a');
 
     cy.get('.psv-settings-button').click();
@@ -133,17 +132,17 @@ describe('plugin: settings', () => {
     cy.get('.psv-settings-button').should('include.text', 'B').blur().compareScreenshots('badge-b');
   });
 
-  it('should throw if missing properties', () => {
+  it('缺少属性时应抛出异常', () => {
     callSettings('set settings').then((settings) => {
-      expect(() => settings.addSetting({ ...withToggleSetting(), id: null })).to.throw('Missing setting id');
+      expect(() => settings.addSetting({ ...withToggleSetting(), id: null })).to.throw('缺少设置 id。');
 
-      expect(() => settings.addSetting({ ...withToggleSetting(), type: null })).to.throw('Missing setting type');
+      expect(() => settings.addSetting({ ...withToggleSetting(), type: null })).to.throw('缺少设置类型。');
 
-      expect(() => settings.addSetting(withToggleSetting())).to.throw('Setting "toggle-setting" already exists');
+      expect(() => settings.addSetting(withToggleSetting())).to.throw('设置 "toggle-setting" 已存在。');
     });
   });
 
-  it('should persist to localStorage', () => {
+  it('应持久化到 localStorage', () => {
     cy.visit('e2e/plugins/settings.html?persist=true');
     waitViewerReady();
 

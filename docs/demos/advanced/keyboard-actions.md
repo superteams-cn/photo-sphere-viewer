@@ -51,7 +51,7 @@ window.parent.addEventListener('keyup', e => viewer.eventsHandler.handleEvent(e)
 
 ```html [template.html]
 <script type="text/template" id="help-content">
-  <p><strong>这是一段中文说明内容</strong>，用于展示面板中的富文本、链接、代码和中文排版效果。你可以把它替换成景点介绍、设备状态、巡检记录或任何业务信息。</p>
+  <p><strong>这是一段中文说明内容</strong>，用于展示面板中的富文本、链接、代码和中文排版效果。可将其替换为景点介绍、设备状态、巡检记录或其他业务信息。</p>
 </script>
 ```
 

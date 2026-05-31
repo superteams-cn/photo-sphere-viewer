@@ -51,19 +51,19 @@ const getConfig = utils.getConfigParser<VirtualTourPluginConfig>(
   {
     dataMode(dataMode) {
       if (dataMode !== 'client' && dataMode !== 'server') {
-        throw new PSVError('VirtualTourPlugin：无效的 dataMode。');
+        throw new PSVError('虚拟导览插件：dataMode 无效。');
       }
       return dataMode;
     },
     positionMode(positionMode) {
       if (positionMode !== 'gps' && positionMode !== 'manual') {
-        throw new PSVError('VirtualTourPlugin：无效的 positionMode。');
+        throw new PSVError('虚拟导览插件：positionMode 无效。');
       }
       return positionMode;
     },
     renderMode(renderMode) {
       if (renderMode !== '3d' && renderMode !== '2d') {
-        throw new PSVError('VirtualTourPlugin：无效的 renderMode。');
+        throw new PSVError('虚拟导览插件：renderMode 无效。');
       }
       return renderMode;
     },
@@ -76,11 +76,11 @@ const getConfig = utils.getConfigParser<VirtualTourPluginConfig>(
     map(map, { rawConfig }) {
       if (map) {
         if (rawConfig.dataMode === 'server') {
-          utils.logWarn('VirtualTourPlugin：服务端模式不能使用地图。');
+          utils.logWarn('虚拟导览插件：服务端模式不能使用地图。');
           return null;
         }
         if (!map.imageUrl) {
-          utils.logWarn('VirtualTourPlugin：配置地图至少需要 "imageUrl"。');
+          utils.logWarn('虚拟导览插件：配置地图至少需要 "imageUrl"。');
           return null;
         }
         if (!('recenter' in map)) {
@@ -93,7 +93,7 @@ const getConfig = utils.getConfigParser<VirtualTourPluginConfig>(
 );
 
 /**
- * Creates virtual tours by linking multiple panoramas
+ * 通过连接多个全景图创建虚拟导览
  */
 export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   VirtualTourPluginConfig,
@@ -158,10 +158,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
     this.compass = this.viewer.getPlugin('compass');
 
     if (this.markers?.config.markers) {
-      utils.logWarn(
-        'No default markers can be configured on the MarkersPlugin when using the VirtualTourPlugin. ' +
-          'Consider defining `markers` on each tour node.',
-      );
+      utils.logWarn('使用虚拟导览插件时，不能在标记插件上配置默认标记。' + '请在每个导览节点上定义 `markers`。');
       delete this.markers.config.markers;
     }
 
@@ -174,7 +171,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
       this.map = this.viewer.getPlugin('map');
 
       if (this.config.map && !this.map) {
-        utils.logWarn('VirtualTourPlugin 已配置地图，但尚未加载 MapPlugin。');
+        utils.logWarn('虚拟导览插件已配置地图，但尚未加载地图插件。');
       }
     }
 
@@ -244,7 +241,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
 
   /**
    * 设置节点（仅客户端模式）
-   * @throws {@link PSVError} 非客户端模式时抛出
+   * @throws {@link Core.PSVError | PSVError} 非客户端模式时抛出
    */
   setNodes(nodes: VirtualTourNode[], startNodeId?: string) {
     if (this.isServerSide) {
@@ -298,7 +295,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
     const fromNode = this.state.currentNode;
     const fromLinkPosition = fromNode && fromLink ? this.__getLinkPosition(fromNode, fromLink) : null;
 
-    // if this node is already preloading, wait for it
+    // 如果该节点正在预加载，等待其完成
     return Promise.resolve(this.state.preload[nodeId])
       .then(() => {
         if (this.state.loadingNode !== nodeId) {
@@ -471,7 +468,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   /**
    * 更新节点（仅客户端模式）
    * 除 "id" 以外所有属性均可选，新配置会与旧配置合并
-   * @throws {@link PSVError} 非客户端模式时抛出
+   * @throws {@link Core.PSVError | PSVError} 非客户端模式时抛出
    */
   updateNode(newNode: Partial<VirtualTourNode> & { id: VirtualTourNode['id'] }) {
     if (this.isServerSide) {

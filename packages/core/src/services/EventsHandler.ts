@@ -197,7 +197,7 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-   * Handles keyboard events
+   * 处理键盘事件
    */
   private __onKeyDown(e: KeyboardEvent) {
     if (this.config.mousewheelCtrlKey) {
@@ -257,7 +257,7 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-   * Handles keyboard events
+   * 处理键盘事件
    */
   private __onKeyUp() {
     this.data.ctrlKeyDown = false;
@@ -277,7 +277,7 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-   * Handles mouse down events
+   * 处理鼠标按下事件
    */
   private __onMouseDown(evt: MouseEvent) {
     this.step.add(Step.CLICK);
@@ -290,7 +290,7 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-   *Handles mouse up events
+   *处理鼠标松开事件
    */
   private __onMouseUp(evt: MouseEvent) {
     if (this.step.is(Step.CLICK, Step.MOVING)) {
@@ -299,7 +299,7 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-   * Handles mouse move events
+   * 处理鼠标移动事件
    */
   private __onMouseMove(evt: MouseEvent) {
     if (this.config.mousemove && this.step.is(Step.CLICK, Step.MOVING)) {
@@ -311,7 +311,7 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-   * Handles touch events
+   * 处理触摸事件
    */
   private __onTouchStart(evt: TouchEvent) {
     if (evt.touches.length === 1) {
@@ -339,7 +339,7 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-   * Handles touch events
+   * 处理触摸事件
    */
   private __onTouchEnd(evt: TouchEvent) {
     this.__cancelLongTouch();
@@ -358,7 +358,7 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-   * Handles touch move events
+   * 处理触摸移动事件
    */
   private __onTouchMove(evt: TouchEvent) {
     this.__cancelLongTouch();
@@ -390,7 +390,7 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-   * Cancel the long touch timer if any
+   * 取消长按计时器（如果存在）
    */
   private __cancelLongTouch() {
     if (this.data.longtouchTimeout) {
@@ -400,7 +400,7 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-   * Cancel the two fingers overlay timer if any
+   * 取消双指覆盖层计时器（如果存在）
    */
   private __cancelTwoFingersOverlay() {
     if (this.config.touchmoveTwoFingers) {
@@ -413,7 +413,7 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-   * Handles mouse wheel events
+   * 处理鼠标滚轮事件
    */
   private __onMouseWheel(evt: WheelEvent) {
     if (!this.config.mousewheel || !evt.deltaY) {
@@ -443,7 +443,7 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-   * Handles fullscreen events
+   * 处理全屏事件
    */
   private __onFullscreenChange() {
     const fullscreen = this.viewer.isFullscreenEnabled();
@@ -471,7 +471,7 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-   * Initializes the combines move and zoom
+   * 初始化组合移动与缩放
    */
   private __startMoveZoom(evt: TouchEvent) {
     this.viewer.stopAll();
@@ -488,8 +488,8 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-   * Stops the movement
-   * @description If the move threshold was not reached a click event is triggered
+   * 停止移动
+   * @description 如果未达到移动阈值，则触发点击事件
    */
   private __stopMove(clientX: number, clientY: number, event?: Event, rightclick = false) {
     if (this.step.is(Step.CLICK) && !this.__moveThresholdReached(clientX, clientY)) {
@@ -505,7 +505,7 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-   * Triggers an event with all coordinates when a simple click is performed
+   * 普通点击时触发包含完整坐标的事件
    */
   private __doClick(clientX: number, clientY: number, event?: Event, rightclick = false) {
     const boundingRect = this.viewer.container.getBoundingClientRect();
@@ -536,7 +536,7 @@ export class EventsHandler extends AbstractService {
         const textureCoords = this.viewer.dataHelper.sphericalCoordsToTextureCoords(data);
         Object.assign(data, textureCoords);
       } catch {
-        // nothing
+        // 忽略无法转换的纹理坐标
       }
 
       if (!this.data.dblclickTimeout) {
@@ -563,7 +563,7 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-   * Trigger events for observed THREE objects
+   * 为被观察的 THREE 对象触发事件
    */
   private __handleObjectsEvents(evt: MouseEvent) {
     if (!isEmpty(this.state.objectsObservers) && evt.composedPath().includes(this.viewer.container)) {
@@ -608,7 +608,7 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-   * Starts moving when crossing moveThreshold and performs movement
+   * 超过 moveThreshold 后开始并执行移动
    */
   private __doMove(clientX: number, clientY: number) {
     if (this.step.is(Step.CLICK) && this.__moveThresholdReached(clientX, clientY)) {
@@ -650,7 +650,7 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-   * Perfoms combined move and zoom
+   * 执行组合移动与缩放
    */
   private __doMoveZoom(evt: TouchEvent) {
     if (this.step.is(Step.MOVING)) {

@@ -6,7 +6,7 @@
 <ApiButton page="modules/AutorotatePlugin.html"/>
 为全景图添加自动旋转功能，可在用户空闲时自动启动，也可通过按钮启动。旋转过程还可以配置为依次访问指定位置。
 
-这个插件由 [@photo-sphere-viewer/autorotate-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/autorotate-plugin) 包提供。
+该插件由 [@photo-sphere-viewer/autorotate-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/autorotate-plugin) 包提供。
 :::
 
 ## 用法
@@ -15,7 +15,7 @@
 
 ::: tab 标准用法
 
-在标准模式下，全景图会持续旋转；你可以配置 `autorotatePitch` 与 `autorotateZoomLvl`。
+在标准模式下，全景图会持续旋转；可通过 `autorotatePitch` 与 `autorotateZoomLvl` 调整视角。
 
 ```js:line-numbers
 import { AutorotatePlugin } from '@photo-sphere-viewer/autorotate-plugin';
@@ -194,7 +194,7 @@ lang: {
 }
 ```
 
-_注意：这个选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
+_注意：该选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
 
 ## 方法
 

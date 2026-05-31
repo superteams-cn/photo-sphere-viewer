@@ -24,7 +24,7 @@ type AbstractVideoMesh = Mesh<BufferGeometry, Material>;
 type AbstractVideoTextureData = TextureData<VideoTexture>;
 
 /**
- * Base video adapters class
+ * 视频适配器基类
  */
 export abstract class AbstractVideoAdapter<
   TPanorama extends AbstractVideoPanorama,
@@ -67,7 +67,7 @@ export abstract class AbstractVideoAdapter<
     }
 
     if (!this.viewer.getPlugin('video')) {
-      return Promise.reject(new PSVError('视频适配器还需要加载 VideoPlugin。'));
+      return Promise.reject(new PSVError('视频适配器还需要加载视频插件。'));
     }
 
     const video =
@@ -104,11 +104,11 @@ export abstract class AbstractVideoAdapter<
       this.video.currentTime = currentTime;
     }
 
-    // keep volume
+    // 保留音量
     this.video.muted = muted;
     this.video.volume = volume;
 
-    // play
+    // 继续播放
     if (!paused) {
       this.video.play();
     }

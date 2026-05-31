@@ -1,4 +1,4 @@
-# 分辨率插件
+# 画质插件
 
 <Badges module="resolution-plugin"/>
 
@@ -6,11 +6,11 @@
 <ApiButton page="modules/ResolutionPlugin.html"/>
 添加一个按钮，用于在多个全景图分辨率之间切换。**需要配合 [Settings 插件](./settings.md) 使用。**
 
-这个插件由 [@photo-sphere-viewer/resolution-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/resolution-plugin) 包提供。
+该插件由 [@photo-sphere-viewer/resolution-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/resolution-plugin) 包提供。
 :::
 
 ::: warning 注意
-分辨率插件与图库插件不兼容。
+画质插件与图库插件不兼容。
 :::
 
 ## 用法
@@ -75,7 +75,7 @@ packages:
 - 类型：`string`
 - 可更新：否
 
-默认加载的分辨率 id。未提供时会使用第一个分辨率。
+默认加载的画质档位 id。未提供时会使用第一个档位。
 
 ::: warning 注意
 如果查看器初始配置了 `panorama`，此设置会被忽略。
@@ -87,7 +87,7 @@ packages:
 - 默认：`true`
 - 可更新：否
 
-在设置按钮上以徽标形式显示分辨率 id。
+在设置按钮上以徽标形式显示画质档位 id。
 
 #### `lang`
 
@@ -100,7 +100,7 @@ lang: {
 }
 ```
 
-_注意：这个选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
+_注意：该选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
 
 ## 方法
 

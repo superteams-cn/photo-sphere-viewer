@@ -21,7 +21,7 @@ export enum MarkerType {
 
 /**
  * 根据可用属性判断标记类型
- * @throws {@link PSVError} 无法判断标记类型时抛出
+ * @throws {@link Core.PSVError | PSVError} 无法判断标记类型时抛出
  */
 export function getMarkerType(config: MarkerConfig, allowNone = false): MarkerType {
   const found: MarkerType[] = [];
@@ -33,7 +33,7 @@ export function getMarkerType(config: MarkerConfig, allowNone = false): MarkerTy
   });
 
   if (found.length === 0 && !allowNone) {
-    throw new PSVError(`missing marker content, either ${Object.keys(MarkerType).join(', ')}`);
+    throw new PSVError(`缺少标记内容，请提供以下任一类型： ${Object.keys(MarkerType).join(', ')}`);
   } else if (found.length > 1) {
     throw new PSVError(`multiple marker content, either ${Object.keys(MarkerType).join(', ')}`);
   }

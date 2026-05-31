@@ -7,14 +7,13 @@ describe('plugin: resolution', () => {
     localStorage.photoSphereViewer_touchSupport = 'false';
     cy.visit('e2e/plugins/resolution.html');
     waitViewerReady();
-    // createBaseSnapshot();
   });
 
-  it('should destroy', () => {
+  it('应能销毁', () => {
     callViewer('destroy').then((viewer) => viewer.destroy());
   });
 
-  it('should display the settings', () => {
+  it('应显示设置面板', () => {
     cy.get('.psv-settings-button').compareScreenshots('button-sd').click();
 
     cy.get('.psv-settings').compareScreenshots('settings');
@@ -24,13 +23,13 @@ describe('plugin: resolution', () => {
     cy.get('.psv-settings').compareScreenshots('settings-options');
   });
 
-  it('should not show the settings badge', () => {
+  it('不应显示设置按钮徽标', () => {
     cy.visit('e2e/plugins/resolution.html?showBadge=false');
 
     cy.get('.psv-settings-button').should('not.include.text', 'SD');
   });
 
-  it('should translate the setting', () => {
+  it('应能翻译设置项', () => {
     callViewer('set lang').then((viewer) => viewer.setOption('lang', { resolution: 'Qualité' }));
 
     cy.get('.psv-settings-button').click();
@@ -38,23 +37,23 @@ describe('plugin: resolution', () => {
     cy.get('.psv-settings').should('include.text', 'Qualité');
   });
 
-  it('should use the first resolution', () => {
+  it('应使用第一个画质档位', () => {
     checkPanorama('sphere-small.jpg');
   });
 
-  it('should use the default resolution', () => {
+  it('应使用默认画质档位', () => {
     cy.visit('e2e/plugins/resolution.html?resolution=HD');
 
     checkPanorama('sphere-small.jpg?hd');
   });
 
-  it('should ignore default resolution with initial panorama', () => {
+  it('初始全景图存在时应忽略默认画质档位', () => {
     cy.visit('e2e/plugins/resolution.html?resolution=HD&withPanorama=true');
 
     checkPanorama('sphere-small.jpg');
   });
 
-  it('should change the resolution', () => {
+  it('应能切换画质档位', () => {
     const resolutionChangeHandler = listenResolutionEvent('resolution-changed');
 
     cy.get('.psv-settings-button').click();
@@ -66,7 +65,7 @@ describe('plugin: resolution', () => {
     cy.get('.psv-settings-button').blur().compareScreenshots('button-hd');
   });
 
-  it('should change the resolution by API', () => {
+  it('应能通过 API 切换画质档位', () => {
     const resolutionChangeHandler = listenResolutionEvent('resolution-changed');
 
     callResolution('set resolution').then((resolution) => resolution.setResolution('HD'));
@@ -75,11 +74,11 @@ describe('plugin: resolution', () => {
     checkEventHandler(resolutionChangeHandler, { resolutionId: 'HD' });
 
     callResolution('set bad resolution').then((resolution) => {
-      expect(() => resolution.setResolution('MD')).to.throw('Resolution "MD" unknown');
+      expect(() => resolution.setResolution('MD')).to.throw('未知画质档位 "MD"。');
     });
   });
 
-  it('should update resolution on panorama change', () => {
+  it('全景图变化时应更新画质档位', () => {
     const resolutionChangeHandler = listenResolutionEvent('resolution-changed');
 
     setPanorama('sphere-small.jpg?hd');
@@ -87,10 +86,10 @@ describe('plugin: resolution', () => {
     checkEventHandler(resolutionChangeHandler, { resolutionId: 'HD' });
   });
 
-  it('should change resolutions', () => {
+  it('应能修改可用画质档位', () => {
     const resolutionChangeHandler = listenResolutionEvent('resolution-changed');
 
-    // the current panorama is found in the new list
+    // 当前全景图存在于新列表中
     callResolution('set resolutions w.o. default').then((resolution) =>
       resolution.setResolutions([
         { id: 'large', label: 'large', panorama: BASE_URL + 'sphere-small.jpg?hd' },
@@ -102,7 +101,7 @@ describe('plugin: resolution', () => {
 
     resolutionChangeHandler.reset();
 
-    // a default value is provided
+    // 提供默认值
     callResolution('set resolutions w. default').then((resolution) =>
       resolution.setResolutions(
         [
@@ -119,7 +118,7 @@ describe('plugin: resolution', () => {
 
     resolutionChangeHandler.reset();
 
-    // the current panorama is NOT found in the new list
+    // 当前全景图不存在于新列表中
     setPanorama('sphere-test.jpg');
     callResolution('set resolutions w.o. default no match').then((resolution) =>
       resolution.setResolutions([
@@ -133,18 +132,18 @@ describe('plugin: resolution', () => {
     checkEventHandler(resolutionChangeHandler, { resolutionId: 'small' });
   });
 
-  it('should throw if missing properties', () => {
+  it('缺少属性时应抛出异常', () => {
     callResolution('set resolutions').then((resolution) => {
       expect(() => resolution.setResolutions([{ id: null, label: 'label', panorama: 'sphere.jpg' }])).to.throw(
-        'Missing resolution id',
+        '缺少画质档位 id。',
       );
 
       expect(() => resolution.setResolutions([{ id: 'sd', label: null, panorama: 'sphere.jpg' }])).to.throw(
-        'Missing resolution label',
+        '缺少画质档位标签。',
       );
 
       expect(() => resolution.setResolutions([{ id: 'sd', label: 'label', panorama: null }])).to.throw(
-        'Missing resolution panorama',
+        '缺少画质档位全景图。',
       );
     });
   });

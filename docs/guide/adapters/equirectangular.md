@@ -1,4 +1,4 @@
-# 等距柱状图
+# 等距柱状全景图
 
 ::: module
 [等距柱状投影](https://en.wikipedia.org/wiki/Equirectangular_projection)是创建球体纹理最简单的方式之一，也是大多数 360° 相机使用的默认投影方式。

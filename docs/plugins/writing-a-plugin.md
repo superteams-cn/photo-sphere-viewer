@@ -1,7 +1,7 @@
 # 编写插件
 
 ::: tip 完整功能示例
-你可以在项目的 [examples](https://github.com/mistic100/Photo-Sphere-Viewer/tree/main/examples/custom-plugin) 文件夹中找到一个完整的插件实现示例。
+可以在项目的 [examples](https://github.com/mistic100/Photo-Sphere-Viewer/tree/main/examples/custom-plugin) 文件夹中找到一个完整的插件实现示例。
 :::
 
 ## 语法
@@ -45,7 +45,7 @@ export class CustomPlugin extends AbstractPlugin {
 }
 ```
 
-除了这个主类之外，你可以使用任意数量的 ES 模块来拆分代码。
+除了这个主类之外，可以使用任意数量的 ES 模块来拆分代码。
 
 ### 类型化事件
 
@@ -86,8 +86,8 @@ export class CustomPlugin extends AbstractPlugin<CustomPluginEvents> {
  */
 viewer.getPlugin(CustomPlugin)
     .addEventListener(CustomPluginEvent.type, ({ value, target }) => {
-        // value 的类型会被推断为 boolean
-        // target 的类型会被推断为 CustomPlugin
+        // 此时 value 的类型会被推断为 boolean
+        // 此时 target 的类型会被推断为 CustomPlugin
     });
 ```
 

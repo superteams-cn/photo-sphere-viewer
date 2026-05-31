@@ -94,7 +94,7 @@ export class MarkerPolygon extends AbstractDomMarker {
 
     element.classList.add('psv-marker--poly');
 
-    // set style
+    // 设置样式
     if (this.config.svgStyle) {
       Object.entries(this.config.svgStyle).forEach(([prop, value]) => {
         element.setAttributeNS(null, utils.dasherize(prop), value);
@@ -111,7 +111,7 @@ export class MarkerPolygon extends AbstractDomMarker {
     }
 
     try {
-      // (retrocompat) fold arrays: [1,2,3,4] => [[1,2],[3,4]]
+      // （向后兼容）折叠数组：[1,2,3,4] => [[1,2],[3,4]]
       let actualPoly: any = this.config[this.type];
       if (!Array.isArray(actualPoly[0]) && typeof actualPoly[0] !== 'object') {
         for (let i = 0; i < actualPoly.length; i++) {
@@ -120,7 +120,7 @@ export class MarkerPolygon extends AbstractDomMarker {
         }
       }
 
-      // make nested array for holes
+      // 为孔洞创建嵌套数组
       if (!Array.isArray(actualPoly[0][0]) && typeof actualPoly[0][0] !== 'object') {
         actualPoly = [actualPoly];
       }
@@ -130,7 +130,7 @@ export class MarkerPolygon extends AbstractDomMarker {
       }
 
       if (this.isPixels) {
-        // convert texture coordinates to spherical coordinates
+        // 将纹理坐标转换为球面坐标
         this.definition = (actualPoly as Array<Array<[number, number] | PanoramaPosition>>).map((coords) => {
           return coords.map((coord) => {
             let sphericalCoord: Position;
@@ -146,7 +146,7 @@ export class MarkerPolygon extends AbstractDomMarker {
           });
         });
       } else {
-        // clean angles
+        // 清理角度
         this.definition = (actualPoly as Array<Array<[number, number] | [string, string] | SphericalPosition>>).map(
           (coords) => {
             return coords.map((coord) => {
@@ -165,10 +165,10 @@ export class MarkerPolygon extends AbstractDomMarker {
         );
       }
     } catch (e) {
-      throw new PSVError(`invalid marker ${this.id} position`, e);
+      throw new PSVError(`标记 ${this.id} 的位置无效。`, e);
     }
 
-    // compute x/y/z positions
+    // 计算 x/y/z 位置
     this.positions3D = this.coords.map((coords) => {
       return coords.map((coord) => {
         return this.viewer.dataHelper.sphericalCoordsToVector3({ yaw: coord[0], pitch: coord[1] });
@@ -193,13 +193,13 @@ export class MarkerPolygon extends AbstractDomMarker {
   }
 
   /**
-   * Computes viewer coordinates of each point of a polygon/polyline<br>
+   * 计算多边形/折线每个点在查看器中的坐标<br>
    * 它会为相机背后的点创建适合投影器使用的中间点
    */
   private __getPolyPositions(positions: Vector3[]): Point[] {
     const nbVectors = positions.length;
 
-    // compute if each vector is visible
+    // 判断每个向量是否可见
     const positions3D = positions.map((vector) => {
       return {
         vector: vector,
@@ -207,7 +207,7 @@ export class MarkerPolygon extends AbstractDomMarker {
       };
     });
 
-    // get pairs of visible/invisible vectors for each invisible vector connected to a visible vector
+    // 为每个连接到可见向量的不可见向量，收集可见/不可见向量对
     const toBeComputed: Array<{ visible: Vector3; invisible: Vector3; index: number }> = [];
     positions3D.forEach((pos, i) => {
       if (!pos.visible) {
@@ -228,7 +228,7 @@ export class MarkerPolygon extends AbstractDomMarker {
       }
     });
 
-    // compute intermediary vector for each pair (the loop is reversed for splice to insert at the right place)
+    // 为每一对向量计算中间向量（反向循环以便 splice 插入到正确位置）
     toBeComputed.reverse().forEach((pair) => {
       positions3D.splice(pair.index, 0, {
         vector: getGreatCircleIntersection(pair.visible, pair.invisible, this.viewer.state.direction),
@@ -236,7 +236,7 @@ export class MarkerPolygon extends AbstractDomMarker {
       });
     });
 
-    // translate vectors to screen pos
+    // 将向量转换为屏幕位置
     return positions3D
       .filter((pos) => pos.visible)
       .map((pos) => this.viewer.dataHelper.vector3ToViewerCoords(pos.vector));

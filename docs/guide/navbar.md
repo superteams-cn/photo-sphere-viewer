@@ -41,7 +41,7 @@
 <DemoButton href="/demos/advanced/navbar-element.html"></DemoButton>
 :::
 
-_**注意：** 内容会按 HTML 渲染。如果内容可能包含不可信输入，请先清理后再传入 `content`。_
+_**注意：** 内容会以 HTML 渲染。如果内容可能包含不受信任的输入，请先清理后再传入 `content`。_
 
 #### `onClick(viewer)`
 

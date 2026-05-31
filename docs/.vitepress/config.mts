@@ -327,8 +327,15 @@ export default defineConfig({
     },
 
     build: {
+      chunkSizeWarningLimit: 2000,
       rollupOptions: {
         external: Object.keys(externals),
+        onwarn(warning, warn) {
+          if (warning.code === 'INVALID_ANNOTATION' && warning.id?.includes('@vueuse/core')) {
+            return;
+          }
+          warn(warning);
+        },
       },
     },
 

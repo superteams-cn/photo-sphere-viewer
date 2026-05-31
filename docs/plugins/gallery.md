@@ -6,11 +6,11 @@
 <ApiButton page="modules/GalleryPlugin.html"/>
 在查看器底部添加图库，用于在多个全景图之间导航。
 
-这个插件由 [@photo-sphere-viewer/gallery-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/gallery-plugin) 包提供。
+该插件由 [@photo-sphere-viewer/gallery-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/gallery-plugin) 包提供。
 :::
 
 ::: warning 注意
-图库插件与分辨率插件不兼容。
+图库插件与画质插件不兼容。
 :::
 
 ## 用法
@@ -109,7 +109,7 @@ lang: {
 }
 ```
 
-_注意：这个选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
+_注意：该选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
 
 ### 项目
 

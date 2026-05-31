@@ -16,7 +16,7 @@ const getConfig = utils.getConfigParser<VideoPluginConfig>({
 });
 
 /**
- * Controls a video adapter
+ * 控制视频适配器
  */
 export class VideoPlugin extends AbstractConfigurablePlugin<
   VideoPluginConfig,
@@ -52,7 +52,7 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
     super(viewer, config);
 
     if (!(this.viewer.adapter.constructor as typeof AbstractAdapter).id.includes('video')) {
-      throw new PSVError('VideoPlugin 只能与视频适配器配合使用。');
+      throw new PSVError('视频插件只能与视频适配器配合使用。');
     }
 
     if (this.config.progressbar) {
@@ -245,7 +245,7 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Pauses the cideo if playing
+   * 视频正在播放时将其暂停
    */
   pause() {
     if (this.video && !this.video.paused) {
@@ -265,7 +265,7 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
 
   /**
    * 静音或取消静音视频
-   * @param [mute] - toggle if undefined
+   * @param [mute] - 未传入时切换静音状态
    */
   setMute(mute?: boolean) {
     if (this.video) {
@@ -318,11 +318,11 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
 
   /**
    * 修改关键点
-   * @throws {@link PSVError} 配置无效时抛出
+   * @throws {@link Core.PSVError | PSVError} 配置无效时抛出
    */
   setKeypoints(keypoints?: VideoKeypoint[] | null) {
     if (!this.autorotate) {
-      throw new PSVError('视频关键点需要配合 AutorotatePlugin 使用。');
+      throw new PSVError('视频关键点需要配合自动旋转插件使用。');
     }
 
     if (!keypoints) {
@@ -362,7 +362,7 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
     delete this.state.end;
 
     if (this.autorotate.isEnabled() && this.state.keypoints) {
-      // cancel core rotation
+      // 取消核心旋转
       this.viewer.dynamics.position.stop();
     }
   }
@@ -422,21 +422,21 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
       keypoints[Math.min(l, k2 + 1)].position as Position,
     ];
 
-    // apply offsets to avoid crossing the origin
+    // 应用偏移，避免穿过原点
     const workVectors = [new Vector2(workPoints[0].yaw, workPoints[0].pitch)];
 
     let k = 0;
     for (let i = 1; i <= 3; i++) {
       const d = workPoints[i - 1].yaw - workPoints[i].yaw;
       if (d > Math.PI) {
-        // crossed the origin left to right
+        // 从左向右穿过原点
         k += 1;
       } else if (d < -Math.PI) {
-        // crossed the origin right to left
+        // 从右向左穿过原点
         k -= 1;
       }
       if (k !== 0 && i === 1) {
-        // do not modify first point, apply the reverse offset the the previous point instead
+        // 不修改第一个点，改为给前一个点施加反向偏移
         workVectors[0].x -= k * 2 * Math.PI;
         k = 0;
       }

@@ -6,7 +6,7 @@
 <ApiButton page="modules/CompassPlugin.html"/>
 在查看器上添加指南针，用于表示当前可见的球面区域。
 
-这个插件由 [@photo-sphere-viewer/compass-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/compass-plugin) 包提供。
+该插件由 [@photo-sphere-viewer/compass-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/compass-plugin) 包提供。
 :::
 
 ## 用法

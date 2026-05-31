@@ -22,8 +22,8 @@ export abstract class AbstractStandardMarker extends AbstractDomMarker {
     super.afterCreateElement();
 
     this.domElement.addEventListener('transitionend', () => {
-      // transition 的 "scale" 只在 mouseover 时手动应用；
-      // 缩放/移动导致 scale 改变时不能保留它。
+      // 缩放过渡只在鼠标移入时手动应用；
+      // 视角缩放或移动导致缩放值改变时，不能保留过渡效果。
       this.domElement.style.transition = '';
     });
   }
@@ -70,14 +70,14 @@ export abstract class AbstractStandardMarker extends AbstractDomMarker {
     super.update(config);
 
     if (!utils.isExtendedPosition(this.config.position)) {
-      throw new PSVError(`missing marker ${this.id} position`);
+      throw new PSVError(`标记 ${this.id} 缺少位置。`);
     }
 
     // 将纹理坐标转换为球面坐标
     try {
       this.state.position = this.viewer.dataHelper.cleanPosition(this.config.position);
     } catch (e) {
-      throw new PSVError(`invalid marker ${this.id} position`, e);
+      throw new PSVError(`标记 ${this.id} 的位置无效。`, e);
     }
 
     // 计算 x/y/z 位置
@@ -106,18 +106,17 @@ export abstract class AbstractStandardMarker extends AbstractDomMarker {
       };
     }
 
-    // set rotation
+    // 设置旋转
     element.style.rotate =
       this.config.rotation.roll !== 0 ? MathUtils.radToDeg(this.config.rotation.roll) + 'deg' : null;
 
-    // set anchor
+    // 设置锚点
     element.style.transformOrigin = `${this.state.anchor.x * 100}% ${this.state.anchor.y * 100}%`;
   }
 
   /**
    * 计算标记的真实尺寸
-   * @description 通过移除所有变换（如果存在）并临时显示标记来完成
-   * before querying its bounding rect
+   * @description 查询边界矩形前，先移除所有变换（如果存在）并临时显示标记。
    */
   private __updateSize() {
     if (!this.needsUpdateSize) {

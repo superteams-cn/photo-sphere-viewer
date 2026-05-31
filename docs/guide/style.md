@@ -1,17 +1,17 @@
 # 样式
 
-全景图查看器自带默认的深色主题。你可以从 SCSS 源码自行构建样式表，并覆盖部分变量来完成自定义。
+全景图查看器自带默认深色主题。可从 SCSS 源码自行构建样式表，并通过覆盖变量完成自定义。
 
 源码文件使用 SASS modules；要覆盖变量，必须通过 `@use` 导入。
 
 ```scss:line-numbers
-// main stylesheet
+// 主样式表
 @use '@photo-sphere-viewer/core/index.scss' as psv with (
     $loader-color: rgba(0, 0, 0, .5),
     $loader-width: 100px,
 );
 
-// plugins stylesheets
+// 插件样式表
 @use '@photo-sphere-viewer/markers-plugin/index.scss' as psvMarkers;
 @use '@photo-sphere-viewer/virtual-tour-plugin/index.scss' as psvVirtualTour;
 ....

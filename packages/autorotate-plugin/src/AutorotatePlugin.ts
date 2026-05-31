@@ -176,7 +176,7 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
 
   /**
    * 修改关键点
-   * @throws {@link PSVError} 配置无效时抛出
+   * @throws {@link Core.PSVError | PSVError} 配置无效时抛出
    */
   setKeypoints(keypoints: AutorotateKeypoint[] | null) {
     if (!keypoints) {

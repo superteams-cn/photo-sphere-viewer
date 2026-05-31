@@ -6,7 +6,7 @@
 <ApiButton page="modules/VideoPlugin.html"/>
 为视频[适配器](../guide/adapters/)添加播放控制。
 
-这个插件由 [@photo-sphere-viewer/video-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/video-plugin) 包提供。
+该插件由 [@photo-sphere-viewer/video-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/video-plugin) 包提供。
 :::
 
 ## 用法
@@ -76,7 +76,7 @@ keypoints: [
 ```
 
 ::: warning 注意
-使用关键点需要加载 [Autorotate 插件](./autorotate.md)。
+使用关键点需要加载 [自动旋转插件](./autorotate.md)。
 :::
 
 #### `progressbar`
@@ -107,11 +107,11 @@ lang: {
 }
 ```
 
-_注意：这个选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
+_注意：该选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
 
 ### 多分辨率
 
-你可以通过[分辨率插件](./resolution.md)为视频提供多个分辨率。
+可以通过[画质插件](./resolution.md)为视频提供多个分辨率。
 
 ```js:line-numbers
 const viewer = new Viewer({

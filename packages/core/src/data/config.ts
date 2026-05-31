@@ -80,19 +80,19 @@ export const DEFAULTS: Required<ParsedViewerConfig> = {
 };
 
 /**
- * List of unmodifiable options and their error messages
+ * 不可修改的选项及其错误消息
  * @internal
  */
 export const READONLY_OPTIONS: Record<ReadonlyViewerConfig, string> = {
   panorama: '请使用 setPanorama 方法修改全景图',
   panoData: '请使用 setPanorama 方法修改全景图',
-  container: 'Cannot change viewer container',
-  adapter: 'Cannot change adapter',
-  plugins: 'Cannot change plugins',
+  container: '不能修改查看器容器',
+  adapter: '不能修改适配器',
+  plugins: '不能修改插件',
 };
 
 /**
- * Parsers/validators for each option
+ * 各配置项的解析器与校验器
  * @internal
  */
 export const CONFIG_PARSERS: ConfigParsers<ViewerConfig, ParsedViewerConfig> = {
@@ -119,31 +119,31 @@ export const CONFIG_PARSERS: ConfigParsers<ViewerConfig, ParsedViewerConfig> = {
     return adapter;
   },
   defaultYaw: (defaultYaw) => {
-    // defaultYaw is between 0 and PI
+    // 将 defaultYaw 归一化到 0 与 PI 之间
     return parseAngle(defaultYaw);
   },
   defaultPitch: (defaultPitch) => {
-    // defaultPitch is between -PI/2 and PI/2
+    // 将 defaultPitch 归一化到 -PI/2 与 PI/2 之间
     return parseAngle(defaultPitch, true);
   },
   defaultZoomLvl: (defaultZoomLvl) => {
     return MathUtils.clamp(defaultZoomLvl, 0, 100);
   },
   minFov: (minFov, { rawConfig }) => {
-    // minFov and maxFov must be ordered
+    // 确保 minFov 和 maxFov 顺序正确
     if (rawConfig.maxFov < minFov) {
       logWarn('maxFov 不能小于 minFov。');
       minFov = rawConfig.maxFov;
     }
-    // minFov between 1 and 179
+    // 将 minFov 限制在 1 到 179 之间
     return MathUtils.clamp(minFov, 1, 179);
   },
   maxFov: (maxFov, { rawConfig }) => {
-    // minFov and maxFov must be ordered
+    // 确保 minFov 和 maxFov 顺序正确
     if (maxFov < rawConfig.minFov) {
       maxFov = rawConfig.minFov;
     }
-    // maxFov between 1 and 179
+    // 将 maxFov 限制在 1 到 179 之间
     return MathUtils.clamp(maxFov, 1, 179);
   },
   moveInertia: (moveInertia, { defValue }) => {
@@ -162,7 +162,7 @@ export const CONFIG_PARSERS: ConfigParsers<ViewerConfig, ParsedViewerConfig> = {
     };
   },
   fisheye: (fisheye) => {
-    // translate boolean fisheye to amount
+    // 将布尔 fisheye 转换为数值强度
     if (fisheye === true) {
       return 1;
     } else if (fisheye === false) {
@@ -224,7 +224,7 @@ export const CONFIG_PARSERS: ConfigParsers<ViewerConfig, ParsedViewerConfig> = {
       return clone(DEFAULTS.navbar as string[]);
     }
     if (typeof navbar === 'string') {
-      // can be a space or coma separated list
+      // 可以是空格或逗号分隔的列表
       return navbar.split(/[ ,]/);
     }
     return navbar;

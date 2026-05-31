@@ -13,7 +13,7 @@ const viewer = new Viewer({
 
   plugins: [
     MarkersPlugin.withConfig({
-      // list of markers
+      // 标记列表
       markers: [
         {
           // 点击后打开面板的图片标记

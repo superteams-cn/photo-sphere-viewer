@@ -63,7 +63,7 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
     this.viewer.addEventListener(events.ClickEvent.type, this);
     this.viewer.addEventListener(events.ShowPanelEvent.type, this);
 
-    // buttons are initialized just after plugins
+    // 按钮会在插件之后立即初始化
     setTimeout(() => this.updateButton());
   }
 
@@ -93,7 +93,7 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
 
   /**
    * 注册新的设置项
-   * @throws {@link PSVError} 配置无效时抛出
+   * @throws {@link Core.PSVError | PSVError} 配置无效时抛出
    */
   addSetting(setting: Setting) {
     if (!setting.id) {

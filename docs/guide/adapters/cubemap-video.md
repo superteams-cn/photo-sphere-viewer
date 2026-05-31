@@ -19,7 +19,7 @@ const viewer = new Viewer({
 ```
 
 ::: warning 注意
-此适配器需要配合 [VideoPlugin](../../plugins/video.md) 使用。
+此适配器需要配合 [视频插件](../../plugins/video.md) 使用。
 :::
 
 ## 示例

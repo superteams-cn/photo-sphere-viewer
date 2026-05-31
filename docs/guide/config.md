@@ -42,7 +42,7 @@ container: 'viewer'; // 定位到 [id="viewer"]
 
 显示在导航栏中的文本。如果禁用了导航栏，说明文字将不可见。
 
-_**注意：** 内容会按 HTML 渲染。如果内容可能包含不可信输入，请先清理后再传入 `caption`。_
+_**注意：** 内容会以 HTML 渲染。如果内容可能包含不受信任的输入，请先清理后再传入 `caption`。_
 
 #### `description`
 
@@ -50,7 +50,7 @@ _**注意：** 内容会按 HTML 渲染。如果内容可能包含不可信输�
 
 用户点击“i”按钮时显示在侧边面板中的文本。允许使用 HTML。
 
-_**注意：** 内容会按 HTML 渲染。如果内容可能包含不可信输入，请先清理后再传入 `description`。_
+_**注意：** 内容会以 HTML 渲染。如果内容可能包含不受信任的输入，请先清理后再传入 `description`。_
 
 #### `downloadUrl`
 
@@ -151,7 +151,7 @@ lang: {
 }
 ```
 
-查看器中使用的界面文案。你可以继续通过 `lang` 覆盖任意字段，实现英文或其他语言版本。
+查看器中使用的界面文案。可继续通过 `lang` 覆盖任意字段，实现英文或其他语言版本。
 
 #### `loadingImg`
 
@@ -349,10 +349,10 @@ import { DEFAULTS } from '@photo-sphere-viewer/core';
 keyboardActions: {
     ...DEFAULTS.keyboardActions,
     'h': (viewer, evt) => {
-        // do something when H is pressed
+        // 按下 H 时执行操作
     },
     'Ctrl+1': (viewer) => {
-        // do something when Ctrl + 1 is pressed
+        // 按下 Ctrl + 1 时执行操作
     },
 },
 ```

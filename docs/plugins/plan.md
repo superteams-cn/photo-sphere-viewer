@@ -6,7 +6,7 @@
 <ApiButton page="modules/PlanPlugin.html"/>
 在查看器上添加 [Leaflet](https://leafletjs.com) 地图，用于显示全景图位置和可选热点。默认使用 OpenStreetMap。
 
-这个插件由 [@photo-sphere-viewer/plan-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/plan-plugin) 包提供。
+该插件由 [@photo-sphere-viewer/plan-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/plan-plugin) 包提供。
 :::
 
 ## 用法
@@ -272,7 +272,7 @@ lang: {
 }
 ```
 
-_注意：这个选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
+_注意：该选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
 
 ### 热点
 

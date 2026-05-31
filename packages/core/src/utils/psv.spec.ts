@@ -105,12 +105,12 @@ describe('utils:psv:parseAngle', () => {
     }
   });
 
-  it('should throw exception on invalid values', () => {
+  it('应在数值无效时抛出异常', () => {
     assert.throws(
       () => {
         parseAngle('foobar');
       },
-      /Unknown angle "foobar"/,
+      /未知角度 "foobar"。/,
       'foobar',
     );
 
@@ -118,7 +118,7 @@ describe('utils:psv:parseAngle', () => {
       () => {
         parseAngle('200gr');
       },
-      /Unknown angle unit "gr"/,
+      /未知角度单位 "gr"。/,
       '200gr',
     );
   });
@@ -277,12 +277,12 @@ describe('utils:psv:parseSpeed', () => {
     }
   });
 
-  it('should throw exception on invalid unit', () => {
+  it('应在单位无效时抛出异常', () => {
     assert.throws(
       () => {
         parseSpeed('10rpsec');
       },
-      /Unknown speed unit "rpsec"/,
+      /未知速度单位 "rpsec"。/,
       '10rpsec',
     );
   });
@@ -514,7 +514,7 @@ describe('utils:psv:mergePanoData', () => {
     );
   });
 
-  it('should fix invalid fullWidth/fullHeight', () => {
+  it('应修正无效的 fullWidth/fullHeight', () => {
     assertDeepEqualLenient(
       mergePanoData(2000, 500, {
         fullWidth: 2000,
@@ -535,7 +535,7 @@ describe('utils:psv:mergePanoData', () => {
     );
   });
 
-  it('should fix invalid croppedY', () => {
+  it('应修正无效的 croppedY', () => {
     assertDeepEqualLenient(
       mergePanoData(2000, 500, {
         fullWidth: 2000,
@@ -575,7 +575,7 @@ describe('utils:psv:mergePanoData', () => {
     );
   });
 
-  it('should fix invalid croppedX', () => {
+  it('应修正无效的 croppedX', () => {
     assertDeepEqualLenient(
       mergePanoData(1000, 1000, {
         fullWidth: 2000,

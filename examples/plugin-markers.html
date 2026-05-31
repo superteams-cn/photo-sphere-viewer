@@ -49,7 +49,7 @@
       <h1>标记说明示例</h1>
 
       <p><strong>这是一段标记说明内容</strong>，用于展示面板中的富文本、链接、代码和嵌入地图。
-        你可以把它替换成景点介绍、设备状态、巡检记录或任何业务信息。
+        可将其替换为景点介绍、设备状态、巡检记录或其他业务信息。
         <em>中文内容会作为默认展示语言。</em> 示例里保留了 <code>HTML</code> 结构，方便复制改造。</p>
 
       <iframe
@@ -99,7 +99,7 @@
     <custom-marker id="custom-marker-element" style="display: none">
       <img src="https://photo-sphere-viewer-data.netlify.app/assets/sphere-small.jpg" />
       <h2>自定义元素</h2>
-      <p>使用已有元素作为标记。这个 WebComponent 包含自己的动画和提示框。</p>
+      <p>使用已有元素作为标记。这个 Web Component 包含自己的动画和提示框。</p>
     </custom-marker>
 
     <script type="importmap">
@@ -173,7 +173,7 @@
 <img src="${baseUrl}sphere-small.jpg">
 <article>
 <h2>中文提示框</h2>
-<p>这里展示自定义提示框的正文内容。你可以在提示框中放入图片、说明文字和任意业务信息。</p>
+<p>这里展示自定义提示框的正文内容。可以在提示框中放入图片、说明文字和任意业务信息。</p>
 </article>`,
                   className: 'custom-tooltip',
                   trigger: 'click',
@@ -264,7 +264,7 @@
                 },
               });
 
-              // simple polyline
+              // 简单折线
               a.push({
                 id: 'polyline',
                 polylinePixels: [
@@ -344,10 +344,10 @@
                 zIndex: 10,
               });
 
-              // SVG markers
+              // SVG 标记
               a.push({
                 id: 'svg-demo',
-                html: 'SVG marker demo',
+                html: 'SVG 标记演示',
                 scale: [0.5, 1.5],
                 className: 'demo-label',
                 position: { yaw: -0.5, pitch: -0.42 },
@@ -406,10 +406,10 @@
                 anchor: 'top left',
               });
 
-              // Scaling markers
+              // 缩放标记
               a.push({
                 id: 'scale-demo',
-                html: 'Marker scale demo',
+                html: '标记缩放演示',
                 scale: [0.5, 1.5],
                 className: 'demo-label',
                 position: { yaw: 0, pitch: -0.47 },

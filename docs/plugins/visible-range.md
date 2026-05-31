@@ -6,7 +6,7 @@
 <ApiButton page="modules/VisibleRangePlugin.html"/>
 锁定全景图的可见区域。
 
-这个插件由 [@photo-sphere-viewer/visible-range-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/visible-range-plugin) 包提供。
+该插件由 [@photo-sphere-viewer/visible-range-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/visible-range-plugin) 包提供。
 :::
 
 ## 用法

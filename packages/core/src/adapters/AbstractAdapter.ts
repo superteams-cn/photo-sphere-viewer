@@ -61,7 +61,7 @@ export abstract class AbstractAdapter<TPanorama, TData, TTexture, TMesh extends 
 
   /**
    * 将像素纹理坐标转换为球面弧度坐标
-   * @throws {@link PSVError} 当前适配器不支持纹理坐标时抛出
+   * @throws {@link Core.PSVError | PSVError} 当前适配器不支持纹理坐标时抛出
    */
   // @ts-ignore unused parameter
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -71,7 +71,7 @@ export abstract class AbstractAdapter<TPanorama, TData, TTexture, TMesh extends 
 
   /**
    * 将球面弧度坐标转换为像素纹理坐标
-   * @throws {@link PSVError} 当前适配器不支持纹理坐标时抛出
+   * @throws {@link Core.PSVError | PSVError} 当前适配器不支持纹理坐标时抛出
    */
   // @ts-ignore unused parameter
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

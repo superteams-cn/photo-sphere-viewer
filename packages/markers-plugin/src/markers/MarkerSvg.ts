@@ -36,7 +36,7 @@ export class MarkerSvg extends AbstractStandardMarker {
 
     this.needsUpdateSize = true;
 
-    // set content
+    // 设置内容
     switch (this.type) {
       case MarkerType.square:
         this.definition = {
@@ -97,14 +97,14 @@ export class MarkerSvg extends AbstractStandardMarker {
         };
         break;
 
-      // no default
+      // 无默认值
     }
 
     Object.entries(this.definition).forEach(([prop, value]) => {
       svgElement.setAttributeNS(null, prop, value as string);
     });
 
-    // set style
+    // 设置样式
     if (this.config.svgStyle) {
       Object.entries(this.config.svgStyle).forEach(([prop, value]) => {
         svgElement.setAttributeNS(null, utils.dasherize(prop), value);

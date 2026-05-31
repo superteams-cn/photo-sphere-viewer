@@ -139,7 +139,7 @@ export class Renderer extends AbstractService {
     this.cleanScene(this.scene);
     this.renderer.dispose();
 
-    // remove container
+    // 移除容器
     this.viewer.container.removeChild(this.container);
 
     this.viewer.removeEventListener(SizeUpdatedEvent.type, this);
@@ -248,7 +248,7 @@ export class Renderer extends AbstractService {
   }
 
   /**
-   * Main event loop, performs a render if `state.needsUpdate` is true
+   * 主事件循环，当 `state.needsUpdate` 为 true 时执行渲染
    */
   private __renderLoop(timestamp: number) {
     const elapsed = !this.timestamp ? 0 : timestamp - this.timestamp;
@@ -315,7 +315,7 @@ export class Renderer extends AbstractService {
    * @internal
    */
   transition(textureData: TextureData, options: PanoramaOptions, transition: TransitionOptions): Animation<any> {
-    // do not animate zoom in black/white transition without rotation
+    // 无旋转的黑白过渡中不执行缩放动画
     const zoomTransition = transition.effect === 'fade' || transition.rotation;
 
     const positionProvided = !isNil(options.position);
@@ -425,7 +425,7 @@ export class Renderer extends AbstractService {
         this.meshContainer.add(newMesh);
         this.state.textureData = textureData;
 
-        // apply rotations
+        // 应用旋转
         this.setPanoramaPose(textureData.panoData);
         this.setSphereCorrection(options.sphereCorrection);
 

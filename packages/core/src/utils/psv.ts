@@ -207,7 +207,7 @@ export function cssPositionIsOrdered(value: string[]): boolean {
 /**
  * 解析速度
  * @param speed 支持弧度、角度或圈数，并可使用“每秒”或“每分钟”单位
- * @throws {@link PSVError} 速度无法解析时抛出
+ * @throws {@link Core.PSVError | PSVError} 速度无法解析时抛出
  */
 export function parseSpeed(speed: string | number): number {
   let parsed;
@@ -280,7 +280,7 @@ export function speedToDuration(value: string | number, angle: number): number {
  * @param angle - 示例：3.14、3.14rad、180deg
  * @param [zeroCenter=false] - 归一化到 -Pi 至 Pi，而不是 0 至 2*Pi
  * @param [halfCircle=zeroCenter] - 归一化到 -Pi/2 至 Pi/2，而不是 -Pi 至 Pi
- * @throws {@link PSVError} 角度无法解析时抛出
+ * @throws {@link Core.PSVError | PSVError} 角度无法解析时抛出
  */
 export function parseAngle(angle: string | number, zeroCenter = false, halfCircle = zeroCenter): number {
   let parsed;

@@ -11,34 +11,34 @@ describe('generate-typedoc-readme', () => {
 
     const cases = {
       '.tmp/typedoc/README.md': `
-# Core
+# 核心
 
-- [Viewer](classes/Core.Viewer.html)
-- [events](modules/Core.events.html)
-- [utils](modules/Core.utils.html)
+- {@link Core.Viewer | Viewer}
+- {@link Core.events | events}
+- {@link Core.utils | utils}
 
-# Plugins
+# 插件
 
-- [TestPlugin](modules/TestPlugin.html)
+- {@link TestPlugin.TestPlugin | TestPlugin}
 
-# Adapters
+# 适配器
 
-- [TestAdapter](modules/TestAdapter.html)`,
+- {@link TestAdapter.TestAdapter | TestAdapter}`,
 
       'packages/core/.tmp/typedoc/README.md': `
-NPM package : [@photo-sphere-viewer/core](https://www.npmjs.com/package/@photo-sphere-viewer/core)
+NPM 包：[@photo-sphere-viewer/core](https://www.npmjs.com/package/@photo-sphere-viewer/core)
 
-Documentation : https://photo-sphere-viewer.js.org`,
+文档：https://photo-sphere-viewer.js.org`,
 
       'packages/test-adapter/.tmp/typedoc/README.md': `
-NPM package : [@photo-sphere-viewer/test-adapter](https://www.npmjs.com/package/@photo-sphere-viewer/test-adapter)
+NPM 包：[@photo-sphere-viewer/test-adapter](https://www.npmjs.com/package/@photo-sphere-viewer/test-adapter)
 
-Documentation : https://photo-sphere-viewer.js.org/adapters/test.html`,
+文档：https://photo-sphere-viewer.js.org/adapters/test.html`,
 
       'packages/test-plugin/.tmp/typedoc/README.md': `
-NPM package : [@photo-sphere-viewer/test-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/test-plugin)
+NPM 包：[@photo-sphere-viewer/test-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/test-plugin)
 
-Documentation : https://photo-sphere-viewer.js.org/plugins/test.html`,
+文档：https://photo-sphere-viewer.js.org/plugins/test.html`,
     };
 
     Object.entries(cases).forEach(([file, expected]) => {

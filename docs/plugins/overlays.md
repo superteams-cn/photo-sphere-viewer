@@ -6,13 +6,13 @@
 <ApiButton page="modules/OverlaysPlugin.html"/>
 在全景图上方显示额外图片。
 
-这个插件由 [@photo-sphere-viewer/overlays-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/overlays-plugin) 包提供。
+该插件由 [@photo-sphere-viewer/overlays-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/overlays-plugin) 包提供。
 :::
 
 ## 用法
 
 覆盖层是“贴”在全景图上的图片。与[标记](./markers.md)不同，它们属于 3D 场景的一部分，而不是绘制在查看器上方。
-同时支持等距柱状图（完整或裁剪）与立方体贴图。
+同时支持完整或裁剪的等距柱状全景图，以及立方体贴图。
 
 ```js:line-numbers
 import { OverlaysPlugin } from '@photo-sphere-viewer/overlays-plugin';

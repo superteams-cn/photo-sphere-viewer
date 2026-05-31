@@ -39,7 +39,7 @@ const AVAILABLE_GROUPS: Record<string, ButtonConstructor[]> = {};
  *    - `end`
  *    - `[id]:left`
  *    - `[id]:right`
- * @throws {@link PSVError} 按钮构造函数缺少 "id" 时抛出
+ * @throws {@link Core.PSVError | PSVError} 按钮构造函数缺少 "id" 时抛出
  */
 export function registerButton(button: ButtonConstructor, defaultPosition?: string) {
   if (!button.id) {

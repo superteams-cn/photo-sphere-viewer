@@ -96,7 +96,7 @@ export class SettingsComponent extends AbstractComponent {
   }
 
   /**
-   * Handle clicks on items
+   * 处理条目点击
    */
   private __click(e: Event) {
     const li = utils.getMatchingTarget(e, '.psv-settings-item');

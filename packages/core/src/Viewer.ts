@@ -154,7 +154,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
       toggleClass(this.container, 'psv--is-touch', enabled);
     });
 
-    // init plugins
+    // 初始化插件
     this.config.plugins.forEach(([plugin, opts]) => {
       // @ts-ignore
       this.plugins[plugin.id] = new plugin(this, opts);
@@ -163,7 +163,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
       plugin.init?.();
     }
 
-    // init buttons
+    // 初始化按钮
     if (this.config.navbar) {
       this.navbar.setButtons(this.config.navbar);
     }
@@ -332,7 +332,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
    * 加载新的全景图文件
    * 加载新的全景图文件，可同时调整相机位置/缩放并启用过渡动画。<br>
    * 如果未传入 "options" 参数，相机不会移动，当前动画会继续执行。<br>
-   * If another loading is already in progress it will be aborted.
+   * 如果另一次加载仍在进行，会先中止它。
    * @returns 如果加载被另一次调用中止，则 promise 解析为 false
    */
   setPanorama(path: any, options: PanoramaOptions = {}): Promise<boolean> {
@@ -468,7 +468,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
 
   /**
    * 更新配置项
-   * @throws {@link PSVError} 配置无效时抛出
+   * @throws {@link Core.PSVError | PSVError} 配置无效时抛出
    */
   setOptions(options: Partial<UpdatableViewerConfig>) {
     const rawConfig: ViewerConfig = {
@@ -478,7 +478,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
 
     for (let [key, value] of Object.entries(options) as Array<[keyof typeof rawConfig, any]>) {
       if (!(key in DEFAULTS)) {
-        logWarn(`Unknown option ${key}`);
+        logWarn(`未知选项 ${key}`);
         continue;
       }
 
@@ -553,7 +553,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
 
   /**
    * 更新配置项
-   * @throws {@link PSVError} 配置无效时抛出
+   * @throws {@link Core.PSVError | PSVError} 配置无效时抛出
    */
   setOption<T extends keyof UpdatableViewerConfig>(option: T, value: UpdatableViewerConfig[T]) {
     this.setOptions({ [option]: value });
@@ -593,7 +593,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Zooms to a specific level between `maxFov` and `minFov`
+   * 缩放到 `maxFov` 与 `minFov` 之间的指定级别
    */
   zoom(level: number) {
     this.dynamics.zoom.setValue(level);
@@ -747,9 +747,9 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Creates a new tooltip
+   * 创建新的提示框
    * 使用 {@link Tooltip.move} 更新提示框，避免重新创建
-   * @throws {@link PSVError} 配置无效时抛出
+   * @throws {@link Core.PSVError | PSVError} 配置无效时抛出
    */
   createTooltip(config: TooltipConfig): Tooltip {
     return new Tooltip(this, config);
@@ -778,7 +778,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Unsubscribes to events on objects
+   * 取消订阅对象事件
    */
   unobserveObjects(userDataKey: string): void {
     delete this.state.objectsObservers[userDataKey];

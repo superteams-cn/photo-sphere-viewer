@@ -142,7 +142,7 @@ export class Panel extends AbstractComponent {
   }
 
   /**
-   * @throws {@link PSVError} 始终抛出
+   * @throws {@link Core.PSVError | PSVError} 始终抛出
    * @internal
    */
   override toggle() {

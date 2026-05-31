@@ -39,9 +39,7 @@ export class ResolutionPlugin extends AbstractPlugin<ResolutionPluginEvents> {
 
     if (this.config.defaultResolution && this.viewer.config.panorama) {
       utils.logWarn(
-        'ResolutionPlugin, a defaultResolution was provided ' +
-          '但查看器已经配置了全景图，' +
-          'defaultResolution 将被忽略。',
+        '画质插件提供了 defaultResolution，' + '但查看器已经配置了全景图，' + 'defaultResolution 将被忽略。',
       );
     }
   }
@@ -55,7 +53,7 @@ export class ResolutionPlugin extends AbstractPlugin<ResolutionPluginEvents> {
     this.settings = this.viewer.getPlugin('settings');
 
     if (!this.settings) {
-      throw new PSVError('Resolution 插件需要配合 Settings 插件使用。');
+      throw new PSVError('画质插件需要配合设置插件使用。');
     }
 
     this.settings.addSetting({
@@ -101,7 +99,7 @@ export class ResolutionPlugin extends AbstractPlugin<ResolutionPluginEvents> {
    * 修改可用分辨率
    * @param resolutions
    * @param defaultResolution - 如果未提供，则保留当前全景图
-   * @throws {@link PSVError} 配置无效时抛出
+   * @throws {@link Core.PSVError | PSVError} 配置无效时抛出
    */
   setResolutions(resolutions: Resolution[], defaultResolution?: string) {
     this.resolutions = resolutions;
@@ -109,18 +107,18 @@ export class ResolutionPlugin extends AbstractPlugin<ResolutionPluginEvents> {
 
     resolutions.forEach((resolution) => {
       if (!resolution.id) {
-        throw new PSVError('缺少分辨率 id。');
+        throw new PSVError('缺少画质档位 id。');
       }
       if (!resolution.label) {
-        throw new PSVError('缺少分辨率标签。');
+        throw new PSVError('缺少画质档位标签。');
       }
       if (!resolution.panorama) {
-        throw new PSVError('缺少分辨率全景图。');
+        throw new PSVError('缺少画质档位全景图。');
       }
       this.resolutionsById[resolution.id] = resolution;
     });
 
-    // pick first resolution if no default provided and cannot find match with current panorama
+    // 未提供默认画质且无法匹配当前全景图时，选用第一个画质档位
     if (!defaultResolution) {
       if (this.viewer.config.panorama) {
         const resolution = this.resolutions.find((r) => utils.deepEqual(this.viewer.config.panorama, r.panorama));
@@ -140,12 +138,12 @@ export class ResolutionPlugin extends AbstractPlugin<ResolutionPluginEvents> {
   }
 
   /**
-   * 修改当前分辨率
-   * @throws {@link PSVError} if the resolution does not exist
+   * 修改当前画质档位
+   * @throws {@link Core.PSVError | PSVError} 画质档位不存在时抛出
    */
   setResolution(id: string): Promise<unknown> {
     if (!this.resolutionsById[id]) {
-      throw new PSVError(`未知分辨率 "${id}"。`);
+      throw new PSVError(`未知画质档位 "${id}"。`);
     }
 
     return this.__setResolutionIfExists(id);
@@ -171,7 +169,7 @@ export class ResolutionPlugin extends AbstractPlugin<ResolutionPluginEvents> {
   }
 
   /**
-   * Updates current resolution on panorama load
+   * 全景图加载时更新当前画质
    */
   private __refreshResolution() {
     const resolution = this.resolutions.find((r) => utils.deepEqual(this.viewer.config.panorama, r.panorama));

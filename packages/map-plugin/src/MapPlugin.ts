@@ -52,7 +52,7 @@ const getConfig = utils.getConfigParser<MapPluginConfig, ParsedMapPluginConfig>(
       return utils.cleanCssPosition(position, { allowCenter: false, cssOrder: true }) || defValue;
     },
     rotation: (rotation) => utils.parseAngle(rotation),
-    coneColor: (coneColor) => (coneColor ? new Color(coneColor).getStyle() : null), // must be in rgb format
+    coneColor: (coneColor) => (coneColor ? new Color(coneColor).getStyle() : null), // 必须是 rgb 格式
     defaultZoom: (defaultZoom) => Math.log(defaultZoom / 100),
     maxZoom: (maxZoom) => Math.log(maxZoom / 100),
     minZoom: (minZoom) => Math.log(minZoom / 100),
@@ -281,7 +281,7 @@ export class MapPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Removes all hotspots
+   * 移除全部热点
    */
   clearHotspots() {
     this.setHotspots(null);
