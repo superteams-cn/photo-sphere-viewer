@@ -105,7 +105,7 @@ Size of the thumbnails.
 
 ```js
 lang: {
-    gallery: 'Gallery',
+    gallery: '图库',
 }
 ```
 

@@ -102,8 +102,8 @@ Displays a big "play" button in the center of the viewer.
 
 ```js
 lang: {
-  videoPlay: 'Play/Pause',
-  videoVolume: 'Volume',
+  videoPlay: '播放/暂停',
+  videoVolume: '音量',
 }
 ```
 

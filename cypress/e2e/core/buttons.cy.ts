@@ -24,14 +24,14 @@ describe('core: buttons', () => {
   it('should zoom with buttons', () => {
     checkZoom(50);
 
-    cy.get('[title="Zoom in"]').click();
+    cy.get('[title="放大"]').click();
     cy.wait(500);
 
     callViewer('check zoom >50').then((viewer) => expect(viewer.getZoomLevel()).gt(50));
 
-    cy.get('[title="Zoom out"]').trigger('mousedown');
+    cy.get('[title="缩小"]').trigger('mousedown');
     cy.wait(1000);
-    cy.get('[title="Zoom out"]').trigger('mouseup');
+    cy.get('[title="缩小"]').trigger('mouseup');
 
     callViewer('check zoom <50').then((viewer) => expect(viewer.getZoomLevel()).lt(50));
   });
@@ -59,14 +59,14 @@ describe('core: buttons', () => {
   it('should move left/right with buttons', () => {
     callViewer('set yaw =PI').then((viewer) => viewer.rotate({ yaw: Math.PI, pitch: 0 }));
 
-    cy.get('[title="Move right"]').click();
+    cy.get('[title="向右移动"]').click();
     cy.wait(500);
 
     callViewer('check yaw >PI').then((viewer) => expect(viewer.getPosition().yaw).gt(Math.PI));
 
-    cy.get('[title="Move left"]').trigger('mousedown');
+    cy.get('[title="向左移动"]').trigger('mousedown');
     cy.wait(1000);
-    cy.get('[title="Move left"]').trigger('mouseup');
+    cy.get('[title="向左移动"]').trigger('mouseup');
 
     callViewer('check zoom <Math.PI').then((viewer) => expect(viewer.getPosition().yaw).lt(Math.PI));
   });
@@ -74,14 +74,14 @@ describe('core: buttons', () => {
   it('should move up/down with buttons', () => {
     checkPosition({ yaw: 0, pitch: 0 });
 
-    cy.get('[title="Move up"]').click();
+    cy.get('[title="向上移动"]').click();
     cy.wait(500);
 
     callViewer('check pitch >0').then((viewer) => expect(viewer.getPosition().pitch).gt(0));
 
-    cy.get('[title="Move down"]').trigger('mousedown');
+    cy.get('[title="向下移动"]').trigger('mousedown');
     cy.wait(1000);
-    cy.get('[title="Move down"]').trigger('mouseup');
+    cy.get('[title="向下移动"]').trigger('mouseup');
 
     callViewer('check pitch <0').then((viewer) => expect(viewer.getPosition().pitch).lt(0));
   });

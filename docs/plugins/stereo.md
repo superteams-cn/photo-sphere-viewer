@@ -11,7 +11,7 @@ This plugin is available in the [@photo-sphere-viewer/stereo-plugin](https://www
 
 ## Usage
 
-Once enabled the plugin will add a new "Stereo view" button only shown when the gyroscope API is available. It uses the WakeLock API to prevent the display from dimming or shuting down.
+启用后，插件会添加一个“立体视图”按钮；只有陀螺仪 API 可用时该按钮才会显示。它会使用 WakeLock API 防止屏幕变暗或关闭。
 
 ```js:line-numbers
 import { GyroscopePlugin } from '@photo-sphere-viewer/gyroscope-plugin';
@@ -38,10 +38,10 @@ const viewer = new Viewer({
 
 ```js
 lang: {
-    stereo: 'Stereo view',
-    stereoNotification: 'Click anywhere to exit stereo view.',
-    pleaseRotate: 'Please rotate your device',
-    tapToContinue: '(or tap to continue)',
+    stereo: '立体视图',
+    stereoNotification: '点击任意位置退出立体视图。',
+    pleaseRotate: '请旋转你的设备',
+    tapToContinue: '（或点击继续）',
 }
 ```
 

@@ -36,9 +36,9 @@ describe('core: navbar', () => {
 
     cy.get('.psv-navbar').compareScreenshots('update-caption');
 
-    callNavbar('change caption via API').then((navbar) => navbar.setCaption('Loading...'));
+    callNavbar('change caption via API').then((navbar) => navbar.setCaption('加载中...'));
 
-    cy.get('.psv-caption-content').should('have.text', 'Loading...');
+    cy.get('.psv-caption-content').should('have.text', '加载中...');
   });
 
   it('should show the description in the side panel', () => {
@@ -108,10 +108,10 @@ describe('core: navbar', () => {
     cy.get('.psv-panel')
       .should('be.visible')
       .within(() => {
-        cy.get('.psv-panel-menu-title').should('contain.text', 'Menu');
+        cy.get('.psv-panel-menu-title').should('contain.text', '菜单');
 
-        cy.contains('Download').should('be.visible');
-        cy.contains('Click me').should('be.visible');
+        cy.contains('下载').should('be.visible');
+        cy.contains('点我').should('be.visible');
       })
       .compareScreenshots('menu-content');
 
@@ -134,19 +134,19 @@ describe('core: navbar', () => {
       cy.get('.custom-button:eq(0)').invoke('attr', 'title').should('eq', titles.myButton);
     }
 
-    const en = {
-      zoomOut: 'Zoom out',
-      zoomIn: 'Zoom in',
-      moveUp: 'Move up',
-      moveDown: 'Move down',
-      moveLeft: 'Move left',
-      moveRight: 'Move right',
-      description: 'Description',
-      download: 'Download',
-      fullscreen: 'Fullscreen',
-      myButton: 'Click me',
+    const zh = {
+      zoomOut: '缩小',
+      zoomIn: '放大',
+      moveUp: '向上移动',
+      moveDown: '向下移动',
+      moveLeft: '向左移动',
+      moveRight: '向右移动',
+      description: '说明',
+      download: '下载',
+      fullscreen: '全屏',
+      myButton: '点我',
     };
-    assertTitles(en);
+    assertTitles(zh);
 
     const fr = {
       zoomOut: 'Dézoomer',
@@ -155,7 +155,7 @@ describe('core: navbar', () => {
       moveDown: 'Bas',
       moveLeft: 'Gauche',
       moveRight: 'Droite',
-      description: 'Description',
+      description: '说明',
       download: 'Télécharger',
       fullscreen: 'Plein écran',
       myButton: 'Cliquez ici',
@@ -190,13 +190,13 @@ describe('core: navbar', () => {
 
     callViewer('change buttons via options').then((viewer) => viewer.setOption('navbar', 'zoom move'));
 
-    assertButtons(['Zoom out', 'Zoom in', 'Move left', 'Move right', 'Move up', 'Move down']);
+    assertButtons(['缩小', '放大', '向左移动', '向右移动', '向上移动', '向下移动']);
 
     cy.get('.psv-navbar').compareScreenshots('update-buttons');
 
     callNavbar('change buttons via API').then((navbar) => navbar.setButtons(['download', 'fullscreen']));
 
-    assertButtons(['Download', 'Fullscreen']);
+    assertButtons(['下载', '全屏']);
   });
 
   it('should hide a button', () => {

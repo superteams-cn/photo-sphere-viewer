@@ -42,19 +42,71 @@ const externals = {
 const importmap = `<script type="importmap">${JSON.stringify({ imports: externals })}</script>`;
 
 const adapters = [
-  { text: 'Equirectangular', link: '/equirectangular' },
-  { text: 'Equirectangular tiles', link: '/equirectangular-tiles' },
-  { text: 'Equirectangular video', link: '/equirectangular-video' },
-  { text: 'Cubemap', link: '/cubemap' },
-  { text: 'Cubemap tiles', link: '/cubemap-tiles' },
-  { text: 'Cubemap video', link: '/cubemap-video' },
-  { text: 'Dual fisheye', link: '/dual-fisheye' },
+  { text: '等距柱状图', link: '/equirectangular' },
+  { text: '等距柱状瓦片', link: '/equirectangular-tiles' },
+  { text: '等距柱状视频', link: '/equirectangular-video' },
+  { text: '立方体贴图', link: '/cubemap' },
+  { text: '立方体瓦片', link: '/cubemap-tiles' },
+  { text: '立方体视频', link: '/cubemap-video' },
+  { text: '双鱼眼', link: '/dual-fisheye' },
 ];
 
+const pluginNames: Record<string, string> = {
+  'autorotate.md': '自动旋转',
+  'compass.md': '指南针',
+  'gallery.md': '图库',
+  'gyroscope.md': '陀螺仪',
+  'map.md': '地图',
+  'markers.md': '标记',
+  'overlays.md': '覆盖层',
+  'plan.md': '平面图',
+  'resolution.md': '分辨率',
+  'settings.md': '设置',
+  'stereo.md': '立体视图',
+  'video.md': '视频',
+  'virtual-tour.md': '虚拟导览',
+  'visible-range.md': '可视范围',
+};
+
+const demoGroups: Record<string, string> = {
+  advanced: '进阶',
+  basic: '基础',
+  compass: '指南针',
+  map: '地图',
+  markers: '标记',
+  overlays: '覆盖层',
+  plan: '平面图',
+};
+
+const demoNames: Record<string, string> = {
+  '0-config.md': '零配置',
+  'animation.md': '动画',
+  'chroma-key.md': '色键抠像',
+  'cropped-panorama.md': '裁剪全景图',
+  'custom-element.md': '自定义元素',
+  'custom-marker.md': '自定义标记',
+  'custom-navbar.md': '自定义导航栏',
+  'custom-tooltip.md': '自定义提示框',
+  'description.md': '说明内容',
+  'double-click-zoom.md': '双击缩放',
+  'fisheye.md': '鱼眼效果',
+  'hover-scale.md': '悬停缩放',
+  'keyboard-actions.md': '键盘操作',
+  'layers.md': '图层',
+  'markers.md': '标记',
+  'navbar-element.md': '导航栏元素',
+  'partial-overlay.md': '局部覆盖层',
+  'polygon-pattern.md': '多边形纹理',
+  'screenshot.md': '截图',
+  'transition.md': '切换过渡',
+  'youtube-element.md': 'YouTube 元素',
+};
+
 export default defineConfig({
+  lang: 'zh-CN',
   outDir: '../public',
   title: 'Photo Sphere Viewer',
-  description: 'A JavaScript library to display 360° panoramas',
+  description: '用于展示 360° 全景图的 JavaScript 库',
 
   head: [
     ['link', { rel: 'icon', href: '/favicon.png' }],
@@ -69,9 +121,10 @@ export default defineConfig({
     externalLinkIcon: true,
     editLink: {
       pattern: 'https://github.com/mistic100/Photo-Sphere-Viewer/edit/main/docs/:path',
+      text: '在 GitHub 上编辑此页',
     },
     footer: {
-      copyright: 'Licensed under MIT License, documentation under CC BY 3.0',
+      copyright: '代码基于 MIT 协议，文档基于 CC BY 3.0 协议',
     },
     search: {
       provider: 'algolia',
@@ -83,11 +136,11 @@ export default defineConfig({
     },
 
     nav: [
-      { text: 'Guide', link: '/guide/' },
-      { text: 'Plugins', link: '/plugins/' },
-      { text: 'Playground', link: '/playground' },
-      { text: 'Demos', link: '/demos/' },
-      { text: 'Reference', link: '/api/', target: '_blank' },
+      { text: '指南', link: '/guide/' },
+      { text: '插件', link: '/plugins/' },
+      { text: '调试台', link: '/playground' },
+      { text: '示例', link: '/demos/' },
+      { text: 'API 参考', link: '/api/', target: '_blank' },
       {
         text: 'v5',
         items: [
@@ -95,7 +148,7 @@ export default defineConfig({
           { text: 'v3', link: 'https://photo-sphere-viewer-3.netlify.app' },
         ],
       },
-      { text: '❤️️ Sponsor', link: 'https://github.com/sponsors/mistic100' },
+      { text: '❤️️ 赞助', link: 'https://github.com/sponsors/mistic100' },
     ],
     socialLinks: [
       { icon: 'cypress', link: 'https://psv-cypress-reports.netlify.app' },
@@ -105,72 +158,72 @@ export default defineConfig({
     sidebar: {
       '/guide/': [
         {
-          text: 'Guide',
+          text: '指南',
           base: '/guide',
           items: [
-            { text: 'Getting started', link: '/' },
-            { text: 'Configuration', link: '/config' },
-            { text: 'Methods', link: '/methods' },
-            { text: 'Events', link: '/events' },
-            { text: 'Navbar customization', link: '/navbar' },
-            { text: 'Style', link: '/style' },
+            { text: '快速开始', link: '/' },
+            { text: '配置项', link: '/config' },
+            { text: '方法', link: '/methods' },
+            { text: '事件', link: '/events' },
+            { text: '导航栏定制', link: '/navbar' },
+            { text: '样式', link: '/style' },
             {
-              text: 'Adapters',
+              text: '适配器',
               link: '/',
               base: '/guide/adapters',
               collapsed: true,
               items: adapters,
             },
             {
-              text: 'Reusable components',
+              text: '可复用组件',
               link: '/',
               base: '/guide/components',
               collapsed: true,
               items: [
-                { text: 'Panel', link: '/panel' },
-                { text: 'Notification', link: '/notification' },
-                { text: 'Overlay', link: '/overlay' },
-                { text: 'Tooltip', link: '/tooltip' },
+                { text: '面板', link: '/panel' },
+                { text: '通知', link: '/notification' },
+                { text: '覆盖层', link: '/overlay' },
+                { text: '提示框', link: '/tooltip' },
               ],
             },
-            { text: 'Frameworks', link: '/frameworks' },
+            { text: '框架集成', link: '/frameworks' },
           ],
         },
-        { text: 'Changelog', link: '/guide/changelog' },
-        { text: 'Development & Credits', link: '/guide/development' },
-        { text: 'Migration from v4', link: '/guide/migration' },
+        { text: '更新日志', link: '/guide/changelog' },
+        { text: '开发与致谢', link: '/guide/development' },
+        { text: '从 v4 迁移', link: '/guide/migration' },
       ],
       '/plugins/': [
         {
-          text: 'Plugins',
+          text: '插件',
           base: '/plugins',
           items: [
-            { text: 'Introduction to plugins', link: '/' },
-            { text: 'Writing a plugin', link: '/writing-a-plugin' },
-            { text: 'Third party plugins', link: '/third-party' },
+            { text: '插件介绍', link: '/' },
+            { text: '编写插件', link: '/writing-a-plugin' },
+            { text: '第三方插件', link: '/third-party' },
           ],
         },
         {
-          text: 'Official plugins',
+          text: '官方插件',
           base: '/plugins',
           items: getFiles('plugins')
             .filter((f) => {
               return f.endsWith('.md') && f !== 'index.md' && f !== 'writing-a-plugin.md' && f !== 'third-party.md';
             })
             .map((f) => ({
-              text: startCase(f.replace('.md', '')),
+              text: pluginNames[f] ?? startCase(f.replace('.md', '')),
               link: '/' + f,
             })),
         },
         {
-          text: 'Adapters',
+          text: '适配器',
           base: '/guide/adapters',
           items: adapters,
         },
       ],
       '/demos/': [
         {
-          text: 'Demos',
+          text: '示例',
           base: '/demos',
           link: '/',
           items: (() => {
@@ -184,9 +237,9 @@ export default defineConfig({
 
             return Object.entries(demoFiles)
               .map(([group, files]) => ({
-                text: capitalize(group),
+                text: demoGroups[group] ?? capitalize(group),
                 items: files.map((f) => ({
-                  text: startCase(f.replace('.md', '')).replace('0 Config', 'Zero config'),
+                  text: demoNames[f] ?? startCase(f.replace('.md', '')).replace('0 Config', '零配置'),
                   link: `/${group}/${f}`,
                 })),
               }))

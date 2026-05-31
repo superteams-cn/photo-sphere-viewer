@@ -43,7 +43,7 @@ export const DEFAULT_HOVER_SCALE = {
 };
 
 /**
- * Markers list template
+ * 标记列表模板
  * @internal
  */
 export const MARKERS_LIST_TEMPLATE = (markers: Marker[], title: string) => `

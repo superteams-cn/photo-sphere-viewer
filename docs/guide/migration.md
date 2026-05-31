@@ -59,7 +59,7 @@ Photo Sphere Viewer uses two coordinates systems : spherical (longitude + latitu
 - `polylineRad` → `polyline`
 - `polylinePx` → `polylinePixels`
 
-## Automatic rotation
+## 自动旋转
 
 All the automatic rotation features have been moved to [a new plugin](../plugins/autorotate.md). The `autorotateXxx` options have been removed.
 

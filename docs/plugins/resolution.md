@@ -96,7 +96,7 @@ Show the resolution id as a badge on the settings button.
 
 ```js
 lang: {
-    resolution: 'Quality',
+    resolution: '画质',
 }
 ```
 

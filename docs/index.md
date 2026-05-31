@@ -3,39 +3,39 @@ layout: home
 
 hero:
   name: Photo Sphere Viewer
-  text: A JavaScript library to display 360° panoramas
+  text: 用于展示 360° 全景图的 JavaScript 库
   actions:
     - theme: brand
-      text: Get Started →
+      text: 快速开始 →
       link: /guide/
     - theme: alt
-      text: Demos
+      text: 示例
       link: /demos/
     - theme: alt
-      text: API
+      text: API 参考
       link: /api/
       target: _blank
 
 features:
-  - title: Spheres and cubemaps
-    details: Photo Sphere Viewer can display standard equirectangular panoramas and also cubemaps.
-  - title: Fully configurable
-    details: Many options, methods and events allow a deep integration in your website/app.
-  - title: Plugins
-    details: Use plugins add new features without bloating the core library.
-  - title: Touchscreen, gyroscope and more
-    details: Friendly user interactions for all kind of devices.
-  - title: Markers system
-    details: Display texts, images and videos on top of your panorama.
-  - title: Videos
-    details: Photo Sphere Viewer also supports 360° videos, both equirectangular and cubemaps.
+  - title: 支持球面与立方体贴图
+    details: 可以展示标准等距柱状全景图，也支持立方体贴图。
+  - title: 高度可配置
+    details: 丰富的配置项、方法和事件，方便深度集成到网站或应用中。
+  - title: 插件化扩展
+    details: 通过插件添加新能力，保持核心库轻量。
+  - title: 触屏、陀螺仪与更多交互
+    details: 为不同设备提供友好的浏览体验。
+  - title: 标记系统
+    details: 在全景图上展示文本、图片、视频等内容。
+  - title: 视频支持
+    details: 支持等距柱状和立方体格式的 360° 视频。
 ---
 
-::: tip Thanks to Jéremy Heleine
-I forked the original Photo Sphere Viewer [by Jérémy Heleine](http://jeremyheleine.me) to provide a better code architecture and a bunch of new features.
+::: tip 致谢 Jéremy Heleine
+本项目 fork 自 [Jérémy Heleine](http://jeremyheleine.me) 创建的 Photo Sphere Viewer，并在此基础上提供更好的代码架构和更多功能。
 :::
 
-## Sponsors
+## 赞助者
 
 <script setup>
 import Sponsors from '@components/Sponsors.vue';

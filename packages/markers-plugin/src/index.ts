@@ -3,8 +3,8 @@ import * as events from './events';
 import { MarkersButton } from './MarkersButton';
 import { MarkersListButton } from './MarkersListButton';
 
-DEFAULTS.lang[MarkersButton.id] = 'Markers';
-DEFAULTS.lang[MarkersListButton.id] = 'Markers list';
+DEFAULTS.lang[MarkersButton.id] = '标记';
+DEFAULTS.lang[MarkersListButton.id] = '标记列表';
 registerButton(MarkersButton, 'caption:left');
 registerButton(MarkersListButton, 'caption:left');
 

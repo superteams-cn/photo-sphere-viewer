@@ -4,8 +4,8 @@ import { TimeCaption } from './components/TimeCaption';
 import { VolumeButton } from './components/VolumeButton';
 import * as events from './events';
 
-DEFAULTS.lang[PlayPauseButton.id] = 'Play/Pause';
-DEFAULTS.lang[VolumeButton.id] = 'Volume';
+DEFAULTS.lang[PlayPauseButton.id] = '播放/暂停';
+DEFAULTS.lang[VolumeButton.id] = '音量';
 registerButton(PlayPauseButton);
 registerButton(VolumeButton);
 registerButton(TimeCaption);

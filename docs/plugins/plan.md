@@ -264,11 +264,11 @@ Configure which buttons are visible around the map.
 
 ```js
 lang: {
-    map: 'Map',
-    mapMaximize: 'Maximize',
-    mapMinimize: 'Minimize',
-    mapReset: 'Reset',
-    mapLayers: 'Base layer',
+    map: '地图',
+    mapMaximize: '最大化',
+    mapMinimize: '最小化',
+    mapReset: '重置',
+    mapLayers: '底图图层',
 }
 ```
 

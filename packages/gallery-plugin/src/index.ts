@@ -2,7 +2,7 @@ import { DEFAULTS, registerButton } from '@photo-sphere-viewer/core';
 import * as events from './events';
 import { GalleryButton } from './GalleryButton';
 
-DEFAULTS.lang[GalleryButton.id] = 'Gallery';
+DEFAULTS.lang[GalleryButton.id] = '图库';
 registerButton(GalleryButton, 'caption:left');
 
 export { GalleryPlugin } from './GalleryPlugin';

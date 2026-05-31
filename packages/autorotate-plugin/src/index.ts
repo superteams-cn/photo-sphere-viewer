@@ -3,7 +3,7 @@ import { AutorotateButton } from './AutorotateButton';
 import * as events from './events';
 
 registerButton(AutorotateButton, 'start');
-DEFAULTS.lang[AutorotateButton.id] = 'Automatic rotation';
+DEFAULTS.lang[AutorotateButton.id] = '自动旋转';
 
 export { AutorotatePlugin } from './AutorotatePlugin';
 export * from './model';

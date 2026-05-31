@@ -131,27 +131,27 @@ Initial vertical angle, between -π/2 and π/2.
 
 ```js:line-numbers
 lang: {
-  zoom: 'Zoom',
-  zoomOut: 'Zoom out',
-  zoomIn: 'Zoom in',
-  moveUp: 'Move up',
-  moveDown: 'Move down',
-  moveLeft: 'Move left',
-  moveRight: 'Move right',
-  description: 'Description',
-  download: 'Download',
-  fullscreen: 'Fullscreen',
-  loading: 'Loading...',
-  menu: 'Menu',
-  close: 'Close',
-  twoFingers: 'Use two fingers to navigate',
-  ctrlZoom: 'Use ctrl + scroll to zoom the image',
-  loadError: 'The panorama cannot be loaded',
-  webglError: 'Your browser does not seem to support WebGL',
+  zoom: '缩放',
+  zoomOut: '缩小',
+  zoomIn: '放大',
+  moveUp: '向上移动',
+  moveDown: '向下移动',
+  moveLeft: '向左移动',
+  moveRight: '向右移动',
+  description: '说明',
+  download: '下载',
+  fullscreen: '全屏',
+  loading: '加载中...',
+  menu: '菜单',
+  close: '关闭',
+  twoFingers: '请使用双指浏览',
+  ctrlZoom: '请按住 Ctrl 并滚动来缩放图片',
+  loadError: '全景图加载失败',
+  webglError: '当前浏览器似乎不支持 WebGL',
 }
 ```
 
-Various texts used in the viewer.
+查看器中使用的界面文案。你可以继续通过 `lang` 覆盖任意字段，实现英文或其他语言版本。
 
 #### `loadingImg`
 

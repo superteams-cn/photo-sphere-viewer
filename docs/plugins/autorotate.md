@@ -190,7 +190,7 @@ Start from the closest keypoint instead of the first keypoint of the array.
 
 ```js
 lang: {
-    autorotate: 'Automatic rotation',
+    autorotate: '自动旋转',
 }
 ```
 

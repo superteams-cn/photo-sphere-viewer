@@ -289,11 +289,11 @@ Configure which buttons are visible around the map.
 
 ```js
 lang: {
-    map: 'Map',
-    mapMaximize: 'Maximize',
-    mapMinimize: 'Minimize',
-    mapNorth: 'Go to north',
-    mapReset: 'Reset',
+    map: '地图',
+    mapMaximize: '最大化',
+    mapMinimize: '最小化',
+    mapNorth: '转向北方',
+    mapReset: '重置',
 }
 ```
 

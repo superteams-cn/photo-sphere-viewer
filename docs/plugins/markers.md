@@ -687,8 +687,8 @@ If a `click` event is triggered on the viewer additionally to the `select-marker
 
 ```js
 lang: {
-  markers: 'Markers',
-  markersList: 'Markers list',
+  markers: '标记',
+  markersList: '标记列表',
 }
 ```
 

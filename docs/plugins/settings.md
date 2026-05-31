@@ -126,7 +126,7 @@ Custom storage solution, for example LocalForage, NgRx, HTTP service, etc.
 
 ```js
 lang: {
-    settings: 'Settings',
+    settings: '设置',
 }
 ```
 

@@ -28,7 +28,7 @@ describe('core: panel', () => {
     callPanel('show panel').then((panel) => panel.show('content'));
     cy.get('.psv-panel').should('be.visible');
 
-    cy.get('.psv-panel-close-button').should('have.attr', 'title', 'Close').click();
+    cy.get('.psv-panel-close-button').should('have.attr', 'title', '关闭').click();
     cy.get('.psv-panel').should('not.be.visible');
 
     callPanel('show panel').then((panel) => panel.show('content'));

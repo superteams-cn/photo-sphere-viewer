@@ -336,7 +336,7 @@ export type ViewerConfig = {
   downloadName?: string;
   /** @default null */
   loadingImg?: string;
-  /** @default 'Loading...' */
+  /** @default '加载中...' */
   loadingTxt?: string;
   /** @default `container` size */
   size?: CssSize;
