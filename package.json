@@ -68,6 +68,7 @@
     "stylelint": "^16.26.1",
     "stylelint-config-standard-scss": "^16.0.0",
     "stylelint-scss": "^7.1.1",
+    "three": "^0.184.0",
     "tsup": "^8.5.1",
     "tsx": "^4.22.3",
     "turbo": "^2.8.17",

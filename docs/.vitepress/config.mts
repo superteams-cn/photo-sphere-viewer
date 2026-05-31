@@ -107,6 +107,7 @@ export default defineConfig({
   outDir: '../public',
   title: 'Photo Sphere Viewer',
   description: '用于展示 360° 全景图的 JavaScript 库',
+  ignoreDeadLinks: [(url) => url.startsWith('/api/')],
 
   head: [
     ['link', { rel: 'icon', href: '/favicon.png' }],
