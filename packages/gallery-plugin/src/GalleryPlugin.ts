@@ -19,7 +19,7 @@ const getConfig = utils.getConfigParser<GalleryPluginConfig>({
 });
 
 /**
- * Adds a gallery of multiple panoramas
+ * 添加用于切换多个全景图的图库
  */
 export class GalleryPlugin extends AbstractConfigurablePlugin<
   GalleryPluginConfig,
@@ -156,10 +156,10 @@ export class GalleryPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Sets the list of items
+   * 设置图库项目列表
    * @param items
-   * @param [handler] function that will be called when an item is clicked instead of the default behavior
-   * @throws {@link PSVError} if the configuration is invalid
+   * @param [handler] 点击项目时调用的函数；提供后会替代默认行为
+   * @throws {@link PSVError} 配置无效时抛出
    */
   setItems(items: GalleryItem[] | null, handler?: (id: GalleryItem['id']) => void) {
     if (!items) {

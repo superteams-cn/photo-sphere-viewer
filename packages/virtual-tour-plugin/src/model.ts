@@ -254,29 +254,29 @@ export type VirtualTourPluginConfig = {
      */
     linkOverlapAngle?: number;
     /**
-     * (2D+GPS mode) vertical offset applied to link markers, to compensate for viewer height
+     * （2D+GPS 模式）应用到链接标记的垂直偏移，用于补偿查看器高度
      * @default -0.1
      */
     linkPitchOffset?: number;
   };
   /**
-   * special configuration when using the MapPlugin
+   * 使用 MapPlugin 时的专用配置
    */
   map?: {
     /**
-     * URL of the map
+     * 地图 URL
      */
     imageUrl: string;
     /**
-     * size of the map in pixels
+     * 地图尺寸，单位为像素
      */
     size?: Size;
     /**
-     * bounds of the map in GPS coordinates (minX, minY, maxX, maxY)
+     * 地图的 GPS 坐标边界（minX、minY、maxX、maxY）
      */
     extent?: [number, number, number, number];
     /**
-     * automatically recenter the map when changing node
+     * 切换节点时自动重新居中地图
      */
     recenter?: boolean;
   };

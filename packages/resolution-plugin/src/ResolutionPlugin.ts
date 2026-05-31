@@ -11,7 +11,7 @@ const getConfig = utils.getConfigParser<ResolutionPluginConfig>({
 });
 
 /**
- *  Adds a setting to choose between multiple resolutions of the panorama.
+ * 添加用于在多个全景图分辨率之间切换的设置项。
  */
 export class ResolutionPlugin extends AbstractPlugin<ResolutionPluginEvents> {
   static override readonly id = 'resolution';
@@ -40,8 +40,8 @@ export class ResolutionPlugin extends AbstractPlugin<ResolutionPluginEvents> {
     if (this.config.defaultResolution && this.viewer.config.panorama) {
       utils.logWarn(
         'ResolutionPlugin, a defaultResolution was provided ' +
-          'but a panorama is already configured on the viewer, ' +
-          'the defaultResolution will be ignored.',
+          '但查看器已经配置了全景图，' +
+          'defaultResolution 将被忽略。',
       );
     }
   }
@@ -98,10 +98,10 @@ export class ResolutionPlugin extends AbstractPlugin<ResolutionPluginEvents> {
   }
 
   /**
-   * Changes the available resolutions
+   * 修改可用分辨率
    * @param resolutions
-   * @param defaultResolution - if not provided, the current panorama is kept
-   * @throws {@link PSVError} if the configuration is invalid
+   * @param defaultResolution - 如果未提供，则保留当前全景图
+   * @throws {@link PSVError} 配置无效时抛出
    */
   setResolutions(resolutions: Resolution[], defaultResolution?: string) {
     this.resolutions = resolutions;
@@ -140,7 +140,7 @@ export class ResolutionPlugin extends AbstractPlugin<ResolutionPluginEvents> {
   }
 
   /**
-   * Changes the current resolution
+   * 修改当前分辨率
    * @throws {@link PSVError} if the resolution does not exist
    */
   setResolution(id: string): Promise<unknown> {
@@ -164,7 +164,7 @@ export class ResolutionPlugin extends AbstractPlugin<ResolutionPluginEvents> {
   }
 
   /**
-   * Returns the current resolution
+   * 返回当前分辨率
    */
   getResolution(): string {
     return this.state.resolution;

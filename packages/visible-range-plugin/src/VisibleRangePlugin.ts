@@ -18,7 +18,7 @@ const getConfig = utils.getConfigParser<VisibleRangePluginConfig>({
 });
 
 /**
- * Locks the visible angles
+ * 锁定可视角度范围
  */
 export class VisibleRangePlugin extends AbstractConfigurablePlugin<
   VisibleRangePluginConfig,
@@ -92,7 +92,7 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
         const e2 = e as events.BeforeAnimateEvent;
         const { rangedPosition, sidesReached } = this.__applyRanges(e2.position, e2.zoomLevel);
         if (e2.position || Object.keys(sidesReached).length) {
-          // only redefine position if initially provided or if changed
+          // 仅在初始提供位置或位置已变化时重新定义
           e2.position = rangedPosition;
         }
         break;
@@ -129,7 +129,7 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Changes the vertical range
+   * 修改垂直范围
    */
   setVerticalRange(range: Range | null) {
     // range must have two values
@@ -156,7 +156,7 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Changes the horizontal range
+   * 修改水平范围
    */
   setHorizontalRange(range: Range | null) {
     // horizontal range must have two values
@@ -178,7 +178,7 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Changes the ranges according the current panorama cropping data
+   * 根据当前全景图裁剪数据修改范围
    */
   setRangesFromPanoData() {
     const panoData = this.viewer.state.textureData.panoData as PanoData;
@@ -189,7 +189,7 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Gets the vertical range defined by the viewer's panoData
+   * 获取查看器 panoData 定义的垂直范围
    */
   private __getPanoVerticalRange(p: PanoData): Range {
     if (p.croppedHeight === p.fullHeight) {
@@ -201,7 +201,7 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Gets the horizontal range defined by the viewer's panoData
+   * 获取查看器 panoData 定义的水平范围
    */
   private __getPanoHorizontalRange(p: PanoData): Range {
     if (p.croppedWidth === p.fullWidth) {
@@ -213,7 +213,7 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Immediately moves the viewer to respect the ranges
+   * 立即移动查看器，使视角落入允许范围
    */
   private __moveToRange() {
     this.viewer.rotate(this.viewer.getPosition());
@@ -236,7 +236,7 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
       const range = utils.clone(this.config.horizontalRange) as [number, number];
       const rangeFov = range[0] > range[1] ? range[1] + (2 * Math.PI - range[0]) : range[1] - range[0];
 
-      // for very narrow ranges, lock the horizontal angle to the center
+      // 对很窄的范围，将水平角锁定到中心
       if (rangeFov <= MathUtils.degToRad(hFov)) {
         range[0] = utils.parseAngle(range[0] + rangeFov / 2);
         range[1] = range[0];
@@ -247,7 +247,7 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
       }
 
       if (range[0] > range[1]) {
-        // when the range cross horizontal origin
+        // 当范围跨过水平原点时
         if (position.yaw > range[1] && position.yaw < range[0]) {
           if (position.yaw > range[0] / 2 + range[1] / 2) {
             // detect which side we are closer too
@@ -271,7 +271,7 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
       const range = utils.clone(this.config.verticalRange) as [number, number];
       const rangeFov = range[1] - range[0];
 
-      // for very narrow ranges, lock the vertical angle to the center
+      // 对很窄的范围，将垂直角锁定到中心
       if (rangeFov <= MathUtils.degToRad(vFov)) {
         range[0] = utils.parseAngle(range[0] + rangeFov / 2, true);
         range[1] = range[0];

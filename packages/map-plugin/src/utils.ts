@@ -67,7 +67,7 @@ export function projectPoint(pt: Point, yaw: number, zoom: number): Point {
 export type ImageSource = HTMLImageElement | HTMLCanvasElement;
 
 /**
- * Setup the canvas drop shadow
+ * 设置画布投影
  */
 export function canvasShadow(
   context: CanvasRenderingContext2D,
@@ -83,7 +83,7 @@ export function canvasShadow(
 }
 
 /**
- * Draw an image centered
+ * 居中绘制图片
  */
 export function drawImageCentered(context: CanvasRenderingContext2D, image: ImageSource, size: number) {
   const w = image.width;
@@ -117,7 +117,7 @@ export function drawImageHighDpi(
 }
 
 /**
- * Adds the "a" to your "rgb"
+ * 为 "rgb" 颜色补充透明度通道 "a"
  */
 export function rgbToRgba(rgb: string, alpha: number): string {
   return `rgba(${rgb.slice(4, -1)},${alpha})`;

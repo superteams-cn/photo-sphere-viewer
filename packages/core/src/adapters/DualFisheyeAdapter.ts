@@ -6,7 +6,7 @@ import { AdapterConstructor } from './AbstractAdapter';
 
 export type DualFisheyeAdapterConfig = {
   /**
-   * number of faces of the sphere geometry, higher values may decrease performances
+   * 球体几何体面数；数值越大，性能开销可能越高
    * @default 64
    */
   resolution?: number;

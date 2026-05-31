@@ -124,7 +124,7 @@ export class CompassComponent extends AbstractComponent {
   }
 
   /**
-   * Updates the compass for current zoom and position
+   * 根据当前缩放和位置更新指南针
    */
   update() {
     if (!this.isVisible()) {
@@ -160,7 +160,7 @@ export class CompassComponent extends AbstractComponent {
   }
 
   /**
-   * Rotates the viewer depending on the position of the mouse on the compass
+   * 根据鼠标在指南针上的位置旋转查看器
    */
   private click() {
     const mouseAngle = this.__getMouseAngle();
@@ -238,7 +238,7 @@ export class CompassComponent extends AbstractComponent {
   }
 
   /**
-   * Gets the horizontal angle corresponding to the mouse position on the compass
+   * 获取鼠标在指南针上对应的水平角度
    */
   private __getMouseAngle(): number | null {
     if (!this.state.mouse) {

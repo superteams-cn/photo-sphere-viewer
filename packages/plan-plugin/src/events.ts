@@ -2,7 +2,7 @@ import { TypedEvent } from '@photo-sphere-viewer/core';
 import type { PlanPlugin } from './PlanPlugin';
 
 /**
- * @event Triggered when the user clicks on a hotspot
+ * @event 用户点击热点时触发
  */
 export class SelectHotspot extends TypedEvent<PlanPlugin> {
   static override readonly type = 'select-hotspot';
@@ -15,7 +15,7 @@ export class SelectHotspot extends TypedEvent<PlanPlugin> {
 }
 
 /**
- * @event Triggered when the size of the map changes
+ * @event 地图尺寸变化时触发
  */
 export class ViewChanged extends TypedEvent<PlanPlugin> {
   static override readonly type = 'view-changed';

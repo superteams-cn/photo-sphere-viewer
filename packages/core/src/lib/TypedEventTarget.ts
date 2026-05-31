@@ -1,6 +1,6 @@
 /**
- * Base class for events dispatched by {@link TypedEventTarget}
- * @template TTarget type of the event target
+ * {@link TypedEventTarget} 派发事件的基类
+ * @template TTarget 事件目标类型
  */
 export abstract class TypedEvent<TTarget extends TypedEventTarget<any>> extends Event {
   static readonly type: string;
@@ -23,8 +23,8 @@ export class TypedEventTarget<TEvents extends TypedEvent<any>> extends EventTarg
   }
 
   /**
-   * @template T the name of event
-   * @template E the class of the event
+   * @template T 事件名称
+   * @template E 事件类
    */
   override addEventListener<T extends TEvents['type'], E extends TEvents & { type: T }>(
     type: T,
@@ -35,8 +35,8 @@ export class TypedEventTarget<TEvents extends TypedEvent<any>> extends EventTarg
   }
 
   /**
-   * @template T the name of event
-   * @template E the class of the event
+   * @template T 事件名称
+   * @template E 事件类
    */
   override removeEventListener<T extends TEvents['type'], E extends TEvents & { type: T }>(
     type: TEvents['type'],

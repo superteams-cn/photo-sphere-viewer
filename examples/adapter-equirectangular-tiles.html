@@ -90,7 +90,7 @@
               },
             ],
             tileUrl: (col, row, level) => {
-              // skip top and bottom tiles on higher resolutions
+              // 高分辨率下跳过顶部和底部瓦片
               if ((level === 1 && (row <= 4 || row >= 14)) || (level === 2 && (row <= 13 || row >= 29))) {
                 return null;
               }

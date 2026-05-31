@@ -14,15 +14,15 @@ const PANEL_CLASS_NO_INTERACTION = 'psv-panel-content--no-interaction';
  */
 export type PanelConfig = {
   /**
-   * unique identifier to use with {@link Panel.hide} and {@link Panel.isVisible} and to store the width
+   * 唯一标识符，用于 {@link Panel.hide}、{@link Panel.isVisible}，并用于保存宽度
    */
   id?: string;
   /**
-   * HTML content of the panel
+   * 面板的 HTML 内容
    */
   content: string;
   /**
-   * remove the default margins
+   * 移除默认边距
    * @default false
    */
   noMargin?: boolean;
@@ -31,7 +31,7 @@ export type PanelConfig = {
    */
   width?: string;
   /**
-   * called when the user clicks inside the panel or presses the Enter key while an element focused
+   * 用户在面板内点击，或在元素聚焦时按下 Enter 键时调用
    */
   clickHandler?: (target: HTMLElement) => void;
 };
@@ -135,14 +135,14 @@ export class Panel extends AbstractComponent {
   }
 
   /**
-   * Checks if the panel is visible
+   * 检查面板是否可见
    */
   override isVisible(id?: string) {
     return this.state.visible && (!id || !this.state.contentId || this.state.contentId === id);
   }
 
   /**
-   * @throws {@link PSVError} always
+   * @throws {@link PSVError} 始终抛出
    * @internal
    */
   override toggle() {
@@ -194,7 +194,7 @@ export class Panel extends AbstractComponent {
       this.content.addEventListener('click', this.state.clickHandler);
       this.content.addEventListener('keydown', this.state.keyHandler);
 
-      // focus the first element if possible, after animation ends
+      // 动画结束后，尽可能聚焦第一个元素
       if (!wasVisible) {
         setTimeout(() => {
           (this.content.querySelector('a,button,[tabindex]') as HTMLElement)?.focus();

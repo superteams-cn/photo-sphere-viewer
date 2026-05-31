@@ -38,7 +38,7 @@ export class SettingsButton extends AbstractButton {
   }
 
   /**
-   * Changes the badge value
+   * 修改徽标值
    */
   setBadge(value: string) {
     this.badge.innerText = value;

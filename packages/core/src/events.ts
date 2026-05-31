@@ -6,12 +6,12 @@ import type { Viewer } from './Viewer';
 import { keyPressMatch } from './utils';
 
 /**
- * Base class for all events dispatched by {@link Viewer}
+ * {@link Viewer} 派发的所有事件的基类
  */
 export abstract class ViewerEvent extends TypedEvent<Viewer> {}
 
 /**
- * @event Triggered before an animation, can be cancelled
+ * @event 动画开始前触发，可取消
  */
 export class BeforeAnimateEvent extends ViewerEvent {
   static override readonly type = 'before-animate';
@@ -19,9 +19,9 @@ export class BeforeAnimateEvent extends ViewerEvent {
 
   /** @internal */
   constructor(
-    /** target position, can be modified */
+    /** 目标位置，可修改 */
     public position: Position | undefined,
-    /** target zoom level, can be modified */
+    /** 目标缩放级别，可修改 */
     public zoomLevel: number | undefined,
   ) {
     super(BeforeAnimateEvent.type, true);
@@ -29,7 +29,7 @@ export class BeforeAnimateEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered before a render
+ * @event 渲染前触发
  */
 export class BeforeRenderEvent extends ViewerEvent {
   static override readonly type = 'before-render';
@@ -37,9 +37,9 @@ export class BeforeRenderEvent extends ViewerEvent {
 
   /** @internal */
   constructor(
-    /** time provided by requestAnimationFrame */
+    /** requestAnimationFrame 提供的时间戳 */
     public readonly timestamp: number,
-    /**  time elapsed since the previous frame */
+    /** 距上一帧经过的时间 */
     public readonly elapsed: number,
   ) {
     super(BeforeRenderEvent.type);
@@ -47,7 +47,7 @@ export class BeforeRenderEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered before a rotate operation, can be cancelled
+ * @event 旋转前触发，可取消
  */
 export class BeforeRotateEvent extends ViewerEvent {
   static override readonly type = 'before-rotate';
@@ -55,7 +55,7 @@ export class BeforeRotateEvent extends ViewerEvent {
 
   /** @internal */
   constructor(
-    /** target position, can be modified */
+    /** 目标位置，可修改 */
     public position: Position,
   ) {
     super(BeforeRotateEvent.type, true);
@@ -63,7 +63,7 @@ export class BeforeRotateEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when the user clicks on the viewer (everywhere excluding the navbar and the side panel)
+ * @event 用户点击查看器时触发（导航栏和侧边面板除外）
  */
 export class ClickEvent extends ViewerEvent {
   static override readonly type = 'click';
@@ -76,7 +76,7 @@ export class ClickEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when some options are changed
+ * @event 配置项发生变化时触发
  */
 export class ConfigChangedEvent extends ViewerEvent {
   static override readonly type = 'config-changed';
@@ -88,7 +88,7 @@ export class ConfigChangedEvent extends ViewerEvent {
   }
 
   /**
-   * Checks if at least one of the `options` has been modified
+   * 检查指定配置项中是否至少有一项发生变化
    */
   containsOptions(...options: Array<keyof ViewerConfig>): boolean {
     return options.some((option) => this.options.includes(option));
@@ -96,7 +96,7 @@ export class ConfigChangedEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when the user double clicks on the viewer. The simple `click` event is always fired before `dblclick`.
+ * @event 用户双击查看器时触发。`dblclick` 触发前总会先触发一次普通的 `click`。
  */
 export class DoubleClickEvent extends ViewerEvent {
   static override readonly type = 'dblclick';
@@ -109,7 +109,7 @@ export class DoubleClickEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when the fullscreen is enabled/disabled
+ * @event 全屏状态开启或关闭时触发
  */
 export class FullscreenEvent extends ViewerEvent {
   static override readonly type = 'fullscreen';
@@ -122,7 +122,7 @@ export class FullscreenEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when the notification is hidden
+ * @event 通知隐藏时触发
  */
 export class HideNotificationEvent extends ViewerEvent {
   static override readonly type = 'hide-notification';
@@ -135,7 +135,7 @@ export class HideNotificationEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when the overlay is hidden
+ * @event 覆盖层隐藏时触发
  */
 export class HideOverlayEvent extends ViewerEvent {
   static override readonly type = 'hide-overlay';
@@ -148,7 +148,7 @@ export class HideOverlayEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when the panel is hidden
+ * @event 面板隐藏时触发
  */
 export class HidePanelEvent extends ViewerEvent {
   static override readonly type = 'hide-panel';
@@ -161,7 +161,7 @@ export class HidePanelEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when a tooltip is hidden
+ * @event 提示框隐藏时触发
  */
 export class HideTooltipEvent extends ViewerEvent {
   static override readonly type = 'hide-tooltip';
@@ -169,7 +169,7 @@ export class HideTooltipEvent extends ViewerEvent {
 
   /** @internal */
   constructor(
-    /** Userdata associated to the tooltip */
+    /** 与提示框关联的用户数据 */
     public readonly tooltipData: TooltipConfig['data'],
   ) {
     super(HideTooltipEvent.type);
@@ -177,7 +177,7 @@ export class HideTooltipEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when a key is pressed, can be cancelled
+ * @event 按下键盘按键时触发，可取消
  */
 export class KeypressEvent extends ViewerEvent {
   static override readonly type = 'key-press';
@@ -192,7 +192,7 @@ export class KeypressEvent extends ViewerEvent {
   }
 
   /**
-   * Checks if the key events matches the given pattern
+   * 检查按键事件是否匹配给定模式
    */
   matches(pattern: string): boolean {
     return keyPressMatch(this.originalEvent, pattern);
@@ -200,7 +200,7 @@ export class KeypressEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when the loader value changes
+ * @event 加载进度变化时触发
  */
 export class LoadProgressEvent extends ViewerEvent {
   static override readonly type = 'load-progress';
@@ -213,7 +213,7 @@ export class LoadProgressEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when a panorama image starts loading
+ * @event 全景图开始加载时触发
  */
 export class PanoramaLoadEvent extends ViewerEvent {
   static override readonly type = 'panorama-load';
@@ -226,7 +226,7 @@ export class PanoramaLoadEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when a panorama image has been loaded
+ * @event 全景图加载完成时触发
  */
 export class PanoramaLoadedEvent extends ViewerEvent {
   static override readonly type = 'panorama-loaded';
@@ -239,7 +239,7 @@ export class PanoramaLoadedEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when an error occured when loading the panorama
+ * @event 全景图加载出错时触发
  */
 export class PanoramaErrorEvent extends ViewerEvent {
   static override readonly type = 'panorama-error';
@@ -255,7 +255,7 @@ export class PanoramaErrorEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when the transition to a new panorama is done (complete or not)
+ * @event 切换到新全景图的过渡结束时触发（无论是否完整完成）
  */
 export class TransitionDoneEvent extends ViewerEvent {
   static override readonly type = 'transition-done';
@@ -268,7 +268,7 @@ export class TransitionDoneEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when the view angles change
+ * @event 视角变化时触发
  */
 export class PositionUpdatedEvent extends ViewerEvent {
   static override readonly type = 'position-updated';
@@ -281,7 +281,7 @@ export class PositionUpdatedEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when camera roll change
+ * @event 相机翻滚角变化时触发
  */
 export class RollUpdatedEvent extends ViewerEvent {
   static override readonly type = 'roll-updated';
@@ -307,7 +307,7 @@ export class ReadyEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered on each viewer render
+ * @event 查看器每次渲染时触发
  */
 export class RenderEvent extends ViewerEvent {
   static override readonly type = 'render';
@@ -320,7 +320,7 @@ export class RenderEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when the notification is shown
+ * @event 通知显示时触发
  */
 export class ShowNotificationEvent extends ViewerEvent {
   static override readonly type = 'show-notification';
@@ -333,7 +333,7 @@ export class ShowNotificationEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when the overlay is shown
+ * @event 覆盖层显示时触发
  */
 export class ShowOverlayEvent extends ViewerEvent {
   static override readonly type = 'show-overlay';
@@ -346,7 +346,7 @@ export class ShowOverlayEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when the panel is shown
+ * @event 面板显示时触发
  */
 export class ShowPanelEvent extends ViewerEvent {
   static override readonly type = 'show-panel';
@@ -359,7 +359,7 @@ export class ShowPanelEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when a tooltip is shown
+ * @event 提示框显示时触发
  */
 export class ShowTooltipEvent extends ViewerEvent {
   static override readonly type = 'show-tooltip';
@@ -367,9 +367,9 @@ export class ShowTooltipEvent extends ViewerEvent {
 
   /** @internal */
   constructor(
-    /** Instance of the tooltip */
+    /** 提示框实例 */
     public readonly tooltip: Tooltip,
-    /** Userdata associated to the tooltip */
+    /** 与提示框关联的用户数据 */
     public readonly tooltipData?: TooltipConfig['data'],
   ) {
     super(ShowTooltipEvent.type);
@@ -377,7 +377,7 @@ export class ShowTooltipEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when the viewer size changes
+ * @event 查看器尺寸变化时触发
  */
 export class SizeUpdatedEvent extends ViewerEvent {
   static override readonly type = 'size-updated';
@@ -390,7 +390,7 @@ export class SizeUpdatedEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when all current animations are stopped
+ * @event 当前所有动画停止时触发
  */
 export class StopAllEvent extends ViewerEvent {
   static override readonly type = 'stop-all';
@@ -403,7 +403,7 @@ export class StopAllEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when the viewer zoom changes
+ * @event 查看器缩放级别变化时触发
  */
 export class ZoomUpdatedEvent extends ViewerEvent {
   static override readonly type = 'zoom-updated';
@@ -416,7 +416,7 @@ export class ZoomUpdatedEvent extends ViewerEvent {
 }
 
 /**
- * Base class for events on three.js objects
+ * three.js 对象相关事件的基类
  *
  * 注意：必须调用 {@link Viewer#observeObjects} 才会派发这些事件
  */
@@ -434,7 +434,7 @@ export abstract class ObjectEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when the cursor enters an object in the scene
+ * @event 指针进入场景中的对象时触发
  *
  * 注意：必须调用 {@link Viewer#observeObjects} 才会派发此事件
  */
@@ -449,7 +449,7 @@ export class ObjectEnterEvent extends ObjectEvent {
 }
 
 /**
- * @event Triggered when the cursor leaves an object in the scene
+ * @event 指针离开场景中的对象时触发
  *
  * 注意：必须调用 {@link Viewer#observeObjects} 才会派发此事件
  */
@@ -464,7 +464,7 @@ export class ObjectLeaveEvent extends ObjectEvent {
 }
 
 /**
- * @event Triggered when the cursor moves over an object in the scene
+ * @event 指针在场景对象上移动时触发
  *
  * 注意：必须调用 {@link Viewer#observeObjects} 才会派发此事件
  */

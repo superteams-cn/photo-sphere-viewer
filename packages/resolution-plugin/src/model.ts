@@ -13,7 +13,7 @@ export type ResolutionPluginConfig = {
    */
   resolutions: Resolution[];
   /**
-   * the default resolution if no panorama is configured on the viewer
+   * 查看器未配置全景图时使用的默认分辨率
    */
   defaultResolution?: string;
   /**

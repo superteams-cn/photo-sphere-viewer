@@ -20,8 +20,8 @@ export enum MarkerType {
 }
 
 /**
- * Determines the type of a marker by the available properties
- * @throws {@link PSVError} when the marker's type cannot be found
+ * 根据可用属性判断标记类型
+ * @throws {@link PSVError} 无法判断标记类型时抛出
  */
 export function getMarkerType(config: MarkerConfig, allowNone = false): MarkerType {
   const found: MarkerType[] = [];

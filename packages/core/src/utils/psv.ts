@@ -6,7 +6,7 @@ import { wrap } from './math';
 import { clone, firstNonNull, isPlainObject } from './misc';
 
 /**
- * Executes a callback with the value of a ResolvableBoolean
+ * 用 ResolvableBoolean 解析出的值执行回调
  */
 export function resolveBoolean(value: boolean | ResolvableBoolean, cb: (val: boolean, init: boolean) => void) {
   if (isPlainObject(value)) {
@@ -18,7 +18,7 @@ export function resolveBoolean(value: boolean | ResolvableBoolean, cb: (val: boo
 }
 
 /**
- * Inverts the result of a ResolvableBoolean
+ * 反转 ResolvableBoolean 的解析结果
  */
 export function invertResolvableBoolean(value: ResolvableBoolean): ResolvableBoolean {
   return {
@@ -51,7 +51,7 @@ export function logWarn(message: string) {
 }
 
 /**
- * Checks if an object is a ExtendedPosition, ie has textureX/textureY or yaw/pitch
+ * 判断对象是否为 ExtendedPosition，即是否包含 textureX/textureY 或 yaw/pitch
  */
 export function isExtendedPosition(object: any): object is ExtendedPosition {
   if (!object || Array.isArray(object)) {
@@ -66,7 +66,7 @@ export function isExtendedPosition(object: any): object is ExtendedPosition {
 }
 
 /**
- * Returns the value of a given attribute in the panorama metadata
+ * 从全景图元数据中读取指定属性值
  */
 export function getXMPValue(data: string, attr: string, intVal = true): number | null {
   // XMP data are stored in children
@@ -99,8 +99,8 @@ const POS_VALUES = [...X_VALUES, ...Y_VALUES];
 const CENTER = 'center';
 
 /**
- * Translate CSS values like "top center" or "10% 50%" as top and left positions (0-1 range)
- * The implementation is as close as possible to the "background-position" specification
+ * 将 "top center" 或 "10% 50%" 等 CSS 值转换为 top/left 位置（0-1 范围）
+ * 实现尽量贴近 "background-position" 规范
  * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/background-position}
  */
 export function parsePoint(value: string | Point): Point {
@@ -143,11 +143,11 @@ export function parsePoint(value: string | Point): Point {
 }
 
 /**
- * Parse a CSS-like position into an array of position keywords among top, bottom, left, right and center
+ * 将类 CSS 位置解析为 top、bottom、left、right、center 等位置关键字数组
  * @param value
  * @param [options]
- * @param [options.allowCenter=true] allow "center center"
- * @param [options.cssOrder=true] force CSS order (y axis then x axis)
+ * @param [options.allowCenter=true] 允许 "center center"
+ * @param [options.cssOrder=true] 强制使用 CSS 顺序（先 y 轴，再 x 轴）
  */
 export function cleanCssPosition(
   value: string | string[],
@@ -198,7 +198,7 @@ export function cleanCssPosition(
 }
 
 /**
- * Checks if an array of two positions is ordered (y axis then x axis)
+ * 检查两个位置组成的数组是否按顺序排列（先 y 轴，再 x 轴）
  */
 export function cssPositionIsOrdered(value: string[]): boolean {
   return Y_VALUES.indexOf(value[0]) !== -1 && X_VALUES.indexOf(value[1]) !== -1;
@@ -207,7 +207,7 @@ export function cssPositionIsOrdered(value: string[]): boolean {
 /**
  * Parses an speed
  * @param speed in radians/degrees/revolutions per second/minute
- * @throws {@link PSVError} when the speed cannot be parsed
+ * @throws {@link PSVError} 速度无法解析时抛出
  */
 export function parseSpeed(speed: string | number): number {
   let parsed;
@@ -276,11 +276,11 @@ export function speedToDuration(value: string | number, angle: number): number {
 }
 
 /**
- * Parses an angle value in radians or degrees and returns a normalized value in radians
+ * 解析弧度或角度形式的角度值，并返回归一化后的弧度值
  * @param angle - eg: 3.14, 3.14rad, 180deg
  * @param [zeroCenter=false] - normalize between -Pi - Pi instead of 0 - 2*Pi
  * @param [halfCircle=zeroCenter] - normalize between -Pi/2 - Pi/2 instead of -Pi - Pi
- * @throws {@link PSVError} when the angle cannot be parsed
+ * @throws {@link PSVError} 角度无法解析时抛出
  */
 export function parseAngle(angle: string | number, zeroCenter = false, halfCircle = zeroCenter): number {
   let parsed;
@@ -328,7 +328,7 @@ export function parseAngle(angle: string | number, zeroCenter = false, halfCircl
 }
 
 /**
- * Creates a THREE texture from an image
+ * 根据图片创建 THREE 纹理
  */
 export function createTexture(img: TexImageSource, mimaps = false): Texture {
   const texture = new Texture(img);
@@ -342,7 +342,7 @@ export function createTexture(img: TexImageSource, mimaps = false): Texture {
 const quaternion = new Quaternion();
 
 /**
- * Applies the inverse of Euler angles to a vector
+ * 将欧拉角的逆变换应用到向量
  */
 export function applyEulerInverse(vector: Vector3, euler: Euler) {
   quaternion.setFromEuler(euler).invert();
@@ -350,7 +350,7 @@ export function applyEulerInverse(vector: Vector3, euler: Euler) {
 }
 
 /**
- * Declaration of configuration parsers, used by {@link getConfigParser}
+ * 配置解析器声明，供 {@link getConfigParser} 使用
  */
 export type ConfigParsers<T, U extends T = T> = {
   [key in keyof T]: (val: T[key], opts: { defValue: U[key]; rawConfig: T }) => U[key];
@@ -366,13 +366,13 @@ export type ConfigParser<T, U extends T> = {
 };
 
 /**
- * Creates a function to validate an user configuration object
+ * 创建用于校验用户配置对象的函数
  *
- * @template T type of input config
- * @template U type of config after parsing
+ * @template T 输入配置类型
+ * @template U 解析后的配置类型
  *
- * @param defaults the default configuration
- * @param parsers function used to parse/validate the configuration
+ * @param defaults 默认配置
+ * @param parsers 用于解析和校验配置的函数
  *
  * @example
  * ```ts
@@ -430,7 +430,7 @@ export function getConfigParser<T extends Record<string, any>, U extends T = T>(
 }
 
 /**
- * Checks if a stylesheet is loaded by the presence of a CSS variable
+ * 通过 CSS 变量是否存在判断样式表是否已加载
  */
 export function checkStylesheet(element: HTMLElement, name: string) {
   if (getStyleProperty(element, `--psv-${name}-loaded`) !== 'true') {
@@ -439,7 +439,7 @@ export function checkStylesheet(element: HTMLElement, name: string) {
 }
 
 /**
- * Checks that a dependency version is the same as the core
+ * 检查依赖版本是否与 core 保持一致
  */
 export function checkVersion(name: string, version: string, coreVersion: string) {
   if (version && version !== coreVersion) {
@@ -463,7 +463,7 @@ export function checkClosedShadowDom(el: Node) {
 }
 
 /**
- * Merge XMP data with custom panoData, also apply default behaviour when data is missing
+ * 合并 XMP 数据与自定义 panoData，并在数据缺失时应用默认行为
  */
 export function mergePanoData(width: number, height: number, newPanoData?: PanoData, xmpPanoData?: PanoData): PanoData {
   const panoData: PanoData = {
@@ -496,7 +496,7 @@ export function mergePanoData(width: number, height: number, newPanoData?: PanoD
     });
   }
 
-  // construct missing data
+  // 补齐缺失数据
   if (!panoData.fullWidth && !panoData.fullHeight) {
     panoData.fullWidth = Math.max(panoData.croppedWidth, panoData.croppedHeight * 2);
     panoData.fullHeight = Math.round(panoData.fullWidth / 2);

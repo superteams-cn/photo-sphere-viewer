@@ -14,5 +14,5 @@ ${pkg.homepage}
 
 ## License
 
-This library is available under the MIT license.
+本库基于 MIT 许可证发布。
 `;

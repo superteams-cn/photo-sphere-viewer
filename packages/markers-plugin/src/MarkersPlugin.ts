@@ -112,9 +112,9 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
     showAllTooltips: false,
     currentMarker: null as Marker,
     hoveringMarker: null as Marker,
-    // require a 2nd render (only the scene) when 3d markers visibility changes
+    // 3D 标记可见性变化时，需要第二次渲染（仅场景）
     needsReRender: false,
-    // use when updating a polygon marker in order to keep the current position
+    // 更新多边形标记时用于保留当前位置
     lastClientX: null as number,
     lastClientY: null as number,
   };
@@ -329,22 +329,22 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Returns the total number of markers
+   * 返回标记总数
    */
   getNbMarkers(): number {
     return Object.keys(this.markers).length;
   }
 
   /**
-   * Returns all the markers
+   * 返回全部标记
    */
   getMarkers(): Marker[] {
     return Object.values(this.markers);
   }
 
   /**
-   * Adds a new marker to viewer
-   * @throws {@link PSVError} when the marker's id is missing or already exists
+   * 向查看器添加新标记
+   * @throws {@link PSVError} 标记 id 缺失或已存在时抛出
    */
   addMarker(config: MarkerConfig, render = true) {
     if (this.markers[config.id]) {
@@ -376,8 +376,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Returns the internal marker object for a marker id
-   * @throws {@link PSVError} when the marker cannot be found
+   * 根据标记 id 返回内部标记对象
+   * @throws {@link PSVError} 找不到标记时抛出
    */
   getMarker(markerId: string | MarkerConfig): Marker {
     const id = typeof markerId === 'object' ? markerId.id : markerId;
@@ -390,15 +390,15 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Returns the last marker selected by the user
+   * 返回用户最后选中的标记
    */
   getCurrentMarker(): Marker {
     return this.state.currentMarker;
   }
 
   /**
-   * Updates the existing marker with the same id
-   * Every property can be changed but you can't change its type (Eg: `image` to `html`)
+   * 更新具有相同 id 的已有标记
+   * 除类型外所有属性均可修改（例如不能从 `image` 改为 `html`）
    */
   updateMarker(config: MarkerConfig, render = true) {
     const marker = this.getMarker(config.id);
@@ -418,7 +418,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Removes a marker from the viewer
+   * 从查看器中移除标记
    */
   removeMarker(markerId: string | MarkerConfig, render = true) {
     const marker = this.getMarker(markerId);
@@ -529,7 +529,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Forces the display of the tooltip of a marker
+   * 强制显示标记提示框
    */
   showMarkerTooltip(markerId: string | MarkerConfig) {
     const marker = this.getMarker(markerId);
@@ -556,7 +556,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Opens the panel with the content of the marker
+   * 打开面板并显示标记内容
    */
   showMarkerPanel(markerId: string | MarkerConfig) {
     const marker = this.getMarker(markerId);
@@ -572,7 +572,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Closes the panel if currently showing the content of a marker
+   * 如果面板当前正在显示标记内容，则关闭面板
    */
   hideMarkerPanel() {
     this.viewer.panel.hide(ID_PANEL_MARKER);
@@ -590,7 +590,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Opens side panel with the list of markers
+   * 打开侧边面板并显示标记列表
    */
   showMarkersList() {
     let markers: Marker[] = [];
@@ -625,14 +625,14 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Closes side panel if it contains the list of markers
+   * 如果侧边面板当前显示标记列表，则关闭侧边面板
    */
   hideMarkersList() {
     this.viewer.panel.hide(ID_PANEL_MARKERS_LIST);
   }
 
   /**
-   * Updates the visibility and the position of all markers
+   * 更新所有标记的可见性和位置
    */
   renderMarkers() {
     if (this.state.needsReRender) {
@@ -684,7 +684,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Returns the marker associated to an event target
+   * 返回与事件目标关联的标记
    */
   private __getTargetMarker(target: HTMLElement, closest?: boolean): Marker;
   private __getTargetMarker(target: Object3D[]): Marker;
@@ -703,7 +703,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Handles mouse enter events, show the tooltip for non polygon markers
+   * 处理鼠标移入事件，并为非多边形标记显示提示框
    */
   private __onEnterMarker(e: MouseEvent, marker?: Marker) {
     if (marker) {
@@ -728,7 +728,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Handles mouse leave events, hide the tooltip
+   * 处理鼠标移出事件并隐藏提示框
    */
   private __onLeaveMarker(marker?: Marker) {
     if (marker) {
@@ -753,7 +753,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Handles mouse move events, refresh the tooltip for polygon markers
+   * 处理鼠标移动事件，并刷新多边形标记的提示框
    */
   private __onHoverMarker(e: MouseEvent, marker?: Marker) {
     if (marker) {
@@ -769,7 +769,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Handles mouse click events, select the marker and open the panel if necessary
+   * 处理鼠标点击事件，选中标记，并在需要时打开面板
    */
   private __onClick(e: events.ClickEvent | events.DoubleClickEvent, dblclick: boolean) {
     const threeMarker = this.__getTargetMarker(e.data.objects);
@@ -796,13 +796,13 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
       this.dispatchEvent(new SelectMarkerEvent(marker, dblclick, e.data.rightclick));
 
       if (this.config.clickEventOnMarker) {
-        // add the marker to event data
+        // 将标记加入事件数据
         e.data.marker = marker;
       } else {
         e.stopImmediatePropagation();
       }
 
-      // the marker could have been deleted in an event handler
+      // 标记可能已在事件处理器中被删除
       if (this.markers[marker.id] && !e.data.rightclick) {
         if (marker.config.tooltip?.trigger === 'click') {
           if (marker.tooltip) {
@@ -825,7 +825,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Updates the visiblity of the panel and the buttons
+   * 更新面板和按钮的可见性
    */
   private __refreshUi() {
     const nbMarkers = Object.values(this.markers).filter((m) => !m.config.hideList).length;
@@ -846,7 +846,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Adds or remove the objects observer if there are 3D markers
+   * 根据是否存在 3D 标记，添加或移除对象观察器
    */
   private __checkObjectsObserver() {
     const has3d = Object.values(this.markers).some((marker) => marker.is3d());

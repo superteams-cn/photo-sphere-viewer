@@ -67,16 +67,16 @@ export class SettingsComponent extends AbstractComponent {
       const menuWidth = this.container.offsetWidth;
 
       if (menuWidth >= buttonLeft + buttonWidth) {
-        // if the button is close to the left, stick the menu to the left side
+        // 如果按钮靠近左侧，则菜单贴齐左侧
         this.container.style.left = '0px';
       } else if (menuWidth >= buttonRight + buttonWidth) {
-        // if the button is close to the right, stick the menu to the right side
+        // 如果按钮靠近右侧，则菜单贴齐右侧
         this.container.style.right = '0px';
       } else if (buttonLeft + menuWidth < viewerRect.width) {
-        // if there is enough space on the right of the button, stick the menu to the left of the button
+        // 如果按钮右侧空间充足，则菜单贴在按钮左侧
         this.container.style.left = `${buttonLeft}px`;
       } else {
-        // else stick to the right of the button
+        // 否则贴在按钮右侧
         this.container.style.right = `${buttonRight}px`;
       }
     } else {
@@ -150,7 +150,7 @@ export class SettingsComponent extends AbstractComponent {
   private __showSettings(focus: boolean) {
     this.container.innerHTML = SETTINGS_TEMPLATE(this.plugin.settings, this.viewer.config.lang);
 
-    // must not focus during the initial transition
+    // 初始过渡期间不能抢占焦点
     if (focus) {
       this.__focusFirstOption();
     }

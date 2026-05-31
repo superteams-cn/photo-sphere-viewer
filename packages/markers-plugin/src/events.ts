@@ -3,12 +3,12 @@ import type { Marker } from './markers/Marker';
 import type { MarkersPlugin } from './MarkersPlugin';
 
 /**
- * Base class for events dispatched by {@link MarkersPlugin}
+ * {@link MarkersPlugin} 派发的事件基类
  */
 export abstract class MarkersPluginEvent extends TypedEvent<MarkersPlugin> {}
 
 /**
- * @event Triggered when the visibility of a marker changes
+ * @event 标记可见性变化时触发
  */
 export class MarkerVisibilityEvent extends MarkersPluginEvent {
   static override readonly type = 'marker-visibility';
@@ -24,7 +24,7 @@ export class MarkerVisibilityEvent extends MarkersPluginEvent {
 }
 
 /**
- * @event Triggered when the animation to a marker is done
+ * @event 跳转到标记的动画完成时触发
  */
 export class GotoMarkerDoneEvent extends MarkersPluginEvent {
   static override readonly type = 'goto-marker-done';
@@ -37,7 +37,7 @@ export class GotoMarkerDoneEvent extends MarkersPluginEvent {
 }
 
 /**
- * @event Triggered when the user puts the cursor away from a marker
+ * @event 指针离开标记时触发
  */
 export class LeaveMarkerEvent extends MarkersPluginEvent {
   static override readonly type = 'leave-marker';
@@ -50,7 +50,7 @@ export class LeaveMarkerEvent extends MarkersPluginEvent {
 }
 
 /**
- * @event Triggered when the user puts the cursor hover a marker
+ * @event 指针移入标记时触发
  */
 export class EnterMarkerEvent extends MarkersPluginEvent {
   static override readonly type = 'enter-marker';
@@ -63,7 +63,7 @@ export class EnterMarkerEvent extends MarkersPluginEvent {
 }
 
 /**
- * @event Triggered when the user clicks on a marker
+ * @event 用户点击标记时触发
  */
 export class SelectMarkerEvent extends MarkersPluginEvent {
   static override readonly type = 'select-marker';
@@ -80,7 +80,7 @@ export class SelectMarkerEvent extends MarkersPluginEvent {
 }
 
 /**
- * @event Triggered when a marker is selected from the side panel
+ * @event 用户在侧边面板中选择标记时触发
  */
 export class SelectMarkerListEvent extends MarkersPluginEvent {
   static override readonly type = 'select-marker-list';
@@ -93,7 +93,7 @@ export class SelectMarkerListEvent extends MarkersPluginEvent {
 }
 
 /**
- * @event Triggered when a marker was selected and the user clicks elsewhere
+ * @event 已选中标记后，用户点击其他位置时触发
  */
 export class UnselectMarkerEvent extends MarkersPluginEvent {
   static override readonly type = 'unselect-marker';
@@ -106,7 +106,7 @@ export class UnselectMarkerEvent extends MarkersPluginEvent {
 }
 
 /**
- * @event Triggered when the markers are hidden
+ * @event 标记隐藏时触发
  */
 export class HideMarkersEvent extends MarkersPluginEvent {
   static override readonly type = 'hide-markers';
@@ -119,7 +119,7 @@ export class HideMarkersEvent extends MarkersPluginEvent {
 }
 
 /**
- * @event Triggered when the markers change
+ * @event 标记集合变化时触发
  */
 export class SetMarkersEvent extends MarkersPluginEvent {
   static override readonly type = 'set-markers';
@@ -132,7 +132,7 @@ export class SetMarkersEvent extends MarkersPluginEvent {
 }
 
 /**
- * @event Triggered when the markers are shown
+ * @event 标记显示时触发
  */
 export class ShowMarkersEvent extends MarkersPluginEvent {
   static override readonly type = 'show-markers';
@@ -145,7 +145,7 @@ export class ShowMarkersEvent extends MarkersPluginEvent {
 }
 
 /**
- * @event Used to alter the list of markers displayed in the side-panel
+ * @event 用于调整侧边面板中显示的标记列表
  */
 export class RenderMarkersListEvent extends MarkersPluginEvent {
   static override readonly type = 'render-markers-list';
@@ -153,7 +153,7 @@ export class RenderMarkersListEvent extends MarkersPluginEvent {
 
   /** @internal */
   constructor(
-    /** the list of markers to display, can be modified */
+    /** 待显示的标记列表，可修改 */
     public markers: Marker[],
   ) {
     super(RenderMarkersListEvent.type);

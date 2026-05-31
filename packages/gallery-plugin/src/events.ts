@@ -2,7 +2,7 @@ import { TypedEvent } from '@photo-sphere-viewer/core';
 import type { GalleryPlugin } from './GalleryPlugin';
 
 /**
- * @event Triggered when the gallery shown
+ * @event 图库显示时触发
  */
 export class ShowGalleryEvent extends TypedEvent<GalleryPlugin> {
   static override readonly type = 'show-gallery';
@@ -15,7 +15,7 @@ export class ShowGalleryEvent extends TypedEvent<GalleryPlugin> {
 }
 
 /**
- * @event Triggered when the gallery hidden
+ * @event 图库隐藏时触发
  */
 export class HideGalleryEvent extends TypedEvent<GalleryPlugin> {
   static override readonly type = 'hide-gallery';

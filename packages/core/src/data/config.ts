@@ -84,8 +84,8 @@ export const DEFAULTS: Required<ParsedViewerConfig> = {
  * @internal
  */
 export const READONLY_OPTIONS: Record<ReadonlyViewerConfig, string> = {
-  panorama: 'Use setPanorama method to change the panorama',
-  panoData: 'Use setPanorama method to change the panorama',
+  panorama: '请使用 setPanorama 方法修改全景图',
+  panoData: '请使用 setPanorama 方法修改全景图',
   container: 'Cannot change viewer container',
   adapter: 'Cannot change adapter',
   plugins: 'Cannot change plugins',
@@ -220,7 +220,7 @@ export const CONFIG_PARSERS: ConfigParsers<ViewerConfig, ParsedViewerConfig> = {
       return null;
     }
     if (navbar === true) {
-      // true becomes the default array
+      // true 会转换为默认数组
       return clone(DEFAULTS.navbar as string[]);
     }
     if (typeof navbar === 'string') {

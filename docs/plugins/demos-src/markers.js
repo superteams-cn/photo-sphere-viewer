@@ -16,7 +16,7 @@ const viewer = new Viewer({
       // list of markers
       markers: [
         {
-          // image marker that opens the panel when clicked
+          // 点击后打开面板的图片标记
           id: 'image',
           position: { yaw: 0.32, pitch: 0.11 },
           image: baseUrl + 'pictos/pin-blue.png',
@@ -27,7 +27,7 @@ const viewer = new Viewer({
           content: document.getElementById('lorem-content').innerHTML,
         },
         {
-          // image marker rendered in the 3D scene
+          // 渲染在 3D 场景中的图片标记
           id: 'imageLayer',
           imageLayer: baseUrl + 'pictos/tent.png',
           size: { width: 120, height: 94 },
@@ -35,7 +35,7 @@ const viewer = new Viewer({
           tooltip: '嵌入场景的图片',
         },
         {
-          // html marker with custom style
+          // 带自定义样式的 HTML 标记
           id: 'text',
           position: { yaw: 0, pitch: 0 },
           html: 'HTML <b>marker</b> &hearts;',
@@ -54,7 +54,7 @@ const viewer = new Viewer({
           },
         },
         {
-          // polygon marker
+          // 多边形标记
           id: 'polygon',
           polygon: [
             [6.2208, 0.0906],
@@ -81,7 +81,7 @@ const viewer = new Viewer({
           },
         },
         {
-          // polyline marker
+          // 折线标记
           id: 'polyline',
           polylinePixels: [
             [2478, 1635],
@@ -102,7 +102,7 @@ const viewer = new Viewer({
           tooltip: '动态折线标记',
         },
         {
-          // circle marker
+          // 圆形标记
           id: 'circle',
           circle: 20,
           position: { textureX: 2500, textureY: 1200 },
@@ -116,7 +116,7 @@ const viewer = new Viewer({
 const markersPlugin = viewer.getPlugin(MarkersPlugin);
 
 /**
- * Create a new marker when the user clicks somewhere
+ * 用户点击任意位置时创建新标记
  */
 viewer.addEventListener('click', ({ data }) => {
   if (!data.rightclick) {
@@ -135,8 +135,8 @@ viewer.addEventListener('click', ({ data }) => {
 });
 
 /**
- * Delete a generated marker when the user double-clicks on it
- * Or change the image if the user right-clicks on it
+ * 用户双击生成的标记时删除它；
+ * 如果用户右键点击，则切换它的图片。
  */
 markersPlugin.addEventListener('select-marker', ({ marker, doubleClick, rightClick }) => {
   if (marker.data?.generated) {

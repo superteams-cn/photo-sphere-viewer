@@ -2,7 +2,7 @@ import { TypedEvent } from '@photo-sphere-viewer/core';
 import type { SettingsPlugin } from './SettingsPlugin';
 
 /**
- * @event Triggered when a setting's value changes
+ * @event 设置值变化时触发
  */
 export class SettingChangedEvent extends TypedEvent<SettingsPlugin> {
   static override readonly type = 'setting-changed';

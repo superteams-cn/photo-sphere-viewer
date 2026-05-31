@@ -12,17 +12,17 @@ import { AbstractAdapter, AdapterConstructor } from './AbstractAdapter';
  */
 export type EquirectangularAdapterConfig = {
   /**
-   * number of faces of the sphere geometry, higher values may decrease performances
+   * 球体几何体面数；数值越大，性能开销可能越高
    * @default 64
    */
   resolution?: number;
   /**
-   * read real image size from XMP data
+   * 从 XMP 数据读取图片真实尺寸
    * @default true
    */
   useXmpData?: boolean;
   /**
-   * used for equirectangular tiles adapter
+   * 供等距柱状瓦片适配器使用
    * @internal
    */
   blur?: boolean;
@@ -166,7 +166,7 @@ export class EquirectangularAdapter extends AbstractAdapter<
   }
 
   /**
-   * Loads the XMP data of an image
+   * 加载图片的 XMP 数据
    */
   private async loadXMP(blob: Blob): Promise<PanoData> {
     const binary = await this.loadBlobAsString(blob);
@@ -215,7 +215,7 @@ export class EquirectangularAdapter extends AbstractAdapter<
   }
 
   /**
-   * Creates the final texture from image and panorama data
+   * 根据图片和全景图数据创建最终纹理
    */
   private createEquirectangularTexture(img: HTMLImageElement): Texture {
     if (this.config.blur || img.width > SYSTEM.maxTextureWidth) {
@@ -243,7 +243,7 @@ export class EquirectangularAdapter extends AbstractAdapter<
     const vStart = (panoData.croppedY / panoData.fullHeight) * Math.PI;
     const vLength = (panoData.croppedHeight / panoData.fullHeight) * Math.PI;
 
-    // The middle of the panorama is placed at yaw=0
+    // 全景图中央放置在 yaw=0 处
     const geometry = new SphereGeometry(
       SPHERE_RADIUS,
       Math.round((this.SPHERE_SEGMENTS / (2 * Math.PI)) * hLength),

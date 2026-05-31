@@ -86,7 +86,7 @@ export class MapComponent extends AbstractComponent {
       className: `psv-map ${CONSTANTS.CAPTURE_EVENTS_CLASS}`,
     });
 
-    // map + compass container
+    // 地图与指南针容器
     const canvasContainer = document.createElement('div');
     canvasContainer.className = 'psv-map__container';
 
@@ -100,7 +100,7 @@ export class MapComponent extends AbstractComponent {
     viewer.addEventListener(events.KeypressEvent.type, this);
     viewer.addEventListener(events.ConfigChangedEvent.type, this);
 
-    // map canvas
+    // 地图画布
     this.canvas = document.createElement('canvas');
     this.__setCursor('move');
     canvasContainer.appendChild(this.canvas);
@@ -361,7 +361,7 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-   * Load a new map image
+   * 加载新的地图图片
    */
   reload(url: string) {
     delete this.state.images[this.config.imageUrl];
@@ -372,7 +372,7 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-   * Clears the offset and zoom level
+   * 清除偏移量和缩放级别
    */
   reset() {
     this.state.zoom = this.config.defaultZoom;
@@ -380,7 +380,7 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-   * Clears the offset
+   * 清除偏移量
    */
   recenter() {
     this.state.offset.x = 0;
@@ -389,7 +389,7 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-   * Increase the offset
+   * 增加偏移量
    */
   addOffset(offset: Point) {
     this.state.offset.x += offset.x;
@@ -450,14 +450,14 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-   * Changes the zoom level
+   * 修改缩放级别
    */
   zoom(d: number) {
     this.setZoom(this.state.zoom + d);
   }
 
   /**
-   * Changes the zoom level
+   * 修改缩放级别
    */
   setZoom(value: number) {
     this.state.zoom = MathUtils.clamp(value, this.config.minZoom, this.config.maxZoom);
@@ -465,7 +465,7 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-   * Updates the markers
+   * 更新标记
    */
   setMarkers(markers: MapHotspot[]) {
     this.state.markers = markers;
@@ -473,7 +473,7 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-   * Changes the highlighted hotspot
+   * 修改高亮热点
    */
   setActiveHotspot(hotspotId: string) {
     this.state.hotspotId = hotspotId;
@@ -485,7 +485,7 @@ export class MapComponent extends AbstractComponent {
       return;
     }
 
-    // load the map image
+    // 加载地图图片
     const mapImage = this.__loadImage(this.config.imageUrl);
     if (!mapImage) {
       return;
@@ -526,7 +526,7 @@ export class MapComponent extends AbstractComponent {
     const context = this.canvas.getContext('2d');
     context.clearRect(0, 0, canvasW, canvasH);
 
-    // draw the map
+    // 绘制地图
     const mapW = mapImage.width;
     const mapH = mapImage.height;
 
@@ -538,7 +538,7 @@ export class MapComponent extends AbstractComponent {
     drawImageHighDpi(context, mapImage, -center.x - offset.x, -center.y - offset.y, mapW, mapH);
     context.restore();
 
-    // draw the hotspots
+    // 绘制热点
     [...this.config.hotspots, ...this.state.markers]
       .sort((a, b) => {
         if (this.state.hotspotId === a.id) {
@@ -561,7 +561,7 @@ export class MapComponent extends AbstractComponent {
             return;
           }
 
-          // preload the hover image
+          // 预加载悬停图片
           if (!isHover && (hotspot.hoverImage || this.config.spotStyle.hoverImage)) {
             this.__loadImage(hotspot.hoverImage || this.config.spotStyle.hoverImage, false, false);
           }
@@ -587,7 +587,7 @@ export class MapComponent extends AbstractComponent {
         const x = canvasVirtualCenterX - spotPos.x;
         const y = canvasVirtualCenterY - spotPos.y;
 
-        // save absolute position on the viewer
+        // 保存热点在查看器中的绝对位置
         this.state.hotspotPos[hotspot.id] = {
           x: x + canvasPos.x,
           y: y + canvasPos.y,
@@ -630,7 +630,7 @@ export class MapComponent extends AbstractComponent {
       context.translate(x * SYSTEM.pixelRatio, y * SYSTEM.pixelRatio);
       context.rotate(angle);
 
-      // draw the cone
+      // 绘制视锥
       if (this.config.coneColor && this.config.coneSize) {
         const fov = MathUtils.degToRad(this.viewer.state.hFov);
         const a1 = -Math.PI / 2 - fov / 2;
@@ -650,7 +650,7 @@ export class MapComponent extends AbstractComponent {
         context.fill();
       }
 
-      // draw the pin
+      // 绘制图钉
       if (pinImage) {
         canvasShadow(context, PIN_SHADOW_OFFSET, PIN_SHADOW_OFFSET, PIN_SHADOW_BLUR);
         drawImageCentered(context, pinImage, size);
@@ -661,7 +661,7 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-   * Applies mouse movement to the map
+   * 将鼠标移动应用到地图
    */
   private __move(clientX: number, clientY: number) {
     const yaw = this.viewer.getPosition().yaw;
@@ -686,7 +686,7 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-   * Finds the hotspot under the mouse
+   * 查找鼠标下方的热点
    */
   private __findHotspot(clientX: number, clientY: number): string {
     const k = this.config.spotStyle.size / 2;
@@ -703,7 +703,7 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-   * Updates current hotspot on mouse move and displays tooltip
+   * 鼠标移动时更新当前热点并显示提示框
    */
   private __handleHotspots(clientX: number, clientY: number) {
     const hotspotId = this.__findHotspot(clientX, clientY);
@@ -746,7 +746,7 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-   * Dispatch event when a hotspot is clicked
+   * 点击热点时派发事件
    */
   private __clickHotspot(clientX: number, clientY: number) {
     const hotspotId = this.__findHotspot(clientX, clientY);
@@ -774,8 +774,8 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-   * Loads an image and returns the result **synchronously**.
-   * If the image is not already loaded it returns `null` and schedules a new render when the image is ready.
+   * 加载图片并**同步**返回结果。
+   * 如果图片尚未加载，则返回 `null`，并在图片就绪后安排一次新的渲染。
    */
   private __loadImage(url: string, isInit = false, autoRefresh = true): ImageSource {
     if (!url) {

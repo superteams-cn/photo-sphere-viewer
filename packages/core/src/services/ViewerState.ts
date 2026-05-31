@@ -4,7 +4,7 @@ import { Size, TextureData } from '../model';
 import type { Animation } from '../utils';
 
 /**
- * Internal properties of the viewer
+ * 查看器内部属性
  */
 export class ViewerState {
   /**
@@ -18,7 +18,7 @@ export class ViewerState {
   needsUpdate = false;
 
   /**
-   * number of plugins requesting to continuously render the scene
+   * 请求连续渲染场景的插件数量
    */
   continuousUpdateCount = 0;
 
@@ -28,7 +28,7 @@ export class ViewerState {
   keyboardEnabled = false;
 
   /**
-   * direction of the camera
+   * 相机方向
    */
   direction = new Vector3(0, 0, SPHERE_RADIUS);
 

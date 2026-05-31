@@ -460,7 +460,7 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-   * Resets all state variables
+   * 重置所有状态变量
    */
   private __resetMove() {
     this.step.set(Step.IDLE);
@@ -640,7 +640,7 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-   * Checks if the cursor was move beyond the move threshold
+   * 检查指针移动距离是否超过移动阈值
    */
   private __moveThresholdReached(clientX: number, clientY: number) {
     return (

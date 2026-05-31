@@ -29,7 +29,7 @@ const getConfig = utils.getConfigParser<SettingsPluginConfig>({
 });
 
 /**
- * Adds a button to access various settings
+ * 添加用于访问各项设置的按钮
  */
 export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
   static override readonly id = 'settings';
@@ -92,8 +92,8 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
   }
 
   /**
-   * Registers a new setting
-   * @throws {@link PSVError} if the configuration is invalid
+   * 注册新的设置项
+   * @throws {@link PSVError} 配置无效时抛出
    */
   addSetting(setting: Setting) {
     if (!setting.id) {
@@ -149,7 +149,7 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
   }
 
   /**
-   * Removes a setting
+   * 移除设置项
    */
   removeSetting(id: string) {
     const idx = this.settings.findIndex((setting) => setting.id === id);
@@ -194,7 +194,7 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
   }
 
   /**
-   * Updates the badge in the button
+   * 更新按钮上的徽标
    */
   updateButton() {
     const button = this.__getButton();
@@ -226,7 +226,7 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
   }
 
   /**
-   * Changes the value of an setting
+   * 修改设置项的值
    * @internal
    */
   applySettingOption(setting: OptionsSetting, optionId: string) {

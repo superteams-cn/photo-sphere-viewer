@@ -93,7 +93,7 @@ export class TextureLoader extends AbstractService {
     if (cached) {
       onProgress?.(100);
       if (cached instanceof Blob) {
-        // unlikely case when the image has already been loaded with the FileLoader
+        // 罕见情况：图片已经通过 FileLoader 加载
         return this.blobToImage(cached);
       } else {
         return Promise.resolve(cached);
@@ -113,7 +113,7 @@ export class TextureLoader extends AbstractService {
   }
 
   /**
-   * Converts a file loaded with {@link loadFile} into an image
+   * 将通过 {@link loadFile} 加载的文件转换为图片
    */
   blobToImage(blob: Blob): Promise<HTMLImageElement> {
     return new Promise((resolve, reject) => {
@@ -128,7 +128,7 @@ export class TextureLoader extends AbstractService {
   }
 
   /**
-   * Preload a panorama file without displaying it
+   * 预加载全景图文件，但不显示
    */
   preloadPanorama(panorama: any): Promise<unknown> {
     if (this.viewer.adapter.supportsPreload(panorama)) {

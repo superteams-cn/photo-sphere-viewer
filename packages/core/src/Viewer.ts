@@ -168,7 +168,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
       this.navbar.setButtons(this.config.navbar);
     }
 
-    // load panorama
+    // 加载全景图
     if (!this.state.loadingPromise) {
       if (this.config.panorama) {
         this.setPanorama(this.config.panorama, {
@@ -182,7 +182,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Destroys the viewer
+   * 销毁查看器
    */
   destroy() {
     this.stopAll();
@@ -229,7 +229,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Restarts the idle timer
+   * 重启空闲计时器
    * @internal
    */
   resetIdleTimer() {
@@ -237,7 +237,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Stops the idle timer
+   * 停止空闲计时器
    * @internal
    */
   disableIdleTimer() {
@@ -245,12 +245,12 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Returns the instance of a plugin if it exists
-   * @example By plugin identifier
+   * 返回插件实例（如果存在）
+   * @example 通过插件标识符获取
    * ```js
    * viewer.getPlugin('markers')
    * ```
-   * @example By plugin class with TypeScript support
+   * @example 通过插件类获取，并获得 TypeScript 类型支持
    * ```ts
    * viewer.getPlugin<MarkersPlugin>(MarkersPlugin)
    * ```
@@ -265,42 +265,42 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Returns the current position of the camera
+   * 返回相机当前位置
    */
   getPosition(): Position {
     return this.dataHelper.cleanPosition(this.dynamics.position.current);
   }
 
   /**
-   * Returns the current zoom level
+   * 返回当前缩放级别
    */
   getZoomLevel(): number {
     return this.dynamics.zoom.current;
   }
 
   /**
-   * Returns the current viewer size
+   * 返回当前查看器尺寸
    */
   getSize(): Size {
     return { ...this.state.size };
   }
 
   /**
-   * Checks if the viewer is in fullscreen
+   * 检查查看器是否处于全屏状态
    */
   isFullscreenEnabled(): boolean {
     return isFullscreenEnabled(this.parent, SYSTEM.isIphone);
   }
 
   /**
-   * Request a new render of the scene
+   * 请求重新渲染场景
    */
   needsUpdate() {
     this.state.needsUpdate = true;
   }
 
   /**
-   * Request the scene to be continuously renderer (when using videos)
+   * 请求连续渲染场景（用于视频）
    */
   needsContinuousUpdate(enabled: boolean) {
     if (enabled) {
@@ -311,7 +311,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Resizes the scene if the viewer is resized
+   * 查看器尺寸变化时调整场景尺寸
    */
   autoSize() {
     if (
@@ -329,11 +329,11 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Loads a new panorama file
-   * Loads a new panorama file, optionally changing the camera position/zoom and activating the transition animation.<br>
-   * If the "options" parameter is not defined, the camera will not move and the ongoing animation will continue.<br>
+   * 加载新的全景图文件
+   * 加载新的全景图文件，可同时调整相机位置/缩放并启用过渡动画。<br>
+   * 如果未传入 "options" 参数，相机不会移动，当前动画会继续执行。<br>
    * If another loading is already in progress it will be aborted.
-   * @returns promise resolved with false if the loading was aborted by another call
+   * @returns 如果加载被另一次调用中止，则 promise 解析为 false
    */
   setPanorama(path: any, options: PanoramaOptions = {}): Promise<boolean> {
     this.textureLoader.abortLoading();
@@ -362,7 +362,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
     this.config.description = options.description;
     this.config.sphereCorrection = options.sphereCorrection;
     if (typeof this.config.panoData !== 'function' || typeof options.panoData === 'function') {
-      this.config.panoData = options.panoData; // keep the default panoData if defined as a function
+      this.config.panoData = options.panoData; // 如果默认 panoData 是函数，则保留它
     }
 
     const done = (err?: Error) => {
@@ -395,7 +395,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
     const loadingPromise = this.adapter
       .loadTexture(this.config.panorama, true, options.panoData)
       .then((textureData) => {
-        // check if another panorama was requested
+        // 检查是否又请求了其他全景图
         if (textureData.panorama !== this.config.panorama) {
           this.adapter.disposeTexture(textureData);
           throw getAbortError();
@@ -468,7 +468,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
 
   /**
    * 更新配置项
-   * @throws {@link PSVError} if the configuration is invalid
+   * @throws {@link PSVError} 配置无效时抛出
    */
   setOptions(options: Partial<UpdatableViewerConfig>) {
     const rawConfig: ViewerConfig = {
@@ -553,7 +553,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
 
   /**
    * 更新配置项
-   * @throws {@link PSVError} if the configuration is invalid
+   * @throws {@link PSVError} 配置无效时抛出
    */
   setOption<T extends keyof UpdatableViewerConfig>(option: T, value: UpdatableViewerConfig[T]) {
     this.setOptions({ [option]: value });
@@ -579,7 +579,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Rotates the view to specific position
+   * 将视图旋转到指定位置
    */
   rotate(position: ExtendedPosition) {
     const e = new BeforeRotateEvent(this.dataHelper.cleanPosition(position));
@@ -600,21 +600,21 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Increases the zoom level
+   * 放大
    */
   zoomIn(step = 1) {
     this.dynamics.zoom.step(step);
   }
 
   /**
-   * Decreases the zoom level
+   * 缩小
    */
   zoomOut(step = 1) {
     this.dynamics.zoom.step(-step);
   }
 
   /**
-   * Rotates and zooms the view with a smooth animation
+   * 通过平滑动画旋转并缩放视图
    */
   animate(options: AnimateOptions): Animation {
     const positionProvided = isExtendedPosition(options);
@@ -634,7 +634,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
 
     const { duration, properties } = this.dataHelper.getAnimationProperties(options.speed, e.position, e.zoomLevel);
 
-    // if no animation needed
+    // 不需要动画时
     if (!duration) {
       if (positionProvided) {
         this.rotate(e.position);
@@ -672,8 +672,8 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Stops the ongoing animation
-   * The return value is a Promise because the is no guaranty the animation can be stopped synchronously.
+   * 停止正在进行的动画
+   * 返回值为 Promise，因为无法保证动画能被同步停止。
    */
   stopAnimation(): PromiseLike<any> {
     if (this.state.animation) {
@@ -685,7 +685,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Resizes the viewer
+   * 调整查看器尺寸
    */
   resize(size: CssSize) {
     this.__setSize(size);
@@ -704,7 +704,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Enters the fullscreen mode
+   * 进入全屏模式
    */
   enterFullscreen() {
     if (!this.isFullscreenEnabled()) {
@@ -713,7 +713,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Exits the fullscreen mode
+   * 退出全屏模式
    */
   exitFullscreen() {
     if (this.isFullscreenEnabled()) {
@@ -722,7 +722,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Enters or exits the fullscreen mode
+   * 进入或退出全屏模式
    */
   toggleFullscreen() {
     if (!this.isFullscreenEnabled()) {
@@ -733,14 +733,14 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Enables the keyboard controls
+   * 启用键盘控制
    */
   startKeyboardControl() {
     this.state.keyboardEnabled = true;
   }
 
   /**
-   * Disables the keyboard controls
+   * 禁用键盘控制
    */
   stopKeyboardControl() {
     this.state.keyboardEnabled = false;
@@ -748,15 +748,15 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
 
   /**
    * Creates a new tooltip
-   * Use {@link Tooltip.move} to update the tooltip without re-create
-   * @throws {@link PSVError} if the configuration is invalid
+   * 使用 {@link Tooltip.move} 更新提示框，避免重新创建
+   * @throws {@link PSVError} 配置无效时抛出
    */
   createTooltip(config: TooltipConfig): Tooltip {
     return new Tooltip(this, config);
   }
 
   /**
-   * Changes the global mouse cursor
+   * 修改全局鼠标光标
    */
   setCursor(cursor: string | null) {
     this.state.cursorOverride = cursor;
@@ -768,8 +768,8 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Subscribes to events on objects in the three.js scene
-   * @param userDataKey - only objects with the following `userData` will be observed
+   * 订阅 three.js 场景中对象的事件
+   * @param userDataKey - 只观察带有此 `userData` 的对象
    */
   observeObjects(userDataKey: string): void {
     if (!this.state.objectsObservers[userDataKey]) {
@@ -785,7 +785,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Stops all current animations
+   * 停止当前所有动画
    * @internal
    */
   stopAll(): PromiseLike<void> {

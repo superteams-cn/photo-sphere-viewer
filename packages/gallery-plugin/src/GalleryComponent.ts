@@ -261,7 +261,7 @@ export class GalleryComponent extends AbstractComponent {
   }
 
   /**
-   * Applies scroll
+   * 应用滚动位置
    */
   private __scroll(direction: 1 | -1) {
     if (this.isAboveBreakpoint) {
@@ -301,14 +301,14 @@ export class GalleryComponent extends AbstractComponent {
   }
 
   /**
-   * Updates the arrows visibility and indicator size
+   * 更新箭头可见性和指示器尺寸
    */
   private __updateArrows() {
     if (!this.config.navigationArrows) {
       return;
     }
 
-    // switch between vertical and horizontal
+    // 在垂直与水平布局之间切换
     if (this.state.isAboveBreakpoint !== this.isAboveBreakpoint) {
       utils.toggleClass(this.arrowLeft, 'psv-gallery-arrow--left', this.isAboveBreakpoint);
       utils.toggleClass(this.arrowLeft, 'psv-gallery-arrow--top', !this.isAboveBreakpoint);

@@ -55,14 +55,14 @@ export class Dynamic {
   }
 
   /**
-   * Changes base speed
+   * 修改基础速度
    */
   setSpeed(speed: number) {
     this.speed = speed;
   }
 
   /**
-   * Defines the target position
+   * 定义目标位置
    */
   goto(position: number, speedMult = 1) {
     this.mode = DynamicMode.POSITION;
@@ -71,7 +71,7 @@ export class Dynamic {
   }
 
   /**
-   * Increases/decreases the target position
+   * 增加或减少目标位置
    */
   step(step: number, speedMult = 1) {
     if (speedMult === 0) {
@@ -101,7 +101,7 @@ export class Dynamic {
   }
 
   /**
-   * Defines the current position and immediately stops movement
+   * 定义当前位置并立即停止移动
    * @param {number} value
    */
   setValue(value: number): boolean {
@@ -122,9 +122,9 @@ export class Dynamic {
    * @internal
    */
   update(elapsed: number): boolean {
-    // in position mode switch to stop mode when in the decceleration window
+    // 位置模式下，进入减速窗口后切换为停止模式
     if (this.mode === DynamicMode.POSITION) {
-      // in loop mode, alter "current" to avoid crossing the origin
+      // 循环模式下，调整 "current" 以避免跨越原点
       if (this.wrap && Math.abs(this.target - this.current) > this.max / 2) {
         this.current = this.current < this.target ? this.current + this.max : this.current - this.max;
       }
@@ -146,7 +146,7 @@ export class Dynamic {
       this.currentSpeed = Math.max(targetSpeed, this.currentSpeed - (elapsed / 1000) * this.speed * this.speedMult * 2);
     }
 
-    // compute new position
+    // 计算新位置
     let next = null;
     if (this.current > this.target && this.currentSpeed) {
       next = Math.max(this.target, this.current + (this.currentSpeed * elapsed) / 1000);

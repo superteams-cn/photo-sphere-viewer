@@ -1,6 +1,6 @@
 export type GyroscopePluginConfig = {
   /**
-   * allows to pan horizontally when the gyroscope is enabled (requires global `mousemove=true`)
+   * 启用陀螺仪时允许水平平移（需要全局 `mousemove=true`）
    * @default true
    */
   touchmove?: boolean;
@@ -10,12 +10,12 @@ export type GyroscopePluginConfig = {
    */
   roll?: boolean;
   /**
-   * when true the view will ignore the current direction when enabling gyroscope control
+   * 设为 true 时，启用陀螺仪控制会忽略当前朝向
    * @default false
    */
   absolutePosition?: boolean;
   /**
-   * how the gyroscope data is used to rotate the panorama
+   * 陀螺仪数据驱动全景图旋转的方式
    * @default 'smooth'
    */
   moveMode?: 'smooth' | 'fast';

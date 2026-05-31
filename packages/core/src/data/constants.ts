@@ -49,7 +49,7 @@ export const SPHERE_RADIUS = 10;
 export const VIEWER_DATA = 'photoSphereViewer';
 
 /**
- * CSS class that must be applied on elements whose mouse events must not bubble to the viewer itself
+ * 应用于特定元素的 CSS 类，用于阻止其鼠标事件冒泡到查看器本身
  */
 export const CAPTURE_EVENTS_CLASS = 'psv--capture-event';
 

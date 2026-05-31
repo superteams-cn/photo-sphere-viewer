@@ -36,8 +36,8 @@ export class MarkerCSS3D extends AbstractDomMarker {
     this.object = new CSS3DObject(this.element);
     this.object.userData = { [MARKER_DATA]: this };
 
-    // overwrite the visible property to be tied to the Marker instance
-    // and do it without context bleed
+    // 覆盖 visible 属性，使其绑定到 Marker 实例，
+    // 同时避免上下文外泄
     Object.defineProperty(this.object, 'visible', {
       enumerable: true,
       get: function (this: Object3D) {
@@ -92,14 +92,14 @@ export class MarkerCSS3D extends AbstractDomMarker {
       throw new PSVError(`missing marker ${this.id} position`);
     }
 
-    // convert texture coordinates to spherical coordinates
+    // 将纹理坐标转换为球面坐标
     try {
       this.state.position = this.viewer.dataHelper.cleanPosition(this.config.position);
     } catch (e) {
       throw new PSVError(`invalid marker ${this.id} position`, e);
     }
 
-    // compute x/y/z position
+    // 计算 x/y/z 位置
     this.state.positions3D = [this.viewer.dataHelper.sphericalCoordsToVector3(this.state.position)];
 
     const object = this.threeElement;

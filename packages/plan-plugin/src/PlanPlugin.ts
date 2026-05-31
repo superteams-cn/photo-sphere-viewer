@@ -63,7 +63,7 @@ const getConfig = utils.getConfigParser<PlanPluginConfig>(
 );
 
 /**
- * Adds a map on the viewer
+ * 为查看器添加平面图
  */
 export class PlanPlugin extends AbstractConfigurablePlugin<
   PlanPluginConfig,
@@ -183,14 +183,14 @@ export class PlanPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Changes the current zoom level
+   * 修改当前缩放级别
    */
   setZoom(level: number) {
     this.component.zoom(level);
   }
 
   /**
-   * Closes the map
+   * 关闭平面图
    */
   close() {
     if (!this.component.collapsed) {
@@ -208,7 +208,7 @@ export class PlanPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Minimizes the map
+   * 最小化平面图
    */
   minimize() {
     if (this.component.maximized) {
@@ -217,7 +217,7 @@ export class PlanPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Maximizes the map
+   * 最大化平面图
    */
   maximize() {
     if (!this.component.maximized) {
@@ -226,7 +226,7 @@ export class PlanPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Changes the position on the map
+   * 修改平面图上的位置
    */
   setCoordinates(coordinates: GpsPosition) {
     this.config.coordinates = coordinates;
@@ -234,7 +234,7 @@ export class PlanPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Changes the hotspots on the map
+   * 修改平面图热点
    */
   setHotspots(hotspots: PlanHotspot[] | null) {
     const ids: string[] = [];
@@ -263,14 +263,14 @@ export class PlanPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Changes the highlighted hotspot
+   * 修改高亮热点
    */
   setActiveHotspot(hotspotId: string | null) {
     this.component.setActiveHotspot(hotspotId);
   }
 
   /**
-   * Returns the Leaflet instance
+   * 返回 Leaflet 实例
    */
   getLeaflet(): Map {
     return this.component.map;

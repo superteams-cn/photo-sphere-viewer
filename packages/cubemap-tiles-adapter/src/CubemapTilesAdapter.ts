@@ -260,7 +260,7 @@ export class CubemapTilesAdapter extends AbstractAdapter<
   }
 
   /**
-   * Applies the base texture and starts the loading of tiles
+   * 应用基础纹理并开始加载瓦片
    */
   setTexture(group: Group, textureData: CubemapTilesTextureData, transition: boolean) {
     const [baseMesh] = meshes(group);
@@ -424,7 +424,7 @@ export class CubemapTilesAdapter extends AbstractAdapter<
   }
 
   /**
-   * Applies a new texture to the faces
+   * 将新纹理应用到各个面
    */
   private __swapMaterial(tile: CubemapTile, material: MeshBasicMaterial, isError: boolean) {
     const panoData = this.viewer.state.textureData.panoData as CubemapTilesPanoData;

@@ -50,7 +50,7 @@ const MAX_RETRIES = 5;
 })();
 
 /**
- * List all files in a directory and compute each SHA256
+ * 列出目录中的所有文件，并计算各自的 SHA256
  */
 async function listFilesWithHashes(dir, exclude, hashfn) {
   const files = (await readdir(dir, { recursive: true, withFileTypes: true }))
@@ -136,7 +136,7 @@ async function createDeploy(files, functions) {
 }
 
 /**
- * Publish the deploy
+ * 发布部署
  */
 async function publishDeploy(deploy) {
   try {
@@ -157,7 +157,7 @@ async function publishDeploy(deploy) {
 }
 
 /**
- * Cancel the deploy
+ * 取消部署
  */
 async function cancelDeploy(deploy) {
   try {

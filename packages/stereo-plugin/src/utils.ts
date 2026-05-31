@@ -1,5 +1,5 @@
 /**
- * Returns the orientation of the screen
+ * 返回屏幕方向
  */
 export function getOrientation(): 'landscape' | 'portrait' {
   try {
@@ -23,7 +23,7 @@ export function getOrientation(): 'landscape' | 'portrait' {
 }
 
 /**
- * Wait for the screen to be in landscape orientation
+ * 等待屏幕进入横屏方向
  */
 export function waitLandscape(cb: () => void): any {
   try {
@@ -44,7 +44,7 @@ export function waitLandscape(cb: () => void): any {
 }
 
 /**
- * Cancel the waiting for the landscape orientation
+ * 取消等待横屏方向
  */
 export function cancelWaitLandscape(id: any) {
   if (typeof id === 'number') {

@@ -3,7 +3,7 @@ import { MathUtils } from 'three';
 import { GpsPosition } from './model';
 
 /**
- * Returns the difference between two WS84 GPS points as yaw+pitch on the viewer
+ * 返回两个 WGS84 GPS 点在查看器中的 yaw+pitch 差值
  */
 export function gpsToSpherical(gps1: GpsPosition, gps2: GpsPosition): Position {
   const p1 = gpsDegToRad(gps1);
@@ -26,14 +26,14 @@ function gpsDegToRad(gps: GpsPosition): [number, number] {
 }
 
 /**
- * Returns the distance between two GPS points
+ * 返回两个 GPS 点之间的距离
  */
 function distance(p1: [number, number], p2: [number, number]): number {
   return utils.greatArcDistance(p1, p2) * 6371e3;
 }
 
 /**
- * Returns the bearing between two GPS points
+ * 返回两个 GPS 点之间的方位角
  * @link http://www.movable-type.co.uk/scripts/latlong.html
  */
 function bearing(p1: [number, number], p2: [number, number]): number {

@@ -70,7 +70,7 @@ export class Loader extends AbstractComponent {
   }
 
   /**
-   * Sets the loader progression
+   * 设置加载进度
    */
   setProgress(value: number) {
     this.container.classList.remove('psv-loader--undefined');
@@ -90,7 +90,7 @@ export class Loader extends AbstractComponent {
   }
 
   /**
-   * Animates the loader with an unknown state
+   * 以未知状态播放加载动画
    */
   showUndefined() {
     this.show();

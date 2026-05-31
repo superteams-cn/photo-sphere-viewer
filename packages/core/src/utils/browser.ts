@@ -77,14 +77,14 @@ export function getClosest(el: HTMLElement, selector: string): HTMLElement | nul
 }
 
 /**
- * Returns the first element of the event' composedPath
+ * 返回事件 composedPath 中的第一个元素
  */
 export function getEventTarget(e: Event): HTMLElement | null {
   return (e?.composedPath()[0] as HTMLElement) || null;
 }
 
 /**
- * Returns the first element of the event's composedPath matching the selector
+ * 返回事件 composedPath 中第一个匹配选择器的元素
  */
 export function getMatchingTarget(e: Event, selector: string): HTMLElement | null {
   if (!e) {

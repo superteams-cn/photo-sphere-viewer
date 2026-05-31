@@ -2,7 +2,7 @@ import type { Plugin } from 'esbuild';
 import { basename } from 'path';
 
 /**
- * Alters the paths in maps
+ * 修正 sourcemap 中的路径
  */
 export function mapFixPlugin(): Plugin {
   return {

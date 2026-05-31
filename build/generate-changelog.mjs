@@ -1,5 +1,5 @@
 /**
- * Generate the release note
+ * 生成发布说明
  */
 
 import { stdin } from 'process';
@@ -8,7 +8,7 @@ const FROM_TAG = process.argv[2];
 const TO_TAG = process.argv[3];
 
 if (!FROM_TAG || !TO_TAG || FROM_TAG === TO_TAG) {
-  process.stderr.write('No tags provided or same tags\n');
+  process.stderr.write('未提供标签，或两个标签相同\n');
   process.exit(0);
 }
 

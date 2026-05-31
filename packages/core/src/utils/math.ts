@@ -51,7 +51,7 @@ export function getShortestArc(from: number, to: number): number {
 }
 
 /**
- * Computes the angle between the current position and a target position
+ * 计算当前位置与目标位置之间的角度
  */
 export function getAngle(position1: Position, position2: Position): number {
   return Math.acos(
@@ -61,7 +61,7 @@ export function getAngle(position1: Position, position2: Position): number {
 }
 
 /**
- * Returns the distance between two points on a sphere of radius one
+ * 返回单位球面上两点之间的距离
  * @see http://www.movable-type.co.uk/scripts/latlong.html
  */
 export function greatArcDistance([yaw1, pitch1]: [number, number], [yaw2, pitch2]: [number, number]): number {

@@ -7,7 +7,7 @@ export function clickRepeater(element: HTMLElement, cb: () => void) {
     clearInterval(interval);
 
     interval = setInterval(() => {
-      // the element has been hidden
+      // 元素已被隐藏
       if (element.style.pointerEvents === 'none') {
         clearInterval(interval);
       } else {

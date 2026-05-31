@@ -173,7 +173,7 @@ export class Marker3D extends Marker {
             'loadedmetadata',
             () => {
               if (!this.viewer) {
-                return; // the marker has been removed
+                return; // 标记已被移除
               }
 
               material.alpha = this.config.opacity;
@@ -206,7 +206,7 @@ export class Marker3D extends Marker {
 
           this.viewer.textureLoader.loadImage(this.config.imageLayer).then((image) => {
             if (!this.viewer) {
-              return; // the marker has been removed
+              return; // 标记已被移除
             }
 
             if (!utils.isExtendedPosition(this.config.position)) {

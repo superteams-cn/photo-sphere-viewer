@@ -41,7 +41,7 @@ const getConfig = utils.getConfigParser<AutorotatePluginConfig, ParsedAutorotate
       return utils.parseSpeed(autorotateSpeed);
     },
     autorotatePitch: (autorotatePitch) => {
-      // autorotatePitch is between -PI/2 and PI/2
+      // autorotatePitch 位于 -PI/2 到 PI/2 之间
       if (!utils.isNil(autorotatePitch)) {
         return utils.parseAngle(autorotatePitch, true);
       }
@@ -63,7 +63,7 @@ function serializePt(position: Position): [number, number] {
 }
 
 /**
- * Adds an automatic rotation of the panorama
+ * 为全景图添加自动旋转能力
  */
 export class AutorotatePlugin extends AbstractConfigurablePlugin<
   AutorotatePluginConfig,
@@ -79,21 +79,21 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
   private readonly state = {
     initialStart: true,
     disableOnIdle: false,
-    /** if the automatic rotation is enabled */
+    /** 自动旋转是否已启用 */
     enabled: false,
-    /** current index in keypoints */
+    /** 当前关键点索引 */
     idx: -1,
-    /** curve between idx and idx + 1 */
+    /** idx 与 idx + 1 之间的曲线 */
     curve: [] as Array<[number, number]>,
-    /** start point of the current step */
+    /** 当前步骤的起点 */
     startStep: null as [number, number],
-    /** end point of the current step */
+    /** 当前步骤的终点 */
     endStep: null as [number, number],
-    /** start time of the current step  */
+    /** 当前步骤的开始时间 */
     startTime: null as number,
-    /** expected duration of the step */
+    /** 当前步骤的预期时长 */
     stepDuration: null as number,
-    /** time remaining for the pause */
+    /** 暂停剩余时间 */
     remainingPause: null as number,
     /** previous timestamp in render loop */
     lastTime: null as number,
@@ -133,7 +133,7 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
     this.viewer.addEventListener(events.StopAllEvent.type, this);
     this.viewer.addEventListener(events.BeforeRenderEvent.type, this);
 
-    // conflict with play/pause of the video plugin
+    // 避免与 video 插件的播放/暂停逻辑冲突
     if (!this.video) {
       this.viewer.addEventListener(events.KeypressEvent.type, this);
     }
@@ -175,8 +175,8 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Changes the keypoints
-   * @throws {@link PSVError} if the configuration is invalid
+   * 修改关键点
+   * @throws {@link PSVError} 配置无效时抛出
    */
   setKeypoints(keypoints: AutorotateKeypoint[] | null) {
     if (!keypoints) {
@@ -235,14 +235,14 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Checks if the automatic rotation is enabled
+   * 检查自动旋转是否已启用
    */
   isEnabled(): boolean {
     return this.state.enabled;
   }
 
   /**
-   * Starts the automatic rotation
+   * 开始自动旋转
    */
   start() {
     if (this.isEnabled()) {
@@ -265,7 +265,7 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Stops the automatic rotation
+   * 停止自动旋转
    */
   stop() {
     if (!this.isEnabled()) {
@@ -285,7 +285,7 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Starts or stops the automatic rotation
+   * 开始或停止自动旋转
    */
   toggle() {
     if (this.isEnabled()) {
@@ -313,15 +313,15 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Launches the standard animation
+   * 启动标准动画
    */
   private __animate() {
-    // do the zoom before the rotation
+    // 先缩放，再旋转
     let p: PromiseLike<any>;
     if (!utils.isNil(this.config.autorotateZoomLvl)) {
       p = this.viewer.animate({
         zoom: this.config.autorotateZoomLvl,
-        // "2" is magic, and kinda related to the "PI/4" in getAnimationProperties()
+        // "2" 是经验系数，与 getAnimationProperties() 中的 "PI/4" 有关
         speed: `${this.viewer.config.zoomSpeed * 2}rpm`,
       });
     } else {
@@ -350,7 +350,7 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Resets all the curve variables
+   * 重置所有曲线变量
    */
   private __reset() {
     this.state.idx = -1;
@@ -365,7 +365,7 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Automatically starts if the delay is reached
+   * 达到延迟时间后自动启动
    * Performs keypoints animation
    */
   private __beforeRender(timestamp: number) {
@@ -442,8 +442,8 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
   }
 
   private __nextPoint() {
-    // get the 4 points necessary to compute the current movement
-    // the two points of the current segments and one point before and after
+    // 获取计算当前运动所需的 4 个点：
+    // 当前线段的两个点，以及前后各一个点
     const workPoints = [];
     if (this.state.idx === -1) {
       const currentPosition = serializePt(this.viewer.getPosition());
@@ -458,21 +458,21 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
       }
     }
 
-    // apply offsets to avoid crossing the origin
+    // 应用偏移，避免跨越原点
     const workVectors = [new Vector2(workPoints[0][0], workPoints[0][1])];
 
     let k = 0;
     for (let i = 1; i <= 3; i++) {
       const d = workPoints[i - 1][0] - workPoints[i][0];
       if (d > Math.PI) {
-        // crossed the origin left to right
+        // 从左向右跨过原点
         k += 1;
       } else if (d < -Math.PI) {
-        // crossed the origin right to left
+        // 从右向左跨过原点
         k -= 1;
       }
       if (k !== 0 && i === 1) {
-        // do not modify first point, apply the reverse offset the the previous point instead
+        // 不修改第一个点，而是将反向偏移应用到前一个点
         workVectors[0].x -= k * 2 * Math.PI;
         k = 0;
       }
@@ -483,7 +483,7 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
 
     // debugCurve(this.markers, curve, NUM_STEPS);
 
-    // only keep the curve for the current movement
+    // 只保留当前运动所需的曲线
     this.state.curve = curve.slice(NUM_STEPS + 1, NUM_STEPS * 2 + 1);
 
     if (this.state.idx !== -1) {
@@ -503,7 +503,7 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
     if (this.state.curve.length === 0) {
       this.__nextPoint();
 
-      // reset transformation made to the previous point
+      // 重置对前一个点做过的变换
       this.state.endStep[0] = utils.parseAngle(this.state.endStep[0]);
     }
 
@@ -511,7 +511,7 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
     this.state.startStep = this.state.endStep;
     this.state.endStep = this.state.curve.shift();
 
-    // compute duration from distance and speed
+    // 根据距离和速度计算时长
     const distance = utils.greatArcDistance(this.state.startStep, this.state.endStep);
     this.state.stepDuration = (distance * 1000) / Math.abs(this.config.autorotateSpeed);
 

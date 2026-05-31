@@ -50,7 +50,7 @@ export type CustomRenderer = Pick<WebGLRenderer, 'render'> & {
 };
 
 /**
- * Controller for the three.js scene
+ * three.js 场景控制器
  */
 export class Renderer extends AbstractService {
   private readonly renderer: WebGLRenderer;
@@ -95,7 +95,7 @@ export class Renderer extends AbstractService {
     this.camera = new PerspectiveCamera(50, 16 / 9, 0.1, 2 * SPHERE_RADIUS);
     this.camera.matrixAutoUpdate = false;
 
-    // mesh used to detect clicks on the viewer
+    // 用于检测查看器点击的网格
     const raycasterMesh = new Mesh(
       new SphereGeometry(SPHERE_RADIUS).scale(-1, 1, 1),
       new MeshBasicMaterial({ opacity: 0, transparent: true, depthTest: false, depthWrite: false }),
@@ -194,7 +194,7 @@ export class Renderer extends AbstractService {
   }
 
   /**
-   * Resets or replaces the THREE renderer by a custom one
+   * 重置 THREE 渲染器，或替换为自定义渲染器
    */
   setCustomRenderer(factory: ((renderer: WebGLRenderer) => CustomRenderer) | null) {
     if (factory) {
@@ -206,7 +206,7 @@ export class Renderer extends AbstractService {
   }
 
   /**
-   * Updates the size of the renderer and the aspect of the camera
+   * 更新渲染器尺寸和相机宽高比
    */
   private __onSizeUpdated() {
     this.renderer.setSize(this.state.size.width, this.state.size.height);
@@ -217,7 +217,7 @@ export class Renderer extends AbstractService {
   }
 
   /**
-   * Updates the fov of the camera
+   * 更新相机视场角
    */
   private __onZoomUpdated() {
     this.camera.fov = this.state.vFov;
@@ -227,7 +227,7 @@ export class Renderer extends AbstractService {
   }
 
   /**
-   * Updates the position of the camera
+   * 更新相机位置
    */
   private __onPositionUpdated() {
     this.camera.position.set(0, 0, 0);
@@ -265,7 +265,7 @@ export class Renderer extends AbstractService {
   }
 
   /**
-   * Applies the texture to the scene, creates the scene if needed
+   * 将纹理应用到场景，必要时创建场景
    * @internal
    */
   setTexture(textureData: TextureData) {
@@ -293,7 +293,7 @@ export class Renderer extends AbstractService {
   }
 
   /**
-   * Applies a panorama data pose to a Mesh
+   * 将全景图姿态数据应用到 Mesh
    * @internal
    */
   setPanoramaPose(panoData: PanoData, mesh: Object3D = this.mesh) {
@@ -302,7 +302,7 @@ export class Renderer extends AbstractService {
   }
 
   /**
-   * Applies a SphereCorrection to a Group
+   * 将 SphereCorrection 应用到 Group
    * @internal
    */
   setSphereCorrection(sphereCorrection: SphereCorrection, group: Object3D = this.meshContainer) {
@@ -311,7 +311,7 @@ export class Renderer extends AbstractService {
   }
 
   /**
-   * Performs transition between the current and a new texture
+   * 在当前纹理与新纹理之间执行过渡
    * @internal
    */
   transition(textureData: TextureData, options: PanoramaOptions, transition: TransitionOptions): Animation<any> {
@@ -334,15 +334,15 @@ export class Renderer extends AbstractService {
     this.setPanoramaPose(textureData.panoData, newMesh);
     this.setSphereCorrection(options.sphereCorrection, tempContainer);
 
-    // rotate the new sphere to make the target position face the camera
+    // 旋转新球体，使目标位置朝向相机
     if (positionProvided && !transition.rotation) {
       const currentPosition = this.viewer.getPosition();
 
-      // rotation along the vertical axis
+      // 沿垂直轴旋转
       const verticalAxis = new Vector3(0, 1, 0);
       tempContainer.rotateOnWorldAxis(verticalAxis, e.position.yaw - currentPosition.yaw);
 
-      // rotation along the camera horizontal axis
+      // 沿相机水平轴旋转
       const horizontalAxis = new Vector3(0, 1, 0).cross(this.camera.getWorldDirection(new Vector3())).normalize();
       tempContainer.rotateOnWorldAxis(horizontalAxis, e.position.pitch - currentPosition.pitch);
     }
@@ -350,7 +350,7 @@ export class Renderer extends AbstractService {
     tempContainer.add(newMesh);
     this.scene.add(tempContainer);
 
-    // make sure the new texture is transfered to the GPU before starting the animation
+    // 确保新纹理先传输到 GPU，再开始动画
     this.renderer.setRenderTarget(new WebGLRenderTarget<any>());
     this.renderer.render(this.scene, this.camera);
     this.renderer.setRenderTarget(null);
@@ -415,12 +415,12 @@ export class Renderer extends AbstractService {
       this.scene.remove(tempContainer);
 
       if (completed) {
-        // remove old texture and mesh
+        // 移除旧纹理和网格
         this.viewer.adapter.disposeTexture(this.state.textureData);
         this.meshContainer.remove(this.mesh);
         this.viewer.adapter.disposeMesh(this.mesh);
 
-        // promote new texture and mesh
+        // 启用新纹理和网格
         this.mesh = newMesh;
         this.meshContainer.add(newMesh);
         this.state.textureData = textureData;
@@ -442,7 +442,7 @@ export class Renderer extends AbstractService {
   }
 
   /**
-   * Returns intersections with objects in the scene
+   * 返回与场景中对象的交点
    */
   getIntersections(viewerPoint: Point): Array<Intersection<Mesh>> {
     vector2.x = (2 * viewerPoint.x) / this.state.size.width - 1;
@@ -463,7 +463,7 @@ export class Renderer extends AbstractService {
   }
 
   /**
-   * Checks if an object/point is currently visible
+   * 检查对象或点当前是否可见
    */
   isObjectVisible(value: Object3D | Vector3): boolean {
     if (!value) {
@@ -479,8 +479,8 @@ export class Renderer extends AbstractService {
     if ((value as Vector3).isVector3) {
       return this.frustum.containsPoint(value as Vector3);
     } else if ((value as Mesh).isMesh && (value as Mesh).geometry) {
-      // Frustum.intersectsObject uses the boundingSphere by default
-      // for better precision we prefer the boundingBox
+      // Frustum.intersectsObject 默认使用 boundingSphere
+      // 为了提高精度，这里优先使用 boundingBox
       const mesh = value as Mesh;
       if (!mesh.geometry.boundingBox) {
         mesh.geometry.computeBoundingBox();
@@ -495,21 +495,21 @@ export class Renderer extends AbstractService {
   }
 
   /**
-   * Adds an object to the THREE scene
+   * 向 THREE 场景添加对象
    */
   addObject(object: Object3D) {
     this.scene.add(object);
   }
 
   /**
-   * Removes an object from the THREE scene
+   * 从 THREE 场景移除对象
    */
   removeObject(object: Object3D) {
     this.scene.remove(object);
   }
 
   /**
-   * Calls `dispose` on all objects and textures
+   * 对所有对象和纹理调用 `dispose`
    * @internal
    */
   cleanScene(object: any) {

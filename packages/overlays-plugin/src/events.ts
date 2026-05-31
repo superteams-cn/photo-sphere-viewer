@@ -2,7 +2,7 @@ import { TypedEvent } from '@photo-sphere-viewer/core';
 import type { OverlaysPlugin } from './OverlaysPlugin';
 
 /**
- * @event Triggered when an overlay is clicked
+ * @event 用户点击覆盖层时触发
  */
 export class OverlayClickEvent extends TypedEvent<OverlaysPlugin> {
   static override readonly type = 'overlay-click';

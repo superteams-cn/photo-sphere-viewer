@@ -2,14 +2,14 @@ import { CONSTANTS, utils } from '@photo-sphere-viewer/core';
 import { Vector3 } from 'three';
 
 /**
- * Returns intermediary point between two points on the sphere
+ * 返回球面上两点之间的中间点
  * {@link http://www.movable-type.co.uk/scripts/latlong.html}
  */
 function greatArcIntermediaryPoint(p1: [number, number], p2: [number, number], f: number): [number, number] {
   const [λ1, φ1] = p1;
   const [λ2, φ2] = p2;
 
-  // note: "r" should be the angular distance, see "intermediatePointTo" in the above article
+  // 注意："r" 应为角距离，参见上文的 "intermediatePointTo"
   // but "greatArcDistance" gives identiqual results up to 0.00001 radians and is faster
   const r = utils.greatArcDistance(p1, p2);
   const a = Math.sin((1 - f) * r) / Math.sin(r);
@@ -32,10 +32,10 @@ function getPolygonCoherentPoints(points: Array<[number, number]>) {
   for (let i = 1; i < points.length; i++) {
     const d = points[i - 1][0] - points[i][0];
     if (d > Math.PI) {
-      // crossed the origin left to right
+      // 从左向右跨过原点
       k += 1;
     } else if (d < -Math.PI) {
-      // crossed the origin right to left
+      // 从右向左跨过原点
       k -= 1;
     }
     workPoints.push([points[i][0] + k * 2 * Math.PI, points[i][1]]);
@@ -45,7 +45,7 @@ function getPolygonCoherentPoints(points: Array<[number, number]>) {
 }
 
 /**
- * Computes the center point of a polygon
+ * 计算多边形中心点
  * @todo Get "visual center" (https://blog.mapbox.com/a-new-algorithm-for-finding-a-visual-center-of-a-polygon-7c77e6492fbc)
  * @internal
  */
@@ -54,7 +54,7 @@ export function getPolygonCenter(polygon: Vector3[]): Vector3 {
 }
 
 /**
- * Computes the middle point of a polyline
+ * 计算折线中点
  * @internal
  */
 export function getPolylineCenter(polyline: Array<[number, number]>): [number, number] {
@@ -75,7 +75,7 @@ export function getPolylineCenter(polyline: Array<[number, number]>): [number, n
   let consumed = 0;
 
   for (let j = 0; j < points.length - 1; j++) {
-    // once the segment containing the middle point is found, computes the intermediary point
+    // 找到包含中点的线段后，计算对应的中间点
     if (consumed + lengths[j] > length / 2) {
       const r = (length / 2 - consumed) / lengths[j];
       return greatArcIntermediaryPoint(points[j], points[j + 1], r);
@@ -96,10 +96,10 @@ const Y = new Vector3();
 const A = new Vector3();
 
 /**
- * Given one point in the same direction of the camera and one point behind the camera,
- * computes an intermediary point on the great circle delimiting the half sphere visible by the camera.
- * The point is shifted by .01 rad because the projector cannot handle points exactly on this circle.
- * @todo : does not work with fisheye view (must not use the great circle)
+ * 给定一个与相机同向的点和一个位于相机背后的点，
+ * 计算相机可见半球边界大圆上的中间点。
+ * 该点会偏移 .01 弧度，因为投影器无法处理恰好位于此圆上的点。
+ * @todo：鱼眼视图下不可用（不能使用大圆）
  * @link http://math.stackexchange.com/a/1730410/327208
  */
 export function getGreatCircleIntersection(P1: Vector3, P2: Vector3, direction: Vector3): Vector3 {

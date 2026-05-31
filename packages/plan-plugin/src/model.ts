@@ -60,7 +60,7 @@ export type PlanHotspotStyle = {
 
 export type PlanHotspot = PlanHotspotStyle & {
   /**
-   * GPS coordinates of the marker
+   * 标记的 GPS 坐标
    */
   coordinates: GpsPosition;
 
@@ -70,7 +70,7 @@ export type PlanHotspot = PlanHotspotStyle & {
   id?: string;
 
   /**
-   * Tooltip visible on the map
+   * 在平面图上显示的提示框
    */
   tooltip?: string | { content: string; className?: string };
 };
@@ -84,7 +84,7 @@ export type PlanLayer = {
 
 export type PlanPluginConfig = {
   /**
-   * GPS position of the current panorama
+   * 当前全景图的 GPS 位置
    */
   coordinates?: GpsPosition;
 
@@ -95,13 +95,13 @@ export type PlanPluginConfig = {
   bearing?: string | number;
 
   /**
-   * Size of the map
+   * 平面图尺寸
    * @default '300px * 200px'
    */
   size?: CssSize;
 
   /**
-   * Position of the map
+   * 平面图位置
    * @default 'bottom left'
    */
   position?: string | [string, string];
@@ -146,12 +146,12 @@ export type PlanPluginConfig = {
   configureLeaflet?: (map: Map) => void;
 
   /**
-   * Points of interest on the map
+   * 平面图上的兴趣点
    */
   hotspots?: PlanHotspot[];
 
   /**
-   * Always minimize the map when an hotspot/marker is clicked
+   * 点击热点或标记时总是最小化平面图
    */
   minimizeOnHotspotClick?: boolean;
 

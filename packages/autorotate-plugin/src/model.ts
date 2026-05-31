@@ -1,7 +1,7 @@
 import { ExtendedPosition } from '@photo-sphere-viewer/core';
 
 /**
- * Definition of keypoints for automatic rotation, can be a position object, a marker id or an configuration object
+ * 自动旋转关键点定义，可以是位置对象、标记 id 或配置对象
  */
 export type AutorotateKeypoint =
   | ExtendedPosition
@@ -9,11 +9,11 @@ export type AutorotateKeypoint =
   | {
       position?: ExtendedPosition;
       /**
-       * use the position and tooltip of a marker
+       * 使用某个标记的位置和提示框
        */
       markerId?: string;
       /**
-       * pause the animation when reaching this point, will display the tooltip if available
+       * 到达此点时暂停动画；若存在提示框，则同时显示
        */
       pause?: number;
       /**
@@ -24,28 +24,28 @@ export type AutorotateKeypoint =
 
 export type AutorotatePluginConfig = {
   /**
-   * Delay after which the automatic rotation will begin, in milliseconds
+   * 自动旋转开始前的延迟时间，单位为毫秒
    * @default 2000
    */
   autostartDelay?: number;
   /**
-   * Restarts the automatic rotation if the user is idle for `autostartDelay`.
+   * 用户空闲达到 `autostartDelay` 后重新开始自动旋转。
    * @default true
    */
   autostartOnIdle?: boolean;
   /**
-   * Speed of the automatic rotation. Can be a negative value to reverse the rotation.
+   * 自动旋转速度。可使用负值反向旋转。
    * @default '2rpm'
    */
   autorotateSpeed?: string | number;
   /**
-   * Vertical angle at which the automatic rotation is performed.
-   * @default viewer `defaultPitch`
+   * 执行自动旋转时使用的垂直角度。
+   * @default 查看器的 `defaultPitch`
    */
   autorotatePitch?: number | string;
   /**
    * 执行自动旋转时使用的缩放级别。
-   * @default current zoom level
+   * @default 当前缩放级别
    */
   autorotateZoomLvl?: number;
   /**
@@ -53,7 +53,7 @@ export type AutorotatePluginConfig = {
    */
   keypoints?: AutorotateKeypoint[];
   /**
-   * Start from the closest keypoint instead of the first keypoint
+   * 从最近的关键点开始，而不是从第一个关键点开始
    * @default true
    */
   startFromClosest?: boolean;

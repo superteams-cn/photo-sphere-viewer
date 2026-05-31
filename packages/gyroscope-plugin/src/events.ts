@@ -2,7 +2,7 @@ import { TypedEvent } from '@photo-sphere-viewer/core';
 import type { GyroscopePlugin } from './GyroscopePlugin';
 
 /**
- * @event Triggered when the gyroscope control is enabled/disabled
+ * @event 陀螺仪控制开启或关闭时触发
  */
 export class GyroscopeUpdatedEvent extends TypedEvent<GyroscopePlugin> {
   static override readonly type = 'gyroscope-updated';

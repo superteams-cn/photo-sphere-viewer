@@ -26,7 +26,7 @@ const getConfig = utils.getConfigParser<CompassPluginConfig, ParsedCompassPlugin
 );
 
 /**
- * Adds a compass on the viewer
+ * 为查看器添加指南针
  */
 export class CompassPlugin extends AbstractConfigurablePlugin<CompassPluginConfig, ParsedCompassPluginConfig> {
   static override readonly id = 'compass';
@@ -121,7 +121,7 @@ export class CompassPlugin extends AbstractConfigurablePlugin<CompassPluginConfi
   }
 
   /**
-   * Changes the hotspots on the compass
+   * 修改指南针热点
    */
   setHotspots(hotspots: CompassHotspot[] | null) {
     this.config.hotspots = hotspots;

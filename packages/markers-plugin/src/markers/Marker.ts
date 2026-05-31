@@ -5,7 +5,7 @@ import { type MarkersPlugin } from '../MarkersPlugin';
 import { MarkerConfig, ParsedMarkerConfig } from '../model';
 
 /**
- * Base class for all markers
+ * 所有标记的基类
  */
 export abstract class Marker {
   readonly type: MarkerType;
@@ -13,7 +13,7 @@ export abstract class Marker {
   protected element: any;
 
   /**
-   * The final description of the marker. Either text content, image, url, SVG attributes, etc.
+   * 标记的最终内容描述，可以是文本、图片、URL、SVG 属性等。
    */
   definition: any;
 
@@ -74,7 +74,7 @@ export abstract class Marker {
 
   /**
    * @internal
-   * Returns the 2D position if the marker is visible
+   * 标记可见时返回其 2D 位置
    */
   abstract render(params: { viewerPosition: Position; zoomLevel: number; hoveringMarker: Marker }): Point;
 
@@ -90,43 +90,43 @@ export abstract class Marker {
   }
 
   /**
-   * Checks if it is a 3D marker (imageLayer, videoLayer)
+   * 判断是否为 3D 标记（imageLayer、videoLayer）
    */
   is3d(): boolean {
     return false;
   }
 
   /**
-   * Checks if it is a normal marker (image, html, element)
+   * 判断是否为普通标记（image、html、element）
    */
   isNormal(): boolean {
     return false;
   }
 
   /**
-   * Checks if it is a polygon/polyline marker
+   * 判断是否为多边形/折线标记
    */
   isPoly(): boolean {
     return false;
   }
 
   /**
-   * Checks if it is an SVG marker
+   * 判断是否为 SVG 标记
    */
   isSvg(): boolean {
     return false;
   }
 
   /**
-   * Checks if it is an CSS3D marker
+   * 判断是否为 CSS3D 标记
    */
   isCss3d(): boolean {
     return false;
   }
 
   /**
-   * Updates the marker with new properties
-   * @throws {@link PSVError} if the configuration is invalid
+   * 使用新属性更新标记
+   * @throws {@link PSVError} 配置无效时抛出
    * @internal
    */
   update(config: MarkerConfig) {
@@ -176,11 +176,11 @@ export abstract class Marker {
   }
 
   /**
-   * Returns the markers list content for the marker, it can be either :
-   * - the `listContent`
-   * - the `tooltip`
-   * - the `html`
-   * - the `id`
+   * 返回标记在列表中的显示内容，来源依次为：
+   * - `listContent`
+   * - `tooltip`
+   * - `html`
+   * - `id`
    * @internal
    */
   getListContent(): string {
@@ -196,7 +196,7 @@ export abstract class Marker {
   }
 
   /**
-   * Display the tooltip of this marker
+   * 显示此标记的提示框
    * @internal
    */
   showTooltip(clientX?: number, clientY?: number, forceUpdate = false) {
@@ -204,7 +204,7 @@ export abstract class Marker {
       const config: TooltipConfig = {
         ...this.config.tooltip,
         style: {
-          // prevents conflicts with tooltip tracking
+          // 避免与提示框跟随逻辑冲突
           pointerEvents: this.state.staticTooltip ? 'auto' : 'none',
         },
         data: this,
@@ -218,7 +218,7 @@ export abstract class Marker {
           config.top = clientY - viewerPos.y + 10;
           config.left = clientX - viewerPos.x;
           config.box = {
-            // separate the tooltip from the cursor
+            // 让提示框与指针保持距离
             width: 20,
             height: 20,
           };
@@ -227,7 +227,7 @@ export abstract class Marker {
           config.left = this.state.position2D.x;
         }
       } else {
-        // note: state.position2D already has the anchor applied with the default size
+        // 注意：state.position2D 已按默认尺寸应用 anchor
         const position = this.viewer.dataHelper.vector3ToViewerCoords(this.state.positions3D[0]);
         let width = this.state.size.width;
         let height = this.state.size.height;

@@ -140,7 +140,7 @@ export abstract class AbstractButton extends AbstractComponent {
   }
 
   /**
-   * Action when the button is clicked
+   * 按钮点击时执行的动作
    */
   abstract onClick(): void;
 
@@ -193,14 +193,14 @@ export abstract class AbstractButton extends AbstractComponent {
   }
 
   /**
-   * Checks if the button can be displayed
+   * 检查按钮是否可显示
    */
   isSupported(): boolean | ResolvableBoolean {
     return true;
   }
 
   /**
-   * Changes the active state of the button
+   * 修改按钮激活状态
    */
   toggleActive(active = !this.state.active) {
     if (active !== this.state.active) {
@@ -214,7 +214,7 @@ export abstract class AbstractButton extends AbstractComponent {
   }
 
   /**
-   * Disables the button
+   * 禁用按钮
    */
   disable() {
     this.container.classList.add('psv-button--disabled');
@@ -222,7 +222,7 @@ export abstract class AbstractButton extends AbstractComponent {
   }
 
   /**
-   * Enables the button
+   * 启用按钮
    */
   enable() {
     this.container.classList.remove('psv-button--disabled');
@@ -230,7 +230,7 @@ export abstract class AbstractButton extends AbstractComponent {
   }
 
   /**
-   * Collapses the button in the navbar menu
+   * 将按钮折叠到导航栏菜单中
    */
   collapse() {
     this.state.collapsed = true;
@@ -238,7 +238,7 @@ export abstract class AbstractButton extends AbstractComponent {
   }
 
   /**
-   * Uncollapses the button from the navbar menu
+   * 将按钮从导航栏菜单中展开
    */
   uncollapse() {
     this.state.collapsed = false;

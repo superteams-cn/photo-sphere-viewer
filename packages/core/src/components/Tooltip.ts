@@ -9,16 +9,16 @@ import { AbstractComponent } from './AbstractComponent';
  */
 export type TooltipPosition = {
   /**
-   * Position of the tip of the arrow of the tooltip, in pixels
+   * 提示框箭头尖端的位置，单位为像素
    */
   top: number;
   /**
-   * Position of the tip of the arrow of the tooltip, in pixels
+   * 提示框箭头尖端的位置，单位为像素
    */
   left: number;
   /**
-   * Tooltip position toward it's arrow tip.
-   * Accepted values are combinations of `top`, `center`, `bottom` and `left`, `center`, `right`.
+   * 提示框相对箭头尖端的位置。
+   * 可取值为 `top`、`center`、`bottom` 与 `left`、`center`、`right` 的组合。
    */
   position?: string | [string, string];
   /**
@@ -32,19 +32,19 @@ export type TooltipPosition = {
  */
 export type TooltipConfig = TooltipPosition & {
   /**
-   * HTML content of the tooltip
+   * 提示框的 HTML 内容
    */
   content: string;
   /**
-   * Additional CSS class added to the tooltip
+   * 添加到提示框上的额外 CSS 类
    */
   className?: string;
   /**
-   * CSS properties added to the tooltip
+   * 添加到提示框上的 CSS 属性
    */
   style?: Record<string, string>;
   /**
-   * Userdata associated to the tooltip
+   * 与提示框关联的用户数据
    */
   data?: any;
 };
@@ -67,8 +67,8 @@ const enum TooltipState {
 }
 
 /**
- * Tooltip component
- * Never instanciate tooltips directly use {@link Viewer#createTooltip} instead
+ * 提示框组件
+ * 不要直接实例化提示框，请使用 {@link Viewer#createTooltip}
  */
 export class Tooltip extends AbstractComponent {
   /**
@@ -108,7 +108,7 @@ export class Tooltip extends AbstractComponent {
 
     this.container.addEventListener('transitionend', this);
 
-    // allows to interact with static tooltips
+    // 允许与静态提示框交互
     this.container.addEventListener('touchdown', (e) => e.stopPropagation());
     this.container.addEventListener('mousedown', (e) => e.stopPropagation());
 
@@ -137,7 +137,7 @@ export class Tooltip extends AbstractComponent {
   }
 
   /**
-   * @throws {@link PSVError} always
+   * @throws {@link PSVError} 始终抛出
    * @internal
    */
   override toggle() {
@@ -173,8 +173,8 @@ export class Tooltip extends AbstractComponent {
   }
 
   /**
-   * Updates the content of the tooltip, optionally with a new position
-   * @throws {@link PSVError} if the configuration is invalid
+   * 更新提示框内容，并可同时更新位置
+   * @throws {@link PSVError} 配置无效时抛出
    */
   update(content: string, config?: TooltipPosition) {
     this.content.innerHTML = content;
@@ -190,8 +190,8 @@ export class Tooltip extends AbstractComponent {
   }
 
   /**
-   * Moves the tooltip to a new position
-   * @throws {@link PSVError} if the configuration is invalid
+   * 将提示框移动到新位置
+   * @throws {@link PSVError} 配置无效时抛出
    */
   move(config: TooltipPosition) {
     if (this.state.state !== TooltipState.SHOWING && this.state.state !== TooltipState.READY) {
@@ -218,7 +218,7 @@ export class Tooltip extends AbstractComponent {
     // set initial position
     this.__computeTooltipPosition(style, config);
 
-    // correct position if overflow
+    // 溢出时修正位置
     let swapY = null;
     let swapX = null;
     if (style.top < 0) {
@@ -242,7 +242,7 @@ export class Tooltip extends AbstractComponent {
       this.__computeTooltipPosition(style, config);
     }
 
-    // apply position
+    // 应用位置
     t.style.top = style.top + 'px';
     t.style.left = style.left + 'px';
 
@@ -267,7 +267,7 @@ export class Tooltip extends AbstractComponent {
 
     this.viewer.dispatchEvent(new HideTooltipEvent(this.state.data));
 
-    // watchdog in case the "transitionend" event is not received
+    // 看门狗：防止没有收到 "transitionend" 事件
     const duration = parseFloat(getStyleProperty(this.container, 'transition-duration'));
     this.state.hideTimeout = setTimeout(() => {
       this.destroy();
@@ -275,7 +275,7 @@ export class Tooltip extends AbstractComponent {
   }
 
   /**
-   * Finalize transition
+   * 完成过渡
    */
   private __onTransitionEnd(e: TransitionEvent) {
     if (e.propertyName === 'transform') {
@@ -291,13 +291,13 @@ export class Tooltip extends AbstractComponent {
           break;
 
         default:
-        // nothing
+        // 无需处理
       }
     }
   }
 
   /**
-   * Computes the position of the tooltip and its arrow
+   * 计算提示框及其箭头的位置
    */
   private __computeTooltipPosition(style: TooltipStyle, config: TooltipPosition) {
     const arrow = this.state.arrow;
@@ -388,7 +388,7 @@ export class Tooltip extends AbstractComponent {
   }
 
   /**
-   * If the tooltip contains images, recompute its size once they are loaded
+   * 如果提示框包含图片，则在图片加载完成后重新计算尺寸
    */
   private __waitImages() {
     const images = this.content.querySelectorAll('img') as NodeListOf<HTMLImageElement>;

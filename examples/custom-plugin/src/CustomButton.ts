@@ -17,7 +17,7 @@ export class CustomButton extends AbstractButton {
     });
 
     // do your initialisation logic here
-    // you will probably need the instance of your plugin
+    // 通常会需要拿到插件实例
     this.plugin = this.viewer.getPlugin('custom-plugin');
   }
 

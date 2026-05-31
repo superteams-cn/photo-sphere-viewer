@@ -41,7 +41,7 @@ export class NavbarCaption extends AbstractButton {
   }
 
   /**
-   * Changes the caption
+   * 修改标题
    */
   setCaption(html: string | null) {
     this.show();

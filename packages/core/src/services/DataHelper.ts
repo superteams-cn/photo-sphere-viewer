@@ -29,7 +29,7 @@ const vector3 = new Vector3();
 const EULER_ZERO = new Euler(0, 0, 0, 'ZXY');
 
 /**
- * Collections of data converters for the viewer
+ * 查看器数据转换器集合
  */
 export class DataHelper extends AbstractService {
   /**
@@ -150,7 +150,7 @@ export class DataHelper extends AbstractService {
 
   /**
    * Converts pixel texture coordinates to spherical radians coordinates
-   * @throws {@link PSVError} when the current adapter does not support texture coordinates
+   * @throws {@link PSVError} 当前适配器不支持纹理坐标时抛出
    */
   textureCoordsToSphericalCoords(point: PanoramaPosition): Position {
     if (!this.state.textureData?.panoData) {
@@ -174,7 +174,7 @@ export class DataHelper extends AbstractService {
 
   /**
    * Converts spherical radians coordinates to pixel texture coordinates
-   * @throws {@link PSVError} when the current adapter does not support texture coordinates
+   * @throws {@link PSVError} 当前适配器不支持纹理坐标时抛出
    */
   sphericalCoordsToTextureCoords(position: Position): PanoramaPosition {
     if (!this.state.textureData?.panoData) {
@@ -221,7 +221,7 @@ export class DataHelper extends AbstractService {
   }
 
   /**
-   * Converts position on the viewer to a THREE.Vector3
+   * 将查看器中的位置转换为 THREE.Vector3
    */
   viewerCoordsToVector3(viewerPoint: Point): Vector3 {
     const sphereIntersect = this.viewer.renderer
@@ -236,7 +236,7 @@ export class DataHelper extends AbstractService {
   }
 
   /**
-   * Converts position on the viewer to spherical radians coordinates
+   * 将查看器中的位置转换为球面弧度坐标
    */
   viewerCoordsToSphericalCoords(viewerPoint: Point): Position {
     const vector = this.viewerCoordsToVector3(viewerPoint);
@@ -244,7 +244,7 @@ export class DataHelper extends AbstractService {
   }
 
   /**
-   * Converts a Vector3 to position on the viewer
+   * 将 Vector3 转换为查看器中的位置
    */
   vector3ToViewerCoords(vector: Vector3): Point {
     const vectorClone = vector.clone();
@@ -257,7 +257,7 @@ export class DataHelper extends AbstractService {
   }
 
   /**
-   * Converts spherical radians coordinates to position on the viewer
+   * 将球面弧度坐标转换为查看器中的位置
    */
   sphericalCoordsToViewerCoords(position: Position): Point {
     this.sphericalCoordsToVector3(position, vector3);
@@ -265,12 +265,12 @@ export class DataHelper extends AbstractService {
   }
 
   /**
-   * Checks if a point in the 3D scene is currently visible
+   * 检查 3D 场景中的点当前是否可见
    */
   isPointVisible(vector: Vector3): boolean;
 
   /**
-   * Checks if a point on the sphere is currently visible
+   * 检查球面上的点当前是否可见
    */
   isPointVisible(position: Position): boolean;
 
@@ -340,7 +340,7 @@ export class DataHelper extends AbstractService {
   }
 
   /**
-   * Update the panorama options if the panorama files contains "InitialView" metadata
+   * 如果全景图文件包含 "InitialView" 元数据，则更新全景图选项
    */
   cleanPanoramaOptions(options: PanoramaOptions, panoData: PanoData): PanoramaOptions {
     if (!panoData?.isEquirectangular) {

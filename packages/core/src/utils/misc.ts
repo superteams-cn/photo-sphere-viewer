@@ -26,8 +26,8 @@ export function throttle<T extends (...args: any) => any>(callback: T, wait: num
 
 /**
  * Test if an object is a plain object
- * Test if an object is a plain object, i.e. is constructed by the built-in
- * Object constructor and inherits directly from Object.prototype or null.
+ * 判断对象是否为普通对象，即由内置 Object 构造函数创建，
+ * 并直接继承自 Object.prototype 或 null。
  * @see https://github.com/lodash/lodash/blob/master/isPlainObject.js
  */
 export function isPlainObject<T extends Record<string, any>>(value: any): value is T {
@@ -45,8 +45,8 @@ export function isPlainObject<T extends Record<string, any>>(value: any): value 
 }
 
 /**
- * Merges the enumerable attributes of two objects
- * Replaces arrays and alters the target object.
+ * 合并两个对象的可枚举属性。
+ * 数组会被整体替换，目标对象会被就地修改。
  * @copyright Nicholas Fisher <nfisher110@gmail.com>
  */
 export function deepmerge<T>(target: T, src: T): T {
@@ -103,14 +103,14 @@ export function isEmpty(obj: any): boolean {
 }
 
 /**
- * Returns if a valu is null or undefined
+ * 判断值是否为 null 或 undefined
  */
 export function isNil(val: any): val is null | undefined {
   return val === null || val === undefined;
 }
 
 /**
- * Returns the first non null non undefined parameter
+ * 返回第一个既非 null 也非 undefined 的参数
  */
 export function firstNonNull<T>(...values: T[]): T | null {
   for (const val of values) {

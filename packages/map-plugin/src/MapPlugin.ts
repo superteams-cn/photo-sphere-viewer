@@ -61,7 +61,7 @@ const getConfig = utils.getConfigParser<MapPluginConfig, ParsedMapPluginConfig>(
 );
 
 /**
- * Adds a minimap on the viewer
+ * 为查看器添加小地图
  */
 export class MapPlugin extends AbstractConfigurablePlugin<
   MapPluginConfig,
@@ -183,14 +183,14 @@ export class MapPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Changes the current zoom level
+   * 修改当前缩放级别
    */
   setZoom(level: number) {
     this.component.setZoom(Math.log(level / 100));
   }
 
   /**
-   * Closes the map
+   * 关闭地图
    */
   close() {
     if (!this.component.collapsed) {
@@ -208,7 +208,7 @@ export class MapPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Minimizes the map
+   * 最小化地图
    */
   minimize() {
     if (this.component.maximized) {
@@ -217,7 +217,7 @@ export class MapPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Maximizes the map
+   * 最大化地图
    */
   maximize() {
     if (!this.component.maximized) {
@@ -226,9 +226,9 @@ export class MapPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Changes the image of the map
-   * @param rotation Also change the image rotation
-   * @param center Also change the position on the map
+   * 更换地图图片
+   * @param rotation 同时更新图片旋转角度
+   * @param center 同时更新地图上的位置
    */
   setImage(url: string, center?: Point, rotation?: string | number) {
     if (!utils.isNil(rotation)) {
@@ -241,7 +241,7 @@ export class MapPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Changes the position on the map
+   * 修改地图上的位置
    */
   setCenter(center: Point, resetView = true) {
     const previousCenter = this.config.center;
@@ -257,7 +257,7 @@ export class MapPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Changes the hotspots on the map
+   * 修改地图热点
    */
   setHotspots(hotspots: MapHotspot[] | null, render = true) {
     const ids: string[] = [];
@@ -288,7 +288,7 @@ export class MapPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Changes the highlighted hotspot
+   * 修改高亮热点
    */
   setActiveHotspot(hotspotId: string | null) {
     this.component.setActiveHotspot(hotspotId);

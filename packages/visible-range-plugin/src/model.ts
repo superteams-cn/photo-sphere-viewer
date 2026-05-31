@@ -10,7 +10,7 @@ export type VisibleRangePluginConfig = {
    */
   verticalRange?: Range;
   /**
-   * use {@link ViewerConfig panoData} as visible range, you can also manually call {@link VisibleRangePlugin.setRangesFromPanoData}
+   * 使用 {@link ViewerConfig panoData} 作为可视范围；也可以手动调用 {@link VisibleRangePlugin.setRangesFromPanoData}
    * @default false
    */
   usePanoData?: boolean;

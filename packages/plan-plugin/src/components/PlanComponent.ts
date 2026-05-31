@@ -181,7 +181,7 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-   * Applies default configuration
+   * 应用默认配置
    */
   private __configureLeaflet() {
     this.state.layers = this.config.layers.reduce(
@@ -240,7 +240,7 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-   * Force re-creation of the central pin
+   * 强制重新创建中心图钉
    */
   updatePin() {
     if (this.state.pinMarker) {
@@ -251,7 +251,7 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-   * Force re-creation of hotspots
+   * 强制重新创建热点
    */
   updateSpots() {
     this.setHotspots(
@@ -281,7 +281,7 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-   * Rotates the central pin
+   * 旋转中心图钉
    */
   updateBearing(position: Position = this.viewer.getPosition()) {
     if (this.state.pinMarker) {
@@ -291,7 +291,7 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-   * Changes the base layer
+   * 切换基础图层
    */
   setLayer(name: string) {
     Object.values(this.state.layers).forEach((layer) => {
@@ -304,14 +304,14 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-   * Resets the map position and zoom level
+   * 重置平面图位置和缩放级别
    */
   reset() {
     this.map?.setView(gpsToLeaflet(this.config.coordinates), this.config.defaultZoom);
   }
 
   /**
-   * Moves the position pin and resets the map position
+   * 移动位置图钉，并重置平面图位置
    */
   recenter() {
     const pos = gpsToLeaflet(this.config.coordinates);
@@ -391,21 +391,21 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-   * Changes the zoom level
+   * 修改缩放级别
    */
   zoom(d: number) {
     this.map.setZoom(d);
   }
 
   /**
-   * Updates the markers
+   * 更新标记
    */
   setMarkers(markers: PlanHotspot[]) {
     this.__setHotspots(markers, true);
   }
 
   /**
-   * Changes the highlighted hotspot
+   * 修改高亮热点
    */
   setActiveHotspot(hotspotId: string) {
     if (this.state.hotspotId) {
@@ -420,7 +420,7 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-   * Changes the hotspots
+   * 修改热点
    */
   setHotspots(hotspots: PlanHotspot[]) {
     this.__setHotspots(hotspots, false);
@@ -472,7 +472,7 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-   * Updates the style of a map marker
+   * 更新平面图标记样式
    */
   private __applyStyle(hotspotId: string, hover: boolean) {
     const hotspot = this.state.hotspots[hotspotId]?.hotspot;
@@ -500,7 +500,7 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-   * Dispatch event when a hotspot is clicked
+   * 点击热点时派发事件
    */
   private __clickHotspot(hotspotId: string) {
     this.plugin.dispatchEvent(new SelectHotspot(hotspotId));

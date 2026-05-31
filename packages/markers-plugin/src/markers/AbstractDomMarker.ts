@@ -5,7 +5,7 @@ import { MarkerConfig } from '../model';
 import { Marker } from './Marker';
 
 /**
- * Base class for markers added in the DOM
+ * 添加到 DOM 中的标记基类
  * @internal
  */
 export abstract class AbstractDomMarker extends Marker {

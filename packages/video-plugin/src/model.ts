@@ -7,12 +7,12 @@ export type VideoKeypoint = {
 
 export type VideoPluginConfig = {
   /**
-   * displays a progressbar on top of the navbar
+   * 在导航栏上方显示进度条
    * @default true
    */
   progressbar?: boolean;
   /**
-   * displays a big "play" button in the center of the viewer
+   * 在查看器中央显示大型“播放”按钮
    * @default true
    */
   bigbutton?: boolean;

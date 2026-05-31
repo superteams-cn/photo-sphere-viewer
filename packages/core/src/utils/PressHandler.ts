@@ -1,6 +1,6 @@
 /**
  * Helper for pressable things (buttons, keyboard)
- * When the pressed thing goes up and was not pressed long enough, wait a bit more before execution
+ * 当按压提前结束且时长不足时，稍作等待后再执行
  * @internal
  */
 export class PressHandler<TData = never> {

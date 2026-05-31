@@ -8,7 +8,7 @@ import { AbstractDomMarker } from './AbstractDomMarker';
 import { Marker } from './Marker';
 
 /**
- * Base class for standard markers
+ * 标准标记基类
  * @internal
  */
 export abstract class AbstractStandardMarker extends AbstractDomMarker {
@@ -22,8 +22,8 @@ export abstract class AbstractStandardMarker extends AbstractDomMarker {
     super.afterCreateElement();
 
     this.domElement.addEventListener('transitionend', () => {
-      // the transition "scale" is only applied manually on mouseover
-      // because it must not be present when the scale changes on zoom/move
+      // transition 的 "scale" 只在 mouseover 时手动应用；
+      // 缩放/移动导致 scale 改变时不能保留它。
       this.domElement.style.transition = '';
     });
   }
@@ -43,7 +43,7 @@ export abstract class AbstractStandardMarker extends AbstractDomMarker {
     position.x -= this.state.size.width * this.state.anchor.x;
     position.y -= this.state.size.height * this.state.anchor.y;
 
-    // It tests if the point is in the general direction of the camera, then check if it's in the viewport
+    // 先判断该点是否大致位于相机朝向内，再判断它是否落在视口中
     const isVisible =
       this.state.positions3D[0].dot(this.viewer.state.direction) > 0 &&
       position.x + this.state.size.width >= 0 &&
@@ -73,14 +73,14 @@ export abstract class AbstractStandardMarker extends AbstractDomMarker {
       throw new PSVError(`missing marker ${this.id} position`);
     }
 
-    // convert texture coordinates to spherical coordinates
+    // 将纹理坐标转换为球面坐标
     try {
       this.state.position = this.viewer.dataHelper.cleanPosition(this.config.position);
     } catch (e) {
       throw new PSVError(`invalid marker ${this.id} position`, e);
     }
 
-    // compute x/y/z position
+    // 计算 x/y/z 位置
     this.state.positions3D = [this.viewer.dataHelper.sphericalCoordsToVector3(this.state.position)];
 
     const element = this.domElement;
@@ -115,8 +115,8 @@ export abstract class AbstractStandardMarker extends AbstractDomMarker {
   }
 
   /**
-   * Computes the real size of a marker
-   * @description This is done by removing all it's transformations (if any) and making it visible
+   * 计算标记的真实尺寸
+   * @description 通过移除所有变换（如果存在）并临时显示标记来完成
    * before querying its bounding rect
    */
   private __updateSize() {
@@ -149,19 +149,19 @@ export abstract class AbstractStandardMarker extends AbstractDomMarker {
     }
 
     if (this.isSvg()) {
-      // the real size must be declared on the SVG root
+      // 真实尺寸必须声明在 SVG 根节点上
       element.style.width = this.state.size.width + 'px';
       element.style.height = this.state.size.height + 'px';
     }
 
-    // custom element HTML marker remain dynamic
+    // 自定义元素 HTML 标记保持动态
     if (this.type !== MarkerType.element) {
       this.needsUpdateSize = false;
     }
   }
 
   /**
-   * Computes and applies the scale to the marker
+   * 计算并应用标记缩放
    */
   applyScale({
     zoomLevel,

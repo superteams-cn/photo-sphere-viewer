@@ -98,23 +98,23 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
   }
 
   /**
-   * Checks if the stereo view is enabled
+   * 检查立体视图是否已启用
    */
   isEnabled(): boolean {
     return this.state.enabled;
   }
 
   /**
-   * Enables the stereo view
+   * 启用立体视图
    *
    *  - enables wake lock
    *  - enables full screen
    *  - starts gyroscope controle
-   *  - hides markers, navbar and panel
-   *  - instanciate the stereo effect
+   *  - 隐藏标记、导航栏和面板
+   *  - 创建立体效果实例
    */
   start(): Promise<void> {
-    // Need to be in the main event queue
+    // 需要放入主事件队列
     this.viewer.enterFullscreen();
     this.__startWakelock();
     this.__lockOrientation();
@@ -149,7 +149,7 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
   }
 
   /**
-   * Disables the stereo view
+   * 禁用立体视图
    */
   stop() {
     if (this.isEnabled()) {
@@ -172,7 +172,7 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
   }
 
   /**
-   * Enables or disables the stereo view
+   * 启用或禁用立体视图
    */
   toggle() {
     if (this.isEnabled()) {
@@ -209,7 +209,7 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
   }
 
   /**
-   * Tries to lock the device in landscape or display a message
+   * 尝试将设备锁定为横屏，否则显示提示信息
    */
   private __lockOrientation() {
     let displayRotateMessageTimeout: ReturnType<typeof setTimeout>;
@@ -245,7 +245,7 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
   }
 
   /**
-   * Unlock the device orientation
+   * 解锁设备方向
    */
   private __unlockOrientation() {
     this.viewer.overlay.hide(ID_OVERLAY_PLEASE_ROTATE);

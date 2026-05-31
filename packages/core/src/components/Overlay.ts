@@ -25,7 +25,7 @@ export type OverlayConfig = {
    */
   text?: string;
   /**
-   * if the user can hide the overlay by clicking
+   * 是否允许用户点击隐藏覆盖层
    * @default true
    */
   dismissible?: boolean;
@@ -101,7 +101,7 @@ export class Overlay extends AbstractComponent {
   }
 
   /**
-   * Checks if the overlay is visible
+   * 检查覆盖层是否可见
    */
   override isVisible(id?: string) {
     return this.state.visible && (!id || !this.state.contentId || this.state.contentId === id);

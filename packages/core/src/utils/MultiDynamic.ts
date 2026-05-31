@@ -34,7 +34,7 @@ export class MultiDynamic<T extends Record<string, Dynamic>> {
   }
 
   /**
-   * Defines the target positions
+   * 定义目标位置
    */
   goto(positions: Partial<Record<keyof T, number>>, speedMult = 1) {
     for (const [name, position] of Object.entries(positions)) {
@@ -43,7 +43,7 @@ export class MultiDynamic<T extends Record<string, Dynamic>> {
   }
 
   /**
-   * Increase/decrease the target positions
+   * 增加或减少目标位置
    */
   step(steps: Partial<Record<keyof T, number>>, speedMult = 1) {
     if (speedMult === 0) {
@@ -82,7 +82,7 @@ export class MultiDynamic<T extends Record<string, Dynamic>> {
   }
 
   /**
-   * Defines the current positions and immediately stops movements
+   * 定义当前位置并立即停止移动
    */
   setValue(values: Partial<Record<keyof T, number>>): boolean {
     let hasUpdates = false;

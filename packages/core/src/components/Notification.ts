@@ -52,7 +52,7 @@ export class Notification extends AbstractComponent {
   }
 
   /**
-   * Checks if the notification is visible
+   * 检查通知是否可见
    */
   override isVisible(id?: string) {
     return this.state.visible && (!id || !this.state.contentId || this.state.contentId === id);

@@ -44,7 +44,7 @@
   <body>
     <div id="photosphere"></div>
 
-    <!-- text used for the marker description -->
+    <!-- 标记说明使用的文本 -->
     <script type="text/template" id="pin-content">
       <h1>标记说明示例</h1>
 
@@ -154,7 +154,7 @@
             markers: (() => {
               const a = [];
 
-              // marker with content and tooltip
+              // 带内容和提示框的标记
               a.push({
                 id: 'content',
                 tooltip: '点我！',
@@ -165,7 +165,7 @@
                 anchor: 'bottom center',
               });
 
-              // marker with custom tooltip
+              // 使用自定义提示框的标记
               a.push({
                 id: 'custom-tooltip',
                 tooltip: {
@@ -187,7 +187,7 @@
                 hoverScale: 1.5,
               });
 
-              // big polygon to test the handling of points behind the camera
+              // 大型多边形，用于验证相机背后点位的处理
               a.push({
                 id: 'polygon-sky',
                 svgStyle: {
@@ -210,7 +210,7 @@
                 hideList: true,
               });
 
-              // polygon with custom style
+              // 使用自定义样式的多边形
               a.push({
                 id: 'polygon-1',
                 polygonPixels: [
@@ -456,7 +456,7 @@
                 hoverScale: false,
               });
 
-              // add markers all hover the sphere
+              // 添加围绕球体的标记
               for (let i = 0, k = 1; i < Math.PI * 2; i += Math.PI / 4) {
                 for (let j = -Math.PI / 2 + Math.PI / 4; j < Math.PI / 2; j += Math.PI / 4, k++) {
                   a.push({

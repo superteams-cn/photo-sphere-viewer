@@ -22,7 +22,7 @@ const getConfig = utils.getConfigParser<OverlaysPluginConfig>({
 });
 
 /**
- * Adds various overlays over the panorama
+ * 在全景图上叠加多种覆盖层
  */
 export class OverlaysPlugin extends AbstractConfigurablePlugin<
   OverlaysPluginConfig,
@@ -117,7 +117,7 @@ export class OverlaysPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Adds a new overlay
+   * 添加覆盖层
    */
   addOverlay(config: OverlayConfig) {
     if (!config.path) {
@@ -143,7 +143,7 @@ export class OverlaysPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Removes an overlay
+   * 移除覆盖层
    */
   removeOverlay(id: string) {
     if (!this.state.overlays[id]) {
@@ -170,7 +170,7 @@ export class OverlaysPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Add a spherical overlay
+   * 添加球面覆盖层
    */
   private async __addSphereImageOverlay(config: SphereOverlayConfig) {
     const adapter = this.__getEquirectangularAdapter();
@@ -193,7 +193,7 @@ export class OverlaysPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Add a cubemap overlay
+   * 添加立方体贴图覆盖层
    */
   private async __addCubeImageOverlay(config: CubeOverlayConfig) {
     const currentPanoData = this.viewer.state.textureData.panoData as CubemapData;

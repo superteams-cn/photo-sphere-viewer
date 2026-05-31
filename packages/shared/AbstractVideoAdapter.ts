@@ -9,12 +9,12 @@ export type AbstractVideoPanorama = {
 
 export type AbstractVideoAdapterConfig = {
   /**
-   * automatically start the video
+   * 自动开始播放视频
    * @default false
    */
   autoplay?: boolean;
   /**
-   * initially mute the video
+   * 初始时静音视频
    * @default false
    */
   muted?: boolean;
@@ -99,7 +99,7 @@ export abstract class AbstractVideoAdapter<
     this.__removeVideo();
     this.video = texture.image;
 
-    // keep current time when switching resolution
+    // 切换分辨率时保留当前播放时间
     if (this.video.duration === duration) {
       this.video.currentTime = currentTime;
     }

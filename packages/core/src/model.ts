@@ -305,12 +305,12 @@ export type NavbarCustomButton = {
    */
   visible?: boolean;
   /**
-   * if the button can be moved to menu when the navbar is too small
+   * 导航栏过窄时，按钮是否可移入菜单
    * @default true
    */
   collapsable?: boolean;
   /**
-   * if the button is accessible with the keyboard
+   * 按钮是否可通过键盘访问
    * @default true
    */
   tabbable?: boolean;

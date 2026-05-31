@@ -35,21 +35,21 @@ export class MarkerPolygon extends AbstractDomMarker {
   }
 
   /**
-   * Checks if it is a polygon/polyline using pixel coordinates
+   * 判断是否为使用像素坐标的多边形/折线
    */
   private get isPixels(): boolean {
     return this.type === MarkerType.polygonPixels || this.type === MarkerType.polylinePixels;
   }
 
   /**
-   * Checks if it is a polygon marker
+   * 判断是否为多边形标记
    */
   private get isPolygon(): boolean {
     return this.type === MarkerType.polygon || this.type === MarkerType.polygonPixels;
   }
 
   /**
-   * Checks if it is a polyline marker
+   * 判断是否为折线标记
    */
   private get isPolyline(): boolean {
     return this.type === MarkerType.polyline || this.type === MarkerType.polylinePixels;
@@ -194,7 +194,7 @@ export class MarkerPolygon extends AbstractDomMarker {
 
   /**
    * Computes viewer coordinates of each point of a polygon/polyline<br>
-   * It handles points behind the camera by creating intermediary points suitable for the projector
+   * 它会为相机背后的点创建适合投影器使用的中间点
    */
   private __getPolyPositions(positions: Vector3[]): Point[] {
     const nbVectors = positions.length;

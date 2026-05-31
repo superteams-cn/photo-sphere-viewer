@@ -39,7 +39,7 @@ export const SYSTEM = {
   __maxCanvasWidth: null as number | null,
 
   /**
-   * If the current device is an iPhone
+   * 当前设备是否为 iPhone
    */
   isIphone: false,
 
@@ -91,7 +91,7 @@ function getWebGLCtx(): WebGLRenderingContext | null {
 }
 
 /**
- * Detects if the user is using a touch screen
+ * 检测用户是否正在使用触摸屏
  */
 function isTouchEnabled(): ResolvableBoolean {
   let initial = 'ontouchstart' in window || navigator.maxTouchPoints > 0;

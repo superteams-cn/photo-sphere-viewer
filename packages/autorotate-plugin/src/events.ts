@@ -2,7 +2,7 @@ import { TypedEvent } from '@photo-sphere-viewer/core';
 import type { AutorotatePlugin } from './AutorotatePlugin';
 
 /**
- * @event Triggered when the automatic rotation is enabled/disabled
+ * @event 自动旋转开启或关闭时触发
  */
 export class AutorotateEvent extends TypedEvent<AutorotatePlugin> {
   static override readonly type = 'autorotate';

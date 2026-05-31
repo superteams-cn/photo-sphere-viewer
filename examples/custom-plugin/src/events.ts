@@ -2,7 +2,7 @@ import { TypedEvent } from '@photo-sphere-viewer/core';
 import type { CustomPlugin } from './CustomPlugin';
 
 /**
- * @event Triggered when something happens
+ * @event 自定义事件发生时触发
  */
 export class CustomPluginEvent extends TypedEvent<CustomPlugin> {
   static override readonly type = 'custom-event';

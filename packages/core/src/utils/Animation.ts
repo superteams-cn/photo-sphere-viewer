@@ -9,7 +9,7 @@ export type AnimationOptions<T> = {
    */
   properties: Partial<Record<keyof T, { start: number; end: number }>>;
   /**
-   * duration of the animation
+   * 动画时长
    */
   duration: number;
   /**
@@ -18,7 +18,7 @@ export type AnimationOptions<T> = {
    */
   delay?: number;
   /**
-   * interpolation function, see {@link EASINGS}
+   * 插值函数，参见 {@link EASINGS}
    * @default 'linear'
    */
   easing?: EASING | ((t: number) => number);
@@ -33,9 +33,9 @@ type PropertyValues = AnimationOptions<any>['properties']['k'];
 /**
  * Interpolation helper for animations
  *
- * Implements the Promise API with an additional "cancel" method.
- * The promise is resolved with `true` when the animation is completed and `false` if the animation is cancelled.
- * @template T the type of interpolated properties
+ * 实现 Promise API，并额外提供 "cancel" 方法。
+ * 动画完成时 promise 解析为 `true`；动画取消时解析为 `false`。
+ * @template T 插值属性类型
  *
  * @example
  * ```ts
@@ -134,7 +134,7 @@ export class Animation<T = any> implements PromiseLike<boolean> {
 
   /**
    * Promise chaining
-   * @param [onFulfilled] - Called when the animation is complete (true) or cancelled (false)
+   * @param [onFulfilled] - 动画完成（true）或取消（false）时调用
    */
   then<U>(onFulfilled: (complete: boolean) => PromiseLike<U> | U): Promise<U> {
     if (this.resolved || this.cancelled) {
@@ -147,7 +147,7 @@ export class Animation<T = any> implements PromiseLike<boolean> {
   }
 
   /**
-   * Cancels the animation
+   * 取消动画
    */
   cancel() {
     if (!this.cancelled && !this.resolved) {

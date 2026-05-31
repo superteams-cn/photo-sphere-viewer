@@ -38,7 +38,7 @@ export function createWireFrame(geometry: BufferGeometry): Object3D {
 const DEBUG_COLORS = ['dodgerblue', 'limegreen', 'indianred'];
 
 /**
- * Applies a color filter to an tile image and shows the id of the tile
+ * 为瓦片图片应用颜色滤镜，并显示瓦片 id
  * @internal
  */
 export function buildDebugTexture(image: HTMLImageElement, level: number, id: string): HTMLCanvasElement {

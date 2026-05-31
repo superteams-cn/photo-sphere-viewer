@@ -18,7 +18,7 @@ const viewer = new Viewer({
     plugins: [
         VirtualTourPlugin.withConfig({
             nodes: [...],
-            // or
+            // 或者
             getNode: async (id) => { ... },
             startNodeId: ...,
         }),
@@ -546,7 +546,7 @@ virtualTourPlugin.gotoLink('2', '4rpm')
 virtualTourPlugin.addEventListener('node-changed', ({ node, data }) => {
     console.log(`当前节点为 ${node.id}`);
     if (data.fromNode) {
-        // other data are available
+        // 还可以读取其他数据
         console.log(`上一节点为 ${data.fromNode.id}`);
     }
 });

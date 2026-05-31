@@ -1,7 +1,7 @@
 import type { Viewer } from '../Viewer';
 
 /**
- * Base class for UI components
+ * UI 组件基类
  */
 export abstract class AbstractComponent {
   /**
@@ -42,7 +42,7 @@ export abstract class AbstractComponent {
   }
 
   /**
-   * Destroys the component
+   * 销毁组件
    */
   destroy() {
     this.parent.container.removeChild(this.container);
@@ -88,7 +88,7 @@ export abstract class AbstractComponent {
   }
 
   /**
-   * Checks if the component is visible
+   * 检查组件是否可见
    */
   isVisible(): boolean {
     return this.state.visible;

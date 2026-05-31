@@ -419,7 +419,7 @@ _（多边形、折线和图层会忽略此选项。）_
 
 ```js
 scale: {
-  // the marker is twice smaller on the minimum zoom level
+  // 最小缩放级别下，标记缩小为原来的一半
   zoom: [0.5, 1];
 }
 ```
@@ -431,7 +431,7 @@ scale: {
 
 ```js
 scale: {
-  // the marker is twice bigger when on the side of the screen
+  // 位于屏幕边缘时，标记放大为原来的两倍
   yaw: [1, 2];
 }
 ```

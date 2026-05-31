@@ -1,5 +1,5 @@
 /**
- * Starts the server (first argument), launches the tests (second argument), then close the server
+ * 启动服务（第一个参数），运行测试（第二个参数），随后关闭服务
  */
 
 import { spawn } from 'child_process';

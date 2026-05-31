@@ -36,13 +36,13 @@ export abstract class AbstractAdapter<TPanorama, TData, TTexture, TMesh extends 
   init(): void {}
 
   /**
-   * Destroys the adapter
+   * 销毁适配器
    */
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   destroy(): void {}
 
   /**
-   * Indicates if the adapter supports transitions between panoramas
+   * 指示适配器是否支持全景图之间的过渡
    */
   // @ts-ignore unused parameter
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -51,7 +51,7 @@ export abstract class AbstractAdapter<TPanorama, TData, TTexture, TMesh extends 
   }
 
   /**
-   * Indicates if the adapter supports preload of a panorama
+   * 指示适配器是否支持预加载全景图
    */
   // @ts-ignore unused parameter
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -60,8 +60,8 @@ export abstract class AbstractAdapter<TPanorama, TData, TTexture, TMesh extends 
   }
 
   /**
-   * Converts pixel texture coordinates to spherical radians coordinates
-   * @throws {@link PSVError} when the current adapter does not support texture coordinates
+   * 将像素纹理坐标转换为球面弧度坐标
+   * @throws {@link PSVError} 当前适配器不支持纹理坐标时抛出
    */
   // @ts-ignore unused parameter
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -70,8 +70,8 @@ export abstract class AbstractAdapter<TPanorama, TData, TTexture, TMesh extends 
   }
 
   /**
-   * Converts spherical radians coordinates to pixel texture coordinates
-   * @throws {@link PSVError} when the current adapter does not support texture coordinates
+   * 将球面弧度坐标转换为像素纹理坐标
+   * @throws {@link PSVError} 当前适配器不支持纹理坐标时抛出
    */
   // @ts-ignore unused parameter
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -80,7 +80,7 @@ export abstract class AbstractAdapter<TPanorama, TData, TTexture, TMesh extends 
   }
 
   /**
-   * Loads the panorama texture
+   * 加载全景图纹理
    */
   abstract loadTexture(
     panorama: TPanorama,
@@ -90,22 +90,22 @@ export abstract class AbstractAdapter<TPanorama, TData, TTexture, TMesh extends 
   ): Promise<TextureData<TTexture, TPanorama, TData>>;
 
   /**
-   * Creates the mesh
+   * 创建网格
    */
   abstract createMesh(panoData: TData): TMesh;
 
   /**
-   * Applies the texture to the mesh
+   * 将纹理应用到网格
    */
   abstract setTexture(mesh: TMesh, textureData: TextureData<TTexture, TPanorama, TData>, transition: boolean): void;
 
   /**
-   * Changes the opacity of the mesh
+   * 修改网格透明度
    */
   abstract setTextureOpacity(mesh: TMesh, opacity: number): void;
 
   /**
-   * Clear a loaded texture from memory
+   * 从内存中清理已加载纹理
    */
   abstract disposeTexture(textureData: TextureData<TTexture, TPanorama, TData>): void;
 
@@ -118,7 +118,7 @@ export abstract class AbstractAdapter<TPanorama, TData, TTexture, TMesh extends 
 export type AdapterConstructor = new (viewer: Viewer, config?: any) => AbstractAdapter<any, any, any, any>;
 
 /**
- * Returns the adapter constructor from the imported object
+ * 从导入对象中取得适配器构造函数
  * @internal
  */
 export function adapterInterop(adapter: any): AdapterConstructor & typeof AbstractAdapter {

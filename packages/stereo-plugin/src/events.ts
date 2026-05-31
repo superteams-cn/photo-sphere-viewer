@@ -2,7 +2,7 @@ import { TypedEvent } from '@photo-sphere-viewer/core';
 import type { StereoPlugin } from './StereoPlugin';
 
 /**
- * @event Triggered when the stereo view is enabled/disabled
+ * @event 立体视图开启或关闭时触发
  */
 export class StereoUpdatedEvent extends TypedEvent<StereoPlugin> {
   static override readonly type = 'stereo-updated';

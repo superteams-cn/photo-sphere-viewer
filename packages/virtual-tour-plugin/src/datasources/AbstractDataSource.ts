@@ -15,12 +15,12 @@ export abstract class AbstractDatasource {
   destroy() {}
 
   /**
-   * Loads a node
+   * 加载节点
    */
   abstract loadNode(nodeId: string): Promise<VirtualTourNode>;
 
   /**
-   * Checks the configuration of a node
+   * 检查节点配置
    */
   protected checkNode(node: VirtualTourNode) {
     if (!node.id) {
@@ -42,7 +42,7 @@ export abstract class AbstractDatasource {
   }
 
   /**
-   * Checks the configuration of a link
+   * 检查链接配置
    */
   protected checkLink(node: VirtualTourNode, link: VirtualTourLink) {
     if (!link.nodeId) {

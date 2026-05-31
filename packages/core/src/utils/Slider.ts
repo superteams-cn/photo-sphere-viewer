@@ -1,7 +1,7 @@
 import { MathUtils } from 'three';
 
 /**
- * Direction of a {@link Slider}
+ * {@link Slider} 的方向
  */
 export enum SliderDirection {
   VERTICAL = 'VERTICAL',
@@ -9,7 +9,7 @@ export enum SliderDirection {
 }
 
 /**
- * Data transmitted to the {@link Slider} listener
+ * 传递给 {@link Slider} 监听器的数据
  */
 export type SliderUpdateData = {
   /**
@@ -18,22 +18,22 @@ export type SliderUpdateData = {
   readonly value: number;
 
   /**
-   * the user clicked on the slider
+   * 用户点击了滑块
    */
   readonly click: boolean;
 
   /**
-   * the user moves the cursor above the slider, without click
+   * 用户未点击，仅在滑块上方移动指针
    */
   readonly mouseover: boolean;
 
   /**
-   * the user moves the cursor above the slider while maintaining click
+   * 用户按住点击并在滑块上方移动指针
    */
   readonly mousedown: boolean;
 
   /**
-   * the cursor position on the page
+   * 指针在页面上的位置
    */
   readonly cursor: { clientX: number; clientY: number };
 };
@@ -54,11 +54,11 @@ export class Slider {
   }
 
   constructor(
-    /** main container of the sliding element */
+    /** 滑动元素的主容器 */
     private readonly container: HTMLElement,
-    /** direction of the slider */
+    /** 滑块方向 */
     private readonly direction: SliderDirection,
-    /** callback when the user interacts with the slider */
+    /** 用户与滑块交互时触发的回调 */
     private readonly listener: (data: SliderUpdateData) => void,
   ) {
     this.container.addEventListener('click', this);

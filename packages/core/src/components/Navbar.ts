@@ -33,13 +33,13 @@ const AVAILABLE_GROUPS: Record<string, ButtonConstructor[]> = {};
 /**
  * Register a new button available for all viewers
  * @param button
- * @param [defaultPosition]  If provided the default configuration of the navbar will be modified.
+ * @param [defaultPosition] 如果提供，会修改导航栏默认配置。
  * Possible values are :
  *    - `start`
  *    - `end`
  *    - `[id]:left`
  *    - `[id]:right`
- * @throws {@link PSVError} if the button constructor has no "id"
+ * @throws {@link PSVError} 按钮构造函数缺少 "id" 时抛出
  */
 export function registerButton(button: ButtonConstructor, defaultPosition?: string) {
   if (!button.id) {
@@ -88,7 +88,7 @@ export function registerButton(button: ButtonConstructor, defaultPosition?: stri
 ].forEach((btn) => registerButton(btn));
 
 /**
- * Navigation bar component
+ * 导航栏组件
  */
 export class Navbar extends AbstractComponent {
   /**
@@ -126,13 +126,13 @@ export class Navbar extends AbstractComponent {
   }
 
   /**
-   * Change the buttons visible on the navbar
+   * 修改导航栏中可见的按钮
    */
   setButtons(buttons: ParsedViewerConfig['navbar']) {
     this.children.slice().forEach((item) => item.destroy());
     this.children.length = 0;
 
-    // force description button if caption is present (used on narrow screens)
+    // 存在标题时强制加入说明按钮（用于窄屏）
     if (buttons.indexOf(NavbarCaption.id) !== -1 && buttons.indexOf(DescriptionButton.id) === -1) {
       buttons.splice(buttons.indexOf(NavbarCaption.id), 0, DescriptionButton.id);
     }
@@ -165,7 +165,7 @@ export class Navbar extends AbstractComponent {
   }
 
   /**
-   * Changes the navbar caption
+   * 修改导航栏标题
    */
   setCaption(html: string | null) {
     this.children.some((item) => {
@@ -179,7 +179,7 @@ export class Navbar extends AbstractComponent {
   }
 
   /**
-   * Returns a button by its identifier
+   * 根据标识符返回按钮
    */
   getButton(id: string, warnNotFound = true): AbstractButton {
     const button = this.children.find((item) => {

@@ -236,15 +236,15 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Returns the current node
+   * 返回当前节点
    */
   getCurrentNode(): VirtualTourNode {
     return this.state.currentNode;
   }
 
   /**
-   * Sets the nodes (client mode only)
-   * @throws {@link PSVError} if not in client mode
+   * 设置节点（仅客户端模式）
+   * @throws {@link PSVError} 非客户端模式时抛出
    */
   setNodes(nodes: VirtualTourNode[], startNodeId?: string) {
     if (this.isServerSide) {
@@ -270,14 +270,14 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Changes the current node
-   * @returns {Promise<boolean>} resolves false if the loading was aborted by another call
+   * 切换当前节点
+   * @returns {Promise<boolean>} 如果加载被另一次调用中止，则解析为 false
    */
   setCurrentNode(
     nodeId: string,
     options?: VirtualTourTransitionOptions & {
       /**
-       * reload the node even if already loaded
+       * 即使节点已经加载，也重新加载
        */
       forceUpdate?: boolean;
     },
@@ -399,8 +399,8 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
         this.state.currentNode = node;
 
         if (this.map) {
-          // if the node is not visible in the map, we don't know where to center the map
-          // so we keep the current center
+          // 如果节点在地图上不可见，就无法确定地图应居中到哪里，
+          // 因此保留当前中心点
           this.map.setCenter(this.__getNodeMapPosition(node) ?? this.map.config.center, this.config.map.recenter);
         }
         this.plan?.setCoordinates(node.gps);
@@ -524,7 +524,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Updates the gallery plugin
+   * 更新图库插件
    */
   private __setGalleryItems() {
     if (this.gallery) {
@@ -545,7 +545,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Update the map plugin
+   * 更新地图插件
    */
   private __setMapHotspots() {
     if (this.map) {
@@ -563,7 +563,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Updates the plan plugin
+   * 更新平面图插件
    */
   private __setPlanHotspots() {
     if (this.plan) {
@@ -581,7 +581,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Adds the links for the node
+   * 为节点添加链接
    */
   private __renderLinks(node: VirtualTourNode) {
     this.arrowsRenderer.clear();
@@ -610,7 +610,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Computes the marker position for a link
+   * 计算链接标记的位置
    */
   private __getLinkPosition(node: VirtualTourNode, link: VirtualTourLink): Position {
     if (this.isGps) {
@@ -621,7 +621,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Returns the complete tootlip content for a node
+   * 返回节点的完整提示框内容
    */
   private async __getTooltipContent(link: VirtualTourLink): Promise<string> {
     const node = await this.datasource.loadNode(link.nodeId);
@@ -661,7 +661,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
         left: viewerPoint.x,
         top: viewerPoint.y,
         box: {
-          // separate the tooltip from the cursor
+          // 让提示框与指针保持距离
           width: 20,
           height: 20,
         },
@@ -716,7 +716,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Manage the preload of the linked panoramas
+   * 管理相邻全景图的预加载
    */
   private __preload(node: VirtualTourNode) {
     if (!this.config.preload) {
@@ -750,7 +750,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Changes the markers to the ones defined on the node
+   * 将标记切换为节点中定义的标记
    */
   private __addNodeMarkers(node: VirtualTourNode) {
     if (node.markers) {
@@ -776,7 +776,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Gets the position of a node on the map, if applicable
+   * 获取节点在地图上的位置（如果适用）
    */
   private __getNodeMapPosition(node: VirtualTourNode): Point {
     const fromGps = this.__getGpsMapPosition(node.gps);
@@ -790,7 +790,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Gets a gps position on the map
+   * 获取 GPS 位置在地图上的坐标
    */
   private __getGpsMapPosition(gps: GpsPosition): Point {
     const map = this.config.map;

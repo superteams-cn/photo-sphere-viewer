@@ -98,7 +98,7 @@ function checkTile(tile: CubemapTilesPanorama | CubemapTileLevel, data: { CUBE_S
 }
 
 /**
- * Checks if it is the top or bottom tile
+ * 判断是否为顶部或底部瓦片
  */
 export function isTopOrBottom(face: number) {
   return face === 2 || face === 3;

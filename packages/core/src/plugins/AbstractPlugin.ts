@@ -24,26 +24,26 @@ export abstract class AbstractPlugin<
   }
 
   /**
-   * Initializes the plugin
+   * 初始化插件
    */
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   init(): void {}
 
   /**
-   * Destroys the plugin
+   * 销毁插件
    */
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   destroy(): void {}
 }
 
 /**
- * Base class for plugins with updatable configuration
- * The implementation must have a static `configParser` property which is the result of {@link utils.getConfigParser}
+ * 可更新配置插件的基类
+ * 实现类必须提供静态 `configParser` 属性，其值为 {@link utils.getConfigParser} 的返回结果
  *
- * @template TConfig type of input config
- * @template TParsedConfig type of config after parsing
- * @template TUpdatableConfig type of config that can be updated
- * @template TEvents union of dispatched events
+ * @template TConfig 输入配置类型
+ * @template TParsedConfig 解析后的配置类型
+ * @template TUpdatableConfig 可更新配置类型
+ * @template TEvents 派发事件的联合类型
  */
 export abstract class AbstractConfigurablePlugin<
   TConfig extends Record<string, any>,
@@ -110,7 +110,7 @@ export abstract class AbstractConfigurablePlugin<
 export type PluginConstructor = new (viewer: Viewer, config?: any) => AbstractPlugin<any>;
 
 /**
- * Returns the plugin constructor from the imported object
+ * 从导入对象中取得插件构造函数
  * @internal
  */
 export function pluginInterop(plugin: any): PluginConstructor & typeof AbstractPlugin {

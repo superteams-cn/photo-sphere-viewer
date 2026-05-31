@@ -27,7 +27,7 @@ const getConfig = utils.getConfigParser<GyroscopePluginConfig>(
 const direction = new Vector3();
 
 /**
- * Adds gyroscope controls on mobile devices
+ * 在移动设备上添加陀螺仪控制
  */
 export class GyroscopePlugin extends AbstractConfigurablePlugin<
   GyroscopePluginConfig,
@@ -99,21 +99,21 @@ export class GyroscopePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Checks if the gyroscope is supported
+   * 检查是否支持陀螺仪
    */
   isSupported(): Promise<boolean> {
     return this.state.isSupported;
   }
 
   /**
-   * Checks if the gyroscope is enabled
+   * 检查陀螺仪是否已启用
    */
   isEnabled(): boolean {
     return this.state.enabled;
   }
 
   /**
-   * Enables the gyroscope navigation if available
+   * 在可用时启用陀螺仪导航
    */
   start(moveMode = this.config.moveMode): Promise<void> {
     return this.state.isSupported
@@ -158,7 +158,7 @@ export class GyroscopePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Disables the gyroscope navigation
+   * 禁用陀螺仪导航
    */
   stop() {
     if (this.isEnabled()) {
@@ -176,7 +176,7 @@ export class GyroscopePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Enables or disables the gyroscope navigation
+   * 启用或禁用陀螺仪导航
    */
   toggle() {
     if (this.isEnabled()) {
@@ -200,7 +200,7 @@ export class GyroscopePlugin extends AbstractConfigurablePlugin<
 
     const position = this.viewer.getPosition();
 
-    // on first run compute the offset depending on the current viewer position and device orientation
+    // 首次运行时，根据当前查看器位置和设备方向计算偏移量
     if (this.state.alphaOffset === null) {
       if (this.controls.update()) {
         this.controls.object.getWorldDirection(direction);
@@ -220,7 +220,7 @@ export class GyroscopePlugin extends AbstractConfigurablePlugin<
           pitch: -sphericalCoords.pitch,
         };
 
-        // having a slow speed on smalls movements allows to absorb the device/hand vibrations
+        // 小幅移动时放慢速度，可吸收设备或手部抖动
         const step = this.state.moveMode === 'smooth' ? 3 : 10;
         this.viewer.dynamics.position.goto(target, utils.getAngle(position, target) < 0.01 ? 1 : step);
 
@@ -232,7 +232,7 @@ export class GyroscopePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Intercepts moves and offsets the alpha angle
+   * 拦截移动操作，并偏移 alpha 角
    */
   private __onBeforeRotate(e: events.BeforeRotateEvent) {
     if (this.isEnabled()) {
@@ -245,7 +245,7 @@ export class GyroscopePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Detects if device orientation is supported
+   * 检测是否支持设备方向
    */
   private __checkSupport(): Promise<boolean> {
     if ('DeviceOrientationEvent' in window && typeof (DeviceOrientationEvent as any).requestPermission === 'function') {
@@ -267,7 +267,7 @@ export class GyroscopePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Request permission to the motion API
+   * 请求运动传感器 API 权限
    */
   private __requestPermission(): Promise<boolean> {
     if (typeof (DeviceOrientationEvent as any).requestPermission === 'function') {

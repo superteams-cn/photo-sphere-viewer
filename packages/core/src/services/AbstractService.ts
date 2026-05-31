@@ -3,7 +3,7 @@ import type { Viewer } from '../Viewer';
 import { ViewerState } from './ViewerState';
 
 /**
- * Base class for services
+ * 服务基类
  */
 export abstract class AbstractService {
   protected readonly config: ParsedViewerConfig;

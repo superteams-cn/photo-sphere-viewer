@@ -188,42 +188,42 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Returns the durection of the video
+   * 返回视频时长
    */
   getDuration(): number {
     return this.video?.duration ?? 0;
   }
 
   /**
-   * Returns the current time of the video
+   * 返回视频当前播放时间
    */
   getTime(): number {
     return this.video?.currentTime ?? 0;
   }
 
   /**
-   * Returns the play progression of the video
+   * 返回视频播放进度
    */
   getProgress(): number {
     return this.video ? this.video.currentTime / this.video.duration : 0;
   }
 
   /**
-   * Returns if the video is playing
+   * 返回视频是否正在播放
    */
   isPlaying(): boolean {
     return this.video ? !this.video.paused : false;
   }
 
   /**
-   * Returns the video volume
+   * 返回视频音量
    */
   getVolume(): number {
     return this.video?.muted ? 0 : (this.video?.volume ?? 0);
   }
 
   /**
-   * Starts or pause the video
+   * 播放或暂停视频
    */
   playPause() {
     if (this.video) {
@@ -236,7 +236,7 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Starts the video if paused
+   * 如果视频已暂停，则开始播放
    */
   play() {
     if (this.video?.paused) {
@@ -254,7 +254,7 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Sets the volume of the video
+   * 设置视频音量
    */
   setVolume(volume: number) {
     if (this.video) {
@@ -264,7 +264,7 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * (Un)mutes the video
+   * 静音或取消静音视频
    * @param [mute] - toggle if undefined
    */
   setMute(mute?: boolean) {
@@ -277,7 +277,7 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Changes the current time of the video
+   * 修改视频当前播放时间
    */
   setTime(time: number) {
     if (this.video) {
@@ -286,7 +286,7 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Changes the progression of the video
+   * 修改视频播放进度
    */
   setProgress(progress: number) {
     if (this.video) {
@@ -317,8 +317,8 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Changes the keypoints
-   * @throws {@link PSVError} if the configuration is invalid
+   * 修改关键点
+   * @throws {@link PSVError} 配置无效时抛出
    */
   setKeypoints(keypoints?: VideoKeypoint[] | null) {
     if (!this.autorotate) {
@@ -383,7 +383,7 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
       this.viewer.rotate(autorotate.start.position);
     } else {
       const progress = (currentTime - autorotate.start.time) / (autorotate.end.time - autorotate.start.time);
-      // only the middle segment contains the current section
+      // 只有中间线段包含当前片段
       const pt = autorotate.curve.getPoint(1 / 3 + progress / 3);
 
       this.viewer.dynamics.position.goto({ yaw: pt.x, pitch: pt.y });
@@ -413,8 +413,8 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
       k2 = l;
     }
 
-    // get the 4 points necessary to compute the current movement
-    // one point before and two points after the current
+    // 获取计算当前运动所需的 4 个点：
+    // 当前点之前一个点，之后两个点
     const workPoints: Position[] = [
       keypoints[Math.max(0, k1 - 1)].position as Position,
       keypoints[k1].position as Position,

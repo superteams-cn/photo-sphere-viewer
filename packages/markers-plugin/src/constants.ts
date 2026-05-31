@@ -9,19 +9,19 @@ import icon from './icons/pin-list.svg';
 export const SVG_NS = 'http://www.w3.org/2000/svg';
 
 /**
- * Property name added to marker elements
+ * 添加到标记元素上的属性名
  * @internal
  */
 export const MARKER_DATA = 'psvMarker';
 
 /**
- * Property name added to marker elements (dash-case)
+ * 添加到标记元素上的属性名（短横线格式）
  * @internal
  */
 export const MARKER_DATA_KEY = utils.dasherize(MARKER_DATA);
 
 /**
- * Panel identifier for marker content
+ * 标记内容面板的标识符
  * @internal
  */
 export const ID_PANEL_MARKER = 'marker';

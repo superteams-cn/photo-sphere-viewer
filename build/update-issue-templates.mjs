@@ -1,5 +1,5 @@
 /**
- * Add the version provided as first parameter to the options of the issue templates
+ * 将第一个参数传入的版本号添加到 issue 模板选项中
  */
 
 import fs from 'fs';
