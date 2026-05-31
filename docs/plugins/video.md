@@ -15,11 +15,11 @@ To use this plugin you must also load one of the video adapters : [equirectangul
 
 Once enabled it will add various elements to the viewer:
 
--   Play/pause button
--   Volume button
--   Time indicator in the navbar
--   Progressbar above the navbar
--   Play button in the center of the viewer
+- Play/pause button
+- Volume button
+- Time indicator in the navbar
+- Progressbar above the navbar
+- Play button in the center of the viewer
 
 It also supports advanced autorotate with timed `keypoints`.
 
@@ -44,14 +44,14 @@ const viewer = new Viewer({
 ```yaml
 title: PSV Video Demo
 packages:
-    - name: equirectangular-video-adapter
-    - name: video-plugin
-      imports: VideoPlugin
-      style: true
-    - name: autorotate-plugin
-    - name: settings-plugin
-      style: true
-    - name: resolution-plugin
+  - name: equirectangular-video-adapter
+  - name: video-plugin
+    imports: VideoPlugin
+    style: true
+  - name: autorotate-plugin
+  - name: settings-plugin
+    style: true
+  - name: resolution-plugin
 ```
 
 <<< ./demos-src/video.js{js:line-numbers}
@@ -62,8 +62,8 @@ packages:
 
 #### `keypoints`
 
--   type: `Array<{ position, time }>`
--   updatable: no, use `setKeypoints()` method
+- type: `Array<{ position, time }>`
+- updatable: no, use `setKeypoints()` method
 
 Defines timed keypoints that will be used by the autorotate button.
 
@@ -81,24 +81,24 @@ The usage of keypoints requires to load the [Autorotate plugin](./autorotate.md)
 
 #### `progressbar`
 
--   type: `boolean`
--   default: `true`
--   updatable: no
+- type: `boolean`
+- default: `true`
+- updatable: no
 
 Displays a progressbar on top of the navbar.
 
 #### `bigbutton`
 
--   type: `boolean`
--   default: `true`
--   updatable: no
+- type: `boolean`
+- default: `true`
+- updatable: no
 
 Displays a big "play" button in the center of the viewer.
 
 #### `lang`
 
--   type: `object`
--   default:
+- type: `object`
+- default:
 
 ```js
 lang: {
@@ -167,9 +167,9 @@ Triggered when the video play progression changes.
 
 This plugin adds buttons to the default navbar:
 
--   `videoPlay` allows to play/pause the video
--   `videoVolume` allows to change the volume/mute the video
--   `videoTime` shows the video time and duration (not a real button)
+- `videoPlay` allows to play/pause the video
+- `videoVolume` allows to change the volume/mute the video
+- `videoTime` shows the video time and duration (not a real button)
 
 If you use a [custom navbar](../guide/navbar.md) you will need to manually add the buttons to the list.
 

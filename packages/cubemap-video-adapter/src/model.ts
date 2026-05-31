@@ -5,9 +5,9 @@ import type { AbstractVideoAdapterConfig, AbstractVideoPanorama } from '../../sh
  */
 export type CubemapVideoPanorama = AbstractVideoPanorama & {
   /**
-     * if the video is an equiangular cubemap (EAC)
-     * @default true
-     */
+   * if the video is an equiangular cubemap (EAC)
+   * @default true
+   */
   equiangular?: boolean;
 };
 

@@ -39,7 +39,7 @@ query {
 
   const result = await response.json();
 
-  const announcements = result.data?.repository?.pinnedDiscussions?.nodes?.map(n => n.discussion);
+  const announcements = result.data?.repository?.pinnedDiscussions?.nodes?.map((n) => n.discussion);
 
   if (!announcements) {
     return new Response('Failed to fetch announcements', { status: 500 });

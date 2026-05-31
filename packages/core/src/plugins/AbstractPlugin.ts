@@ -10,13 +10,13 @@ export abstract class AbstractPlugin<
   TEvents extends TypedEvent<AbstractPlugin> = never,
 > extends TypedEventTarget<TEvents> {
   /**
-     * Unique identifier of the plugin
-     */
+   * Unique identifier of the plugin
+   */
   static readonly id: string;
   /**
-     * Expected version of the core
-     * DO NOT USE on custom plugins
-     */
+   * Expected version of the core
+   * DO NOT USE on custom plugins
+   */
   static readonly VERSION: string;
 
   constructor(protected viewer: Viewer) {
@@ -24,14 +24,14 @@ export abstract class AbstractPlugin<
   }
 
   /**
-     * Initializes the plugin
-     */
+   * Initializes the plugin
+   */
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   init(): void {}
 
   /**
-     * Destroys the plugin
-     */
+   * Destroys the plugin
+   */
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   destroy(): void {}
 }
@@ -63,16 +63,16 @@ export abstract class AbstractConfigurablePlugin<
   }
 
   /**
-     * Update options
-     */
+   * Update options
+   */
   setOption<T extends keyof TUpdatableConfig>(option: T, value: TUpdatableConfig[T]) {
     // @ts-ignore
     this.setOptions({ [option]: value });
   }
 
   /**
-     * Update options
-     */
+   * Update options
+   */
   setOptions(options: Partial<TUpdatableConfig>) {
     const rawConfig: TConfig = {
       ...this.config,

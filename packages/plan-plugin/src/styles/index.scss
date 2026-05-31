@@ -139,7 +139,8 @@
     }
   }
 
-  &__pin, &__spot {
+  &__pin,
+  &__spot {
     filter: drop-shadow(2px 2px 2px rgb(0, 0, 0, 0.5));
 
     & > * {

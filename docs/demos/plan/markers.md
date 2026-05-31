@@ -8,16 +8,16 @@ Configure [markers](../../plugins/markers.md) to be displayed on the [plan](../.
 autoload: true
 title: PSV plan markers Demo
 packages:
-    - name: plan-plugin
-      style: true
-    - name: markers-plugin
-      style: true
-    - name: leaflet
-      external: true
-      version: 1
-      style: true
-      js: dist/leaflet-src.esm.js
-      css: dist/leaflet.css
+  - name: plan-plugin
+    style: true
+  - name: markers-plugin
+    style: true
+  - name: leaflet
+    external: true
+    version: 1
+    style: true
+    js: dist/leaflet-src.esm.js
+    css: dist/leaflet.css
 ```
 
 ```js:line-numbers

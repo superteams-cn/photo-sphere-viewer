@@ -18,7 +18,7 @@ updates:
         dependency-type: development
         update-types: ['minor']
   - package-ecosystem: github-actions
-    directories: 
+    directories:
       - '/'
       - '/.github/workflows/shared'
     schedule:

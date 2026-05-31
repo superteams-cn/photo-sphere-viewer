@@ -35,7 +35,7 @@ const MAX_RETRIES = 5;
 
   const files = await listFilesWithHashes(config.rootFolder, config.exclude, 'sha1');
   // TODO zip functions
-  const functions = {};// await listFilesWithHashes(config.functionsFolder, null, 'sha256');
+  const functions = {}; // await listFilesWithHashes(config.functionsFolder, null, 'sha256');
 
   const deploy = await createDeploy(files, functions);
 
@@ -54,9 +54,9 @@ const MAX_RETRIES = 5;
  */
 async function listFilesWithHashes(dir, exclude, hashfn) {
   const files = (await readdir(dir, { recursive: true, withFileTypes: true }))
-    .filter(entry => entry.isFile())
-    .map(entry => path.join(entry.parentPath ?? entry.path, entry.name).replace(/\\/g, '/'))
-    .filter(file => !exclude || !file.includes(exclude));
+    .filter((entry) => entry.isFile())
+    .map((entry) => path.join(entry.parentPath ?? entry.path, entry.name).replace(/\\/g, '/'))
+    .filter((file) => !exclude || !file.includes(exclude));
 
   console.log(`${files.length} in ${dir}`);
 
@@ -110,14 +110,17 @@ async function createDeploy(files, functions) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + process.env.NETLIFY_AUTH_TOKEN,
+        Authorization: 'Bearer ' + process.env.NETLIFY_AUTH_TOKEN,
       },
       body: JSON.stringify({
         files,
-        functions: Object.entries(functions).reduce((res, [name, hash]) => ({
-          ...res,
-          [name.replace('.zip', '')]: hash,
-        }), {}),
+        functions: Object.entries(functions).reduce(
+          (res, [name, hash]) => ({
+            ...res,
+            [name.replace('.zip', '')]: hash,
+          }),
+          {},
+        ),
       }),
     });
 
@@ -137,12 +140,15 @@ async function createDeploy(files, functions) {
  */
 async function publishDeploy(deploy) {
   try {
-    await retryFetch(`https://api.netlify.com/api/v1/sites/${process.env.NETLIFY_SITE_ID}/deploys/${deploy.id}/restore`, {
-      method: 'POST',
-      headers: {
-        Authorization: 'Bearer ' + process.env.NETLIFY_AUTH_TOKEN,
+    await retryFetch(
+      `https://api.netlify.com/api/v1/sites/${process.env.NETLIFY_SITE_ID}/deploys/${deploy.id}/restore`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: 'Bearer ' + process.env.NETLIFY_AUTH_TOKEN,
+        },
       },
-    });
+    );
 
     console.log(`Published deploy #${deploy.id} (${deploy.ssl_url}).`);
   } catch {
@@ -177,7 +183,7 @@ async function uploadFiles(dir, files, deploy) {
   }
 
   const fileByHash = {};
-  Object.entries(files).forEach(([file, hash]) => fileByHash[hash] = file);
+  Object.entries(files).forEach(([file, hash]) => (fileByHash[hash] = file));
 
   const queue = new Queue({
     concurrency: 5,
@@ -194,13 +200,13 @@ async function uploadFiles(dir, files, deploy) {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/octet-stream',
-          'Authorization': 'Bearer ' + process.env.NETLIFY_AUTH_TOKEN,
+          Authorization: 'Bearer ' + process.env.NETLIFY_AUTH_TOKEN,
         },
         body: createReadStream(path.join(dir, file)),
         duplex: 'half',
       })
         .then(() => cb(null))
-        .catch(err => cb(err));
+        .catch((err) => cb(err));
     });
   });
 
@@ -227,7 +233,7 @@ async function uploadFunctions(dir, functions, deploy) {
   }
 
   const functionsByHash = {};
-  Object.entries(functions).forEach(([file, hash]) => functionsByHash[hash] = file);
+  Object.entries(functions).forEach(([file, hash]) => (functionsByHash[hash] = file));
 
   const queue = new Queue({
     concurrency: 5,
@@ -242,13 +248,13 @@ async function uploadFunctions(dir, functions, deploy) {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/octet-stream',
-          'Authorization': 'Bearer ' + process.env.NETLIFY_AUTH_TOKEN,
+          Authorization: 'Bearer ' + process.env.NETLIFY_AUTH_TOKEN,
         },
         body: createReadStream(path.join(dir, fctn)),
         duplex: 'half',
       })
         .then(() => cb(null))
-        .catch(err => cb(err));
+        .catch((err) => cb(err));
     });
   });
 
@@ -275,7 +281,7 @@ async function retryFetch(url, params) {
 
     if (i < MAX_RETRIES - 1) {
       console.warn(`http status=${result.status}; retry ${i + 1}/${MAX_RETRIES}`);
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 500));
     }
   }
 

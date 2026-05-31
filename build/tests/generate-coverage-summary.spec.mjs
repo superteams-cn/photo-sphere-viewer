@@ -6,7 +6,10 @@ const testDir = path.join(import.meta.dirname, 'fixtures/generate-coverage-summa
 
 describe('generate-coverage-summary', () => {
   it('should generate the summmary', () => {
-    const result = execSync(`node ${path.join(import.meta.dirname, '../generate-coverage-summary.mjs')}`, { cwd: testDir, encoding: 'utf-8' });
+    const result = execSync(`node ${path.join(import.meta.dirname, '../generate-coverage-summary.mjs')}`, {
+      cwd: testDir,
+      encoding: 'utf-8',
+    });
 
     const expected = `
 # \${\\textsf{\\color{#d3343c}59.4\\\\%}}$ lines, \${\\textsf{\\color{#d3b334}65.5\\\\%}}$ functions, \${\\textsf{\\color{#d3343c}44.2\\\\%}}$ branches

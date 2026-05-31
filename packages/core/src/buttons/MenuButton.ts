@@ -12,7 +12,7 @@ const MENU_TEMPLATE = (buttons: AbstractButton[], title: string) => `
   <ul class="psv-panel-menu-list">
     ${buttons
       .map(
-        button => `
+        (button) => `
     <li data-psv-button="${button.id}" class="psv-panel-menu-item" tabindex="0">
       <span class="psv-panel-menu-item-icon">${button.content}</span>
       <span class="psv-panel-menu-item-label">${button.title}</span>

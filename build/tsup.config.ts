@@ -22,14 +22,10 @@ ${
     const e2e = options.env?.E2E;
     const dev = e2e || options.watch;
 
-    const plugins: Plugin[] = [
-      sassPlugin(),
-    ];
+    const plugins: Plugin[] = [sassPlugin()];
 
     if (!e2e) {
-      plugins.push(
-        mapFixPlugin(),
-      );
+      plugins.push(mapFixPlugin());
     }
 
     if (!dev) {
@@ -37,7 +33,7 @@ ${
         budgetPlugin(pkg.psv.budget),
         scssBundlePlugin(),
         assetsPlugin({
-          'LICENSE': license(),
+          LICENSE: license(),
           'README.md': readme(pkg),
           'package.json': packageJson(pkg),
         }),

@@ -34,8 +34,8 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
   private plan?: PlanPlugin;
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   get isSupported(): Promise<boolean> {
     return this.gyroscope.isSupported();
   }
@@ -49,8 +49,8 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override init() {
     super.init();
 
@@ -70,8 +70,8 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override destroy() {
     this.viewer.removeEventListener(events.StopAllEvent.type, this);
     this.viewer.removeEventListener(events.ClickEvent.type, this);
@@ -89,8 +89,8 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     if (e instanceof events.StopAllEvent || e instanceof events.ClickEvent) {
       this.stop();
@@ -98,21 +98,21 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
   }
 
   /**
-     * Checks if the stereo view is enabled
-     */
+   * Checks if the stereo view is enabled
+   */
   isEnabled(): boolean {
     return this.state.enabled;
   }
 
   /**
-     * Enables the stereo view
-     *
-     *  - enables wake lock
-     *  - enables full screen
-     *  - starts gyroscope controle
-     *  - hides markers, navbar and panel
-     *  - instanciate the stereo effect
-     */
+   * Enables the stereo view
+   *
+   *  - enables wake lock
+   *  - enables full screen
+   *  - starts gyroscope controle
+   *  - hides markers, navbar and panel
+   *  - instanciate the stereo effect
+   */
   start(): Promise<void> {
     // Need to be in the main event queue
     this.viewer.enterFullscreen();
@@ -121,7 +121,7 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
 
     return this.gyroscope.start('fast').then(
       () => {
-        this.viewer.renderer.setCustomRenderer(renderer => new StereoEffect(renderer));
+        this.viewer.renderer.setCustomRenderer((renderer) => new StereoEffect(renderer));
         this.state.enabled = true;
 
         this.viewer.navbar.hide();
@@ -149,8 +149,8 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
   }
 
   /**
-     * Disables the stereo view
-     */
+   * Disables the stereo view
+   */
   stop() {
     if (this.isEnabled()) {
       this.viewer.renderer.setCustomRenderer(null);
@@ -172,8 +172,8 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
   }
 
   /**
-     * Enables or disables the stereo view
-     */
+   * Enables or disables the stereo view
+   */
   toggle() {
     if (this.isEnabled()) {
       this.stop();
@@ -183,8 +183,8 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
   }
 
   /**
-     * Enables WakeLock
-     */
+   * Enables WakeLock
+   */
   private __startWakelock() {
     if ('wakeLock' in navigator) {
       navigator.wakeLock
@@ -199,8 +199,8 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
   }
 
   /**
-     * Disables WakeLock
-     */
+   * Disables WakeLock
+   */
   private __stopWakelock() {
     if (this.state.wakeLock) {
       this.state.wakeLock.release();
@@ -209,8 +209,8 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
   }
 
   /**
-     * Tries to lock the device in landscape or display a message
-     */
+   * Tries to lock the device in landscape or display a message
+   */
   private __lockOrientation() {
     let displayRotateMessageTimeout: ReturnType<typeof setTimeout>;
 
@@ -245,8 +245,8 @@ export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
   }
 
   /**
-     * Unlock the device orientation
-     */
+   * Unlock the device orientation
+   */
   private __unlockOrientation() {
     this.viewer.overlay.hide(ID_OVERLAY_PLEASE_ROTATE);
 

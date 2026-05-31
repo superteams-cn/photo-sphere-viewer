@@ -20,7 +20,7 @@ const viewer = new Viewer({
     plugins: [
         CompassPlugin.withConfig({
             hotspots: [
-                { yaw: '45deg' }, 
+                { yaw: '45deg' },
                 { yaw: '60deg', color: 'red' },
             ],
         }),
@@ -35,8 +35,8 @@ const viewer = new Viewer({
 ```yaml
 title: PSV Compass Demo
 packages:
-    - name: compass-plugin
-      style: true
+  - name: compass-plugin
+    style: true
 ```
 
 <<< ./demos-src/compass.js{js:line-numbers}
@@ -51,41 +51,41 @@ The north is always at yaw=0, if you need to change where is the north you can u
 
 #### `size`
 
--   type: `string`
--   default: `'120px'`
--   updatable: yes
+- type: `string`
+- default: `'120px'`
+- updatable: yes
 
 The size of the widget, can be declared in `px`, `rem`, `vh`, etc.
 
 #### `position`
 
--   type: `string`
--   default: `'top left'`
--   updatable: yes
+- type: `string`
+- default: `'top left'`
+- updatable: yes
 
 Position of the widget, accepted positions are combinations of `top`, `center`, `bottom` and `left`, `center`, `right`.
 
 #### `navigation`
 
--   type: `boolean`
--   default: `true`
--   updatable: yes
+- type: `boolean`
+- default: `true`
+- updatable: yes
 
 Allows to click on the compass to rotate the viewer.
 
 #### `resetPitch`
 
--   type: `boolean`
--   default: `true`
--   updatable: yes
+- type: `boolean`
+- default: `true`
+- updatable: yes
 
 Reset viewer pitch to `defaultPitch` when using the compass navigation.
 
 #### `hotspots`
 
--   type: `CompassHotspot[]`
--   default: `null`
--   updatable: yes
+- type: `CompassHotspot[]`
+- default: `null`
+- updatable: yes
 
 Small dots visible on the compass. Each spot consists of a position (either `yaw`/`pitch` or `textureX`/`textureY`) and an optional `color` which overrides the global `hotspotColor`.
 
@@ -97,40 +97,40 @@ Small dots visible on the compass. Each spot consists of a position (either `yaw
 
 #### `backgroundSvg`
 
--   type: `string`
--   default: SVG provided by the plugin
--   updatable: yes
+- type: `string`
+- default: SVG provided by the plugin
+- updatable: yes
 
 SVG used as background of the compass (must be square).
 
 #### `coneColor`
 
--   type: `string`
--   default: `'rgba(255, 255, 255, 0.2)'`
--   updatable: yes
+- type: `string`
+- default: `'rgba(255, 255, 255, 0.2)'`
+- updatable: yes
 
 Color of the cone of the compass.
 
 #### `navigationColor`
 
--   type: `string`
--   default: `'rgba(255, 0, 0, 0.2)'`
--   updatable: yes
+- type: `string`
+- default: `'rgba(255, 0, 0, 0.2)'`
+- updatable: yes
 
 Color of the navigation cone.
 
 #### `hotspotColor`
 
--   type: `string`
--   default: `'rgba(0, 0, 0, 0.5)'`
--   updatable: yes
+- type: `string`
+- default: `'rgba(0, 0, 0, 0.5)'`
+- updatable: yes
 
 Default color of hotspots.
 
 #### `className`
 
--   type: `string`
--   updatable: yes
+- type: `string`
+- updatable: yes
 
 CSS class(es) added to the compass element.
 
@@ -141,10 +141,7 @@ CSS class(es) added to the compass element.
 Changes the hotspots.
 
 ```js
-compassPlugin.setHotspots([
-    { yaw: '0deg' }, 
-    { yaw: '10deg', color: 'red' },
-]);
+compassPlugin.setHotspots([{ yaw: '0deg' }, { yaw: '10deg', color: 'red' }]);
 ```
 
 #### `clearHotspots()`

@@ -13,25 +13,25 @@ describe('core: overlay', () => {
     const showOverlayHandler = listenViewerEvent('show-overlay');
     const hideOverlayHandler = listenViewerEvent('hide-overlay');
 
-    callOverlay('show overlay').then(overlay => overlay.show('title'));
+    callOverlay('show overlay').then((overlay) => overlay.show('title'));
     checkEventHandler(showOverlayHandler, { overlayId: null });
     checkOverlayVisibleApi(true);
     cy.get('.psv-overlay').should('be.visible');
 
-    callOverlay('hide overlay').then(overlay => overlay.hide());
+    callOverlay('hide overlay').then((overlay) => overlay.hide());
     checkEventHandler(hideOverlayHandler, { overlayId: null });
     checkOverlayVisibleApi(false);
     cy.get('.psv-overlay').should('not.be.visible');
   });
 
   it('should hide on click and esc key', () => {
-    callOverlay('show overlay').then(overlay => overlay.show('title'));
+    callOverlay('show overlay').then((overlay) => overlay.show('title'));
     cy.get('.psv-overlay').should('be.visible');
 
     cy.get('.psv-overlay').click();
     cy.get('.psv-overlay').should('not.be.visible');
 
-    callOverlay('show overlay').then(overlay => overlay.show('title'));
+    callOverlay('show overlay').then((overlay) => overlay.show('title'));
     cy.get('.psv-overlay').should('be.visible');
 
     triggerWindowKeydown('Escape');
@@ -39,10 +39,12 @@ describe('core: overlay', () => {
   });
 
   it('should not be dismissible', () => {
-    callOverlay('show overlay').then(overlay => overlay.show({
-      title: 'title',
-      dismissible: false,
-    }));
+    callOverlay('show overlay').then((overlay) =>
+      overlay.show({
+        title: 'title',
+        dismissible: false,
+      }),
+    );
 
     cy.get('.psv-overlay').click();
     cy.get('.psv-overlay').should('be.visible');
@@ -55,42 +57,48 @@ describe('core: overlay', () => {
     const showOverlayHandler = listenViewerEvent('show-overlay');
     const hideOverlayHandler = listenViewerEvent('hide-overlay');
 
-    callOverlay('show overlay a').then(overlay => overlay.show({
-      title: 'title',
-      id: 'overlay-a',
-    }));
+    callOverlay('show overlay a').then((overlay) =>
+      overlay.show({
+        title: 'title',
+        id: 'overlay-a',
+      }),
+    );
     checkEventHandler(showOverlayHandler, { overlayId: 'overlay-a' });
     checkOverlayVisibleApi(true);
     checkOverlayVisibleApi(true, 'overlay-a');
     checkOverlayVisibleApi(false, 'overlay-b');
 
-    callOverlay('hide overlay b').then(overlay => overlay.hide('overlay-b'));
+    callOverlay('hide overlay b').then((overlay) => overlay.hide('overlay-b'));
     cy.wrap(hideOverlayHandler, NO_LOG).should('not.have.been.called');
     checkOverlayVisibleApi(true, 'overlay-a');
     cy.get('.psv-overlay').should('be.visible');
 
-    callOverlay('hide overlay a').then(overlay => overlay.hide('overlay-a'));
+    callOverlay('hide overlay a').then((overlay) => overlay.hide('overlay-a'));
     checkEventHandler(hideOverlayHandler, { overlayId: 'overlay-a' });
     checkOverlayVisibleApi(false, 'overlay-a');
 
-    callOverlay('show overlay b').then(overlay => overlay.show({
-      title: 'title',
-      id: 'overlay-b',
-    }));
+    callOverlay('show overlay b').then((overlay) =>
+      overlay.show({
+        title: 'title',
+        id: 'overlay-b',
+      }),
+    );
     checkEventHandler(showOverlayHandler, { overlayId: 'overlay-b' });
     checkOverlayVisibleApi(true, 'overlay-b');
 
-    callOverlay('hide any overlay').then(panel => panel.hide());
+    callOverlay('hide any overlay').then((panel) => panel.hide());
     checkEventHandler(hideOverlayHandler, { overlayId: 'overlay-b' });
     checkOverlayVisibleApi(false);
   });
 
   it('should show title/text/image', () => {
-    callOverlay('show overlay').then(overlay => overlay.show({
-      title: 'Welcome',
-      text: 'This is a demo',
-      image: '<img src=https://photo-sphere-viewer.js.org/favicon.png>',
-    }));
+    callOverlay('show overlay').then((overlay) =>
+      overlay.show({
+        title: 'Welcome',
+        text: 'This is a demo',
+        image: '<img src=https://photo-sphere-viewer.js.org/favicon.png>',
+      }),
+    );
 
     cy.waitForResources('favicon.png');
 
@@ -102,13 +110,14 @@ describe('core: overlay', () => {
   });
 
   function callOverlay(log: string): Cypress.Chainable<Overlay> {
-    return callViewer(log).then(viewer => viewer.overlay);
+    return callViewer(log).then((viewer) => viewer.overlay);
   }
 
   function checkOverlayVisibleApi(visible: boolean, id?: string) {
-    callOverlay(`check ${id ? `overlay "${id}"` : 'any overlay'} ${visible ? 'visible' : 'not visible'}`)
-      .then((overlay) => {
+    callOverlay(`check ${id ? `overlay "${id}"` : 'any overlay'} ${visible ? 'visible' : 'not visible'}`).then(
+      (overlay) => {
         expect(overlay.isVisible(id)).to.eq(visible);
-      });
+      },
+    );
   }
 });

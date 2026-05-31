@@ -29,12 +29,12 @@ This adapter requires to use the [VideoPlugin](../../plugins/video.md).
 ```yaml
 title: PSV Cubemap Video Demo
 packages:
-    - name: cubemap-video-adapter
-    - name: video-plugin
-      style: true
-    - name: settings-plugin
-      style: true
-    - name: resolution-plugin
+  - name: cubemap-video-adapter
+  - name: video-plugin
+    style: true
+  - name: settings-plugin
+    style: true
+  - name: resolution-plugin
 ```
 
 <<< ./demos-src/cubemap-video.js{js:line-numbers}
@@ -49,15 +49,15 @@ This adapter does not support pixel positions, only `yaw`+`pitch`.
 
 #### `autoplay`
 
--   type: `boolean`
--   default: `false`
+- type: `boolean`
+- default: `false`
 
 Automatically starts the video on load.
 
 #### `muted`
 
--   type: `boolean`
--   default: `false`
+- type: `boolean`
+- default: `false`
 
 Mute the video by default.
 
@@ -67,7 +67,7 @@ When using this adapter, the `panorama` option and the `setPanorama()` method ac
 
 #### `source` (required)
 
--   type: `string | MediaStream | HTMLVideoElement`
+- type: `string | MediaStream | HTMLVideoElement`
 
 Path of the video file. The video must not be larger than 4096 pixels or it won't be displayed on handled devices.
 
@@ -75,8 +75,8 @@ It can also be an existing `MediaStream`, for example to display the feed of an 
 
 #### `equiangular`
 
--   type: `boolean`
--   default: `true`
+- type: `boolean`
+- default: `true`
 
 Set to `true` when using an equiangular cubemap (EAC), which is the format used by Youtube. Set to `false` when using a standard cubemap.
 

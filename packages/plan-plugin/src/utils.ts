@@ -17,19 +17,19 @@ export function createLeafletIcon(src: string, size: number, className: string):
 export function getStyle(defaultStyle: PlanHotspotStyle, style: PlanHotspotStyle, isHover: boolean) {
   return {
     image: isHover
-      ? style.hoverImage ?? style.image ?? defaultStyle.hoverImage ?? defaultStyle.image
-      : style.image ?? defaultStyle.image,
+      ? (style.hoverImage ?? style.image ?? defaultStyle.hoverImage ?? defaultStyle.image)
+      : (style.image ?? defaultStyle.image),
     size: isHover
-      ? style.hoverSize ?? style.size ?? defaultStyle.hoverSize ?? defaultStyle.size
-      : style.size ?? defaultStyle.size,
+      ? (style.hoverSize ?? style.size ?? defaultStyle.hoverSize ?? defaultStyle.size)
+      : (style.size ?? defaultStyle.size),
     color: isHover
-      ? style.hoverColor ?? style.color ?? defaultStyle.hoverColor ?? defaultStyle.color
-      : style.color ?? defaultStyle.color,
+      ? (style.hoverColor ?? style.color ?? defaultStyle.hoverColor ?? defaultStyle.color)
+      : (style.color ?? defaultStyle.color),
     borderColor: isHover
-      ? style.hoverBorderColor ?? style.borderColor ?? defaultStyle.hoverBorderColor ?? defaultStyle.borderColor
-      : style.borderColor ?? defaultStyle.borderColor ?? 'transparent',
+      ? (style.hoverBorderColor ?? style.borderColor ?? defaultStyle.hoverBorderColor ?? defaultStyle.borderColor)
+      : (style.borderColor ?? defaultStyle.borderColor ?? 'transparent'),
     borderSize: isHover
-      ? style.hoverBorderSize ?? defaultStyle.hoverBorderSize
-      : style.borderSize ?? defaultStyle.borderSize,
+      ? (style.hoverBorderSize ?? defaultStyle.hoverBorderSize)
+      : (style.borderSize ?? defaultStyle.borderSize),
   };
 }

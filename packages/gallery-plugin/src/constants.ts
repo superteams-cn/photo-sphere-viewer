@@ -25,7 +25,9 @@ export const ACTIVE_CLASS = 'psv-gallery-item--active';
  * @internal
  */
 export const ITEMS_TEMPLATE = (items: GalleryItem[], size: Size) => `
-${items.map(item => `
+${items
+  .map(
+    (item) => `
 <div class="psv-gallery-item" 
      data-${GALLERY_ITEM_DATA_KEY}="${item.id}"
      style="width:${size.width}px; aspect-ratio:${size.width / size.height};"
@@ -34,5 +36,7 @@ ${items.map(item => `
     <svg class="psv-gallery-item-thumb" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice"><use href="#psvGalleryBlankIcon"></use></svg>
     ${item.thumbnail ? `<div class="psv-gallery-item-thumb" data-src="${item.thumbnail}"></div>` : ''}
 </div>
-`).join('')}
+`,
+  )
+  .join('')}
 `;

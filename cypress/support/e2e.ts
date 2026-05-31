@@ -13,7 +13,10 @@ declare global {
   namespace Cypress {
     // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
     interface Chainable {
-      compareScreenshots(name: string, options?: { errorThreshold?: number; hideViewer?: boolean }): Chainable<JQuery<HTMLElement>>;
+      compareScreenshots(
+        name: string,
+        options?: { errorThreshold?: number; hideViewer?: boolean },
+      ): Chainable<JQuery<HTMLElement>>;
 
       waitForResources(...names: string[]);
     }
@@ -22,14 +25,18 @@ declare global {
 
 Cypress.Commands.add('compareScreenshots', { prevSubject: ['element'] }, (subject, name, options = {}) => {
   if (options.hideViewer !== false) {
-    cy.get('.psv-canvas-container', { log: false }).then(container => container.hide());
+    cy.get('.psv-canvas-container', { log: false }).then((container) => container.hide());
   }
 
-  cy.wrap(subject, { log: false }).compareSnapshot(name, options)
+  cy.wrap(subject, { log: false })
+    .compareSnapshot(name, options)
     .then((result) => {
       if (result.images.diff) {
         // @ts-ignore
-        Cypress.Mochawesome.context.push({ title: `Visual regression diff (${name})`, value: 'data:image/png;base64,' + result.images.diff });
+        Cypress.Mochawesome.context.push({
+          title: `Visual regression diff (${name})`,
+          value: 'data:image/png;base64,' + result.images.diff,
+        });
       }
 
       if (result.error) {
@@ -37,7 +44,7 @@ Cypress.Commands.add('compareScreenshots', { prevSubject: ['element'] }, (subjec
       }
 
       if (options.hideViewer !== false) {
-        return cy.get('.psv-canvas-container', { log: false }).then(container => container.show());
+        return cy.get('.psv-canvas-container', { log: false }).then((container) => container.show());
       }
     });
 
@@ -64,9 +71,7 @@ Cypress.Commands.add('waitForResources', (...names) => {
 
       const interval = setInterval(() => {
         foundResources = names.every((name) => {
-          return win.performance
-            .getEntriesByType('resource')
-            .find(item => item.name.endsWith(name));
+          return win.performance.getEntriesByType('resource').find((item) => item.name.endsWith(name));
         });
 
         if (!foundResources) {

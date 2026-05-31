@@ -11,7 +11,7 @@ import { clone, firstNonNull, isPlainObject } from './misc';
 export function resolveBoolean(value: boolean | ResolvableBoolean, cb: (val: boolean, init: boolean) => void) {
   if (isPlainObject(value)) {
     cb((value as ResolvableBoolean).initial, true);
-    (value as ResolvableBoolean).promise.then(res => cb(res, false));
+    (value as ResolvableBoolean).promise.then((res) => cb(res, false));
   } else {
     cb(value as boolean, true);
   }
@@ -23,7 +23,7 @@ export function resolveBoolean(value: boolean | ResolvableBoolean, cb: (val: boo
 export function invertResolvableBoolean(value: ResolvableBoolean): ResolvableBoolean {
   return {
     initial: !value.initial,
-    promise: value.promise.then(res => !res),
+    promise: value.promise.then((res) => !res),
   };
 }
 
@@ -124,7 +124,7 @@ export function parsePoint(value: string | Point): Point {
 
   const xFirst = tokens[1] !== 'left' && tokens[1] !== 'right' && tokens[0] !== 'top' && tokens[0] !== 'bottom';
 
-  tokens = tokens.map(token => CSS_POSITIONS[token] || token);
+  tokens = tokens.map((token) => CSS_POSITIONS[token] || token);
 
   if (!xFirst) {
     tokens.reverse();
@@ -234,7 +234,7 @@ export function parseSpeed(speed: string | number): number {
         parsed = MathUtils.degToRad(speedValue);
         break;
 
-        // Radians per minute / second
+      // Radians per minute / second
       case 'rdpm':
       case 'radians per minute':
       case 'rdps':
@@ -242,7 +242,7 @@ export function parseSpeed(speed: string | number): number {
         parsed = speedValue;
         break;
 
-        // Revolutions per minute / second
+      // Revolutions per minute / second
       case 'rpm':
       case 'revolutions per minute':
       case 'rps':
@@ -250,7 +250,7 @@ export function parseSpeed(speed: string | number): number {
         parsed = speedValue * Math.PI * 2;
         break;
 
-        // Unknown unit
+      // Unknown unit
       default:
         throw new PSVError(`Unknown speed unit "${speedUnit}"`);
     }
@@ -443,7 +443,9 @@ export function checkStylesheet(element: HTMLElement, name: string) {
  */
 export function checkVersion(name: string, version: string, coreVersion: string) {
   if (version && version !== coreVersion) {
-    console.error(`PhotoSphereViewer: @photo-sphere-viewer/${name} is in version ${version} but @photo-sphere-viewer/core is in version ${coreVersion}`);
+    console.error(
+      `PhotoSphereViewer: @photo-sphere-viewer/${name} is in version ${version} but @photo-sphere-viewer/core is in version ${coreVersion}`,
+    );
   }
 }
 
@@ -483,14 +485,11 @@ export function mergePanoData(width: number, height: number, newPanoData?: PanoD
   // resize data if necessary
   if (panoData.croppedWidth !== width) {
     const ratio = width / panoData.croppedWidth;
-    ([
-      'fullWidth',
-      'fullHeight',
-      'croppedWidth',
-      'croppedHeight',
-      'croppedX',
-      'croppedY',
-    ] satisfies Array<keyof PanoData>).forEach((key) => {
+    (
+      ['fullWidth', 'fullHeight', 'croppedWidth', 'croppedHeight', 'croppedX', 'croppedY'] satisfies Array<
+        keyof PanoData
+      >
+    ).forEach((key) => {
       if (panoData[key]) {
         panoData[key] = Math.round(panoData[key] * ratio);
       }

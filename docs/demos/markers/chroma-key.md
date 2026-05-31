@@ -8,8 +8,8 @@ Example usage of a transparent `videoLayer` marker using [`chromaKey`](../../plu
 autoload: true
 title: PSV Marker layers Demo
 packages:
-    - name: markers-plugin
-      style: true
+  - name: markers-plugin
+    style: true
 ```
 
 ```js:line-numbers{19-23}

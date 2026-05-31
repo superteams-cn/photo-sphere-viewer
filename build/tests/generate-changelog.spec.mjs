@@ -9,11 +9,15 @@ describe('generate-changelog', () => {
   it('should generate the changelog', (done) => {
     const gitLog = readFileSync(path.join(testDir, 'git-log.txt'), { encoding: 'utf8' });
 
-    const proc = exec(`node ${path.join(import.meta.dirname, '../generate-changelog.mjs')} 5.7.4 5.8.0`, { cwd: testDir }, (err) => {
-      if (err) {
-        assert.fail(err);
-      }
-    });
+    const proc = exec(
+      `node ${path.join(import.meta.dirname, '../generate-changelog.mjs')} 5.7.4 5.8.0`,
+      { cwd: testDir },
+      (err) => {
+        if (err) {
+          assert.fail(err);
+        }
+      },
+    );
 
     let actual = '';
     proc.stdout.on('data', (data) => {

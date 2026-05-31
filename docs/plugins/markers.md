@@ -15,11 +15,11 @@ The plugin provides a powerful markers system allowing to define points of inter
 
 There are five types of markers:
 
--   **HTML** defined with the `html`/`element`/`elementLayer` attribute
--   **Images** defined with the `image`/`imageLayer` attribute
--   **Videos** defined with the `videoLayer` attribute
--   **SVGs** defined with the `square`/`rect`/`circle`/`ellipse`/`path` attribute
--   **Dynamic polygons & polylines** defined with the `polygon`/`polygonPixels`/`polyline`/`polylinePixels` attribute
+- **HTML** defined with the `html`/`element`/`elementLayer` attribute
+- **Images** defined with the `image`/`imageLayer` attribute
+- **Videos** defined with the `videoLayer` attribute
+- **SVGs** defined with the `square`/`rect`/`circle`/`ellipse`/`path` attribute
+- **Dynamic polygons & polylines** defined with the `polygon`/`polygonPixels`/`polyline`/`polylinePixels` attribute
 
 Markers can be added at startup with the `markers` option or after load with the various methods.
 
@@ -60,8 +60,8 @@ The following example contains most types of markers. Click anywhere on the pano
 ```yaml
 title: PSV Markers Demo
 packages:
-    - name: markers-plugin
-      style: true
+  - name: markers-plugin
+    style: true
 ```
 
 ::: code-group
@@ -81,7 +81,7 @@ One, and only one, of these options is required for each marker.
 
 #### `image`
 
--   type: `string`
+- type: `string`
 
 Path to an image file. Requires `size` to be defined.
 
@@ -96,15 +96,15 @@ Path to an image file. Requires `size` to be defined.
 
 #### `imageLayer`
 
--   type: `string`
+- type: `string`
 
 Path to an image file.
 
 ::: tip "Layers" positionning
 There is two ways to position `imageLayer` and `videoLayer` markers:
 
--   `position` (one value) + `size` + `anchor` (optional) + `rotation` (optional)
--   `position` with four values defining the corners of the image/video
+- `position` (one value) + `size` + `anchor` (optional) + `rotation` (optional)
+- `position` with four values defining the corners of the image/video
 
 (`elementLayer` can only be positionned with `position` + `rotation`)
 
@@ -138,7 +138,7 @@ An `image` marker is rendered flat above the viewer but and `imageLayer` is rend
 
 #### `videoLayer`
 
--   type: `string`
+- type: `string`
 
 Path to a video file. It is positionned exactly like `imageLayer`. It can be used with the [`chromaKey`](#chromakey) option.
 
@@ -153,7 +153,7 @@ Path to a video file. It is positionned exactly like `imageLayer`. It can be use
 
 #### `html`
 
--   type: `string`
+- type: `string`
 
 HTML content of the marker. It is recommended to define th `size`.
 
@@ -170,7 +170,7 @@ _**Note:** the content is rendered as HTML. If your content may include untruste
 
 #### `element`
 
--   type: `HTMLElement` & [`MarkerElement`](/api/interfaces/MarkersPlugin.MarkerElement.html){target=_blank}
+- type: `HTMLElement` & [`MarkerElement`](/api/interfaces/MarkersPlugin.MarkerElement.html){target=\_blank}
 
 Existing DOM element.
 
@@ -186,18 +186,18 @@ Existing DOM element.
 The `element`/`elementLayer` marker accepts [Web Components](https://developer.mozilla.org/docs/Web/API/Web_components/Using_custom_elements).
 If your component has an `updateMarker()` method it will be called by the plugin on each render with a bunch of properties:
 
--   `marker`: reference to the marker object itself
--   `position`: computed 2D position in the viewport
--   `viewerPosition`: current camera orientation in yaw+pitch
--   `zoomLevel`: current zoom level
--   `viewerSize`: size of the viewport
+- `marker`: reference to the marker object itself
+- `position`: computed 2D position in the viewport
+- `viewerPosition`: current camera orientation in yaw+pitch
+- `zoomLevel`: current zoom level
+- `viewerSize`: size of the viewport
 
 <DemoButton href="/demos/markers/custom-element.html"/>
 :::
 
 #### `elementLayer`
 
--   type: `HTMLElement` & [`MarkerElement`](/api/interfaces/MarkersPlugin.MarkerElement.html){target=_blank}
+- type: `HTMLElement` & [`MarkerElement`](/api/interfaces/MarkersPlugin.MarkerElement.html){target=\_blank}
 
 Existing DOM element. Unlike `element`, it is rendered "inside" the scene and has more natural movements and scaling.
 
@@ -214,7 +214,7 @@ Existing DOM element. Unlike `element`, it is rendered "inside" the scene and ha
 
 #### `polygon`
 
--   type: `Array<number[2] | string[2] | SphericalPosition> | Array<Array<...>>`
+- type: `Array<number[2] | string[2] | SphericalPosition> | Array<Array<...>>`
 
 Array of points defining the polygon in spherical coordinates (degrees or radians).  
 The polygon can have one or more holes by defined them in a nested array (the syntax is [similar to GeoJSON](https://geojson.readthedocs.io/en/latest/#polygon)).
@@ -236,7 +236,7 @@ The polygon can have one or more holes by defined them in a nested array (the sy
 
 #### `polygonPixels`
 
--   type: `Array<number[2] | PanoramaPosition> | Array<Array<...>>`
+- type: `Array<number[2] | PanoramaPosition> | Array<Array<...>>`
 
 Same as `polygon` but in pixel coordinates on the panorama image.  
 The object syntax can be used to define the panorama face when using a cubemap.  
@@ -260,7 +260,7 @@ Holes are also supported (see above).
 
 #### `polyline`
 
--   type: `Array<number[2] | string[2] | SphericalPosition>`
+- type: `Array<number[2] | string[2] | SphericalPosition>`
 
 Same as `polygon` but generates a polyline.
 
@@ -273,7 +273,7 @@ Same as `polygon` but generates a polyline.
 
 #### `polylinePixels`
 
--   type: `Array<number[2] | PanoramaPosition>`
+- type: `Array<number[2] | PanoramaPosition>`
 
 Same as `polygonPixels` but generates a polyline.
 
@@ -286,9 +286,9 @@ Same as `polygonPixels` but generates a polyline.
 
 #### `square`
 
--   type: `integer`
+- type: `integer`
 
-Size of the square. 
+Size of the square.
 
 ```js:line-numbers{3}
 {
@@ -300,9 +300,9 @@ Size of the square.
 
 #### `rect`
 
--   type: `integer[2] | { width: integer, height: integer }`
+- type: `integer[2] | { width: integer, height: integer }`
 
-Size of the rectangle. 
+Size of the rectangle.
 
 ```js:line-numbers{3,9}
 {
@@ -320,7 +320,7 @@ Size of the rectangle.
 
 #### `circle`
 
--   type: `integer`
+- type: `integer`
 
 Radius of the circle.
 
@@ -334,7 +334,7 @@ Radius of the circle.
 
 #### `ellipse`
 
--   type: `integer[2] | { rx: integer, ry: integer }`;
+- type: `integer[2] | { rx: integer, ry: integer }`;
 
 Radiuses of the ellipse.
 
@@ -354,7 +354,7 @@ Radiuses of the ellipse.
 
 #### `path`
 
--   type: `string`
+- type: `string`
 
 Definition of the path (0,0 will be placed at the defined `position`).
 
@@ -366,18 +366,17 @@ Definition of the path (0,0 will be placed at the defined `position`).
 }
 ```
 
-
 ### Options
 
 #### `id` (required)
 
--   type: `string`
+- type: `string`
 
 Unique identifier of the marker.
 
 #### `position` (required for all but polygons/polylines)
 
--   type: `{ yaw, pitch } | { textureX, textureY } | array`
+- type: `{ yaw, pitch } | { textureX, textureY } | array`
 
 Position of the marker in **spherical coordinates** (radians/degrees) or **texture coordinates** (pixels).
 
@@ -387,7 +386,7 @@ _(This option is ignored for polygons and polylines)._
 
 #### `size` (required for images, recommended for html/element)
 
--   type: `{ width, height }`
+- type: `{ width, height }`
 
 Size of the marker in pixels.
 
@@ -395,19 +394,19 @@ _(This option is ignored for polygons and polylines)._
 
 #### `rotation`
 
--   type: `string | number | { yaw, pitch, roll }`
+- type: `string | number | { yaw, pitch, roll }`
 
 Rotation applied to the marker, in degrees or radians.
 
--   For 2D markers (`image`, `element`, `square`, etc.) only `roll` is applicable
--   For 3D markers (`imageLayer`, `videoLayer`, `elementLayer`) all axis are applicable but is ignored if `position` is an array
+- For 2D markers (`image`, `element`, `square`, etc.) only `roll` is applicable
+- For 3D markers (`imageLayer`, `videoLayer`, `elementLayer`) all axis are applicable but is ignored if `position` is an array
 
 _(This option is ignored for polygons and polylines)._
 
 #### `scale`
 
--   type: `double[] | { zoom: double[], yaw: [] }`
--   default: no scaling
+- type: `double[] | { zoom: double[], yaw: [] }`
+- default: no scaling
 
 Configures the scale of the marker depending on the zoom level and/or the horizontal angle offset. This aims to give a natural feeling to the size of the marker as the users zooms and moves.
 
@@ -420,8 +419,8 @@ Scales depending on zoom level, the array contains `[scale at minimum zoom, scal
 
 ```js
 scale: {
-    // the marker is twice smaller on the minimum zoom level
-    zoom: [0.5, 1];
+  // the marker is twice smaller on the minimum zoom level
+  zoom: [0.5, 1];
 }
 ```
 
@@ -432,8 +431,8 @@ Scales depending on position, the array contains `[scale on center, scale on the
 
 ```js
 scale: {
-    // the marker is twice bigger when on the side of the screen
-    yaw: [1, 2];
+  // the marker is twice bigger when on the side of the screen
+  yaw: [1, 2];
 }
 ```
 
@@ -455,8 +454,8 @@ scale: {
 
 #### `hoverScale`
 
--   type: `boolean | number | { amount?: number, duration?: number, easing?: string }`
--   default: `null`
+- type: `boolean | number | { amount?: number, duration?: number, easing?: string }`
+- default: `null`
 
 Overrides the [global `defaultHoverScale`](#defaulthoverscale). It is merged with the default configuration.  
 Defining `hoverScale: false` allows to disable the scaling for this marker.
@@ -467,15 +466,15 @@ _(This option is ignored for polygons, polylines and layers)._
 
 #### `opacity`
 
--   type: `number`
--   default: `1`
+- type: `number`
+- default: `1`
 
 Opacity of the marker.
 
 #### `zIndex`
 
--   type: `number`
--   default: `1`
+- type: `number`
+- default: `1`
 
 Ordering of the marker.
 
@@ -485,7 +484,7 @@ Ordering of the marker.
 
 #### `className`
 
--   type: `string`
+- type: `string`
 
 CSS class(es) added to the marker element.
 
@@ -493,7 +492,7 @@ _(This option is ignored for `imageLayer` and `videoLayer` markers)._
 
 #### `style`
 
--   type: `object`
+- type: `object`
 
 CSS properties to set on the marker (background, border, etc.).
 
@@ -508,7 +507,7 @@ style: {
 
 #### `svgStyle`
 
--   type: `object`
+- type: `object`
 
 SVG properties to set on the marker (fill, stroke, etc.).
 _(Only for polygons, polylines and svg markers)._
@@ -529,8 +528,8 @@ You can define complex SVG backgrounds such as images by using a pattern definit
 
 #### `chromaKey`
 
--   type: `object`
--   default: `{ enabled: false }`
+- type: `object`
+- default: `{ enabled: false }`
 
 Will make a color of the image/video transparent.
 
@@ -565,8 +564,8 @@ chromaKey: {
 
 #### `anchor`
 
--   type: `string`
--   default: `'center center'`
+- type: `string`
+- default: `'center center'`
 
 Defines where the marker is placed toward its defined position. Any CSS position is valid like `bottom center` or `20% 80%`.
 
@@ -574,23 +573,23 @@ _(This option is ignored for polygons and polylines)._
 
 #### `zoomLvl`
 
--   type: `number`
--   default: `undefined`
+- type: `number`
+- default: `undefined`
 
 The zoom level which will be applied when calling `gotoMarker()` method or when clicking on the marker in the list.
 If not provided, the current zoom level is kept.
 
 #### `visible`
 
--   type: `boolean`
--   default: `true`
+- type: `boolean`
+- default: `true`
 
 Initial visibility of the marker.
 
 #### `tooltip`
 
--   type: `string | {content: string, position: string, className: string, trigger: string}`
--   default: `{content: null, position: 'top center', className: null, trigger: 'hover'}`
+- type: `string | {content: string, position: string, className: string, trigger: string}`
+- default: `{content: null, position: 'top center', className: null, trigger: 'hover'}`
 
 Accepted positions are combinations of `top`, `center`, `bottom` and `left`, `center`, `right`.
 
@@ -619,33 +618,33 @@ With the use of HTML and CSS you make fairly complex tooltips.
 
 #### `content`
 
--   type: `string`
+- type: `string`
 
 HTML content that will be displayed on the side panel when the marker is clicked.
 
 #### `listContent`
 
--   type: `string`
+- type: `string`
 
 The name that appears in the list of markers. If not provided, the tooltip content will be used.
 
 #### `hideList`
 
--   type: `boolean`
--   default: `false`
+- type: `boolean`
+- default: `false`
 
 Hide the marker in the markers list.
 
 #### `autoplay`
 
--   type: `boolean`
--   default: `true`
+- type: `boolean`
+- default: `true`
 
 Autoplay of `videoLayer` markers
 
 #### `data`
 
--   type: `any`
+- type: `any`
 
 Any custom data you want to attach to the marker. You may access this data in the various [events](#events).
 
@@ -653,38 +652,38 @@ Any custom data you want to attach to the marker. You may access this data in th
 
 #### `markers`
 
--   type: `MarkerConfig[]`
--   updatable: no, use `setMarkers()` method
+- type: `MarkerConfig[]`
+- updatable: no, use `setMarkers()` method
 
 Initial list of markers.
 
 #### `defaultHoverScale`
 
--   type: `boolean | number | { amount?: number, duration?: number, easing?: string }`
--   default: `null`
+- type: `boolean | number | { amount?: number, duration?: number, easing?: string }`
+- default: `null`
 
 Default mouse hover scaling applied to all markers, can be overriden with each marker [`hoverScale` parameter](#hoverscale). Defining `defaultHoverScale: true` will use the default configuration of x2 scaling in 100ms with a linear easing.
 
 #### `gotoMarkerSpeed`
 
--   type: `string|number`
--   default: `'8rpm'`
--   updatable: yes
+- type: `string|number`
+- default: `'8rpm'`
+- updatable: yes
 
 Default animation speed for `gotoMarker` method.
 
 #### `clickEventOnMarker`
 
--   type: `boolean`
--   default: `false`
--   updatable: yes
+- type: `boolean`
+- default: `false`
+- updatable: yes
 
 If a `click` event is triggered on the viewer additionally to the `select-marker` event.
 
 #### `lang`
 
--   type: `object`
--   default:
+- type: `object`
+- default:
 
 ```js
 lang: {
@@ -791,7 +790,7 @@ Triggered when the user puts the cursor hover or away a marker.
 
 This plugin adds buttons to the default navbar:
 
--   `markers` allows to hide/show all markers
--   `markersList` allows to open a list of all markers on the left panel
+- `markers` allows to hide/show all markers
+- `markersList` allows to open a list of all markers on the left panel
 
 If you use a [custom navbar](../guide/navbar.md) you will need to manually add the buttons to the list.

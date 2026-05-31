@@ -13,12 +13,7 @@ new Viewer({
 
   plugins: [
     CompassPlugin.withConfig({
-      hotspots: [
-        { yaw: '0deg' },
-        { yaw: '90deg' },
-        { yaw: '180deg' },
-        { yaw: '270deg' },
-      ],
+      hotspots: [{ yaw: '0deg' }, { yaw: '90deg' }, { yaw: '180deg' }, { yaw: '270deg' }],
     }),
   ],
 });

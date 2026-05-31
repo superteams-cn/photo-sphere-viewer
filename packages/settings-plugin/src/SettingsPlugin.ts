@@ -53,8 +53,8 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override init() {
     super.init();
 
@@ -68,8 +68,8 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override destroy() {
     this.viewer.removeEventListener(events.ClickEvent.type, this);
     this.viewer.removeEventListener(events.ShowPanelEvent.type, this);
@@ -81,8 +81,8 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     if (e instanceof events.ClickEvent || e instanceof events.ShowPanelEvent) {
       if (this.component.isVisible()) {
@@ -92,9 +92,9 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
   }
 
   /**
-     * Registers a new setting
-     * @throws {@link PSVError} if the configuration is invalid
-     */
+   * Registers a new setting
+   * @throws {@link PSVError} if the configuration is invalid
+   */
   addSetting(setting: Setting) {
     if (!setting.id) {
       throw new PSVError('Missing setting id');
@@ -102,11 +102,11 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
     if (!setting.type) {
       throw new PSVError('Missing setting type');
     }
-    if (this.settings.some(s => s.id === setting.id)) {
+    if (this.settings.some((s) => s.id === setting.id)) {
       throw new PSVError(`Setting "${setting.id}" already exists`);
     }
 
-    if (setting.badge && this.settings.some(s => s.badge)) {
+    if (setting.badge && this.settings.some((s) => s.badge)) {
       utils.logWarn('More than one setting with a badge are declared, the result is unpredictable.');
     }
 
@@ -140,7 +140,7 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
           }
 
           default:
-                    // noop
+          // noop
         }
 
         this.updateButton();
@@ -149,10 +149,10 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
   }
 
   /**
-     * Removes a setting
-     */
+   * Removes a setting
+   */
   removeSetting(id: string) {
-    const idx = this.settings.findIndex(setting => setting.id === id);
+    const idx = this.settings.findIndex((setting) => setting.id === id);
     if (idx !== -1) {
       this.settings.splice(idx, 1);
 
@@ -165,8 +165,8 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
   }
 
   /**
-     * Toggles the settings menu
-     */
+   * Toggles the settings menu
+   */
   toggleSettings() {
     if (this.component.isVisible()) {
       this.hideSettings();
@@ -176,8 +176,8 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
   }
 
   /**
-     * Hides the settings menu
-     */
+   * Hides the settings menu
+   */
   hideSettings() {
     const button = this.__getButton();
     button?.toggleActive(false);
@@ -185,8 +185,8 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
   }
 
   /**
-     * Shows the settings menu
-     */
+   * Shows the settings menu
+   */
   showSettings() {
     const button = this.__getButton();
     this.component.show(button?.container.getBoundingClientRect());
@@ -194,12 +194,12 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
   }
 
   /**
-     * Updates the badge in the button
-     */
+   * Updates the badge in the button
+   */
   updateButton() {
     const button = this.__getButton();
     if (this.settings.length) {
-      const value = this.settings.find(s => s.badge)?.badge();
+      const value = this.settings.find((s) => s.badge)?.badge();
       button?.show();
       button?.setBadge(value);
     } else {
@@ -208,9 +208,9 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
   }
 
   /**
-     * Toggles a setting
-     * @internal
-     */
+   * Toggles a setting
+   * @internal
+   */
   toggleSettingValue(setting: ToggleSetting) {
     const newValue = !setting.active(); // in case "toggle" is async
 
@@ -226,9 +226,9 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
   }
 
   /**
-     * Changes the value of an setting
-     * @internal
-     */
+   * Changes the value of an setting
+   * @internal
+   */
   applySettingOption(setting: OptionsSetting, optionId: string) {
     setting.apply(optionId);
 

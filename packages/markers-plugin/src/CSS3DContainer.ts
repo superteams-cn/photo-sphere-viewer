@@ -14,25 +14,26 @@ export class CSS3DContainer {
   private readonly scene: Scene;
   private readonly intersectionObserver: IntersectionObserver;
 
-  constructor(
-    private viewer: Viewer,
-  ) {
+  constructor(private viewer: Viewer) {
     this.element = document.createElement('div');
     this.element.className = 'psv-markers-css3d-container';
 
     this.renderer = new CSS3DRenderer({ element: this.element });
     this.scene = new Scene();
 
-    this.intersectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const marker = (entry.target as any)[MARKER_DATA] as MarkerCSS3D;
-        if (marker.config.visible) {
-          marker.viewportIntersection = entry.isIntersecting;
-        }
-      });
-    }, {
-      root: this.element,
-    });
+    this.intersectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const marker = (entry.target as any)[MARKER_DATA] as MarkerCSS3D;
+          if (marker.config.visible) {
+            marker.viewportIntersection = entry.isIntersecting;
+          }
+        });
+      },
+      {
+        root: this.element,
+      },
+    );
 
     viewer.addEventListener(events.ReadyEvent.type, this, { once: true });
     viewer.addEventListener(events.SizeUpdatedEvent.type, this);

@@ -88,10 +88,10 @@ export class ConfigChangedEvent extends ViewerEvent {
   }
 
   /**
-     * Checks if at least one of the `options` has been modified
-     */
+   * Checks if at least one of the `options` has been modified
+   */
   containsOptions(...options: Array<keyof ViewerConfig>): boolean {
-    return options.some(option => this.options.includes(option));
+    return options.some((option) => this.options.includes(option));
   }
 }
 
@@ -184,13 +184,16 @@ export class KeypressEvent extends ViewerEvent {
   override type: 'key-press';
 
   /** @internal */
-  constructor(public readonly key: string, public readonly originalEvent: KeyboardEvent) {
+  constructor(
+    public readonly key: string,
+    public readonly originalEvent: KeyboardEvent,
+  ) {
     super(KeypressEvent.type, true);
   }
 
   /**
-     * Checks if the key events matches the given pattern
-     */
+   * Checks if the key events matches the given pattern
+   */
   matches(pattern: string): boolean {
     return keyPressMatch(this.originalEvent, pattern);
   }

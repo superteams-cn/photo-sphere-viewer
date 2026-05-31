@@ -29,12 +29,12 @@ This adapter requires to use the [VideoPlugin](../../plugins/video.md).
 ```yaml
 title: PSV Equirectangular Video Demo
 packages:
-    - name: equirectangular-video-adapter
-    - name: video-plugin
-      style: true
-    - name: settings-plugin
-      style: true
-    - name: resolution-plugin
+  - name: equirectangular-video-adapter
+  - name: video-plugin
+    style: true
+  - name: settings-plugin
+    style: true
+  - name: resolution-plugin
 ```
 
 <<< ./demos-src/equirectangular-video.js{js:line-numbers}
@@ -45,15 +45,15 @@ packages:
 
 #### `autoplay`
 
--   type: `boolean`
--   default: `false`
+- type: `boolean`
+- default: `false`
 
 Automatically starts the video on load.
 
 #### `muted`
 
--   type: `boolean`
--   default: `false`
+- type: `boolean`
+- default: `false`
 
 Mute the video by default.
 
@@ -67,7 +67,7 @@ When using this adapter, the `panorama` option and the `setPanorama()` method ac
 
 #### `source` (required)
 
--   type: `string | MediaStream | HTMLVideoElement`
+- type: `string | MediaStream | HTMLVideoElement`
 
 Path of the video file. The video must not be larger than 4096 pixels or it won't be displayed on handled devices.
 
@@ -90,7 +90,7 @@ const viewer = new Viewer({
 
 #### `data`
 
--   type: `object | function<Video, PanoData>`
+- type: `object | function<Video, PanoData>`
 
 Can by used to define cropping information if the video does not cover a full sphere.
 

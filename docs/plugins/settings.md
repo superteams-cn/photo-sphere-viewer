@@ -32,8 +32,8 @@ The following example manually adds two settings.
 ```yaml
 title: PSV Settings Demo
 packages:
-    - name: settings-plugin
-      style: true
+  - name: settings-plugin
+    style: true
 ```
 
 <<< ./demos-src/settings.js{js:line-numbers}
@@ -97,15 +97,15 @@ settings.addSetting({
 
 #### `persist`
 
--   type: `boolean`
--   default: `false`
--   updatable: no
+- type: `boolean`
+- default: `false`
+- updatable: no
 
 Should the settings be persisted. The persistence storage can be configured.
 
 #### `storage`
 
--   type:
+- type:
 
 ```ts:line-numbers
 {
@@ -114,15 +114,15 @@ Should the settings be persisted. The persistence storage can be configured.
 }
 ```
 
--   default: LocalStorage with key `psvSettings`
--   updatable: no
+- default: LocalStorage with key `psvSettings`
+- updatable: no
 
 Custom storage solution, for example LocalForage, NgRx, HTTP service, etc.
 
 #### `lang`
 
--   type: `object`
--   default:
+- type: `object`
+- default:
 
 ```js
 lang: {
@@ -148,7 +148,7 @@ settingsPlugin.addEventListener('setting-changed', ({ settingId, settingValue })
 
 This plugin adds buttons to the default navbar:
 
--   `settings` allows to open the settings panel
+- `settings` allows to open the settings panel
 
 If you use a [custom navbar](../guide/navbar.md) you will need to manually add the buttons to the list.
 

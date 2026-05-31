@@ -8,7 +8,7 @@ By using [`panoData`](../../plugins/overlays.md#panodata) on an overlay you can 
 autoload: true
 title: PSV Partial overlay Demo
 packages:
-    - name: overlays-plugin
+  - name: overlays-plugin
 ```
 
 ```js:line-numbers{17-21}

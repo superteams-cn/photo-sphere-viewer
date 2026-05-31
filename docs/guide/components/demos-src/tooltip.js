@@ -38,7 +38,11 @@ function onMouseLeave() {
   }
 }
 
-viewer.addEventListener('ready', () => {
-  viewer.parent.addEventListener('mousemove', onMouseMove);
-  viewer.parent.addEventListener('mouseleave', onMouseLeave);
-}, { once: true });
+viewer.addEventListener(
+  'ready',
+  () => {
+    viewer.parent.addEventListener('mousemove', onMouseMove);
+    viewer.parent.addEventListener('mouseleave', onMouseLeave);
+  },
+  { once: true },
+);

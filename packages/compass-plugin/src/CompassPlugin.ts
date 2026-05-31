@@ -28,10 +28,7 @@ const getConfig = utils.getConfigParser<CompassPluginConfig, ParsedCompassPlugin
 /**
  * Adds a compass on the viewer
  */
-export class CompassPlugin extends AbstractConfigurablePlugin<
-  CompassPluginConfig,
-  ParsedCompassPluginConfig
-> {
+export class CompassPlugin extends AbstractConfigurablePlugin<CompassPluginConfig, ParsedCompassPluginConfig> {
   static override readonly id = 'compass';
   static override readonly VERSION = PKG_VERSION;
   static override readonly configParser = getConfig;
@@ -50,8 +47,8 @@ export class CompassPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override init() {
     super.init();
 
@@ -68,8 +65,8 @@ export class CompassPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override destroy() {
     this.viewer.removeEventListener(events.RenderEvent.type, this);
     this.viewer.removeEventListener(events.ReadyEvent.type, this);
@@ -93,8 +90,8 @@ export class CompassPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     switch (e.type) {
       case events.ReadyEvent.type:
@@ -104,38 +101,36 @@ export class CompassPlugin extends AbstractConfigurablePlugin<
         this.component.update();
         break;
       case 'set-markers':
-        this.component.setMarkers(
-          (e as markersEvents.SetMarkersEvent).markers.filter(m => m.data?.['compass']),
-        );
+        this.component.setMarkers((e as markersEvents.SetMarkersEvent).markers.filter((m) => m.data?.['compass']));
         break;
     }
   }
 
   /**
-     * Hides the compass
-     */
+   * Hides the compass
+   */
   hide() {
     this.component.hide();
   }
 
   /**
-     * Shows the compass
-     */
+   * Shows the compass
+   */
   show() {
     this.component.show();
   }
 
   /**
-     * Changes the hotspots on the compass
-     */
+   * Changes the hotspots on the compass
+   */
   setHotspots(hotspots: CompassHotspot[] | null) {
     this.config.hotspots = hotspots;
     this.component.update();
   }
 
   /**
-     * Removes all hotspots
-     */
+   * Removes all hotspots
+   */
   clearHotspots() {
     this.setHotspots(null);
   }

@@ -10,8 +10,8 @@ This adapter is available in the main `@photo-sphere-viewer/core` package.
 import { DualFisheyeAdapter } from '@photo-sphere-viewer/core';
 
 const viewer = new Viewer({
-    adapter: DualFisheyeAdapter,
-    panorama: 'path/panorama.jpg',
+  adapter: DualFisheyeAdapter,
+  panorama: 'path/panorama.jpg',
 });
 ```
 
@@ -22,7 +22,7 @@ const viewer = new Viewer({
 ```yaml
 title: PSV Dual fisheye Demo
 packages:
-    - name: core
+  - name: core
 ```
 
 <<< ./demos-src/dual-fisheye.js{js:line-numbers}
@@ -38,8 +38,8 @@ to support other cameras. Feel free to open an issue with some examples files.
 
 #### `resolution`
 
--   type: `number`
--   default: `64`
+- type: `number`
+- default: `64`
 
 The number of faces of the sphere geometry used to display the panorama, higher values can reduce deformations on straight lines at the cost of performances.
 

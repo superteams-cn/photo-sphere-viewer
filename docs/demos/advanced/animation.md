@@ -8,7 +8,7 @@ Use the `Animation` helper and [autorotate plugin](../../plugins/autorotate.md) 
 autoload: true
 title: PSV Intro Animation Demo
 packages:
-    - name: autorotate-plugin
+  - name: autorotate-plugin
 ```
 
 ```js:line-numbers

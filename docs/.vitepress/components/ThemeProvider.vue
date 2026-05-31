@@ -1,7 +1,7 @@
 <template>
-    <v-theme-provider :theme="isDark ? 'dark' : 'light'">
-        <slot></slot>
-    </v-theme-provider>
+  <v-theme-provider :theme="isDark ? 'dark' : 'light'">
+    <slot></slot>
+  </v-theme-provider>
 </template>
 
 <script setup lang="ts">

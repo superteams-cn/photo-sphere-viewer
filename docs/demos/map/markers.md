@@ -8,10 +8,10 @@ Configure [markers](../../plugins/markers.md) to be displayed on the [map](../..
 autoload: true
 title: PSV map markers Demo
 packages:
-    - name: map-plugin
-      style: true
-    - name: markers-plugin
-      style: true
+  - name: map-plugin
+    style: true
+  - name: markers-plugin
+    style: true
 ```
 
 ```js:line-numbers

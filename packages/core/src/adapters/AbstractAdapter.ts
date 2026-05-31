@@ -13,37 +13,37 @@ import { checkVersion } from '../utils';
  */
 export abstract class AbstractAdapter<TPanorama, TData, TTexture, TMesh extends Object3D> {
   /**
-     * Unique identifier of the adapter
-     */
+   * Unique identifier of the adapter
+   */
   static readonly id: string;
   /**
-     * Expected version of the core
-     * DO NOT USE on custom adapters
-     */
+   * Expected version of the core
+   * DO NOT USE on custom adapters
+   */
   static readonly VERSION: string;
 
   /**
-     * Indicates if the adapter supports panorama download natively
-     */
+   * Indicates if the adapter supports panorama download natively
+   */
   static readonly supportsDownload: boolean = false;
 
   constructor(protected readonly viewer: Viewer) {}
 
   /**
-     * Initializes the adapter
-     */
+   * Initializes the adapter
+   */
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   init(): void {}
 
   /**
-     * Destroys the adapter
-     */
+   * Destroys the adapter
+   */
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   destroy(): void {}
 
   /**
-     * Indicates if the adapter supports transitions between panoramas
-     */
+   * Indicates if the adapter supports transitions between panoramas
+   */
   // @ts-ignore unused parameter
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   supportsTransition(panorama: TPanorama): boolean {
@@ -51,8 +51,8 @@ export abstract class AbstractAdapter<TPanorama, TData, TTexture, TMesh extends 
   }
 
   /**
-     * Indicates if the adapter supports preload of a panorama
-     */
+   * Indicates if the adapter supports preload of a panorama
+   */
   // @ts-ignore unused parameter
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   supportsPreload(panorama: TPanorama): boolean {
@@ -60,9 +60,9 @@ export abstract class AbstractAdapter<TPanorama, TData, TTexture, TMesh extends 
   }
 
   /**
-     * Converts pixel texture coordinates to spherical radians coordinates
-     * @throws {@link PSVError} when the current adapter does not support texture coordinates
-     */
+   * Converts pixel texture coordinates to spherical radians coordinates
+   * @throws {@link PSVError} when the current adapter does not support texture coordinates
+   */
   // @ts-ignore unused parameter
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   textureCoordsToSphericalCoords(point: PanoramaPosition, data: TData): Position {
@@ -70,9 +70,9 @@ export abstract class AbstractAdapter<TPanorama, TData, TTexture, TMesh extends 
   }
 
   /**
-     * Converts spherical radians coordinates to pixel texture coordinates
-     * @throws {@link PSVError} when the current adapter does not support texture coordinates
-     */
+   * Converts spherical radians coordinates to pixel texture coordinates
+   * @throws {@link PSVError} when the current adapter does not support texture coordinates
+   */
   // @ts-ignore unused parameter
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   sphericalCoordsToTextureCoords(position: Position, data: TData): PanoramaPosition {
@@ -80,42 +80,42 @@ export abstract class AbstractAdapter<TPanorama, TData, TTexture, TMesh extends 
   }
 
   /**
-     * Loads the panorama texture
-     */
+   * Loads the panorama texture
+   */
   abstract loadTexture(
     panorama: TPanorama,
     loader?: boolean,
     newPanoData?: PanoData | PanoDataProvider,
-    useXmpPanoData?: boolean
+    useXmpPanoData?: boolean,
   ): Promise<TextureData<TTexture, TPanorama, TData>>;
 
   /**
-     * Creates the mesh
-     */
+   * Creates the mesh
+   */
   abstract createMesh(panoData: TData): TMesh;
 
   /**
-     * Applies the texture to the mesh
-     */
+   * Applies the texture to the mesh
+   */
   abstract setTexture(mesh: TMesh, textureData: TextureData<TTexture, TPanorama, TData>, transition: boolean): void;
 
   /**
-     * Changes the opacity of the mesh
-     */
+   * Changes the opacity of the mesh
+   */
   abstract setTextureOpacity(mesh: TMesh, opacity: number): void;
 
   /**
-     * Clear a loaded texture from memory
-     */
+   * Clear a loaded texture from memory
+   */
   abstract disposeTexture(textureData: TextureData<TTexture, TPanorama, TData>): void;
 
   /**
-     * Cleanup a mesh from memory
-     */
+   * Cleanup a mesh from memory
+   */
   abstract disposeMesh(mesh: TMesh): void;
 }
 
-export type AdapterConstructor = (new (viewer: Viewer, config?: any) => AbstractAdapter<any, any, any, any>);
+export type AdapterConstructor = new (viewer: Viewer, config?: any) => AbstractAdapter<any, any, any, any>;
 
 /**
  * Returns the adapter constructor from the imported object

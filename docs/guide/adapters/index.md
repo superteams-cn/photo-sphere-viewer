@@ -4,13 +4,13 @@ Adapters are small pieces of code responsible to load the panorama texture(s) in
 
 The supported adapters are:
 
--   [equirectangular](equirectangular.md): the default adapter, used to load full or partial equirectangular panoramas
--   [equirectangular tiles](equirectangular-tiles.md): used to load tiled equirectangular panoramas
--   [equirectangular video](equirectangular-video.md): used to load equirectangular videos
--   [cubemap](cubemap.md): used to load cubemaps projections (six textures)
--   [cubemap tiles](cubemap-tiles.md): used to load tiled cubemap panoramas
--   [cubemap video](cubemap-video.md): used to load cubemap video
--   [dual fisheye](dual-fisheye.md): used to display raw files of 360 cameras like the Ricoh Theta Z1
+- [equirectangular](equirectangular.md): the default adapter, used to load full or partial equirectangular panoramas
+- [equirectangular tiles](equirectangular-tiles.md): used to load tiled equirectangular panoramas
+- [equirectangular video](equirectangular-video.md): used to load equirectangular videos
+- [cubemap](cubemap.md): used to load cubemaps projections (six textures)
+- [cubemap tiles](cubemap-tiles.md): used to load tiled cubemap panoramas
+- [cubemap video](cubemap-video.md): used to load cubemap video
+- [dual fisheye](dual-fisheye.md): used to display raw files of 360 cameras like the Ricoh Theta Z1
 
 ## Import an adapter
 

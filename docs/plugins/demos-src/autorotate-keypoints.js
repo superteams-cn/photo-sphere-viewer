@@ -7,7 +7,7 @@ const baseUrl = 'https://photo-sphere-viewer-data.netlify.app/assets/';
 const points = [
   { yaw: 0.1029, pitch: 0.3158 },
   { yaw: 0.8532, pitch: -0.1646 },
-  { yaw: 2.7755, pitch: 0.7840 },
+  { yaw: 2.7755, pitch: 0.784 },
   { yaw: 3.3742, pitch: 0.4757 },
   { yaw: 4.6591, pitch: 0.6579 },
   { yaw: 5.7976, pitch: -0.0401 },

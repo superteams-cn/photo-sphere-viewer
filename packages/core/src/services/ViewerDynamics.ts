@@ -54,16 +54,16 @@ export class ViewerDynamics extends AbstractService {
   );
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   constructor(viewer: Viewer) {
     super(viewer);
     this.updateSpeeds();
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   updateSpeeds() {
     this.zoom.setSpeed(this.config.zoomSpeed * 50);
     this.position.setSpeed(MathUtils.degToRad(this.config.moveSpeed * 50));
@@ -71,8 +71,8 @@ export class ViewerDynamics extends AbstractService {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   update(elapsed: number) {
     this.zoom.update(elapsed);
     this.position.update(elapsed);

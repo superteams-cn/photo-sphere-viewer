@@ -41,8 +41,8 @@ export class NavbarCaption extends AbstractButton {
   }
 
   /**
-     * Changes the caption
-     */
+   * Changes the caption
+   */
   setCaption(html: string | null) {
     this.show();
     this.contentElt.innerHTML = html ?? '';
@@ -57,8 +57,8 @@ export class NavbarCaption extends AbstractButton {
   }
 
   /**
-     * Toggles content and icon depending on available space
-     */
+   * Toggles content and icon depending on available space
+   */
   override autoSize() {
     this.toggle(this.container.offsetWidth >= this.contentWidth);
     this.__refreshButton();

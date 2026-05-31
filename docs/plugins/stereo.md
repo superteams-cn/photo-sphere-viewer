@@ -19,7 +19,7 @@ import { StereoPlugin } from '@photo-sphere-viewer/stereo-plugin';
 
 const viewer = new Viewer({
     plugins: [
-        GyroscopePlugin, 
+        GyroscopePlugin,
         StereoPlugin,
     ],
 });
@@ -27,14 +27,14 @@ const viewer = new Viewer({
 
 ## Example
 
-[Open in a new tab](/demos/plugin-stereo.html){target=_blank}
+[Open in a new tab](/demos/plugin-stereo.html){target=\_blank}
 
 ## Configuration
 
 #### `lang`
 
--   type: `object`
--   default:
+- type: `object`
+- default:
 
 ```js
 lang: {
@@ -51,6 +51,6 @@ _Note: this option is not part of the plugin but is merged with the main [`lang`
 
 This plugin adds buttons to the default navbar:
 
--   `stereo` allows to start the stereo view
+- `stereo` allows to start the stereo view
 
 If you use a [custom navbar](../guide/navbar.md) you will need to manually add the buttons to the list.

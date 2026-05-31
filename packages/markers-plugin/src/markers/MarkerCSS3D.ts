@@ -14,8 +14,8 @@ export class MarkerCSS3D extends AbstractDomMarker {
   private object: CSS3DObject;
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   viewportIntersection = false;
 
   override get threeElement() {
@@ -58,13 +58,7 @@ export class MarkerCSS3D extends AbstractDomMarker {
     super.destroy();
   }
 
-  override render({
-    viewerPosition,
-    zoomLevel,
-  }: {
-    viewerPosition: Position;
-    zoomLevel: number;
-  }): Point {
+  override render({ viewerPosition, zoomLevel }: { viewerPosition: Position; zoomLevel: number }): Point {
     const element = this.domElement;
 
     this.state.size = {
@@ -113,7 +107,7 @@ export class MarkerCSS3D extends AbstractDomMarker {
 
     element.classList.add('psv-marker--css3d');
 
-    element.childNodes.forEach(n => n.remove());
+    element.childNodes.forEach((n) => n.remove());
     element.appendChild(this.config.elementLayer);
     this.config.elementLayer.style.display = 'block';
 

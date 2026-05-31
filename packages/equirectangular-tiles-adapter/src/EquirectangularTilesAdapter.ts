@@ -1,4 +1,11 @@
-import type { AdapterConstructor, PanoData, PanoramaPosition, Position, TextureData, Viewer } from '@photo-sphere-viewer/core';
+import type {
+  AdapterConstructor,
+  PanoData,
+  PanoramaPosition,
+  Position,
+  TextureData,
+  Viewer,
+} from '@photo-sphere-viewer/core';
 import { AbstractAdapter, CONSTANTS, EquirectangularAdapter, events, utils } from '@photo-sphere-viewer/core';
 import { BufferAttribute, Group, Mesh, MeshBasicMaterial, SphereGeometry, Texture, Vector3 } from 'three';
 import { Queue, Task } from '../../shared/Queue';
@@ -9,7 +16,13 @@ import {
   EquirectangularTilesPanoData,
   EquirectangularTilesPanorama,
 } from './model';
-import { EquirectangularTileConfig, checkPanoramaConfig, getCacheKey, getTileConfig, getTileConfigByIndex } from './utils';
+import {
+  EquirectangularTileConfig,
+  checkPanoramaConfig,
+  getCacheKey,
+  getTileConfig,
+  getTileConfigByIndex,
+} from './utils';
 
 /* the faces of the top and bottom rows are made of a single triangle (3 vertices)
  * all other faces are made of two triangles (6 vertices)
@@ -47,8 +60,8 @@ type EquirectangularMesh = Mesh<SphereGeometry, MeshBasicMaterial>;
 type EquirectangularTilesMesh = Mesh<SphereGeometry, MeshBasicMaterial[]>;
 type EquirectangularTilesTextureData = TextureData<
   Texture,
-    EquirectangularTilesPanorama | EquirectangularMultiTilesPanorama,
-    EquirectangularTilesPanoData
+  EquirectangularTilesPanorama | EquirectangularMultiTilesPanorama,
+  EquirectangularTilesPanoData
 >;
 type EquirectangularTile = {
   row: number;
@@ -89,10 +102,10 @@ const vertexPosition = new Vector3();
  * Adapter for tiled panoramas
  */
 export class EquirectangularTilesAdapter extends AbstractAdapter<
-    EquirectangularTilesPanorama | EquirectangularMultiTilesPanorama,
-    EquirectangularTilesPanoData,
-    Texture,
-    Group
+  EquirectangularTilesPanorama | EquirectangularMultiTilesPanorama,
+  EquirectangularTilesPanoData,
+  Texture,
+  Group
 > {
   static override readonly id = 'equirectangular-tiles';
   static override readonly VERSION = PKG_VERSION;
@@ -137,15 +150,15 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
 
     this.SPHERE_SEGMENTS = this.config.resolution;
     this.SPHERE_HORIZONTAL_SEGMENTS = this.SPHERE_SEGMENTS / 2;
-    this.NB_VERTICES
-      = 2 * this.SPHERE_SEGMENTS * NB_VERTICES_BY_SMALL_FACE
-        + (this.SPHERE_HORIZONTAL_SEGMENTS - 2) * this.SPHERE_SEGMENTS * NB_VERTICES_BY_FACE;
+    this.NB_VERTICES =
+      2 * this.SPHERE_SEGMENTS * NB_VERTICES_BY_SMALL_FACE +
+      (this.SPHERE_HORIZONTAL_SEGMENTS - 2) * this.SPHERE_SEGMENTS * NB_VERTICES_BY_FACE;
     this.NB_GROUPS = this.SPHERE_SEGMENTS * this.SPHERE_HORIZONTAL_SEGMENTS;
 
     if (this.viewer.config.requestHeaders) {
       utils.logWarn(
-        'EquirectangularTilesAdapter fallbacks to file loader because "requestHeaders" where provided. '
-        + 'Consider removing "requestHeaders" if you experience performances issues.',
+        'EquirectangularTilesAdapter fallbacks to file loader because "requestHeaders" where provided. ' +
+          'Consider removing "requestHeaders" if you experience performances issues.',
       );
     }
   }
@@ -177,8 +190,8 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     switch (e.type) {
       case events.PositionUpdatedEvent.type:
@@ -307,8 +320,8 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
   }
 
   /**
-     * Applies the base texture and starts the loading of tiles
-     */
+   * Applies the base texture and starts the loading of tiles
+   */
   setTexture(group: Group, textureData: EquirectangularTilesTextureData, transition: boolean) {
     const [baseMesh] = meshes(group);
 
@@ -352,15 +365,21 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
   }
 
   /**
-     * Compute visible tiles and load them
-     */
+   * Compute visible tiles and load them
+   */
   private __refresh() {
     if (!this.state.geom || this.state.inTransition) {
       return;
     }
 
     const panorama = this.viewer.config.panorama as EquirectangularTilesPanorama | EquirectangularMultiTilesPanorama;
-    const tileConfig = getTileConfig(panorama, this.viewer.state.hFov, this.viewer.state.vFov, this.viewer.state.size, this);
+    const tileConfig = getTileConfig(
+      panorama,
+      this.viewer.state.hFov,
+      this.viewer.state.vFov,
+      this.viewer.state.size,
+      this,
+    );
 
     const verticesPosition = this.state.geom.getAttribute(ATTR_POSITION) as BufferAttribute;
     const tilesToLoad: Record<string, EquirectangularTile> = {};
@@ -380,9 +399,9 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
           segmentIndex = Math.floor((i / 3 - this.SPHERE_SEGMENTS) / 2) + this.SPHERE_SEGMENTS;
         } else {
           // last row
-          segmentIndex
-            = Math.floor((i - this.NB_VERTICES - this.SPHERE_SEGMENTS * NB_VERTICES_BY_SMALL_FACE) / 3)
-              + this.SPHERE_HORIZONTAL_SEGMENTS * (this.SPHERE_SEGMENTS - 1);
+          segmentIndex =
+            Math.floor((i - this.NB_VERTICES - this.SPHERE_SEGMENTS * NB_VERTICES_BY_SMALL_FACE) / 3) +
+            this.SPHERE_HORIZONTAL_SEGMENTS * (this.SPHERE_SEGMENTS - 1);
         }
         const segmentRow = Math.floor(segmentIndex / this.SPHERE_SEGMENTS);
         const segmentCol = segmentIndex - segmentRow * this.SPHERE_SEGMENTS;
@@ -429,8 +448,8 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
   }
 
   /**
-     * Loads tiles and change existing tiles priority
-     */
+   * Loads tiles and change existing tiles priority
+   */
   private __loadTiles(tiles: EquirectangularTile[]) {
     this.queue.disableAllTasks();
 
@@ -441,7 +460,7 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
         this.queue.setPriority(id, tile.angle);
       } else {
         this.state.tiles[id] = true;
-        this.queue.enqueue(new Task(id, tile.angle, task => this.__loadTile(tile, task)));
+        this.queue.enqueue(new Task(id, tile.angle, (task) => this.__loadTile(tile, task)));
       }
     });
 
@@ -449,8 +468,8 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
   }
 
   /**
-     * Loads and draw a tile
-     */
+   * Loads and draw a tile
+   */
   private __loadTile(tile: EquirectangularTile, task: Task): Promise<any> {
     return this.viewer.textureLoader
       .loadImage(tile.url, null, this.viewer.state.textureData.cacheKey)
@@ -478,8 +497,8 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
   }
 
   /**
-     * Applies a new texture to the faces
-     */
+   * Applies a new texture to the faces
+   */
   private __swapMaterial(tile: EquirectangularTile, material: MeshBasicMaterial, isError: boolean) {
     const uvs = this.state.geom.getAttribute(ATTR_UV) as BufferAttribute;
 
@@ -489,22 +508,20 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
         const faceCol = tile.col * tile.config.facesByCol + c;
         const faceRow = tile.row * tile.config.facesByRow + r;
         const isFirstRow = faceRow === 0;
-        const isLastRow = faceRow === (this.SPHERE_HORIZONTAL_SEGMENTS - 1);
+        const isLastRow = faceRow === this.SPHERE_HORIZONTAL_SEGMENTS - 1;
 
         // first vertex for this face (3 or 6 vertices in total)
         let firstVertex: number;
         if (isFirstRow) {
           firstVertex = faceCol * NB_VERTICES_BY_SMALL_FACE;
         } else if (isLastRow) {
-          firstVertex
-            = this.NB_VERTICES
-              - this.SPHERE_SEGMENTS * NB_VERTICES_BY_SMALL_FACE
-              + faceCol * NB_VERTICES_BY_SMALL_FACE;
+          firstVertex =
+            this.NB_VERTICES - this.SPHERE_SEGMENTS * NB_VERTICES_BY_SMALL_FACE + faceCol * NB_VERTICES_BY_SMALL_FACE;
         } else {
-          firstVertex
-            = this.SPHERE_SEGMENTS * NB_VERTICES_BY_SMALL_FACE
-              + (faceRow - 1) * this.SPHERE_SEGMENTS * NB_VERTICES_BY_FACE
-              + faceCol * NB_VERTICES_BY_FACE;
+          firstVertex =
+            this.SPHERE_SEGMENTS * NB_VERTICES_BY_SMALL_FACE +
+            (faceRow - 1) * this.SPHERE_SEGMENTS * NB_VERTICES_BY_FACE +
+            faceCol * NB_VERTICES_BY_FACE;
         }
 
         // in case of error, skip the face if already showing valid data
@@ -518,7 +535,7 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
         this.state.faces[firstVertex] = isError ? ERROR_LEVEL : tile.config.level;
 
         // swap material
-        const matIndex = this.state.geom.groups.find(g => g.start === firstVertex).materialIndex;
+        const matIndex = this.state.geom.groups.find((g) => g.start === firstVertex).materialIndex;
         this.state.materials[matIndex] = material;
 
         // define new uvs
@@ -567,8 +584,8 @@ export class EquirectangularTilesAdapter extends AbstractAdapter<
   }
 
   /**
-     * Clears loading queue, dispose all materials
-     */
+   * Clears loading queue, dispose all materials
+   */
   private __cleanup() {
     this.queue.clear();
     this.state.tiles = {};

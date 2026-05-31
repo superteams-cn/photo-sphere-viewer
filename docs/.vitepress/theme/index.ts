@@ -143,12 +143,15 @@ const vuetify = createVuetify({
 export default {
   extends: DefaultTheme,
   Layout: () => {
-    return h(ThemeProvider, h(DefaultTheme.Layout, null, {
-      'home-hero-before': () => h(HomeBackground),
-      'home-hero-actions-after': () => h(HomeVersion),
-      'home-features-after': () => h(Announcements),
-      'layout-bottom': () => h(VersionBanner),
-    }));
+    return h(
+      ThemeProvider,
+      h(DefaultTheme.Layout, null, {
+        'home-hero-before': () => h(HomeBackground),
+        'home-hero-actions-after': () => h(HomeVersion),
+        'home-features-after': () => h(Announcements),
+        'layout-bottom': () => h(VersionBanner),
+      }),
+    );
   },
   enhanceApp({ app }) {
     app.use(vuetify);

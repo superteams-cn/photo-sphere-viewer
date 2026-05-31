@@ -49,7 +49,7 @@ class Step {
   private $: number = Step.IDLE;
 
   is(...steps: number[]): boolean {
-    return steps.some(step => this.$ & step);
+    return steps.some((step) => this.$ & step);
   }
 
   set(step: number) {
@@ -104,8 +104,8 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   init() {
     window.addEventListener('keydown', this, { passive: false });
     window.addEventListener('keyup', this);
@@ -148,33 +148,57 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(evt: Event) {
     switch (evt.type) {
-      case 'keydown': this.__onKeyDown(evt as KeyboardEvent); break;
-      case 'keyup': this.__onKeyUp(); break;
-      case 'mousemove': this.__onMouseMove(evt as MouseEvent); break;
-      case 'mouseup': this.__onMouseUp(evt as MouseEvent); break;
-      case 'touchmove': this.__onTouchMove(evt as TouchEvent); break;
-      case 'touchend': this.__onTouchEnd(evt as TouchEvent); break;
-      case 'fullscreenchange': this.__onFullscreenChange(); break;
-      case BeforeRenderEvent.type: this.__applyMoveDelta(); break;
-      case StopAllEvent.type: this.__clearMoveDelta(); break;
+      case 'keydown':
+        this.__onKeyDown(evt as KeyboardEvent);
+        break;
+      case 'keyup':
+        this.__onKeyUp();
+        break;
+      case 'mousemove':
+        this.__onMouseMove(evt as MouseEvent);
+        break;
+      case 'mouseup':
+        this.__onMouseUp(evt as MouseEvent);
+        break;
+      case 'touchmove':
+        this.__onTouchMove(evt as TouchEvent);
+        break;
+      case 'touchend':
+        this.__onTouchEnd(evt as TouchEvent);
+        break;
+      case 'fullscreenchange':
+        this.__onFullscreenChange();
+        break;
+      case BeforeRenderEvent.type:
+        this.__applyMoveDelta();
+        break;
+      case StopAllEvent.type:
+        this.__clearMoveDelta();
+        break;
     }
 
     if (!getMatchingTarget(evt, '.' + CAPTURE_EVENTS_CLASS)) {
       switch (evt.type) {
-        case 'mousedown': this.__onMouseDown(evt as MouseEvent); break;
-        case 'touchstart': this.__onTouchStart(evt as TouchEvent); break;
-        case 'wheel': this.__onMouseWheel(evt as WheelEvent); break;
+        case 'mousedown':
+          this.__onMouseDown(evt as MouseEvent);
+          break;
+        case 'touchstart':
+          this.__onTouchStart(evt as TouchEvent);
+          break;
+        case 'wheel':
+          this.__onMouseWheel(evt as WheelEvent);
+          break;
       }
     }
   }
 
   /**
-     * Handles keyboard events
-     */
+   * Handles keyboard events
+   */
   private __onKeyDown(e: KeyboardEvent) {
     if (this.config.mousewheelCtrlKey) {
       this.data.ctrlKeyDown = e.key === KEY_CODES.Control;
@@ -203,12 +227,24 @@ export class EventsHandler extends AbstractService {
           }
 
           switch (action) {
-            case ACTIONS.ROTATE_UP: this.viewer.dynamics.position.roll({ pitch: false }); break;
-            case ACTIONS.ROTATE_DOWN: this.viewer.dynamics.position.roll({ pitch: true }); break;
-            case ACTIONS.ROTATE_RIGHT: this.viewer.dynamics.position.roll({ yaw: false }); break;
-            case ACTIONS.ROTATE_LEFT: this.viewer.dynamics.position.roll({ yaw: true }); break;
-            case ACTIONS.ZOOM_IN: this.viewer.dynamics.zoom.roll(false); break;
-            case ACTIONS.ZOOM_OUT: this.viewer.dynamics.zoom.roll(true); break;
+            case ACTIONS.ROTATE_UP:
+              this.viewer.dynamics.position.roll({ pitch: false });
+              break;
+            case ACTIONS.ROTATE_DOWN:
+              this.viewer.dynamics.position.roll({ pitch: true });
+              break;
+            case ACTIONS.ROTATE_RIGHT:
+              this.viewer.dynamics.position.roll({ yaw: false });
+              break;
+            case ACTIONS.ROTATE_LEFT:
+              this.viewer.dynamics.position.roll({ yaw: true });
+              break;
+            case ACTIONS.ZOOM_IN:
+              this.viewer.dynamics.zoom.roll(false);
+              break;
+            case ACTIONS.ZOOM_OUT:
+              this.viewer.dynamics.zoom.roll(true);
+              break;
           }
 
           this.keyHandler.down(action);
@@ -221,8 +257,8 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-     * Handles keyboard events
-     */
+   * Handles keyboard events
+   */
   private __onKeyUp() {
     this.data.ctrlKeyDown = false;
 
@@ -241,8 +277,8 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-     * Handles mouse down events
-     */
+   * Handles mouse down events
+   */
   private __onMouseDown(evt: MouseEvent) {
     this.step.add(Step.CLICK);
     this.data.startMouseX = evt.clientX;
@@ -254,8 +290,8 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-     *Handles mouse up events
-     */
+   *Handles mouse up events
+   */
   private __onMouseUp(evt: MouseEvent) {
     if (this.step.is(Step.CLICK, Step.MOVING)) {
       this.__stopMove(evt.clientX, evt.clientY, evt, evt.button === 2);
@@ -263,8 +299,8 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-     * Handles mouse move events
-     */
+   * Handles mouse move events
+   */
   private __onMouseMove(evt: MouseEvent) {
     if (this.config.mousemove && this.step.is(Step.CLICK, Step.MOVING)) {
       evt.preventDefault();
@@ -275,8 +311,8 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-     * Handles touch events
-     */
+   * Handles touch events
+   */
   private __onTouchStart(evt: TouchEvent) {
     if (evt.touches.length === 1) {
       this.step.add(Step.CLICK);
@@ -303,8 +339,8 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-     * Handles touch events
-     */
+   * Handles touch events
+   */
   private __onTouchEnd(evt: TouchEvent) {
     this.__cancelLongTouch();
 
@@ -322,8 +358,8 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-     * Handles touch move events
-     */
+   * Handles touch move events
+   */
   private __onTouchMove(evt: TouchEvent) {
     this.__cancelLongTouch();
 
@@ -354,8 +390,8 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-     * Cancel the long touch timer if any
-     */
+   * Cancel the long touch timer if any
+   */
   private __cancelLongTouch() {
     if (this.data.longtouchTimeout) {
       clearTimeout(this.data.longtouchTimeout);
@@ -364,8 +400,8 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-     * Cancel the two fingers overlay timer if any
-     */
+   * Cancel the two fingers overlay timer if any
+   */
   private __cancelTwoFingersOverlay() {
     if (this.config.touchmoveTwoFingers) {
       if (this.data.twofingersTimeout) {
@@ -377,8 +413,8 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-     * Handles mouse wheel events
-     */
+   * Handles mouse wheel events
+   */
   private __onMouseWheel(evt: WheelEvent) {
     if (!this.config.mousewheel || !evt.deltaY) {
       return;
@@ -407,8 +443,8 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-     * Handles fullscreen events
-     */
+   * Handles fullscreen events
+   */
   private __onFullscreenChange() {
     const fullscreen = this.viewer.isFullscreenEnabled();
 
@@ -424,8 +460,8 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-     * Resets all state variables
-     */
+   * Resets all state variables
+   */
   private __resetMove() {
     this.step.set(Step.IDLE);
     this.data.mouseX = 0;
@@ -435,8 +471,8 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-     * Initializes the combines move and zoom
-     */
+   * Initializes the combines move and zoom
+   */
   private __startMoveZoom(evt: TouchEvent) {
     this.viewer.stopAll();
     this.__resetMove();
@@ -452,9 +488,9 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-     * Stops the movement
-     * @description If the move threshold was not reached a click event is triggered
-     */
+   * Stops the movement
+   * @description If the move threshold was not reached a click event is triggered
+   */
   private __stopMove(clientX: number, clientY: number, event?: Event, rightclick = false) {
     if (this.step.is(Step.CLICK) && !this.__moveThresholdReached(clientX, clientY)) {
       this.__doClick(clientX, clientY, event, rightclick);
@@ -469,8 +505,8 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-     * Triggers an event with all coordinates when a simple click is performed
-     */
+   * Triggers an event with all coordinates when a simple click is performed
+   */
   private __doClick(clientX: number, clientY: number, event?: Event, rightclick = false) {
     const boundingRect = this.viewer.container.getBoundingClientRect();
 
@@ -478,7 +514,7 @@ export class EventsHandler extends AbstractService {
     const viewerY = clientY - boundingRect.top;
 
     const intersections = this.viewer.renderer.getIntersections({ x: viewerX, y: viewerY });
-    const sphereIntersection = intersections.find(i => i.object.userData[VIEWER_DATA]);
+    const sphereIntersection = intersections.find((i) => i.object.userData[VIEWER_DATA]);
 
     if (sphereIntersection) {
       const sphericalCoords = this.viewer.dataHelper.vector3ToSphericalCoords(sphereIntersection.point);
@@ -493,7 +529,7 @@ export class EventsHandler extends AbstractService {
         viewerY,
         yaw: sphericalCoords.yaw,
         pitch: sphericalCoords.pitch,
-        objects: intersections.map(i => i.object).filter(o => !o.userData[VIEWER_DATA]),
+        objects: intersections.map((i) => i.object).filter((o) => !o.userData[VIEWER_DATA]),
       };
 
       try {
@@ -513,8 +549,8 @@ export class EventsHandler extends AbstractService {
         }, DBLCLICK_DELAY);
       } else {
         if (
-          Math.abs(this.data.dblclickData.clientX - data.clientX) < this.moveThreshold
-          && Math.abs(this.data.dblclickData.clientY - data.clientY) < this.moveThreshold
+          Math.abs(this.data.dblclickData.clientX - data.clientX) < this.moveThreshold &&
+          Math.abs(this.data.dblclickData.clientY - data.clientY) < this.moveThreshold
         ) {
           this.viewer.dispatchEvent(new DoubleClickEvent(this.data.dblclickData));
         }
@@ -527,8 +563,8 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-     * Trigger events for observed THREE objects
-     */
+   * Trigger events for observed THREE objects
+   */
   private __handleObjectsEvents(evt: MouseEvent) {
     if (!isEmpty(this.state.objectsObservers) && evt.composedPath().includes(this.viewer.container)) {
       const viewerPos = getPosition(this.viewer.container);
@@ -549,7 +585,7 @@ export class EventsHandler extends AbstractService {
       };
 
       for (const [key, object] of Object.entries(this.state.objectsObservers) as Array<[string, Mesh | null]>) {
-        const intersection = intersections.find(i => i.object.userData[key]);
+        const intersection = intersections.find((i) => i.object.userData[key]);
 
         if (intersection) {
           if (object && intersection.object !== object) {
@@ -572,8 +608,8 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-     * Starts moving when crossing moveThreshold and performs movement
-     */
+   * Starts moving when crossing moveThreshold and performs movement
+   */
   private __doMove(clientX: number, clientY: number) {
     if (this.step.is(Step.CLICK) && this.__moveThresholdReached(clientX, clientY)) {
       this.viewer.stopAll();
@@ -583,8 +619,12 @@ export class EventsHandler extends AbstractService {
       this.data.mouseY = clientY;
       this.data.accumulatorFactor = this.config.moveInertia;
     } else if (this.step.is(Step.MOVING)) {
-      const x = (clientX - this.data.mouseX) * Math.cos(this.state.roll) - (clientY - this.data.mouseY) * Math.sin(this.state.roll);
-      const y = (clientY - this.data.mouseY) * Math.cos(this.state.roll) + (clientX - this.data.mouseX) * Math.sin(this.state.roll);
+      const x =
+        (clientX - this.data.mouseX) * Math.cos(this.state.roll) -
+        (clientY - this.data.mouseY) * Math.sin(this.state.roll);
+      const y =
+        (clientY - this.data.mouseY) * Math.cos(this.state.roll) +
+        (clientX - this.data.mouseX) * Math.sin(this.state.roll);
 
       const rotation: Position = {
         yaw: this.config.moveSpeed * (x / this.state.size.width) * MathUtils.degToRad(this.state.hFov),
@@ -600,18 +640,18 @@ export class EventsHandler extends AbstractService {
   }
 
   /**
-     * Checks if the cursor was move beyond the move threshold
-     */
+   * Checks if the cursor was move beyond the move threshold
+   */
   private __moveThresholdReached(clientX: number, clientY: number) {
     return (
-      Math.abs(clientX - this.data.startMouseX) >= this.moveThreshold
-      || Math.abs(clientY - this.data.startMouseY) >= this.moveThreshold
+      Math.abs(clientX - this.data.startMouseX) >= this.moveThreshold ||
+      Math.abs(clientY - this.data.startMouseY) >= this.moveThreshold
     );
   }
 
   /**
-     * Perfoms combined move and zoom
-     */
+   * Perfoms combined move and zoom
+   */
   private __doMoveZoom(evt: TouchEvent) {
     if (this.step.is(Step.MOVING)) {
       evt.preventDefault();
@@ -620,7 +660,8 @@ export class EventsHandler extends AbstractService {
 
       this.__doMove(touchData.center.x, touchData.center.y);
 
-      this.data.moveDelta.zoom += this.config.zoomSpeed * ((touchData.distance - this.data.pinchDist) / SYSTEM.pixelRatio);
+      this.data.moveDelta.zoom +=
+        this.config.zoomSpeed * ((touchData.distance - this.data.pinchDist) / SYSTEM.pixelRatio);
 
       this.data.pinchDist = touchData.distance;
     }

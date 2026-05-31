@@ -52,9 +52,9 @@ The following example provides two resolutions for the panorama, "small" is load
 ```yaml
 title: PSV Resolution Demo
 packages:
-    - name: settings-plugin
-      style: true
-    - name: resolution-plugin
+  - name: settings-plugin
+    style: true
+  - name: resolution-plugin
 ```
 
 <<< ./demos-src/resolution.js{js:line-numbers}
@@ -65,15 +65,15 @@ packages:
 
 #### `resolutions`
 
--   type: `object[]`
--   updatable: no, use `setResolutions()` method
+- type: `object[]`
+- updatable: no, use `setResolutions()` method
 
 List of available resolutions. Each resolution consists of an object with the properties `id`, `label`, `panorama` and `panoData` (optional).
 
 #### `defaultResolution`
 
--   type: `string`
--   updatable: no
+- type: `string`
+- updatable: no
 
 The id of the default resolution to load. If not provided the first resolution will be used.
 
@@ -83,16 +83,16 @@ If a `panorama` is initially configured on the viewer, this setting is ignored.
 
 #### `showBadge`
 
--   type: `boolean`
--   default: `true`
--   updatable: no
+- type: `boolean`
+- default: `true`
+- updatable: no
 
 Show the resolution id as a badge on the settings button.
 
 #### `lang`
 
--   type: `object`
--   default:
+- type: `object`
+- default:
 
 ```js
 lang: {

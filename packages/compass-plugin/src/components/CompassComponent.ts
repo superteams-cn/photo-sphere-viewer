@@ -124,8 +124,8 @@ export class CompassComponent extends AbstractComponent {
   }
 
   /**
-     * Updates the compass for current zoom and position
-     */
+   * Updates the compass for current zoom and position
+   */
   update() {
     if (!this.isVisible()) {
       return;
@@ -160,8 +160,8 @@ export class CompassComponent extends AbstractComponent {
   }
 
   /**
-     * Rotates the viewer depending on the position of the mouse on the compass
-     */
+   * Rotates the viewer depending on the position of the mouse on the compass
+   */
   private click() {
     const mouseAngle = this.__getMouseAngle();
 
@@ -174,8 +174,8 @@ export class CompassComponent extends AbstractComponent {
   }
 
   /**
-     * Draw a cone
-     */
+   * Draw a cone
+   */
   private __drawCone(context: CanvasRenderingContext2D, color: string, yaw: number, fov: number) {
     const a1 = yaw - Math.PI / 2 - fov / 2;
     const a2 = a1 + fov;
@@ -191,8 +191,8 @@ export class CompassComponent extends AbstractComponent {
   }
 
   /**
-     * Draw a Marker
-     */
+   * Draw a Marker
+   */
   private __drawMarker(context: CanvasRenderingContext2D, marker: Marker) {
     let color = this.config.hotspotColor;
     if (typeof marker.data['compass'] === 'string') {
@@ -223,8 +223,8 @@ export class CompassComponent extends AbstractComponent {
   }
 
   /**
-     * Draw a point
-     */
+   * Draw a point
+   */
   private __drawPoint(context: CanvasRenderingContext2D, color: string, yaw: number, pitch: number) {
     const a = yaw - Math.PI / 2;
     const d = (pitch + Math.PI / 2) / Math.PI;
@@ -232,19 +232,14 @@ export class CompassComponent extends AbstractComponent {
     const r = Math.max(2, this.canvas.width * HOTSPOT_SIZE_RATIO);
 
     context.beginPath();
-    context.ellipse(
-      c + Math.cos(a) * c * d, c + Math.sin(a) * c * d,
-      r, r,
-      0, 0,
-      Math.PI * 2,
-    );
+    context.ellipse(c + Math.cos(a) * c * d, c + Math.sin(a) * c * d, r, r, 0, 0, Math.PI * 2);
     context.fillStyle = color;
     context.fill();
   }
 
   /**
-     * Gets the horizontal angle corresponding to the mouse position on the compass
-     */
+   * Gets the horizontal angle corresponding to the mouse position on the compass
+   */
   private __getMouseAngle(): number | null {
     if (!this.state.mouse) {
       return null;

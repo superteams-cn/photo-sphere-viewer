@@ -4,15 +4,27 @@ import { CubemapAdapter, CubemapData, CubemapFaces } from '@photo-sphere-viewer/
 import { BoxGeometry, BufferAttribute, Group, Mesh, MeshBasicMaterial, Texture, Vector3 } from 'three';
 import { Queue, Task } from '../../shared/Queue';
 import { buildDebugTexture, buildErrorMaterial, createWireFrame } from '../../shared/tiles-utils';
-import { CubemapMultiTilesPanorama, CubemapTilesAdapterConfig, CubemapTilesPanoData, CubemapTilesPanorama } from './model';
-import { CubemapTileConfig, checkPanoramaConfig, getCacheKey, getTileConfig, getTileConfigByIndex, isTopOrBottom } from './utils';
+import {
+  CubemapMultiTilesPanorama,
+  CubemapTilesAdapterConfig,
+  CubemapTilesPanoData,
+  CubemapTilesPanorama,
+} from './model';
+import {
+  CubemapTileConfig,
+  checkPanoramaConfig,
+  getCacheKey,
+  getTileConfig,
+  getTileConfigByIndex,
+  isTopOrBottom,
+} from './utils';
 
 type CubemapMesh = Mesh<BoxGeometry, MeshBasicMaterial[]>;
 type CubemapTilesMesh = Mesh<BoxGeometry, MeshBasicMaterial[]>;
 type CubemapTilesTextureData = TextureData<
   Texture[],
-    CubemapTilesPanorama | CubemapMultiTilesPanorama,
-    CubemapTilesPanoData
+  CubemapTilesPanorama | CubemapMultiTilesPanorama,
+  CubemapTilesPanoData
 >;
 type CubemapTile = {
   face: number;
@@ -61,10 +73,10 @@ const vertexPosition = new Vector3();
  * Adapter for tiled cubemaps
  */
 export class CubemapTilesAdapter extends AbstractAdapter<
-    CubemapTilesPanorama | CubemapMultiTilesPanorama,
-    CubemapTilesPanoData,
-    Texture[],
-    Group
+  CubemapTilesPanorama | CubemapMultiTilesPanorama,
+  CubemapTilesPanoData,
+  Texture[],
+  Group
 > {
   static override readonly id = 'cubemap-tiles';
   static override readonly VERSION = PKG_VERSION;
@@ -105,8 +117,8 @@ export class CubemapTilesAdapter extends AbstractAdapter<
 
     if (this.viewer.config.requestHeaders) {
       utils.logWarn(
-        'CubemapTilesAdapter fallbacks to file loader because "requestHeaders" where provided. '
-        + 'Consider removing "requestHeaders" if you experience performances issues.',
+        'CubemapTilesAdapter fallbacks to file loader because "requestHeaders" where provided. ' +
+          'Consider removing "requestHeaders" if you experience performances issues.',
       );
     }
   }
@@ -138,8 +150,8 @@ export class CubemapTilesAdapter extends AbstractAdapter<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     switch (e.type) {
       case events.PositionUpdatedEvent.type:
@@ -248,8 +260,8 @@ export class CubemapTilesAdapter extends AbstractAdapter<
   }
 
   /**
-     * Applies the base texture and starts the loading of tiles
-     */
+   * Applies the base texture and starts the loading of tiles
+   */
   setTexture(group: Group, textureData: CubemapTilesTextureData, transition: boolean) {
     const [baseMesh] = meshes(group);
 
@@ -276,14 +288,14 @@ export class CubemapTilesAdapter extends AbstractAdapter<
   }
 
   disposeTexture({ texture }: CubemapTilesTextureData) {
-    texture?.forEach(t => t.dispose());
+    texture?.forEach((t) => t.dispose());
   }
 
   disposeMesh(group: Group) {
     const [baseMesh, tilesMesh] = meshes(group);
 
     baseMesh.geometry.dispose();
-    baseMesh.material.forEach(m => m.dispose());
+    baseMesh.material.forEach((m) => m.dispose());
 
     tilesMesh.geometry.dispose();
     tilesMesh.material.forEach((m) => {
@@ -293,15 +305,17 @@ export class CubemapTilesAdapter extends AbstractAdapter<
   }
 
   /**
-     * Compute visible tiles and load them
-     */
+   * Compute visible tiles and load them
+   */
   private __refresh() {
     if (!this.state.geom || this.state.inTransition) {
       return;
     }
 
     const panorama = this.viewer.config.panorama as CubemapTilesPanorama | CubemapMultiTilesPanorama;
-    const tileConfig = getTileConfig(panorama, this.viewer.state.hFov, this.viewer.state.vFov, this.viewer.state.size, { CUBE_SEGMENTS });
+    const tileConfig = getTileConfig(panorama, this.viewer.state.hFov, this.viewer.state.vFov, this.viewer.state.size, {
+      CUBE_SEGMENTS,
+    });
 
     const verticesPosition = this.state.geom.getAttribute(ATTR_POSITION) as BufferAttribute;
     const tilesToLoad: Record<string, CubemapTile> = {};
@@ -361,8 +375,8 @@ export class CubemapTilesAdapter extends AbstractAdapter<
   }
 
   /**
-     * Loads tiles and change existing tiles priority
-     */
+   * Loads tiles and change existing tiles priority
+   */
   private __loadTiles(tiles: CubemapTile[]) {
     this.queue.disableAllTasks();
 
@@ -373,7 +387,7 @@ export class CubemapTilesAdapter extends AbstractAdapter<
         this.queue.setPriority(id, tile.angle);
       } else {
         this.state.tiles[id] = true;
-        this.queue.enqueue(new Task(id, tile.angle, task => this.__loadTile(tile, task)));
+        this.queue.enqueue(new Task(id, tile.angle, (task) => this.__loadTile(tile, task)));
       }
     });
 
@@ -381,8 +395,8 @@ export class CubemapTilesAdapter extends AbstractAdapter<
   }
 
   /**
-     * Loads and draw a tile
-     */
+   * Loads and draw a tile
+   */
   private __loadTile(tile: CubemapTile, task: Task): Promise<any> {
     return this.viewer.textureLoader
       .loadImage(tile.url, null, this.viewer.state.textureData.cacheKey)
@@ -410,8 +424,8 @@ export class CubemapTilesAdapter extends AbstractAdapter<
   }
 
   /**
-     * Applies a new texture to the faces
-     */
+   * Applies a new texture to the faces
+   */
   private __swapMaterial(tile: CubemapTile, material: MeshBasicMaterial, isError: boolean) {
     const panoData = this.viewer.state.textureData.panoData as CubemapTilesPanoData;
     const uvs = this.state.geom.getAttribute(ATTR_UV) as BufferAttribute;
@@ -436,7 +450,7 @@ export class CubemapTilesAdapter extends AbstractAdapter<
         this.state.faces[firstVertex] = isError ? ERROR_LEVEL : tile.config.level;
 
         // swap material
-        const matIndex = this.state.geom.groups.find(g => g.start === firstVertex).materialIndex;
+        const matIndex = this.state.geom.groups.find((g) => g.start === firstVertex).materialIndex;
         this.state.materials[matIndex] = material;
 
         // define new uvs
@@ -482,8 +496,8 @@ export class CubemapTilesAdapter extends AbstractAdapter<
   }
 
   /**
-     * Clears loading queue, dispose all materials
-     */
+   * Clears loading queue, dispose all materials
+   */
   private __cleanup() {
     this.queue.clear();
     this.state.tiles = {};

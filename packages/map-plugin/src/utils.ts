@@ -33,20 +33,20 @@ export function getImageHtml(src: string): string {
 export function getStyle(defaultStyle: MapHotspotStyle, style: MapHotspotStyle, isHover: boolean) {
   return {
     image: isHover
-      ? style.hoverImage ?? style.image ?? defaultStyle.hoverImage ?? defaultStyle.image
-      : style.image ?? defaultStyle.image,
+      ? (style.hoverImage ?? style.image ?? defaultStyle.hoverImage ?? defaultStyle.image)
+      : (style.image ?? defaultStyle.image),
     size: isHover
-      ? style.hoverSize ?? style.size ?? defaultStyle.hoverSize ?? defaultStyle.size
-      : style.size ?? defaultStyle.size,
+      ? (style.hoverSize ?? style.size ?? defaultStyle.hoverSize ?? defaultStyle.size)
+      : (style.size ?? defaultStyle.size),
     color: isHover
-      ? style.hoverColor ?? style.color ?? defaultStyle.hoverColor ?? defaultStyle.color
-      : style.color ?? defaultStyle.color,
+      ? (style.hoverColor ?? style.color ?? defaultStyle.hoverColor ?? defaultStyle.color)
+      : (style.color ?? defaultStyle.color),
     borderColor: isHover
-      ? style.hoverBorderColor ?? style.borderColor ?? defaultStyle.hoverBorderColor ?? defaultStyle.borderColor
-      : style.borderColor ?? defaultStyle.borderColor,
+      ? (style.hoverBorderColor ?? style.borderColor ?? defaultStyle.hoverBorderColor ?? defaultStyle.borderColor)
+      : (style.borderColor ?? defaultStyle.borderColor),
     borderSize: isHover
-      ? style.hoverBorderSize ?? style.borderSize ?? defaultStyle.hoverBorderSize ?? defaultStyle.borderSize
-      : style.borderSize ?? defaultStyle.borderSize,
+      ? (style.hoverBorderSize ?? style.borderSize ?? defaultStyle.hoverBorderSize ?? defaultStyle.borderSize)
+      : (style.borderSize ?? defaultStyle.borderSize),
   };
 }
 
@@ -89,14 +89,7 @@ export function drawImageCentered(context: CanvasRenderingContext2D, image: Imag
   const w = image.width;
   const h = image.height;
 
-  drawImageHighDpi(
-    context,
-    image,
-    -size / 2,
-    -((h / w) * size) / 2,
-    size,
-    (h / w) * size,
-  );
+  drawImageHighDpi(context, image, -size / 2, -((h / w) * size) / 2, size, (h / w) * size);
 }
 
 /**
@@ -112,10 +105,14 @@ export function drawImageHighDpi(
 ) {
   context.drawImage(
     image,
-    0, 0,
-    image.width, image.height,
-    x * SYSTEM.pixelRatio, y * SYSTEM.pixelRatio,
-    w * SYSTEM.pixelRatio, h * SYSTEM.pixelRatio,
+    0,
+    0,
+    image.width,
+    image.height,
+    x * SYSTEM.pixelRatio,
+    y * SYSTEM.pixelRatio,
+    w * SYSTEM.pixelRatio,
+    h * SYSTEM.pixelRatio,
   );
 }
 

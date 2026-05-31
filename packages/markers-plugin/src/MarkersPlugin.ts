@@ -134,7 +134,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
     this.container.className = 'psv-markers';
     this.viewer.container.appendChild(this.container);
 
-    this.container.addEventListener('contextmenu', e => e.preventDefault());
+    this.container.addEventListener('contextmenu', (e) => e.preventDefault());
 
     this.svgContainer = document.createElementNS(SVG_NS, 'svg');
     this.svgContainer.setAttribute('class', 'psv-markers-svg-container');
@@ -150,8 +150,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override init() {
     super.init();
 
@@ -169,8 +169,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override destroy() {
     this.clearMarkers(false);
 
@@ -191,8 +191,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     switch (e.type) {
       case events.ReadyEvent.type:
@@ -261,8 +261,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Toggles all markers
-     */
+   * Toggles all markers
+   */
   toggleAllMarkers() {
     if (this.state.allVisible) {
       this.hideAllMarkers();
@@ -272,8 +272,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Shows all markers
-     */
+   * Shows all markers
+   */
   showAllMarkers() {
     this.state.allVisible = true;
     Object.values(this.markers).forEach((marker) => {
@@ -284,8 +284,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Hides all markers
-     */
+   * Hides all markers
+   */
   hideAllMarkers() {
     this.state.allVisible = false;
     Object.values(this.markers).forEach((marker) => {
@@ -296,8 +296,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Toggles the visibility of all tooltips
-     */
+   * Toggles the visibility of all tooltips
+   */
   toggleAllTooltips() {
     if (this.state.showAllTooltips) {
       this.hideAllTooltips();
@@ -307,8 +307,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     *  Displays all tooltips
-     */
+   *  Displays all tooltips
+   */
   showAllTooltips() {
     this.state.showAllTooltips = true;
     Object.values(this.markers).forEach((marker) => {
@@ -318,8 +318,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Hides all tooltips
-     */
+   * Hides all tooltips
+   */
   hideAllTooltips() {
     this.state.showAllTooltips = false;
     Object.values(this.markers).forEach((marker) => {
@@ -329,23 +329,23 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Returns the total number of markers
-     */
+   * Returns the total number of markers
+   */
   getNbMarkers(): number {
     return Object.keys(this.markers).length;
   }
 
   /**
-     * Returns all the markers
-     */
+   * Returns all the markers
+   */
   getMarkers(): Marker[] {
     return Object.values(this.markers);
   }
 
   /**
-     * Adds a new marker to viewer
-     * @throws {@link PSVError} when the marker's id is missing or already exists
-     */
+   * Adds a new marker to viewer
+   * @throws {@link PSVError} when the marker's id is missing or already exists
+   */
   addMarker(config: MarkerConfig, render = true) {
     if (this.markers[config.id]) {
       throw new PSVError(`marker "${config.id}" already exists`);
@@ -376,9 +376,9 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Returns the internal marker object for a marker id
-     * @throws {@link PSVError} when the marker cannot be found
-     */
+   * Returns the internal marker object for a marker id
+   * @throws {@link PSVError} when the marker cannot be found
+   */
   getMarker(markerId: string | MarkerConfig): Marker {
     const id = typeof markerId === 'object' ? markerId.id : markerId;
 
@@ -390,16 +390,16 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Returns the last marker selected by the user
-     */
+   * Returns the last marker selected by the user
+   */
   getCurrentMarker(): Marker {
     return this.state.currentMarker;
   }
 
   /**
-     * Updates the existing marker with the same id
-     * Every property can be changed but you can't change its type (Eg: `image` to `html`)
-     */
+   * Updates the existing marker with the same id
+   * Every property can be changed but you can't change its type (Eg: `image` to `html`)
+   */
   updateMarker(config: MarkerConfig, render = true) {
     const marker = this.getMarker(config.id);
 
@@ -409,8 +409,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
       this.__afterChangeMarkers();
 
       if (
-        (marker === this.state.hoveringMarker && marker.config.tooltip?.trigger === 'hover')
-        || marker.state.staticTooltip
+        (marker === this.state.hoveringMarker && marker.config.tooltip?.trigger === 'hover') ||
+        marker.state.staticTooltip
       ) {
         marker.showTooltip(this.state.lastClientX, this.state.lastClientY, true);
       }
@@ -418,8 +418,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Removes a marker from the viewer
-     */
+   * Removes a marker from the viewer
+   */
   removeMarker(markerId: string | MarkerConfig, render = true) {
     const marker = this.getMarker(markerId);
 
@@ -450,10 +450,10 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Removes multiple markers
-     */
+   * Removes multiple markers
+   */
   removeMarkers(markerIds: string[], render = true) {
-    markerIds.forEach(markerId => this.removeMarker(markerId, false));
+    markerIds.forEach((markerId) => this.removeMarker(markerId, false));
 
     if (render) {
       this.__afterChangeMarkers();
@@ -461,8 +461,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Replaces all markers
-     */
+   * Replaces all markers
+   */
   setMarkers(markers: MarkerConfig[] | null, render = true) {
     this.clearMarkers(false);
 
@@ -476,8 +476,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Removes all markers
-     */
+   * Removes all markers
+   */
   clearMarkers(render = true) {
     Object.keys(this.markers).forEach((markerId) => {
       this.removeMarker(markerId, false);
@@ -489,8 +489,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Rotate the view to face the marker
-     */
+   * Rotate the view to face the marker
+   */
   gotoMarker(markerId: string | MarkerConfig, speed: string | number = this.config.gotoMarkerSpeed): Promise<void> {
     const marker = this.getMarker(markerId);
 
@@ -515,22 +515,22 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Hides a marker
-     */
+   * Hides a marker
+   */
   hideMarker(markerId: string | MarkerConfig) {
     this.toggleMarker(markerId, false);
   }
 
   /**
-     * Shows a marker
-     */
+   * Shows a marker
+   */
   showMarker(markerId: string | MarkerConfig) {
     this.toggleMarker(markerId, true);
   }
 
   /**
-     * Forces the display of the tooltip of a marker
-     */
+   * Forces the display of the tooltip of a marker
+   */
   showMarkerTooltip(markerId: string | MarkerConfig) {
     const marker = this.getMarker(markerId);
     marker.state.staticTooltip = true;
@@ -538,8 +538,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Hides the tooltip of a marker
-     */
+   * Hides the tooltip of a marker
+   */
   hideMarkerTooltip(markerId: string | MarkerConfig) {
     const marker = this.getMarker(markerId);
     marker.state.staticTooltip = false;
@@ -547,8 +547,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Toggles a marker visibility
-     */
+   * Toggles a marker visibility
+   */
   toggleMarker(markerId: string | MarkerConfig, visible?: boolean) {
     const marker = this.getMarker(markerId);
     marker.config.visible = utils.isNil(visible) ? !marker.config.visible : visible;
@@ -556,8 +556,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Opens the panel with the content of the marker
-     */
+   * Opens the panel with the content of the marker
+   */
   showMarkerPanel(markerId: string | MarkerConfig) {
     const marker = this.getMarker(markerId);
 
@@ -572,15 +572,15 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Closes the panel if currently showing the content of a marker
-     */
+   * Closes the panel if currently showing the content of a marker
+   */
   hideMarkerPanel() {
     this.viewer.panel.hide(ID_PANEL_MARKER);
   }
 
   /**
-     * Toggles the visibility of the list of markers
-     */
+   * Toggles the visibility of the list of markers
+   */
   toggleMarkersList() {
     if (this.viewer.panel.isVisible(ID_PANEL_MARKERS_LIST)) {
       this.hideMarkersList();
@@ -590,8 +590,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Opens side panel with the list of markers
-     */
+   * Opens side panel with the list of markers
+   */
   showMarkersList() {
     let markers: Marker[] = [];
     Object.values(this.markers).forEach((marker) => {
@@ -625,15 +625,15 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Closes side panel if it contains the list of markers
-     */
+   * Closes side panel if it contains the list of markers
+   */
   hideMarkersList() {
     this.viewer.panel.hide(ID_PANEL_MARKERS_LIST);
   }
 
   /**
-     * Updates the visibility and the position of all markers
-     */
+   * Updates the visibility and the position of all markers
+   */
   renderMarkers() {
     if (this.state.needsReRender) {
       this.state.needsReRender = false;
@@ -684,8 +684,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Returns the marker associated to an event target
-     */
+   * Returns the marker associated to an event target
+   */
   private __getTargetMarker(target: HTMLElement, closest?: boolean): Marker;
   private __getTargetMarker(target: Object3D[]): Marker;
   private __getTargetMarker(target: HTMLElement | Object3D[], closest = false): Marker {
@@ -694,8 +694,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
       return target2 ? (target2 as any)[MARKER_DATA] : undefined;
     } else if (Array.isArray(target)) {
       return target
-        .map(o => o.userData[MARKER_DATA] as Marker)
-        .filter(m => !!m)
+        .map((o) => o.userData[MARKER_DATA] as Marker)
+        .filter((m) => !!m)
         .sort((a, b) => b.config.zIndex - a.config.zIndex)[0];
     } else {
       return null;
@@ -703,8 +703,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Handles mouse enter events, show the tooltip for non polygon markers
-     */
+   * Handles mouse enter events, show the tooltip for non polygon markers
+   */
   private __onEnterMarker(e: MouseEvent, marker?: Marker) {
     if (marker) {
       this.state.hoveringMarker = marker;
@@ -728,8 +728,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Handles mouse leave events, hide the tooltip
-     */
+   * Handles mouse leave events, hide the tooltip
+   */
   private __onLeaveMarker(marker?: Marker) {
     if (marker) {
       this.dispatchEvent(new LeaveMarkerEvent(marker));
@@ -753,8 +753,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Handles mouse move events, refresh the tooltip for polygon markers
-     */
+   * Handles mouse move events, refresh the tooltip for polygon markers
+   */
   private __onHoverMarker(e: MouseEvent, marker?: Marker) {
     if (marker) {
       this.state.lastClientX = e.clientX;
@@ -769,8 +769,8 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Handles mouse click events, select the marker and open the panel if necessary
-     */
+   * Handles mouse click events, select the marker and open the panel if necessary
+   */
   private __onClick(e: events.ClickEvent | events.DoubleClickEvent, dblclick: boolean) {
     const threeMarker = this.__getTargetMarker(e.data.objects);
     const stdMarker = this.__getTargetMarker(e.data.target, true);
@@ -825,10 +825,10 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Updates the visiblity of the panel and the buttons
-     */
+   * Updates the visiblity of the panel and the buttons
+   */
   private __refreshUi() {
-    const nbMarkers = Object.values(this.markers).filter(m => !m.config.hideList).length;
+    const nbMarkers = Object.values(this.markers).filter((m) => !m.config.hideList).length;
 
     if (nbMarkers === 0) {
       this.viewer.panel.hide(ID_PANEL_MARKER);
@@ -846,10 +846,10 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Adds or remove the objects observer if there are 3D markers
-     */
+   * Adds or remove the objects observer if there are 3D markers
+   */
   private __checkObjectsObserver() {
-    const has3d = Object.values(this.markers).some(marker => marker.is3d());
+    const has3d = Object.values(this.markers).some((marker) => marker.is3d());
 
     if (has3d) {
       this.viewer.observeObjects(MARKER_DATA);

@@ -29,7 +29,7 @@ export class ZoomRangeButton extends AbstractButton {
     this.zoomValue.className = 'psv-zoom-range-handle';
     this.zoomRange.appendChild(this.zoomValue);
 
-    this.slider = new Slider(this.container, SliderDirection.HORIZONTAL, data => this.__onSliderUpdate(data));
+    this.slider = new Slider(this.container, SliderDirection.HORIZONTAL, (data) => this.__onSliderUpdate(data));
 
     this.mediaMinWidth = parseInt(getStyleProperty(this.container, 'max-width'), 10);
 

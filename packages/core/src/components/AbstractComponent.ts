@@ -5,25 +5,25 @@ import type { Viewer } from '../Viewer';
  */
 export abstract class AbstractComponent {
   /**
-     * Reference to main controller
-     */
+   * Reference to main controller
+   */
   protected readonly viewer: Viewer;
 
   /**
-     * All child components
-     * @internal
-     */
+   * All child components
+   * @internal
+   */
   readonly children: AbstractComponent[] = [];
 
   /**
-     * Container element
-     */
+   * Container element
+   */
   readonly container: HTMLElement;
 
   /**
-     * Internal properties
-     * @internal
-     */
+   * Internal properties
+   * @internal
+   */
   protected readonly state = {
     visible: true,
   };
@@ -42,8 +42,8 @@ export abstract class AbstractComponent {
   }
 
   /**
-     * Destroys the component
-     */
+   * Destroys the component
+   */
   destroy() {
     this.parent.container.removeChild(this.container);
 
@@ -52,13 +52,13 @@ export abstract class AbstractComponent {
       this.parent.children.splice(childIdx, 1);
     }
 
-    this.children.slice().forEach(child => child.destroy());
+    this.children.slice().forEach((child) => child.destroy());
     this.children.length = 0;
   }
 
   /**
-     * Displays or hides the component
-     */
+   * Displays or hides the component
+   */
   toggle(visible = !this.isVisible()) {
     if (!visible) {
       this.hide();
@@ -68,8 +68,8 @@ export abstract class AbstractComponent {
   }
 
   /**
-     * Hides the component
-     */
+   * Hides the component
+   */
   // @ts-ignore unused parameter
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   hide(options?: any) {
@@ -78,8 +78,8 @@ export abstract class AbstractComponent {
   }
 
   /**
-     * Displays the component
-     */
+   * Displays the component
+   */
   // @ts-ignore unused parameter
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   show(options?: any) {
@@ -88,8 +88,8 @@ export abstract class AbstractComponent {
   }
 
   /**
-     * Checks if the component is visible
-     */
+   * Checks if the component is visible
+   */
   isVisible(): boolean {
     return this.state.visible;
   }

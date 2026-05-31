@@ -9,21 +9,21 @@ import { AbstractComponent } from './AbstractComponent';
  */
 export type TooltipPosition = {
   /**
-     * Position of the tip of the arrow of the tooltip, in pixels
-     */
+   * Position of the tip of the arrow of the tooltip, in pixels
+   */
   top: number;
   /**
-     * Position of the tip of the arrow of the tooltip, in pixels
-     */
+   * Position of the tip of the arrow of the tooltip, in pixels
+   */
   left: number;
   /**
-     * Tooltip position toward it's arrow tip.
-     * Accepted values are combinations of `top`, `center`, `bottom` and `left`, `center`, `right`.
-     */
+   * Tooltip position toward it's arrow tip.
+   * Accepted values are combinations of `top`, `center`, `bottom` and `left`, `center`, `right`.
+   */
   position?: string | [string, string];
   /**
-     * @internal
-     */
+   * @internal
+   */
   box?: { width: number; height: number };
 };
 
@@ -32,20 +32,20 @@ export type TooltipPosition = {
  */
 export type TooltipConfig = TooltipPosition & {
   /**
-     * HTML content of the tooltip
-     */
+   * HTML content of the tooltip
+   */
   content: string;
   /**
-     * Additional CSS class added to the tooltip
-     */
+   * Additional CSS class added to the tooltip
+   */
   className?: string;
   /**
-     * CSS properties added to the tooltip
-     */
+   * CSS properties added to the tooltip
+   */
   style?: Record<string, string>;
   /**
-     * Userdata associated to the tooltip
-     */
+   * Userdata associated to the tooltip
+   */
   data?: any;
 };
 
@@ -72,8 +72,8 @@ const enum TooltipState {
  */
 export class Tooltip extends AbstractComponent {
   /**
-     * @internal
-     */
+   * @internal
+   */
   protected override readonly state = {
     visible: true,
     arrow: 0,
@@ -91,8 +91,8 @@ export class Tooltip extends AbstractComponent {
   private readonly arrow: HTMLElement;
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   constructor(viewer: Viewer, config: TooltipConfig) {
     super(viewer, {
       className: 'psv-tooltip',
@@ -109,8 +109,8 @@ export class Tooltip extends AbstractComponent {
     this.container.addEventListener('transitionend', this);
 
     // allows to interact with static tooltips
-    this.container.addEventListener('touchdown', e => e.stopPropagation());
-    this.container.addEventListener('mousedown', e => e.stopPropagation());
+    this.container.addEventListener('touchdown', (e) => e.stopPropagation());
+    this.container.addEventListener('mousedown', (e) => e.stopPropagation());
 
     this.container.style.top = '-1000px';
     this.container.style.left = '-1000px';
@@ -119,8 +119,8 @@ export class Tooltip extends AbstractComponent {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     if (e.type === 'transitionend') {
       this.__onTransitionEnd(e as TransitionEvent);
@@ -128,8 +128,8 @@ export class Tooltip extends AbstractComponent {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override destroy() {
     clearTimeout(this.state.hideTimeout);
     delete this.state.data;
@@ -137,17 +137,17 @@ export class Tooltip extends AbstractComponent {
   }
 
   /**
-     * @throws {@link PSVError} always
-     * @internal
-     */
+   * @throws {@link PSVError} always
+   * @internal
+   */
   override toggle() {
     throw new PSVError('Tooltip cannot be toggled');
   }
 
   /**
-     * Displays the tooltip on the viewer
-     * @internal
-     */
+   * Displays the tooltip on the viewer
+   * @internal
+   */
   override show(config: TooltipConfig) {
     if (this.state.state !== TooltipState.NONE) {
       throw new PSVError('Initialized tooltip cannot be re-initialized');
@@ -173,9 +173,9 @@ export class Tooltip extends AbstractComponent {
   }
 
   /**
-     * Updates the content of the tooltip, optionally with a new position
-     * @throws {@link PSVError} if the configuration is invalid
-     */
+   * Updates the content of the tooltip, optionally with a new position
+   * @throws {@link PSVError} if the configuration is invalid
+   */
   update(content: string, config?: TooltipPosition) {
     this.content.innerHTML = content;
 
@@ -190,9 +190,9 @@ export class Tooltip extends AbstractComponent {
   }
 
   /**
-     * Moves the tooltip to a new position
-     * @throws {@link PSVError} if the configuration is invalid
-     */
+   * Moves the tooltip to a new position
+   * @throws {@link PSVError} if the configuration is invalid
+   */
   move(config: TooltipPosition) {
     if (this.state.state !== TooltipState.SHOWING && this.state.state !== TooltipState.READY) {
       throw new PSVError('Uninitialized tooltip cannot be moved');
@@ -259,8 +259,8 @@ export class Tooltip extends AbstractComponent {
   }
 
   /**
-     * Hides the tooltip
-     */
+   * Hides the tooltip
+   */
   override hide() {
     this.container.classList.remove('psv-tooltip--visible');
     this.state.state = TooltipState.HIDING;
@@ -275,8 +275,8 @@ export class Tooltip extends AbstractComponent {
   }
 
   /**
-     * Finalize transition
-     */
+   * Finalize transition
+   */
   private __onTransitionEnd(e: TransitionEvent) {
     if (e.propertyName === 'transform') {
       switch (this.state.state) {
@@ -291,14 +291,14 @@ export class Tooltip extends AbstractComponent {
           break;
 
         default:
-                // nothing
+        // nothing
       }
     }
   }
 
   /**
-     * Computes the position of the tooltip and its arrow
-     */
+   * Computes the position of the tooltip and its arrow
+   */
   private __computeTooltipPosition(style: TooltipStyle, config: TooltipPosition) {
     const arrow = this.state.arrow;
     const top = config.top;
@@ -383,13 +383,13 @@ export class Tooltip extends AbstractComponent {
         style.arrowLeft = -arrow * 2;
         break;
 
-            // no default
+      // no default
     }
   }
 
   /**
-     * If the tooltip contains images, recompute its size once they are loaded
-     */
+   * If the tooltip contains images, recompute its size once they are loaded
+   */
   private __waitImages() {
     const images = this.content.querySelectorAll('img') as NodeListOf<HTMLImageElement>;
 

@@ -13,7 +13,7 @@ const DIST_DIR = '.tmp/typedoc';
 const DIST_FILE = 'README.md';
 
 (async () => {
-  const packages = readdirSync(PACKAGES_DIR).filter(name => name !== 'shared');
+  const packages = readdirSync(PACKAGES_DIR).filter((name) => name !== 'shared');
 
   const plugins = [];
   const adapters = [];
@@ -56,11 +56,11 @@ Documentation : ${pkg.homepage}
 
 # Plugins
 
-${plugins.map(plugin => `- [${plugin}](modules/${plugin}.html)`).join('\n')}
+${plugins.map((plugin) => `- [${plugin}](modules/${plugin}.html)`).join('\n')}
 
 # Adapters
 
-${adapters.map(adapter => `- [${adapter}](modules/${adapter}.html)`).join('\n')}
+${adapters.map((adapter) => `- [${adapter}](modules/${adapter}.html)`).join('\n')}
 `.trim();
 
   console.log(`create ${destFile}`);

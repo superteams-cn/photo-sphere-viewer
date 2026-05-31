@@ -13,28 +13,28 @@ export enum SliderDirection {
  */
 export type SliderUpdateData = {
   /**
-     * slider progression for 0-1
-     */
+   * slider progression for 0-1
+   */
   readonly value: number;
 
   /**
-     * the user clicked on the slider
-     */
+   * the user clicked on the slider
+   */
   readonly click: boolean;
 
   /**
-     * the user moves the cursor above the slider, without click
-     */
+   * the user moves the cursor above the slider, without click
+   */
   readonly mouseover: boolean;
 
   /**
-     * the user moves the cursor above the slider while maintaining click
-     */
+   * the user moves the cursor above the slider while maintaining click
+   */
   readonly mousedown: boolean;
 
   /**
-     * the cursor position on the page
-     */
+   * the cursor position on the page
+   */
   readonly cursor: { clientX: number; clientY: number };
 };
 
@@ -78,19 +78,37 @@ export class Slider {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     switch (e.type) {
-      case 'click': e.stopPropagation(); break;
-      case 'mousedown': this.__onMouseDown(e as MouseEvent); break;
-      case 'mouseenter': this.__onMouseEnter(e as MouseEvent); break;
-      case 'mouseleave': this.__onMouseLeave(e as MouseEvent); break;
-      case 'touchstart': this.__onTouchStart(e as TouchEvent); break;
-      case 'mousemove': this.__onMouseMove(e as MouseEvent); break;
-      case 'touchmove': this.__onTouchMove(e as TouchEvent); break;
-      case 'mouseup': this.__onMouseUp(e as MouseEvent); break;
-      case 'touchend': this.__onTouchEnd(e as TouchEvent); break;
+      case 'click':
+        e.stopPropagation();
+        break;
+      case 'mousedown':
+        this.__onMouseDown(e as MouseEvent);
+        break;
+      case 'mouseenter':
+        this.__onMouseEnter(e as MouseEvent);
+        break;
+      case 'mouseleave':
+        this.__onMouseLeave(e as MouseEvent);
+        break;
+      case 'touchstart':
+        this.__onTouchStart(e as TouchEvent);
+        break;
+      case 'mousemove':
+        this.__onMouseMove(e as MouseEvent);
+        break;
+      case 'touchmove':
+        this.__onTouchMove(e as TouchEvent);
+        break;
+      case 'mouseup':
+        this.__onMouseUp(e as MouseEvent);
+        break;
+      case 'touchend':
+        this.__onTouchEnd(e as TouchEvent);
+        break;
     }
   }
 

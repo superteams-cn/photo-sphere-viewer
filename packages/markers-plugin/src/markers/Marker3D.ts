@@ -1,13 +1,5 @@
 import { ExtendedPosition, PSVError, Point, Position, Size, utils, type Viewer } from '@photo-sphere-viewer/core';
-import {
-  Group,
-  Mesh,
-  Object3D,
-  PlaneGeometry,
-  Texture,
-  Vector3,
-  VideoTexture,
-} from 'three';
+import { Group, Mesh, Object3D, PlaneGeometry, Texture, Vector3, VideoTexture } from 'three';
 import { ChromaKeyMaterial } from '../../../shared/ChromaKeyMaterial';
 import { createVideo } from '../../../shared/video-utils';
 import { MarkerType } from '../MarkerType';
@@ -133,12 +125,12 @@ export class Marker3D extends Marker {
 
       let positions: Position[];
       try {
-        positions = this.config.position.map(p => this.viewer.dataHelper.cleanPosition(p));
+        positions = this.config.position.map((p) => this.viewer.dataHelper.cleanPosition(p));
       } catch (e) {
         throw new PSVError(`invalid marker ${this.id} position`, e);
       }
 
-      const positions3D = positions.map(p => this.viewer.dataHelper.sphericalCoordsToVector3(p));
+      const positions3D = positions.map((p) => this.viewer.dataHelper.sphericalCoordsToVector3(p));
 
       const centroid = getPolygonCenter(positions3D);
       this.state.position = this.viewer.dataHelper.vector3ToSphericalCoords(centroid);
@@ -177,18 +169,22 @@ export class Marker3D extends Marker {
           material.map = texture;
           material.alpha = 0;
 
-          video.addEventListener('loadedmetadata', () => {
-            if (!this.viewer) {
-              return; // the marker has been removed
-            }
+          video.addEventListener(
+            'loadedmetadata',
+            () => {
+              if (!this.viewer) {
+                return; // the marker has been removed
+              }
 
-            material.alpha = this.config.opacity;
+              material.alpha = this.config.opacity;
 
-            if (!utils.isExtendedPosition(this.config.position)) {
-              mesh.material.userData[MARKER_DATA] = { width: video.videoWidth, height: video.videoHeight };
-              this.__setTextureWrap(material);
-            }
-          }, { once: true });
+              if (!utils.isExtendedPosition(this.config.position)) {
+                mesh.material.userData[MARKER_DATA] = { width: video.videoWidth, height: video.videoHeight };
+                this.__setTextureWrap(material);
+              }
+            },
+            { once: true },
+          );
 
           if (video.autoplay) {
             video.play();
@@ -232,7 +228,7 @@ export class Marker3D extends Marker {
         }
         break;
 
-            // no default
+      // no default
     }
 
     material.chromaKey = this.config.chromaKey;
@@ -241,8 +237,8 @@ export class Marker3D extends Marker {
   }
 
   /**
-     * For layers positionned by corners, applies offset to the texture in order to keep its proportions
-     */
+   * For layers positionned by corners, applies offset to the texture in order to keep its proportions
+   */
   private __setTextureWrap(material: ChromaKeyMaterial) {
     const imageSize: Size = material.userData[MARKER_DATA];
 
@@ -256,22 +252,10 @@ export class Marker3D extends Marker {
       return this.viewer.dataHelper.cleanPosition(p);
     });
 
-    const w1 = utils.greatArcDistance(
-      [positions[0].yaw, positions[0].pitch],
-      [positions[1].yaw, positions[1].pitch],
-    );
-    const w2 = utils.greatArcDistance(
-      [positions[3].yaw, positions[3].pitch],
-      [positions[2].yaw, positions[2].pitch],
-    );
-    const h1 = utils.greatArcDistance(
-      [positions[1].yaw, positions[1].pitch],
-      [positions[2].yaw, positions[2].pitch],
-    );
-    const h2 = utils.greatArcDistance(
-      [positions[0].yaw, positions[0].pitch],
-      [positions[3].yaw, positions[3].pitch],
-    );
+    const w1 = utils.greatArcDistance([positions[0].yaw, positions[0].pitch], [positions[1].yaw, positions[1].pitch]);
+    const w2 = utils.greatArcDistance([positions[3].yaw, positions[3].pitch], [positions[2].yaw, positions[2].pitch]);
+    const h1 = utils.greatArcDistance([positions[1].yaw, positions[1].pitch], [positions[2].yaw, positions[2].pitch]);
+    const h2 = utils.greatArcDistance([positions[0].yaw, positions[0].pitch], [positions[3].yaw, positions[3].pitch]);
 
     const layerRatio = (w1 + w2) / (h1 + h2);
     const imageRatio = imageSize.width / imageSize.height;

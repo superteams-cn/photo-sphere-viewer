@@ -96,8 +96,8 @@ export class SettingsComponent extends AbstractComponent {
   }
 
   /**
-     * Handle clicks on items
-     */
+   * Handle clicks on items
+   */
   private __click(e: Event) {
     const li = utils.getMatchingTarget(e, '.psv-settings-item');
     if (!li) {
@@ -107,7 +107,7 @@ export class SettingsComponent extends AbstractComponent {
     const settingId = li.dataset[SETTING_DATA];
     const optionId = li.dataset[OPTION_DATA];
 
-    const setting = this.plugin.settings.find(s => s.id === settingId);
+    const setting = this.plugin.settings.find((s) => s.id === settingId);
 
     switch (optionId) {
       case ID_BACK:
@@ -126,7 +126,7 @@ export class SettingsComponent extends AbstractComponent {
             break;
 
           default:
-                    // noop
+          // noop
         }
         break;
 
@@ -138,15 +138,15 @@ export class SettingsComponent extends AbstractComponent {
             break;
 
           default:
-                    // noop
+          // noop
         }
         break;
     }
   }
 
   /**
-     * Shows the list of options
-     */
+   * Shows the list of options
+   */
   private __showSettings(focus: boolean) {
     this.container.innerHTML = SETTINGS_TEMPLATE(this.plugin.settings, this.viewer.config.lang);
 
@@ -157,8 +157,8 @@ export class SettingsComponent extends AbstractComponent {
   }
 
   /**
-     * Shows setting options panel
-     */
+   * Shows setting options panel
+   */
   private __showOptions(setting: OptionsSetting) {
     this.container.innerHTML = SETTING_OPTIONS_TEMPLATE(setting, this.viewer.config.lang);
 

@@ -85,20 +85,20 @@ export function registerButton(button: ButtonConstructor, defaultPosition?: stri
   MoveRightButton,
   MoveUpButton,
   MoveDownButton,
-].forEach(btn => registerButton(btn));
+].forEach((btn) => registerButton(btn));
 
 /**
  * Navigation bar component
  */
 export class Navbar extends AbstractComponent {
   /**
-     * @internal
-     */
+   * @internal
+   */
   collapsed: AbstractButton[] = [];
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   constructor(viewer: Viewer) {
     super(viewer, {
       className: `psv-navbar ${CAPTURE_EVENTS_CLASS}`,
@@ -108,8 +108,8 @@ export class Navbar extends AbstractComponent {
   }
 
   /**
-     * Shows the navbar
-     */
+   * Shows the navbar
+   */
   override show() {
     this.viewer.container.classList.add('psv--has-navbar');
     this.container.classList.add('psv-navbar--open');
@@ -117,8 +117,8 @@ export class Navbar extends AbstractComponent {
   }
 
   /**
-     * Hides the navbar
-     */
+   * Hides the navbar
+   */
   override hide() {
     this.viewer.container.classList.remove('psv--has-navbar');
     this.container.classList.remove('psv-navbar--open');
@@ -126,10 +126,10 @@ export class Navbar extends AbstractComponent {
   }
 
   /**
-     * Change the buttons visible on the navbar
-     */
+   * Change the buttons visible on the navbar
+   */
   setButtons(buttons: ParsedViewerConfig['navbar']) {
-    this.children.slice().forEach(item => item.destroy());
+    this.children.slice().forEach((item) => item.destroy());
     this.children.length = 0;
 
     // force description button if caption is present (used on narrow screens)
@@ -165,8 +165,8 @@ export class Navbar extends AbstractComponent {
   }
 
   /**
-     * Changes the navbar caption
-     */
+   * Changes the navbar caption
+   */
   setCaption(html: string | null) {
     this.children.some((item) => {
       if (item instanceof NavbarCaption) {
@@ -179,8 +179,8 @@ export class Navbar extends AbstractComponent {
   }
 
   /**
-     * Returns a button by its identifier
-     */
+   * Returns a button by its identifier
+   */
   getButton(id: string, warnNotFound = true): AbstractButton {
     const button = this.children.find((item) => {
       return item instanceof AbstractButton && item.id === id;
@@ -194,18 +194,18 @@ export class Navbar extends AbstractComponent {
   }
 
   /**
-     * Try to focus a button, will focus the first button if the requested button does not exist.
-     */
+   * Try to focus a button, will focus the first button if the requested button does not exist.
+   */
   focusButton(id: string) {
     if (this.isVisible()) {
-      (this.getButton(id, false)?.container || this.container.firstElementChild as HTMLElement)?.focus();
+      (this.getButton(id, false)?.container || (this.container.firstElementChild as HTMLElement))?.focus();
     }
   }
 
   /**
-     * Automatically collapses buttons
-     * @internal
-     */
+   * Automatically collapses buttons
+   * @internal
+   */
   autoSize() {
     this.children.forEach((child) => {
       if (child instanceof AbstractButton) {
@@ -232,12 +232,12 @@ export class Navbar extends AbstractComponent {
     }
 
     if (availableWidth < totalWidth && collapsableButtons.length > 0) {
-      collapsableButtons.forEach(item => item.collapse());
+      collapsableButtons.forEach((item) => item.collapse());
       this.collapsed = collapsableButtons;
 
       this.getButton(MenuButton.id).show(false);
     } else if (availableWidth >= totalWidth && this.collapsed.length > 0) {
-      this.collapsed.forEach(item => item.uncollapse());
+      this.collapsed.forEach((item) => item.uncollapse());
       this.collapsed = [];
 
       this.getButton(MenuButton.id).hide(false);

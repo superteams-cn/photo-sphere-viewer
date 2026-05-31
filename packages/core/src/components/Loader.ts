@@ -18,8 +18,8 @@ export class Loader extends AbstractComponent {
   private readonly textColor: string;
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   constructor(viewer: Viewer) {
     super(viewer, { className: 'psv-loader-container' });
 
@@ -52,8 +52,8 @@ export class Loader extends AbstractComponent {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override destroy(): void {
     this.viewer.removeEventListener(ConfigChangedEvent.type, this);
 
@@ -61,8 +61,8 @@ export class Loader extends AbstractComponent {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     if (e instanceof ConfigChangedEvent) {
       e.containsOptions('loadingImg', 'loadingTxt', 'lang') && this.__updateContent();
@@ -70,8 +70,8 @@ export class Loader extends AbstractComponent {
   }
 
   /**
-     * Sets the loader progression
-     */
+   * Sets the loader progression
+   */
   setProgress(value: number) {
     this.container.classList.remove('psv-loader--undefined');
 
@@ -84,14 +84,14 @@ export class Loader extends AbstractComponent {
     const endY = -Math.cos(angle) * radius + halfSize;
     const largeArc = value > 50 ? '1' : '0';
 
-    this.canvas.querySelector('path').setAttributeNS(null, 'd',
-      `M ${startX} ${startY} A ${radius} ${radius} 0 ${largeArc} 1 ${endX} ${endY}`,
-    );
+    this.canvas
+      .querySelector('path')
+      .setAttributeNS(null, 'd', `M ${startX} ${startY} A ${radius} ${radius} 0 ${largeArc} 1 ${endX} ${endY}`);
   }
 
   /**
-     * Animates the loader with an unknown state
-     */
+   * Animates the loader with an unknown state
+   */
   showUndefined() {
     this.show();
     this.setProgress(25);

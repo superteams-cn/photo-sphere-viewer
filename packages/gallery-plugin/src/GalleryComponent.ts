@@ -115,8 +115,8 @@ export class GalleryComponent extends AbstractComponent {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     switch (e.type) {
       case 'transitionend':
@@ -235,8 +235,8 @@ export class GalleryComponent extends AbstractComponent {
   }
 
   /**
-     * Handle clicks on items
-     */
+   * Handle clicks on items
+   */
   private __click(e: Event) {
     const item = utils.getMatchingTarget(e, `.psv-gallery-item`);
     if (!item) {
@@ -255,13 +255,14 @@ export class GalleryComponent extends AbstractComponent {
   }
 
   private __focusActiveOrFirst() {
-    const el = this.items.querySelector<HTMLElement>('.' + ACTIVE_CLASS) ?? this.items.firstElementChild as HTMLElement;
+    const el =
+      this.items.querySelector<HTMLElement>('.' + ACTIVE_CLASS) ?? (this.items.firstElementChild as HTMLElement);
     el?.focus();
   }
 
   /**
-     * Applies scroll
-     */
+   * Applies scroll
+   */
   private __scroll(direction: 1 | -1) {
     if (this.isAboveBreakpoint) {
       const maxScroll = this.items.scrollWidth - this.items.offsetWidth;
@@ -281,7 +282,8 @@ export class GalleryComponent extends AbstractComponent {
       });
     } else {
       const maxScroll = this.items.scrollHeight - this.items.offsetHeight;
-      const scrollAmount = this.items.querySelector<HTMLElement>(':first-child').offsetHeight * 2 + (this.state.itemMargin ?? 0);
+      const scrollAmount =
+        this.items.querySelector<HTMLElement>(':first-child').offsetHeight * 2 + (this.state.itemMargin ?? 0);
 
       this.state.scrollTop = MathUtils.clamp(this.state.scrollTop + direction * scrollAmount, 0, maxScroll);
       if (direction === -1 && this.state.scrollTop < scrollAmount * 0.8) {
@@ -299,8 +301,8 @@ export class GalleryComponent extends AbstractComponent {
   }
 
   /**
-     * Updates the arrows visibility and indicator size
-     */
+   * Updates the arrows visibility and indicator size
+   */
   private __updateArrows() {
     if (!this.config.navigationArrows) {
       return;

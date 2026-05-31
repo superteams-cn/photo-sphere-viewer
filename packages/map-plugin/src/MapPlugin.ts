@@ -51,11 +51,11 @@ const getConfig = utils.getConfigParser<MapPluginConfig, ParsedMapPluginConfig>(
     position: (position, { defValue }) => {
       return utils.cleanCssPosition(position, { allowCenter: false, cssOrder: true }) || defValue;
     },
-    rotation: rotation => utils.parseAngle(rotation),
-    coneColor: coneColor => (coneColor ? new Color(coneColor).getStyle() : null), // must be in rgb format
-    defaultZoom: defaultZoom => Math.log(defaultZoom / 100),
-    maxZoom: maxZoom => Math.log(maxZoom / 100),
-    minZoom: minZoom => Math.log(minZoom / 100),
+    rotation: (rotation) => utils.parseAngle(rotation),
+    coneColor: (coneColor) => (coneColor ? new Color(coneColor).getStyle() : null), // must be in rgb format
+    defaultZoom: (defaultZoom) => Math.log(defaultZoom / 100),
+    maxZoom: (maxZoom) => Math.log(maxZoom / 100),
+    minZoom: (minZoom) => Math.log(minZoom / 100),
     buttons: (buttons, { defValue }) => ({ ...defValue, ...buttons }),
   },
 );
@@ -93,8 +93,8 @@ export class MapPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override init() {
     super.init();
 
@@ -114,8 +114,8 @@ export class MapPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override destroy() {
     this.viewer.removeEventListener(events.PositionUpdatedEvent.type, this);
     this.viewer.removeEventListener(events.ZoomUpdatedEvent.type, this);
@@ -131,8 +131,8 @@ export class MapPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     switch (e.type) {
       case events.ReadyEvent.type:
@@ -169,29 +169,29 @@ export class MapPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Hides the map
-     */
+   * Hides the map
+   */
   hide() {
     this.component.hide();
   }
 
   /**
-     * Shows the map
-     */
+   * Shows the map
+   */
   show() {
     this.component.show();
   }
 
   /**
-     * Changes the current zoom level
-     */
+   * Changes the current zoom level
+   */
   setZoom(level: number) {
     this.component.setZoom(Math.log(level / 100));
   }
 
   /**
-     * Closes the map
-     */
+   * Closes the map
+   */
   close() {
     if (!this.component.collapsed) {
       this.component.toggleCollapse();
@@ -199,8 +199,8 @@ export class MapPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Open the map
-     */
+   * Open the map
+   */
   open() {
     if (this.component.collapsed) {
       this.component.toggleCollapse();
@@ -208,8 +208,8 @@ export class MapPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Minimizes the map
-     */
+   * Minimizes the map
+   */
   minimize() {
     if (this.component.maximized) {
       this.component.toggleMaximized();
@@ -217,8 +217,8 @@ export class MapPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Maximizes the map
-     */
+   * Maximizes the map
+   */
   maximize() {
     if (!this.component.maximized) {
       this.component.toggleMaximized();
@@ -226,10 +226,10 @@ export class MapPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Changes the image of the map
-     * @param rotation Also change the image rotation
-     * @param center Also change the position on the map
-     */
+   * Changes the image of the map
+   * @param rotation Also change the image rotation
+   * @param center Also change the position on the map
+   */
   setImage(url: string, center?: Point, rotation?: string | number) {
     if (!utils.isNil(rotation)) {
       this.config.rotation = utils.parseAngle(rotation);
@@ -241,8 +241,8 @@ export class MapPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Changes the position on the map
-     */
+   * Changes the position on the map
+   */
   setCenter(center: Point, resetView = true) {
     const previousCenter = this.config.center;
     this.config.center = center;
@@ -257,8 +257,8 @@ export class MapPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Changes the hotspots on the map
-     */
+   * Changes the hotspots on the map
+   */
   setHotspots(hotspots: MapHotspot[] | null, render = true) {
     const ids: string[] = [];
     let i = 1;
@@ -281,22 +281,22 @@ export class MapPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Removes all hotspots
-     */
+   * Removes all hotspots
+   */
   clearHotspots() {
     this.setHotspots(null);
   }
 
   /**
-     * Changes the highlighted hotspot
-     */
+   * Changes the highlighted hotspot
+   */
   setActiveHotspot(hotspotId: string | null) {
     this.component.setActiveHotspot(hotspotId);
   }
 
   private __markersToHotspots(markers: Marker[]): MapHotspot[] {
     return markers
-      .filter(marker => marker.data?.[MARKER_DATA_KEY])
+      .filter((marker) => marker.data?.[MARKER_DATA_KEY])
       .map((marker) => {
         const hotspot: MapHotspot = {
           ...marker.data[MARKER_DATA_KEY],
@@ -313,6 +313,6 @@ export class MapPlugin extends AbstractConfigurablePlugin<
 
         return hotspot;
       })
-      .filter(h => h);
+      .filter((h) => h);
   }
 }

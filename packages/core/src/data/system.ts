@@ -9,43 +9,43 @@ const LOCALSTORAGE_TOUCH_SUPPORT = `${VIEWER_DATA}_touchSupport`;
  */
 export const SYSTEM = {
   /**
-     * Indicates if the system data has been loaded
-     */
+   * Indicates if the system data has been loaded
+   */
   loaded: false,
 
   /**
-     * Device screen pixel ratio
-     */
+   * Device screen pixel ratio
+   */
   pixelRatio: 1,
 
   /**
-     * Device supports WebGL
-     */
+   * Device supports WebGL
+   */
   isWebGLSupported: false,
 
   /**
-     * Maximum WebGL texture width
-     */
+   * Maximum WebGL texture width
+   */
   maxTextureWidth: 0,
 
   /**
-     * Device supports touch events
-     */
+   * Device supports touch events
+   */
   isTouchEnabled: null as ResolvableBoolean,
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   __maxCanvasWidth: null as number | null,
 
   /**
-     * If the current device is an iPhone
-     */
+   * If the current device is an iPhone
+   */
   isIphone: false,
 
   /**
-     * Maximum canvas width
-     */
+   * Maximum canvas width
+   */
   get maxCanvasWidth(): number {
     if (this.__maxCanvasWidth === null) {
       this.__maxCanvasWidth = getMaxCanvasWidth(this.maxTextureWidth);
@@ -54,9 +54,9 @@ export const SYSTEM = {
   },
 
   /**
-     * Loads the system if not already loaded
-     * @internal
-     */
+   * Loads the system if not already loaded
+   * @internal
+   */
   load() {
     if (!this.loaded) {
       const ctx = getWebGLCtx();

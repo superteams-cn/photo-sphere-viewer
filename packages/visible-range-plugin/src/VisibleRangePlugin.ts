@@ -44,8 +44,8 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override init() {
     super.init();
 
@@ -62,8 +62,8 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override destroy() {
     this.viewer.removeEventListener(events.PanoramaLoadedEvent.type, this);
     this.viewer.removeEventListener(events.PositionUpdatedEvent.type, this);
@@ -75,8 +75,8 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     switch (e.type) {
       case events.PanoramaLoadedEvent.type:
@@ -105,8 +105,8 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
         if ((sidesReached.left || sidesReached.right) && this.autorotate?.isEnabled()) {
           this.__reverseAutorotate(sidesReached.left, sidesReached.right);
         } else if (
-          Math.abs(currentPosition.yaw - rangedPosition.yaw) > EPS
-          || Math.abs(currentPosition.pitch - rangedPosition.pitch) > EPS
+          Math.abs(currentPosition.yaw - rangedPosition.yaw) > EPS ||
+          Math.abs(currentPosition.pitch - rangedPosition.pitch) > EPS
         ) {
           this.viewer.dynamics.position.setValue(rangedPosition);
         }
@@ -118,8 +118,8 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
         const { rangedPosition } = this.__applyRanges(currentPosition);
 
         if (
-          Math.abs(currentPosition.yaw - rangedPosition.yaw) > EPS
-          || Math.abs(currentPosition.pitch - rangedPosition.pitch) > EPS
+          Math.abs(currentPosition.yaw - rangedPosition.yaw) > EPS ||
+          Math.abs(currentPosition.pitch - rangedPosition.pitch) > EPS
         ) {
           this.viewer.dynamics.position.setValue(rangedPosition);
         }
@@ -129,8 +129,8 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Changes the vertical range
-     */
+   * Changes the vertical range
+   */
   setVerticalRange(range: Range | null) {
     // range must have two values
     if (range && range.length !== 2) {
@@ -140,7 +140,7 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
 
     // vertical range is between -PI/2 and PI/2
     if (range) {
-      this.config.verticalRange = range.map(angle => utils.parseAngle(angle, true)) as any;
+      this.config.verticalRange = range.map((angle) => utils.parseAngle(angle, true)) as any;
 
       if (this.config.verticalRange[0] > this.config.verticalRange[1]) {
         utils.logWarn('vertical range values must be ordered');
@@ -156,8 +156,8 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Changes the horizontal range
-     */
+   * Changes the horizontal range
+   */
   setHorizontalRange(range: Range | null) {
     // horizontal range must have two values
     if (range && range.length !== 2) {
@@ -167,7 +167,7 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
 
     // horizontal range is between 0 and 2*PI
     if (range) {
-      this.config.horizontalRange = range.map(angle => utils.parseAngle(angle)) as any;
+      this.config.horizontalRange = range.map((angle) => utils.parseAngle(angle)) as any;
 
       if (this.viewer.state.ready) {
         this.__moveToRange();
@@ -178,8 +178,8 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Changes the ranges according the current panorama cropping data
-     */
+   * Changes the ranges according the current panorama cropping data
+   */
   setRangesFromPanoData() {
     const panoData = this.viewer.state.textureData.panoData as PanoData;
     if (panoData?.isEquirectangular) {
@@ -189,8 +189,8 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Gets the vertical range defined by the viewer's panoData
-     */
+   * Gets the vertical range defined by the viewer's panoData
+   */
   private __getPanoVerticalRange(p: PanoData): Range {
     if (p.croppedHeight === p.fullHeight) {
       return null;
@@ -201,8 +201,8 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Gets the horizontal range defined by the viewer's panoData
-     */
+   * Gets the horizontal range defined by the viewer's panoData
+   */
   private __getPanoHorizontalRange(p: PanoData): Range {
     if (p.croppedWidth === p.fullWidth) {
       return null;
@@ -213,15 +213,15 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Immediately moves the viewer to respect the ranges
-     */
+   * Immediately moves the viewer to respect the ranges
+   */
   private __moveToRange() {
     this.viewer.rotate(this.viewer.getPosition());
   }
 
   /**
-     * Apply "horizontalRange" and "verticalRange"
-     */
+   * Apply "horizontalRange" and "verticalRange"
+   */
   private __applyRanges(
     position: Position = this.viewer.getPosition(),
     zoomLevel: number = this.viewer.getZoomLevel(),
@@ -294,14 +294,11 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Reverses autorotate direction with smooth transition
-     */
+   * Reverses autorotate direction with smooth transition
+   */
   private __reverseAutorotate(left: boolean, right: boolean) {
     // reverse already ongoing
-    if (
-      (left && this.autorotate.config.autorotateSpeed > 0)
-      || (right && this.autorotate.config.autorotateSpeed < 0)
-    ) {
+    if ((left && this.autorotate.config.autorotateSpeed > 0) || (right && this.autorotate.config.autorotateSpeed < 0)) {
       return;
     }
 

@@ -10,31 +10,31 @@ The previous `photo-sphere-viewer` package has been splitted in to multiple pack
 
 Each package contains the following files :
 
--   **index.cjs** : CJS bundle
--   **index.module.js** : ESM bundle
--   **index.d.ts** : TypeScript declaration
--   **index.css** (optional) : stylesheet
--   **index.scss** (optional) : SASS source
+- **index.cjs** : CJS bundle
+- **index.module.js** : ESM bundle
+- **index.d.ts** : TypeScript declaration
+- **index.css** (optional) : stylesheet
+- **index.scss** (optional) : SASS source
 
 Here is the full list of packages you might need :
 
--   @photo-sphere-viewer/core
--   @photo-sphere-viewer/cubemap-adapter
--   @photo-sphere-viewer/cubemap-tiles-adapter
--   @photo-sphere-viewer/cubemap-video-adapter
--   @photo-sphere-viewer/equirectangular-tiles-adapter
--   @photo-sphere-viewer/equirectangular-video-adapter
--   @photo-sphere-viewer/autorotate-plugin
--   @photo-sphere-viewer/compass-plugin
--   @photo-sphere-viewer/gallery-plugin
--   @photo-sphere-viewer/gyroscope-plugin
--   @photo-sphere-viewer/markers-plugin
--   @photo-sphere-viewer/resolution-plugin
--   @photo-sphere-viewer/settings-plugin
--   @photo-sphere-viewer/stereo-plugin
--   @photo-sphere-viewer/video-plugin
--   @photo-sphere-viewer/virtual-tour-plugin
--   @photo-sphere-viewer/visible-range-plugin
+- @photo-sphere-viewer/core
+- @photo-sphere-viewer/cubemap-adapter
+- @photo-sphere-viewer/cubemap-tiles-adapter
+- @photo-sphere-viewer/cubemap-video-adapter
+- @photo-sphere-viewer/equirectangular-tiles-adapter
+- @photo-sphere-viewer/equirectangular-video-adapter
+- @photo-sphere-viewer/autorotate-plugin
+- @photo-sphere-viewer/compass-plugin
+- @photo-sphere-viewer/gallery-plugin
+- @photo-sphere-viewer/gyroscope-plugin
+- @photo-sphere-viewer/markers-plugin
+- @photo-sphere-viewer/resolution-plugin
+- @photo-sphere-viewer/settings-plugin
+- @photo-sphere-viewer/stereo-plugin
+- @photo-sphere-viewer/video-plugin
+- @photo-sphere-viewer/virtual-tour-plugin
+- @photo-sphere-viewer/visible-range-plugin
 
 ## Options
 
@@ -42,22 +42,22 @@ Here is the full list of packages you might need :
 
 Photo Sphere Viewer uses two coordinates systems : spherical (longitude + latitude) and pixels on the source image (x + y). Theses options have been renamed to avoid confusion with GPS system.
 
--   `longitude` → `yaw`
--   `latitude` → `pitch`
--   `x` → `textureX`
--   `y` → `textureY`
+- `longitude` → `yaw`
+- `latitude` → `pitch`
+- `x` → `textureX`
+- `y` → `textureY`
 
 ### Renamed options
 
--   `defaultLong` → `defaultYaw`
--   `defaultLat` → `defaultPitch`
+- `defaultLong` → `defaultYaw`
+- `defaultLat` → `defaultPitch`
 
 ### Renamed markers
 
--   `polygonRad` → `polygon`
--   `polygonPx` → `polygonPixels`
--   `polylineRad` → `polyline`
--   `polylinePx` → `polylinePixels`
+- `polygonRad` → `polygon`
+- `polygonPx` → `polygonPixels`
+- `polylineRad` → `polyline`
+- `polylinePx` → `polylinePixels`
 
 ## Automatic rotation
 
@@ -75,7 +75,7 @@ This means you will have to update all your usage of `on()`, `off()`, and `once(
 
 ```js
 viewer.on('position-updated', (e, position) => {
-    console.log(position.longitude);
+  console.log(position.longitude);
 });
 
 viewer.off('position-updated');
@@ -87,7 +87,7 @@ viewer.off('position-updated');
 
 ```js
 const handler = ({ position }) => {
-    console.log(position.yaw);
+  console.log(position.yaw);
 };
 
 viewer.addEventListener('position-updated', handler);
@@ -101,7 +101,7 @@ viewer.removeEventListener('position-updated', handler);
 
 ```js
 viewer.once('ready', () => {
-    console.log('viewer is ready!');
+  console.log('viewer is ready!');
 });
 ```
 
@@ -110,9 +110,13 @@ viewer.once('ready', () => {
 ::: tab Once After
 
 ```js
-viewer.addEventListener('ready', () => {
-  console.log('viewer is ready');
-}, { once: true });
+viewer.addEventListener(
+  'ready',
+  () => {
+    console.log('viewer is ready');
+  },
+  { once: true },
+);
 ```
 
 :::
@@ -123,27 +127,27 @@ viewer.addEventListener('ready', () => {
 
 ### Renamed types
 
--   `ViewerOptions` → `ViewerConfig`
--   `ViewerProps` → `ViewerState`
--   `EquirectangularAdapterOptions` → `EquirectangularAdapterConfig`
--   `EquirectangularTilesAdapterOptions` → `EquirectangularTilesAdapterConfig`
--   `EquirectangularVideoAdapterOptions` → `EquirectangularVideoAdapterConfig`
--   `CubemapAdapterOptions` → `CubemapAdapterConfig`
--   `CubemapTilesAdapterOptions` → `CubemapTilesAdapterConfig`
--   `CubemapVideoAdapterOptions` → `CubemapVideoAdapterConfig`
--   `AutorotateKeypointsPluginOptions` → `AutorotatePluginConfig`
--   `CompassPluginOptions` → `CompassPluginConfig`
--   `GalleryPluginOptions` → `GalleryPluginConfig`
--   `GyroscopePluginOptions` → `GyroscopePluginConfig`
--   `MarkersPluginOptions` → `MarkersPluginConfig`
--   `MarkerProperties` → `MarkerConfig`
--   `ResolutionPluginOptions` → `ResolutionPluginConfig`
--   `SettingsPluginOptions` → `SettingsPluginConfig`
--   `VideoPluginOptions` → `VideoPluginConfig`
--   `AutorotateKeypoint` (video plugin) → `VideoKeypoint`
--   `VisibleRangePluginOptions` → `VisibleRangePluginConfig`
+- `ViewerOptions` → `ViewerConfig`
+- `ViewerProps` → `ViewerState`
+- `EquirectangularAdapterOptions` → `EquirectangularAdapterConfig`
+- `EquirectangularTilesAdapterOptions` → `EquirectangularTilesAdapterConfig`
+- `EquirectangularVideoAdapterOptions` → `EquirectangularVideoAdapterConfig`
+- `CubemapAdapterOptions` → `CubemapAdapterConfig`
+- `CubemapTilesAdapterOptions` → `CubemapTilesAdapterConfig`
+- `CubemapVideoAdapterOptions` → `CubemapVideoAdapterConfig`
+- `AutorotateKeypointsPluginOptions` → `AutorotatePluginConfig`
+- `CompassPluginOptions` → `CompassPluginConfig`
+- `GalleryPluginOptions` → `GalleryPluginConfig`
+- `GyroscopePluginOptions` → `GyroscopePluginConfig`
+- `MarkersPluginOptions` → `MarkersPluginConfig`
+- `MarkerProperties` → `MarkerConfig`
+- `ResolutionPluginOptions` → `ResolutionPluginConfig`
+- `SettingsPluginOptions` → `SettingsPluginConfig`
+- `VideoPluginOptions` → `VideoPluginConfig`
+- `AutorotateKeypoint` (video plugin) → `VideoKeypoint`
+- `VisibleRangePluginOptions` → `VisibleRangePluginConfig`
 
 ### Deleted types
 
--   `TooltipRenderer`
--   `CubemapArray`
+- `TooltipRenderer`
+- `CubemapArray`

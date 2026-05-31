@@ -31,7 +31,7 @@ const viewer = new Viewer({
 ```yaml
 title: PSV Cubemap Demo
 packages:
-    - name: cubemap-adapter
+  - name: cubemap-adapter
 ```
 
 <<< ./demos-src/cubemap.js{js:line-numbers}
@@ -51,6 +51,7 @@ When using this adapter, the `panorama` option and the `setPanorama()` method ac
 Each face is in a separate file, all files will be loaded before showing the panorama.
 
 ::: code-group
+
 ```js:line-numbers [array]
 // order is important
 panorama: [
@@ -62,6 +63,7 @@ panorama: [
   'path/to/bottom.jpg',
 ]
 ```
+
 ```js:line-numbers [object]
 panorama: {
   left:   'path/to/left.jpg',
@@ -72,6 +74,7 @@ panorama: {
   bottom: 'path/to/bottom.jpg',
 }
 ```
+
 ```js:line-numbers [object (alt)]
 panorama: {
   type: 'separate',
@@ -80,6 +83,7 @@ panorama: {
   flipTopBottom: false,
 }
 ```
+
 :::
 
 ::: tip Partial cubemap

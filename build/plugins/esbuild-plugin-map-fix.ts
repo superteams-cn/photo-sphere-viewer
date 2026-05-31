@@ -10,7 +10,7 @@ export function mapFixPlugin(): Plugin {
     setup(build) {
       build.onEnd((result) => {
         ['index.css.map', 'index.cjs.map', 'index.module.js.map'].forEach((filename) => {
-          const mapFile = result.outputFiles.find(f => f.path.endsWith(filename));
+          const mapFile = result.outputFiles.find((f) => f.path.endsWith(filename));
           if (!mapFile) {
             return;
           }

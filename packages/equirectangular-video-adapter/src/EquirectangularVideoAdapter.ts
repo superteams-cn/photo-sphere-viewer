@@ -1,4 +1,11 @@
-import type { AdapterConstructor, PanoData, PanoramaPosition, Position, TextureData, Viewer } from '@photo-sphere-viewer/core';
+import type {
+  AdapterConstructor,
+  PanoData,
+  PanoramaPosition,
+  Position,
+  TextureData,
+  Viewer,
+} from '@photo-sphere-viewer/core';
 import { EquirectangularAdapter, utils } from '@photo-sphere-viewer/core';
 import { Mesh, MeshBasicMaterial, SphereGeometry, VideoTexture } from 'three';
 import { AbstractVideoAdapter } from '../../shared/AbstractVideoAdapter';

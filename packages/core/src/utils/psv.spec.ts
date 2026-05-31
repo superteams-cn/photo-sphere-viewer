@@ -1,6 +1,16 @@
 import assert from 'assert';
 import { PanoData } from '../model';
-import { cleanCssPosition, getConfigParser, getXMPValue, isExtendedPosition, mergePanoData, parseAngle, parsePoint, parseSpeed, speedToDuration } from './psv';
+import {
+  cleanCssPosition,
+  getConfigParser,
+  getXMPValue,
+  isExtendedPosition,
+  mergePanoData,
+  parseAngle,
+  parsePoint,
+  parseSpeed,
+  speedToDuration,
+} from './psv';
 
 describe('utils:psv:isExtendedPosition', () => {
   it('should pass', () => {
@@ -195,7 +205,7 @@ describe('utils:psv:parsePoint', () => {
   it('should fallback on parse fail', () => {
     const values: Record<string, { x: number; y: number }> = {
       '': { x: 0.5, y: 0.5 },
-      'crap': { x: 0.5, y: 0.5 },
+      crap: { x: 0.5, y: 0.5 },
       'foo bar': { x: 0.5, y: 0.5 },
       'foo 50%': { x: 0.5, y: 0.5 },
       '%': { x: 0.5, y: 0.5 },
@@ -374,7 +384,10 @@ describe('utils:psv:cleanPosition', () => {
 
   it('should allow XY order', () => {
     assert.deepStrictEqual(cleanCssPosition('right top', { allowCenter: true, cssOrder: false }), ['right', 'top']);
-    assert.deepStrictEqual(cleanCssPosition(['top', 'right'], { allowCenter: true, cssOrder: false }), ['top', 'right']);
+    assert.deepStrictEqual(cleanCssPosition(['top', 'right'], { allowCenter: true, cssOrder: false }), [
+      'top',
+      'right',
+    ]);
   });
 
   it('should always order with center', () => {
@@ -431,194 +444,232 @@ describe('utils:psv:mergePanoData', () => {
   });
 
   it('should generate default panoData with pose', () => {
-    assertDeepEqualLenient(mergePanoData(2000, 1000, {
-      poseHeading: 90,
-    } as PanoData), {
-      fullWidth: 2000,
-      fullHeight: 1000,
-      croppedWidth: 2000,
-      croppedHeight: 1000,
-      croppedX: 0,
-      croppedY: 0,
-      poseHeading: 90,
-    } satisfies PanoData);
+    assertDeepEqualLenient(
+      mergePanoData(2000, 1000, {
+        poseHeading: 90,
+      } as PanoData),
+      {
+        fullWidth: 2000,
+        fullHeight: 1000,
+        croppedWidth: 2000,
+        croppedHeight: 1000,
+        croppedX: 0,
+        croppedY: 0,
+        poseHeading: 90,
+      } satisfies PanoData,
+    );
   });
 
   it('should keep XMP data', () => {
-    assertDeepEqualLenient(mergePanoData(2000, 500, undefined, {
-      fullWidth: 2000,
-      fullHeight: 1000,
-      croppedWidth: 2000,
-      croppedHeight: 500,
-      croppedX: 0,
-      croppedY: 500,
-    }), {
-      fullWidth: 2000,
-      fullHeight: 1000,
-      croppedWidth: 2000,
-      croppedHeight: 500,
-      croppedX: 0,
-      croppedY: 500,
-    } satisfies PanoData);
+    assertDeepEqualLenient(
+      mergePanoData(2000, 500, undefined, {
+        fullWidth: 2000,
+        fullHeight: 1000,
+        croppedWidth: 2000,
+        croppedHeight: 500,
+        croppedX: 0,
+        croppedY: 500,
+      }),
+      {
+        fullWidth: 2000,
+        fullHeight: 1000,
+        croppedWidth: 2000,
+        croppedHeight: 500,
+        croppedX: 0,
+        croppedY: 500,
+      } satisfies PanoData,
+    );
   });
 
   it('should keep custom data over XMP', () => {
-    assertDeepEqualLenient(mergePanoData(2000, 500, {
-      fullWidth: 3000,
-      fullHeight: 1500,
-      croppedWidth: 2000,
-      croppedHeight: 500,
-      croppedX: 500,
-      croppedY: 1000,
-    }, {
-      fullWidth: 2000,
-      fullHeight: 1000,
-      croppedWidth: 2000,
-      croppedHeight: 500,
-      croppedX: 0,
-      croppedY: 500,
-    }), {
-      fullWidth: 3000,
-      fullHeight: 1500,
-      croppedWidth: 2000,
-      croppedHeight: 500,
-      croppedX: 500,
-      croppedY: 1000,
-    } satisfies PanoData);
+    assertDeepEqualLenient(
+      mergePanoData(
+        2000,
+        500,
+        {
+          fullWidth: 3000,
+          fullHeight: 1500,
+          croppedWidth: 2000,
+          croppedHeight: 500,
+          croppedX: 500,
+          croppedY: 1000,
+        },
+        {
+          fullWidth: 2000,
+          fullHeight: 1000,
+          croppedWidth: 2000,
+          croppedHeight: 500,
+          croppedX: 0,
+          croppedY: 500,
+        },
+      ),
+      {
+        fullWidth: 3000,
+        fullHeight: 1500,
+        croppedWidth: 2000,
+        croppedHeight: 500,
+        croppedX: 500,
+        croppedY: 1000,
+      } satisfies PanoData,
+    );
   });
 
   it('should fix invalid fullWidth/fullHeight', () => {
-    assertDeepEqualLenient(mergePanoData(2000, 500, {
-      fullWidth: 2000,
-      fullHeight: 990, // KO
-      croppedWidth: 2000,
-      croppedHeight: 500,
-      croppedX: 0,
-      croppedY: 500,
-    }), {
-      fullWidth: 2000,
-      fullHeight: 1000,
-      croppedWidth: 2000,
-      croppedHeight: 500,
-      croppedX: 0,
-      croppedY: 500,
-    } satisfies PanoData);
+    assertDeepEqualLenient(
+      mergePanoData(2000, 500, {
+        fullWidth: 2000,
+        fullHeight: 990, // KO
+        croppedWidth: 2000,
+        croppedHeight: 500,
+        croppedX: 0,
+        croppedY: 500,
+      }),
+      {
+        fullWidth: 2000,
+        fullHeight: 1000,
+        croppedWidth: 2000,
+        croppedHeight: 500,
+        croppedX: 0,
+        croppedY: 500,
+      } satisfies PanoData,
+    );
   });
 
   it('should fix invalid croppedY', () => {
-    assertDeepEqualLenient(mergePanoData(2000, 500, {
-      fullWidth: 2000,
-      fullHeight: 1000,
-      croppedWidth: 2000,
-      croppedHeight: 500,
-      croppedX: 0,
-      croppedY: 1000, // KO
-    }), {
-      fullWidth: 2000,
-      fullHeight: 1000,
-      croppedWidth: 2000,
-      croppedHeight: 500,
-      croppedX: 0,
-      croppedY: 500,
-    } satisfies PanoData);
+    assertDeepEqualLenient(
+      mergePanoData(2000, 500, {
+        fullWidth: 2000,
+        fullHeight: 1000,
+        croppedWidth: 2000,
+        croppedHeight: 500,
+        croppedX: 0,
+        croppedY: 1000, // KO
+      }),
+      {
+        fullWidth: 2000,
+        fullHeight: 1000,
+        croppedWidth: 2000,
+        croppedHeight: 500,
+        croppedX: 0,
+        croppedY: 500,
+      } satisfies PanoData,
+    );
 
-    assertDeepEqualLenient(mergePanoData(2000, 500, {
-      fullWidth: 2000,
-      fullHeight: 1000,
-      croppedWidth: 2000,
-      croppedHeight: 500,
-      croppedX: 0,
-      croppedY: -500, // KO
-    }), {
-      fullWidth: 2000,
-      fullHeight: 1000,
-      croppedWidth: 2000,
-      croppedHeight: 500,
-      croppedX: 0,
-      croppedY: 0,
-    } satisfies PanoData);
+    assertDeepEqualLenient(
+      mergePanoData(2000, 500, {
+        fullWidth: 2000,
+        fullHeight: 1000,
+        croppedWidth: 2000,
+        croppedHeight: 500,
+        croppedX: 0,
+        croppedY: -500, // KO
+      }),
+      {
+        fullWidth: 2000,
+        fullHeight: 1000,
+        croppedWidth: 2000,
+        croppedHeight: 500,
+        croppedX: 0,
+        croppedY: 0,
+      } satisfies PanoData,
+    );
   });
 
   it('should fix invalid croppedX', () => {
-    assertDeepEqualLenient(mergePanoData(1000, 1000, {
-      fullWidth: 2000,
-      fullHeight: 1000,
-      croppedWidth: 1000,
-      croppedHeight: 1000,
-      croppedX: 1500, // KO
-      croppedY: 0,
-    }), {
-      fullWidth: 2000,
-      fullHeight: 1000,
-      croppedWidth: 1000,
-      croppedHeight: 1000,
-      croppedX: 1000,
-      croppedY: 0,
-    } satisfies PanoData);
+    assertDeepEqualLenient(
+      mergePanoData(1000, 1000, {
+        fullWidth: 2000,
+        fullHeight: 1000,
+        croppedWidth: 1000,
+        croppedHeight: 1000,
+        croppedX: 1500, // KO
+        croppedY: 0,
+      }),
+      {
+        fullWidth: 2000,
+        fullHeight: 1000,
+        croppedWidth: 1000,
+        croppedHeight: 1000,
+        croppedX: 1000,
+        croppedY: 0,
+      } satisfies PanoData,
+    );
 
-    assertDeepEqualLenient(mergePanoData(1000, 1000, {
-      fullWidth: 2000,
-      fullHeight: 1000,
-      croppedWidth: 1000,
-      croppedHeight: 1000,
-      croppedX: -500, // KO
-      croppedY: 0,
-    }), {
-      fullWidth: 2000,
-      fullHeight: 1000,
-      croppedWidth: 1000,
-      croppedHeight: 1000,
-      croppedX: 0,
-      croppedY: 0,
-    } satisfies PanoData);
+    assertDeepEqualLenient(
+      mergePanoData(1000, 1000, {
+        fullWidth: 2000,
+        fullHeight: 1000,
+        croppedWidth: 1000,
+        croppedHeight: 1000,
+        croppedX: -500, // KO
+        croppedY: 0,
+      }),
+      {
+        fullWidth: 2000,
+        fullHeight: 1000,
+        croppedWidth: 1000,
+        croppedHeight: 1000,
+        croppedX: 0,
+        croppedY: 0,
+      } satisfies PanoData,
+    );
   });
 
   it('should complete missing fullWidth', () => {
-    assertDeepEqualLenient(mergePanoData(1000, 1000, {
-      fullHeight: 1000,
-      croppedX: 500,
-      croppedY: 0,
-    } as PanoData), {
-      fullWidth: 2000,
-      fullHeight: 1000,
-      croppedWidth: 1000,
-      croppedHeight: 1000,
-      croppedX: 500,
-      croppedY: 0,
-    });
+    assertDeepEqualLenient(
+      mergePanoData(1000, 1000, {
+        fullHeight: 1000,
+        croppedX: 500,
+        croppedY: 0,
+      } as PanoData),
+      {
+        fullWidth: 2000,
+        fullHeight: 1000,
+        croppedWidth: 1000,
+        croppedHeight: 1000,
+        croppedX: 500,
+        croppedY: 0,
+      },
+    );
   });
 
   it('should complete missing fullHeight', () => {
-    assertDeepEqualLenient(mergePanoData(1000, 1000, {
-      fullWidth: 2000,
-      croppedX: 500,
-      croppedY: 0,
-    }), {
-      fullWidth: 2000,
-      fullHeight: 1000,
-      croppedWidth: 1000,
-      croppedHeight: 1000,
-      croppedX: 500,
-      croppedY: 0,
-    });
+    assertDeepEqualLenient(
+      mergePanoData(1000, 1000, {
+        fullWidth: 2000,
+        croppedX: 500,
+        croppedY: 0,
+      }),
+      {
+        fullWidth: 2000,
+        fullHeight: 1000,
+        croppedWidth: 1000,
+        croppedHeight: 1000,
+        croppedX: 500,
+        croppedY: 0,
+      },
+    );
   });
 
   it('should resize data if image is smaller', () => {
-    assertDeepEqualLenient(mergePanoData(8192, 4096, {
-      fullWidth: 10000,
-      fullHeight: 5000,
-      croppedWidth: 10000,
-      croppedHeight: 4000,
-      croppedX: 0,
-      croppedY: 500,
-    } satisfies PanoData), {
-      fullWidth: 8192,
-      fullHeight: 4096,
-      croppedWidth: 8192,
-      croppedHeight: 3277,
-      croppedX: 0,
-      croppedY: 410,
-    });
+    assertDeepEqualLenient(
+      mergePanoData(8192, 4096, {
+        fullWidth: 10000,
+        fullHeight: 5000,
+        croppedWidth: 10000,
+        croppedHeight: 4000,
+        croppedX: 0,
+        croppedY: 500,
+      } satisfies PanoData),
+      {
+        fullWidth: 8192,
+        fullHeight: 4096,
+        croppedWidth: 8192,
+        croppedHeight: 3277,
+        croppedX: 0,
+        croppedY: 410,
+      },
+    );
   });
 });
 
@@ -635,21 +686,24 @@ describe('utils:psv:getConfigParser', () => {
     field3: true,
   });
 
-  const parserWithParsers = getConfigParser<Myconfig>({
-    field1: 'default1',
-    field2: 100,
-    field3: true,
-  }, {
-    field1(val, _) {
-      return val.toUpperCase();
+  const parserWithParsers = getConfigParser<Myconfig>(
+    {
+      field1: 'default1',
+      field2: 100,
+      field3: true,
     },
-    field2(val, opts) {
-      return val + opts.defValue;
+    {
+      field1(val, _) {
+        return val.toUpperCase();
+      },
+      field2(val, opts) {
+        return val + opts.defValue;
+      },
+      field3(_, opts) {
+        return opts.rawConfig.field1 === 'foo';
+      },
     },
-    field3(_, opts) {
-      return opts.rawConfig.field1 === 'foo';
-    },
-  });
+  );
 
   it('should expose defaults', () => {
     assert.deepStrictEqual(parser.defaults, {
@@ -668,50 +722,62 @@ describe('utils:psv:getConfigParser', () => {
   });
 
   it('should define values', () => {
-    assert.deepStrictEqual(parser({
-      field1: 'value1',
-      field2: 0,
-      field3: false,
-    }), {
-      field1: 'value1',
-      field2: 0,
-      field3: false,
-    });
+    assert.deepStrictEqual(
+      parser({
+        field1: 'value1',
+        field2: 0,
+        field3: false,
+      }),
+      {
+        field1: 'value1',
+        field2: 0,
+        field3: false,
+      },
+    );
   });
 
   it('should define nulls', () => {
-    assert.deepStrictEqual(parser({
-      field1: null,
-      field2: null,
-      field3: null,
-    }), {
-      field1: null,
-      field2: null,
-      field3: null,
-    });
+    assert.deepStrictEqual(
+      parser({
+        field1: null,
+        field2: null,
+        field3: null,
+      }),
+      {
+        field1: null,
+        field2: null,
+        field3: null,
+      },
+    );
   });
 
   it('should ignore unknown fields', () => {
-    assert.deepStrictEqual(parser({
-      // @ts-ignore
-      newField: 'foobar',
-    }), {
-      field1: 'default1',
-      field2: 100,
-      field3: true,
-    });
+    assert.deepStrictEqual(
+      parser({
+        // @ts-ignore
+        newField: 'foobar',
+      }),
+      {
+        field1: 'default1',
+        field2: 100,
+        field3: true,
+      },
+    );
   });
 
   it('should apply parsers', () => {
-    assert.deepStrictEqual(parserWithParsers({
-      field1: 'foo',
-      field2: 50,
-      field3: false,
-    }), {
-      field1: 'FOO',
-      field2: 150,
-      field3: true,
-    });
+    assert.deepStrictEqual(
+      parserWithParsers({
+        field1: 'foo',
+        field2: 50,
+        field3: false,
+      }),
+      {
+        field1: 'FOO',
+        field2: 150,
+        field3: true,
+      },
+    );
   });
 });
 

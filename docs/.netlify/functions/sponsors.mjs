@@ -81,15 +81,11 @@ query {
         isOneTime: sponsorsTier.isOneTime,
         name: sponsor.name ?? sponsor.login,
         avatar: sponsor.avatarUrl,
-        links: [
-          { icon: 'github', link: sponsor.url },
-        ],
+        links: [{ icon: 'github', link: sponsor.url }],
       };
 
       if (sponsor.websiteUrl) {
-        niceSponsor.links.push(
-          { icon: 'googlehome', link: sponsor.websiteUrl },
-        );
+        niceSponsor.links.push({ icon: 'googlehome', link: sponsor.websiteUrl });
       }
 
       sponsors[sponsor.login] = niceSponsor;

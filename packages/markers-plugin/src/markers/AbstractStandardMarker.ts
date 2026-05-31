@@ -44,13 +44,12 @@ export abstract class AbstractStandardMarker extends AbstractDomMarker {
     position.y -= this.state.size.height * this.state.anchor.y;
 
     // It tests if the point is in the general direction of the camera, then check if it's in the viewport
-    const isVisible = (
-      this.state.positions3D[0].dot(this.viewer.state.direction) > 0
-      && position.x + this.state.size.width >= 0
-      && position.x - this.state.size.width <= this.viewer.state.size.width
-      && position.y + this.state.size.height >= 0
-      && position.y - this.state.size.height <= this.viewer.state.size.height
-    );
+    const isVisible =
+      this.state.positions3D[0].dot(this.viewer.state.direction) > 0 &&
+      position.x + this.state.size.width >= 0 &&
+      position.x - this.state.size.width <= this.viewer.state.size.width &&
+      position.y + this.state.size.height >= 0 &&
+      position.y - this.state.size.height <= this.viewer.state.size.height;
 
     if (isVisible) {
       this.domElement.style.translate = `${position.x}px ${position.y}px 0px`;
@@ -108,17 +107,18 @@ export abstract class AbstractStandardMarker extends AbstractDomMarker {
     }
 
     // set rotation
-    element.style.rotate = this.config.rotation.roll !== 0 ? MathUtils.radToDeg(this.config.rotation.roll) + 'deg' : null;
+    element.style.rotate =
+      this.config.rotation.roll !== 0 ? MathUtils.radToDeg(this.config.rotation.roll) + 'deg' : null;
 
     // set anchor
     element.style.transformOrigin = `${this.state.anchor.x * 100}% ${this.state.anchor.y * 100}%`;
   }
 
   /**
-     * Computes the real size of a marker
-     * @description This is done by removing all it's transformations (if any) and making it visible
-     * before querying its bounding rect
-     */
+   * Computes the real size of a marker
+   * @description This is done by removing all it's transformations (if any) and making it visible
+   * before querying its bounding rect
+   */
   private __updateSize() {
     if (!this.needsUpdateSize) {
       return;
@@ -161,8 +161,8 @@ export abstract class AbstractStandardMarker extends AbstractDomMarker {
   }
 
   /**
-     * Computes and applies the scale to the marker
-     */
+   * Computes and applies the scale to the marker
+   */
   applyScale({
     zoomLevel,
     viewerPosition,

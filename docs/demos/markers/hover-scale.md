@@ -8,8 +8,8 @@ Enable global [mouse hover scaling](../../plugins/markers.md#defaulthoverscale) 
 autoload: true
 title: PSV Marker mouse hover scaling Demo
 packages:
-    - name: markers-plugin
-      style: true
+  - name: markers-plugin
+    style: true
 ```
 
 ```js:line-numbers{13,30,39}

@@ -30,7 +30,11 @@ export class GalleryPlugin extends AbstractConfigurablePlugin<
   static override readonly id = 'gallery';
   static override readonly VERSION = PKG_VERSION;
   static override readonly configParser = getConfig;
-  static override readonly readonlyOptions: Array<keyof GalleryPluginConfig> = ['items', 'navigationArrows', 'visibleOnLoad'];
+  static override readonly readonlyOptions: Array<keyof GalleryPluginConfig> = [
+    'items',
+    'navigationArrows',
+    'visibleOnLoad',
+  ];
 
   private readonly gallery: GalleryComponent;
 
@@ -52,8 +56,8 @@ export class GalleryPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override init() {
     super.init();
 
@@ -66,11 +70,15 @@ export class GalleryPlugin extends AbstractConfigurablePlugin<
     this.viewer.addEventListener(events.ShowPanelEvent.type, this);
 
     if (this.config.visibleOnLoad) {
-      this.viewer.addEventListener(events.ReadyEvent.type, () => {
-        if (this.items.length) {
-          this.show();
-        }
-      }, { once: true });
+      this.viewer.addEventListener(
+        events.ReadyEvent.type,
+        () => {
+          if (this.items.length) {
+            this.show();
+          }
+        },
+        { once: true },
+      );
     }
 
     this.setItems(this.config.items);
@@ -81,8 +89,8 @@ export class GalleryPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override destroy() {
     this.viewer.removeEventListener(events.PanoramaLoadedEvent.type, this);
     this.viewer.removeEventListener(events.ShowPanelEvent.type, this);
@@ -101,11 +109,11 @@ export class GalleryPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     if (e instanceof events.PanoramaLoadedEvent) {
-      const item = this.items.find(i => utils.deepEqual(i.panorama, e.data.panorama));
+      const item = this.items.find((i) => utils.deepEqual(i.panorama, e.data.panorama));
       this.currentId = item?.id;
       this.gallery.setActive(this.currentId);
     } else if (e instanceof events.ShowPanelEvent) {
@@ -114,8 +122,8 @@ export class GalleryPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Shows the gallery
-     */
+   * Shows the gallery
+   */
   show() {
     this.map?.minimize();
     this.plan?.minimize();
@@ -125,16 +133,16 @@ export class GalleryPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Hides the carousem
-     */
+   * Hides the carousem
+   */
   hide() {
     this.dispatchEvent(new HideGalleryEvent());
     return this.gallery.hide();
   }
 
   /**
-     * Hides or shows the gallery
-     */
+   * Hides or shows the gallery
+   */
   toggle() {
     if (this.gallery.isVisible()) {
       this.hide();
@@ -148,11 +156,11 @@ export class GalleryPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Sets the list of items
-     * @param items
-     * @param [handler] function that will be called when an item is clicked instead of the default behavior
-     * @throws {@link PSVError} if the configuration is invalid
-     */
+   * Sets the list of items
+   * @param items
+   * @param [handler] function that will be called when an item is clicked instead of the default behavior
+   * @throws {@link PSVError} if the configuration is invalid
+   */
   setItems(items: GalleryItem[] | null, handler?: (id: GalleryItem['id']) => void) {
     if (!items) {
       items = [];
@@ -168,7 +176,7 @@ export class GalleryPlugin extends AbstractConfigurablePlugin<
     }
 
     this.handler = handler;
-    this.items = items.map(item => ({
+    this.items = items.map((item) => ({
       ...item,
       id: `${item.id}`,
     }));
@@ -176,7 +184,7 @@ export class GalleryPlugin extends AbstractConfigurablePlugin<
     this.gallery.setItems(this.items);
 
     if (this.currentId) {
-      const item = this.items.find(i => i.id === this.currentId);
+      const item = this.items.find((i) => i.id === this.currentId);
       this.currentId = item?.id;
       this.gallery.setActive(this.currentId);
     }
@@ -189,8 +197,8 @@ export class GalleryPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   applyItem(id: GalleryItem['id']) {
     if (id === this.currentId) {
       return;
@@ -199,7 +207,7 @@ export class GalleryPlugin extends AbstractConfigurablePlugin<
     if (this.handler) {
       this.handler(id);
     } else {
-      const item = this.items.find(i => i.id === id);
+      const item = this.items.find((i) => i.id === id);
       this.viewer.setPanorama(item.panorama, {
         caption: item.name,
         ...item.options,

@@ -27,13 +27,13 @@ title: PSV Tooltip Demo
 
 Create a tooltip.
 
-| option | type |   |
-| ------ | ---- | - |
-| `content` (required)  | `string` | HTML content of the tooltip. |
-| `top` & `left` (required) | `number` | Pixel coordinates of the tooltip relative to the top-left corner of the viewer. |
+| option                            | type     |                                                                                                                                      |
+| --------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `content` (required)              | `string` | HTML content of the tooltip.                                                                                                         |
+| `top` & `left` (required)         | `number` | Pixel coordinates of the tooltip relative to the top-left corner of the viewer.                                                      |
 | `position` (default `top center`) | `string` | Tooltip position toward it's arrow tip. Accepted values are combinations of `top`, `center`, `bottom` and `left`, `center`, `right`. |
-| `className` | `string` | Additional CSS class added to the tooltip. |
-| `data` | `any` | User data associated to the tooltip (useful for events). |
+| `className`                       | `string` | Additional CSS class added to the tooltip.                                                                                           |
+| `data`                            | `any`    | User data associated to the tooltip (useful for events).                                                                             |
 
 _**Note:** the content is rendered as HTML. If your content may include untrusted input it should be sanitized before being passed to `content`._
 

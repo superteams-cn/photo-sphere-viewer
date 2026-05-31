@@ -31,9 +31,9 @@ stdin.on('end', () => {
 ${log
   .trim()
   .split('\n')
-  .map(line => line.trim())
-  .filter(line => !line.startsWith('chore') && !line.startsWith('doc'))
-  .map(line => `- ${line}`)
+  .map((line) => line.trim())
+  .filter((line) => !line.startsWith('chore') && !line.startsWith('doc'))
+  .map((line) => `- ${line}`)
   .join('\n')}`;
 
   process.stdout.write(content);

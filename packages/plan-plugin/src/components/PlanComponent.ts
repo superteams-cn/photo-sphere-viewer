@@ -23,11 +23,14 @@ export class PlanComponent extends AbstractComponent {
 
     layers: {} as Record<string, Layer>,
     pinMarker: null as Marker,
-    hotspots: {} as Record<string, {
-      hotspot: PlanHotspot;
-      marker: Marker;
-      isMarker: boolean;
-    }>,
+    hotspots: {} as Record<
+      string,
+      {
+        hotspot: PlanHotspot;
+        marker: Marker;
+        isMarker: boolean;
+      }
+    >,
     hotspotId: null as string,
 
     forceRender: false,
@@ -178,26 +181,29 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-     * Applies default configuration
-     */
+   * Applies default configuration
+   */
   private __configureLeaflet() {
-    this.state.layers = this.config.layers.reduce((acc, layer, i) => {
-      if (!layer.name) {
-        layer.name = `Layer ${i + 1}`;
-      }
-
-      if (layer.urlTemplate) {
-        acc[layer.name] = new TileLayer(layer.urlTemplate, { attribution: layer.attribution });
-      } else if (layer.layer) {
-        if (layer.attribution) {
-          layer.layer.options.attribution = layer.attribution;
+    this.state.layers = this.config.layers.reduce(
+      (acc, layer, i) => {
+        if (!layer.name) {
+          layer.name = `Layer ${i + 1}`;
         }
-        acc[layer.name] = layer.layer;
-      } else {
-        utils.logWarn(`Layer #${i} is missing "urlTemplate" or "layer" property.`);
-      }
-      return acc;
-    }, {} as Record<string, Layer>);
+
+        if (layer.urlTemplate) {
+          acc[layer.name] = new TileLayer(layer.urlTemplate, { attribution: layer.attribution });
+        } else if (layer.layer) {
+          if (layer.attribution) {
+            layer.layer.options.attribution = layer.attribution;
+          }
+          acc[layer.name] = layer.layer;
+        } else {
+          utils.logWarn(`Layer #${i} is missing "urlTemplate" or "layer" property.`);
+        }
+        return acc;
+      },
+      {} as Record<string, Layer>,
+    );
 
     if (!Object.values(this.state.layers).length) {
       utils.logWarn(`No layer configured, fallback to OSM.`);
@@ -234,8 +240,8 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-     * Force re-creation of the central pin
-     */
+   * Force re-creation of the central pin
+   */
   updatePin() {
     if (this.state.pinMarker) {
       this.state.pinMarker.remove();
@@ -245,11 +251,19 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-     * Force re-creation of hotspots
-     */
+   * Force re-creation of hotspots
+   */
   updateSpots() {
-    this.setHotspots(Object.values(this.state.hotspots).filter(({ isMarker }) => !isMarker).map(({ hotspot }) => hotspot));
-    this.setMarkers(Object.values(this.state.hotspots).filter(({ isMarker }) => isMarker).map(({ hotspot }) => hotspot));
+    this.setHotspots(
+      Object.values(this.state.hotspots)
+        .filter(({ isMarker }) => !isMarker)
+        .map(({ hotspot }) => hotspot),
+    );
+    this.setMarkers(
+      Object.values(this.state.hotspots)
+        .filter(({ isMarker }) => isMarker)
+        .map(({ hotspot }) => hotspot),
+    );
   }
 
   override isVisible(): boolean {
@@ -267,8 +281,8 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-     * Rotates the central pin
-     */
+   * Rotates the central pin
+   */
   updateBearing(position: Position = this.viewer.getPosition()) {
     if (this.state.pinMarker) {
       const elt = this.state.pinMarker.getElement().firstElementChild as HTMLElement;
@@ -277,8 +291,8 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-     * Changes the base layer
-     */
+   * Changes the base layer
+   */
   setLayer(name: string) {
     Object.values(this.state.layers).forEach((layer) => {
       if (this.map.hasLayer(layer)) {
@@ -290,15 +304,15 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-     * Resets the map position and zoom level
-     */
+   * Resets the map position and zoom level
+   */
   reset() {
     this.map?.setView(gpsToLeaflet(this.config.coordinates), this.config.defaultZoom);
   }
 
   /**
-     * Moves the position pin and resets the map position
-     */
+   * Moves the position pin and resets the map position
+   */
   recenter() {
     const pos = gpsToLeaflet(this.config.coordinates);
 
@@ -323,8 +337,8 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-     * Switch collapsed mode
-     */
+   * Switch collapsed mode
+   */
   toggleCollapse() {
     if (this.state.maximized) {
       this.toggleMaximized(false);
@@ -345,8 +359,8 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-     * Switch maximized mode
-     */
+   * Switch maximized mode
+   */
   toggleMaximized(dispatchMinimizeEvent = true) {
     if (this.state.collapsed) {
       return;
@@ -377,22 +391,22 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-     * Changes the zoom level
-     */
+   * Changes the zoom level
+   */
   zoom(d: number) {
     this.map.setZoom(d);
   }
 
   /**
-     * Updates the markers
-     */
+   * Updates the markers
+   */
   setMarkers(markers: PlanHotspot[]) {
     this.__setHotspots(markers, true);
   }
 
   /**
-     * Changes the highlighted hotspot
-     */
+   * Changes the highlighted hotspot
+   */
   setActiveHotspot(hotspotId: string) {
     if (this.state.hotspotId) {
       this.__applyStyle(this.state.hotspotId, false);
@@ -406,8 +420,8 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-     * Changes the hotspots
-     */
+   * Changes the hotspots
+   */
   setHotspots(hotspots: PlanHotspot[]) {
     this.__setHotspots(hotspots, false);
   }
@@ -458,8 +472,8 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-     * Updates the style of a map marker
-     */
+   * Updates the style of a map marker
+   */
   private __applyStyle(hotspotId: string, hover: boolean) {
     const hotspot = this.state.hotspots[hotspotId]?.hotspot;
     const element = this.state.hotspots[hotspotId]?.marker.getElement();
@@ -472,8 +486,8 @@ export class PlanComponent extends AbstractComponent {
 
     element.style.width = style.size + 'px';
     element.style.height = style.size + 'px';
-    element.style.marginTop = (-style.size / 2) + 'px';
-    element.style.marginLeft = (-style.size / 2) + 'px';
+    element.style.marginTop = -style.size / 2 + 'px';
+    element.style.marginLeft = -style.size / 2 + 'px';
 
     if (!style.image) {
       element.style.backgroundColor = style.color;
@@ -486,8 +500,8 @@ export class PlanComponent extends AbstractComponent {
   }
 
   /**
-     * Dispatch event when a hotspot is clicked
-     */
+   * Dispatch event when a hotspot is clicked
+   */
   private __clickHotspot(hotspotId: string) {
     this.plugin.dispatchEvent(new SelectHotspot(hotspotId));
 
@@ -505,7 +519,8 @@ export class PlanComponent extends AbstractComponent {
     if (!visible) {
       this.container.style.marginBottom = '';
     } else {
-      this.container.style.marginBottom = (this.viewer.container.querySelector<HTMLElement>('.psv-gallery').offsetHeight + 10) + 'px';
+      this.container.style.marginBottom =
+        this.viewer.container.querySelector<HTMLElement>('.psv-gallery').offsetHeight + 10 + 'px';
     }
   }
 

@@ -26,7 +26,7 @@ You can also [download the latest release](https://github.com/mistic100/Photo-Sp
 
 ## Dependencies
 
--   [Three.js](https://threejs.org)
+- [Three.js](https://threejs.org)
 
 ## Your first viewer
 

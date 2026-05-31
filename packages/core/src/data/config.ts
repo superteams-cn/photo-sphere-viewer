@@ -46,14 +46,7 @@ export const DEFAULTS: Required<ParsedViewerConfig> = {
   },
   rendererParameters: { alpha: true, antialias: true },
   withCredentials: () => false,
-  navbar: [
-    'zoom',
-    'move',
-    'download',
-    'description',
-    'caption',
-    'fullscreen',
-  ],
+  navbar: ['zoom', 'move', 'download', 'description', 'caption', 'fullscreen'],
   lang: {
     zoom: 'Zoom',
     zoomOut: 'Zoom out',

@@ -15,13 +15,13 @@ export abstract class AbstractDatasource {
   destroy() {}
 
   /**
-     * Loads a node
-     */
+   * Loads a node
+   */
   abstract loadNode(nodeId: string): Promise<VirtualTourNode>;
 
   /**
-     * Checks the configuration of a node
-     */
+   * Checks the configuration of a node
+   */
   protected checkNode(node: VirtualTourNode) {
     if (!node.id) {
       throw new PSVError('No id given for node');
@@ -32,7 +32,7 @@ export abstract class AbstractDatasource {
     if (this.plugin.isGps && !(node.gps?.length >= 2)) {
       throw new PSVError(`No GPS position provided for node ${node.id}`);
     }
-    if (!this.plugin.isGps && node.markers?.some(marker => marker.gps && !marker.position)) {
+    if (!this.plugin.isGps && node.markers?.some((marker) => marker.gps && !marker.position)) {
       throw new PSVError(`Cannot use GPS positioning for markers in manual mode`);
     }
     if (!node.links) {
@@ -42,8 +42,8 @@ export abstract class AbstractDatasource {
   }
 
   /**
-     * Checks the configuration of a link
-     */
+   * Checks the configuration of a link
+   */
   protected checkLink(node: VirtualTourNode, link: VirtualTourLink) {
     if (!link.nodeId) {
       throw new PSVError(`Link of node ${node.id} has no target id`);

@@ -9,14 +9,14 @@ export type AbstractVideoPanorama = {
 
 export type AbstractVideoAdapterConfig = {
   /**
-     * automatically start the video
-     * @default false
-     */
+   * automatically start the video
+   * @default false
+   */
   autoplay?: boolean;
   /**
-     * initially mute the video
-     * @default false
-     */
+   * initially mute the video
+   * @default false
+   */
   muted?: boolean;
 };
 
@@ -70,14 +70,15 @@ export abstract class AbstractVideoAdapter<
       return Promise.reject(new PSVError('Video adapters require VideoPlugin to be loaded too.'));
     }
 
-    const video = panorama.source instanceof HTMLVideoElement
-      ? panorama.source
-      : createVideo({
-          src: panorama.source,
-          withCredentials: this.viewer.config.withCredentials(panorama.source as any),
-          muted: true,
-          autoplay: false,
-        });
+    const video =
+      panorama.source instanceof HTMLVideoElement
+        ? panorama.source
+        : createVideo({
+            src: panorama.source,
+            withCredentials: this.viewer.config.withCredentials(panorama.source as any),
+            muted: true,
+            autoplay: false,
+          });
 
     await this.__videoLoadPromise(video);
 

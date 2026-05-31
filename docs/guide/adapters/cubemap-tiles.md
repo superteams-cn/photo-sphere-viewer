@@ -38,8 +38,8 @@ const viewer = new Viewer({
 ```yaml
 title: PSV Cubemap Tiles Demo
 packages:
-    - name: cubemap-adapter
-    - name: cubemap-tiles-adapter
+  - name: cubemap-adapter
+  - name: cubemap-tiles-adapter
 ```
 
 <<< ./demos-src/cubemap-tiles.js{js:line-numbers}
@@ -54,22 +54,22 @@ With this adapter, pixel positions require an additional `textureFace` attribute
 
 #### `baseBlur`
 
--   type: `boolean`
--   default: `true`
+- type: `boolean`
+- default: `true`
 
 Applies a blur filter to the base image (option `baseUrl`).
 
 #### `showErrorTile`
 
--   type: `boolean`
--   default: `true`
+- type: `boolean`
+- default: `true`
 
 Shows a warning sign on tiles that cannot be loaded.
 
 #### `antialias`
 
--   type: `boolean`
--   default: `true`
+- type: `boolean`
+- default: `true`
 
 Applies antialiasing to high resolutions tiles.
 
@@ -85,19 +85,19 @@ You may choose to provide a single tiles configuration or multiple configuration
 
 #### `faceSize` (required)
 
--   type: `number`
+- type: `number`
 
 Size in pixel of a face of the cube.
 
 #### `nbTiles` (required)
 
--   type: `number`
+- type: `number`
 
 Number of columns and rows on a face. Each tile must be square. Must be power of two (2, 4, 8, 16) and the maximum value is 16.
 
 #### `tileUrl` (required)
 
--   type: `function: (face, col, row) => string`
+- type: `function: (face, col, row) => string`
 
 Function used to build the URL of a tile. `face` will be one of `'left'|'front'|'right'|'back'|'top'|'bottom'`.
 If the function returns `null` the corresponding tile will not be loaded.
@@ -108,7 +108,7 @@ See the [cubemap adapter configuration](./cubemap.md#panorama-options).
 
 #### `baseUrl` (recommended)
 
--   type: `any`
+- type: `any`
 
 URL of a low resolution complete panorama image to display while the tiles are loading. It accepts the same format as the standard [cubemap adapter](./cubemap.md#panorama-options).
 
@@ -118,7 +118,7 @@ URL of a low resolution complete panorama image to display while the tiles are l
 
 #### `levels` (required)
 
--   type: `array`
+- type: `array`
 
 Array of available tiles configurations. Each element is an object with `faceSize` and `nbTiles` (see "Single level"). The best size will be choosen depending on the current zoom level and viewer size.
 
@@ -141,7 +141,7 @@ levels: [
 
 #### `tileUrl` (required)
 
--   type: `function: (face, col, row, level) => string`
+- type: `function: (face, col, row, level) => string`
 
 Function used to build the URL of a tile. `face` will be one of `'left'|'front'|'right'|'back'|'top'|'bottom'`.
 If the function returns `null` the corresponding tile will not be loaded.
@@ -152,7 +152,7 @@ See the [cubemap adapter configuration](./cubemap.md#panorama-options).
 
 #### `baseUrl` (recommended)
 
--   type: `any`
+- type: `any`
 
 URL of a low resolution complete panorama image to display while the tiles are loading. It accepts the same format as the standard [cubemap adapter](./cubemap.md#panorama-options).
 

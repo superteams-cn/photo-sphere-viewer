@@ -49,8 +49,8 @@ const viewer = new Viewer({
 ```yaml
 title: PSV Gallery Demo
 packages:
-    - name: gallery-plugin
-      style: true
+  - name: gallery-plugin
+    style: true
 ```
 
 <<< ./demos-src/gallery.js{js:line-numbers}
@@ -61,47 +61,47 @@ packages:
 
 #### `items`
 
--   type: `GalleryItem[]`
--   updatable: no, use `setItems()` method
+- type: `GalleryItem[]`
+- updatable: no, use `setItems()` method
 
 The list of items, see below.
 
 #### `navigationArrows`
 
--   type: `boolean`
--   default: `false`
--   updatable: no
+- type: `boolean`
+- default: `false`
+- updatable: no
 
 Displays navigation arrows on the sides of the gallery.
 
 #### `visibleOnLoad`
 
--   type: `boolean`
--   default: `false`
--   updatable: no
+- type: `boolean`
+- default: `false`
+- updatable: no
 
 Displays the gallery when loading the first panorama. The user will be able to toggle the gallery with the navbar button.
 
 #### `hideOnClick`
 
--   type: `boolean`
--   default: `true`
--   updatable: yes
+- type: `boolean`
+- default: `true`
+- updatable: yes
 
 Hides the gallery when the user clicks on an item (forced to `true` on screens < 500px).
 
 #### `thumbnailSize`
 
--   type: `{ width: number, height: number }`
--   default: `{ width: 200, height: 100 }`
--   updatable: yes
+- type: `{ width: number, height: number }`
+- default: `{ width: 200, height: 100 }`
+- updatable: yes
 
 Size of the thumbnails.
 
 #### `lang`
 
--   type: `object`
--   default:
+- type: `object`
+- default:
 
 ```js
 lang: {
@@ -115,21 +115,21 @@ _Note: this option is not part of the plugin but is merged with the main [`lang`
 
 #### `id` (required)
 
--   type: `number|string`
+- type: `number|string`
 
 Unique identifier of the item.
 
 #### `thumbnail` (recommended)
 
--   type: `string`
--   default: `''`
+- type: `string`
+- default: `''`
 
 URL of the thumbnail.
 
 #### `name`
 
--   type: `string`
--   default: `''`
+- type: `string`
+- default: `''`
 
 Text visible over the thumbnail.
 
@@ -139,8 +139,8 @@ Refer to the main [config page](../guide/config.md#panorama-required).
 
 #### `options`
 
--   type: `PanoramaOptions`
--   default: `null`
+- type: `PanoramaOptions`
+- default: `null`
 
 Any option supported by the [setPanorama()](../guide/methods.md#setpanorama-panorama-options-promise) method.
 
@@ -154,7 +154,7 @@ Changes the list of items.
 
 This plugin adds buttons to the default navbar:
 
--   `gallery` allows to toggle the gallery panel
+- `gallery` allows to toggle the gallery panel
 
 If you use a [custom navbar](../guide/navbar.md) you will need to manually add the buttons to the list.
 

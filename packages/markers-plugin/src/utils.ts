@@ -50,9 +50,7 @@ function getPolygonCoherentPoints(points: Array<[number, number]>) {
  * @internal
  */
 export function getPolygonCenter(polygon: Vector3[]): Vector3 {
-  return polygon
-    .reduce((sum, point) => sum.add(point), new Vector3())
-    .normalize();
+  return polygon.reduce((sum, point) => sum.add(point), new Vector3()).normalize();
 }
 
 /**

@@ -8,8 +8,8 @@ Example usage of `elementLayer` marker to integrate a Youtube video.
 autoload: true
 title: PSV Marker Youtube Demo
 packages:
-    - name: markers-plugin
-      style: true
+  - name: markers-plugin
+    style: true
 ```
 
 ```js:line-numbers{6,7,26}

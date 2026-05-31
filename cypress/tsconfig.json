@@ -1,9 +1,5 @@
 {
-    "compilerOptions": {
-        "types": [
-            "cypress",
-            "node",
-            "cypress-mochawesome-reporter"
-        ]
-    }
+  "compilerOptions": {
+    "types": ["cypress", "node", "cypress-mochawesome-reporter"]
+  }
 }

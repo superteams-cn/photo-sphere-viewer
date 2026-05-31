@@ -13,27 +13,27 @@ export type ButtonConfig = {
   className?: string;
   title?: string;
   /**
-     * if the button has an mouse hover effect
-     * @default false
-     */
+   * if the button has an mouse hover effect
+   * @default false
+   */
   hoverScale?: boolean;
   /**
-     * if the button can be moved to menu when the navbar is too small
-     * @default false
-     */
+   * if the button can be moved to menu when the navbar is too small
+   * @default false
+   */
   collapsable?: boolean;
   /**
-     * if the button is accessible with the keyboard
-     * @default true
-     */
+   * if the button is accessible with the keyboard
+   * @default true
+   */
   tabbable?: boolean;
   /**
-     * icon of the button
-     */
+   * icon of the button
+   */
   icon?: string;
   /**
-     * override icon when the button is active
-     */
+   * override icon when the button is active
+   */
   iconActive?: string;
 };
 
@@ -54,18 +54,18 @@ const getConfig = getConfigParser<ButtonConfig>({
  */
 export abstract class AbstractButton extends AbstractComponent {
   /**
-     * Unique identifier of the button
-     */
+   * Unique identifier of the button
+   */
   static readonly id: string;
 
   /**
-     * Identifier to declare a group of buttons
-     */
+   * Identifier to declare a group of buttons
+   */
   static readonly groupId?: string;
 
   /**
-     * Internal properties
-     */
+   * Internal properties
+   */
   protected override readonly state = {
     visible: true,
     enabled: true,
@@ -140,8 +140,8 @@ export abstract class AbstractButton extends AbstractComponent {
   }
 
   /**
-     * Action when the button is clicked
-     */
+   * Action when the button is clicked
+   */
   abstract onClick(): void;
 
   override show(refresh = true) {
@@ -167,9 +167,9 @@ export abstract class AbstractButton extends AbstractComponent {
   }
 
   /**
-     * Hides/shows the button depending of the result of {@link isSupported}
-     * @internal
-     */
+   * Hides/shows the button depending of the result of {@link isSupported}
+   * @internal
+   */
   checkSupported() {
     resolveBoolean(this.isSupported(), (supported, init) => {
       if (!this.state) {
@@ -185,23 +185,23 @@ export abstract class AbstractButton extends AbstractComponent {
   }
 
   /**
-     * Perform action when the navbar size/content changes
-     * @internal
-     */
+   * Perform action when the navbar size/content changes
+   * @internal
+   */
   autoSize() {
     // nothing
   }
 
   /**
-     * Checks if the button can be displayed
-     */
+   * Checks if the button can be displayed
+   */
   isSupported(): boolean | ResolvableBoolean {
     return true;
   }
 
   /**
-     * Changes the active state of the button
-     */
+   * Changes the active state of the button
+   */
   toggleActive(active = !this.state.active) {
     if (active !== this.state.active) {
       this.state.active = active;
@@ -214,32 +214,32 @@ export abstract class AbstractButton extends AbstractComponent {
   }
 
   /**
-     * Disables the button
-     */
+   * Disables the button
+   */
   disable() {
     this.container.classList.add('psv-button--disabled');
     this.state.enabled = false;
   }
 
   /**
-     * Enables the button
-     */
+   * Enables the button
+   */
   enable() {
     this.container.classList.remove('psv-button--disabled');
     this.state.enabled = true;
   }
 
   /**
-     * Collapses the button in the navbar menu
-     */
+   * Collapses the button in the navbar menu
+   */
   collapse() {
     this.state.collapsed = true;
     this.container.style.display = 'none';
   }
 
   /**
-     * Uncollapses the button from the navbar menu
-     */
+   * Uncollapses the button from the navbar menu
+   */
   uncollapse() {
     this.state.collapsed = false;
     if (this.state.visible) {

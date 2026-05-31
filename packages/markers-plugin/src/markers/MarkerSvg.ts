@@ -97,7 +97,7 @@ export class MarkerSvg extends AbstractStandardMarker {
         };
         break;
 
-            // no default
+      // no default
     }
 
     Object.entries(this.definition).forEach(([prop, value]) => {

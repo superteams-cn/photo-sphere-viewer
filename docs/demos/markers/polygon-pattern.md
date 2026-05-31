@@ -8,8 +8,8 @@ Use custom SVG patterns as polygon `fill`.
 autoload: true
 title: PSV Marker polygon pattern Demo
 packages:
-    - name: markers-plugin
-      style: true
+  - name: markers-plugin
+    style: true
 ```
 
 ::: code-group
@@ -59,18 +59,21 @@ const viewer = new Viewer({
 
 ```html [template.html]
 <svg id="patterns" style="position: absolute; top: -1000px">
-    <defs>
-        <pattern id="dots" x="10" y="10" width="30" height="30" patternUnits="userSpaceOnUse">
-            <circle cx="10" cy="10" r="10" style="stroke: none; fill: rgba(255, 0, 0, 0.6)" />
-        </pattern>
-        <pattern id="image" x="256" y="256" width="512" height="512" patternUnits="userSpaceOnUse">
-            <rect x="0" y="0" width="512" height="512" fill="#6dd0f7" />
-            <image
-                href="https://photo-sphere-viewer-data.netlify.app/assets/cubemap-test/3.png"
-                x="128" y="128" width="256" height="256"
-            />
-        </pattern>
-    </defs>
+  <defs>
+    <pattern id="dots" x="10" y="10" width="30" height="30" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="10" style="stroke: none; fill: rgba(255, 0, 0, 0.6)" />
+    </pattern>
+    <pattern id="image" x="256" y="256" width="512" height="512" patternUnits="userSpaceOnUse">
+      <rect x="0" y="0" width="512" height="512" fill="#6dd0f7" />
+      <image
+        href="https://photo-sphere-viewer-data.netlify.app/assets/cubemap-test/3.png"
+        x="128"
+        y="128"
+        width="256"
+        height="256"
+      />
+    </pattern>
+  </defs>
 </svg>
 ```
 

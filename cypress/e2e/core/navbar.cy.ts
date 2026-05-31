@@ -11,9 +11,7 @@ describe('core: navbar', () => {
   });
 
   it('should have a navbar', () => {
-    cy.get('.psv-navbar')
-      .should('be.visible')
-      .compareScreenshots('base');
+    cy.get('.psv-navbar').should('be.visible').compareScreenshots('base');
   });
 
   it('should have a custom button', () => {
@@ -30,13 +28,15 @@ describe('core: navbar', () => {
   it('should update the caption', () => {
     cy.get('.psv-caption-content').should('have.text', 'Parc national du Mercantour © Damien Sorel');
 
-    callViewer('change caption via options').then(viewer => viewer.setOption('caption', '<strong>Name:</strong> Lorem Ipsum'));
+    callViewer('change caption via options').then((viewer) =>
+      viewer.setOption('caption', '<strong>Name:</strong> Lorem Ipsum'),
+    );
 
     cy.get('.psv-caption-content').should('have.text', 'Name: Lorem Ipsum');
 
     cy.get('.psv-navbar').compareScreenshots('update-caption');
 
-    callNavbar('change caption via API').then(navbar => navbar.setCaption('Loading...'));
+    callNavbar('change caption via API').then((navbar) => navbar.setCaption('Loading...'));
 
     cy.get('.psv-caption-content').should('have.text', 'Loading...');
   });
@@ -54,40 +54,39 @@ describe('core: navbar', () => {
 
     cy.get('.psv-panel').should('not.be.visible');
 
-    callViewer('clear description').then(viewer => viewer.setOption('description', null));
+    callViewer('clear description').then((viewer) => viewer.setOption('description', null));
 
     cy.get('.psv-description-button').should('not.be.visible');
   });
 
-  it('should hide the caption if not enough space', {
-    viewportWidth: 800,
-    viewportHeight: 900,
-  }, () => {
-    callViewer('remove description').then(viewer => viewer.setOption('description', null));
+  it(
+    'should hide the caption if not enough space',
+    {
+      viewportWidth: 800,
+      viewportHeight: 900,
+    },
+    () => {
+      callViewer('remove description').then((viewer) => viewer.setOption('description', null));
 
-    cy.get('.psv-caption-content').should('not.be.visible');
+      cy.get('.psv-caption-content').should('not.be.visible');
 
-    cy.get('.psv-navbar').compareScreenshots('no-caption');
+      cy.get('.psv-navbar').compareScreenshots('no-caption');
 
-    cy.get('.psv-description-button').click();
+      cy.get('.psv-description-button').click();
 
-    cy.get('.psv-notification-content')
-      .should('be.visible')
-      .should('have.text', 'Parc national du Mercantour © Damien Sorel')
-      .compareScreenshots('caption-notification', { errorThreshold: 0.1 });
+      cy.get('.psv-notification-content')
+        .should('be.visible')
+        .should('have.text', 'Parc national du Mercantour © Damien Sorel')
+        .compareScreenshots('caption-notification', { errorThreshold: 0.1 });
 
-    cy.get('.psv-description-button').click();
+      cy.get('.psv-description-button').click();
 
-    cy.get('.psv-notification').should('not.be.visible');
-  });
+      cy.get('.psv-notification').should('not.be.visible');
+    },
+  );
 
   it('should display a menu on small screens', VIEWPORT_MOBILE, () => {
-    [
-      '.psv-caption-content',
-      '.psv-zoom-range',
-      '.psv-download-button',
-      '.custom-button:eq(0)',
-    ].forEach((invisible) => {
+    ['.psv-caption-content', '.psv-zoom-range', '.psv-download-button', '.custom-button:eq(0)'].forEach((invisible) => {
       cy.get(invisible).should('not.be.visible');
     });
 
@@ -161,24 +160,20 @@ describe('core: navbar', () => {
       fullscreen: 'Plein écran',
       myButton: 'Cliquez ici',
     };
-    callViewer('translate to french').then(viewer => viewer.setOption('lang', fr));
+    callViewer('translate to french').then((viewer) => viewer.setOption('lang', fr));
 
     assertTitles(fr);
   });
 
   it('should hide the navbar', () => {
-    callNavbar('hide navbar').then(navbar => navbar.hide());
+    callNavbar('hide navbar').then((navbar) => navbar.hide());
     checkNavbarVisibleApi(false);
-    cy.get('.psv-navbar')
-      .should('not.be.visible')
-      .should('not.have.class', 'psv-navbar--open');
+    cy.get('.psv-navbar').should('not.be.visible').should('not.have.class', 'psv-navbar--open');
     cy.get('.psv-container').should('not.have.class', 'psv--has-navbar');
 
-    callNavbar('show navbar').then(navbar => navbar.show());
+    callNavbar('show navbar').then((navbar) => navbar.show());
     checkNavbarVisibleApi(true);
-    cy.get('.psv-navbar')
-      .should('be.visible')
-      .should('have.class', 'psv-navbar--open');
+    cy.get('.psv-navbar').should('be.visible').should('have.class', 'psv-navbar--open');
     cy.get('.psv-container').should('have.class', 'psv--has-navbar');
   });
 
@@ -193,48 +188,50 @@ describe('core: navbar', () => {
       });
     }
 
-    callViewer('change buttons via options').then(viewer => viewer.setOption('navbar', 'zoom move'));
+    callViewer('change buttons via options').then((viewer) => viewer.setOption('navbar', 'zoom move'));
 
     assertButtons(['Zoom out', 'Zoom in', 'Move left', 'Move right', 'Move up', 'Move down']);
 
     cy.get('.psv-navbar').compareScreenshots('update-buttons');
 
-    callNavbar('change buttons via API').then(navbar => navbar.setButtons(['download', 'fullscreen']));
+    callNavbar('change buttons via API').then((navbar) => navbar.setButtons(['download', 'fullscreen']));
 
     assertButtons(['Download', 'Fullscreen']);
   });
 
   it('should hide a button', () => {
-    callNavbar('hide fullscreen button').then(navbar => navbar.getButton('fullscreen').hide());
+    callNavbar('hide fullscreen button').then((navbar) => navbar.getButton('fullscreen').hide());
 
     cy.get('.psv-fullscreen-button').should('not.be.visible');
 
     cy.get('.psv-navbar').compareScreenshots('hide-button');
 
-    callNavbar('show fullscreen button').then(navbar => navbar.getButton('fullscreen').show());
+    callNavbar('show fullscreen button').then((navbar) => navbar.getButton('fullscreen').show());
 
     cy.get('.psv-fullscreen-button').should('be.visible');
   });
 
   it('should disable a button', () => {
-    callNavbar('disable download button').then(navbar => navbar.getButton('download').disable());
+    callNavbar('disable download button').then((navbar) => navbar.getButton('download').disable());
 
     cy.get('.psv-download-button').should('have.class', 'psv-button--disabled');
 
     cy.get('.psv-navbar').compareScreenshots('disable-button');
 
-    callNavbar('enable download button').then(navbar => navbar.getButton('download').enable());
+    callNavbar('enable download button').then((navbar) => navbar.getButton('download').enable());
 
     cy.get('.psv-download-button').should('not.have.class', 'psv-button--disabled');
   });
 
   it('should display a custom element', () => {
     cy.document().then((document) => {
-      callNavbar('set custom element').then(navbar => navbar.setButtons([
-        {
-          content: document.createElement('custom-navbar-button'),
-        },
-      ]));
+      callNavbar('set custom element').then((navbar) =>
+        navbar.setButtons([
+          {
+            content: document.createElement('custom-navbar-button'),
+          },
+        ]),
+      );
     });
 
     cy.get('.psv-custom-button')
@@ -250,13 +247,12 @@ describe('core: navbar', () => {
   });
 
   function callNavbar(log: string): Cypress.Chainable<Navbar> {
-    return callViewer(log).then(viewer => viewer.navbar);
+    return callViewer(log).then((viewer) => viewer.navbar);
   }
 
   function checkNavbarVisibleApi(visible: boolean) {
-    callNavbar(`check navbar ${visible ? 'visible' : 'not visible'}`)
-      .then((navbar) => {
-        expect(navbar.isVisible()).to.eq(visible);
-      });
+    callNavbar(`check navbar ${visible ? 'visible' : 'not visible'}`).then((navbar) => {
+      expect(navbar.isVisible()).to.eq(visible);
+    });
   }
 });

@@ -50,11 +50,7 @@ export class VolumeButton extends AbstractButton {
       this.handleElt.className = 'psv-video-volume__handle';
       this.range.appendChild(this.handleElt);
 
-      this.slider = new utils.Slider(
-        this.range,
-        utils.SliderDirection.VERTICAL,
-        this.__onSliderUpdate.bind(this),
-      );
+      this.slider = new utils.Slider(this.range, utils.SliderDirection.VERTICAL, this.__onSliderUpdate.bind(this));
 
       this.viewer.addEventListener(events.PanoramaLoadedEvent.type, this);
       this.plugin.addEventListener(PlayPauseEvent.type, this);

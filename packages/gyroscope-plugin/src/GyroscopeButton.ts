@@ -10,8 +10,8 @@ export class GyroscopeButton extends AbstractButton {
   private readonly plugin: GyroscopePlugin;
 
   /**
-     * @param {PSV.components.Navbar} navbar
-     */
+   * @param {PSV.components.Navbar} navbar
+   */
   constructor(navbar: Navbar) {
     super(navbar, {
       className: 'psv-gyroscope-button',
@@ -41,8 +41,8 @@ export class GyroscopeButton extends AbstractButton {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     if (e instanceof GyroscopeUpdatedEvent) {
       this.toggleActive(e.gyroscopeEnabled);
@@ -50,8 +50,8 @@ export class GyroscopeButton extends AbstractButton {
   }
 
   /**
-     * Toggles gyroscope control
-     */
+   * Toggles gyroscope control
+   */
   onClick() {
     this.plugin.toggle();
   }

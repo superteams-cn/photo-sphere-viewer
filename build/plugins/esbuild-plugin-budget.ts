@@ -16,7 +16,7 @@ export function budgetPlugin(budget: string): Plugin {
     setup(build) {
       build.onEnd((result) => {
         ['index.cjs', 'index.module.js'].forEach((filename) => {
-          const file = result.outputFiles.find(f => f.path.endsWith(filename));
+          const file = result.outputFiles.find((f) => f.path.endsWith(filename));
           if (file) {
             if (file.contents.length > maxsize) {
               const size = Math.round(file.contents.length / 1024);

@@ -29,14 +29,14 @@ export function toggleClass(element: Element, className: string, active?: boolea
  * Adds one or several CSS classes to an element
  */
 export function addClasses(element: Element, className: string) {
-  element.classList.add(...className.split(' ').filter(c => !!c));
+  element.classList.add(...className.split(' ').filter((c) => !!c));
 }
 
 /**
  * Removes one or several CSS classes to an element
  */
 export function removeClasses(element: Element, className: string) {
-  element.classList.remove(...className.split(' ').filter(c => !!c));
+  element.classList.remove(...className.split(' ').filter((c) => !!c));
 }
 
 /**
@@ -80,7 +80,7 @@ export function getClosest(el: HTMLElement, selector: string): HTMLElement | nul
  * Returns the first element of the event' composedPath
  */
 export function getEventTarget(e: Event): HTMLElement | null {
-  return e?.composedPath()[0] as HTMLElement || null;
+  return (e?.composedPath()[0] as HTMLElement) || null;
 }
 
 /**
@@ -233,9 +233,5 @@ export function keyPressMatch(e: KeyboardEvent, pattern: string) {
     });
   }
 
-  return shift === e.shiftKey
-    && ctrl === e.ctrlKey
-    && alt === e.altKey
-    && meta === e.metaKey
-    && key === e.key;
+  return shift === e.shiftKey && ctrl === e.ctrlKey && alt === e.altKey && meta === e.metaKey && key === e.key;
 }

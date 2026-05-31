@@ -10,17 +10,17 @@ export abstract class AbstractService {
   protected readonly state: ViewerState;
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   constructor(protected readonly viewer: Viewer) {
     this.config = viewer.config;
     this.state = viewer.state;
   }
 
   /**
-     * Destroys the service
-     * @internal
-     */
+   * Destroys the service
+   * @internal
+   */
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   destroy() {}
 }

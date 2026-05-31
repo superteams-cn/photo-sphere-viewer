@@ -147,7 +147,8 @@
     }
   }
 
-  &--maximized, &--maximized &__container {
+  &--maximized,
+  &--maximized &__container {
     border-radius: 0;
   }
 

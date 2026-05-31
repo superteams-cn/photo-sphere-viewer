@@ -25,7 +25,8 @@ function computeTileConfig(tile: CubemapTileLevel, level: number, data: { CUBE_S
 
 export function getTileConfig(
   panorama: CubemapTilesPanorama | CubemapMultiTilesPanorama,
-  hFov: number, vFov: number,
+  hFov: number,
+  vFov: number,
   viewerSize: Size,
   data: { CUBE_SEGMENTS: number },
 ): CubemapTileConfig {
@@ -37,8 +38,8 @@ export function getTileConfig(
   } else {
     if (viewerSize) {
       level = panorama.levels.findIndex((pLevel) => {
-        const hResolution = pLevel.faceSize * 4 / 360 * hFov;
-        const vResolution = pLevel.faceSize * 2 / 180 * vFov;
+        const hResolution = ((pLevel.faceSize * 4) / 360) * hFov;
+        const vResolution = ((pLevel.faceSize * 2) / 180) * vFov;
         return hResolution >= viewerSize.width && vResolution >= viewerSize.height;
       });
       if (level === -1) {

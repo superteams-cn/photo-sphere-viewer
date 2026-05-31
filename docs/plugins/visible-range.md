@@ -44,7 +44,7 @@ This example is locked between -90° and 90° on the horizontal axis and between
 ```yaml
 title: PSV Visible Range Demo
 packages:
-    - name: visible-range-plugin
+  - name: visible-range-plugin
 ```
 
 <<< ./demos-src/visible-range.js{js:line-numbers}
@@ -60,7 +60,7 @@ This example uses the actual size of a cropped panorama to define the visible ra
 ```yaml
 title: PSV Visible Range Demo
 packages:
-    - name: visible-range-plugin
+  - name: visible-range-plugin
 ```
 
 <<< ./demos-src/visible-range-panodata.js{js:line-numbers}
@@ -71,25 +71,25 @@ packages:
 
 #### `horizontalRange`
 
--   type: `double[]|string[]`
--   default: `null`
--   updatable: no, use `setHorizontalRange()` plugin
+- type: `double[]|string[]`
+- default: `null`
+- updatable: no, use `setHorizontalRange()` plugin
 
 Visible horizontal range as two angles.
 
 #### `verticalRange`
 
--   type: `double[]|string[]`
--   default: `null`
--   updatable: no, use `setVerticalRange()` plugin
+- type: `double[]|string[]`
+- default: `null`
+- updatable: no, use `setVerticalRange()` plugin
 
 Visible vertical range as two angles.
 
 #### `usePanoData`
 
--   type: `boolean`
--   default: `false`
--   updatable: yes
+- type: `boolean`
+- default: `false`
+- updatable: yes
 
 Use cropped panorama data as visible range immediately after load.
 

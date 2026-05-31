@@ -57,8 +57,4 @@ export class BufferEvent extends TypedEvent<VideoPlugin> {
   }
 }
 
-export type VideoPluginEvents =
-  | PlayPauseEvent
-  | VolumeChangeEvent
-  | ProgressEvent
-  | BufferEvent;
+export type VideoPluginEvents = PlayPauseEvent | VolumeChangeEvent | ProgressEvent | BufferEvent;

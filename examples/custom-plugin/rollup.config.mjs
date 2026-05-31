@@ -17,10 +17,7 @@ export default {
       sourcemap: true,
     },
   ],
-  external: [
-    'three',
-    '@photo-sphere-viewer/core',
-  ],
+  external: ['three', '@photo-sphere-viewer/core'],
   plugins: [
     ts(),
     postcss({

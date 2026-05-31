@@ -70,8 +70,8 @@ export class DeviceOrientationControls {
       // iOS 13+
 
       if (
-        window.DeviceOrientationEvent !== undefined
-        && typeof window.DeviceOrientationEvent.requestPermission === 'function'
+        window.DeviceOrientationEvent !== undefined &&
+        typeof window.DeviceOrientationEvent.requestPermission === 'function'
       ) {
         window.DeviceOrientationEvent.requestPermission()
           .then(function (response) {

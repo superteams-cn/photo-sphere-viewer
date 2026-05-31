@@ -52,8 +52,8 @@ export class CubemapAdapter extends AbstractAdapter<CubemapPanorama, CubemapData
   }
 
   /**
-     * {@link https://github.com/bhautikj/vrProjector/blob/master/vrProjector/CubemapProjection.py#L130}
-     */
+   * {@link https://github.com/bhautikj/vrProjector/blob/master/vrProjector/CubemapProjection.py#L130}
+   */
   override textureCoordsToSphericalCoords(point: PanoramaPosition, data: CubemapData): Position {
     if (utils.isNil(point.textureX) || utils.isNil(point.textureY) || utils.isNil(point.textureFace)) {
       throw new PSVError(`Texture position is missing 'textureX', 'textureY' or 'textureFace'`);
@@ -221,7 +221,7 @@ export class CubemapAdapter extends AbstractAdapter<CubemapPanorama, CubemapData
                 : null,
               cacheKey,
             )
-            .then(img => this.createCubemapTexture(img)),
+            .then((img) => this.createCubemapTexture(img)),
         );
       }
     }
@@ -266,7 +266,7 @@ export class CubemapAdapter extends AbstractAdapter<CubemapPanorama, CubemapData
     const cacheKey = panorama.path;
     const img = await this.viewer.textureLoader.loadImage(
       panorama.path,
-      loader ? p => this.viewer.textureLoader.dispatchProgress(p) : null,
+      loader ? (p) => this.viewer.textureLoader.dispatchProgress(p) : null,
       cacheKey,
     );
 
@@ -288,13 +288,7 @@ export class CubemapAdapter extends AbstractAdapter<CubemapPanorama, CubemapData
         ctx.filter = `blur(${buffer.width / 512}px)`;
       }
 
-      ctx.drawImage(
-        img,
-        img.height * i, 0,
-        img.height, img.height,
-        0, 0,
-        tileWidth, tileWidth,
-      );
+      ctx.drawImage(img, img.height * i, 0, img.height, img.height, 0, 0, tileWidth, tileWidth);
 
       textures[panorama.order[i]] = utils.createTexture(buffer);
     }
@@ -310,7 +304,7 @@ export class CubemapAdapter extends AbstractAdapter<CubemapPanorama, CubemapData
     const cacheKey = panorama.path;
     const img = await this.viewer.textureLoader.loadImage(
       panorama.path,
-      loader ? p => this.viewer.textureLoader.dispatchProgress(p) : null,
+      loader ? (p) => this.viewer.textureLoader.dispatchProgress(p) : null,
       cacheKey,
     );
 
@@ -343,10 +337,14 @@ export class CubemapAdapter extends AbstractAdapter<CubemapPanorama, CubemapData
 
       ctx.drawImage(
         img,
-        img.width * pts[i][0], img.height * pts[i][1],
-        img.width / 4, img.height / 3,
-        0, 0,
-        tileWidth, tileWidth,
+        img.width * pts[i][0],
+        img.height * pts[i][1],
+        img.width / 4,
+        img.height / 3,
+        0,
+        0,
+        tileWidth,
+        tileWidth,
       );
 
       textures[i] = utils.createTexture(buffer);
@@ -398,11 +396,11 @@ export class CubemapAdapter extends AbstractAdapter<CubemapPanorama, CubemapData
   }
 
   disposeTexture({ texture }: CubemapTextureData): void {
-    texture.forEach(t => t.dispose());
+    texture.forEach((t) => t.dispose());
   }
 
   disposeMesh(mesh: CubemapMesh): void {
     mesh.geometry.dispose();
-    mesh.material.forEach(m => m.dispose());
+    mesh.material.forEach((m) => m.dispose());
   }
 }

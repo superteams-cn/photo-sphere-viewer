@@ -90,9 +90,9 @@ export class DescriptionButton extends AbstractButton {
   }
 
   /**
-     * This button can only be refreshed from NavbarCaption
-     * @internal
-     */
+   * This button can only be refreshed from NavbarCaption
+   * @internal
+   */
   override autoSize(refresh = false) {
     if (refresh) {
       const caption = this.viewer.navbar.getButton('caption', false);

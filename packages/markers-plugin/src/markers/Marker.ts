@@ -13,8 +13,8 @@ export abstract class Marker {
   protected element: any;
 
   /**
-     * The final description of the marker. Either text content, image, url, SVG attributes, etc.
-     */
+   * The final description of the marker. Either text content, image, url, SVG attributes, etc.
+   */
   definition: any;
 
   /** @internal */
@@ -68,23 +68,19 @@ export abstract class Marker {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   abstract createElement(): void;
 
   /**
-     * @internal
-     * Returns the 2D position if the marker is visible
-     */
-  abstract render(params: {
-    viewerPosition: Position;
-    zoomLevel: number;
-    hoveringMarker: Marker;
-  }): Point;
+   * @internal
+   * Returns the 2D position if the marker is visible
+   */
+  abstract render(params: { viewerPosition: Position; zoomLevel: number; hoveringMarker: Marker }): Point;
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   destroy() {
     delete this.viewer;
     delete this.plugin;
@@ -94,45 +90,45 @@ export abstract class Marker {
   }
 
   /**
-     * Checks if it is a 3D marker (imageLayer, videoLayer)
-     */
+   * Checks if it is a 3D marker (imageLayer, videoLayer)
+   */
   is3d(): boolean {
     return false;
   }
 
   /**
-     * Checks if it is a normal marker (image, html, element)
-     */
+   * Checks if it is a normal marker (image, html, element)
+   */
   isNormal(): boolean {
     return false;
   }
 
   /**
-     * Checks if it is a polygon/polyline marker
-     */
+   * Checks if it is a polygon/polyline marker
+   */
   isPoly(): boolean {
     return false;
   }
 
   /**
-     * Checks if it is an SVG marker
-     */
+   * Checks if it is an SVG marker
+   */
   isSvg(): boolean {
     return false;
   }
 
   /**
-     * Checks if it is an CSS3D marker
-     */
+   * Checks if it is an CSS3D marker
+   */
   isCss3d(): boolean {
     return false;
   }
 
   /**
-     * Updates the marker with new properties
-     * @throws {@link PSVError} if the configuration is invalid
-     * @internal
-     */
+   * Updates the marker with new properties
+   * @throws {@link PSVError} if the configuration is invalid
+   * @internal
+   */
   update(config: MarkerConfig) {
     const newType = getMarkerType(config, true);
 
@@ -180,13 +176,13 @@ export abstract class Marker {
   }
 
   /**
-     * Returns the markers list content for the marker, it can be either :
-     * - the `listContent`
-     * - the `tooltip`
-     * - the `html`
-     * - the `id`
-     * @internal
-     */
+   * Returns the markers list content for the marker, it can be either :
+   * - the `listContent`
+   * - the `tooltip`
+   * - the `html`
+   * - the `id`
+   * @internal
+   */
   getListContent(): string {
     if (this.config.listContent) {
       return this.config.listContent;
@@ -200,9 +196,9 @@ export abstract class Marker {
   }
 
   /**
-     * Display the tooltip of this marker
-     * @internal
-     */
+   * Display the tooltip of this marker
+   * @internal
+   */
   showTooltip(clientX?: number, clientY?: number, forceUpdate = false) {
     if (this.state.visible && this.config.tooltip?.content && this.state.position2D) {
       const config: TooltipConfig = {
@@ -260,9 +256,9 @@ export abstract class Marker {
   }
 
   /**
-     * Hides the tooltip of this marker
-     * @internal
-     */
+   * Hides the tooltip of this marker
+   * @internal
+   */
   hideTooltip() {
     if (this.tooltip) {
       this.tooltip.hide();

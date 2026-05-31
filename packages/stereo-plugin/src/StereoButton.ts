@@ -44,8 +44,8 @@ export class StereoButton extends AbstractButton {
   }
 
   /**
-     * Toggles stereo control
-     */
+   * Toggles stereo control
+   */
   onClick() {
     this.plugin.toggle();
   }

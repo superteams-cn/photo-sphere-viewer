@@ -8,10 +8,10 @@ Configure [markers](../../plugins/markers.md) to be displayed on the [compass](.
 autoload: true
 title: PSV compass markers Demo
 packages:
-    - name: compass-plugin
-      style: true
-    - name: markers-plugin
-      style: true
+  - name: compass-plugin
+    style: true
+  - name: markers-plugin
+    style: true
 ```
 
 ```js:line-numbers

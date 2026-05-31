@@ -113,12 +113,12 @@ The [Gallery plugin](./gallery.md), [Map plugin](./map.md), [Plan plugin](./plan
 ```yaml
 title: PSV Virtual Tour Demo
 packages:
-    - name: virtual-tour-plugin
-      style: true
-    - name: gallery-plugin
-      style: true
-    - name: markers-plugin
-      style: true
+  - name: virtual-tour-plugin
+    style: true
+  - name: gallery-plugin
+    style: true
+  - name: markers-plugin
+    style: true
 ```
 
 <<< ./demos-src/virtual-tour.js{js:line-numbers}
@@ -131,7 +131,7 @@ packages:
 
 #### `id` (required)
 
--   type: `string`
+- type: `string`
 
 Unique identifier of the node
 
@@ -145,13 +145,13 @@ Refer to the main [config page](../guide/config.md).
 
 #### `links` (required in client mode)
 
--   type: `array`
+- type: `array`
 
 Definition of the links of this node. [See below](#links).
 
 #### `gps` (required in GPS mode)
 
--   type: `number[]`
+- type: `number[]`
 
 GPS coordinates of this node as an array of two or three values (`[longitude, latitude, altitude?]`).
 
@@ -161,26 +161,26 @@ Only the [ESPG:4326 projection](https://epsg.io/4326) is supported.
 
 #### `name`
 
--   type: `string`
+- type: `string`
 
 Short name of this node, used in links tooltips and the GalleryPlugin.
 
 #### `showInGallery`
 
--   type: `boolean`
--   default: `true`
+- type: `boolean`
+- default: `true`
 
 Display this node in the GalleryPlugin.
 
 #### `thumbnail`
 
--   type: `string`
+- type: `string`
 
 Thumbnail for the nodes list in the GalleryPlugin.
 
 #### `markers`
 
--   type: `MarkerConfig[]`
+- type: `MarkerConfig[]`
 
 Additional markers displayed on this node, requires the [Markers plugin](./markers.md).
 
@@ -200,7 +200,7 @@ Set to `false` to hide the node from the plan.
 
 #### `data`
 
--   type: `any`
+- type: `any`
 
 Any custom data you want to attach to the node.
 
@@ -208,25 +208,25 @@ Any custom data you want to attach to the node.
 
 #### `nodeId` (required)
 
--   type: `string`
+- type: `string`
 
 Identifier of the target node.
 
 #### `position` (required in manual mode)
 
--   type: `{ yaw, pitch } | { textureX, textureY }`
+- type: `{ yaw, pitch } | { textureX, textureY }`
 
 Position of the link in **spherical coordinates** (radians/degrees) or **texture coordinates** (pixels).
 
 #### `gps` (required in GPS+server mode)
 
--   type: `number[]`
+- type: `number[]`
 
 Define the GPS coordinates of the target node. It must be provided in order to position the link without having to load the target node.
 
 #### `linkOffset`
 
--   type: `{ yaw?, pitch?, depth? }`
+- type: `{ yaw?, pitch?, depth? }`
 
 Offset added to the final link position, to move the marker/arrow without affecting where the viewer is rotated before going to the next node.
 
@@ -238,7 +238,7 @@ Overrides the global style of the arrow used to display the link. See global con
 
 #### `data`
 
--   type: `any`
+- type: `any`
 
 Any custom data you want to attach to the link.
 
@@ -246,62 +246,62 @@ Any custom data you want to attach to the link.
 
 #### `dataMode`
 
--   type: `'client' | 'server'`
--   default: `'client'`
--   updatable: no
+- type: `'client' | 'server'`
+- default: `'client'`
+- updatable: no
 
 Configure how the nodes configuration is provided.
 
 #### `positionMode`
 
--   type: `'manual' | 'gps'`
--   default: `'manual'`
--   updatable: no
+- type: `'manual' | 'gps'`
+- default: `'manual'`
+- updatable: no
 
 Configure how the links between nodes are positionned.
 
 #### `renderMode`
 
--   type: `'2d' | '3d'`
--   default: `'3d'`
--   updatable: no
+- type: `'2d' | '3d'`
+- default: `'3d'`
+- updatable: no
 
 How the links are displayed.
 
 #### `nodes` (client mode only)
 
--   type: `array`
--   updatable: no
+- type: `array`
+- updatable: no
 
 Initial list of nodes. You can also call `setNodes` method later.
 
 #### `getNode(nodeId)` (required in server mode)
 
--   type: `function(nodeId: string) => Promise<Node>`
--   updatable: no
+- type: `function(nodeId: string) => Promise<Node>`
+- updatable: no
 
 Callback to load the configuration of a node.
 
 #### `startNodeId` (required in server mode)
 
--   type: `string`
--   updatable: no
+- type: `string`
+- updatable: no
 
 Id of the initially loaded node. If empty the first node will be displayed. You can also call `setCurrentNode` method later.
 
 #### `preload`
 
--   type: `boolean | function(node: Node, link: NodeLink) => boolean`
--   default: `false`
--   updatable: no
+- type: `boolean | function(node: Node, link: NodeLink) => boolean`
+- default: `false`
+- updatable: no
 
 Enable the preloading of linked nodes, can be a function that returns true or false for each link.
 
 #### `transitionOptions`
 
--   type: `object | function`
--   default: `{ showLoader: true, speed: '20rpm', effect: 'fade', rotation: true }`
--   updatable: no
+- type: `object | function`
+- default: `{ showLoader: true, speed: '20rpm', effect: 'fade', rotation: true }`
+- updatable: no
 
 Configuration of the transition between nodes. Can be a callback.
 
@@ -363,25 +363,25 @@ The default behaviour is to rotate the view to face the direction of the link an
 
 #### `linksOnCompass`
 
--   type: `boolean`
--   default: `true`
--   updatable: no
+- type: `boolean`
+- default: `true`
+- updatable: no
 
 If the [Compass plugin](./compass.md) is enabled, displays the links on the compass.
 
 #### `showLinkTooltip`
 
--   type: `boolean`
--   default: `true`
--   updatable: no
+- type: `boolean`
+- default: `true`
+- updatable: no
 
 Should a tooltip be displayed on each link. The default tooltip contains `name` + `thumbnail` + `caption`, it is customizable with the [getLinkTooltip](#getlinktooltipcontent-link-node) option.
 
 #### `getLinkTooltip(content, link, node)`
 
--   type: `function(string, link, node) => string`
--   default: `null`
--   updatable: no
+- type: `function(string, link, node) => string`
+- default: `null`
+- updatable: no
 
 Callback used to replace/modify the tooltip for a link. The first parameter is the default tooltip content.
 
@@ -461,8 +461,8 @@ Each node can still have a `map` property to override `color`, `image` and `size
 
 #### `arrowStyle`
 
--   type: `object`
--   updatable: no
+- type: `object`
+- updatable: no
 
 Style of the arrow used to display links.
 
@@ -479,8 +479,8 @@ You can also use `image` (path to an image file) and add custom CSS with `style`
 
 #### `arrowsPosition` (3d mode only)
 
--   type: `object`
--   updatable: no
+- type: `object`
+- updatable: no
 
 Default value is:
 

@@ -25,8 +25,8 @@ export class MultiDynamic<T extends Record<string, Dynamic>> {
   }
 
   /**
-     * Changes base speed
-     */
+   * Changes base speed
+   */
   setSpeed(speed: number) {
     for (const d of Object.values(this.dynamics)) {
       d.setSpeed(speed);
@@ -34,8 +34,8 @@ export class MultiDynamic<T extends Record<string, Dynamic>> {
   }
 
   /**
-     * Defines the target positions
-     */
+   * Defines the target positions
+   */
   goto(positions: Partial<Record<keyof T, number>>, speedMult = 1) {
     for (const [name, position] of Object.entries(positions)) {
       this.dynamics[name].goto(position as number, speedMult);
@@ -43,8 +43,8 @@ export class MultiDynamic<T extends Record<string, Dynamic>> {
   }
 
   /**
-     * Increase/decrease the target positions
-     */
+   * Increase/decrease the target positions
+   */
   step(steps: Partial<Record<keyof T, number>>, speedMult = 1) {
     if (speedMult === 0) {
       this.setValue(
@@ -64,8 +64,8 @@ export class MultiDynamic<T extends Record<string, Dynamic>> {
   }
 
   /**
-     * Starts infinite movements
-     */
+   * Starts infinite movements
+   */
   roll(rolls: Partial<Record<keyof T, boolean>>, speedMult = 1) {
     for (const [name, roll] of Object.entries(rolls)) {
       this.dynamics[name].roll(roll, speedMult);
@@ -73,8 +73,8 @@ export class MultiDynamic<T extends Record<string, Dynamic>> {
   }
 
   /**
-     * Stops movements
-     */
+   * Stops movements
+   */
   stop() {
     for (const d of Object.values(this.dynamics)) {
       d.stop();
@@ -82,8 +82,8 @@ export class MultiDynamic<T extends Record<string, Dynamic>> {
   }
 
   /**
-     * Defines the current positions and immediately stops movements
-     */
+   * Defines the current positions and immediately stops movements
+   */
   setValue(values: Partial<Record<keyof T, number>>): boolean {
     let hasUpdates = false;
 
@@ -99,8 +99,8 @@ export class MultiDynamic<T extends Record<string, Dynamic>> {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   update(elapsed: number): boolean {
     let hasUpdates = false;
 

@@ -18,9 +18,9 @@ export type CubemapSeparate = {
   type: 'separate';
   paths: Cubemap | CubemapArray;
   /**
-     * Set to true if the top and bottom faces are not correctly oriented
-     * @default false
-     */
+   * Set to true if the top and bottom faces are not correctly oriented
+   * @default false
+   */
   flipTopBottom?: boolean;
 };
 
@@ -31,14 +31,14 @@ export type CubemapStripe = {
   type: 'stripe';
   path: string;
   /**
-     * Set to true if the top and bottom faces are not correctly oriented
-     * @default false
-     */
+   * Set to true if the top and bottom faces are not correctly oriented
+   * @default false
+   */
   flipTopBottom?: boolean;
   /**
-     * Order of the faces in the file
-     * @default 'left, front, right, back, top, bottom'
-     */
+   * Order of the faces in the file
+   * @default 'left, front, right, back, top, bottom'
+   */
   order?: CubemapFaces[];
 };
 
@@ -66,8 +66,8 @@ export type CubemapData = {
 
 export type CubemapAdapterConfig = {
   /**
-     * used for cubemap tiles adapter
-     * @internal
-     */
+   * used for cubemap tiles adapter
+   * @internal
+   */
   blur?: boolean;
 };

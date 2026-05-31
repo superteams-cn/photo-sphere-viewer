@@ -38,7 +38,7 @@ const viewer = new Viewer({
 ```yaml
 title: PSV Overlay Demo
 packages:
-    - name: overlays-plugin
+  - name: overlays-plugin
 ```
 
 <<< ./demos-src/overlays.js{js:line-numbers}
@@ -49,24 +49,24 @@ packages:
 
 #### `overlays`
 
--   type: `OverlayConfig[]`
--   updatable: no
+- type: `OverlayConfig[]`
+- updatable: no
 
 The list of overlays, see below. Can be updated with various [methods](#methods).
 
 #### `autoclear`
 
--   type: `boolean`
--   default: `true`
--   updatable: yes
+- type: `boolean`
+- default: `true`
+- updatable: yes
 
 Automatically remove all overlays when the panorama changes.
 
 #### `inheritSphereCorrection`
 
--   type: `boolean`
--   default: `true`
--   updatable: no
+- type: `boolean`
+- default: `true`
+- updatable: no
 
 Applies the [global `sphereCorrection`](../guide/config.md#spherecorrection) to each overlay. It can be overriden per overlay with its [`sphereCorrection`](#sphereCorrection) property.
 
@@ -76,25 +76,25 @@ Overlays can be a single image/video for a spherical gerometry or six images for
 
 #### `id` (recommended)
 
--   type: `string`
--   default: random value
+- type: `string`
+- default: random value
 
 Used to remove the overlay with `removeOverlay()` method.
 
 #### `opacity`
 
--   type: `number`
--   default: `1`
+- type: `number`
+- default: `1`
 
 #### `zIndex`
 
--   type: `number`
--   default: `0`
+- type: `number`
+- default: `0`
 
 #### `sphereCorrection`
 
--   type: `{ pan: double | string, tilt: double | string, roll: double | string }`
--   defaut: `null`
+- type: `{ pan: double | string, tilt: double | string, roll: double | string }`
+- defaut: `null`
 
 Sphere correction applied to this overlay. If defined, it overrides the global [`inheritSphereCorrection`](#inheritspherecorrection) setting.
 
@@ -102,13 +102,13 @@ Sphere correction applied to this overlay. If defined, it overrides the global [
 
 #### `path` (required)
 
--   type: `string`
+- type: `string`
 
 Path to the image.
 
 #### `panoData`
 
--   type: `PanoData`
+- type: `PanoData`
 
 This option acts the same as the core [`panoData`](../guide/config.md#panodata) and allows to display partial panoramas.
 
@@ -120,7 +120,7 @@ _Note:_ The `fullWidth` provided here is not necessarily the same of the base pa
 
 #### `path` (required)
 
--   type: `CubemapPanorama`
+- type: `CubemapPanorama`
 
 Check the [cubemap adapter page](../guide/adapters/cubemap.md#panorama-options) for the possible syntaxes. All six faces are required but some can be `null`.
 

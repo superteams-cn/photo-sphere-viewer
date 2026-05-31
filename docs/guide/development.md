@@ -10,16 +10,16 @@ You will need [Node.js 24](https://nodejs.org/) and [pnpm](https://pnpm.io/).
 
 ## Commands
 
--   launch the dev server with `pnpm serve`
-    -   watch only some packages with `pnpm serve-filter`
--   launch the documentation with `pnpm doc:serve`
--   launch the Cypress runner with `pnpm e2e:open`
--   register all package for npm link with `pnpm npm-link`
--   execute the linters with `pnpm lint`
--   execute the unit tests with `pnpm test`
--   execute the e2e tests with `pnpm e2e:run`
--   build all the packages with `pnpm build`
--   build the documentation with `pnpm doc:build`
+- launch the dev server with `pnpm serve`
+  - watch only some packages with `pnpm serve-filter`
+- launch the documentation with `pnpm doc:serve`
+- launch the Cypress runner with `pnpm e2e:open`
+- register all package for npm link with `pnpm npm-link`
+- execute the linters with `pnpm lint`
+- execute the unit tests with `pnpm test`
+- execute the e2e tests with `pnpm e2e:run`
+- build all the packages with `pnpm build`
+- build the documentation with `pnpm doc:build`
 
 ## Credits
 

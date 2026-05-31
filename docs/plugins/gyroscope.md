@@ -33,46 +33,46 @@ There are known inconsistencies of orientation data accross devices. If the pano
 
 ## Example
 
-[Open in a new tab](/demos/plugin-gyroscope.html){target=_blank}
+[Open in a new tab](/demos/plugin-gyroscope.html){target=\_blank}
 
 ## Configuration
 
 #### `touchmove`
 
--   type: `boolean`
--   default: `true`
--   updatable: yes
+- type: `boolean`
+- default: `true`
+- updatable: yes
 
 Allows to pan horizontally the camera when the gyroscope is enabled (requires global `mousemove=true`).
 
 #### `roll`
 
--   type: `boolean`
--   default: `true`
--   updatable: yes
+- type: `boolean`
+- default: `true`
+- updatable: yes
 
 Applies camera roll (rotation on Z axis).
 
 #### `absolutePosition`
 
--   type: `boolean`
--   default: `false`
--   updatable: no
+- type: `boolean`
+- default: `false`
+- updatable: no
 
 By default the camera will keep its current horizontal position when the gyroscope is enabled. Turn this option `true` to enable absolute positionning and only use the device orientation.
 
 #### `moveMode`
 
--   type: `smooth` | `fast`
--   default: `smooth`
--   updatable: yes
+- type: `smooth` | `fast`
+- default: `smooth`
+- updatable: yes
 
 How the gyroscope data is used to rotate the panorama.
 
 #### `lang`
 
--   type: `object`
--   default:
+- type: `object`
+- default:
 
 ```js
 lang: {
@@ -86,6 +86,6 @@ _Note: this option is not part of the plugin but is merged with the main [`lang`
 
 This plugin adds buttons to the default navbar:
 
--   `gyroscope` allows to toggle the gyroscope control
+- `gyroscope` allows to toggle the gyroscope control
 
 If you use a [custom navbar](../guide/navbar.md) you will need to manually add the buttons to the list.

@@ -38,8 +38,8 @@ const viewer = new Viewer({
 ```yaml
 title: PSV Map Demo
 packages:
-    - name: map-plugin
-      style: true
+  - name: map-plugin
+    style: true
 ```
 
 <<< ./demos-src/map.js{js:line-numbers}
@@ -54,103 +54,103 @@ The north of the compass is always toward the top of the map, before rotation.
 
 #### `imageUrl` (required)
 
--   type: `string`
--   updatable: no, use `setImage()` method
+- type: `string`
+- updatable: no, use `setImage()` method
 
 URL of the image to use as map.
 
 #### `center` (required)
 
--   type: `{ x: number, y: number }`
--   updatable: yes
+- type: `{ x: number, y: number }`
+- updatable: yes
 
 The position of the panorama on the map, in pixels. You can also use `setCenter()` method.
 
 #### `rotation`
 
--   type: `number | string`
--   default: `0`
--   updatable: yes
+- type: `number | string`
+- default: `0`
+- updatable: yes
 
 Rotation to apply to the map to make it match with the panorama, it can be declared in radians or in degrees (ex: `'45deg'`).
 
 #### `shape`
 
--   type: `'round' | 'square'`
--   default: `'round'`
--   updatable: yes
+- type: `'round' | 'square'`
+- default: `'round'`
+- updatable: yes
 
 The shape of the widget.
 
 #### `size`
 
--   type: `string`
--   default: `200px`
--   updatable: yes
+- type: `string`
+- default: `200px`
+- updatable: yes
 
 The size of the widget, can be declared in `px`, `rem`, `vh`, etc.
 
 #### `position`
 
--   type: `string`
--   default: `bottom left`
--   updatable: yes
+- type: `string`
+- default: `bottom left`
+- updatable: yes
 
 Position of the widget, accepted positions are combinations of `top`, `bottom` and `left`, `right`.
 
 #### `static`
 
--   type: `boolean`
--   default: `false`
--   updatable: yes
+- type: `boolean`
+- default: `false`
+- updatable: yes
 
 If `true` the map will not rotate, only the central pin will, to indicate where the panorama is oriented.
 
 #### `overlayImage`
 
--   type: `string`
--   default: default SVG
--   updatable: yes
+- type: `string`
+- default: default SVG
+- updatable: yes
 
 SVG or image URL drawn on top of the map, can be `null` to disable.
 
 #### `pinImage`
 
--   type: `string`
--   default: default SVG
--   updatable: yes
+- type: `string`
+- default: default SVG
+- updatable: yes
 
 SVG or image URL used for the central pin.
 
 #### `pinSize`
 
--   type: `number`
--   default: `35`
--   updatable: yes
+- type: `number`
+- default: `35`
+- updatable: yes
 
 Size of the central pin.
 
 #### `coneColor`
 
--   type: `string`
--   default: `#1E78E6`
--   updatable: yes
+- type: `string`
+- default: `#1E78E6`
+- updatable: yes
 
 Color of the cone of the compass, set to `null` to disable.
 
 #### `coneSize`
 
--   type: `number`
--   default: `40`
--   updatable: yes
+- type: `number`
+- default: `40`
+- updatable: yes
 
 Size of the cone of the compass.
 
 #### `hotspots`
 
--   type: `MapHotspot[]`
--   default: `null`
--   updatable: yes
+- type: `MapHotspot[]`
+- default: `null`
+- updatable: yes
 
 Small dots visible on the map. See below. You can also use `setHotspots()` method.
 
@@ -164,8 +164,8 @@ The marker tooltip is reused if defined. The viewer will be moved to face the ma
 
 #### `spotStyle`
 
--   type: `object`
--   updatable: yes
+- type: `object`
+- updatable: yes
 
 Style of hotspots.
 
@@ -236,56 +236,56 @@ The hotspots are represented by a circle with configurable size and color, but c
 
 #### `defaultZoom`
 
--   type: `number`
--   default: `100`
--   updatable: no
+- type: `number`
+- default: `100`
+- updatable: no
 
 Default zoom level of the map.
 
 #### `maxZoom`
 
--   type: `number`
--   default: `200`
--   updatable: yes
+- type: `number`
+- default: `200`
+- updatable: yes
 
 Maximum zoom level of the map.
 
 #### `minZoom`
 
--   type: `number`
--   default: `20`
--   updatable: yes
+- type: `number`
+- default: `20`
+- updatable: yes
 
 Minimum zoom level of the map.
 
 #### `visibleOnLoad`
 
--   type: `boolean`
--   default: `true`
--   updatable: no
+- type: `boolean`
+- default: `true`
+- updatable: no
 
 Displays the map when loading the first panorama.
 
 #### `minimizeOnHotspotClick`
 
--   type: `boolean`
--   default: `true`
--   updatable: yes
+- type: `boolean`
+- default: `true`
+- updatable: yes
 
 Always minimize the map when an hotspot/marker is clicked.
 
 #### `buttons`
 
--   type: `object`
--   default: `{ north: true, maximize: true, close: true, reset: true }`
--   updatable: no
+- type: `object`
+- default: `{ north: true, maximize: true, close: true, reset: true }`
+- updatable: no
 
 Configure which buttons are visible around the map.
 
 #### `lang`
 
--   type: `object`
--   default:
+- type: `object`
+- default:
 
 ```js
 lang: {
@@ -303,14 +303,14 @@ _Note: this option is not part of the plugin but is merged with the main [`lang`
 
 #### `id`
 
--   type: `string`
--   default: generated
+- type: `string`
+- default: generated
 
 Useful to react to clicks with the `select-hotspot` event.
 
 #### `yaw`+`distance` or `x`+`y` (required)
 
--   type: `number`
+- type: `number`
 
 Configure the position of the hotspot on the map, either with a angle and a distance (in pixels on the map image) or absolute x/y coordinates (also in pixels on the map image).
 
@@ -320,9 +320,8 @@ Allow to override the default `spotStyle`.
 
 #### `tooltip`
 
--   type: `string | { content: string, className: string }`
--   default: `null`
-
+- type: `string | { content: string, className: string }`
+- default: `null`
 
 ## Methods
 
@@ -332,8 +331,8 @@ Changes the hotspots.
 
 ```js
 mapPlugin.setHotspots([
-    { id: '1', yaw: '0deg', distance: 120, tooltip: 'Hotspot one' },
-    { id: '2', x: 150, y: 310, image: 'blue-dot.png' },
+  { id: '1', yaw: '0deg', distance: 120, tooltip: 'Hotspot one' },
+  { id: '2', x: 150, y: 310, image: 'blue-dot.png' },
 ]);
 ```
 
@@ -377,7 +376,7 @@ Triggered when the user clicks on a hotspot.
 
 ```js
 mapPlugin.addEventListener('select-hotspot', ({ hotspotId }) => {
-    console.log(`Clicked on hotspot ${hotspotId}`);
+  console.log(`Clicked on hotspot ${hotspotId}`);
 });
 ```
 

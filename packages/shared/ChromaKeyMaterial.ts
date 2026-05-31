@@ -52,11 +52,7 @@ export class ChromaKeyMaterial extends ShaderMaterial {
     this.uniforms.keying.value = chromaKey?.enabled === true;
     if (chromaKey?.enabled) {
       if (typeof chromaKey.color === 'object' && 'r' in chromaKey.color) {
-        this.uniforms.color.value.set(
-          chromaKey.color.r / 255,
-          chromaKey.color.g / 255,
-          chromaKey.color.b / 255,
-        );
+        this.uniforms.color.value.set(chromaKey.color.r / 255, chromaKey.color.g / 255, chromaKey.color.b / 255);
       } else {
         this.uniforms.color.value.set(chromaKey.color ?? 0x00ff00);
       }
@@ -65,11 +61,7 @@ export class ChromaKeyMaterial extends ShaderMaterial {
     }
   }
 
-  constructor(params?: {
-    map?: Texture;
-    alpha?: number;
-    chromaKey?: ChromaKey;
-  }) {
+  constructor(params?: { map?: Texture; alpha?: number; chromaKey?: ChromaKey }) {
     super({
       transparent: true,
       depthTest: false,

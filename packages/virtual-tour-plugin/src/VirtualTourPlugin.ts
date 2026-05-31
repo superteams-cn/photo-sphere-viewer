@@ -145,8 +145,8 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override init() {
     super.init();
 
@@ -159,8 +159,8 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
 
     if (this.markers?.config.markers) {
       utils.logWarn(
-        'No default markers can be configured on the MarkersPlugin when using the VirtualTourPlugin. '
-        + 'Consider defining `markers` on each tour node.',
+        'No default markers can be configured on the MarkersPlugin when using the VirtualTourPlugin. ' +
+          'Consider defining `markers` on each tour node.',
       );
       delete this.markers.config.markers;
     }
@@ -200,8 +200,8 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override destroy() {
     this.map?.removeEventListener('select-hotspot', this);
     this.plan?.removeEventListener('select-hotspot', this);
@@ -219,11 +219,11 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     if (e instanceof events.ClickEvent) {
-      const link = e.data.objects.find(o => o.userData[LINK_DATA])?.userData[LINK_DATA];
+      const link = e.data.objects.find((o) => o.userData[LINK_DATA])?.userData[LINK_DATA];
       if (link) {
         this.setCurrentNode(link.nodeId, null, link);
       }
@@ -236,16 +236,16 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Returns the current node
-     */
+   * Returns the current node
+   */
   getCurrentNode(): VirtualTourNode {
     return this.state.currentNode;
   }
 
   /**
-     * Sets the nodes (client mode only)
-     * @throws {@link PSVError} if not in client mode
-     */
+   * Sets the nodes (client mode only)
+   * @throws {@link PSVError} if not in client mode
+   */
   setNodes(nodes: VirtualTourNode[], startNodeId?: string) {
     if (this.isServerSide) {
       throw new PSVError('Cannot set nodes in server side mode');
@@ -270,15 +270,15 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Changes the current node
-     * @returns {Promise<boolean>} resolves false if the loading was aborted by another call
-     */
+   * Changes the current node
+   * @returns {Promise<boolean>} resolves false if the loading was aborted by another call
+   */
   setCurrentNode(
     nodeId: string,
     options?: VirtualTourTransitionOptions & {
       /**
-             * reload the node even if already loaded
-             */
+       * reload the node even if already loaded
+       */
       forceUpdate?: boolean;
     },
     fromLink?: VirtualTourLink,
@@ -374,13 +374,14 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
             showLoader: transitionOptions.showLoader,
             position: transitionOptions.rotateTo,
             zoom: transitionOptions.zoomTo,
-            transition: transitionOptions.effect === 'none'
-              ? false
-              : {
-                  effect: transitionOptions.effect,
-                  rotation: transitionOptions.rotation,
-                  speed: transitionOptions.speed,
-                },
+            transition:
+              transitionOptions.effect === 'none'
+                ? false
+                : {
+                    effect: transitionOptions.effect,
+                    rotation: transitionOptions.rotation,
+                    speed: transitionOptions.speed,
+                  },
           })
           .then((completed) => {
             if (!completed) {
@@ -439,8 +440,8 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Rotate the view to face the link
-     */
+   * Rotate the view to face the link
+   */
   async gotoLink(nodeId: string, speed: string | number = '8rpm'): Promise<void> {
     const position = this.getLinkPosition(nodeId);
 
@@ -455,10 +456,10 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Returns the position of a link in the viewer
-     */
+   * Returns the position of a link in the viewer
+   */
   getLinkPosition(nodeId: string): Position {
-    const link = this.state.currentNode?.links.find(link => link.nodeId === nodeId);
+    const link = this.state.currentNode?.links.find((link) => link.nodeId === nodeId);
 
     if (!link) {
       throw new PSVError(`Cannot find link "${nodeId}"`);
@@ -468,10 +469,10 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Updates a node (client mode only)
-     * All properties but "id" are optional, the new config will be merged with the previous
-     * @throws {@link PSVError} if not in client mode
-     */
+   * Updates a node (client mode only)
+   * All properties but "id" are optional, the new config will be merged with the previous
+   * @throws {@link PSVError} if not in client mode
+   */
   updateNode(newNode: Partial<VirtualTourNode> & { id: VirtualTourNode['id'] }) {
     if (this.isServerSide) {
       throw new PSVError('Cannot update node in server side mode');
@@ -523,14 +524,14 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Updates the gallery plugin
-     */
+   * Updates the gallery plugin
+   */
   private __setGalleryItems() {
     if (this.gallery) {
       this.gallery.setItems(
         Object.values(this.datasource.nodes)
-          .filter(node => node.showInGallery !== false)
-          .map(node => ({
+          .filter((node) => node.showInGallery !== false)
+          .map((node) => ({
             id: node.id,
             panorama: node.panorama,
             name: node.name,
@@ -544,14 +545,14 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Update the map plugin
-     */
+   * Update the map plugin
+   */
   private __setMapHotspots() {
     if (this.map) {
       this.map.setHotspots(
         Object.values(this.datasource.nodes)
-          .filter(node => node.map !== false)
-          .map(node => ({
+          .filter((node) => node.map !== false)
+          .map((node) => ({
             tooltip: node.name,
             ...(node.map || {}),
             ...this.__getNodeMapPosition(node),
@@ -562,14 +563,14 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Updates the plan plugin
-     */
+   * Updates the plan plugin
+   */
   private __setPlanHotspots() {
     if (this.plan) {
       this.plan.setHotspots(
         Object.values(this.datasource.nodes)
-          .filter(node => node.plan !== false)
-          .map(node => ({
+          .filter((node) => node.plan !== false)
+          .map((node) => ({
             tooltip: node.name,
             ...(node.plan || {}),
             coordinates: node.gps,
@@ -580,8 +581,8 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Adds the links for the node
-     */
+   * Adds the links for the node
+   */
   private __renderLinks(node: VirtualTourNode) {
     this.arrowsRenderer.clear();
 
@@ -609,8 +610,8 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Computes the marker position for a link
-     */
+   * Computes the marker position for a link
+   */
   private __getLinkPosition(node: VirtualTourNode, link: VirtualTourLink): Position {
     if (this.isGps) {
       return gpsToSpherical(node.gps, link.gps);
@@ -620,8 +621,8 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Returns the complete tootlip content for a node
-     */
+   * Returns the complete tootlip content for a node
+   */
   private async __getTooltipContent(link: VirtualTourLink): Promise<string> {
     const node = await this.datasource.loadNode(link.nodeId);
     const elements: string[] = [];
@@ -707,16 +708,16 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Hides the tooltip
-     */
+   * Hides the tooltip
+   */
   private __hideTooltip() {
     this.state.currentTooltip?.hide();
     this.state.currentTooltip = null;
   }
 
   /**
-     * Manage the preload of the linked panoramas
-     */
+   * Manage the preload of the linked panoramas
+   */
   private __preload(node: VirtualTourNode) {
     if (!this.config.preload) {
       return;
@@ -725,7 +726,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
     this.state.preload[node.id] = true;
 
     this.state.currentNode.links
-      .filter(link => !this.state.preload[link.nodeId])
+      .filter((link) => !this.state.preload[link.nodeId])
       .filter((link) => {
         if (typeof this.config.preload === 'function') {
           return this.config.preload(this.state.currentNode, link);
@@ -749,8 +750,8 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Changes the markers to the ones defined on the node
-     */
+   * Changes the markers to the ones defined on the node
+   */
   private __addNodeMarkers(node: VirtualTourNode) {
     if (node.markers) {
       if (this.markers) {
@@ -775,8 +776,8 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Gets the position of a node on the map, if applicable
-     */
+   * Gets the position of a node on the map, if applicable
+   */
   private __getNodeMapPosition(node: VirtualTourNode): Point {
     const fromGps = this.__getGpsMapPosition(node.gps);
     if (fromGps) {
@@ -789,8 +790,8 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Gets a gps position on the map
-     */
+   * Gets a gps position on the map
+   */
   private __getGpsMapPosition(gps: GpsPosition): Point {
     const map = this.config.map;
     if (this.isGps && map && map.extent && map.size) {

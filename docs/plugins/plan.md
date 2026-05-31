@@ -36,14 +36,14 @@ Do not forget to import Leaflet JS and CSS files.
 ```yaml
 title: PSV Plan Demo
 packages:
-    - name: plan-plugin
-      style: true
-    - name: leaflet
-      external: true
-      version: 1
-      style: true
-      js: dist/leaflet-src.esm.js
-      css: dist/leaflet.css
+  - name: plan-plugin
+    style: true
+  - name: leaflet
+    external: true
+    version: 1
+    style: true
+    js: dist/leaflet-src.esm.js
+    css: dist/leaflet.css
 ```
 
 <<< ./demos-src/plan.js{js:line-numbers}
@@ -54,28 +54,28 @@ packages:
 
 #### `coordinates` (required)
 
--   type: `[number, number]`
--   updatable: yes
+- type: `[number, number]`
+- updatable: yes
 
 GPS position of the panorama (longitude, latitude). You can also use `setCoordinates()` method.
 
 #### `bearing`
 
--   type: `number | string`
--   default: `0`
--   updatable: yes
+- type: `number | string`
+- default: `0`
+- updatable: yes
 
 Rotation offset to apply to the central pin to make it match with the panorama orientation.
 
 #### `layers`
 
--   type: `array`
--   default: OpenStreetMap
--   updatable: no
+- type: `array`
+- default: OpenStreetMap
+- updatable: no
 
 List of available base layers, if more than one is defined, a button will allow to switch between layers.
 
-Each element is an object containing `urlTemplate` (for standard raster tiles) **OR** `layer`  (for any custom Leaflet layers), as well as `name` and `attribution`.
+Each element is an object containing `urlTemplate` (for standard raster tiles) **OR** `layer` (for any custom Leaflet layers), as well as `name` and `attribution`.
 
 ```js:line-numbers
 layers: [
@@ -99,8 +99,8 @@ _Note: this option is ignored if `configureLeaflet` is used._
 
 #### `configureLeaflet`
 
--   type: `function<map>`
--   updatable: no
+- type: `function<map>`
+- updatable: no
 
 Allows to configure Leaftlet yourself. This will disable the default layer.
 
@@ -112,41 +112,41 @@ configureLeaflet(map) {
 
 #### `size`
 
--   type: `{ width: string, height: string }`
--   default: `{ width: '300px', height: '200px' }`
--   updatable: yes
+- type: `{ width: string, height: string }`
+- default: `{ width: '300px', height: '200px' }`
+- updatable: yes
 
 The size of the widget.
 
 #### `position`
 
--   type: `string`
--   default: `bottom left`
--   updatable: yes
+- type: `string`
+- default: `bottom left`
+- updatable: yes
 
 Position of the widget, accepted positions are combinations of `top`, `bottom` and `left`, `right`.
 
 #### `pinImage`
 
--   type: `string`
--   default: default SVG
--   updatable: yes
+- type: `string`
+- default: default SVG
+- updatable: yes
 
 SVG or image URL used for the central pin.
 
 #### `pinSize`
 
--   type: `number`
--   default: `35`
--   updatable: yes
+- type: `number`
+- default: `35`
+- updatable: yes
 
 Size of the central pin.
 
 #### `hotspots`
 
--   type: `PlanHotspot[]`
--   default: `null`
--   updatable: yes
+- type: `PlanHotspot[]`
+- default: `null`
+- updatable: yes
 
 Markers visible on the map. See below. You can also use `setHotspots()` method.
 
@@ -160,8 +160,8 @@ The marker tooltip is reused if defined. The viewer will be moved to face the ma
 
 #### `spotStyle`
 
--   type: `object`
--   updatable: yes
+- type: `object`
+- updatable: yes
 
 Style of hotspots.
 
@@ -227,41 +227,40 @@ The hotspots are represented by a circle with configurable size and color, but c
 
 #### `defaultZoom`
 
--   type: `number`
--   default: `15`
--   updatable: no
+- type: `number`
+- default: `15`
+- updatable: no
 
 Default zoom level of the map.
 
 #### `visibleOnLoad`
 
--   type: `boolean`
--   default: `true`
--   updatable: no
+- type: `boolean`
+- default: `true`
+- updatable: no
 
 Displays the map when loading the first panorama.
 
-
 #### `minimizeOnHotspotClick`
 
--   type: `boolean`
--   default: `true`
--   updatable: yes
+- type: `boolean`
+- default: `true`
+- updatable: yes
 
 Always minimize the map when an hotspot/marker is clicked.
 
 #### `buttons`
 
--   type: `object`
--   default: `{ maximize: true, close: true, reset: true }`
--   updatable: no
+- type: `object`
+- default: `{ maximize: true, close: true, reset: true }`
+- updatable: no
 
 Configure which buttons are visible around the map.
 
 #### `lang`
 
--   type: `object`
--   default:
+- type: `object`
+- default:
 
 ```js
 lang: {
@@ -279,14 +278,14 @@ _Note: this option is not part of the plugin but is merged with the main [`lang`
 
 #### `id`
 
--   type: `string`
--   default: generated
+- type: `string`
+- default: generated
 
 Useful to react to clicks with the `select-hotspot` event.
 
 #### `coordinates` (required)
 
--   type: `[number, number]`
+- type: `[number, number]`
 
 Configure the position of the hotspot on the map.
 
@@ -296,11 +295,10 @@ Allow to override the default `spotStyle`.
 
 #### `tooltip`
 
--   type: `string | { content: string, className: string }`
--   default: `null`
-  
-_**Note:** the content is rendered as HTML. If your content may include untrusted input it should be sanitized before being passed to `tooltip`._
+- type: `string | { content: string, className: string }`
+- default: `null`
 
+_**Note:** the content is rendered as HTML. If your content may include untrusted input it should be sanitized before being passed to `tooltip`._
 
 ## Methods
 

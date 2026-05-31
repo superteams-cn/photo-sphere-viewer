@@ -8,8 +8,8 @@ Example usage of `imageLayer` and `videoLayer` markers.
 autoload: true
 title: PSV Marker layers Demo
 packages:
-    - name: markers-plugin
-      style: true
+  - name: markers-plugin
+    style: true
 ```
 
 ```js:line-numbers{18-22,30-34}

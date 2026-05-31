@@ -309,9 +309,10 @@ export class MapComponent extends AbstractComponent {
     this.container.style.width = this.config.size;
     this.container.style.height = this.config.size;
 
-    this.overlay.innerHTML = this.config.overlayImage === null
-      ? ''
-      : getImageHtml(this.config.overlayImage ?? (this.config.shape === 'square' ? overlaySquare : overlayRound));
+    this.overlay.innerHTML =
+      this.config.overlayImage === null
+        ? ''
+        : getImageHtml(this.config.overlayImage ?? (this.config.shape === 'square' ? overlaySquare : overlayRound));
 
     this.resetButton?.applyConfig();
     this.closeButton?.applyConfig();
@@ -347,8 +348,8 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-     * Flag for render
-     */
+   * Flag for render
+   */
   update(clear = true) {
     this.state.needsUpdate = true;
 
@@ -360,8 +361,8 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-     * Load a new map image
-     */
+   * Load a new map image
+   */
   reload(url: string) {
     delete this.state.images[this.config.imageUrl];
     this.config.imageUrl = url;
@@ -371,16 +372,16 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-     * Clears the offset and zoom level
-     */
+   * Clears the offset and zoom level
+   */
   reset() {
     this.state.zoom = this.config.defaultZoom;
     this.recenter();
   }
 
   /**
-     * Clears the offset
-     */
+   * Clears the offset
+   */
   recenter() {
     this.state.offset.x = 0;
     this.state.offset.y = 0;
@@ -388,8 +389,8 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-     * Increase the offset
-     */
+   * Increase the offset
+   */
   addOffset(offset: Point) {
     this.state.offset.x += offset.x;
     this.state.offset.y += offset.y;
@@ -397,8 +398,8 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-     * Switch collapsed mode
-     */
+   * Switch collapsed mode
+   */
   toggleCollapse() {
     if (this.state.maximized) {
       this.toggleMaximized(false);
@@ -419,8 +420,8 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-     * Switch maximized mode
-     */
+   * Switch maximized mode
+   */
   toggleMaximized(dispatchMinimizeEvent = true) {
     if (this.state.collapsed) {
       return;
@@ -449,31 +450,31 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-     * Changes the zoom level
-     */
+   * Changes the zoom level
+   */
   zoom(d: number) {
     this.setZoom(this.state.zoom + d);
   }
 
   /**
-     * Changes the zoom level
-     */
+   * Changes the zoom level
+   */
   setZoom(value: number) {
     this.state.zoom = MathUtils.clamp(value, this.config.minZoom, this.config.maxZoom);
     this.update();
   }
 
   /**
-     * Updates the markers
-     */
+   * Updates the markers
+   */
   setMarkers(markers: MapHotspot[]) {
     this.state.markers = markers;
     this.update();
   }
 
   /**
-     * Changes the highlighted hotspot
-     */
+   * Changes the highlighted hotspot
+   */
   setActiveHotspot(hotspotId: string) {
     this.state.hotspotId = hotspotId;
     this.update(false);
@@ -534,14 +535,7 @@ export class MapComponent extends AbstractComponent {
     context.rotate(-yawAndRotation);
     context.scale(zoom, zoom);
     canvasShadow(context, 0, 0, MAP_SHADOW_BLUR);
-    drawImageHighDpi(
-      context,
-      mapImage,
-      -center.x - offset.x,
-      -center.y - offset.y,
-      mapW,
-      mapH,
-    );
+    drawImageHighDpi(context, mapImage, -center.x - offset.x, -center.y - offset.y, mapW, mapH);
     context.restore();
 
     // draw the hotspots
@@ -667,8 +661,8 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-     * Applies mouse movement to the map
-     */
+   * Applies mouse movement to the map
+   */
   private __move(clientX: number, clientY: number) {
     const yaw = this.viewer.getPosition().yaw;
     const zoom = Math.exp(this.state.zoom);
@@ -692,8 +686,8 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-     * Finds the hotspot under the mouse
-     */
+   * Finds the hotspot under the mouse
+   */
   private __findHotspot(clientX: number, clientY: number): string {
     const k = this.config.spotStyle.size / 2;
 
@@ -709,8 +703,8 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-     * Updates current hotspot on mouse move and displays tooltip
-     */
+   * Updates current hotspot on mouse move and displays tooltip
+   */
   private __handleHotspots(clientX: number, clientY: number) {
     const hotspotId = this.__findHotspot(clientX, clientY);
 
@@ -752,8 +746,8 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-     * Dispatch event when a hotspot is clicked
-     */
+   * Dispatch event when a hotspot is clicked
+   */
   private __clickHotspot(clientX: number, clientY: number) {
     const hotspotId = this.__findHotspot(clientX, clientY);
 
@@ -780,9 +774,9 @@ export class MapComponent extends AbstractComponent {
   }
 
   /**
-     * Loads an image and returns the result **synchronously**.
-     * If the image is not already loaded it returns `null` and schedules a new render when the image is ready.
-     */
+   * Loads an image and returns the result **synchronously**.
+   * If the image is not already loaded it returns `null` and schedules a new render when the image is ready.
+   */
   private __loadImage(url: string, isInit = false, autoRefresh = true): ImageSource {
     if (!url) {
       return null;
@@ -872,7 +866,8 @@ export class MapComponent extends AbstractComponent {
     if (!visible) {
       this.container.style.marginBottom = '';
     } else {
-      this.container.style.marginBottom = (this.viewer.container.querySelector<HTMLElement>('.psv-gallery').offsetHeight + 10) + 'px';
+      this.container.style.marginBottom =
+        this.viewer.container.querySelector<HTMLElement>('.psv-gallery').offsetHeight + 10 + 'px';
     }
   }
 }

@@ -14,42 +14,23 @@
   ],
   "tasks": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "src/**"
-      ],
-      "outputs": [
-        "dist/**"
-      ]
+      "dependsOn": ["^build"],
+      "inputs": ["src/**"],
+      "outputs": ["dist/**"]
     },
     "instrument": {
-      "dependsOn": [
-        "build"
-      ],
+      "dependsOn": ["build"],
       "cache": false
     },
     "lint": {
-      "inputs": [
-        "src/**"
-      ]
+      "inputs": ["src/**"]
     },
     "@photo-sphere-viewer/e2e#lint": {
-      "inputs": [
-        "e2e/**",
-        "support/**",
-        "utils/**"
-      ]
+      "inputs": ["e2e/**", "support/**", "utils/**"]
     },
     "test": {
-      "inputs": [
-        "src/**",
-        "tests/**"
-      ],
-      "outputs": [
-        "reports/**"
-      ]
+      "inputs": ["src/**", "tests/**"],
+      "outputs": ["reports/**"]
     },
     "watch": {
       "cache": false,
@@ -63,24 +44,18 @@
       "cache": false
     },
     "//#build-doc": {
-      "dependsOn": [
-        "@photo-sphere-viewer/docs#build-doc"
-      ],
+      "dependsOn": ["@photo-sphere-viewer/docs#build-doc"],
       "cache": false
     },
     "serve-doc": {
       "cache": false
     },
     "npm-link": {
-      "dependsOn": [
-        "build"
-      ],
+      "dependsOn": ["build"],
       "cache": false
     },
     "publish-dist": {
-      "dependsOn": [
-        "^publish-dist"
-      ],
+      "dependsOn": ["^publish-dist"],
       "cache": false
     }
   }

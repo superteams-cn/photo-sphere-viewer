@@ -33,14 +33,7 @@ import {
   SizeUpdatedEvent,
   ZoomUpdatedEvent,
 } from '../events';
-import {
-  PanoData,
-  PanoramaOptions,
-  Point,
-  SphereCorrection,
-  TextureData,
-  TransitionOptions,
-} from '../model';
+import { PanoData, PanoramaOptions, Point, SphereCorrection, TextureData, TransitionOptions } from '../model';
 import { Animation, isNil } from '../utils';
 import { Viewer } from '../Viewer';
 import { AbstractService } from './AbstractService';
@@ -84,8 +77,8 @@ export class Renderer extends AbstractService {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   constructor(viewer: Viewer) {
     super(viewer);
 
@@ -118,7 +111,7 @@ export class Renderer extends AbstractService {
     this.container.appendChild(this.renderer.domElement);
     this.viewer.container.appendChild(this.container);
 
-    this.container.addEventListener('contextmenu', e => e.preventDefault());
+    this.container.addEventListener('contextmenu', (e) => e.preventDefault());
 
     this.viewer.addEventListener(SizeUpdatedEvent.type, this);
     this.viewer.addEventListener(ZoomUpdatedEvent.type, this);
@@ -130,16 +123,16 @@ export class Renderer extends AbstractService {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   init() {
     this.show();
-    this.renderer.setAnimationLoop(t => this.__renderLoop(t));
+    this.renderer.setAnimationLoop((t) => this.__renderLoop(t));
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override destroy() {
     // destroy ThreeJS
     this.renderer.setAnimationLoop(null);
@@ -159,14 +152,22 @@ export class Renderer extends AbstractService {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     switch (e.type) {
-      case SizeUpdatedEvent.type: this.__onSizeUpdated(); break;
-      case ZoomUpdatedEvent.type: this.__onZoomUpdated(); break;
-      case PositionUpdatedEvent.type: this.__onPositionUpdated(); break;
-      case RollUpdatedEvent.type: this.__onPositionUpdated(); break;
+      case SizeUpdatedEvent.type:
+        this.__onSizeUpdated();
+        break;
+      case ZoomUpdatedEvent.type:
+        this.__onZoomUpdated();
+        break;
+      case PositionUpdatedEvent.type:
+        this.__onPositionUpdated();
+        break;
+      case RollUpdatedEvent.type:
+        this.__onPositionUpdated();
+        break;
       case ConfigChangedEvent.type:
         if ((e as ConfigChangedEvent).containsOptions('fisheye')) {
           this.__onPositionUpdated();
@@ -179,22 +180,22 @@ export class Renderer extends AbstractService {
   }
 
   /**
-     * Hides the viewer
-     */
+   * Hides the viewer
+   */
   hide() {
     this.container.style.opacity = '0';
   }
 
   /**
-     * Shows the viewer
-     */
+   * Shows the viewer
+   */
   show() {
     this.container.style.opacity = '1';
   }
 
   /**
-     * Resets or replaces the THREE renderer by a custom one
-     */
+   * Resets or replaces the THREE renderer by a custom one
+   */
   setCustomRenderer(factory: ((renderer: WebGLRenderer) => CustomRenderer) | null) {
     if (factory) {
       this.customRenderer = factory(this.renderer);
@@ -205,8 +206,8 @@ export class Renderer extends AbstractService {
   }
 
   /**
-     * Updates the size of the renderer and the aspect of the camera
-     */
+   * Updates the size of the renderer and the aspect of the camera
+   */
   private __onSizeUpdated() {
     this.renderer.setSize(this.state.size.width, this.state.size.height);
     this.camera.aspect = this.state.aspect;
@@ -216,8 +217,8 @@ export class Renderer extends AbstractService {
   }
 
   /**
-     * Updates the fov of the camera
-     */
+   * Updates the fov of the camera
+   */
   private __onZoomUpdated() {
     this.camera.fov = this.state.vFov;
     this.camera.updateProjectionMatrix();
@@ -226,8 +227,8 @@ export class Renderer extends AbstractService {
   }
 
   /**
-     * Updates the position of the camera
-     */
+   * Updates the position of the camera
+   */
   private __onPositionUpdated() {
     this.camera.position.set(0, 0, 0);
     this.camera.lookAt(this.state.direction);
@@ -247,8 +248,8 @@ export class Renderer extends AbstractService {
   }
 
   /**
-     * Main event loop, performs a render if `state.needsUpdate` is true
-     */
+   * Main event loop, performs a render if `state.needsUpdate` is true
+   */
   private __renderLoop(timestamp: number) {
     const elapsed = !this.timestamp ? 0 : timestamp - this.timestamp;
     this.timestamp = timestamp;
@@ -264,9 +265,9 @@ export class Renderer extends AbstractService {
   }
 
   /**
-     * Applies the texture to the scene, creates the scene if needed
-     * @internal
-     */
+   * Applies the texture to the scene, creates the scene if needed
+   * @internal
+   */
   setTexture(textureData: TextureData) {
     if (!this.meshContainer) {
       this.meshContainer = new Group();
@@ -292,27 +293,27 @@ export class Renderer extends AbstractService {
   }
 
   /**
-     * Applies a panorama data pose to a Mesh
-     * @internal
-     */
+   * Applies a panorama data pose to a Mesh
+   * @internal
+   */
   setPanoramaPose(panoData: PanoData, mesh: Object3D = this.mesh) {
     const cleanCorrection = this.viewer.dataHelper.cleanPanoramaPose(panoData);
     mesh.rotation.set(-cleanCorrection.tilt, cleanCorrection.pan, cleanCorrection.roll, 'YXZ');
   }
 
   /**
-     * Applies a SphereCorrection to a Group
-     * @internal
-     */
+   * Applies a SphereCorrection to a Group
+   * @internal
+   */
   setSphereCorrection(sphereCorrection: SphereCorrection, group: Object3D = this.meshContainer) {
     const cleanCorrection = this.viewer.dataHelper.cleanSphereCorrection(sphereCorrection);
     group.rotation.set(cleanCorrection.tilt, cleanCorrection.pan, cleanCorrection.roll, 'YXZ');
   }
 
   /**
-     * Performs transition between the current and a new texture
-     * @internal
-     */
+   * Performs transition between the current and a new texture
+   * @internal
+   */
   transition(textureData: TextureData, options: PanoramaOptions, transition: TransitionOptions): Animation<any> {
     // do not animate zoom in black/white transition without rotation
     const zoomTransition = transition.effect === 'fade' || transition.rotation;
@@ -375,13 +376,15 @@ export class Renderer extends AbstractService {
           case 'black':
           case 'white':
             if (props.opacity < 0.5) {
-              this.renderer.toneMappingExposure = transition.effect === 'black'
-                ? MathUtils.mapLinear(props.opacity, 0, 0.5, 1, 0)
-                : MathUtils.mapLinear(props.opacity, 0, 0.5, 1, 5);
+              this.renderer.toneMappingExposure =
+                transition.effect === 'black'
+                  ? MathUtils.mapLinear(props.opacity, 0, 0.5, 1, 0)
+                  : MathUtils.mapLinear(props.opacity, 0, 0.5, 1, 5);
             } else {
-              this.renderer.toneMappingExposure = transition.effect === 'black'
-                ? MathUtils.mapLinear(props.opacity, 0.5, 1, 0, 1)
-                : MathUtils.mapLinear(props.opacity, 0.5, 1, 5, 1);
+              this.renderer.toneMappingExposure =
+                transition.effect === 'black'
+                  ? MathUtils.mapLinear(props.opacity, 0.5, 1, 0, 1)
+                  : MathUtils.mapLinear(props.opacity, 0.5, 1, 5, 1);
 
               this.mesh.visible = false;
               this.viewer.adapter.setTextureOpacity(newMesh, 1);
@@ -439,8 +442,8 @@ export class Renderer extends AbstractService {
   }
 
   /**
-     * Returns intersections with objects in the scene
-     */
+   * Returns intersections with objects in the scene
+   */
   getIntersections(viewerPoint: Point): Array<Intersection<Mesh>> {
     vector2.x = (2 * viewerPoint.x) / this.state.size.width - 1;
     vector2.y = (-2 * viewerPoint.y) / this.state.size.height + 1;
@@ -449,8 +452,8 @@ export class Renderer extends AbstractService {
 
     const intersections = this.raycaster
       .intersectObjects(this.scene.children, true)
-      .filter(i => i.object.visible)
-      .filter(i => (i.object as Mesh).isMesh && !!i.object.userData) as Array<Intersection<Mesh>>;
+      .filter((i) => i.object.visible)
+      .filter((i) => (i.object as Mesh).isMesh && !!i.object.userData) as Array<Intersection<Mesh>>;
 
     if (this.customRenderer?.getIntersections) {
       intersections.push(...this.customRenderer.getIntersections(this.raycaster, vector2));
@@ -460,8 +463,8 @@ export class Renderer extends AbstractService {
   }
 
   /**
-     * Checks if an object/point is currently visible
-     */
+   * Checks if an object/point is currently visible
+   */
   isObjectVisible(value: Object3D | Vector3): boolean {
     if (!value) {
       return false;
@@ -492,23 +495,23 @@ export class Renderer extends AbstractService {
   }
 
   /**
-     * Adds an object to the THREE scene
-     */
+   * Adds an object to the THREE scene
+   */
   addObject(object: Object3D) {
     this.scene.add(object);
   }
 
   /**
-     * Removes an object from the THREE scene
-     */
+   * Removes an object from the THREE scene
+   */
   removeObject(object: Object3D) {
     this.scene.remove(object);
   }
 
   /**
-     * Calls `dispose` on all objects and textures
-     * @internal
-     */
+   * Calls `dispose` on all objects and textures
+   * @internal
+   */
   cleanScene(object: any) {
     const disposeMaterial = (material: any) => {
       material.map?.dispose();

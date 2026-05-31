@@ -14,25 +14,25 @@ const PANEL_CLASS_NO_INTERACTION = 'psv-panel-content--no-interaction';
  */
 export type PanelConfig = {
   /**
-     * unique identifier to use with {@link Panel.hide} and {@link Panel.isVisible} and to store the width
-     */
+   * unique identifier to use with {@link Panel.hide} and {@link Panel.isVisible} and to store the width
+   */
   id?: string;
   /**
-     * HTML content of the panel
-     */
+   * HTML content of the panel
+   */
   content: string;
   /**
-     * remove the default margins
-     * @default false
-     */
+   * remove the default margins
+   * @default false
+   */
   noMargin?: boolean;
   /**
-     * initial width
-     */
+   * initial width
+   */
   width?: string;
   /**
-     * called when the user clicks inside the panel or presses the Enter key while an element focused
-     */
+   * called when the user clicks inside the panel or presses the Enter key while an element focused
+   */
   clickHandler?: (target: HTMLElement) => void;
 };
 
@@ -41,8 +41,8 @@ export type PanelConfig = {
  */
 export class Panel extends AbstractComponent {
   /**
-     * @internal
-     */
+   * @internal
+   */
   protected override readonly state = {
     visible: false,
     contentId: null as string,
@@ -57,8 +57,8 @@ export class Panel extends AbstractComponent {
   private readonly content: HTMLElement;
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   constructor(viewer: Viewer) {
     super(viewer, {
       className: `psv-panel ${CAPTURE_EVENTS_CLASS}`,
@@ -92,8 +92,8 @@ export class Panel extends AbstractComponent {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override destroy() {
     this.viewer.removeEventListener(KeypressEvent.type, this);
 
@@ -106,38 +106,52 @@ export class Panel extends AbstractComponent {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     switch (e.type) {
-      case 'mousedown': this.__onMouseDown(e as MouseEvent); break;
-      case 'touchstart': this.__onTouchStart(e as TouchEvent); break;
-      case 'mousemove': this.__onMouseMove(e as MouseEvent); break;
-      case 'touchmove': this.__onTouchMove(e as TouchEvent); break;
-      case 'mouseup': this.__onMouseUp(e as MouseEvent); break;
-      case 'touchend': this.__onTouchEnd(e as TouchEvent); break;
-      case KeypressEvent.type: this.__onKeyPress(e as KeypressEvent); break;
+      case 'mousedown':
+        this.__onMouseDown(e as MouseEvent);
+        break;
+      case 'touchstart':
+        this.__onTouchStart(e as TouchEvent);
+        break;
+      case 'mousemove':
+        this.__onMouseMove(e as MouseEvent);
+        break;
+      case 'touchmove':
+        this.__onTouchMove(e as TouchEvent);
+        break;
+      case 'mouseup':
+        this.__onMouseUp(e as MouseEvent);
+        break;
+      case 'touchend':
+        this.__onTouchEnd(e as TouchEvent);
+        break;
+      case KeypressEvent.type:
+        this.__onKeyPress(e as KeypressEvent);
+        break;
     }
   }
 
   /**
-     * Checks if the panel is visible
-     */
+   * Checks if the panel is visible
+   */
   override isVisible(id?: string) {
     return this.state.visible && (!id || !this.state.contentId || this.state.contentId === id);
   }
 
   /**
-     * @throws {@link PSVError} always
-     * @internal
-     */
+   * @throws {@link PSVError} always
+   * @internal
+   */
   override toggle() {
     throw new PSVError('Panel cannot be toggled');
   }
 
   /**
-     * Shows the panel
-     */
+   * Shows the panel
+   */
   override show(config: string | PanelConfig) {
     if (typeof config === 'string') {
       config = { content: config };
@@ -192,8 +206,8 @@ export class Panel extends AbstractComponent {
   }
 
   /**
-     * Hides the panel
-     */
+   * Hides the panel
+   */
   override hide(id?: string) {
     if (this.isVisible(id)) {
       const contentId = this.state.contentId;

@@ -1,6 +1,6 @@
 @use 'vuetify' with (
   $color-pack: false,
-  $utilities: false,
+  $utilities: false
 );
 
 :root {
@@ -10,10 +10,10 @@
   --vp-c-default-soft: var(--vp-c-gray-soft);
 
   // Colors for Vuetify material palette
-  --vp-c-brand-1: #039BE5; // darken1
-  --vp-c-brand-2: #03A9F4; // base
-  --vp-c-brand-3: #039BE5; // darken1
-  --vp-c-brand-soft: color-mix(in srgb, #03A9F4 20%, transparent); // base
+  --vp-c-brand-1: #039be5; // darken1
+  --vp-c-brand-2: #03a9f4; // base
+  --vp-c-brand-3: #039be5; // darken1
+  --vp-c-brand-soft: color-mix(in srgb, #03a9f4 20%, transparent); // base
 
   --vp-c-tip-1: var(--vp-c-green-1);
   --vp-c-tip-2: var(--vp-c-green-2);
@@ -32,10 +32,10 @@
 }
 
 .dark {
-  --vp-c-brand-1: #0277BD; // darken3
-  --vp-c-brand-2: #039BE5; // darken1
-  --vp-c-brand-3: #0277BD; // darken3
-  --vp-c-brand-soft: color-mix(in srgb, #01579B 20%, transparent); // darken4
+  --vp-c-brand-1: #0277bd; // darken3
+  --vp-c-brand-2: #039be5; // darken1
+  --vp-c-brand-3: #0277bd; // darken3
+  --vp-c-brand-soft: color-mix(in srgb, #01579b 20%, transparent); // darken4
 }
 
 /**
@@ -44,11 +44,11 @@
 
 :root {
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #9CCC65 20%, #29B6F6);
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #9ccc65 20%, #29b6f6);
 }
 
 .dark {
-  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #8BC34A 20%, #03A9F4);
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #8bc34a 20%, #03a9f4);
 }
 
 /**
@@ -82,7 +82,7 @@
   max-width: none !important;
 }
 
-.VPHome>* {
+.VPHome > * {
   z-index: 10;
   position: relative;
 }
@@ -113,11 +113,10 @@
   margin-top: 3rem;
 }
 
-.vp-doc h2+h4,
-.vp-doc h3+h4 {
+.vp-doc h2 + h4,
+.vp-doc h3 + h4 {
   margin-top: 2rem;
 }
-
 
 /**
  * Vuetify Overrides
@@ -178,7 +177,7 @@
  * Options properties
  * -------------------------------------------------------------------------- */
 
-h4:not(.release-subtitle)+ul {
+h4:not(.release-subtitle) + ul {
   list-style: none;
   display: flex;
   flex-wrap: wrap;

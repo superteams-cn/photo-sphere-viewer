@@ -37,11 +37,7 @@ export class ProgressBar extends AbstractComponent {
     this.handleElt.className = 'psv-video-progressbar__handle';
     this.container.appendChild(this.handleElt);
 
-    this.slider = new utils.Slider(
-      this.container,
-      utils.SliderDirection.HORIZONTAL,
-      this.__onSliderUpdate.bind(this),
-    );
+    this.slider = new utils.Slider(this.container, utils.SliderDirection.HORIZONTAL, this.__onSliderUpdate.bind(this));
 
     this.viewer.addEventListener(events.PanoramaLoadedEvent.type, this);
     this.plugin.addEventListener(BufferEvent.type, this);
@@ -67,8 +63,8 @@ export class ProgressBar extends AbstractComponent {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     switch (e.type) {
       case events.PanoramaLoadedEvent.type:

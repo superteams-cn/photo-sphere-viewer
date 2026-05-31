@@ -57,7 +57,7 @@ export class Queue {
   }
 
   clear() {
-    Object.values(this.tasks).forEach(task => task.cancel());
+    Object.values(this.tasks).forEach((task) => task.cancel());
     this.tasks = {};
     this.runningTasks = {};
   }
@@ -84,7 +84,7 @@ export class Queue {
     }
 
     const nextTask = Object.values(this.tasks)
-      .filter(task => task.status === Status.PENDING)
+      .filter((task) => task.status === Status.PENDING)
       .sort((a, b) => b.priority - a.priority)
       .pop();
 

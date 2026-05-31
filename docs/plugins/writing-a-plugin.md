@@ -10,13 +10,13 @@ The recommended way to create your own plugin is as an ES6 class extending `Abst
 
 **Requirements:**
 
--   The plugin class **must** take a `Viewer` object as first parameter and pass it to the `super` constructor.
--   It **must** have a `static id` property.
--   It **must** implement the `init` method to perform initialization, like subscribing to events.
--   It **must** implement the `destroy` method which is used to cleanup the plugin when the viewer is unloaded.
--   The constructor **can** take an `config` object as second parameter.
+- The plugin class **must** take a `Viewer` object as first parameter and pass it to the `super` constructor.
+- It **must** have a `static id` property.
+- It **must** implement the `init` method to perform initialization, like subscribing to events.
+- It **must** implement the `destroy` method which is used to cleanup the plugin when the viewer is unloaded.
+- The constructor **can** take an `config` object as second parameter.
 
-In the plugin you have access to `this.viewer` which is the instance of the viewer, check the [API Reference](/api/classes/Core.Viewer.html){target=_blank} for more information.
+In the plugin you have access to `this.viewer` which is the instance of the viewer, check the [API Reference](/api/classes/Core.Viewer.html){target=\_blank} for more information.
 
 Your plugin is also an `EventTarget` with `addEventListener`, `removeEventListener` and `dispatchEvent` methods.
 
@@ -111,7 +111,7 @@ export default {
         },
     ],
     external: [
-        'three', 
+        'three',
         '@photo-sphere-viewer/core',
     ],
 };
@@ -123,9 +123,9 @@ If your plugin requires custom CSS, import the stylesheet directly in your main 
 
 ```js
 require('rollup-plugin-postcss')({
-    extract: true,
-    sourceMap: true,
-    use: ['sass'],
+  extract: true,
+  sourceMap: true,
+  use: ['sass'],
 });
 ```
 
@@ -135,21 +135,21 @@ Your plugin may need to add a new button in the navbar. This section will descri
 
 ### Creating a button
 
-Photo Sphere Viewer buttons **must** extend `AbstractButton`, check the [API Reference](/api/classes/Core.AbstractButton.html){target=_blank} for more information.
+Photo Sphere Viewer buttons **must** extend `AbstractButton`, check the [API Reference](/api/classes/Core.AbstractButton.html){target=\_blank} for more information.
 
 **Requirements:**
 
--   The button class **must** take a `Navbar` object as first parameter and pass it to the `super` constructor.
--   It **must** have a `static id` property.
--   It **must** implement the `destroy` method which is used to cleanup the button when the viewer is unloaded.
--   It **must** implement the `onClick` method to perform an action.
--   It **can** implement the `isSupported` method to inform the viewer if the action is possible depending on the environment.
--   It **must** provide the button configuration to `super` :
-    -   `className` : CSS class name applied to the button
-    -   `icon` : SVG of the icon
-    -   `iconActive` : SVG of the icon when the button is active (defaults `icon`)
-    -   `collapsable` : indicates the button can be collapsed in the menu on small screens (defaults `false`)
-    -   `tabbable` : indicates the button can be activated with the keyboard (defaults `true`)
+- The button class **must** take a `Navbar` object as first parameter and pass it to the `super` constructor.
+- It **must** have a `static id` property.
+- It **must** implement the `destroy` method which is used to cleanup the button when the viewer is unloaded.
+- It **must** implement the `onClick` method to perform an action.
+- It **can** implement the `isSupported` method to inform the viewer if the action is possible depending on the environment.
+- It **must** provide the button configuration to `super` :
+  - `className` : CSS class name applied to the button
+  - `icon` : SVG of the icon
+  - `iconActive` : SVG of the icon when the button is active (defaults `icon`)
+  - `collapsable` : indicates the button can be collapsed in the menu on small screens (defaults `false`)
+  - `tabbable` : indicates the button can be activated with the keyboard (defaults `true`)
 
 ```js:line-numbers
 import { AbstractButton } from '@photo-sphere-viewer/core';
@@ -202,7 +202,7 @@ If your button uses an icon, it is recommended to use an external SVG and bundle
 
 ```js
 require('rollup-plugin-string').string({
-    include: ['**/*.svg'],
+  include: ['**/*.svg'],
 });
 ```
 
@@ -220,8 +220,8 @@ To be correctly displayed in the navbar, the icon must use `fill="currentColor"`
 
 If you intend to publish your plugin on npmjs.org please respect the following naming:
 
--   class name : `[[Name]]Plugin`
--   NPM package name : `photo-sphere-viewer-[[name]]-plugin`
+- class name : `[[Name]]Plugin`
+- NPM package name : `photo-sphere-viewer-[[name]]-plugin`
 
 Your `package.json` must be properly configured to allow application bundlers to get the right file, and `@photo-sphere-viewer/core` must be declared as dependency.
 

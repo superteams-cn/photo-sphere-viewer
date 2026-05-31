@@ -1,4 +1,5 @@
 import eslint from '@eslint/js';
+import eslintConfigPrettier from 'eslint-config-prettier/flat';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 import stylistic from '@stylistic/eslint-plugin';
@@ -6,11 +7,7 @@ import stylistic from '@stylistic/eslint-plugin';
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   {
-    ignores: [
-      '**/dist/**/*',
-      'docs/.vitepress/cache/**/*',
-      '**/reports/**/*',
-    ],
+    ignores: ['**/dist/**/*', 'docs/.vitepress/cache/**/*', '**/reports/**/*'],
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
@@ -30,7 +27,7 @@ export default [
     },
     rules: {
       'array-callback-return': 'error',
-      'eqeqeq': 'error',
+      eqeqeq: 'error',
       'no-var': 'error',
       'prefer-const': ['error', { destructuring: 'all' }],
       '@stylistic/operator-linebreak': 'off',
@@ -50,4 +47,5 @@ export default [
       '@typescript-eslint/no-require-imports': 'off',
     },
   },
+  eslintConfigPrettier,
 ];

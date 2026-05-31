@@ -35,14 +35,13 @@ export function getFullPackages(version: string, packages: Package[]) {
   }
   core.style = true;
 
-  return packages
-    .map(pkg => ({
-      ...pkg,
-      name: pkg.external ? pkg.name : ORG + pkg.name,
-      version: pkg.external ? (pkg.version || 'latest') : (version || VERSION),
-      js: pkg.external ? pkg.js : 'index.module.js',
-      css: pkg.external ? pkg.css : 'index.css',
-    }));
+  return packages.map((pkg) => ({
+    ...pkg,
+    name: pkg.external ? pkg.name : ORG + pkg.name,
+    version: pkg.external ? pkg.version || 'latest' : version || VERSION,
+    js: pkg.external ? pkg.js : 'index.module.js',
+    css: pkg.external ? pkg.css : 'index.css',
+  }));
 }
 
 function getFullCss(css: string, packages: Package[], cdnImport: boolean) {
@@ -161,10 +160,12 @@ function getStackBlitzValue({ title, js, css, html, packages }: Params) {
   return {
     'project[template]': 'typescript',
     'project[title]': title,
-    'project[dependencies]': JSON.stringify(packages.reduce((deps, { name, version }) => {
-      deps[name] = `${version}`;
-      return deps;
-    }, {})),
+    'project[dependencies]': JSON.stringify(
+      packages.reduce((deps, { name, version }) => {
+        deps[name] = `${version}`;
+        return deps;
+      }, {}),
+    ),
     'project[files][index.ts]': `import './styles.css';
 ${js}`,
     'project[files][styles.css]': getFullCss(css, packages, false),

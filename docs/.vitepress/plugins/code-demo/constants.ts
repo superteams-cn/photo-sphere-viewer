@@ -4,11 +4,14 @@ import ICON_STACKBLITZ from './icons/stackblitz.svg?raw';
 
 export type Service = 'codepen' | 'jsfiddle' | 'stackblitz';
 
-export const SERVICES: Record<Service, {
-  name: string;
-  url: string;
-  icon: string;
-}> = {
+export const SERVICES: Record<
+  Service,
+  {
+    name: string;
+    url: string;
+    icon: string;
+  }
+> = {
   codepen: {
     // https://blog.codepen.io/documentation/api/prefill
     name: 'Codepen',

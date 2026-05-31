@@ -182,8 +182,8 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-     * Destroys the viewer
-     */
+   * Destroys the viewer
+   */
   destroy() {
     this.stopAll();
     this.stopKeyboardControl();
@@ -194,7 +194,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
       delete this.plugins[id];
     }
 
-    this.children.slice().forEach(child => child.destroy());
+    this.children.slice().forEach((child) => child.destroy());
     this.children.length = 0;
 
     this.eventsHandler?.destroy();
@@ -229,32 +229,32 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-     * Restarts the idle timer
-     * @internal
-     */
+   * Restarts the idle timer
+   * @internal
+   */
   resetIdleTimer() {
     this.state.idleTime = performance.now();
   }
 
   /**
-     * Stops the idle timer
-     * @internal
-     */
+   * Stops the idle timer
+   * @internal
+   */
   disableIdleTimer() {
     this.state.idleTime = -1;
   }
 
   /**
-     * Returns the instance of a plugin if it exists
-     * @example By plugin identifier
-     * ```js
-     * viewer.getPlugin('markers')
-     * ```
-     * @example By plugin class with TypeScript support
-     * ```ts
-     * viewer.getPlugin<MarkersPlugin>(MarkersPlugin)
-     * ```
-     */
+   * Returns the instance of a plugin if it exists
+   * @example By plugin identifier
+   * ```js
+   * viewer.getPlugin('markers')
+   * ```
+   * @example By plugin class with TypeScript support
+   * ```ts
+   * viewer.getPlugin<MarkersPlugin>(MarkersPlugin)
+   * ```
+   */
   getPlugin<T extends AbstractPlugin<any>>(pluginId: string | PluginConstructor): T {
     if (typeof pluginId === 'string') {
       return this.plugins[pluginId] as T;
@@ -265,43 +265,43 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-     * Returns the current position of the camera
-     */
+   * Returns the current position of the camera
+   */
   getPosition(): Position {
     return this.dataHelper.cleanPosition(this.dynamics.position.current);
   }
 
   /**
-     * Returns the current zoom level
-     */
+   * Returns the current zoom level
+   */
   getZoomLevel(): number {
     return this.dynamics.zoom.current;
   }
 
   /**
-     * Returns the current viewer size
-     */
+   * Returns the current viewer size
+   */
   getSize(): Size {
     return { ...this.state.size };
   }
 
   /**
-     * Checks if the viewer is in fullscreen
-     */
+   * Checks if the viewer is in fullscreen
+   */
   isFullscreenEnabled(): boolean {
     return isFullscreenEnabled(this.parent, SYSTEM.isIphone);
   }
 
   /**
-     * Request a new render of the scene
-     */
+   * Request a new render of the scene
+   */
   needsUpdate() {
     this.state.needsUpdate = true;
   }
 
   /**
-     * Request the scene to be continuously renderer (when using videos)
-     */
+   * Request the scene to be continuously renderer (when using videos)
+   */
   needsContinuousUpdate(enabled: boolean) {
     if (enabled) {
       this.state.continuousUpdateCount++;
@@ -311,12 +311,12 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-     * Resizes the scene if the viewer is resized
-     */
+   * Resizes the scene if the viewer is resized
+   */
   autoSize() {
     if (
-      this.container.clientWidth !== this.state.size.width
-      || this.container.clientHeight !== this.state.size.height
+      this.container.clientWidth !== this.state.size.width ||
+      this.container.clientHeight !== this.state.size.height
     ) {
       this.state.size.width = Math.round(this.container.clientWidth);
       this.state.size.height = Math.round(this.container.clientHeight);
@@ -329,12 +329,12 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-     * Loads a new panorama file
-     * Loads a new panorama file, optionally changing the camera position/zoom and activating the transition animation.<br>
-     * If the "options" parameter is not defined, the camera will not move and the ongoing animation will continue.<br>
-     * If another loading is already in progress it will be aborted.
-     * @returns promise resolved with false if the loading was aborted by another call
-     */
+   * Loads a new panorama file
+   * Loads a new panorama file, optionally changing the camera position/zoom and activating the transition animation.<br>
+   * If the "options" parameter is not defined, the camera will not move and the ongoing animation will continue.<br>
+   * If another loading is already in progress it will be aborted.
+   * @returns promise resolved with false if the loading was aborted by another call
+   */
   setPanorama(path: any, options: PanoramaOptions = {}): Promise<boolean> {
     this.textureLoader.abortLoading();
     this.state.transitionAnimation?.cancel();
@@ -392,24 +392,26 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
 
     this.dispatchEvent(new PanoramaLoadEvent(path));
 
-    const loadingPromise = this.adapter.loadTexture(this.config.panorama, true, options.panoData).then((textureData) => {
-      // check if another panorama was requested
-      if (textureData.panorama !== this.config.panorama) {
-        this.adapter.disposeTexture(textureData);
-        throw getAbortError();
-      }
+    const loadingPromise = this.adapter
+      .loadTexture(this.config.panorama, true, options.panoData)
+      .then((textureData) => {
+        // check if another panorama was requested
+        if (textureData.panorama !== this.config.panorama) {
+          this.adapter.disposeTexture(textureData);
+          throw getAbortError();
+        }
 
-      const cleanOptions = this.dataHelper.cleanPanoramaOptions(options, textureData.panoData);
+        const cleanOptions = this.dataHelper.cleanPanoramaOptions(options, textureData.panoData);
 
-      if (!isNil(cleanOptions.zoom) || !isNil(cleanOptions.position)) {
-        this.stopAll();
-      }
+        if (!isNil(cleanOptions.zoom) || !isNil(cleanOptions.position)) {
+          this.stopAll();
+        }
 
-      return {
-        textureData,
-        cleanOptions,
-      };
-    });
+        return {
+          textureData,
+          cleanOptions,
+        };
+      });
 
     if (!transition || !this.state.ready || !this.adapter.supportsTransition(this.config.panorama)) {
       this.state.loadingPromise = loadingPromise
@@ -434,7 +436,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
         })
         .then(
           () => done(),
-          err => done(err),
+          (err) => done(err),
         );
     } else {
       this.state.loadingPromise = loadingPromise
@@ -457,7 +459,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
         })
         .then(
           () => done(),
-          err => done(err),
+          (err) => done(err),
         );
     }
 
@@ -465,9 +467,9 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-     * Update options
-     * @throws {@link PSVError} if the configuration is invalid
-     */
+   * Update options
+   * @throws {@link PSVError} if the configuration is invalid
+   */
   setOptions(options: Partial<UpdatableViewerConfig>) {
     const rawConfig: ViewerConfig = {
       ...this.config,
@@ -550,16 +552,16 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-     * Update options
-     * @throws {@link PSVError} if the configuration is invalid
-     */
+   * Update options
+   * @throws {@link PSVError} if the configuration is invalid
+   */
   setOption<T extends keyof UpdatableViewerConfig>(option: T, value: UpdatableViewerConfig[T]) {
     this.setOptions({ [option]: value });
   }
 
   /**
-     * Displays an error message over the viewer
-     */
+   * Displays an error message over the viewer
+   */
   showError(message: string) {
     this.overlay.show({
       id: IDS.ERROR,
@@ -570,15 +572,15 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-     *  Hides the error message
-     */
+   *  Hides the error message
+   */
   hideError() {
     this.overlay.hide(IDS.ERROR);
   }
 
   /**
-     * Rotates the view to specific position
-     */
+   * Rotates the view to specific position
+   */
   rotate(position: ExtendedPosition) {
     const e = new BeforeRotateEvent(this.dataHelper.cleanPosition(position));
     this.dispatchEvent(e);
@@ -591,29 +593,29 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-     * Zooms to a specific level between `maxFov` and `minFov`
-     */
+   * Zooms to a specific level between `maxFov` and `minFov`
+   */
   zoom(level: number) {
     this.dynamics.zoom.setValue(level);
   }
 
   /**
-     * Increases the zoom level
-     */
+   * Increases the zoom level
+   */
   zoomIn(step = 1) {
     this.dynamics.zoom.step(step);
   }
 
   /**
-     * Decreases the zoom level
-     */
+   * Decreases the zoom level
+   */
   zoomOut(step = 1) {
     this.dynamics.zoom.step(-step);
   }
 
   /**
-     * Rotates and zooms the view with a smooth animation
-     */
+   * Rotates and zooms the view with a smooth animation
+   */
   animate(options: AnimateOptions): Animation {
     const positionProvided = isExtendedPosition(options);
     const zoomProvided = !isNil(options.zoom);
@@ -670,9 +672,9 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-     * Stops the ongoing animation
-     * The return value is a Promise because the is no guaranty the animation can be stopped synchronously.
-     */
+   * Stops the ongoing animation
+   * The return value is a Promise because the is no guaranty the animation can be stopped synchronously.
+   */
   stopAnimation(): PromiseLike<any> {
     if (this.state.animation) {
       this.state.animation.cancel();
@@ -683,8 +685,8 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-     * Resizes the viewer
-     */
+   * Resizes the viewer
+   */
   resize(size: CssSize) {
     this.__setSize(size);
     this.autoSize();
@@ -702,8 +704,8 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-     * Enters the fullscreen mode
-     */
+   * Enters the fullscreen mode
+   */
   enterFullscreen() {
     if (!this.isFullscreenEnabled()) {
       requestFullscreen(this.parent, SYSTEM.isIphone);
@@ -711,8 +713,8 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-     * Exits the fullscreen mode
-     */
+   * Exits the fullscreen mode
+   */
   exitFullscreen() {
     if (this.isFullscreenEnabled()) {
       exitFullscreen(SYSTEM.isIphone);
@@ -720,8 +722,8 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-     * Enters or exits the fullscreen mode
-     */
+   * Enters or exits the fullscreen mode
+   */
   toggleFullscreen() {
     if (!this.isFullscreenEnabled()) {
       this.enterFullscreen();
@@ -731,31 +733,31 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-     * Enables the keyboard controls
-     */
+   * Enables the keyboard controls
+   */
   startKeyboardControl() {
     this.state.keyboardEnabled = true;
   }
 
   /**
-     * Disables the keyboard controls
-     */
+   * Disables the keyboard controls
+   */
   stopKeyboardControl() {
     this.state.keyboardEnabled = false;
   }
 
   /**
-     * Creates a new tooltip
-     * Use {@link Tooltip.move} to update the tooltip without re-create
-     * @throws {@link PSVError} if the configuration is invalid
-     */
+   * Creates a new tooltip
+   * Use {@link Tooltip.move} to update the tooltip without re-create
+   * @throws {@link PSVError} if the configuration is invalid
+   */
   createTooltip(config: TooltipConfig): Tooltip {
     return new Tooltip(this, config);
   }
 
   /**
-     * Changes the global mouse cursor
-     */
+   * Changes the global mouse cursor
+   */
   setCursor(cursor: string | null) {
     this.state.cursorOverride = cursor;
     if (!cursor) {
@@ -766,9 +768,9 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-     * Subscribes to events on objects in the three.js scene
-     * @param userDataKey - only objects with the following `userData` will be observed
-     */
+   * Subscribes to events on objects in the three.js scene
+   * @param userDataKey - only objects with the following `userData` will be observed
+   */
   observeObjects(userDataKey: string): void {
     if (!this.state.objectsObservers[userDataKey]) {
       this.state.objectsObservers[userDataKey] = null;
@@ -776,16 +778,16 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-     * Unsubscribes to events on objects
-     */
+   * Unsubscribes to events on objects
+   */
   unobserveObjects(userDataKey: string): void {
     delete this.state.objectsObservers[userDataKey];
   }
 
   /**
-     * Stops all current animations
-     * @internal
-     */
+   * Stops all current animations
+   * @internal
+   */
   stopAll(): PromiseLike<void> {
     this.dispatchEvent(new StopAllEvent());
 

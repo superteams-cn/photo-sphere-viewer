@@ -25,11 +25,11 @@ title: PSV Notification Demo
 
 Show the notification.
 
-| option | type |   |
-| ------ | ---- | - |
-| `id` | `string` | Unique identifier of the notification, this will be used to `hide` the notification only if the content has not been replaced by something else. |
-| `content` (required) | `string` | HTML content of the notification. |
-| `timeout` | `number` | Auto-hide delay in milliseconds. |
+| option               | type     |                                                                                                                                                  |
+| -------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `id`                 | `string` | Unique identifier of the notification, this will be used to `hide` the notification only if the content has not been replaced by something else. |
+| `content` (required) | `string` | HTML content of the notification.                                                                                                                |
+| `timeout`            | `number` | Auto-hide delay in milliseconds.                                                                                                                 |
 
 ### `hide([id])`
 

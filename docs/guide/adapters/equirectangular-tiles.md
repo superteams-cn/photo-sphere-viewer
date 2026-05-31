@@ -32,7 +32,7 @@ const viewer = new Viewer({
 ```yaml
 title: PSV Equirectangular Tiles Demo
 packages:
-    - name: equirectangular-tiles-adapter
+  - name: equirectangular-tiles-adapter
 ```
 
 <<< ./demos-src/equirectangular-tiles.js{js:line-numbers}
@@ -47,22 +47,22 @@ With this adapter, pixel positions refer to the full size of the panorama (first
 
 #### `baseBlur`
 
--   type: `boolean`
--   default: `true`
+- type: `boolean`
+- default: `true`
 
 Applies a blur filter to the base image (option `baseUrl`).
 
 #### `showErrorTile`
 
--   type: `boolean`
--   default: `true`
+- type: `boolean`
+- default: `true`
 
 Shows a warning sign on tiles that cannot be loaded.
 
 #### `antialias`
 
--   type: `boolean`
--   default: `true`
+- type: `boolean`
+- default: `true`
 
 Applies antialiasing to high resolutions tiles.
 
@@ -82,38 +82,38 @@ You may choose to provide a single tiles configuration or multiple configuration
 
 #### `width` (required)
 
--   type: `number`
+- type: `number`
 
 Total width of the panorama, the height is always width / 2.
 
 #### `cols` (required)
 
--   type: `number`
+- type: `number`
 
 Number of columns, must be power of two (4, 8, 16, 32, 64) and the maximum value is 64.
 
 #### `rows` (required)
 
--   type: `number`
+- type: `number`
 
 Number of rows, must be power of two (2, 4, 8, 16, 32) and the maximum value is 32.
 
 #### `tileUrl` (required)
 
--   type: `function: (col, row) => string`
+- type: `function: (col, row) => string`
 
 Function used to build the URL of a tile.
 If the function returns `null` the corresponding tile will not be loaded.
 
 #### `baseUrl` (recommended)
 
--   type: `string`
+- type: `string`
 
 URL of a low resolution complete panorama image to display while the tiles are loading.
 
 #### `basePanoData`
 
--   type: `object | function<Image, object>`
+- type: `object | function<Image, object>`
 
 Panorama configuration associated to low resolution first image, following the same format as [`panoData` configuration object](../config.md#panodata).
 
@@ -123,7 +123,7 @@ Panorama configuration associated to low resolution first image, following the s
 
 #### `levels` (required)
 
--   type: `array`
+- type: `array`
 
 Array of available tiles configurations. Each element is an object with `width`, `cols` and `rows` (see "Single level"). The best size will be choosen depending on the current zoom level and viewer size.
 
@@ -149,20 +149,20 @@ levels: [
 
 #### `tileUrl` (required)
 
--   type: `function: (col, row, level) => string`
+- type: `function: (col, row, level) => string`
 
 Function used to build the URL of a tile.
 If the function returns `null` the corresponding tile will not be loaded.
 
 #### `baseUrl` (recommended)
 
--   type: `string`
+- type: `string`
 
 URL of a low resolution complete panorama image to display while the tiles are loading.
 
 #### `basePanoData`
 
--   type: `object | function<Image, object>`
+- type: `object | function<Image, object>`
 
 Panorama configuration associated to low resolution first image, following the same format as [`panoData` configuration object](../config.md#panodata).
 

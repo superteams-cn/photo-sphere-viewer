@@ -36,6 +36,6 @@ settings.addSetting({
     { id: 'A', label: 'Option A' },
     { id: 'B', label: 'Option B' },
   ],
-  apply: option => (currentOption = option),
+  apply: (option) => (currentOption = option),
   badge: () => currentOption,
 });

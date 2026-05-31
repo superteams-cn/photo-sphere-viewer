@@ -1,0 +1,15 @@
+.git
+.nyc_output
+.tmp
+.turbo
+coverage
+cypress/screenshots
+cypress/snapshots/diff
+dist
+docs/.vitepress/.temp
+docs/.vitepress/cache
+node_modules
+/public
+reports
+pnpm-lock.yaml
+yarn.lock

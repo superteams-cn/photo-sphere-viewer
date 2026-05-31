@@ -9,25 +9,25 @@ import { AbstractComponent } from './AbstractComponent';
  */
 export type OverlayConfig = {
   /**
-     * unique identifier to use with {@link Overlay.hide} and {@link Overlay.isVisible}
-     */
+   * unique identifier to use with {@link Overlay.hide} and {@link Overlay.isVisible}
+   */
   id?: string;
   /**
-     * SVG image/icon displayed above the text
-     */
+   * SVG image/icon displayed above the text
+   */
   image?: string;
   /**
-     * main message
-     */
+   * main message
+   */
   title: string;
   /**
-     * secondary message
-     */
+   * secondary message
+   */
   text?: string;
   /**
-     * if the user can hide the overlay by clicking
-     * @default true
-     */
+   * if the user can hide the overlay by clicking
+   * @default true
+   */
   dismissible?: boolean;
 };
 
@@ -36,8 +36,8 @@ export type OverlayConfig = {
  */
 export class Overlay extends AbstractComponent {
   /**
-     * @internal
-     */
+   * @internal
+   */
   protected override readonly state = {
     visible: false,
     contentId: null as string,
@@ -49,8 +49,8 @@ export class Overlay extends AbstractComponent {
   private readonly text: HTMLElement;
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   constructor(viewer: Viewer) {
     super(viewer, {
       className: `psv-overlay ${CAPTURE_EVENTS_CLASS}`,
@@ -75,8 +75,8 @@ export class Overlay extends AbstractComponent {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override destroy() {
     this.viewer.removeEventListener(KeypressEvent.type, this);
 
@@ -84,8 +84,8 @@ export class Overlay extends AbstractComponent {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     if (e.type === 'click') {
       if (this.isVisible() && this.state.dismissible) {
@@ -101,23 +101,23 @@ export class Overlay extends AbstractComponent {
   }
 
   /**
-     * Checks if the overlay is visible
-     */
+   * Checks if the overlay is visible
+   */
   override isVisible(id?: string) {
     return this.state.visible && (!id || !this.state.contentId || this.state.contentId === id);
   }
 
   /**
-     * @throws {@link PSVError} always
-     * @internal
-     */
+   * @throws {@link PSVError} always
+   * @internal
+   */
   override toggle() {
     throw new PSVError('Overlay cannot be toggled');
   }
 
   /**
-     * Displays an overlay on the viewer
-     */
+   * Displays an overlay on the viewer
+   */
   override show(config: string | OverlayConfig) {
     if (typeof config === 'string') {
       config = { title: config };
@@ -135,8 +135,8 @@ export class Overlay extends AbstractComponent {
   }
 
   /**
-     * Hides the overlay
-     */
+   * Hides the overlay
+   */
   override hide(id?: string) {
     if (this.isVisible(id)) {
       const contentId = this.state.contentId;

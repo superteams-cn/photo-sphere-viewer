@@ -75,7 +75,7 @@ const viewer = new Viewer({
 ```yaml
 title: PSV Autorotate Demo
 packages:
-    - name: autorotate-plugin
+  - name: autorotate-plugin
 ```
 
 <<< ./demos-src/autorotate.js{js:line-numbers}
@@ -89,11 +89,11 @@ packages:
 ```yaml
 title: PSV Autorotate Keypoints Demo
 packages:
-    - name: autorotate-plugin
-      imports: AutorotatePlugin
-    - name: markers-plugin
-      imports: MarkersPlugin
-      style: true
+  - name: autorotate-plugin
+    imports: AutorotatePlugin
+  - name: markers-plugin
+    imports: MarkersPlugin
+    style: true
 ```
 
 <<< ./demos-src/autorotate-keypoints.js{js:line-numbers}
@@ -104,17 +104,17 @@ packages:
 
 #### `autostartDelay`
 
--   type: `integer`
--   default: `2000`
--   updatable: yes
+- type: `integer`
+- default: `2000`
+- updatable: yes
 
 Delay after which the automatic rotation will begin, in milliseconds.
 
 #### `autostartOnIdle`
 
--   type: `boolean`
--   default: `true`
--   updatable: yes
+- type: `boolean`
+- default: `true`
+- updatable: yes
 
 Restarts the automatic rotation if the user is idle for `autostartDelay`.
 
@@ -122,32 +122,32 @@ Restarts the automatic rotation if the user is idle for `autostartDelay`.
 
 #### `autorotateSpeed`
 
--   type: `string`
--   default: `2rpm`
--   updatable: yes
+- type: `string`
+- default: `2rpm`
+- updatable: yes
 
 Speed of the automatic rotation. Can be a negative value to reverse the rotation.
 
 #### `autorotatePitch`
 
--   type: `double | string`
--   default: `defaultPitch`
--   updatable: yes
+- type: `double | string`
+- default: `defaultPitch`
+- updatable: yes
 
 Vertical angle at which the automatic rotation is performed. If `null` the current pitch is kept.
 
 #### `autorotateZoomLvl`
 
--   type: `number`
--   default: `null`
--   updatable: yes
+- type: `number`
+- default: `null`
+- updatable: yes
 
 Zoom level at which the automatic rotation is performed. If `null` the current zoom is kept.
 
 #### `keypoints`
 
--   type: `AutorotateKeypoint[]`
--   updatable: no, use `setKeypoints()` method
+- type: `AutorotateKeypoint[]`
+- updatable: no, use `setKeypoints()` method
 
 Initial keypoints, does the same thing as calling `setKeypoints()` just after initialisation.
 
@@ -177,16 +177,16 @@ Keypoints are defined either by a `position` or a `markerId` (requires the [mark
 
 #### `startFromClosest`
 
--   type: `boolean`
--   default: `true`
--   updatable: yes
+- type: `boolean`
+- default: `true`
+- updatable: yes
 
 Start from the closest keypoint instead of the first keypoint of the array.
 
 #### `lang`
 
--   type: `object`
--   default:
+- type: `object`
+- default:
 
 ```js
 lang: {
@@ -195,7 +195,6 @@ lang: {
 ```
 
 _Note: this option is not part of the plugin but is merged with the main [`lang`](../guide/config.md#lang) object._
-
 
 ## Methods
 
@@ -217,6 +216,6 @@ Triggered when the automatic rotation is enabled/disabled.
 
 This plugin adds buttons to the default navbar:
 
--   `autorotate` allows to toggle the rotation on and off
+- `autorotate` allows to toggle the rotation on and off
 
 If you use a [custom navbar](../guide/navbar.md) you will need to manually add the buttons to the list.

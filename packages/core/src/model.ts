@@ -78,17 +78,17 @@ export type ExtendedPosition = SphericalPosition | PanoramaPosition;
  */
 export type AnimateOptions = Partial<ExtendedPosition> & {
   /**
-     * Animation speed or duration in milliseconds
-     */
+   * Animation speed or duration in milliseconds
+   */
   speed: string | number;
   /**
-     * New zoom level between 0 and 100
-     */
+   * New zoom level between 0 and 100
+   */
   zoom?: number;
   /**
-     * Easing function used for the animation
-     * @default 'inOutSine'
-     */
+   * Easing function used for the animation
+   * @default 'inOutSine'
+   */
   easing?: AnimationOptions<any>['easing'];
 };
 
@@ -132,38 +132,38 @@ export type PanoDataProvider = (image: HTMLImageElement, xmpData?: PanoData) => 
  */
 export type PanoramaOptions = {
   /**
-     * new panorama position
-     */
+   * new panorama position
+   */
   position?: ExtendedPosition;
   /**
-     * new navbar caption
-     */
+   * new navbar caption
+   */
   caption?: string;
   /**
-     * new panorama description
-     */
+   * new panorama description
+   */
   description?: string;
   /**
-     * new zoom level between 0 and 100
-     */
+   * new zoom level between 0 and 100
+   */
   zoom?: number;
   /**
-     * enable transition (rotation + fading) between old and new panorama
-     * @default true
-     */
+   * enable transition (rotation + fading) between old and new panorama
+   * @default true
+   */
   transition?: boolean | TransitionOptions;
   /**
-     * show the loader while loading the new panorama
-     * @default true
-     */
+   * show the loader while loading the new panorama
+   * @default true
+   */
   showLoader?: boolean;
   /**
-     * new sphere correction to apply to the panorama
-     */
+   * new sphere correction to apply to the panorama
+   */
   sphereCorrection?: SphereCorrection;
   /**
-     * new data used for this panorama
-     */
+   * new data used for this panorama
+   */
   panoData?: PanoData | PanoDataProvider;
 };
 
@@ -181,20 +181,20 @@ export type TransitionOptions = {
  */
 export type TextureData<TTexture = Texture | Texture[] | Record<string, Texture>, TPanorama = any, TData = any> = {
   /**
-     * Actual texture or list of textures
-     */
+   * Actual texture or list of textures
+   */
   texture: TTexture;
   /**
-     * Original panorama definition
-     */
+   * Original panorama definition
+   */
   panorama: TPanorama;
   /**
-     * Panorama metadata
-     */
+   * Panorama metadata
+   */
   panoData?: TData;
   /**
-     * Key used in the loader cache
-     */
+   * Key used in the loader cache
+   */
   cacheKey?: string;
 };
 
@@ -203,60 +203,60 @@ export type TextureData<TTexture = Texture | Texture[] | Record<string, Texture>
  */
 export type ClickData = {
   /**
-     * if it's a right click
-     */
+   * if it's a right click
+   */
   rightclick: boolean;
   /**
-     * position in the browser window
-     */
+   * position in the browser window
+   */
   clientX: number;
   /**
-     * position in the browser window
-     */
+   * position in the browser window
+   */
   clientY: number;
   /**
-     * position in the viewer
-     */
+   * position in the viewer
+   */
   viewerX: number;
   /**
-     * position in the viewer
-     */
+   * position in the viewer
+   */
   viewerY: number;
   /**
-     * position in spherical coordinates
-     */
+   * position in spherical coordinates
+   */
   yaw: number;
   /**
-     * position in spherical coordinates
-     */
+   * position in spherical coordinates
+   */
   pitch: number;
   /**
-     * position on the texture, if applicable
-     */
+   * position on the texture, if applicable
+   */
   textureX?: number;
   /**
-     * position on the texture, if applicable
-     */
+   * position on the texture, if applicable
+   */
   textureY?: number;
   /**
-     * position on the texture, if applicable
-     */
+   * position on the texture, if applicable
+   */
   textureFace?: string;
   /**
-     * Original element which received the click
-     */
+   * Original element which received the click
+   */
   target?: HTMLElement;
   /**
-     * Original event which triggered the click
-     */
+   * Original event which triggered the click
+   */
   originalEvent?: Event;
   /**
-     * List of THREE scenes objects under the mouse
-     */
+   * List of THREE scenes objects under the mouse
+   */
   objects: Object3D[];
   /**
-     * clicked Marker
-     */
+   * clicked Marker
+   */
   marker?: any;
 };
 
@@ -274,45 +274,45 @@ export interface NavbarButtonElement extends HTMLElement {
  */
 export type NavbarCustomButton = {
   /**
-     * Unique identifier of the button, usefull when using the {@link Navbar.getButton} method
-     */
+   * Unique identifier of the button, usefull when using the {@link Navbar.getButton} method
+   */
   id?: string;
   /**
-     * Tooltip displayed when the mouse is over the button
-     * If can be a key in the global `lang` config
-     */
+   * Tooltip displayed when the mouse is over the button
+   * If can be a key in the global `lang` config
+   */
   title?: string;
   /**
-     * Content of the button. Preferably a square image or SVG icon
-     */
+   * Content of the button. Preferably a square image or SVG icon
+   */
   content: string | NavbarButtonElement;
   /**
-     * CSS class added to the button
-     */
+   * CSS class added to the button
+   */
   className?: string;
   /**
-     * Function called when the button is clicked
-     */
+   * Function called when the button is clicked
+   */
   onClick?: (viewer: Viewer) => void;
   /**
-     * initial state of the button
-     * @default false
-     */
+   * initial state of the button
+   * @default false
+   */
   disabled?: boolean;
   /**
-     * initial visibility of the button
-     * @default true
-     */
+   * initial visibility of the button
+   * @default true
+   */
   visible?: boolean;
   /**
-     * if the button can be moved to menu when the navbar is too small
-     * @default true
-     */
+   * if the button can be moved to menu when the navbar is too small
+   * @default true
+   */
   collapsable?: boolean;
   /**
-     * if the button is accessible with the keyboard
-     * @default true
-     */
+   * if the button is accessible with the keyboard
+   * @default true
+   */
   tabbable?: boolean;
 };
 
@@ -417,12 +417,7 @@ export type ParsedViewerConfig = Omit<
 /**
  * Readonly viewer configuration
  */
-export type ReadonlyViewerConfig =
-  | 'panorama'
-  | 'panoData'
-  | 'container'
-  | 'adapter'
-  | 'plugins';
+export type ReadonlyViewerConfig = 'panorama' | 'panoData' | 'container' | 'adapter' | 'plugins';
 
 /**
  * Updatable viewer configuration

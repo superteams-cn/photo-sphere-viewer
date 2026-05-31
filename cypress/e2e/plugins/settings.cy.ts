@@ -25,24 +25,19 @@ describe('plugin: settings', () => {
   });
 
   it('should destroy', () => {
-    callViewer('destroy').then(viewer => viewer.destroy());
+    callViewer('destroy').then((viewer) => viewer.destroy());
   });
 
   it('should add a navbar button', () => {
-    cy.get('.psv-settings-button')
-      .should('be.visible')
-      .click()
-      .should('have.class', 'psv-button--active');
+    cy.get('.psv-settings-button').should('be.visible').click().should('have.class', 'psv-button--active');
 
-    cy.get('.psv-settings')
-      .should('be.visible')
-      .compareScreenshots('base');
+    cy.get('.psv-settings').should('be.visible').compareScreenshots('base');
   });
 
   it('should hide settings on panel open', () => {
     cy.get('.psv-settings-button').click();
 
-    callViewer('open panel').then(viewer => viewer.panel.show('Lorem ipsum'));
+    callViewer('open panel').then((viewer) => viewer.panel.show('Lorem ipsum'));
 
     cy.get('.psv-settings').should('not.be.visible');
   });
@@ -64,7 +59,7 @@ describe('plugin: settings', () => {
       ['download settings caption', 'left', '0px'],
       ['caption settings fullscreen', 'right', '0px'],
     ].forEach(([navbar, prop, value]) => {
-      callViewer(`navbar "${navbar}"`).then(viewer => viewer.setOption('navbar', navbar));
+      callViewer(`navbar "${navbar}"`).then((viewer) => viewer.setOption('navbar', navbar));
 
       cy.get('.psv-settings-button').click();
 
@@ -129,18 +124,13 @@ describe('plugin: settings', () => {
   });
 
   it('should display a badge', () => {
-    cy.get('.psv-settings-button')
-      .should('include.text', 'A')
-      .compareScreenshots('badge-a');
+    cy.get('.psv-settings-button').should('include.text', 'A').compareScreenshots('badge-a');
 
     cy.get('.psv-settings-button').click();
     cy.get('[data-setting-id=options-setting]').click();
     cy.get('[data-option-id=B]').click();
 
-    cy.get('.psv-settings-button')
-      .should('include.text', 'B')
-      .blur()
-      .compareScreenshots('badge-b');
+    cy.get('.psv-settings-button').should('include.text', 'B').blur().compareScreenshots('badge-b');
   });
 
   it('should throw if missing properties', () => {
@@ -191,9 +181,11 @@ describe('plugin: settings', () => {
     return callPlugin<SettingsPlugin>('settings', log);
   }
 
-  function listenSettingsEvent(name: Parameters<SettingsPlugin['addEventListener']>[0]): Cypress.Agent<sinon.SinonStub> {
+  function listenSettingsEvent(
+    name: Parameters<SettingsPlugin['addEventListener']>[0],
+  ): Cypress.Agent<sinon.SinonStub> {
     const handler = cy.stub();
-    callSettings(`listen "${name}"`).then(settings => settings.addEventListener(name, handler));
+    callSettings(`listen "${name}"`).then((settings) => settings.addEventListener(name, handler));
     return handler;
   }
 
@@ -203,8 +195,12 @@ describe('plugin: settings', () => {
       label: 'Toggle setting',
       type: 'toggle',
       v: false,
-      active() { return this.v; },
-      toggle() { this.v = !this.v; },
+      active() {
+        return this.v;
+      },
+      toggle() {
+        this.v = !this.v;
+      },
     } satisfies ToggleSettingWithValue;
   }
 
@@ -222,9 +218,15 @@ describe('plugin: settings', () => {
         { id: 'A', label: 'Option A' },
         { id: 'B', label: 'Option B' },
       ],
-      current() { return this.v; },
-      apply(option) { this.v = option; },
-      badge() { return this.v; },
+      current() {
+        return this.v;
+      },
+      apply(option) {
+        this.v = option;
+      },
+      badge() {
+        return this.v;
+      },
     } satisfies OptionsSettingWithValue;
   }
 
@@ -233,8 +235,11 @@ describe('plugin: settings', () => {
   }
 
   function checkLocalStorage(key: string, name: string, value: any) {
-    cy.window().its('localStorage').its(key).should((psvSettings) => {
-      expect(JSON.parse(psvSettings)).to.have.property(name, value);
-    });
+    cy.window()
+      .its('localStorage')
+      .its(key)
+      .should((psvSettings) => {
+        expect(JSON.parse(psvSettings)).to.have.property(name, value);
+      });
   }
 });

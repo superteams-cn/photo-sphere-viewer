@@ -6,9 +6,9 @@ import { AdapterConstructor } from './AbstractAdapter';
 
 export type DualFisheyeAdapterConfig = {
   /**
-     * number of faces of the sphere geometry, higher values may decrease performances
-     * @default 64
-     */
+   * number of faces of the sphere geometry, higher values may decrease performances
+   * @default 64
+   */
   resolution?: number;
 };
 
@@ -37,11 +37,7 @@ export class DualFisheyeAdapter extends EquirectangularAdapter {
   }
 
   override createMesh(): EquirectangularMesh {
-    const geometry = new SphereGeometry(
-      SPHERE_RADIUS,
-      this.SPHERE_SEGMENTS,
-      this.SPHERE_HORIZONTAL_SEGMENTS,
-    )
+    const geometry = new SphereGeometry(SPHERE_RADIUS, this.SPHERE_SEGMENTS, this.SPHERE_HORIZONTAL_SEGMENTS)
       .scale(-1, 1, 1)
       .toNonIndexed() as SphereGeometry;
 
@@ -58,17 +54,11 @@ export class DualFisheyeAdapter extends EquirectangularAdapter {
 
         const c = 0.947;
         if (i < uvs.count / 6) {
-          const correction = (x === 0 && z === 0) ? 1 : (Math.acos(y) / Math.sqrt(x * x + z * z)) * (2 / Math.PI);
-          uvs.setXY(index,
-            x * (c / 4) * correction + (1 / 4),
-            z * (c / 2) * correction + (1 / 2),
-          );
+          const correction = x === 0 && z === 0 ? 1 : (Math.acos(y) / Math.sqrt(x * x + z * z)) * (2 / Math.PI);
+          uvs.setXY(index, x * (c / 4) * correction + 1 / 4, z * (c / 2) * correction + 1 / 2);
         } else {
-          const correction = (x === 0 && z === 0) ? 1 : (Math.acos(-y) / Math.sqrt(x * x + z * z)) * (2 / Math.PI);
-          uvs.setXY(index,
-            -x * (c / 4) * correction + (3 / 4),
-            z * (c / 2) * correction + (1 / 2),
-          );
+          const correction = x === 0 && z === 0 ? 1 : (Math.acos(-y) / Math.sqrt(x * x + z * z)) * (2 / Math.PI);
+          uvs.setXY(index, -x * (c / 4) * correction + 3 / 4, z * (c / 2) * correction + 1 / 2);
         }
       }
     }

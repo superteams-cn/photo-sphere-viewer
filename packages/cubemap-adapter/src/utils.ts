@@ -7,7 +7,7 @@ const CUBE_ARRAY = [0, 2, 4, 5, 3, 1];
 const CUBE_HASHMAP: CubemapFaces[] = ['left', 'right', 'top', 'bottom', 'back', 'front'];
 
 export function isCubemap(cubemap: any): cubemap is Cubemap {
-  return cubemap && typeof cubemap === 'object' && CUBE_HASHMAP.every(side => side in cubemap);
+  return cubemap && typeof cubemap === 'object' && CUBE_HASHMAP.every((side) => side in cubemap);
 }
 
 /**

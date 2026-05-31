@@ -14,8 +14,8 @@ export class TextureLoader extends AbstractService {
   private readonly imageLoader: AbortableImageLoader;
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   constructor(viewer: Viewer) {
     super(viewer);
 
@@ -25,25 +25,25 @@ export class TextureLoader extends AbstractService {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override destroy() {
     this.abortLoading();
     super.destroy();
   }
 
   /**
-     * Cancels current HTTP requests
-     * @internal
-     */
+   * Cancels current HTTP requests
+   * @internal
+   */
   abortLoading() {
     this.fileLoader.abort?.();
     this.imageLoader.abort();
   }
 
   /**
-     * Loads a Blob with FileLoader
-     */
+   * Loads a Blob with FileLoader
+   */
   loadFile(url: string, onProgress?: (p: number) => void, cacheKey?: string): Promise<Blob> {
     const cached = Cache.get(url, cacheKey);
 
@@ -66,9 +66,8 @@ export class TextureLoader extends AbstractService {
     let progress = 0;
     onProgress?.(progress);
 
-    return this.fileLoader.loadAsync(
-      url,
-      (e) => {
+    return this.fileLoader
+      .loadAsync(url, (e) => {
         if (e.lengthComputable) {
           const newProgress = (e.loaded / e.total) * 100;
           if (newProgress > progress) {
@@ -76,8 +75,7 @@ export class TextureLoader extends AbstractService {
             onProgress?.(progress);
           }
         }
-      },
-    )
+      })
       .then((result) => {
         progress = 100;
         onProgress?.(progress);
@@ -87,8 +85,8 @@ export class TextureLoader extends AbstractService {
   }
 
   /**
-     * Loads an image with ImageLoader or with FileLoader if progress is tracked or if request headers are configured
-     */
+   * Loads an image with ImageLoader or with FileLoader if progress is tracked or if request headers are configured
+   */
   loadImage(url: string, onProgress?: (p: number) => void, cacheKey?: string): Promise<HTMLImageElement> {
     const cached = Cache.get(url, cacheKey);
 
@@ -105,19 +103,18 @@ export class TextureLoader extends AbstractService {
     if (!onProgress && !this.config.requestHeaders) {
       this.imageLoader.setWithCredentials(this.config.withCredentials(url));
 
-      return this.imageLoader.loadAsync(url)
-        .then((result) => {
-          Cache.add(url, cacheKey, result);
-          return result;
-        });
+      return this.imageLoader.loadAsync(url).then((result) => {
+        Cache.add(url, cacheKey, result);
+        return result;
+      });
     } else {
-      return this.loadFile(url, onProgress, cacheKey).then(blob => this.blobToImage(blob));
+      return this.loadFile(url, onProgress, cacheKey).then((blob) => this.blobToImage(blob));
     }
   }
 
   /**
-     * Converts a file loaded with {@link loadFile} into an image
-     */
+   * Converts a file loaded with {@link loadFile} into an image
+   */
   blobToImage(blob: Blob): Promise<HTMLImageElement> {
     return new Promise((resolve, reject) => {
       const img = document.createElement('img');
@@ -131,8 +128,8 @@ export class TextureLoader extends AbstractService {
   }
 
   /**
-     * Preload a panorama file without displaying it
-     */
+   * Preload a panorama file without displaying it
+   */
   preloadPanorama(panorama: any): Promise<unknown> {
     if (this.viewer.adapter.supportsPreload(panorama)) {
       return this.viewer.adapter.loadTexture(panorama, false);
@@ -142,8 +139,8 @@ export class TextureLoader extends AbstractService {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   dispatchProgress(progress: number) {
     this.viewer.loader.setProgress(progress);
     this.viewer.dispatchEvent(new LoadProgressEvent(Math.round(progress)));

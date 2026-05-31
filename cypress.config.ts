@@ -59,22 +59,28 @@ export default defineConfig({
         fs.mkdirSync(`${ROOT_DIR}html/coverage`, { recursive: true });
         fs.copyFileSync(`${ROOT_DIR}lcov-viewer/report-data.js`, `${ROOT_DIR}html/coverage/report-data.js`);
 
-        let content = fs.readFileSync(`${ROOT_DIR}lcov-viewer/index.html`, 'utf-8')
-          .replace('src="app.js"', 'src="https://cdn.jsdelivr.net/npm/@lcov-viewer/istanbul-report@1/lib/assets/app.js"')
+        let content = fs
+          .readFileSync(`${ROOT_DIR}lcov-viewer/index.html`, 'utf-8')
+          .replace(
+            'src="app.js"',
+            'src="https://cdn.jsdelivr.net/npm/@lcov-viewer/istanbul-report@1/lib/assets/app.js"',
+          )
           .replace(/<title>.*<\/title>/, '<title>Photo Sphere Viewer - E2E coverage</title>');
 
         fs.writeFileSync(`${ROOT_DIR}html/coverage/index.html`, content, 'utf-8');
 
         console.log(`Add link to coverage in ${ROOT_DIR}html/index.html`);
 
-        content = fs.readFileSync(`${ROOT_DIR}html/index.html`, 'utf-8')
-          .replace('</body>', `<script>
+        content = fs.readFileSync(`${ROOT_DIR}html/index.html`, 'utf-8').replace(
+          '</body>',
+          `<script>
 const list = document.querySelector('[class^="quick-summary--list"]');
 const item = list.firstChild.cloneNode(true);
 item.querySelector('i').innerHTML = '&#xe6c4;';
 item.querySelector('span').innerHTML = '<a href="coverage" style="color:white;text-decoration:underline;">Coverage</a>';
 list.prepend(item);
-</script></body>`);
+</script></body>`,
+        );
 
         fs.writeFileSync(`${ROOT_DIR}html/index.html`, content, 'utf-8');
       });
@@ -85,10 +91,12 @@ list.prepend(item);
   clientCertificates: [
     {
       url: 'https://127.0.0.1:8080',
-      certs: [{
-        cert: '.tmp/fake-cert.pem',
-        key: '.tmp/fake-cert.key',
-      }],
+      certs: [
+        {
+          cert: '.tmp/fake-cert.pem',
+          key: '.tmp/fake-cert.key',
+        },
+      ],
     },
   ],
   reporter: 'build/mocha-reporter.js',

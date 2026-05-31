@@ -117,8 +117,8 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override init() {
     super.init();
 
@@ -140,8 +140,8 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override destroy() {
     this.viewer.removeEventListener(events.StopAllEvent.type, this);
     this.viewer.removeEventListener(events.BeforeRenderEvent.type, this);
@@ -155,8 +155,8 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     switch (e.type) {
       case events.StopAllEvent.type:
@@ -175,9 +175,9 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Changes the keypoints
-     * @throws {@link PSVError} if the configuration is invalid
-     */
+   * Changes the keypoints
+   * @throws {@link PSVError} if the configuration is invalid
+   */
   setKeypoints(keypoints: AutorotateKeypoint[] | null) {
     if (!keypoints) {
       this.keypoints = null;
@@ -235,15 +235,15 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Checks if the automatic rotation is enabled
-     */
+   * Checks if the automatic rotation is enabled
+   */
   isEnabled(): boolean {
     return this.state.enabled;
   }
 
   /**
-     * Starts the automatic rotation
-     */
+   * Starts the automatic rotation
+   */
   start() {
     if (this.isEnabled()) {
       return;
@@ -265,8 +265,8 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Stops the automatic rotation
-     */
+   * Stops the automatic rotation
+   */
   stop() {
     if (!this.isEnabled()) {
       return;
@@ -285,8 +285,8 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Starts or stops the automatic rotation
-     */
+   * Starts or stops the automatic rotation
+   */
   toggle() {
     if (this.isEnabled()) {
       this.stop();
@@ -296,8 +296,8 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   reverse() {
     if (this.isEnabled() && !this.keypoints) {
       this.config.autorotateSpeed = -this.config.autorotateSpeed;
@@ -306,15 +306,15 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   disableOnIdle() {
     this.state.disableOnIdle = true;
   }
 
   /**
-     * Launches the standard animation
-     */
+   * Launches the standard animation
+   */
   private __animate() {
     // do the zoom before the rotation
     let p: PromiseLike<any>;
@@ -350,8 +350,8 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Resets all the curve variables
-     */
+   * Resets all the curve variables
+   */
   private __reset() {
     this.state.idx = -1;
     this.state.curve = [];
@@ -365,14 +365,14 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Automatically starts if the delay is reached
-     * Performs keypoints animation
-     */
+   * Automatically starts if the delay is reached
+   * Performs keypoints animation
+   */
   private __beforeRender(timestamp: number) {
     if (
-      (this.state.initialStart || (this.config.autostartOnIdle && !this.state.disableOnIdle))
-      && this.viewer.state.idleTime > 0
-      && timestamp - this.viewer.state.idleTime > this.config.autostartDelay
+      (this.state.initialStart || (this.config.autostartOnIdle && !this.state.disableOnIdle)) &&
+      this.viewer.state.idleTime > 0 &&
+      timestamp - this.viewer.state.idleTime > this.config.autostartDelay
     ) {
       this.start();
     }
@@ -447,17 +447,13 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
     const workPoints = [];
     if (this.state.idx === -1) {
       const currentPosition = serializePt(this.viewer.getPosition());
-      workPoints.push(
-        currentPosition,
-        currentPosition,
-        this.keypoints[0].position,
-        this.keypoints[1].position,
-      );
+      workPoints.push(currentPosition, currentPosition, this.keypoints[0].position, this.keypoints[1].position);
     } else {
       for (let i = -1; i < 3; i++) {
-        const keypoint = this.state.idx + i < 0
-          ? this.keypoints[this.keypoints.length - 1]
-          : this.keypoints[(this.state.idx + i) % this.keypoints.length];
+        const keypoint =
+          this.state.idx + i < 0
+            ? this.keypoints[this.keypoints.length - 1]
+            : this.keypoints[(this.state.idx + i) % this.keypoints.length];
         workPoints.push(keypoint.position);
       }
     }
@@ -483,9 +479,7 @@ export class AutorotatePlugin extends AbstractConfigurablePlugin<
       workVectors.push(new Vector2(workPoints[i][0] + k * 2 * Math.PI, workPoints[i][1]));
     }
 
-    const curve: Array<[number, number]> = new SplineCurve(workVectors)
-      .getPoints(NUM_STEPS * 3)
-      .map(p => [p.x, p.y]);
+    const curve: Array<[number, number]> = new SplineCurve(workVectors).getPoints(NUM_STEPS * 3).map((p) => [p.x, p.y]);
 
     // debugCurve(this.markers, curve, NUM_STEPS);
 

@@ -8,13 +8,13 @@ Use a custom WebComponent as marker.
 autoload: true
 title: PSV Marker element Demo
 packages:
-    - name: markers-plugin
-      style: true
+  - name: markers-plugin
+    style: true
 ```
 
 ::: code-group
 
-``` js:line-numbers [CustomMarkerElement.js]
+```js:line-numbers [CustomMarkerElement.js]
 // declare the custom element
 class CustomMarkerElement extends HTMLElement {
     constructor() {
@@ -197,9 +197,9 @@ const viewer = new Viewer({
 
 ```html [template.html]
 <custom-marker id="custom-marker-element" style="display: none">
-    <img src="https://photo-sphere-viewer-data.netlify.app/assets/sphere-small.jpg" />
-    <h2>Custom element</h2>
-    <p>Use an existing element as marker. This WebComponent contains it's own animations and tooltip.</p>
+  <img src="https://photo-sphere-viewer-data.netlify.app/assets/sphere-small.jpg" />
+  <h2>Custom element</h2>
+  <p>Use an existing element as marker. This WebComponent contains it's own animations and tooltip.</p>
 </custom-marker>
 ```
 

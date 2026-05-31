@@ -8,16 +8,16 @@ import { AbstractComponent } from './AbstractComponent';
  */
 export type NotificationConfig = {
   /**
-     * unique identifier to use with {@link Notification.hide} and {@link Notification.isVisible}
-     */
+   * unique identifier to use with {@link Notification.hide} and {@link Notification.isVisible}
+   */
   id?: string;
   /**
-     * notification content
-     */
+   * notification content
+   */
   content: string;
   /**
-     * automatically hide the notification after X milliseconds
-     */
+   * automatically hide the notification after X milliseconds
+   */
   timeout?: number;
 };
 
@@ -26,8 +26,8 @@ export type NotificationConfig = {
  */
 export class Notification extends AbstractComponent {
   /**
-     * @internal
-     */
+   * @internal
+   */
   protected override readonly state = {
     visible: false,
     contentId: null as string,
@@ -37,8 +37,8 @@ export class Notification extends AbstractComponent {
   private readonly content: HTMLElement;
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   constructor(viewer: Viewer) {
     super(viewer, {
       className: 'psv-notification',
@@ -52,28 +52,28 @@ export class Notification extends AbstractComponent {
   }
 
   /**
-     * Checks if the notification is visible
-     */
+   * Checks if the notification is visible
+   */
   override isVisible(id?: string) {
     return this.state.visible && (!id || !this.state.contentId || this.state.contentId === id);
   }
 
   /**
-     * @throws {@link PSVError} always
-     * @internal
-     */
+   * @throws {@link PSVError} always
+   * @internal
+   */
   override toggle() {
     throw new PSVError('Notification cannot be toggled');
   }
 
   /**
-     * Displays a notification on the viewer
-     *
-     * @example
-     * viewer.showNotification({ content: 'Hello world', timeout: 5000 })
-     * @example
-     * viewer.showNotification('Hello world')
-     */
+   * Displays a notification on the viewer
+   *
+   * @example
+   * viewer.showNotification({ content: 'Hello world', timeout: 5000 })
+   * @example
+   * viewer.showNotification('Hello world')
+   */
   override show(config: string | NotificationConfig) {
     if (this.state.timeout) {
       clearTimeout(this.state.timeout);
@@ -98,8 +98,8 @@ export class Notification extends AbstractComponent {
   }
 
   /**
-     * Hides the notification
-     */
+   * Hides the notification
+   */
   override hide(id?: string) {
     if (this.isVisible(id)) {
       const contentId = this.state.contentId;

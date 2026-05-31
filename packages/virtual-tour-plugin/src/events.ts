@@ -54,7 +54,4 @@ export class LeaveArrowEvent extends TypedEvent<VirtualTourPlugin> {
   }
 }
 
-export type VirtualTourEvents =
-  | NodeChangedEvent
-  | EnterArrowEvent
-  | LeaveArrowEvent;
+export type VirtualTourEvents = NodeChangedEvent | EnterArrowEvent | LeaveArrowEvent;

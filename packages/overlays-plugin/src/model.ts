@@ -4,16 +4,16 @@ import type { CubemapPanorama } from '@photo-sphere-viewer/cubemap-adapter';
 export type BaseOverlayConfig = {
   id?: string;
   /**
-     * @default 1
-     */
+   * @default 1
+   */
   opacity?: number;
   /**
-     * @default 0
-     */
+   * @default 0
+   */
   zIndex?: number;
   /**
-     * Sphere correction applied to this overlay. If defined, overrides the global inheritSphereCorrection setting.
-     */
+   * Sphere correction applied to this overlay. If defined, overrides the global inheritSphereCorrection setting.
+   */
   sphereCorrection?: SphereCorrection;
 };
 
@@ -36,23 +36,26 @@ export type OverlayConfig = SphereOverlayConfig | CubeOverlayConfig;
 
 export type OverlaysPluginConfig = {
   /**
-     * Initial overlays
-     */
+   * Initial overlays
+   */
   overlays?: OverlayConfig[];
   /**
-     * Automatically remove all overlays when the panorama changes
-     * @default true
-     */
+   * Automatically remove all overlays when the panorama changes
+   * @default true
+   */
   autoclear?: boolean;
   /**
-     * Applies the global "sphereCorrection" to each overlay
-     * @default true
-     */
+   * Applies the global "sphereCorrection" to each overlay
+   * @default true
+   */
   inheritSphereCorrection?: boolean;
   /**
-     * Used to display cubemap overlays on equirectangular panoramas
-     */
+   * Used to display cubemap overlays on equirectangular panoramas
+   */
   cubemapAdapter?: AdapterConstructor;
 };
 
-export type UpdatableOverlaysPluginConfig = Omit<OverlaysPluginConfig, 'overlays' | 'cubemapAdapter' | 'inheritSphereCorrection'>;
+export type UpdatableOverlaysPluginConfig = Omit<
+  OverlaysPluginConfig,
+  'overlays' | 'cubemapAdapter' | 'inheritSphereCorrection'
+>;

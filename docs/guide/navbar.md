@@ -6,19 +6,19 @@
 
 The `navbar` option is an array which can contain the following elements:
 
--   `zoomOut`
--   `zoomRange`
--   `zoomIn`
--   `zoom` = `zoomOut` + `zoomRange` + `zoomIn`
--   `moveLeft`
--   `moveRight`
--   `moveTop`
--   `moveDown`
--   `move` = `moveLeft` + `moveRight` + `moveTop` + `moveDown`
--   `download`
--   `description`
--   `caption`
--   `fullscreen`
+- `zoomOut`
+- `zoomRange`
+- `zoomIn`
+- `zoom` = `zoomOut` + `zoomRange` + `zoomIn`
+- `moveLeft`
+- `moveRight`
+- `moveTop`
+- `moveDown`
+- `move` = `moveLeft` + `moveRight` + `moveTop` + `moveDown`
+- `download`
+- `description`
+- `caption`
+- `fullscreen`
 
 ## Plugins buttons
 
@@ -30,7 +30,7 @@ You can also add as many custom buttons you want. A custom button is an object w
 
 #### `content` (required)
 
--   type : `string | HTMLElement` & [`NavbarButtonElement`](/api/interfaces/Core.NavbarButtonElement.html){target=_blank}
+- type : `string | HTMLElement` & [`NavbarButtonElement`](/api/interfaces/Core.NavbarButtonElement.html){target=\_blank}
 
 Content of the button. Preferably a square image or SVG icon.
 
@@ -45,19 +45,19 @@ _**Note:** the content is rendered as HTML. If your content may include untruste
 
 #### `onClick(viewer)`
 
--   type : `function(Viewer)`
+- type : `function(Viewer)`
 
 Function called when the button is clicked.
 
 #### `id`
 
--   type : `string`
+- type : `string`
 
 Unique identifier of the button, usefull when using the `navbar.getButton()` method.
 
 #### `title`
 
--   type : `string`
+- type : `string`
 
 Tooltip displayed when the mouse is over the button.
 
@@ -65,21 +65,21 @@ For translation purposes it can be a key in the main [`lang`](./config.md#lang) 
 
 #### `className`
 
--   type : `string`
+- type : `string`
 
 CSS class added to the button.
 
 #### `disabled`
 
--   type : `boolean`
--   default : `false`
+- type : `boolean`
+- default : `false`
 
 Initially disable the button.
 
 #### `visible`
 
--   type : `boolean`
--   default : `true`
+- type : `boolean`
+- default : `true`
 
 Initially show the button.
 

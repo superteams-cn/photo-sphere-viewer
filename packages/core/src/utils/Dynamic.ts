@@ -55,15 +55,15 @@ export class Dynamic {
   }
 
   /**
-     * Changes base speed
-     */
+   * Changes base speed
+   */
   setSpeed(speed: number) {
     this.speed = speed;
   }
 
   /**
-     * Defines the target position
-     */
+   * Defines the target position
+   */
   goto(position: number, speedMult = 1) {
     this.mode = DynamicMode.POSITION;
     this.target = this.wrap ? wrap(position, this.max) : MathUtils.clamp(position, this.min, this.max);
@@ -71,8 +71,8 @@ export class Dynamic {
   }
 
   /**
-     * Increases/decreases the target position
-     */
+   * Increases/decreases the target position
+   */
   step(step: number, speedMult = 1) {
     if (speedMult === 0) {
       this.setValue(this.current + step);
@@ -85,8 +85,8 @@ export class Dynamic {
   }
 
   /**
-     * Starts infinite movement
-     */
+   * Starts infinite movement
+   */
   roll(invert = false, speedMult = 1) {
     this.mode = DynamicMode.INFINITE;
     this.target = invert ? -Infinity : Infinity;
@@ -94,16 +94,16 @@ export class Dynamic {
   }
 
   /**
-     * Stops movement
-     */
+   * Stops movement
+   */
   stop() {
     this.mode = DynamicMode.STOP;
   }
 
   /**
-     * Defines the current position and immediately stops movement
-     * @param {number} value
-     */
+   * Defines the current position and immediately stops movement
+   * @param {number} value
+   */
   setValue(value: number): boolean {
     this.target = this.wrap ? wrap(value, this.max) : MathUtils.clamp(value, this.min, this.max);
     this.mode = DynamicMode.STOP;
@@ -119,8 +119,8 @@ export class Dynamic {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   update(elapsed: number): boolean {
     // in position mode switch to stop mode when in the decceleration window
     if (this.mode === DynamicMode.POSITION) {
@@ -141,15 +141,9 @@ export class Dynamic {
       targetSpeed = -targetSpeed;
     }
     if (this.currentSpeed < targetSpeed) {
-      this.currentSpeed = Math.min(
-        targetSpeed,
-        this.currentSpeed + (elapsed / 1000) * this.speed * this.speedMult * 2,
-      );
+      this.currentSpeed = Math.min(targetSpeed, this.currentSpeed + (elapsed / 1000) * this.speed * this.speedMult * 2);
     } else if (this.currentSpeed > targetSpeed) {
-      this.currentSpeed = Math.max(
-        targetSpeed,
-        this.currentSpeed - (elapsed / 1000) * this.speed * this.speedMult * 2,
-      );
+      this.currentSpeed = Math.max(targetSpeed, this.currentSpeed - (elapsed / 1000) * this.speed * this.speedMult * 2);
     }
 
     // compute new position

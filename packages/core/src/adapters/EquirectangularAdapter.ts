@@ -12,19 +12,19 @@ import { AbstractAdapter, AdapterConstructor } from './AbstractAdapter';
  */
 export type EquirectangularAdapterConfig = {
   /**
-     * number of faces of the sphere geometry, higher values may decrease performances
-     * @default 64
-     */
+   * number of faces of the sphere geometry, higher values may decrease performances
+   * @default 64
+   */
   resolution?: number;
   /**
-     * read real image size from XMP data
-     * @default true
-     */
+   * read real image size from XMP data
+   * @default true
+   */
   useXmpData?: boolean;
   /**
-     * used for equirectangular tiles adapter
-     * @internal
-     */
+   * used for equirectangular tiles adapter
+   * @internal
+   */
   blur?: boolean;
 };
 
@@ -50,7 +50,12 @@ const getConfig = getConfigParser<EquirectangularAdapterConfig>(
 /**
  * Adapter for equirectangular panoramas
  */
-export class EquirectangularAdapter extends AbstractAdapter<string | EquirectangularPanorama, PanoData, Texture, EquirectangularMesh> {
+export class EquirectangularAdapter extends AbstractAdapter<
+  string | EquirectangularPanorama,
+  PanoData,
+  Texture,
+  EquirectangularMesh
+> {
   static override readonly id: string = 'equirectangular';
   static override readonly VERSION = PKG_VERSION;
   static override readonly supportsDownload: boolean = true;
@@ -101,7 +106,9 @@ export class EquirectangularAdapter extends AbstractAdapter<string | Equirectang
     const relativeLong = (position.yaw / Math.PI / 2) * data.fullWidth;
     const relativeLat = (position.pitch / Math.PI) * data.fullHeight;
 
-    let textureX = Math.round(position.yaw < Math.PI ? relativeLong + data.fullWidth / 2 : relativeLong - data.fullWidth / 2) - data.croppedX;
+    let textureX =
+      Math.round(position.yaw < Math.PI ? relativeLong + data.fullWidth / 2 : relativeLong - data.fullWidth / 2) -
+      data.croppedX;
     let textureY = Math.round(data.fullHeight / 2 - relativeLat) - data.croppedY;
 
     if (textureX < 0 || textureX > data.croppedWidth || textureY < 0 || textureY > data.croppedHeight) {
@@ -136,7 +143,7 @@ export class EquirectangularAdapter extends AbstractAdapter<string | Equirectang
 
     const blob = await this.viewer.textureLoader.loadFile(
       cleanPanorama.path,
-      loader ? p => this.viewer.textureLoader.dispatchProgress(p) : null,
+      loader ? (p) => this.viewer.textureLoader.dispatchProgress(p) : null,
       cleanPanorama.path,
     );
     const xmpPanoData = useXmpPanoData ? await this.loadXMP(blob) : null;
@@ -159,8 +166,8 @@ export class EquirectangularAdapter extends AbstractAdapter<string | Equirectang
   }
 
   /**
-     * Loads the XMP data of an image
-     */
+   * Loads the XMP data of an image
+   */
   private async loadXMP(blob: Blob): Promise<PanoData> {
     const binary = await this.loadBlobAsString(blob);
 
@@ -196,8 +203,8 @@ export class EquirectangularAdapter extends AbstractAdapter<string | Equirectang
   }
 
   /**
-     * Reads a Blob as a string
-     */
+   * Reads a Blob as a string
+   */
   private loadBlobAsString(blob: Blob): Promise<string> {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -208,8 +215,8 @@ export class EquirectangularAdapter extends AbstractAdapter<string | Equirectang
   }
 
   /**
-     * Creates the final texture from image and panorama data
-     */
+   * Creates the final texture from image and panorama data
+   */
   private createEquirectangularTexture(img: HTMLImageElement): Texture {
     if (this.config.blur || img.width > SYSTEM.maxTextureWidth) {
       const ratio = Math.min(1, SYSTEM.maxCanvasWidth / img.width);

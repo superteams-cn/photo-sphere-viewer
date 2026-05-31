@@ -4,9 +4,9 @@ This is an example of how to implement, build and publish a custom plugin for Ph
 
 Features :
 
--   TypeScript
--   SCSS
--   custom button with SVG icon
--   custom events
+- TypeScript
+- SCSS
+- custom button with SVG icon
+- custom events
 
 For more informationn check https://photo-sphere-viewer.js.org/plugins/writing-a-plugin.html

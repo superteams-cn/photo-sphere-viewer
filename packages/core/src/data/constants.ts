@@ -171,5 +171,5 @@ export const EASINGS: Record<EASING, (t: number) => number> = {
 
   inCirc: (t: number) => 1 - Math.sqrt(1 - t * t),
   outCirc: (t: number) => Math.sqrt(1 - (t - 1) * (t - 1)),
-  inOutCirc: (t: number) => (t *= 2) < 1 ? 0.5 - 0.5 * Math.sqrt(1 - t * t) : 0.5 + 0.5 * Math.sqrt(1 - (t -= 2) * t),
+  inOutCirc: (t: number) => ((t *= 2) < 1 ? 0.5 - 0.5 * Math.sqrt(1 - t * t) : 0.5 + 0.5 * Math.sqrt(1 - (t -= 2) * t)),
 };

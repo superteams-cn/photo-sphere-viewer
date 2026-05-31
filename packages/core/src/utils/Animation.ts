@@ -5,26 +5,26 @@ import { type EASING, EASINGS } from '../data/constants';
  */
 export type AnimationOptions<T> = {
   /**
-     * interpolated properties
-     */
+   * interpolated properties
+   */
   properties: Partial<Record<keyof T, { start: number; end: number }>>;
   /**
-     * duration of the animation
-     */
+   * duration of the animation
+   */
   duration: number;
   /**
-     * delay before start
-     * @default 0
-     */
+   * delay before start
+   * @default 0
+   */
   delay?: number;
   /**
-     * interpolation function, see {@link EASINGS}
-     * @default 'linear'
-     */
+   * interpolation function, see {@link EASINGS}
+   * @default 'linear'
+   */
   easing?: EASING | ((t: number) => number);
   /**
-     * function called for each frame
-     */
+   * function called for each frame
+   */
   onTick: (properties: Record<keyof T, number>, progress: number) => void;
 };
 
@@ -68,14 +68,13 @@ export class Animation<T = any> implements PromiseLike<boolean> {
 
     if (options) {
       if (options.easing) {
-        this.easing = typeof options.easing === 'function'
-          ? options.easing
-          : EASINGS[options.easing] || EASINGS['linear'];
+        this.easing =
+          typeof options.easing === 'function' ? options.easing : EASINGS[options.easing] || EASINGS['linear'];
       }
 
       this.delayTimeout = setTimeout(() => {
         this.delayTimeout = undefined;
-        this.animationFrame = window.requestAnimationFrame(t => this.__run(t));
+        this.animationFrame = window.requestAnimationFrame((t) => this.__run(t));
       }, options.delay || 0);
     } else {
       this.resolved = true;
@@ -107,7 +106,7 @@ export class Animation<T = any> implements PromiseLike<boolean> {
       }
       this.options.onTick(current, progress);
 
-      this.animationFrame = window.requestAnimationFrame(t => this.__run(t));
+      this.animationFrame = window.requestAnimationFrame((t) => this.__run(t));
     } else {
       // call onTick one last time with final values
       for (const [name, prop] of Object.entries(this.options.properties) as Array<[string, PropertyValues]>) {
@@ -129,14 +128,14 @@ export class Animation<T = any> implements PromiseLike<boolean> {
     } else {
       this.cancelled = true;
     }
-    this.callbacks.forEach(cb => cb(value));
+    this.callbacks.forEach((cb) => cb(value));
     this.callbacks.length = 0;
   }
 
   /**
-     * Promise chaining
-     * @param [onFulfilled] - Called when the animation is complete (true) or cancelled (false)
-     */
+   * Promise chaining
+   * @param [onFulfilled] - Called when the animation is complete (true) or cancelled (false)
+   */
   then<U>(onFulfilled: (complete: boolean) => PromiseLike<U> | U): Promise<U> {
     if (this.resolved || this.cancelled) {
       return Promise.resolve(this.resolved).then(onFulfilled);
@@ -148,8 +147,8 @@ export class Animation<T = any> implements PromiseLike<boolean> {
   }
 
   /**
-     * Cancels the animation
-     */
+   * Cancels the animation
+   */
   cancel() {
     if (!this.cancelled && !this.resolved) {
       this.__resolve(false);

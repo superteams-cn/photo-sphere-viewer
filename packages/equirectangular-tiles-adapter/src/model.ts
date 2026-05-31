@@ -5,47 +5,47 @@ import type { EquirectangularAdapterConfig, PanoData, PanoDataProvider } from '@
  */
 export type EquirectangularTilesPanorama = {
   /**
-     * low resolution panorama loaded before tiles
-     */
+   * low resolution panorama loaded before tiles
+   */
   baseUrl?: string;
   /**
-     * panoData configuration associated to low resolution panorama loaded before tiles
-     */
+   * panoData configuration associated to low resolution panorama loaded before tiles
+   */
   basePanoData?: PanoData | PanoDataProvider;
   /**
-     * complete panorama width (height is always width/2)
-     */
+   * complete panorama width (height is always width/2)
+   */
   width: number;
   /**
-     * number of vertical tiles (must be a power of 2)
-     */
+   * number of vertical tiles (must be a power of 2)
+   */
   cols: number;
   /**
-     * number of horizontal tiles (must be a power of 2)
-     */
+   * number of horizontal tiles (must be a power of 2)
+   */
   rows: number;
   /**
-     * function to build a tile url
-     */
+   * function to build a tile url
+   */
   tileUrl: (col: number, row: number) => string | null;
 };
 
 export type EquirectangularTileLevel = {
   /**
-     * @deprecated Not used anymore
-     */
+   * @deprecated Not used anymore
+   */
   zoomRange?: never;
   /**
-     * complete panorama width (height is always width/2)
-     */
+   * complete panorama width (height is always width/2)
+   */
   width: number;
   /**
-     * number of vertical tiles (must be a power of 2)
-     */
+   * number of vertical tiles (must be a power of 2)
+   */
   cols: number;
   /**
-     * number of horizontal tiles (must be a power of 2)
-     */
+   * number of horizontal tiles (must be a power of 2)
+   */
   rows: number;
 };
 
@@ -54,44 +54,44 @@ export type EquirectangularTileLevel = {
  */
 export type EquirectangularMultiTilesPanorama = {
   /**
-     * low resolution panorama loaded before tiles
-     */
+   * low resolution panorama loaded before tiles
+   */
   baseUrl?: string;
   /**
-     * panoData configuration associated to low resolution panorama loaded before tiles
-     */
+   * panoData configuration associated to low resolution panorama loaded before tiles
+   */
   basePanoData?: PanoData | PanoDataProvider;
   /**
-     * Configuration of tiles by zoom level
-     */
+   * Configuration of tiles by zoom level
+   */
   levels: EquirectangularTileLevel[];
   /**
-     * function to build a tile url
-     */
+   * function to build a tile url
+   */
   tileUrl: (col: number, row: number, level: number) => string | null;
 };
 
 export type EquirectangularTilesAdapterConfig = Omit<EquirectangularAdapterConfig, 'interpolateBackground' | 'blur'> & {
   /**
-     * shows a warning sign on tiles that cannot be loaded
-     * @default true
-     */
+   * shows a warning sign on tiles that cannot be loaded
+   * @default true
+   */
   showErrorTile?: boolean;
   /**
-     * applies a blur effect to the low resolution panorama
-     * @default true
-     */
+   * applies a blur effect to the low resolution panorama
+   * @default true
+   */
   baseBlur?: boolean;
   /**
-     * applies antialiasing to high resolutions tiles
-     * @default true
-     */
+   * applies antialiasing to high resolutions tiles
+   * @default true
+   */
   antialias?: boolean;
   /**
-     * shows debug helpers
-     * @default false
-     * @internal
-     */
+   * shows debug helpers
+   * @default false
+   * @internal
+   */
   debug?: boolean;
 };
 

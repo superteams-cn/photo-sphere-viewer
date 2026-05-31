@@ -8,8 +8,8 @@ Advanced styling of a marker's [tooltip](../../plugins/markers.md#tooltip).
 autoload: true
 title: PSV Marker custom tooltip Demo
 packages:
-    - name: markers-plugin
-      style: true
+  - name: markers-plugin
+    style: true
 ```
 
 ::: code-group
@@ -84,15 +84,15 @@ viewer.addEventListener('ready', () => {
 
 ```html [template.html]
 <script type="text/template" id="tooltip-content">
-    <img src="https://photo-sphere-viewer-data.netlify.app/assets/sphere-small.jpg">
-    <article>
-      <h2>Lorem ipsum</h2>
-      <p>
-        Vivamus magna. Cras in mi at felis aliquet
-        congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis,
-        tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.
-      </p>
-    </article>
+  <img src="https://photo-sphere-viewer-data.netlify.app/assets/sphere-small.jpg">
+  <article>
+    <h2>Lorem ipsum</h2>
+    <p>
+      Vivamus magna. Cras in mi at felis aliquet
+      congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis,
+      tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.
+    </p>
+  </article>
 </script>
 ```
 

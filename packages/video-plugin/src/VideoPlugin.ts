@@ -65,8 +65,8 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override init() {
     super.init();
 
@@ -92,8 +92,8 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override destroy() {
     this.autorotate?.removeEventListener('autorotate', this);
     this.viewer.removeEventListener(events.BeforeRenderEvent.type, this);
@@ -108,8 +108,8 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     switch (e.type) {
       case events.BeforeRenderEvent.type:
@@ -188,43 +188,43 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Returns the durection of the video
-     */
+   * Returns the durection of the video
+   */
   getDuration(): number {
     return this.video?.duration ?? 0;
   }
 
   /**
-     * Returns the current time of the video
-     */
+   * Returns the current time of the video
+   */
   getTime(): number {
     return this.video?.currentTime ?? 0;
   }
 
   /**
-     * Returns the play progression of the video
-     */
+   * Returns the play progression of the video
+   */
   getProgress(): number {
     return this.video ? this.video.currentTime / this.video.duration : 0;
   }
 
   /**
-     * Returns if the video is playing
-     */
+   * Returns if the video is playing
+   */
   isPlaying(): boolean {
     return this.video ? !this.video.paused : false;
   }
 
   /**
-     * Returns the video volume
-     */
+   * Returns the video volume
+   */
   getVolume(): number {
-    return this.video?.muted ? 0 : this.video?.volume ?? 0;
+    return this.video?.muted ? 0 : (this.video?.volume ?? 0);
   }
 
   /**
-     * Starts or pause the video
-     */
+   * Starts or pause the video
+   */
   playPause() {
     if (this.video) {
       if (this.video.paused) {
@@ -236,8 +236,8 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Starts the video if paused
-     */
+   * Starts the video if paused
+   */
   play() {
     if (this.video?.paused) {
       this.video.play();
@@ -245,8 +245,8 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Pauses the cideo if playing
-     */
+   * Pauses the cideo if playing
+   */
   pause() {
     if (this.video && !this.video.paused) {
       this.video.pause();
@@ -254,8 +254,8 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Sets the volume of the video
-     */
+   * Sets the volume of the video
+   */
   setVolume(volume: number) {
     if (this.video) {
       this.video.muted = false;
@@ -264,9 +264,9 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * (Un)mutes the video
-     * @param [mute] - toggle if undefined
-     */
+   * (Un)mutes the video
+   * @param [mute] - toggle if undefined
+   */
   setMute(mute?: boolean) {
     if (this.video) {
       this.video.muted = mute === undefined ? !this.video.muted : mute;
@@ -277,8 +277,8 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Changes the current time of the video
-     */
+   * Changes the current time of the video
+   */
   setTime(time: number) {
     if (this.video) {
       this.video.currentTime = time;
@@ -286,8 +286,8 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Changes the progression of the video
-     */
+   * Changes the progression of the video
+   */
   setProgress(progress: number) {
     if (this.video) {
       this.video.currentTime = this.video.duration * progress;
@@ -295,8 +295,8 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   getBufferProgress() {
     if (this.video) {
       let maxBuffer = 0;
@@ -317,9 +317,9 @@ export class VideoPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Changes the keypoints
-     * @throws {@link PSVError} if the configuration is invalid
-     */
+   * Changes the keypoints
+   * @throws {@link PSVError} if the configuration is invalid
+   */
   setKeypoints(keypoints?: VideoKeypoint[] | null) {
     if (!this.autorotate) {
       throw new PSVError('Video keypoints required the AutorotatePlugin');

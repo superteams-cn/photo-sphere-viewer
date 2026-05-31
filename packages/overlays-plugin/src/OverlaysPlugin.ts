@@ -1,11 +1,5 @@
 import type { AbstractAdapter, PluginConstructor, Viewer } from '@photo-sphere-viewer/core';
-import {
-  AbstractConfigurablePlugin,
-  EquirectangularAdapter,
-  PSVError,
-  events,
-  utils,
-} from '@photo-sphere-viewer/core';
+import { AbstractConfigurablePlugin, EquirectangularAdapter, PSVError, events, utils } from '@photo-sphere-viewer/core';
 import type { CubemapAdapter, CubemapData } from '@photo-sphere-viewer/cubemap-adapter';
 import type { CubemapTilesAdapter } from '@photo-sphere-viewer/cubemap-tiles-adapter';
 import type { EquirectangularTilesAdapter } from '@photo-sphere-viewer/equirectangular-tiles-adapter';
@@ -39,7 +33,11 @@ export class OverlaysPlugin extends AbstractConfigurablePlugin<
   static override readonly id = 'overlays';
   static override readonly VERSION = PKG_VERSION;
   static override configParser = getConfig;
-  static override readonlyOptions: Array<keyof OverlaysPluginConfig> = ['overlays', 'cubemapAdapter', 'inheritSphereCorrection'];
+  static override readonlyOptions: Array<keyof OverlaysPluginConfig> = [
+    'overlays',
+    'cubemapAdapter',
+    'inheritSphereCorrection',
+  ];
 
   private readonly state = {
     overlays: {} as Record<string, { config: OverlayConfig; mesh: Mesh }>,
@@ -57,8 +55,8 @@ export class OverlaysPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override init() {
     super.init();
 
@@ -69,8 +67,8 @@ export class OverlaysPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override destroy() {
     this.clearOverlays();
 
@@ -86,8 +84,8 @@ export class OverlaysPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     if (e instanceof events.PanoramaLoadedEvent) {
       this.config.overlays.forEach((overlay) => {
@@ -103,9 +101,9 @@ export class OverlaysPlugin extends AbstractConfigurablePlugin<
         return false;
       }
       const overlay = e.data.objects
-        .map(o => o.userData[OVERLAY_DATA] as OverlayConfig['id'])
-        .filter(o => !!o)
-        .map(o => this.state.overlays[o].config)
+        .map((o) => o.userData[OVERLAY_DATA] as OverlayConfig['id'])
+        .filter((o) => !!o)
+        .map((o) => this.state.overlays[o].config)
         .sort((a, b) => b.zIndex - a.zIndex)[0];
 
       if (overlay) {
@@ -119,8 +117,8 @@ export class OverlaysPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Adds a new overlay
-     */
+   * Adds a new overlay
+   */
   addOverlay(config: OverlayConfig) {
     if (!config.path) {
       throw new PSVError(`Missing overlay "path"`);
@@ -145,8 +143,8 @@ export class OverlaysPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Removes an overlay
-     */
+   * Removes an overlay
+   */
   removeOverlay(id: string) {
     if (!this.state.overlays[id]) {
       utils.logWarn(`Overlay "${id}" not found`);
@@ -163,8 +161,8 @@ export class OverlaysPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Remove all overlays
-     */
+   * Remove all overlays
+   */
   clearOverlays() {
     Object.keys(this.state.overlays).forEach((id) => {
       this.removeOverlay(id);
@@ -172,8 +170,8 @@ export class OverlaysPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Add a spherical overlay
-     */
+   * Add a spherical overlay
+   */
   private async __addSphereImageOverlay(config: SphereOverlayConfig) {
     const adapter = this.__getEquirectangularAdapter();
 
@@ -195,8 +193,8 @@ export class OverlaysPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Add a cubemap overlay
-     */
+   * Add a cubemap overlay
+   */
   private async __addCubeImageOverlay(config: CubeOverlayConfig) {
     const currentPanoData = this.viewer.state.textureData.panoData as CubemapData;
 
@@ -214,7 +212,7 @@ export class OverlaysPlugin extends AbstractConfigurablePlugin<
 
     adapter.setTexture(mesh, textureData);
     adapter.setTextureOpacity(mesh, config.opacity);
-    mesh.material.forEach(m => m.transparent = true);
+    mesh.material.forEach((m) => (m.transparent = true));
     this.__applySphereCorrection(mesh, config);
 
     this.state.overlays[config.id] = { config, mesh };

@@ -21,15 +21,15 @@ const viewer = new Viewer({
 
 #### `useXmpData`
 
--   type: `boolean`
--   default `true`
+- type: `boolean`
+- default `true`
 
 Read real image size from XMP data, must be kept `true` if the panorama has been cropped after shot. This is used for [cropped panorama](#cropped-panorama).
 
 #### `resolution`
 
--   type: `number`
--   default: `64`
+- type: `number`
+- default: `64`
 
 The number of faces of the sphere geometry used to display the panorama, higher values can reduce deformations on straight lines at the cost of performances.
 
@@ -41,8 +41,8 @@ _Note: the actual number of faces is `resolution² / 2`._
 
 These incomplete panoramas are handled in two ways by Photo Sphere viewer:
 
--   Read XMP metadata directly from the file with `useXmpData` option (this is the default)
--   Provide the `panoData` configuration object/function
+- Read XMP metadata directly from the file with `useXmpData` option (this is the default)
+- Provide the `panoData` configuration object/function
 
 Use the [Playground](#playground) at the bottom of this page to find the best values for your panorama.
 
@@ -50,23 +50,23 @@ Use the [Playground](#playground) at the bottom of this page to find the best va
 
 In both case the data contains six important values:
 
--   Full panorama width
--   Full panorama height
--   Cropped area width
--   Cropped area height
--   Cropped area left
--   Cropped area right
+- Full panorama width
+- Full panorama height
+- Cropped area width
+- Cropped area height
+- Cropped area left
+- Cropped area right
 
 The `Full panorama width` / `Full panorama height` ratio must always be 2:1. `Cropped area width` and `Cropped area height` are the actual size of your image. `Cropped area left` and `Cropped area right` are used to define the cropped area position.
 
 The data can also contains angular values:
 
--   Pose Heading
--   Pose Pitch
--   Pose Roll
--   Initial View Heading
--   Initial View Pitch
--   Initial Horizontal FOV
+- Pose Heading
+- Pose Pitch
+- Pose Roll
+- Initial View Heading
+- Initial View Pitch
+- Initial Horizontal FOV
 
 ![XMP_pano_pixels](/images/XMP_pano_pixels.png)
 

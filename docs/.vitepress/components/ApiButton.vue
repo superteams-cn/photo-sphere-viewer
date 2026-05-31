@@ -1,15 +1,15 @@
 <template>
-    <v-btn @click="open" style="float: right;" color="primary">
-        <v-icon icon="mdi-information" start/> API Reference
-    </v-btn>
+  <v-btn @click="open" style="float: right" color="primary">
+    <v-icon icon="mdi-information" start /> API Reference
+  </v-btn>
 </template>
 
 <script setup lang="ts">
 const { page } = defineProps<{
-    page: string;
+  page: string;
 }>();
 
 function open() {
-    window.open(`/api/${page}`, '_blank');
+  window.open(`/api/${page}`, '_blank');
 }
 </script>

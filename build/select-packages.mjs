@@ -8,7 +8,7 @@ import fs from 'fs';
 import process from 'process';
 
 const PACKAGES_DIR = 'packages';
-const packages = fs.readdirSync(PACKAGES_DIR).filter(name => name !== 'shared' && name !== 'core');
+const packages = fs.readdirSync(PACKAGES_DIR).filter((name) => name !== 'shared' && name !== 'core');
 
 const prompt = new enquirer.MultiSelect({
   name: 'packages',
@@ -17,9 +17,10 @@ const prompt = new enquirer.MultiSelect({
   stdout: process.stderr,
 });
 
-prompt.run()
+prompt
+  .run()
   .then((answers) => {
-    const filters = answers.map(p => `--filter=@photo-sphere-viewer/${p}`).join(' ');
+    const filters = answers.map((p) => `--filter=@photo-sphere-viewer/${p}`).join(' ');
     process.stdout.write(`--filter=// --filter=@photo-sphere-viewer/core ${filters}`);
   })
   .catch(() => {

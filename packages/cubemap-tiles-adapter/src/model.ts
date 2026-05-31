@@ -5,40 +5,40 @@ import type { Cubemap, CubemapAdapterConfig, CubemapData, CubemapPanorama } from
  */
 export type CubemapTilesPanorama = {
   /**
-     * low resolution panorama loaded before tiles
-     */
+   * low resolution panorama loaded before tiles
+   */
   baseUrl?: CubemapPanorama;
   /**
-     * size of a face in pixels
-     */
+   * size of a face in pixels
+   */
   faceSize: number;
   /**
-     * number of tiles on a side of a face
-     */
+   * number of tiles on a side of a face
+   */
   nbTiles: number;
   /**
-     * function to build a tile url
-     */
+   * function to build a tile url
+   */
   tileUrl: (face: keyof Cubemap, col: number, row: number) => string | null;
   /**
-     * Set to true if the top and bottom faces are not correctly oriented
-     * @default false
-     */
+   * Set to true if the top and bottom faces are not correctly oriented
+   * @default false
+   */
   flipTopBottom?: boolean;
 };
 
 export type CubemapTileLevel = {
   /**
-     * @deprecated Not used anymore
-     */
+   * @deprecated Not used anymore
+   */
   zoomRange?: never;
   /**
-     * size of a face in pixels
-     */
+   * size of a face in pixels
+   */
   faceSize: number;
   /**
-     * number of tiles on a side of a face
-     */
+   * number of tiles on a side of a face
+   */
   nbTiles: number;
 };
 
@@ -47,45 +47,45 @@ export type CubemapTileLevel = {
  */
 export type CubemapMultiTilesPanorama = {
   /**
-     * low resolution panorama loaded before tiles
-     */
+   * low resolution panorama loaded before tiles
+   */
   baseUrl?: CubemapPanorama;
   /**
-     * Configuration of tiles by zoom level
-     */
+   * Configuration of tiles by zoom level
+   */
   levels: CubemapTileLevel[];
   /**
-     * function to build a tile url
-     */
+   * function to build a tile url
+   */
   tileUrl: (face: keyof Cubemap, col: number, row: number, level: number) => string | null;
   /**
-     * Set to true if the top and bottom faces are not correctly oriented
-     * @default false
-     */
+   * Set to true if the top and bottom faces are not correctly oriented
+   * @default false
+   */
   flipTopBottom?: boolean;
 };
 
 export type CubemapTilesAdapterConfig = CubemapAdapterConfig & {
   /**
-     * shows a warning sign on tiles that cannot be loaded
-     * @default true
-     */
+   * shows a warning sign on tiles that cannot be loaded
+   * @default true
+   */
   showErrorTile?: boolean;
   /**
-     * applies a blur effect to the low resolution panorama
-     * @default true
-     */
+   * applies a blur effect to the low resolution panorama
+   * @default true
+   */
   baseBlur?: boolean;
   /**
-     * applies antialiasing to high resolutions tiles
-     * @default true
-     */
+   * applies antialiasing to high resolutions tiles
+   * @default true
+   */
   antialias?: boolean;
   /**
-     * shows debug helpers
-     * @default false
-     * @internal
-     */
+   * shows debug helpers
+   * @default false
+   * @internal
+   */
   debug?: boolean;
 };
 

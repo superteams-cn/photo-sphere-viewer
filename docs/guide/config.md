@@ -8,7 +8,7 @@ Photo Sphere Viewer uses a lot of angles for its configuration, most of them can
 
 #### `container` (required)
 
--   type: `HTMLElement | string`
+- type: `HTMLElement | string`
 
 HTML element which will contain the panorama, or identifier of the element.
 
@@ -20,25 +20,25 @@ container: 'viewer'; // will target [id="viewer"]
 
 #### `panorama` (required)
 
--   type: `*`
+- type: `*`
 
 Path to the panorama. Must be a single URL for the default equirectangular adapter. Other adapters support other values.
 
 #### `adapter`
 
--   default: `equirectangular`
+- default: `equirectangular`
 
 Which [adapter](./adapters/) used to load the panorama.
 
 #### `plugins`
 
--   type: `array`
+- type: `array`
 
 List of enabled [plugins](../plugins/).
 
 #### `caption`
 
--   type: `string`
+- type: `string`
 
 A text displayed in the navbar. If the navbar is disabled, the caption won't be visible.
 
@@ -46,7 +46,7 @@ _**Note:** the content is rendered as HTML. If your content may include untruste
 
 #### `description`
 
--   type: `string`
+- type: `string`
 
 A text displayed in the side panel when the user clicks the "i" button. HTML is allowed.
 
@@ -54,21 +54,21 @@ _**Note:** the content is rendered as HTML. If your content may include untruste
 
 #### `downloadUrl`
 
--   type: `string`
--   default: `=panorama` for equirectangular panoramas
+- type: `string`
+- default: `=panorama` for equirectangular panoramas
 
 Define the file which will be downloaded with the `download` button. This is particularly useful for adapters that use multiple files, like the CubemapAdapter or the EquirectangularTilesAdapter.
 
 #### `downloadName`
 
--   type: `string`
--   default: `=downloadUrl` filename
+- type: `string`
+- default: `=downloadUrl` filename
 
 Overrides the filename when downloading the panorama. This is mostly useful if the panorama is provided as base64.
 
 #### `size`
 
--   type: `{ width: integer, height: integer }`
+- type: `{ width: integer, height: integer }`
 
 The final size of the panorama container. By default the size of `container` is used and is followed when resized.
 
@@ -78,29 +78,29 @@ Configuration of the [navbar](./navbar.md).
 
 #### `minFov`
 
--   type: `integer`
--   default: `30`
+- type: `integer`
+- default: `30`
 
 Minimal field of view (maximum zoom), between 1 and `maxFov`.
 
 #### `maxFov`
 
--   type: `integer`
--   default: `90`
+- type: `integer`
+- default: `90`
 
 Maximal field of view (minimum zoom), between `minFov` and 180.
 
 #### `defaultZoomLvl`
 
--   type: `integer`
--   default: `50`
+- type: `integer`
+- default: `50`
 
 Initial zoom level, between 0 (for `maxFov`) and 100 (for `minfov`).
 
 #### `fisheye`
 
--   type: `boolean | double`
--   default: `false`
+- type: `boolean | double`
+- default: `false`
 
 Enable fisheye effect with `true` or specify the effect strength (`true` = `1.0`).
 
@@ -112,22 +112,22 @@ This mode can have side-effects on markers rendering and some adapters.
 
 #### `defaultYaw`
 
--   type: `double | string`
--   default: `0`
+- type: `double | string`
+- default: `0`
 
 Initial horizontal angle, between 0 and 2π.
 
 #### `defaultPitch`
 
--   type: `double | string`
--   default: `0`
+- type: `double | string`
+- default: `0`
 
 Initial vertical angle, between -π/2 and π/2.
 
 #### `lang`
 
--   type: `object`
--   default:
+- type: `object`
+- default:
 
 ```js:line-numbers
 lang: {
@@ -155,35 +155,35 @@ Various texts used in the viewer.
 
 #### `loadingImg`
 
--   type: `string`
+- type: `string`
 
 Path to an image displayed in the center of the loader.
 
 #### `loadingTxt`
 
--   type: `string`
--   default: `lang.loading`
+- type: `string`
+- default: `lang.loading`
 
 Text displayed in the center of the loader, only used if `loadingImg` is not provided.
 
 #### `mousewheel`
 
--   type: `boolean`
--   default: `true`
+- type: `boolean`
+- default: `true`
 
 Enables zoom with the mouse wheel.
 
 #### `mousemove`
 
--   type: `boolean`
--   default: `true`
+- type: `boolean`
+- default: `true`
 
 Enables panorama rotation with mouse click+move or with a finger swipe on touch screens.
 
 #### `keyboard`
 
--   type: `boolean | 'fullscreen' | 'always'`
--   default: `'fullscreen'` (same as `true`)
+- type: `boolean | 'fullscreen' | 'always'`
+- default: `'fullscreen'` (same as `true`)
 
 Enables keyboard controls when in fullscreen or always. The different keys can be configured with [`keyboardActions`](#keyboardactions).
 
@@ -193,15 +193,15 @@ Keys are listened globally to the page, and thus can be in conflict with other c
 
 #### `mousewheelCtrlKey`
 
--   type: `boolean`
--   default: `false`
+- type: `boolean`
+- default: `false`
 
 Requires to use the ctrl key to zoom the panorama. This allows to scroll on the page without interfering with the viewer. If enabled, an overlay asking the user to use ctrl + scroll is displayed when ctrl key is not pressed.
 
 #### `touchmoveTwoFingers`
 
--   type: `boolean`
--   default: `false`
+- type: `boolean`
+- default: `false`
 
 Requires two fingers to rotate the panorama. This allows standard touch-scroll navigation in the page containing the viewer. If enabled, an overlay asking the user to use two fingers is displayed when only one finger is detected.
 
@@ -209,8 +209,8 @@ Requires two fingers to rotate the panorama. This allows standard touch-scroll n
 
 #### `sphereCorrection`
 
--   type: `{ pan: double | string, tilt: double | string, roll: double | string }`
--   default: `{ pan:0, tilt:0, roll: 0 }`
+- type: `{ pan: double | string, tilt: double | string, roll: double | string }`
+- default: `{ pan:0, tilt:0, roll: 0 }`
 
 Allows to fix the panorama orientation.
 
@@ -220,7 +220,7 @@ Allows to fix the panorama orientation.
 
 #### `panoData`
 
--   type: `PanoData | function<Image, PanoData, PanoData>`
+- type: `PanoData | function<Image, PanoData, PanoData>`
 
 Overrides XMP data found in the panorama file.
 All parameters are optional.
@@ -251,41 +251,40 @@ panoData: (image, xmpData) => ({
 
 #### `defaultTransition`
 
--   type: `TransitionOptions`
--   default: `{ speed: 1500, rotation: true, effect: "fade" }`
+- type: `TransitionOptions`
+- default: `{ speed: 1500, rotation: true, effect: "fade" }`
 
 Configures the default transition between panoramas. All parameters can be changed when calling `setPanorama()` method.
 
 Possible `effect` are `fade, black, white`.  
 The `speed` is either a duration in milliseconds or a string containing the speed in revolutions per minute (`2rpm`).
 
-
 <DemoButton href="/demos/basic/transition.html"></DemoButton>
 
 #### `moveSpeed`
 
--   type: `double`
--   default `1`
+- type: `double`
+- default `1`
 
 Speed multiplicator for panorama moves. Used for click move, touch move and navbar buttons.
 
 #### `zoomSpeed`
 
--   type: `double`
--   default `1`
+- type: `double`
+- default `1`
 
 Speed multiplicator for panorama zooms. Used for mouse wheel, touch pinch and navbar buttons.
 
 #### `moveInertia`
 
--   type: `boolean | number`
--   default: `0.8`
+- type: `boolean | number`
+- default: `0.8`
 
 Applies damping to the camera movement, higher value mean stronger damping (`true` is default damping factor, `false` is not damping).
 
 #### `requestHeaders`
 
--   type: `object | function<string, object>`
+- type: `object | function<string, object>`
 
 Sets the HTTP headers when loading the images files.
 
@@ -299,14 +298,14 @@ It can also be a function to dynamically set the request headers before every ca
 
 ```js
 requestHeaders: (url) => ({
-    header: 'value',
+  header: 'value',
 });
 ```
 
 #### `withCredentials`
 
--   type: `boolean | function<string, boolean>`
--   default: `false`
+- type: `boolean | function<string, boolean>`
+- default: `false`
 
 Use credentials for HTTP requests.
 
@@ -318,8 +317,8 @@ withCredentials: (url) => !url.includes('amazonaws');
 
 #### `keyboardActions`
 
--   type: `object`
--   default:
+- type: `object`
+- default:
 
 ```js:line-numbers
 keyboardActions: {
@@ -366,15 +365,15 @@ Keyboard actions will only be available in fullscreen by default, this can be ch
 
 #### `canvasBackground`
 
--   type: `string`
--   default: `#000`
+- type: `string`
+- default: `#000`
 
 Background of the canvas, which will be visible when using cropped panoramas. Can be any valid CSS `background` value.
 
 #### `rendererParameters`
 
--   type: [`WebGLRendererParameters`](https://threejs.org/docs/#api/en/renderers/WebGLRenderer)
--   default: `{ alpha: true, antialias: true }`
+- type: [`WebGLRendererParameters`](https://threejs.org/docs/#api/en/renderers/WebGLRenderer)
+- default: `{ alpha: true, antialias: true }`
 
 Configuration of the ThreeJS WebGLRenderer.
 
@@ -395,22 +394,22 @@ Cache.maxItems = 3;
 
 #### `enabled`
 
--   type: `boolean`
--   default: `true`
+- type: `boolean`
+- default: `true`
 
 Allows to completely disable the cache.
 
 #### `ttl`
 
--   type: `number`
--   default: `600`
+- type: `number`
+- default: `600`
 
 Maximum retention duration in minutes.
 
 #### `maxItems`
 
--   type: `number`
--   default: `10`
+- type: `number`
+- default: `10`
 
 Maximum number of items stored in the case.
 

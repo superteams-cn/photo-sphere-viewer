@@ -6,8 +6,8 @@ Photo Sphere Viewer objects (`Viewer` and plugins) all implement the [EventTarge
 
 Event listeners are called with a single `Event` subclass which has additional properties. Notably :
 
--   `type` is the name of the event
--   `target` is a reference to the viewer (or plugin) itself
+- `type` is the name of the event
+- `target` is a reference to the viewer (or plugin) itself
 
 ```js:line-numbers
 import { events } from '@photo-sphere-viewer/core';
@@ -23,7 +23,7 @@ viewer.addEventListener(events.PositionUpdateEvent.type, (e) => {
 viewer.addEventListener('position-updated', ({ position }) => ());
 ```
 
-The full list of events is available in the [API Reference](/api/modules/Core.events.html){target=_blank}.
+The full list of events is available in the [API Reference](/api/modules/Core.events.html){target=\_blank}.
 
 ## Main events
 
@@ -31,7 +31,7 @@ This section describes the most useful events available.
 
 ### `click(data)` | `dblclick(data)`
 
-- data: [`ClickData`](/api/types/Core.ClickData.html){target=_blank}
+- data: [`ClickData`](/api/types/Core.ClickData.html){target=\_blank}
 
 Triggered when the user clicks on the viewer (excluding the navbar and the side panel), it contains many information about where the user clicked including a [marker](../plugins/markers.md) if the `clickEventOnMarker` option is enabled.
 

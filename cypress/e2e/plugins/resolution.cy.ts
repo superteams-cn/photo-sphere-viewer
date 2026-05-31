@@ -11,13 +11,11 @@ describe('plugin: resolution', () => {
   });
 
   it('should destroy', () => {
-    callViewer('destroy').then(viewer => viewer.destroy());
+    callViewer('destroy').then((viewer) => viewer.destroy());
   });
 
   it('should display the settings', () => {
-    cy.get('.psv-settings-button')
-      .compareScreenshots('button-sd')
-      .click();
+    cy.get('.psv-settings-button').compareScreenshots('button-sd').click();
 
     cy.get('.psv-settings').compareScreenshots('settings');
 
@@ -33,7 +31,7 @@ describe('plugin: resolution', () => {
   });
 
   it('should translate the setting', () => {
-    callViewer('set lang').then(viewer => viewer.setOption('lang', { resolution: 'Qualité' }));
+    callViewer('set lang').then((viewer) => viewer.setOption('lang', { resolution: 'Qualité' }));
 
     cy.get('.psv-settings-button').click();
 
@@ -65,15 +63,13 @@ describe('plugin: resolution', () => {
 
     checkPanorama('sphere-small.jpg?hd');
     checkEventHandler(resolutionChangeHandler, { resolutionId: 'HD' });
-    cy.get('.psv-settings-button')
-      .blur()
-      .compareScreenshots('button-hd');
+    cy.get('.psv-settings-button').blur().compareScreenshots('button-hd');
   });
 
   it('should change the resolution by API', () => {
     const resolutionChangeHandler = listenResolutionEvent('resolution-changed');
 
-    callResolution('set resolution').then(resolution => resolution.setResolution('HD'));
+    callResolution('set resolution').then((resolution) => resolution.setResolution('HD'));
 
     checkPanorama('sphere-small.jpg?hd');
     checkEventHandler(resolutionChangeHandler, { resolutionId: 'HD' });
@@ -95,20 +91,27 @@ describe('plugin: resolution', () => {
     const resolutionChangeHandler = listenResolutionEvent('resolution-changed');
 
     // the current panorama is found in the new list
-    callResolution('set resolutions w.o. default').then(resolution => resolution.setResolutions([
-      { id: 'large', label: 'large', panorama: BASE_URL + 'sphere-small.jpg?hd' },
-      { id: 'small', label: 'small', panorama: BASE_URL + 'sphere-small.jpg' },
-    ]));
+    callResolution('set resolutions w.o. default').then((resolution) =>
+      resolution.setResolutions([
+        { id: 'large', label: 'large', panorama: BASE_URL + 'sphere-small.jpg?hd' },
+        { id: 'small', label: 'small', panorama: BASE_URL + 'sphere-small.jpg' },
+      ]),
+    );
 
     checkEventHandler(resolutionChangeHandler, { resolutionId: 'small' });
 
     resolutionChangeHandler.reset();
 
     // a default value is provided
-    callResolution('set resolutions w. default').then(resolution => resolution.setResolutions([
-      { id: 'large', label: 'large', panorama: BASE_URL + 'sphere-small.jpg?hd' },
-      { id: 'small', label: 'small', panorama: BASE_URL + 'sphere-small.jpg' },
-    ], 'large'));
+    callResolution('set resolutions w. default').then((resolution) =>
+      resolution.setResolutions(
+        [
+          { id: 'large', label: 'large', panorama: BASE_URL + 'sphere-small.jpg?hd' },
+          { id: 'small', label: 'small', panorama: BASE_URL + 'sphere-small.jpg' },
+        ],
+        'large',
+      ),
+    );
     cy.wait(200);
 
     checkPanorama('sphere-small.jpg?hd');
@@ -118,10 +121,12 @@ describe('plugin: resolution', () => {
 
     // the current panorama is NOT found in the new list
     setPanorama('sphere-test.jpg');
-    callResolution('set resolutions w.o. default no match').then(resolution => resolution.setResolutions([
-      { id: 'small', label: 'small', panorama: BASE_URL + 'sphere-small.jpg' },
-      { id: 'large', label: 'large', panorama: BASE_URL + 'sphere-small.jpg?hd' },
-    ]));
+    callResolution('set resolutions w.o. default no match').then((resolution) =>
+      resolution.setResolutions([
+        { id: 'small', label: 'small', panorama: BASE_URL + 'sphere-small.jpg' },
+        { id: 'large', label: 'large', panorama: BASE_URL + 'sphere-small.jpg?hd' },
+      ]),
+    );
     cy.wait(200);
 
     checkPanorama('sphere-small.jpg');
@@ -130,11 +135,17 @@ describe('plugin: resolution', () => {
 
   it('should throw if missing properties', () => {
     callResolution('set resolutions').then((resolution) => {
-      expect(() => resolution.setResolutions([{ id: null, label: 'label', panorama: 'sphere.jpg' }])).to.throw('Missing resolution id');
+      expect(() => resolution.setResolutions([{ id: null, label: 'label', panorama: 'sphere.jpg' }])).to.throw(
+        'Missing resolution id',
+      );
 
-      expect(() => resolution.setResolutions([{ id: 'sd', label: null, panorama: 'sphere.jpg' }])).to.throw('Missing resolution label');
+      expect(() => resolution.setResolutions([{ id: 'sd', label: null, panorama: 'sphere.jpg' }])).to.throw(
+        'Missing resolution label',
+      );
 
-      expect(() => resolution.setResolutions([{ id: 'sd', label: 'label', panorama: null }])).to.throw('Missing resolution panorama');
+      expect(() => resolution.setResolutions([{ id: 'sd', label: 'label', panorama: null }])).to.throw(
+        'Missing resolution panorama',
+      );
     });
   });
 
@@ -142,9 +153,11 @@ describe('plugin: resolution', () => {
     return callPlugin<ResolutionPlugin>('resolution', log);
   }
 
-  function listenResolutionEvent(name: Parameters<ResolutionPlugin['addEventListener']>[0]): Cypress.Agent<sinon.SinonStub> {
+  function listenResolutionEvent(
+    name: Parameters<ResolutionPlugin['addEventListener']>[0],
+  ): Cypress.Agent<sinon.SinonStub> {
     const handler = cy.stub();
-    callResolution(`listen "${name}"`).then(resolution => resolution.addEventListener(name, handler));
+    callResolution(`listen "${name}"`).then((resolution) => resolution.addEventListener(name, handler));
     return handler;
   }
 });

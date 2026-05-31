@@ -10,8 +10,8 @@ export class GalleryButton extends AbstractButton {
   private readonly plugin: GalleryPlugin;
 
   /**
-     * @param {PSV.components.Navbar} navbar
-     */
+   * @param {PSV.components.Navbar} navbar
+   */
   constructor(navbar: Navbar) {
     super(navbar, {
       className: 'psv-gallery-button',
@@ -39,8 +39,8 @@ export class GalleryButton extends AbstractButton {
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     if (e instanceof ShowGalleryEvent) {
       this.toggleActive(true);

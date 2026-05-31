@@ -36,7 +36,10 @@ export class ArrowsRenderer extends AbstractComponent {
     return this.plugin.config.arrowStyle;
   }
 
-  constructor(parent: Viewer, private plugin: VirtualTourPlugin) {
+  constructor(
+    parent: Viewer,
+    private plugin: VirtualTourPlugin,
+  ) {
     super(parent, {
       className: 'psv-virtual-tour-arrows',
     });
@@ -62,7 +65,7 @@ export class ArrowsRenderer extends AbstractComponent {
     this.container.addEventListener('mouseleave', this, true);
     this.container.addEventListener('mousemove', this, true);
 
-    this.container.addEventListener('contextmenu', e => e.preventDefault());
+    this.container.addEventListener('contextmenu', (e) => e.preventDefault());
   }
 
   init() {
@@ -147,11 +150,7 @@ export class ArrowsRenderer extends AbstractComponent {
       const position = this.viewer.getPosition();
       position.pitch = MathUtils.clamp(position.pitch, -this.arrowsPosition.maxPitch, -this.arrowsPosition.minPitch);
 
-      this.viewer.dataHelper.sphericalCoordsToVector3(
-        position,
-        this.camera.position,
-        size.height * 2,
-      ).negate();
+      this.viewer.dataHelper.sphericalCoordsToVector3(position, this.camera.position, size.height * 2).negate();
 
       this.camera.lookAt(0, 0, 0);
       this.camera.translateY(size.height / 3);
@@ -165,15 +164,14 @@ export class ArrowsRenderer extends AbstractComponent {
 
       const objectsAndDist: Array<[CSS3DObject, number]> = [];
       let minDist = Number.MAX_SAFE_INTEGER;
-      this.scene.children
-        .forEach((object) => {
-          const data = object.userData[ARROW_DATA] as ArrowData;
-          if (data.conflict) {
-            const distance = Math.abs(utils.getShortestArc(position.yaw, data.yaw));
-            minDist = Math.min(minDist, distance);
-            objectsAndDist.push([object as CSS3DObject, distance]);
-          }
-        });
+      this.scene.children.forEach((object) => {
+        const data = object.userData[ARROW_DATA] as ArrowData;
+        if (data.conflict) {
+          const distance = Math.abs(utils.getShortestArc(position.yaw, data.yaw));
+          minDist = Math.min(minDist, distance);
+          objectsAndDist.push([object as CSS3DObject, distance]);
+        }
+      });
 
       objectsAndDist.forEach(([object, distance]) => {
         const fade = distance !== minDist;
@@ -244,11 +242,7 @@ export class ArrowsRenderer extends AbstractComponent {
 
       object.rotation.set(-Math.PI / 2, 0, Math.PI - position.yaw);
 
-      this.viewer.dataHelper.sphericalCoordsToVector3(
-        { yaw: position.yaw, pitch: 0 },
-        object.position,
-        depth * 100,
-      );
+      this.viewer.dataHelper.sphericalCoordsToVector3({ yaw: position.yaw, pitch: 0 }, object.position, depth * 100);
 
       this.scene.add(object);
     } else {
@@ -258,10 +252,7 @@ export class ArrowsRenderer extends AbstractComponent {
 
       const object = new CSS2DObject(element);
 
-      this.viewer.dataHelper.sphericalCoordsToVector3(
-        position,
-        object.position,
-      );
+      this.viewer.dataHelper.sphericalCoordsToVector3(position, object.position);
 
       this.scene.add(object);
     }
@@ -276,7 +267,8 @@ export class ArrowsRenderer extends AbstractComponent {
     if (!visible) {
       this.container.style.marginBottom = '';
     } else {
-      this.container.style.marginBottom = (this.viewer.container.querySelector<HTMLElement>('.psv-gallery').offsetHeight) + 'px';
+      this.container.style.marginBottom =
+        this.viewer.container.querySelector<HTMLElement>('.psv-gallery').offsetHeight + 'px';
     }
   }
 }

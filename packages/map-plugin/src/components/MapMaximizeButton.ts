@@ -22,7 +22,8 @@ export class MapMaximizeButton extends AbstractMapButton {
 
   override update() {
     this.container.innerHTML = this.map.maximized ? minimize : maximize;
-    this.container.querySelector('svg').style.transform = `rotate3d(0, 0, 1, ${ROTATION[this.map.config.position.join('-')]}deg)`;
+    this.container.querySelector('svg').style.transform =
+      `rotate3d(0, 0, 1, ${ROTATION[this.map.config.position.join('-')]}deg)`;
     this.container.title = this.map.maximized
       ? this.viewer.config.lang['mapMinimize']
       : this.viewer.config.lang['mapMaximize'];

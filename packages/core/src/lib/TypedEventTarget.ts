@@ -23,9 +23,9 @@ export class TypedEventTarget<TEvents extends TypedEvent<any>> extends EventTarg
   }
 
   /**
-     * @template T the name of event
-     * @template E the class of the event
-     */
+   * @template T the name of event
+   * @template E the class of the event
+   */
   override addEventListener<T extends TEvents['type'], E extends TEvents & { type: T }>(
     type: T,
     callback: ((e: E) => void) | EventListenerObject | null,
@@ -35,9 +35,9 @@ export class TypedEventTarget<TEvents extends TypedEvent<any>> extends EventTarg
   }
 
   /**
-     * @template T the name of event
-     * @template E the class of the event
-     */
+   * @template T the name of event
+   * @template E the class of the event
+   */
   override removeEventListener<T extends TEvents['type'], E extends TEvents & { type: T }>(
     type: TEvents['type'],
     callback: ((e: E) => void) | EventListenerObject | null,

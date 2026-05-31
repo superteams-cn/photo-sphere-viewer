@@ -33,7 +33,8 @@ function computeTileConfig(
 
 export function getTileConfig(
   panorama: EquirectangularTilesPanorama | EquirectangularMultiTilesPanorama,
-  hFov: number, vFov: number,
+  hFov: number,
+  vFov: number,
   viewerSize: Size,
   data: { SPHERE_SEGMENTS: number; SPHERE_HORIZONTAL_SEGMENTS: number },
 ): EquirectangularTileConfig {
@@ -45,8 +46,8 @@ export function getTileConfig(
   } else {
     if (viewerSize) {
       level = panorama.levels.findIndex((pLevel) => {
-        const hResolution = pLevel.width / 360 * hFov;
-        const vResolution = pLevel.width / 2 / 180 * vFov;
+        const hResolution = (pLevel.width / 360) * hFov;
+        const vResolution = (pLevel.width / 2 / 180) * vFov;
         return hResolution >= viewerSize.width && vResolution >= viewerSize.height;
       });
       if (level === -1) {

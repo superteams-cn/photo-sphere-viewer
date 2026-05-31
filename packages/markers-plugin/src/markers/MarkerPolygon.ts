@@ -35,22 +35,22 @@ export class MarkerPolygon extends AbstractDomMarker {
   }
 
   /**
-     * Checks if it is a polygon/polyline using pixel coordinates
-     */
+   * Checks if it is a polygon/polyline using pixel coordinates
+   */
   private get isPixels(): boolean {
     return this.type === MarkerType.polygonPixels || this.type === MarkerType.polylinePixels;
   }
 
   /**
-     * Checks if it is a polygon marker
-     */
+   * Checks if it is a polygon marker
+   */
   private get isPolygon(): boolean {
     return this.type === MarkerType.polygon || this.type === MarkerType.polygonPixels;
   }
 
   /**
-     * Checks if it is a polyline marker
-     */
+   * Checks if it is a polyline marker
+   */
   private get isPolyline(): boolean {
     return this.type === MarkerType.polyline || this.type === MarkerType.polylinePixels;
   }
@@ -67,12 +67,10 @@ export class MarkerPolygon extends AbstractDomMarker {
       const position = this.viewer.dataHelper.sphericalCoordsToViewerCoords(this.state.position);
 
       const points = positions
-        .filter(innerPos => innerPos.length > 0)
+        .filter((innerPos) => innerPos.length > 0)
         .map((innerPos) => {
           let innerPoints = 'M';
-          innerPoints += innerPos
-            .map(pos => `${pos.x - position.x},${pos.y - position.y}`)
-            .join('L');
+          innerPoints += innerPos.map((pos) => `${pos.x - position.x},${pos.y - position.y}`).join('L');
           if (this.isPolygon) {
             innerPoints += 'Z';
           }
@@ -149,20 +147,22 @@ export class MarkerPolygon extends AbstractDomMarker {
         });
       } else {
         // clean angles
-        this.definition = (actualPoly as Array<Array<[number, number] | [string, string] | SphericalPosition>>).map((coords) => {
-          return coords.map((coord) => {
-            let sphericalCoord: Position;
-            if (utils.isExtendedPosition(coord)) {
-              sphericalCoord = this.viewer.dataHelper.cleanPosition(coord);
-            } else {
-              sphericalCoord = this.viewer.dataHelper.cleanPosition({
-                yaw: coord[0],
-                pitch: coord[1],
-              });
-            }
-            return [sphericalCoord.yaw, sphericalCoord.pitch];
-          });
-        });
+        this.definition = (actualPoly as Array<Array<[number, number] | [string, string] | SphericalPosition>>).map(
+          (coords) => {
+            return coords.map((coord) => {
+              let sphericalCoord: Position;
+              if (utils.isExtendedPosition(coord)) {
+                sphericalCoord = this.viewer.dataHelper.cleanPosition(coord);
+              } else {
+                sphericalCoord = this.viewer.dataHelper.cleanPosition({
+                  yaw: coord[0],
+                  pitch: coord[1],
+                });
+              }
+              return [sphericalCoord.yaw, sphericalCoord.pitch];
+            });
+          },
+        );
       }
     } catch (e) {
       throw new PSVError(`invalid marker ${this.id} position`, e);
@@ -193,9 +193,9 @@ export class MarkerPolygon extends AbstractDomMarker {
   }
 
   /**
-     * Computes viewer coordinates of each point of a polygon/polyline<br>
-     * It handles points behind the camera by creating intermediary points suitable for the projector
-     */
+   * Computes viewer coordinates of each point of a polygon/polyline<br>
+   * It handles points behind the camera by creating intermediary points suitable for the projector
+   */
   private __getPolyPositions(positions: Vector3[]): Point[] {
     const nbVectors = positions.length;
 
@@ -238,7 +238,7 @@ export class MarkerPolygon extends AbstractDomMarker {
 
     // translate vectors to screen pos
     return positions3D
-      .filter(pos => pos.visible)
-      .map(pos => this.viewer.dataHelper.vector3ToViewerCoords(pos.vector));
+      .filter((pos) => pos.visible)
+      .map((pos) => this.viewer.dataHelper.vector3ToViewerCoords(pos.vector));
   }
 }

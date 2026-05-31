@@ -59,8 +59,8 @@ export class GyroscopePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override init() {
     super.init();
 
@@ -70,8 +70,8 @@ export class GyroscopePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override destroy() {
     this.viewer.removeEventListener(events.StopAllEvent.type, this);
     this.viewer.removeEventListener(events.BeforeRotateEvent.type, this);
@@ -86,8 +86,8 @@ export class GyroscopePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     if (e instanceof events.StopAllEvent) {
       this.stop();
@@ -99,22 +99,22 @@ export class GyroscopePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Checks if the gyroscope is supported
-     */
+   * Checks if the gyroscope is supported
+   */
   isSupported(): Promise<boolean> {
     return this.state.isSupported;
   }
 
   /**
-     * Checks if the gyroscope is enabled
-     */
+   * Checks if the gyroscope is enabled
+   */
   isEnabled(): boolean {
     return this.state.enabled;
   }
 
   /**
-     * Enables the gyroscope navigation if available
-     */
+   * Enables the gyroscope navigation if available
+   */
   start(moveMode = this.config.moveMode): Promise<void> {
     return this.state.isSupported
       .then((supported) => {
@@ -158,8 +158,8 @@ export class GyroscopePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Disables the gyroscope navigation
-     */
+   * Disables the gyroscope navigation
+   */
   stop() {
     if (this.isEnabled()) {
       this.state.enabled = false;
@@ -176,8 +176,8 @@ export class GyroscopePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Enables or disables the gyroscope navigation
-     */
+   * Enables or disables the gyroscope navigation
+   */
   toggle() {
     if (this.isEnabled()) {
       this.stop();
@@ -187,8 +187,8 @@ export class GyroscopePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Handles gyro movements
-     */
+   * Handles gyro movements
+   */
   private __onBeforeRender() {
     if (!this.isEnabled()) {
       return;
@@ -232,8 +232,8 @@ export class GyroscopePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Intercepts moves and offsets the alpha angle
-     */
+   * Intercepts moves and offsets the alpha angle
+   */
   private __onBeforeRotate(e: events.BeforeRotateEvent) {
     if (this.isEnabled()) {
       e.preventDefault();
@@ -245,13 +245,10 @@ export class GyroscopePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Detects if device orientation is supported
-     */
+   * Detects if device orientation is supported
+   */
   private __checkSupport(): Promise<boolean> {
-    if (
-      'DeviceOrientationEvent' in window
-      && typeof (DeviceOrientationEvent as any).requestPermission === 'function'
-    ) {
+    if ('DeviceOrientationEvent' in window && typeof (DeviceOrientationEvent as any).requestPermission === 'function') {
       return Promise.resolve(true);
     } else if ('DeviceOrientationEvent' in window) {
       return new Promise((resolve) => {
@@ -270,8 +267,8 @@ export class GyroscopePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Request permission to the motion API
-     */
+   * Request permission to the motion API
+   */
   private __requestPermission(): Promise<boolean> {
     if (typeof (DeviceOrientationEvent as any).requestPermission === 'function') {
       return (DeviceOrientationEvent as any)

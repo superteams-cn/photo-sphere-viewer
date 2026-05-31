@@ -2,7 +2,14 @@ import { AbstractConfigurablePlugin, events, PluginConstructor, utils, type View
 import type { Marker, events as markersEvents, MarkersPlugin } from '@photo-sphere-viewer/markers-plugin';
 import { type Map } from 'leaflet';
 import { PlanComponent } from './components/PlanComponent';
-import { HOTSPOT_GENERATED_ID, HOTSPOT_MARKER_ID, MARKER_DATA_KEY, OSM_ATTRIBUTION, OSM_LABEL, OSM_URL } from './constants';
+import {
+  HOTSPOT_GENERATED_ID,
+  HOTSPOT_MARKER_ID,
+  MARKER_DATA_KEY,
+  OSM_ATTRIBUTION,
+  OSM_LABEL,
+  OSM_URL,
+} from './constants';
 import { PlanPluginEvents } from './events';
 import pin from './icons/pin.svg';
 import { GpsPosition, ParsedPlanPluginConfig, PlanHotspot, PlanPluginConfig, UpdatablePlanPluginConfig } from './model';
@@ -29,11 +36,13 @@ const getConfig = utils.getConfigParser<PlanPluginConfig>(
       hoverBorderColor: 'rgba(255, 255, 255, 0.8)',
     },
     defaultZoom: 15,
-    layers: [{
-      urlTemplate: OSM_URL,
-      attribution: OSM_ATTRIBUTION,
-      name: OSM_LABEL,
-    }],
+    layers: [
+      {
+        urlTemplate: OSM_URL,
+        attribution: OSM_ATTRIBUTION,
+        name: OSM_LABEL,
+      },
+    ],
     configureLeaflet: null,
     hotspots: [],
     minimizeOnHotspotClick: true,
@@ -48,7 +57,7 @@ const getConfig = utils.getConfigParser<PlanPluginConfig>(
     position: (position, { defValue }) => {
       return utils.cleanCssPosition(position, { allowCenter: false, cssOrder: true }) || defValue;
     },
-    bearing: bearing => utils.parseAngle(bearing),
+    bearing: (bearing) => utils.parseAngle(bearing),
     buttons: (buttons, { defValue }) => ({ ...defValue, ...buttons }),
   },
 );
@@ -87,8 +96,8 @@ export class PlanPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override init() {
     super.init();
 
@@ -106,8 +115,8 @@ export class PlanPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   override destroy() {
     this.viewer.removeEventListener(events.PositionUpdatedEvent.type, this);
     this.viewer.removeEventListener(events.ReadyEvent.type, this);
@@ -119,8 +128,8 @@ export class PlanPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * @internal
-     */
+   * @internal
+   */
   handleEvent(e: Event) {
     switch (e.type) {
       case events.ReadyEvent.type:
@@ -160,29 +169,29 @@ export class PlanPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Hides the map
-     */
+   * Hides the map
+   */
   hide() {
     this.component.hide();
   }
 
   /**
-     * Shows the map
-     */
+   * Shows the map
+   */
   show() {
     this.component.show();
   }
 
   /**
-     * Changes the current zoom level
-     */
+   * Changes the current zoom level
+   */
   setZoom(level: number) {
     this.component.zoom(level);
   }
 
   /**
-     * Closes the map
-     */
+   * Closes the map
+   */
   close() {
     if (!this.component.collapsed) {
       this.component.toggleCollapse();
@@ -190,8 +199,8 @@ export class PlanPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Open the map
-     */
+   * Open the map
+   */
   open() {
     if (this.component.collapsed) {
       this.component.toggleCollapse();
@@ -199,8 +208,8 @@ export class PlanPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Minimizes the map
-     */
+   * Minimizes the map
+   */
   minimize() {
     if (this.component.maximized) {
       this.component.toggleMaximized();
@@ -208,8 +217,8 @@ export class PlanPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Maximizes the map
-     */
+   * Maximizes the map
+   */
   maximize() {
     if (!this.component.maximized) {
       this.component.toggleMaximized();
@@ -217,16 +226,16 @@ export class PlanPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Changes the position on the map
-     */
+   * Changes the position on the map
+   */
   setCoordinates(coordinates: GpsPosition) {
     this.config.coordinates = coordinates;
     this.component.recenter();
   }
 
   /**
-     * Changes the hotspots on the map
-     */
+   * Changes the hotspots on the map
+   */
   setHotspots(hotspots: PlanHotspot[] | null) {
     const ids: string[] = [];
     let i = 1;
@@ -247,29 +256,29 @@ export class PlanPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-     * Removes all hotspots
-     */
+   * Removes all hotspots
+   */
   clearHotspots() {
     this.setHotspots(null);
   }
 
   /**
-     * Changes the highlighted hotspot
-     */
+   * Changes the highlighted hotspot
+   */
   setActiveHotspot(hotspotId: string | null) {
     this.component.setActiveHotspot(hotspotId);
   }
 
   /**
-     * Returns the Leaflet instance
-     */
+   * Returns the Leaflet instance
+   */
   getLeaflet(): Map {
     return this.component.map;
   }
 
   private __markersToHotspots(markers: Marker[]): PlanHotspot[] {
     return markers
-      .filter(marker => marker.data?.[MARKER_DATA_KEY])
+      .filter((marker) => marker.data?.[MARKER_DATA_KEY])
       .map((marker) => {
         const hotspot: PlanHotspot = {
           ...marker.data[MARKER_DATA_KEY],
@@ -284,6 +293,6 @@ export class PlanPlugin extends AbstractConfigurablePlugin<
 
         return hotspot;
       })
-      .filter(h => h);
+      .filter((h) => h);
   }
 }

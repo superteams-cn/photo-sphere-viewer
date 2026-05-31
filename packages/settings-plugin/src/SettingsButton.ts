@@ -31,15 +31,15 @@ export class SettingsButton extends AbstractButton {
   }
 
   /**
-     * Toggles settings
-     */
+   * Toggles settings
+   */
   onClick() {
     this.plugin.toggleSettings();
   }
 
   /**
-     * Changes the badge value
-     */
+   * Changes the badge value
+   */
   setBadge(value: string) {
     this.badge.innerText = value;
     this.badge.style.display = value ? '' : 'none';

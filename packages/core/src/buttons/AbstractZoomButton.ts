@@ -46,11 +46,21 @@ export class AbstractZoomButton extends AbstractButton {
 
   handleEvent(e: Event) {
     switch (e.type) {
-      case 'mousedown': this.__onMouseDown(); break;
-      case 'mouseup': this.__onMouseUp(); break;
-      case 'touchend': this.__onMouseUp(); break;
-      case 'keydown': (e as KeyboardEvent).key === KEY_CODES.Enter && this.__onMouseDown(); break;
-      case 'keyup': (e as KeyboardEvent).key === KEY_CODES.Enter && this.__onMouseUp(); break;
+      case 'mousedown':
+        this.__onMouseDown();
+        break;
+      case 'mouseup':
+        this.__onMouseUp();
+        break;
+      case 'touchend':
+        this.__onMouseUp();
+        break;
+      case 'keydown':
+        (e as KeyboardEvent).key === KEY_CODES.Enter && this.__onMouseDown();
+        break;
+      case 'keyup':
+        (e as KeyboardEvent).key === KEY_CODES.Enter && this.__onMouseUp();
+        break;
     }
   }
 

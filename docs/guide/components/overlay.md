@@ -25,13 +25,13 @@ title: PSV Overlay Demo
 
 Show the overlay.
 
-| option | type |   |
-| ------ | ---- | - |
-| `id` | `string` | Unique identifier of the overlay, this will be used to `hide` the overlay only if the content has not been replaced by something else. |
-| `title` (required) | `string` | Main message of the overlay.  |
-| `text` | `string` | Secondary message of the overlay. |
-| `image` | `string` | SVG icon or image displayed above the text. |
-| `dismissible` | `boolean` | If the overlay can be hidden by click or Escape key (default: `true`). |
+| option             | type      |                                                                                                                                        |
+| ------------------ | --------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | `string`  | Unique identifier of the overlay, this will be used to `hide` the overlay only if the content has not been replaced by something else. |
+| `title` (required) | `string`  | Main message of the overlay.                                                                                                           |
+| `text`             | `string`  | Secondary message of the overlay.                                                                                                      |
+| `image`            | `string`  | SVG icon or image displayed above the text.                                                                                            |
+| `dismissible`      | `boolean` | If the overlay can be hidden by click or Escape key (default: `true`).                                                                 |
 
 _**Note:** the content is rendered as HTML. If your content may include untrusted input it should be sanitized before being passed to `title`, `text` or `image`._
 

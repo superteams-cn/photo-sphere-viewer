@@ -15,7 +15,7 @@ const CYPRESS_DIR = 'cypress/pages';
 const PACKAGES_DIR = 'packages';
 const DIST_DIR = 'dist';
 
-const packages = fs.readdirSync(path.join(rootDir, PACKAGES_DIR)).filter(name => name !== 'shared');
+const packages = fs.readdirSync(path.join(rootDir, PACKAGES_DIR)).filter((name) => name !== 'shared');
 const fakeCert = await getFakeCert();
 const e2e = process.argv[2] === '--e2e';
 
@@ -34,12 +34,12 @@ liveServer.start({
   watch: [
     path.join(rootDir, EXAMPLES_DIR),
     path.join(rootDir, CYPRESS_DIR),
-    ...packages.map(name => path.join(rootDir, PACKAGES_DIR, name, DIST_DIR)),
+    ...packages.map((name) => path.join(rootDir, PACKAGES_DIR, name, DIST_DIR)),
   ],
   mount: [
     ['/node_modules', path.join(rootDir, 'node_modules')],
     ['/e2e', path.join(CYPRESS_DIR)],
-    ...packages.map(name => [`/dist/${name}`, path.join(rootDir, PACKAGES_DIR, name, DIST_DIR)]),
+    ...packages.map((name) => [`/dist/${name}`, path.join(rootDir, PACKAGES_DIR, name, DIST_DIR)]),
   ],
   https: {
     cert: fakeCert,

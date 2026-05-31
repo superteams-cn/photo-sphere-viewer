@@ -68,7 +68,8 @@
   color: psv.$buttons-color !important;
   text-decoration: none !important;
 
-  &::before, &::after {
+  &::before,
+  &::after {
     display: none !important;
   }
 }
