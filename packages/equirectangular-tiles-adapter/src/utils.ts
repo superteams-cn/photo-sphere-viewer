@@ -112,7 +112,7 @@ function checkTile(
 }
 
 /**
- * Returns a path used for cache key
+ * 返回用于缓存键的路径
  */
 export function getCacheKey(
   panorama: EquirectangularTilesPanorama | EquirectangularMultiTilesPanorama,

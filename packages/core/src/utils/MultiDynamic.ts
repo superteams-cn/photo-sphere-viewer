@@ -25,7 +25,7 @@ export class MultiDynamic<T extends Record<string, Dynamic>> {
   }
 
   /**
-   * Changes base speed
+   * 修改基础速度
    */
   setSpeed(speed: number) {
     for (const d of Object.values(this.dynamics)) {

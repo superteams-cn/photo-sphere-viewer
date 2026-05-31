@@ -1,7 +1,7 @@
 {
   "name": "@photo-sphere-viewer/plan-plugin",
   "version": "0.0.0",
-  "description": "全景图查看器平面图插件，用于通过 Leaflet 添加地理地图。",
+  "description": "全景图查看器平面图插件，用于在平面图上标注全景图位置。",
   "homepage": "https://photo-sphere-viewer.js.org/plugins/plan.html",
   "license": "MIT",
   "main": "./src/index.ts",

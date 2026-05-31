@@ -9,7 +9,7 @@ export function dasherize(str: string): string {
 }
 
 /**
- * Returns a function, that, when invoked, will only be triggered at most once during a given window of time.
+ * 返回节流后的函数；在指定时间窗口内，该函数最多只会触发一次。
  */
 export function throttle<T extends (...args: any) => any>(callback: T, wait: number): (...args: Parameters<T>) => void {
   let paused = false;
@@ -123,7 +123,7 @@ export function firstNonNull<T>(...values: T[]): T | null {
 }
 
 /**
- * Returns deep equality between objects
+ * 判断对象是否深度相等
  * @see https://gist.github.com/egardner/efd34f270cc33db67c0246e837689cb9
  */
 export function deepEqual(obj1: any, obj2: any): boolean {

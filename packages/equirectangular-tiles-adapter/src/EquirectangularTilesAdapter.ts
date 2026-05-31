@@ -99,7 +99,7 @@ const getConfig = utils.getConfigParser<EquirectangularTilesAdapterConfig>({
 const vertexPosition = new Vector3();
 
 /**
- * Adapter for tiled panoramas
+ * 等距柱状瓦片适配器
  */
 export class EquirectangularTilesAdapter extends AbstractAdapter<
   EquirectangularTilesPanorama | EquirectangularMultiTilesPanorama,

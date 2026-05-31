@@ -11,7 +11,7 @@ const getConfig = utils.getConfigParser<ResolutionPluginConfig>({
 });
 
 /**
- * 添加用于在多个全景图分辨率之间切换的设置项。
+ * 添加用于在多个全景图画质档位之间切换的设置项。
  */
 export class ResolutionPlugin extends AbstractPlugin<ResolutionPluginEvents> {
   static override readonly id = 'resolution';
@@ -96,7 +96,7 @@ export class ResolutionPlugin extends AbstractPlugin<ResolutionPluginEvents> {
   }
 
   /**
-   * 修改可用分辨率
+   * 修改可用画质档位
    * @param resolutions
    * @param defaultResolution - 如果未提供，则保留当前全景图
    * @throws {@link Core.PSVError | PSVError} 配置无效时抛出
@@ -162,7 +162,7 @@ export class ResolutionPlugin extends AbstractPlugin<ResolutionPluginEvents> {
   }
 
   /**
-   * 返回当前分辨率
+   * 返回当前画质档位
    */
   getResolution(): string {
     return this.state.resolution;

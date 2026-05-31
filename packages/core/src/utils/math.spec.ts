@@ -2,7 +2,7 @@ import assert from 'assert';
 import { greatArcDistance } from './math';
 
 describe('utils:math:greatArcDistance', () => {
-  it('should compute the great-arc distance', () => {
+  it('应计算大圆弧距离', () => {
     // easy
     assert.strictEqual(greatArcDistance([0, 0], [Math.PI, 0]), Math.PI);
     assert.strictEqual(greatArcDistance([Math.PI / 2, 0], [(3 * Math.PI) / 2, 0]), Math.PI);

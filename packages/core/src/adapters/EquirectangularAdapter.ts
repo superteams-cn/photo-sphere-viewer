@@ -48,7 +48,7 @@ const getConfig = getConfigParser<EquirectangularAdapterConfig>(
 );
 
 /**
- * Adapter for equirectangular panoramas
+ * 等距柱状全景图适配器
  */
 export class EquirectangularAdapter extends AbstractAdapter<
   string | EquirectangularPanorama,

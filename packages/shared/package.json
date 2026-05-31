@@ -1,5 +1,6 @@
 {
   "name": "@photo-sphere-viewer/shared",
+  "description": "全景图查看器内部共享工具包。",
   "version": "0.0.0",
   "private": true,
   "scripts": {

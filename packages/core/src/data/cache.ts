@@ -56,7 +56,7 @@ export const Cache = {
       })
       .forEach(([key, { lastAccess }], index) => {
         // remove expired items and extra numerous items
-        // but always keep the most recent one
+        // 但始终保留最近一次使用的条目
         if (index > 0 && (Date.now() - lastAccess >= this.ttl * 1000 || index >= this.maxItems)) {
           delete this.items[key];
         }

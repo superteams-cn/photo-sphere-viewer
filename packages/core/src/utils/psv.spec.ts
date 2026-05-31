@@ -13,7 +13,7 @@ import {
 } from './psv';
 
 describe('utils:psv:isExtendedPosition', () => {
-  it('should pass', () => {
+  it('应通过校验', () => {
     assert.strictEqual(isExtendedPosition({ pitch: 0, yaw: 0 }), true);
     assert.strictEqual(isExtendedPosition({ textureX: 0, textureY: 0 }), true);
     assert.strictEqual(isExtendedPosition({ pitch: 0, yaw: 0, textureX: 0, textureY: 0 }), true);
@@ -21,7 +21,7 @@ describe('utils:psv:isExtendedPosition', () => {
     assert.strictEqual(isExtendedPosition({ pitch: 0, yaw: 0, foo: { bar: 'baz' } }), true);
   });
 
-  it('should not pass', () => {
+  it('不应通过校验', () => {
     assert.strictEqual(isExtendedPosition(null), false);
     assert.strictEqual(isExtendedPosition({}), false);
     assert.strictEqual(isExtendedPosition([]), false);
@@ -31,7 +31,7 @@ describe('utils:psv:isExtendedPosition', () => {
 });
 
 describe('utils:psv:parseAngle', () => {
-  it('should normalize number', () => {
+  it('应规范化数字', () => {
     assert.strictEqual(parseAngle(0), 0, '0');
     assert.strictEqual(parseAngle(Math.PI), Math.PI, 'PI');
     assert.strictEqual(parseAngle(3 * Math.PI), Math.PI, '3xPI');
@@ -41,7 +41,7 @@ describe('utils:psv:parseAngle', () => {
     assert.strictEqual(parseAngle((-Math.PI * 3) / 4, true), -Math.PI / 2, '-3/4xPI centered');
   });
 
-  it('should parse radians angles', () => {
+  it('应解析弧度角', () => {
     const values: Record<string, number> = {
       '0': 0,
       '1.72': 1.72,
@@ -55,7 +55,7 @@ describe('utils:psv:parseAngle', () => {
     }
   });
 
-  it('should parse degrees angles', () => {
+  it('应解析角度值', () => {
     const values: Record<string, number> = {
       '0deg': 0,
       '30deg': (30 * Math.PI) / 180,
@@ -69,7 +69,7 @@ describe('utils:psv:parseAngle', () => {
     }
   });
 
-  it('should normalize angles between 0 and 2Pi', () => {
+  it('应将角度规范到 0 到 2π 之间', () => {
     const values: Record<string, number> = {
       '450deg': Math.PI / 2,
       '1440deg': 0,
@@ -83,7 +83,7 @@ describe('utils:psv:parseAngle', () => {
     }
   });
 
-  it('should normalize angles between -Pi/2 and Pi/2', () => {
+  it('应将角度规范到 -π/2 到 π/2 之间', () => {
     const values: Record<string, number> = {
       '45deg': Math.PI / 4,
       '-4': Math.PI / 2,
@@ -94,7 +94,7 @@ describe('utils:psv:parseAngle', () => {
     }
   });
 
-  it('should normalize angles between -Pi and Pi', function () {
+  it('应将角度规范到 -π 到 π 之间', function () {
     const values: Record<string, number> = {
       '45deg': Math.PI / 4,
       '4': -2 * Math.PI + 4,
@@ -125,7 +125,7 @@ describe('utils:psv:parseAngle', () => {
 });
 
 describe('utils:psv:parsePoint', () => {
-  it('should parse 2 keywords', () => {
+  it('应解析两个关键字', () => {
     const values: Record<string, { x: number; y: number }> = {
       'top left': { x: 0, y: 0 },
       'top center': { x: 0.5, y: 0 },
@@ -146,7 +146,7 @@ describe('utils:psv:parsePoint', () => {
     }
   });
 
-  it('should parse 1 keyword', () => {
+  it('应解析一个关键字', () => {
     const values: Record<string, { x: number; y: number }> = {
       top: { x: 0.5, y: 0 },
       center: { x: 0.5, y: 0.5 },
@@ -160,7 +160,7 @@ describe('utils:psv:parsePoint', () => {
     }
   });
 
-  it('should parse 2 percentages', () => {
+  it('应解析两个百分比', () => {
     const values: Record<string, { x: number; y: number }> = {
       '0% 0%': { x: 0, y: 0 },
       '50% 50%': { x: 0.5, y: 0.5 },
@@ -174,7 +174,7 @@ describe('utils:psv:parsePoint', () => {
     }
   });
 
-  it('should parse 1 percentage', () => {
+  it('应解析一个百分比', () => {
     const values: Record<string, { x: number; y: number }> = {
       '0%': { x: 0, y: 0 },
       '50%': { x: 0.5, y: 0.5 },
@@ -187,7 +187,7 @@ describe('utils:psv:parsePoint', () => {
     }
   });
 
-  it('should parse mixed keyword & percentage', () => {
+  it('应解析关键字与百分比混写', () => {
     const values: Record<string, { x: number; y: number }> = {
       'top 80%': { x: 0.8, y: 0 },
       '80% bottom': { x: 0.8, y: 1 },
@@ -202,7 +202,7 @@ describe('utils:psv:parsePoint', () => {
     }
   });
 
-  it('should fallback on parse fail', () => {
+  it('解析失败时应回退', () => {
     const values: Record<string, { x: number; y: number }> = {
       '': { x: 0.5, y: 0.5 },
       crap: { x: 0.5, y: 0.5 },
@@ -216,7 +216,7 @@ describe('utils:psv:parsePoint', () => {
     }
   });
 
-  it('should ignore extra tokens', () => {
+  it('应忽略多余片段', () => {
     const values: Record<string, { x: number; y: number }> = {
       'top center bottom': { x: 0.5, y: 0 },
       '50% left 20%': { x: 0, y: 0.5 },
@@ -228,7 +228,7 @@ describe('utils:psv:parsePoint', () => {
     }
   });
 
-  it('should ignore case', () => {
+  it('应忽略大小写', () => {
     const values: Record<string, { x: number; y: number }> = {
       'TOP CENTER': { x: 0.5, y: 0 },
       'cenTer LefT': { x: 0, y: 0.5 },
@@ -241,7 +241,7 @@ describe('utils:psv:parsePoint', () => {
 });
 
 describe('utils:psv:parseSpeed', () => {
-  it('should parse all units', () => {
+  it('应解析所有单位', () => {
     const values: Record<string, number> = {
       '360dpm': (360 * Math.PI) / 180 / 60,
       '360degrees per minute': (360 * Math.PI) / 180 / 60,
@@ -260,7 +260,7 @@ describe('utils:psv:parseSpeed', () => {
     }
   });
 
-  it('should allow various forms', () => {
+  it('应允许多种写法', () => {
     const values: Record<string, number> = {
       '2rpm': (2 * 2 * Math.PI) / 60,
       '2 rpm': (2 * 2 * Math.PI) / 60,
@@ -287,13 +287,13 @@ describe('utils:psv:parseSpeed', () => {
     );
   });
 
-  it('should passthrough when number', () => {
+  it('数值输入应直接透传', () => {
     assert.strictEqual(parseSpeed(Math.PI), Math.PI);
   });
 });
 
 describe('utils:psv:getXMPValue', () => {
-  it('should parse XMP data with children', () => {
+  it('应解析带子节点的 XMP 数据', () => {
     const data = `
 <rdf:Description rdf:about="" xmlns:GPano="http://ns.google.com/photos/1.0/panorama/">
       <GPano:ProjectionType>equirectangular</GPano:ProjectionType>
@@ -325,7 +325,7 @@ describe('utils:psv:getXMPValue', () => {
     );
   });
 
-  it('should parse XMP data with attributes', () => {
+  it('应解析带属性的 XMP 数据', () => {
     const data = `
 <rdf:Description rdf:about="" xmlns:GPano="http://ns.google.com/photos/1.0/panorama/"
     GPano:ProjectionType="equirectangular"
@@ -358,31 +358,31 @@ describe('utils:psv:getXMPValue', () => {
 });
 
 describe('utils:psv:cleanPosition', () => {
-  it('should clean various formats', () => {
+  it('应清理多种格式', () => {
     assert.deepStrictEqual(cleanCssPosition('top right'), ['top', 'right']);
     assert.deepStrictEqual(cleanCssPosition('right top'), ['top', 'right']);
     assert.deepStrictEqual(cleanCssPosition(['top', 'right']), ['top', 'right']);
   });
 
-  it('should add missing center', () => {
+  it('应补齐缺失的 center', () => {
     assert.deepStrictEqual(cleanCssPosition('top'), ['top', 'center']);
     assert.deepStrictEqual(cleanCssPosition('left'), ['center', 'left']);
     assert.deepStrictEqual(cleanCssPosition('center'), ['center', 'center']);
   });
 
-  it('should disallow all center', () => {
+  it('不应允许全部为 center', () => {
     assert.strictEqual(cleanCssPosition('center center', { allowCenter: false, cssOrder: true }), null);
     assert.strictEqual(cleanCssPosition('center', { allowCenter: false, cssOrder: true }), null);
   });
 
-  it('should return null on unparsable values', () => {
+  it('无法解析时应返回 null', () => {
     assert.strictEqual(cleanCssPosition('foo bar'), null);
     assert.strictEqual(cleanCssPosition('TOP CENTER'), null);
     assert.strictEqual(cleanCssPosition(''), null);
     assert.strictEqual(cleanCssPosition(undefined as any), null);
   });
 
-  it('should allow XY order', () => {
+  it('应允许 XY 顺序', () => {
     assert.deepStrictEqual(cleanCssPosition('right top', { allowCenter: true, cssOrder: false }), ['right', 'top']);
     assert.deepStrictEqual(cleanCssPosition(['top', 'right'], { allowCenter: true, cssOrder: false }), [
       'top',
@@ -390,19 +390,19 @@ describe('utils:psv:cleanPosition', () => {
     ]);
   });
 
-  it('should always order with center', () => {
+  it('应始终按 center 规范排序', () => {
     assert.deepStrictEqual(cleanCssPosition('center top'), ['top', 'center']);
     assert.deepStrictEqual(cleanCssPosition('left center'), ['center', 'left']);
   });
 });
 
 describe('utils:psv:speedToDuration', () => {
-  it('should return numeric values as it', () => {
+  it('应原样返回数值', () => {
     assert.strictEqual(speedToDuration(1000, NaN), 1000);
     assert.strictEqual(speedToDuration(-1000, NaN), 1000);
   });
 
-  it('should return valid speed', () => {
+  it('应返回有效速度', () => {
     assert.strictEqual(speedToDuration('1rpm', Math.PI * 2), 60000);
     assert.strictEqual(speedToDuration('-1rpm', Math.PI * 2), 60000);
     assert.strictEqual(speedToDuration('2rpm', Math.PI), 15000);
@@ -410,7 +410,7 @@ describe('utils:psv:speedToDuration', () => {
 });
 
 describe('utils:psv:mergePanoData', () => {
-  it('should generate default panoData for 2:1 image', () => {
+  it('应为 2:1 图片生成默认 panoData', () => {
     assertDeepEqualLenient(mergePanoData(2000, 1000), {
       fullWidth: 2000,
       fullHeight: 1000,
@@ -421,7 +421,7 @@ describe('utils:psv:mergePanoData', () => {
     } satisfies PanoData);
   });
 
-  it('should generate default panoData for partial image (horizontal)', () => {
+  it('应为水平裁剪图片生成默认 panoData', () => {
     assertDeepEqualLenient(mergePanoData(2000, 500), {
       fullWidth: 2000,
       fullHeight: 1000,
@@ -432,7 +432,7 @@ describe('utils:psv:mergePanoData', () => {
     } satisfies PanoData);
   });
 
-  it('should generate default panoData for partial image (vertical)', () => {
+  it('应为垂直裁剪图片生成默认 panoData', () => {
     assertDeepEqualLenient(mergePanoData(1000, 1000), {
       fullWidth: 2000,
       fullHeight: 1000,
@@ -443,7 +443,7 @@ describe('utils:psv:mergePanoData', () => {
     } satisfies PanoData);
   });
 
-  it('should generate default panoData with pose', () => {
+  it('应生成带姿态信息的默认 panoData', () => {
     assertDeepEqualLenient(
       mergePanoData(2000, 1000, {
         poseHeading: 90,
@@ -460,7 +460,7 @@ describe('utils:psv:mergePanoData', () => {
     );
   });
 
-  it('should keep XMP data', () => {
+  it('应保留 XMP 数据', () => {
     assertDeepEqualLenient(
       mergePanoData(2000, 500, undefined, {
         fullWidth: 2000,
@@ -481,7 +481,7 @@ describe('utils:psv:mergePanoData', () => {
     );
   });
 
-  it('should keep custom data over XMP', () => {
+  it('自定义数据应覆盖 XMP 数据', () => {
     assertDeepEqualLenient(
       mergePanoData(
         2000,
@@ -615,7 +615,7 @@ describe('utils:psv:mergePanoData', () => {
     );
   });
 
-  it('should complete missing fullWidth', () => {
+  it('应补齐缺失的 fullWidth', () => {
     assertDeepEqualLenient(
       mergePanoData(1000, 1000, {
         fullHeight: 1000,
@@ -633,7 +633,7 @@ describe('utils:psv:mergePanoData', () => {
     );
   });
 
-  it('should complete missing fullHeight', () => {
+  it('应补齐缺失的 fullHeight', () => {
     assertDeepEqualLenient(
       mergePanoData(1000, 1000, {
         fullWidth: 2000,
@@ -651,7 +651,7 @@ describe('utils:psv:mergePanoData', () => {
     );
   });
 
-  it('should resize data if image is smaller', () => {
+  it('图片较小时应同步缩放数据', () => {
     assertDeepEqualLenient(
       mergePanoData(8192, 4096, {
         fullWidth: 10000,
@@ -705,7 +705,7 @@ describe('utils:psv:getConfigParser', () => {
     },
   );
 
-  it('should expose defaults', () => {
+  it('应暴露默认值', () => {
     assert.deepStrictEqual(parser.defaults, {
       field1: 'default1',
       field2: 100,
@@ -713,7 +713,7 @@ describe('utils:psv:getConfigParser', () => {
     });
   });
 
-  it('should apply default values', () => {
+  it('应应用默认值', () => {
     assert.deepStrictEqual(parser(null), {
       field1: 'default1',
       field2: 100,
@@ -721,7 +721,7 @@ describe('utils:psv:getConfigParser', () => {
     });
   });
 
-  it('should define values', () => {
+  it('应定义普通值', () => {
     assert.deepStrictEqual(
       parser({
         field1: 'value1',
@@ -736,7 +736,7 @@ describe('utils:psv:getConfigParser', () => {
     );
   });
 
-  it('should define nulls', () => {
+  it('应定义空值', () => {
     assert.deepStrictEqual(
       parser({
         field1: null,
@@ -751,7 +751,7 @@ describe('utils:psv:getConfigParser', () => {
     );
   });
 
-  it('should ignore unknown fields', () => {
+  it('应忽略未知字段', () => {
     assert.deepStrictEqual(
       parser({
         // @ts-ignore
@@ -765,7 +765,7 @@ describe('utils:psv:getConfigParser', () => {
     );
   });
 
-  it('should apply parsers', () => {
+  it('应应用解析器', () => {
     assert.deepStrictEqual(
       parserWithParsers({
         field1: 'foo',

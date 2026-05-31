@@ -35,7 +35,7 @@ export function getMarkerType(config: MarkerConfig, allowNone = false): MarkerTy
   if (found.length === 0 && !allowNone) {
     throw new PSVError(`缺少标记内容，请提供以下任一类型： ${Object.keys(MarkerType).join(', ')}`);
   } else if (found.length > 1) {
-    throw new PSVError(`multiple marker content, either ${Object.keys(MarkerType).join(', ')}`);
+    throw new PSVError(`标记内容类型重复，请仅使用以下类型之一：${Object.keys(MarkerType).join(', ')}`);
   }
 
   return found[0];

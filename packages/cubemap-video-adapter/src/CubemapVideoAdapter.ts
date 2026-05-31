@@ -23,7 +23,7 @@ const getConfig = utils.getConfigParser<CubemapVideoAdapterConfig>({
 });
 
 /**
- * Adapter for cubemap videos
+ * 立方体视频适配器
  */
 export class CubemapVideoAdapter extends AbstractVideoAdapter<
   CubemapVideoPanorama,

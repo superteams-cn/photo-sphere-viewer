@@ -21,7 +21,7 @@ const getConfig = utils.getConfigParser<EquirectangularVideoAdapterConfig>({
 });
 
 /**
- * Adapter for equirectangular videos
+ * 等距柱状视频适配器
  */
 export class EquirectangularVideoAdapter extends AbstractVideoAdapter<
   EquirectangularVideoPanorama,

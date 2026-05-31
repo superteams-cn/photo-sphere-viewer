@@ -256,7 +256,7 @@ export class PlanPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Removes all hotspots
+   * 移除全部热点
    */
   clearHotspots() {
     this.setHotspots(null);

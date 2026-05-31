@@ -2,7 +2,7 @@ import assert from 'assert';
 import { PressHandler } from './PressHandler';
 
 describe('utils:PressHandler', () => {
-  it('should wait at least X ms before exec', (done) => {
+  it('应至少等待 X 毫秒后再执行', (done) => {
     const handler = new PressHandler(100);
 
     const start = new Date().getTime();
@@ -16,7 +16,7 @@ describe('utils:PressHandler', () => {
     });
   });
 
-  it('should exec immediately if X ms already elapsed', (done) => {
+  it('若已超过 X 毫秒应立即执行', (done) => {
     const handler = new PressHandler(100);
 
     handler.down();

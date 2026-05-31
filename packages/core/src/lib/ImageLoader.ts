@@ -31,11 +31,11 @@ export class AbortableImageLoader extends ImageLoader {
         removeEventListeners();
 
         if (abortSignal.aborted) {
-          // Simulate an error similar to the DOMException thrown by the Fetch API
-          // (DOMException is not instanciable)
+          // 模拟 Fetch API 抛出的 DOMException
+          // （DOMException 不能直接实例化）
           const e = new Error();
           e.name = 'AbortError';
-          e.message = 'The operation was aborted.';
+          e.message = '操作已中止。';
           onError(e);
         } else {
           onError(error);

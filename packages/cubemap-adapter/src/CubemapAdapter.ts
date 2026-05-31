@@ -24,7 +24,7 @@ const EPS = 0.000001;
 const ORIGIN = new Vector3();
 
 /**
- * Adapter for cubemaps
+ * 立方体贴图适配器
  */
 export class CubemapAdapter extends AbstractAdapter<CubemapPanorama, CubemapData, Texture[], CubemapMesh> {
   static override readonly id = 'cubemap';

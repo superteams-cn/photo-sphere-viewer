@@ -70,7 +70,7 @@ const getConfig = utils.getConfigParser<CubemapTilesAdapterConfig>({
 const vertexPosition = new Vector3();
 
 /**
- * Adapter for tiled cubemaps
+ * 立方体瓦片适配器
  */
 export class CubemapTilesAdapter extends AbstractAdapter<
   CubemapTilesPanorama | CubemapMultiTilesPanorama,

@@ -14,7 +14,7 @@ import { cancelWaitLandscape, getOrientation, waitLandscape } from './utils';
 const ID_OVERLAY_PLEASE_ROTATE = 'pleaseRotate';
 
 /**
- * Adds stereo view on mobile devices
+ * 在移动设备上启用立体视图
  */
 export class StereoPlugin extends AbstractPlugin<StereoPluginEvents> {
   static override readonly id = 'stereo';

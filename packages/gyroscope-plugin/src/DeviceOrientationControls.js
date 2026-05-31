@@ -52,16 +52,16 @@ export class DeviceOrientationControls {
       scope.screenOrientation = window.orientation || 0;
     };
 
-    // The angles alpha, beta and gamma form a set of intrinsic Tait-Bryan angles of type Z-X'-Y''
+    // alpha、beta、gamma 组成一组 Z-X'-Y'' 型内禀 Tait-Bryan 角
 
     const setObjectQuaternion = function (quaternion, alpha, beta, gamma, orient) {
-      _euler.set(beta, alpha, -gamma, 'YXZ'); // 'ZXY' for the device, but 'YXZ' for us
+      _euler.set(beta, alpha, -gamma, 'YXZ'); // 设备使用 'ZXY'，这里使用 'YXZ'
 
-      quaternion.setFromEuler(_euler); // orient the device
+      quaternion.setFromEuler(_euler); // 设置设备方向
 
-      quaternion.multiply(_q1); // camera looks out the back of the device, not the top
+      quaternion.multiply(_q1); // 相机从设备背面而不是顶部观察
 
-      quaternion.multiply(_q0.setFromAxisAngle(_zee, -orient)); // adjust for screen orientation
+      quaternion.multiply(_q0.setFromAxisAngle(_zee, -orient)); // 按屏幕方向校正
     };
 
     this.connect = function () {

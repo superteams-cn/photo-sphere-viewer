@@ -2,7 +2,7 @@ import assert from 'assert';
 import { dasherize, deepEqual, deepmerge } from './misc';
 
 describe('utils:misc:deepmerge', () => {
-  it('should merge basic plain objects', () => {
+  it('应合并基础普通对象', () => {
     const one = { a: 'z', b: { c: { d: 'e' } } };
     const two = { b: { c: { f: 'g', j: 'i' } } };
 
@@ -12,7 +12,7 @@ describe('utils:misc:deepmerge', () => {
     assert.strictEqual(result, one);
   });
 
-  it('should merge arrays by replace', () => {
+  it('应通过替换合并数组', () => {
     const one = { a: [1, 2, 3] };
     const two = { a: [2, 4] };
 
@@ -22,7 +22,7 @@ describe('utils:misc:deepmerge', () => {
     assert.strictEqual(result, one);
   });
 
-  it('should clone object', () => {
+  it('应克隆对象', () => {
     const one = { b: { c: { d: 'e' } } };
 
     const result = deepmerge(null, one);
@@ -32,7 +32,7 @@ describe('utils:misc:deepmerge', () => {
     assert.notStrictEqual(result.b.c, one.b.c);
   });
 
-  it('should clone array', () => {
+  it('应克隆数组', () => {
     const one = [{ a: 'b' }, { c: 'd' }];
 
     const result = deepmerge(null, one);
@@ -41,7 +41,7 @@ describe('utils:misc:deepmerge', () => {
     assert.notStrictEqual(result[0], one[1]);
   });
 
-  it('should accept primitives', () => {
+  it('应接受原始值', () => {
     const one = 'foo';
     const two = 'bar';
 
@@ -50,7 +50,7 @@ describe('utils:misc:deepmerge', () => {
     assert.strictEqual(result, 'bar');
   });
 
-  it('should stop on recursion', () => {
+  it('递归时应停止', () => {
     const one: any = { a: 'foo' };
     one.b = one;
 
@@ -59,7 +59,7 @@ describe('utils:misc:deepmerge', () => {
     assert.deepStrictEqual(result, { a: 'foo' });
   });
 
-  it('should avoid prototype pollution', () => {
+  it('应避免原型污染', () => {
     const payload = JSON.parse(`{
             "key1": "value",
             "__proto__": {"bad1": "foobar"},
@@ -76,17 +76,17 @@ describe('utils:misc:deepmerge', () => {
 });
 
 describe('utils:misc:dasherize', () => {
-  it('should dasherize from camelCase', () => {
+  it('应将 camelCase 转为短横线写法', () => {
     assert.strictEqual(dasherize('strokeWidth'), 'stroke-width');
   });
 
-  it('should not change existing dash-case', () => {
+  it('不应改变已有短横线写法', () => {
     assert.strictEqual(dasherize('stroke-width'), 'stroke-width');
   });
 });
 
 describe('utils:misc:deepEqual', () => {
-  it('should compare simple objects', () => {
+  it('应比较简单对象', () => {
     assert.strictEqual(deepEqual({ foo: 'bar' }, { foo: 'bar' }), true);
 
     assert.strictEqual(deepEqual({ foo: 'bar' }, { foo: 'foo' }), false);
@@ -94,7 +94,7 @@ describe('utils:misc:deepEqual', () => {
     assert.strictEqual(deepEqual({ foo: 'bar' }, { foo: 'bar', baz: 'bar' }), false);
   });
 
-  it('should compare nested objects', () => {
+  it('应比较嵌套对象', () => {
     assert.strictEqual(deepEqual({ foo: { bar: 'baz' } }, { foo: { bar: 'baz' } }), true);
 
     assert.strictEqual(deepEqual({ foo: { bar: 'baz' } }, { foo: { bar: 'foo' } }), false);
@@ -102,13 +102,13 @@ describe('utils:misc:deepEqual', () => {
     assert.strictEqual(deepEqual({ foo: { bar: 'baz' } }, { foo: { bar: 'baz', baz: 'bar' } }), false);
   });
 
-  it('should compare arrays', () => {
+  it('应比较数组', () => {
     assert.strictEqual(deepEqual({ foo: ['bar', 'baz'] }, { foo: ['bar', 'baz'] }), true);
 
     assert.strictEqual(deepEqual({ foo: ['bar', 'baz'] }, { foo: ['bar', 'bar'] }), false);
   });
 
-  it('should compare standard types', () => {
+  it('应比较标准类型', () => {
     assert.strictEqual(deepEqual({ a: 'foo', b: false, c: -4 }, { a: 'foo', b: false, c: -4 }), true);
 
     assert.strictEqual(deepEqual({ a: 'foo', b: false, c: -4 }, { a: 'foo', b: 'false', c: -4 }), false);

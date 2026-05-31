@@ -133,7 +133,7 @@ export abstract class Marker {
     const newType = getMarkerType(config, true);
 
     if (newType !== undefined && newType !== this.type) {
-      throw new PSVError(`cannot change marker ${config.id} type`);
+      throw new PSVError(`不能修改标记 ${config.id} 的类型。`);
     }
 
     this.config = utils.deepmerge(this.config, config as any);
