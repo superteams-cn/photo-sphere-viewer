@@ -14,12 +14,12 @@ export class CustomPlugin extends AbstractPlugin<CustomPluginEvents> {
   }
 
   override init() {
-    // do your initialisation logic here
+    // 在这里编写初始化逻辑
     console.log(this.config.foo);
   }
 
   override destroy() {
-    // do your cleanup logic here
+    // 在这里编写清理逻辑
     super.destroy();
   }
 

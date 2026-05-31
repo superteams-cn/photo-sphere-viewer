@@ -10,13 +10,13 @@ const MAX_VERSIONS = 10;
 const OTHER_LABEL = 'other';
 
 if (!VERSION) {
-  console.warn('No version provided');
+  console.warn('未提供版本号');
   process.exit(0);
 }
 
 ['.github/ISSUE_TEMPLATE/bug_report.yml', '.github/ISSUE_TEMPLATE/support_request.yml'].forEach((filename) => {
   if (!fs.existsSync(filename)) {
-    console.warn(`${filename} does not exists`);
+    console.warn(`${filename} 不存在`);
     return;
   }
 

@@ -9,8 +9,8 @@ function greatArcIntermediaryPoint(p1: [number, number], p2: [number, number], f
   const [λ1, φ1] = p1;
   const [λ2, φ2] = p2;
 
-  // 注意："r" 应为角距离，参见上文的 "intermediatePointTo"
-  // but "greatArcDistance" gives identiqual results up to 0.00001 radians and is faster
+  // 注意："r" 应为角距离，参见上文的 "intermediatePointTo"；
+  // 但 "greatArcDistance" 在 0.00001 弧度精度内结果相同，且速度更快。
   const r = utils.greatArcDistance(p1, p2);
   const a = Math.sin((1 - f) * r) / Math.sin(r);
   const b = Math.sin(f * r) / Math.sin(r);
@@ -22,8 +22,8 @@ function greatArcIntermediaryPoint(p1: [number, number], p2: [number, number], f
 }
 
 /**
- * Given a list of spherical points, offsets yaws in order to have only coutinuous values
- * eg: [0.2, 6.08] is transformed to [0.2, -0.2]
+ * 给定一组球面点，通过偏移 yaw 使其保持连续
+ * 示例：[0.2, 6.08] 会转换为 [0.2, -0.2]
  */
 function getPolygonCoherentPoints(points: Array<[number, number]>) {
   const workPoints = [points[0]];
@@ -46,7 +46,7 @@ function getPolygonCoherentPoints(points: Array<[number, number]>) {
 
 /**
  * 计算多边形中心点
- * @todo Get "visual center" (https://blog.mapbox.com/a-new-algorithm-for-finding-a-visual-center-of-a-polygon-7c77e6492fbc)
+ * @todo 获取“视觉中心”（https://blog.mapbox.com/a-new-algorithm-for-finding-a-visual-center-of-a-polygon-7c77e6492fbc）
  * @internal
  */
 export function getPolygonCenter(polygon: Vector3[]): Vector3 {
@@ -60,7 +60,7 @@ export function getPolygonCenter(polygon: Vector3[]): Vector3 {
 export function getPolylineCenter(polyline: Array<[number, number]>): [number, number] {
   const points = getPolygonCoherentPoints(polyline);
 
-  // compute each segment length + total length
+  // 计算每段长度与总长度
   let length = 0;
   const lengths = [];
 
@@ -71,7 +71,7 @@ export function getPolylineCenter(polyline: Array<[number, number]>): [number, n
     length += l;
   }
 
-  // iterate until length / 2
+  // 迭代到总长度的一半
   let consumed = 0;
 
   for (let j = 0; j < points.length - 1; j++) {
@@ -84,7 +84,7 @@ export function getPolylineCenter(polyline: Array<[number, number]>): [number, n
     consumed += lengths[j];
   }
 
-  // this never happens
+  // 理论上不会走到这里
   return points[Math.round(points.length / 2)];
 }
 

@@ -5,7 +5,7 @@ import { type EASING, EASINGS } from '../data/constants';
  */
 export type AnimationOptions<T> = {
   /**
-   * interpolated properties
+   * 需要插值的属性
    */
   properties: Partial<Record<keyof T, { start: number; end: number }>>;
   /**
@@ -13,7 +13,7 @@ export type AnimationOptions<T> = {
    */
   duration: number;
   /**
-   * delay before start
+   * 开始前的延迟
    * @default 0
    */
   delay?: number;
@@ -23,7 +23,7 @@ export type AnimationOptions<T> = {
    */
   easing?: EASING | ((t: number) => number);
   /**
-   * function called for each frame
+   * 每一帧调用的函数
    */
   onTick: (properties: Record<keyof T, number>, progress: number) => void;
 };
@@ -31,7 +31,7 @@ export type AnimationOptions<T> = {
 type PropertyValues = AnimationOptions<any>['properties']['k'];
 
 /**
- * Interpolation helper for animations
+ * 动画插值辅助工具
  *
  * 实现 Promise API，并额外提供 "cancel" 方法。
  * 动画完成时 promise 解析为 `true`；动画取消时解析为 `false`。
@@ -86,17 +86,17 @@ export class Animation<T = any> implements PromiseLike<boolean> {
       return;
     }
 
-    // first iteration
+    // 第一次迭代
     if (!this.start) {
       this.start = timestamp;
     }
 
-    // compute progress
+    // 计算进度
     const progress = (timestamp - this.start) / this.options.duration;
     const current = {} as Record<keyof T, number>;
 
     if (progress < 1.0) {
-      // interpolate properties
+      // 插值属性
       for (const [name, prop] of Object.entries(this.options.properties) as Array<[string, PropertyValues]>) {
         if (prop) {
           const value = prop.start + (prop.end - prop.start) * this.easing(progress);
@@ -108,7 +108,7 @@ export class Animation<T = any> implements PromiseLike<boolean> {
 
       this.animationFrame = window.requestAnimationFrame((t) => this.__run(t));
     } else {
-      // call onTick one last time with final values
+      // 使用最终值最后调用一次 onTick
       for (const [name, prop] of Object.entries(this.options.properties) as Array<[string, PropertyValues]>) {
         if (prop) {
           // @ts-ignore
@@ -133,7 +133,7 @@ export class Animation<T = any> implements PromiseLike<boolean> {
   }
 
   /**
-   * Promise chaining
+   * Promise 链式调用
    * @param [onFulfilled] - 动画完成（true）或取消（false）时调用
    */
   then<U>(onFulfilled: (complete: boolean) => PromiseLike<U> | U): Promise<U> {

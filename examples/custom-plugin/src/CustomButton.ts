@@ -16,13 +16,13 @@ export class CustomButton extends AbstractButton {
       tabbable: true,
     });
 
-    // do your initialisation logic here
+    // 在这里编写初始化逻辑
     // 通常会需要拿到插件实例
     this.plugin = this.viewer.getPlugin('custom-plugin');
   }
 
   override destroy() {
-    // do your cleanup logic here
+    // 在这里编写清理逻辑
     super.destroy();
   }
 

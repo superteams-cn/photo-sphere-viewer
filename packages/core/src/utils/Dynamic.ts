@@ -9,7 +9,7 @@ const enum DynamicMode {
 }
 
 /**
- * Represents a variable that can dynamically change with time (using requestAnimationFrame)
+ * 表示一个会随时间动态变化的数值（使用 requestAnimationFrame）
  */
 export class Dynamic {
   private readonly min: number;
@@ -85,7 +85,7 @@ export class Dynamic {
   }
 
   /**
-   * Starts infinite movement
+   * 开始无限移动
    */
   roll(invert = false, speedMult = 1) {
     this.mode = DynamicMode.INFINITE;
@@ -94,7 +94,7 @@ export class Dynamic {
   }
 
   /**
-   * Stops movement
+   * 停止移动
    */
   stop() {
     this.mode = DynamicMode.STOP;
@@ -135,7 +135,7 @@ export class Dynamic {
       }
     }
 
-    // compute speed
+    // 计算速度
     let targetSpeed = this.mode === DynamicMode.STOP ? 0 : this.speed * this.speedMult;
     if (this.target < this.current) {
       targetSpeed = -targetSpeed;
@@ -154,7 +154,7 @@ export class Dynamic {
       next = Math.min(this.target, this.current + (this.currentSpeed * elapsed) / 1000);
     }
 
-    // apply value
+    // 应用数值
     if (next !== null) {
       next = this.wrap ? wrap(next, this.max) : MathUtils.clamp(next, this.min, this.max);
       if (next !== this.current) {

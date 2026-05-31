@@ -1,5 +1,5 @@
 /**
- * Generates a markdown summary from the coverage report
+ * 根据覆盖率报告生成 Markdown 摘要
  */
 
 import vm from 'node:vm';
@@ -39,9 +39,9 @@ function percentWithColor({ covered, total }) {
 }
 
 const summary = `
-# ${percentWithColor(values[TOTAL].lines)} lines, ${percentWithColor(values[TOTAL].functions)} functions, ${percentWithColor(values[TOTAL].branches)} branches
+# ${percentWithColor(values[TOTAL].lines)} 行，${percentWithColor(values[TOTAL].functions)} 函数，${percentWithColor(values[TOTAL].branches)} 分支
 
-| Package | Lines | Line Coverage | Functions | Function Coverage | Branches | Branch Coverage |
+| 包 | 行数 | 行覆盖率 | 函数 | 函数覆盖率 | 分支 | 分支覆盖率 |
 | ------- | -----:| ------------- | ---------:| ----------------- | --------:| ----------------|
 ${Object.entries(values)
   .filter(([name]) => name !== TOTAL)

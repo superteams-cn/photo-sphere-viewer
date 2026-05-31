@@ -21,20 +21,20 @@ import { AbstractComponent } from './AbstractComponent';
 import { NavbarCaption } from './NavbarCaption';
 
 /**
- * List of available buttons
+ * 可用按钮列表
  */
 const AVAILABLE_BUTTONS: Record<string, ButtonConstructor> = {};
 
 /**
- * List of available buttons
+ * 可用按钮分组列表
  */
 const AVAILABLE_GROUPS: Record<string, ButtonConstructor[]> = {};
 
 /**
- * Register a new button available for all viewers
+ * 注册一个可供所有查看器使用的新按钮
  * @param button
  * @param [defaultPosition] 如果提供，会修改导航栏默认配置。
- * Possible values are :
+ * 可选值：
  *    - `start`
  *    - `end`
  *    - `[id]:left`
@@ -194,7 +194,7 @@ export class Navbar extends AbstractComponent {
   }
 
   /**
-   * Try to focus a button, will focus the first button if the requested button does not exist.
+   * 尝试聚焦指定按钮；若按钮不存在，则聚焦第一个按钮。
    */
   focusButton(id: string) {
     if (this.isVisible()) {
@@ -203,7 +203,7 @@ export class Navbar extends AbstractComponent {
   }
 
   /**
-   * Automatically collapses buttons
+   * 自动折叠按钮
    * @internal
    */
   autoSize() {

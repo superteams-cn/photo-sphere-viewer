@@ -2,7 +2,7 @@ import { Point } from '../model';
 import { angle, distance } from './math';
 
 /**
- * Get an element in the page by an unknown selector
+ * 根据未知类型的选择器获取页面元素
  */
 export function getElement(selector: string | HTMLElement): HTMLElement {
   if (typeof selector === 'string') {
@@ -26,21 +26,21 @@ export function toggleClass(element: Element, className: string, active?: boolea
 }
 
 /**
- * Adds one or several CSS classes to an element
+ * 为元素添加一个或多个 CSS 类
  */
 export function addClasses(element: Element, className: string) {
   element.classList.add(...className.split(' ').filter((c) => !!c));
 }
 
 /**
- * Removes one or several CSS classes to an element
+ * 从元素移除一个或多个 CSS 类
  */
 export function removeClasses(element: Element, className: string) {
   element.classList.remove(...className.split(' ').filter((c) => !!c));
 }
 
 /**
- * Searches if an element has a particular parent at any level including itself
+ * 判断元素自身或任意祖先是否为指定父元素
  */
 export function hasParent(el: HTMLElement, parent: Element): boolean {
   let test: HTMLElement | null = el;
@@ -56,10 +56,10 @@ export function hasParent(el: HTMLElement, parent: Element): boolean {
 }
 
 /**
- * Gets the closest parent matching the selector (can by itself)
+ * 获取最近的匹配父元素（可以是自身）
  */
 export function getClosest(el: HTMLElement, selector: string): HTMLElement | null {
-  // When el is document or window, the matches does not exist
+  // 当 el 为 document 或 window 时不存在 matches
   if (!el?.matches) {
     return null;
   }
@@ -100,8 +100,8 @@ export function getMatchingTarget(e: Event, selector: string): HTMLElement | nul
 }
 
 /**
- * Gets the position of an element in the viewport without reflow
- * Will gives the same result as getBoundingClientRect() as soon as there are no CSS transforms
+ * 在不触发布局重排的情况下获取元素在视口中的位置
+ * 只要没有 CSS transform，结果就与 getBoundingClientRect() 一致
  */
 export function getPosition(el: HTMLElement): Point {
   let x = 0;
@@ -121,7 +121,7 @@ export function getPosition(el: HTMLElement): Point {
 }
 
 /**
- * Gets an element style value
+ * 获取元素样式值
  */
 export function getStyleProperty(elt: Element, varname: string): string {
   return window.getComputedStyle(elt).getPropertyValue(varname);
@@ -134,7 +134,7 @@ export type TouchData = {
 };
 
 /**
- * Returns data about a touch event (first 2 fingers) : distance, angle, center
+ * 返回触摸事件前两根手指的距离、角度和中心点
  */
 export function getTouchData(e: TouchEvent): TouchData {
   if (e.touches.length < 2) {
@@ -154,7 +154,7 @@ export function getTouchData(e: TouchEvent): TouchData {
 let fullscreenElement: HTMLElement;
 
 /**
- * Detects if fullscreen is enabled
+ * 判断元素是否处于全屏状态
  */
 export function isFullscreenEnabled(elt: HTMLElement, isIphone = false): boolean {
   if (isIphone) {
@@ -165,7 +165,7 @@ export function isFullscreenEnabled(elt: HTMLElement, isIphone = false): boolean
 }
 
 /**
- * Enters fullscreen mode
+ * 进入全屏模式
  */
 export function requestFullscreen(elt: HTMLElement, isIphone = false) {
   if (isIphone) {
@@ -178,7 +178,7 @@ export function requestFullscreen(elt: HTMLElement, isIphone = false) {
 }
 
 /**
- * Exits fullscreen mode
+ * 退出全屏模式
  */
 export function exitFullscreen(isIphone = false) {
   if (isIphone) {
@@ -191,7 +191,7 @@ export function exitFullscreen(isIphone = false) {
 }
 
 /**
- * Simple keystroke matcher with modifiers support
+ * 支持修饰键的简单按键匹配器
  */
 export function keyPressMatch(e: KeyboardEvent, pattern: string) {
   let key: string;

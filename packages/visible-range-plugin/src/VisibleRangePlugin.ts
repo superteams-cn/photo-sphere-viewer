@@ -132,13 +132,13 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
    * 修改垂直范围
    */
   setVerticalRange(range: Range | null) {
-    // range must have two values
+    // 范围必须包含两个值
     if (range && range.length !== 2) {
       utils.logWarn('verticalRange 必须恰好包含两个元素。');
       range = null;
     }
 
-    // vertical range is between -PI/2 and PI/2
+    // 垂直范围位于 -PI/2 到 PI/2 之间
     if (range) {
       this.config.verticalRange = range.map((angle) => utils.parseAngle(angle, true)) as any;
 
@@ -159,13 +159,13 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
    * 修改水平范围
    */
   setHorizontalRange(range: Range | null) {
-    // horizontal range must have two values
+    // 水平范围必须包含两个值
     if (range && range.length !== 2) {
       utils.logWarn('horizontalRange 必须恰好包含两个元素。');
       range = null;
     }
 
-    // horizontal range is between 0 and 2*PI
+    // 水平范围位于 0 到 2*PI 之间
     if (range) {
       this.config.horizontalRange = range.map((angle) => utils.parseAngle(angle)) as any;
 
@@ -220,7 +220,7 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Apply "horizontalRange" and "verticalRange"
+   * 应用 "horizontalRange" 和 "verticalRange"
    */
   private __applyRanges(
     position: Position = this.viewer.getPosition(),
@@ -250,7 +250,7 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
         // 当范围跨过水平原点时
         if (position.yaw > range[1] && position.yaw < range[0]) {
           if (position.yaw > range[0] / 2 + range[1] / 2) {
-            // detect which side we are closer too
+            // 判断更接近哪一侧
             rangedPosition.yaw = range[0];
             sidesReached.left = true;
           } else {
@@ -294,10 +294,10 @@ export class VisibleRangePlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Reverses autorotate direction with smooth transition
+   * 平滑反转自动旋转方向
    */
   private __reverseAutorotate(left: boolean, right: boolean) {
-    // reverse already ongoing
+    // 已经在反转过程中
     if ((left && this.autorotate.config.autorotateSpeed > 0) || (right && this.autorotate.config.autorotateSpeed < 0)) {
       return;
     }

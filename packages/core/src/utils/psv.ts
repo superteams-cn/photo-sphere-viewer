@@ -69,14 +69,14 @@ export function isExtendedPosition(object: any): object is ExtendedPosition {
  * 从全景图元数据中读取指定属性值
  */
 export function getXMPValue(data: string, attr: string, intVal = true): number | null {
-  // XMP data are stored in children
+  // XMP 数据存储在子节点中
   let result = data.match('<GPano:' + attr + '>(.*)</GPano:' + attr + '>');
   if (result !== null) {
     const val = intVal ? parseInt(result[1], 10) : parseFloat(result[1]);
     return isNaN(val) ? null : val;
   }
 
-  // XMP data are stored in attributes
+  // XMP 数据存储在属性中
   result = data.match('GPano:' + attr + '="(.*?)"');
   if (result !== null) {
     const val = intVal ? parseInt(result[1], 10) : parseFloat(result[1]);
@@ -175,12 +175,12 @@ export function cleanCssPosition(
   }
 
   if (value.length !== 2 || POS_VALUES.indexOf(value[0]) === -1 || POS_VALUES.indexOf(value[1]) === -1) {
-    logWarn(`Unparsable position ${value}`);
+    logWarn(`无法解析位置 ${value}`);
     return null;
   }
 
   if (!allowCenter && value[0] === CENTER && value[1] === CENTER) {
-    logWarn(`Invalid position center center`);
+    logWarn(`无效位置 center center`);
     return null;
   }
 
@@ -205,8 +205,8 @@ export function cssPositionIsOrdered(value: string[]): boolean {
 }
 
 /**
- * Parses an speed
- * @param speed in radians/degrees/revolutions per second/minute
+ * 解析速度
+ * @param speed 支持弧度、角度或圈数，并可使用“每秒”或“每分钟”单位
  * @throws {@link PSVError} 速度无法解析时抛出
  */
 export function parseSpeed(speed: string | number): number {
@@ -215,18 +215,18 @@ export function parseSpeed(speed: string | number): number {
   if (typeof speed === 'string') {
     const speedStr = speed.toString().trim();
 
-    // Speed extraction
+    // 提取速度数值
     let speedValue = parseFloat(speedStr.replace(/^(-?[0-9]+(?:\.[0-9]*)?).*$/, '$1'));
     const speedUnit = speedStr.replace(/^-?[0-9]+(?:\.[0-9]*)?(.*)$/, '$1').trim();
 
-    // "per minute" -> "per second"
+    // "每分钟" 转为 "每秒"
     if (speedUnit.match(/(pm|per minute)$/)) {
       speedValue /= 60;
     }
 
-    // Which unit?
+    // 判断单位
     switch (speedUnit) {
-      // Degrees per minute / second
+      // 角度每分钟 / 每秒
       case 'dpm':
       case 'degrees per minute':
       case 'dps':
@@ -234,7 +234,7 @@ export function parseSpeed(speed: string | number): number {
         parsed = MathUtils.degToRad(speedValue);
         break;
 
-      // Radians per minute / second
+      // 弧度每分钟 / 每秒
       case 'rdpm':
       case 'radians per minute':
       case 'rdps':
@@ -242,7 +242,7 @@ export function parseSpeed(speed: string | number): number {
         parsed = speedValue;
         break;
 
-      // Revolutions per minute / second
+      // 圈数每分钟 / 每秒
       case 'rpm':
       case 'revolutions per minute':
       case 'rps':
@@ -250,7 +250,7 @@ export function parseSpeed(speed: string | number): number {
         parsed = speedValue * Math.PI * 2;
         break;
 
-      // Unknown unit
+      // 未知单位
       default:
         throw new PSVError(`未知速度单位 "${speedUnit}"。`);
     }
@@ -262,13 +262,13 @@ export function parseSpeed(speed: string | number): number {
 }
 
 /**
- * Converts a speed into a duration for a specific angle to travel
+ * 将速度转换为穿过指定角度所需的时长
  */
 export function speedToDuration(value: string | number, angle: number): number {
   if (typeof value !== 'number') {
-    // desired radial speed
+    // 目标角速度
     const speed = parseSpeed(value);
-    // compute duration
+    // 计算动画时长
     return (angle / Math.abs(speed)) * 1000;
   } else {
     return Math.abs(value);
@@ -277,9 +277,9 @@ export function speedToDuration(value: string | number, angle: number): number {
 
 /**
  * 解析弧度或角度形式的角度值，并返回归一化后的弧度值
- * @param angle - eg: 3.14, 3.14rad, 180deg
- * @param [zeroCenter=false] - normalize between -Pi - Pi instead of 0 - 2*Pi
- * @param [halfCircle=zeroCenter] - normalize between -Pi/2 - Pi/2 instead of -Pi - Pi
+ * @param angle - 示例：3.14、3.14rad、180deg
+ * @param [zeroCenter=false] - 归一化到 -Pi 至 Pi，而不是 0 至 2*Pi
+ * @param [halfCircle=zeroCenter] - 归一化到 -Pi/2 至 Pi/2，而不是 -Pi 至 Pi
  * @throws {@link PSVError} 角度无法解析时抛出
  */
 export function parseAngle(angle: string | number, zeroCenter = false, halfCircle = zeroCenter): number {
@@ -482,7 +482,7 @@ export function mergePanoData(width: number, height: number, newPanoData?: PanoD
     initialFov: xmpPanoData?.initialFov,
   };
 
-  // resize data if necessary
+  // 必要时缩放数据
   if (panoData.croppedWidth !== width) {
     const ratio = width / panoData.croppedWidth;
     (
@@ -514,7 +514,7 @@ export function mergePanoData(width: number, height: number, newPanoData?: PanoD
     panoData.croppedY = Math.round((panoData.fullHeight - height) / 2);
   }
 
-  // sanity checks
+  // 合理性检查
   if (Math.abs(panoData.fullWidth - panoData.fullHeight * 2) > 1) {
     logWarn('无效的 panoData，fullWidth 应为 fullHeight 的两倍。');
     panoData.fullHeight = Math.round(panoData.fullWidth / 2);
