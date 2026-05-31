@@ -6,14 +6,14 @@
 <ApiButton page="modules/MapPlugin.html"/>
 Adds a interactive map on the viewer, with zoom/pan and optional hotspots.
 
-This plugin is available in the [@photo-sphere-viewer/map-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/map-plugin) package.
+这个插件由 [@photo-sphere-viewer/map-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/map-plugin) 包提供。
 :::
 
 ::: tip
 Looking for geographic map ? (OpenStreetMap, Google, etc) try the [Plan plugin](plan.md) instead.
 :::
 
-## Usage
+## 用法
 
 The minimal configuration of this plugin contains `imageUrl` and `center` (the position of the panorama on the map, in pixels). The map rotation can be ajusted with `rotation`.
 
@@ -31,7 +31,7 @@ const viewer = new Viewer({
 });
 ```
 
-## Example
+## 示例
 
 ::: code-demo
 
@@ -152,7 +152,7 @@ Size of the cone of the compass.
 - default: `null`
 - updatable: yes
 
-Small dots visible on the map. See below. You can also use `setHotspots()` method.
+地图上可见的小点，见下文。你也可以使用 `setHotspots()` 方法设置。
 
 ::: tip
 [Markers](./markers.md) can be displayed on the map by defining their `map` data, which must be an hotspot object (minus `yaw` which is know from the marker position).
@@ -297,7 +297,7 @@ lang: {
 }
 ```
 
-_Note: this option is not part of the plugin but is merged with the main [`lang`](../guide/config.md#lang) object._
+_注意：这个选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
 
 ### Hotspots
 

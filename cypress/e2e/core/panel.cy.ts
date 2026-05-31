@@ -13,7 +13,7 @@ describe('core: panel', () => {
     const showPanelHandler = listenViewerEvent('show-panel');
     const hidePanelHandler = listenViewerEvent('hide-panel');
 
-    callPanel('show panel').then((panel) => panel.show('content'));
+    callPanel('显示面板').then((panel) => panel.show('内容'));
     checkEventHandler(showPanelHandler, { panelId: null });
     checkPanelVisibleApi(true);
     cy.get('.psv-panel').should('be.visible').should('have.class', 'psv-panel--open');
@@ -25,13 +25,13 @@ describe('core: panel', () => {
   });
 
   it('should hide on cross click and esc key', () => {
-    callPanel('show panel').then((panel) => panel.show('content'));
+    callPanel('显示面板').then((panel) => panel.show('内容'));
     cy.get('.psv-panel').should('be.visible');
 
     cy.get('.psv-panel-close-button').should('have.attr', 'title', '关闭').click();
     cy.get('.psv-panel').should('not.be.visible');
 
-    callPanel('show panel').then((panel) => panel.show('content'));
+    callPanel('显示面板').then((panel) => panel.show('内容'));
     cy.get('.psv-panel').should('be.visible');
 
     triggerWindowKeydown('Escape');
@@ -44,7 +44,7 @@ describe('core: panel', () => {
 
     callPanel('show panel a').then((panel) =>
       panel.show({
-        content: 'content',
+        content: '内容',
         id: 'panel-a',
       }),
     );
@@ -64,7 +64,7 @@ describe('core: panel', () => {
 
     callPanel('show panel b').then((panel) =>
       panel.show({
-        content: 'content',
+        content: '内容',
         id: 'panel-b',
       }),
     );
@@ -77,9 +77,9 @@ describe('core: panel', () => {
   });
 
   it('should show with required with', () => {
-    callPanel('show panel').then((panel) =>
+    callPanel('显示面板').then((panel) =>
       panel.show({
-        content: 'content',
+        content: '内容',
         width: '50%',
       }),
     );
@@ -90,7 +90,7 @@ describe('core: panel', () => {
   it('should be resizable and store width', () => {
     callPanel('show panel a').then((panel) =>
       panel.show({
-        content: 'content',
+        content: '内容',
         id: 'panel-a',
       }),
     );
@@ -109,7 +109,7 @@ describe('core: panel', () => {
 
     callPanel('show panel a').then((panel) =>
       panel.show({
-        content: 'content',
+        content: '内容',
         id: 'panel-a',
       }),
     );
@@ -119,7 +119,7 @@ describe('core: panel', () => {
 
     callPanel('show panel b').then((panel) =>
       panel.show({
-        content: 'content',
+        content: '内容',
         id: 'panel-b',
       }),
     );
@@ -127,7 +127,7 @@ describe('core: panel', () => {
   });
 
   it('should not be resizable on mobile', VIEWPORT_MOBILE, () => {
-    callPanel('show panel').then((panel) => panel.show('content'));
+    callPanel('显示面板').then((panel) => panel.show('内容'));
 
     cy.get('.psv-panel').should((panel) => {
       const { x, y, width, height } = panel[0].getBoundingClientRect();
@@ -140,9 +140,9 @@ describe('core: panel', () => {
   it('should use a custom click handler', () => {
     const clickHandler = cy.stub();
 
-    callPanel('show panel').then((panel) =>
+    callPanel('显示面板').then((panel) =>
       panel.show({
-        content: '<button id="my-btn">Click</button>',
+        content: '<button id="my-btn">点击</button>',
         clickHandler: clickHandler,
       }),
     );

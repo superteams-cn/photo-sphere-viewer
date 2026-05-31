@@ -1,12 +1,12 @@
-# Double click zoom
+# 双击缩放
 
-Zoom to the cursor position on double-click.
+双击后缩放到鼠标所在位置。
 
 ::: code-demo
 
 ```yaml
 autoload: true
-title: PSV Double click zoom Demo
+title: PSV 双击缩放示例
 ```
 
 ```js:line-numbers

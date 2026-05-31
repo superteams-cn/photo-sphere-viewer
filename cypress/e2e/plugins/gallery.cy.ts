@@ -24,7 +24,7 @@ describe('plugin: gallery', () => {
   });
 
   it('should hide gallery on panel open', () => {
-    callViewer('open panel').then((viewer) => viewer.panel.show('Lorem ipsum'));
+    callViewer('打开面板').then((viewer) => viewer.panel.show('中文内容'));
 
     cy.get('.psv-gallery').should('not.be.visible');
   });

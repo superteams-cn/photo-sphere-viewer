@@ -13,7 +13,7 @@ describe('core: notification', () => {
     const showNotificationHandler = listenViewerEvent('show-notification');
     const hideNotificationHandler = listenViewerEvent('hide-notification');
 
-    callNotification('show notification').then((notification) => notification.show('content'));
+    callNotification('显示通知').then((notification) => notification.show('内容'));
     checkEventHandler(showNotificationHandler, { notificationId: null });
     checkNotificationVisibleApi(true);
     cy.get('.psv-notification').should('be.visible').should('have.class', 'psv-notification--visible');
@@ -25,7 +25,7 @@ describe('core: notification', () => {
   });
 
   it('should hide on click', () => {
-    callNotification('show notification').then((notification) => notification.show('content'));
+    callNotification('显示通知').then((notification) => notification.show('内容'));
     cy.get('.psv-notification').should('be.visible');
 
     cy.get('.psv-notification').click();
@@ -36,9 +36,9 @@ describe('core: notification', () => {
     const showNotificationHandler = listenViewerEvent('show-notification');
     const hideNotificationHandler = listenViewerEvent('hide-notification');
 
-    callNotification('show notification a').then((notification) =>
+    callNotification('显示通知 a').then((notification) =>
       notification.show({
-        content: 'content',
+        content: '内容',
         id: 'notification-a',
       }),
     );
@@ -47,25 +47,25 @@ describe('core: notification', () => {
     checkNotificationVisibleApi(true, 'notification-a');
     checkNotificationVisibleApi(false, 'notification-b');
 
-    callNotification('hide notification b').then((notification) => notification.hide('notification-b'));
+    callNotification('隐藏通知 b').then((notification) => notification.hide('notification-b'));
     cy.wrap(hideNotificationHandler, NO_LOG).should('not.have.been.called');
     checkNotificationVisibleApi(true, 'notification-a');
     cy.get('.psv-notification').should('be.visible');
 
-    callNotification('hide notification a').then((notification) => notification.hide('notification-a'));
+    callNotification('隐藏通知 a').then((notification) => notification.hide('notification-a'));
     checkEventHandler(hideNotificationHandler, { notificationId: 'notification-a' });
     checkNotificationVisibleApi(false, 'notification-a');
 
-    callNotification('show notification b').then((notification) =>
+    callNotification('显示通知 b').then((notification) =>
       notification.show({
-        content: 'title',
+        content: '标题',
         id: 'notification-b',
       }),
     );
     checkEventHandler(showNotificationHandler, { notificationId: 'notification-b' });
     checkNotificationVisibleApi(true, 'notification-b');
 
-    callNotification('hide any notification').then((panel) => panel.hide());
+    callNotification('隐藏任意通知').then((panel) => panel.hide());
     checkEventHandler(hideNotificationHandler, { notificationId: 'notification-b' });
     checkNotificationVisibleApi(false);
   });
@@ -73,9 +73,9 @@ describe('core: notification', () => {
   it('should hide on timeout', () => {
     cy.clock();
 
-    callNotification('show notification').then((notification) =>
+    callNotification('显示通知').then((notification) =>
       notification.show({
-        content: 'content',
+        content: '内容',
         timeout: 2000,
       }),
     );

@@ -4,7 +4,7 @@
 Photo Sphere Viewer uses a lot of angles for its configuration, most of them can be defined in radians by using a simple number (`3.5`) or in degrees using the "deg" suffix (`'55deg'`).
 :::
 
-## Standard options
+## 标准选项
 
 #### `container` (required)
 

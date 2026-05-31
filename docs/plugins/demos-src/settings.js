@@ -21,7 +21,7 @@ let currentOption = 'A';
 
 settings.addSetting({
   id: 'custom-toggle-setting',
-  label: 'Toggle setting',
+  label: '开关设置',
   type: 'toggle',
   active: () => currentToggle,
   toggle: () => (currentToggle = !currentToggle),
@@ -29,12 +29,12 @@ settings.addSetting({
 
 settings.addSetting({
   id: 'custom-options-setting',
-  label: 'Options setting',
+  label: '选项设置',
   type: 'options',
   current: () => currentOption,
   options: () => [
-    { id: 'A', label: 'Option A' },
-    { id: 'B', label: 'Option B' },
+    { id: 'A', label: '选项 A' },
+    { id: 'B', label: '选项 B' },
   ],
   apply: (option) => (currentOption = option),
   badge: () => currentOption,

@@ -1,7 +1,7 @@
 {
   "name": "@photo-sphere-viewer/video-plugin",
   "version": "0.0.0",
-  "description": "Photo Sphere Viewer plugin to add video controls.",
+  "description": "Photo Sphere Viewer 视频插件，用于添加视频控制。",
   "homepage": "https://photo-sphere-viewer.js.org/plugins/video.html",
   "license": "MIT",
   "main": "./src/index.ts",
@@ -19,7 +19,7 @@
     "npm-link": "cd dist && npm link"
   },
   "psv": {
-    "title": "Photo Sphere Viewer / Video Plugin",
+    "title": "Photo Sphere Viewer / 视频插件",
     "style": true,
     "budget": "30kb"
   }

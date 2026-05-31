@@ -46,36 +46,31 @@
 
     <!-- text used for the marker description -->
     <script type="text/template" id="pin-content">
-      <h1>HTML Ipsum Presents</h1>
+      <h1>标记说明示例</h1>
 
-      <p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas.
-        Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
-        egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et
-        sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet,
-        wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac
-        dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
+      <p><strong>这是一段标记说明内容</strong>，用于展示面板中的富文本、链接、代码和嵌入地图。
+        你可以把它替换成景点介绍、设备状态、巡检记录或任何业务信息。
+        <em>中文内容会作为默认展示语言。</em> 示例里保留了 <code>HTML</code> 结构，方便复制改造。</p>
 
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54469.108394396746!2d6.9617553450295855!3d44.151844842645815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdaf6678af879d%3A0xcabc15aee7b89386!2sParc%20national%20du%20Mercantour!5e0!3m2!1sfr!2sfr!4v1611498421096!5m2!1sfr!2sfr"
         width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0">
       </iframe>
 
-      <h2>Header Level 2</h2>
+      <h2>二级标题</h2>
 
       <ol>
-        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-        <li>Aliquam tincidunt mauris eu risus.</li>
+        <li>第一条中文列表内容。</li>
+        <li>第二条中文列表内容。</li>
       </ol>
 
-      <blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet
-        congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis,
-        tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p></blockquote>
+      <blockquote><p>这是一段引用文本，用来确认标记说明中的排版、间距和可读性。</p></blockquote>
 
-      <h3>Header Level 3</h3>
+      <h3>三级标题</h3>
 
       <ul>
-        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-        <li>Aliquam tincidunt mauris eu risus.</li>
+        <li>第一条中文列表内容。</li>
+        <li>第二条中文列表内容。</li>
       </ul>
     </script>
 
@@ -103,8 +98,8 @@
 
     <custom-marker id="custom-marker-element" style="display: none">
       <img src="https://photo-sphere-viewer-data.netlify.app/assets/sphere-small.jpg" />
-      <h2>Custom element</h2>
-      <p>Use an existing element as marker. This WebComponent contains it's own animations and tooltip.</p>
+      <h2>自定义元素</h2>
+      <p>使用已有元素作为标记。这个 WebComponent 包含自己的动画和提示框。</p>
     </custom-marker>
 
     <script type="importmap">
@@ -142,7 +137,7 @@
           'markersList',
           {
             content: '💬',
-            title: 'Show all tooltips',
+            title: '显示全部提示框',
             className: 'custom-button',
             onClick: () => {
               markers.toggleAllTooltips();
@@ -162,7 +157,7 @@
               // marker with content and tooltip
               a.push({
                 id: 'content',
-                tooltip: 'Click me!',
+                tooltip: '点我！',
                 content: document.getElementById('pin-content').innerHTML,
                 position: { yaw: 0.11, pitch: 0.32 },
                 image: baseUrl + 'pictos/pin-blue.png',
@@ -177,9 +172,8 @@
                   content: `
 <img src="${baseUrl}sphere-small.jpg">
 <article>
-<h2>Lorem ipsum</h2>
-<p>Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis,
-tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p>
+<h2>中文提示框</h2>
+<p>这里展示自定义提示框的正文内容。你可以在提示框中放入图片、说明文字和任意业务信息。</p>
 </article>`,
                   className: 'custom-tooltip',
                   trigger: 'click',
@@ -189,7 +183,7 @@ tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretiu
                 image: baseUrl + 'pictos/pin-blue.png',
                 size: { width: 32, height: 32 },
                 anchor: 'bottom center',
-                listContent: 'Lorem ipsum',
+                listContent: '中文说明',
                 hoverScale: 1.5,
               });
 
@@ -242,7 +236,7 @@ tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretiu
                   strokeWidth: '2px',
                 },
                 tooltip: {
-                  content: 'Polygon with hole',
+                  content: '带孔多边形',
                   position: 'bottom right',
                 },
               });
@@ -265,7 +259,7 @@ tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretiu
                   strokeWidth: '2px',
                 },
                 tooltip: {
-                  content: 'Polygon with image background',
+                  content: '带图片背景的多边形',
                   position: 'bottom right',
                 },
               });
@@ -345,7 +339,7 @@ tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretiu
               a.push({
                 id: 'element',
                 element: document.querySelector('#custom-marker-element'),
-                listContent: 'Custom element',
+                listContent: '自定义元素',
                 position: { yaw: 0.65, pitch: -0.3 },
                 zIndex: 10,
               });

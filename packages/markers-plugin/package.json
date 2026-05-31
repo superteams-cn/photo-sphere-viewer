@@ -1,7 +1,7 @@
 {
   "name": "@photo-sphere-viewer/markers-plugin",
   "version": "0.0.0",
-  "description": "Photo Sphere Viewer plugin to display various markers/hotspots on the viewer.",
+  "description": "Photo Sphere Viewer 标记插件，用于在查看器中展示各类标记和热点。",
   "homepage": "https://photo-sphere-viewer.js.org/plugins/markers.html",
   "license": "MIT",
   "main": "./src/index.ts",
@@ -25,7 +25,7 @@
     "npm-link": "cd dist && npm link"
   },
   "psv": {
-    "title": "Photo Sphere Viewer / Markers Plugin",
+    "title": "Photo Sphere Viewer / 标记插件",
     "style": true,
     "budget": "85kb"
   }

@@ -20,8 +20,8 @@ function showOverlay() {
 
   viewer.overlay.show({
     image: icon,
-    title: 'Lorem ipsum dolor sit amet',
-    text: 'Lorem ipsum dolor sit amet',
+    title: '中文覆盖层标题',
+    text: '中文覆盖层正文',
   });
 }
 

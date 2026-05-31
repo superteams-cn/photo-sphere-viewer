@@ -1,12 +1,12 @@
-# Partial overlay
+# 局部覆盖层
 
-By using [`panoData`](../../plugins/overlays.md#panodata) on an overlay you can display smaller image above the panorama. The logic to define the data is the same as for [cropped panoramas](../../guide/adapters/equirectangular.md#cropped-panorama).
+在覆盖层上使用 [`panoData`](../../plugins/overlays.md#panodata) 可以把较小的图片显示在全景图上方。数据定义逻辑与[裁剪全景图](../../guide/adapters/equirectangular.md#cropped-panorama)一致。
 
 ::: code-demo
 
 ```yaml
 autoload: true
-title: PSV Partial overlay Demo
+title: PSV 局部覆盖层示例
 packages:
   - name: overlays-plugin
 ```

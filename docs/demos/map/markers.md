@@ -1,12 +1,12 @@
-# Show markers on the map
+# 在地图上显示标记
 
-Configure [markers](../../plugins/markers.md) to be displayed on the [map](../../plugins/map.md).
+配置[标记](../../plugins/markers.md)，让它们显示在[地图](../../plugins/map.md)上。
 
 ::: code-demo
 
 ```yaml
 autoload: true
-title: PSV map markers Demo
+title: PSV 地图标记示例
 packages:
   - name: map-plugin
     style: true

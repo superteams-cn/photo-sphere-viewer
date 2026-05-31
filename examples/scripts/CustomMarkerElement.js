@@ -1,5 +1,5 @@
 /**
- * Custom element used for the markers demo
+ * 标记示例使用的自定义元素
  */
 export class CustomMarkerElement extends HTMLElement {
   constructor() {

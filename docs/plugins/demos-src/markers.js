@@ -23,7 +23,7 @@ const viewer = new Viewer({
           size: { width: 32, height: 32 },
           anchor: 'bottom center',
           zoomLvl: 100,
-          tooltip: 'A image marker. <b>Click me!</b>',
+          tooltip: '图片标记。<b>点我！</b>',
           content: document.getElementById('lorem-content').innerHTML,
         },
         {

@@ -1,12 +1,12 @@
-# Make a screenshot
+# 截图下载
 
-Adds a button that will download a screenshot of the visible panorama.
+添加一个按钮，用于下载当前可见全景区域的截图。
 
 ::: code-demo
 
 ```yaml
 autoload: true
-title: PSV Screenshot Demo
+title: PSV 截图示例
 ```
 
 ```js:line-numbers
@@ -20,7 +20,7 @@ new Viewer({
     caption: 'Parc national du Mercantour <b>&copy; Damien Sorel</b>',
     navbar: [
         {
-            content: 'Screenshot',
+            content: '截图',
             onClick(viewer) {
                 viewer.addEventListener('render', () => {
                     const link = document.createElement('a');
@@ -38,5 +38,5 @@ new Viewer({
 :::
 
 ::: warning
-This example uses an internal API of Photo Sphere Viewer, Typescript users will need a `// @ts-ignore` command.
+这个示例使用了 Photo Sphere Viewer 的内部 API。TypeScript 用户需要添加 `// @ts-ignore`。
 :::

@@ -5,7 +5,7 @@ class TextController extends Controller {
     super(parent, object, property, 'textarea');
 
     this.$button = document.createElement('button');
-    this.$button.innerText = 'Edit';
+    this.$button.innerText = '编辑';
     this.$widget.appendChild(this.$button);
 
     this.$text = document.createElement('textarea');

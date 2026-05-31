@@ -1,7 +1,7 @@
 {
   "name": "@photo-sphere-viewer/cubemap-video-adapter",
   "version": "0.0.0",
-  "description": "Photo Sphere Viewer adapter to display cubemap videos.",
+  "description": "Photo Sphere Viewer 立方体视频适配器。",
   "homepage": "https://photo-sphere-viewer.js.org/guide/adapters/cubemap-video.html",
   "license": "MIT",
   "main": "./src/index.ts",
@@ -20,7 +20,7 @@
     "npm-link": "cd dist && npm link"
   },
   "psv": {
-    "title": "Photo Sphere Viewer / Cubemap Video Adapter",
+    "title": "Photo Sphere Viewer / 立方体视频适配器",
     "budget": "10kb"
   }
 }

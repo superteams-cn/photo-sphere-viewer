@@ -6,12 +6,12 @@
 <ApiButton page="modules/GyroscopePlugin.html"/>
 Adds gyroscope controls on mobile devices.
 
-This plugin is available in the [@photo-sphere-viewer/gyroscope-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/gyroscope-plugin) package.
+这个插件由 [@photo-sphere-viewer/gyroscope-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/gyroscope-plugin) 包提供。
 :::
 
 ## Usage
 
-Once enabled the plugin will add a new "Gyroscope" button only shown when the gyroscope API is available.
+启用后，插件会添加一个新的“陀螺仪”按钮；只有在陀螺仪 API 可用时才会显示。
 
 ```js:line-numbers
 import { GyroscopePlugin } from '@photo-sphere-viewer/gyroscope-plugin';

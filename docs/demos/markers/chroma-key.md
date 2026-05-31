@@ -1,12 +1,12 @@
-# Chroma key video markers
+# 色键视频标记
 
-Example usage of a transparent `videoLayer` marker using [`chromaKey`](../../plugins/markers.md#chromakey).
+展示如何使用 [`chromaKey`](../../plugins/markers.md#chromakey) 创建透明的 `videoLayer` 标记。
 
 ::: code-demo
 
 ```yaml
 autoload: true
-title: PSV Marker layers Demo
+title: PSV 标记图层示例
 packages:
   - name: markers-plugin
     style: true

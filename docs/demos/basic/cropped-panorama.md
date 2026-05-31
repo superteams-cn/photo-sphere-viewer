@@ -1,12 +1,12 @@
-# Cropped panorama
+# 裁剪全景图
 
-Display [cropped panorama](../../guide/adapters/equirectangular.md#cropped-panorama) by reading its XMP metadata or compute the position on the fly.
+通过读取 XMP 元数据或动态计算位置来展示[裁剪全景图](../../guide/adapters/equirectangular.md#cropped-panorama)。
 
 ::: code-demo
 
 ```yaml
 autoload: true
-title: PSV Cropped Demo
+title: PSV 裁剪示例
 ```
 
 ```js:line-numbers{9}

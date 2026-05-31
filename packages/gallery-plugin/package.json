@@ -1,7 +1,7 @@
 {
   "name": "@photo-sphere-viewer/gallery-plugin",
   "version": "0.0.0",
-  "description": "Photo Sphere Viewer plugin to add a gallery of multiple panoramas.",
+  "description": "Photo Sphere Viewer 图库插件，用于展示多个全景图。",
   "homepage": "https://photo-sphere-viewer.js.org/plugins/gallery.html",
   "license": "MIT",
   "main": "./src/index.ts",
@@ -19,7 +19,7 @@
     "npm-link": "cd dist && npm link"
   },
   "psv": {
-    "title": "Photo Sphere Viewer / Gallery Plugin",
+    "title": "Photo Sphere Viewer / 图库插件",
     "style": true,
     "budget": "25kb"
   }

@@ -6,10 +6,10 @@
 <ApiButton page="modules/MarkersPlugin.html"/>
 Displays various shapes, images and texts on the viewer.
 
-This plugin is available in the [@photo-sphere-viewer/markers-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/markers-plugin) package.
+这个插件由 [@photo-sphere-viewer/markers-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/markers-plugin) 包提供。
 :::
 
-## Usage
+## 用法
 
 The plugin provides a powerful markers system allowing to define points of interest on the panorama with optional tooltip and description. Markers can be dynamically added/removed and you can react to user click/tap.
 
@@ -51,9 +51,9 @@ markersPlugin.addEventListener('select-marker', ({ marker }) => {
 });
 ```
 
-## Example
+## 示例
 
-The following example contains most types of markers. Click anywhere on the panorama to add a red marker, right-click to change it's color and double-click to remove it.
+下面的示例包含大多数标记类型。在全景图任意位置单击可添加红色标记，右键可改变颜色，双击可删除。
 
 :::: code-demo
 
@@ -160,7 +160,7 @@ HTML content of the marker. It is recommended to define th `size`.
 ```js:line-numbers{3}
 {
     id: 'marker-1',
-    html: '<string>Click here</strong>',
+    html: '<strong>点击这里</strong>',
     position: { yaw: 0, pitch: 0 },
     size: { width: 100, height: 30 },
 }
@@ -692,7 +692,7 @@ lang: {
 }
 ```
 
-_Note: this option is not part of the plugin but is merged with the main [`lang`](../guide/config.md#lang) object._
+_注意：这个选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
 
 ## Methods
 

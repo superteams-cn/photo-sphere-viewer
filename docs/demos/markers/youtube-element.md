@@ -1,12 +1,12 @@
-# Youtube element
+# Youtube 元素
 
-Example usage of `elementLayer` marker to integrate a Youtube video.
+展示如何用 `elementLayer` 标记嵌入 Youtube 视频。
 
 ::: code-demo
 
 ```yaml
 autoload: true
-title: PSV Marker Youtube Demo
+title: PSV 标记 Youtube 示例
 packages:
   - name: markers-plugin
     style: true

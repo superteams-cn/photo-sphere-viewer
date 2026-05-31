@@ -37,7 +37,7 @@ describe('plugin: settings', () => {
   it('should hide settings on panel open', () => {
     cy.get('.psv-settings-button').click();
 
-    callViewer('open panel').then((viewer) => viewer.panel.show('Lorem ipsum'));
+    callViewer('打开面板').then((viewer) => viewer.panel.show('中文内容'));
 
     cy.get('.psv-settings').should('not.be.visible');
   });
@@ -192,7 +192,7 @@ describe('plugin: settings', () => {
   function withToggleSetting() {
     return {
       id: 'toggle-setting',
-      label: 'Toggle setting',
+      label: '开关设置',
       type: 'toggle',
       v: false,
       active() {
@@ -211,12 +211,12 @@ describe('plugin: settings', () => {
   function withOptionsSetting() {
     return {
       id: 'options-setting',
-      label: 'Options setting',
+      label: '选项设置',
       type: 'options',
       v: 'A',
       options: () => [
-        { id: 'A', label: 'Option A' },
-        { id: 'B', label: 'Option B' },
+        { id: 'A', label: '选项 A' },
+        { id: 'B', label: '选项 B' },
       ],
       current() {
         return this.v;

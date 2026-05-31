@@ -1,7 +1,7 @@
 {
   "name": "@photo-sphere-viewer/visible-range-plugin",
   "version": "0.0.0",
-  "description": "Photo Sphere Viewer plugin to lock the visible angles.",
+  "description": "Photo Sphere Viewer 可视范围插件，用于锁定可见角度。",
   "homepage": "https://photo-sphere-viewer.js.org/plugins/visible-range.html",
   "license": "MIT",
   "main": "./src/index.ts",
@@ -19,7 +19,7 @@
     "npm-link": "cd dist && npm link"
   },
   "psv": {
-    "title": "Photo Sphere Viewer / Visible Range Plugin",
+    "title": "Photo Sphere Viewer / 可视范围插件",
     "budget": "10kb"
   }
 }

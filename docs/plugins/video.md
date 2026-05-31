@@ -6,14 +6,14 @@
 <ApiButton page="modules/VideoPlugin.html"/>
 Adds controls to the video [adapters](../guide/adapters/).
 
-This plugin is available in the [@photo-sphere-viewer/video-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/video-plugin) package.
+这个插件由 [@photo-sphere-viewer/video-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/video-plugin) 包提供。
 :::
 
-## Usage
+## 用法
 
 To use this plugin you must also load one of the video adapters : [equirectangular](../guide/adapters/equirectangular-video.md) or [cubemap](../guide/adapters/cubemap-video.md).
 
-Once enabled it will add various elements to the viewer:
+启用后，它会向查看器添加多个元素：
 
 - Play/pause button
 - Volume button
@@ -37,7 +37,7 @@ const viewer = new Viewer({
 });
 ```
 
-## Example
+## 示例
 
 ::: code-demo
 
@@ -107,11 +107,11 @@ lang: {
 }
 ```
 
-_Note: this option is not part of the plugin but is merged with the main [`lang`](../guide/config.md#lang) object._
+_注意：这个选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
 
-### Multi resolution
+### 多分辨率
 
-You can offer multiple resolutions of your video with the [ResolutionPlugin](./resolution.md).
+你可以通过 [ResolutionPlugin](./resolution.md) 为视频提供多个分辨率。
 
 ```js:line-numbers
 const viewer = new Viewer({
@@ -124,17 +124,17 @@ const viewer = new Viewer({
             resolutions: [
                 {
                     id: 'UHD',
-                    label: 'Ultra high',
+                    label: '超高清',
                     panorama: { source: 'path/video-uhd.mp4' },
                 },
                 {
                     id: 'FHD',
-                    label: 'High',
+                    label: '高清',
                     panorama: { source: 'path/video-fhd.mp4' },
                 },
                 {
                     id: 'HD',
-                    label: 'Standard',
+                    label: '标准',
                     panorama: { source: 'path/video-hd.mp4' },
                 },
             ],

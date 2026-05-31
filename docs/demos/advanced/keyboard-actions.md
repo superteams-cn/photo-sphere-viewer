@@ -1,12 +1,12 @@
-# Keyboard actions
+# 键盘操作
 
-Add custom actions on keyboard presses with [`keyboardActions`](../../guide/config.md#keyboardactions).
+通过 [`keyboardActions`](../../guide/config.md#keyboardactions) 为键盘按键添加自定义操作。
 
 :::: code-demo
 
 ```yaml
 autoload: true
-title: PSV Keyboard actions Demo
+title: PSV 键盘操作示例
 ```
 
 ::: code-group
@@ -42,21 +42,16 @@ const viewer = new Viewer({
     },
 });
 
-viewer.notification.show(`Press H to display the help panel, and F to toggle fullscreen`);
+viewer.notification.show(`按 H 显示帮助面板，按 F 切换全屏`);
 
-// REMOVE THIS (only to make it working inside the demo iframe)
+// 仅为示例 iframe 内可用而添加，真实项目中可以移除
 window.parent.addEventListener('keydown', e => viewer.eventsHandler.handleEvent(e));
 window.parent.addEventListener('keyup', e => viewer.eventsHandler.handleEvent(e));
 ```
 
 ```html [template.html]
 <script type="text/template" id="help-content">
-  <p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas.
-    Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
-    egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et
-    sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet,
-    wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac
-    dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
+  <p><strong>这是一段中文说明内容</strong>，用于展示面板中的富文本、链接、代码和中文排版效果。你可以把它替换成景点介绍、设备状态、巡检记录或任何业务信息。</p>
 </script>
 ```
 

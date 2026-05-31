@@ -25,17 +25,17 @@ new Viewer({
       resolutions: [
         {
           id: 'UHD',
-          label: 'Ultra high',
+          label: '超高清',
           panorama: { source: baseUrl + 'cubemap-video/DreamOfDali_UHD.webm' },
         },
         {
           id: 'FHD',
-          label: 'High',
+          label: '高清',
           panorama: { source: baseUrl + 'cubemap-video/DreamOfDali_FHD.webm' },
         },
         {
           id: 'HD',
-          label: 'Standard',
+          label: '标准',
           panorama: { source: baseUrl + 'cubemap-video/DreamOfDali_HD.webm' },
         },
       ],

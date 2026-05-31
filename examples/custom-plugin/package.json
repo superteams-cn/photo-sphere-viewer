@@ -1,7 +1,7 @@
 {
   "name": "photo-sphere-viewer-custom-plugin",
   "version": "1.0.0",
-  "description": "Photo Sphere Viewer custom plugin example",
+  "description": "Photo Sphere Viewer 自定义插件示例",
   "license": "MIT",
   "author": "mistic100",
   "scripts": {

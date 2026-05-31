@@ -38,22 +38,22 @@ new Viewer({
       resolutions: [
         {
           id: 'UHD',
-          label: 'Ultra high',
+          label: '超高清',
           panorama: { source: baseUrl + 'equirectangular-video/Ayutthaya_UHD.mp4' },
         },
         {
           id: 'FHD',
-          label: 'High',
+          label: '高清',
           panorama: { source: baseUrl + 'equirectangular-video/Ayutthaya_FHD.mp4' },
         },
         {
           id: 'HD',
-          label: 'Standard',
+          label: '标准',
           panorama: { source: baseUrl + 'equirectangular-video/Ayutthaya_HD.mp4' },
         },
         {
           id: 'SD',
-          label: 'Low',
+          label: '低清',
           panorama: { source: baseUrl + 'equirectangular-video/Ayutthaya_SD.mp4' },
         },
       ],

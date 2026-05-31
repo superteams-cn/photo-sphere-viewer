@@ -38,7 +38,7 @@
         navbar: [
           'autorotate',
           {
-            content: 'Clear range',
+            content: '清除范围',
             className: 'custom-button',
             onClick: () => {
               visibleRange.setHorizontalRange(null);
@@ -46,7 +46,7 @@
             },
           },
           {
-            content: 'Set custom range',
+            content: '设置自定义范围',
             className: 'custom-button',
             onClick: () => {
               visibleRange.setHorizontalRange([-Math.PI / 2, Math.PI / 2]);
@@ -54,7 +54,7 @@
             },
           },
           {
-            content: 'Set range from panoData',
+            content: '从 panoData 设置范围',
             className: 'custom-button',
             onClick: () => {
               visibleRange.setRangesFromPanoData();

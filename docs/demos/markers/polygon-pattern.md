@@ -1,12 +1,12 @@
-# Polygon pattern
+# 多边形图案
 
-Use custom SVG patterns as polygon `fill`.
+使用自定义 SVG 图案作为多边形 `fill`。
 
 :::: code-demo
 
 ```yaml
 autoload: true
-title: PSV Marker polygon pattern Demo
+title: PSV 标记多边形图案示例
 packages:
   - name: markers-plugin
     style: true

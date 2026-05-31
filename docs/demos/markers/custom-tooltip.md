@@ -1,12 +1,12 @@
-# Custom tooltip
+# 自定义提示框
 
-Advanced styling of a marker's [tooltip](../../plugins/markers.md#tooltip).
+为标记[提示框](../../plugins/markers.md#tooltip)添加高级样式。
 
 :::: code-demo
 
 ```yaml
 autoload: true
-title: PSV Marker custom tooltip Demo
+title: PSV 自定义标记提示框示例
 packages:
   - name: markers-plugin
     style: true
@@ -86,11 +86,9 @@ viewer.addEventListener('ready', () => {
 <script type="text/template" id="tooltip-content">
   <img src="https://photo-sphere-viewer-data.netlify.app/assets/sphere-small.jpg">
   <article>
-    <h2>Lorem ipsum</h2>
+    <h2>中文提示框</h2>
     <p>
-      Vivamus magna. Cras in mi at felis aliquet
-      congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis,
-      tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.
+      这里展示自定义提示框的正文内容。你可以在提示框中放入图片、说明文字和任意业务信息。
     </p>
   </article>
 </script>

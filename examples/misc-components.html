@@ -12,9 +12,9 @@
     <div id="photosphere"></div>
 
     <script type="text/template" id="panel-content">
-      <h1>Custom panel</h1>
-      <p>This panel has a default width of 50%.</p>
-      <p>Try to resize the panel and re-open it, the user defined size is preserved.</p>
+      <h1>自定义面板</h1>
+      <p>这个面板的默认宽度为 50%。</p>
+      <p>试着调整面板宽度并重新打开，用户设置的尺寸会被保留。</p>
     </script>
 
     <script type="text/template" id="overlay-icon">
@@ -50,26 +50,22 @@
         loadingImg: baseUrl + 'loader.gif',
         navbar: [
           {
-            content: 'Loader',
+            content: '加载器',
             onClick: () => {
               viewer.loader.show();
               viewer.loader.setProgress(Math.random() * 100);
             },
           },
           {
-            content: 'Loader (undefined)',
+            content: '未定进度加载器',
             onClick: () => {
               viewer.loader.showUndefined();
             },
           },
           {
-            content: 'Notification',
+            content: '通知',
             onClick: () => {
-              const messages = [
-                'This is a custom notification',
-                'This is another notification',
-                'Yet another notification?',
-              ];
+              const messages = ['这是一条自定义通知', '这是另一条通知', '再来一条通知？'];
               viewer.notification.show({
                 content: messages[Math.floor(Math.random() * messages.length)],
                 timeout: 2000,
@@ -77,18 +73,18 @@
             },
           },
           {
-            content: 'Overlay',
+            content: '覆盖层',
             onClick: () => {
               viewer.overlay.show({
                 id: 'custom',
                 image: document.getElementById('overlay-icon').innerHTML,
-                title: 'This is a custom overlay',
-                text: `Isn't it nice?'`,
+                title: '这是自定义覆盖层',
+                text: '看起来不错吧？',
               });
             },
           },
           {
-            content: 'Panel',
+            content: '面板',
             onClick: () => {
               viewer.panel.show({
                 id: 'custom',
@@ -98,7 +94,7 @@
             },
           },
           {
-            content: 'Tooltip',
+            content: '提示框',
             onClick: () => {
               const position = [
                 'top',
@@ -118,7 +114,7 @@
                 top: Math.random() * (document.body.offsetHeight - 200) + 100,
                 left: Math.random() * (document.body.offsetWidth - 200) + 100,
                 position: position,
-                content: `Custom tooltip (${position})`,
+                content: `自定义提示框（${position}）`,
               });
             },
           },

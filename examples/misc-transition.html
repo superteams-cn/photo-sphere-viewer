@@ -67,7 +67,7 @@
         },
       };
 
-      const gui = new GUI({ title: 'Transition Options' });
+      const gui = new GUI({ title: '切换过渡选项' });
 
       gui.add(config, 'enabled');
       gui.add(config, 'rotation');
@@ -78,7 +78,7 @@
       speed.add(config, 'speed_duration', 0.5, 10, 0.5).name('Duration (s)');
       speed.add(config, 'speed_speed', 0.5, 10, 0.5).name('Speed (rpm)');
 
-      gui.add(config, 'run').name('Run');
+      gui.add(config, 'run').name('运行');
 
       gui.onChange(() => {
         viewer.setOption(

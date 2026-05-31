@@ -6,7 +6,7 @@
 <ApiButton page="modules/PlanPlugin.html"/>
 Adds a [Leaflet](https://leafletjs.com) map on the viewer, showing the location of the panorama and optional hotspots. It uses OpenStreetMap by default.
 
-This plugin is available in the [@photo-sphere-viewer/plan-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/plan-plugin) package.
+这个插件由 [@photo-sphere-viewer/plan-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/plan-plugin) 包提供。
 :::
 
 ## Usage

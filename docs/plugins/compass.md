@@ -6,10 +6,10 @@
 <ApiButton page="modules/CompassPlugin.html"/>
 Adds a compass on the viewer to represent which portion of the sphere is currently visible.
 
-This plugin is available in the [@photo-sphere-viewer/compass-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/compass-plugin) package.
+这个插件由 [@photo-sphere-viewer/compass-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/compass-plugin) 包提供。
 :::
 
-## Usage
+## 用法
 
 The plugin can be configured with a list of `hotspots` which are small dots on the compass. It can also display markers positions.
 
@@ -28,7 +28,7 @@ const viewer = new Viewer({
 });
 ```
 
-## Example
+## 示例
 
 ::: code-demo
 
@@ -87,7 +87,7 @@ Reset viewer pitch to `defaultPitch` when using the compass navigation.
 - default: `null`
 - updatable: yes
 
-Small dots visible on the compass. Each spot consists of a position (either `yaw`/`pitch` or `textureX`/`textureY`) and an optional `color` which overrides the global `hotspotColor`.
+指南针上可见的小点。每个点包含一个位置（`yaw`/`pitch` 或 `textureX`/`textureY`）以及可选的 `color`，它会覆盖全局 `hotspotColor`。
 
 ::: tip
 [Markers](./markers.md) can be displayed on the compass by defining their `compass` data, which can be `true` or a specific color.

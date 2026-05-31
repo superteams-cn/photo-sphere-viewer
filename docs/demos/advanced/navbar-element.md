@@ -1,18 +1,18 @@
-# Navbar element
+# 导航栏元素
 
-Use a custom WebComponent in the [navbar](../../guide/navbar.md). This example implements a custom zoom control.
+在[导航栏](../../guide/navbar.md)中使用自定义 WebComponent。本示例实现了一个自定义缩放控件。
 
 :::: code-demo
 
 ```yaml
 autoload: true
-title: PSV Navbar element Demo
+title: PSV 导航栏元素示例
 ```
 
 ::: code-group
 
 ```js:line-numbers [CustomNavbarButton.js]
-// declare the custom element
+// 声明自定义元素
 class CustomNavbarButton extends HTMLElement {
     constructor() {
         super();
@@ -73,7 +73,7 @@ input {
     }
 }
 
-// register the custom element
+// 注册自定义元素
 customElements.define('custom-navbar-button', CustomNavbarButton);
 ```
 
@@ -88,7 +88,7 @@ new Viewer({
     caption: 'Parc national du Mercantour <b>&copy; Damien Sorel</b>',
     navbar: [
         {
-            // instanciate the custom element
+            // 实例化自定义元素
             content: document.createElement('custom-navbar-button'),
         },
         'caption',

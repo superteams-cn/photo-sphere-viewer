@@ -2,226 +2,226 @@
 aside: false
 ---
 
-# Demos
+# 示例
 
-::: tip Plugins
-Visit each [plugin page](../plugins/) to see a dedicated example.
+::: tip 插件
+每个[插件页面](../plugins/)都提供了对应的专属示例。
 :::
 
-## Basic
+## 基础
 
 :::: gallery
 
 ::: item
 [![](/images/demos/default.jpg)](./basic/0-config.md)
 
-### Zero config
+### 零配置
 
-Simple panorama with default options.
+使用默认选项展示简单全景图。
 :::
 
 ::: item
 [![](/images/demos/cropped-panorama.jpg)](./basic/cropped-panorama.md)
 
-### Cropped panorama
+### 裁剪全景图
 
-Display cropped panorama.
+展示裁剪后的全景图。
 :::
 
 ::: item
 [![](/images/demos/navbar.jpg)](./basic/custom-navbar.md)
 
-### Custom navbar
+### 自定义导航栏
 
-Customize the navbar with default and custom buttons.
+使用默认按钮和自定义按钮组合导航栏。
 :::
 
 ::: item
 [![](/images/demos/description.jpg)](./basic/description.md)
 
-### Description
+### 说明面板
 
-&laquo; i &raquo; button will display the `description` in the side panel.
+&laquo; i &raquo; 按钮会在侧边面板中显示 `description`。
 :::
 
 ::: item
 [![](/images/demos/fisheye.jpg)](./basic/fisheye.md)
 
-### Fisheye
+### 鱼眼效果
 
-Display the panorama with a fisheye effect.
+用鱼眼效果展示全景图。
 :::
 
 ::: item
 [![](/images/demos/transition.jpg)](./basic/transition.md)
 
-### Transition
+### 切换过渡
 
-Customize the transition between panoramas.
+自定义全景图之间的切换过渡。
 :::
 
 ::::
 
-## Advanced
+## 进阶
 
 :::: gallery
 
 ::: item
 [![](/images/demos/animation.gif)](./advanced/animation.md)
 
-### Intro animation
+### 入场动画
 
-Use the `Animation` helper to create a cool intro.
+使用 `Animation` 辅助工具创建入场动画。
 :::
 
 ::: item
 [![](/images/demos/double-click-zoom.gif)](./advanced/double-click-zoom.md)
 
-### Double click zoom
+### 双击缩放
 
-Zoom to the cursor position on double-click.
+双击后缩放到鼠标所在位置。
 :::
 
 ::: item
 [![](/images/demos/keyboard.jpg)](./advanced/keyboard-actions.md)
 
-### Keyboard actions
+### 键盘操作
 
-Custom actions on keypress.
+为按键配置自定义操作。
 :::
 
 ::: item
 [![](/images/demos/navbar-element.jpg)](./advanced/navbar-element.md)
 
-### Navbar element
+### 导航栏元素
 
-Add complex elements to the navbar.
+向导航栏添加复杂元素。
 :::
 
 ::: item
 [![](/images/demos/screenshot.jpg)](./advanced/screenshot.md)
 
-### Make a screenshot
+### 截图下载
 
-Download a screenshot of the visible panorama.
+下载当前可见全景区域的截图。
 :::
 
 ::::
 
-## Compass
+## 指南针
 
 :::: gallery
 
 ::: item
 [![](/images/demos/compass-markers.jpg)](./compass/markers.md)
 
-### Markers on compass
+### 指南针上的标记
 
-Show markers on the compass.
+在指南针上显示标记。
 :::
 
 ::::
 
-## Map
+## 地图
 
 :::: gallery
 
 ::: item
 [![](/images/demos/map-markers.jpg)](./map/markers.md)
 
-### Markers on map
+### 地图上的标记
 
-Show markers on the map.
+在地图上显示标记。
 :::
 
 ::::
 
-## Markers
+## 标记
 
 :::: gallery
 
 ::: item
 [![](/images/demos/chroma-key.jpg)](./markers/chroma-key.md)
 
-### Chroma key markers
+### 色键视频标记
 
-Make video markers partially transparent.
+让视频标记按色键变为局部透明。
 :::
 
 ::: item
 [![](/images/demos/marker-element.jpg)](./markers/custom-element.md)
 
-### Custom element
+### 自定义元素
 
-Use a custom WebComponent as marker.
+使用自定义 WebComponent 作为标记。
 :::
 
 ::: item
 [![](/images/demos/custom-marker.jpg)](./markers/custom-tooltip.md)
 
-### Custom tooltip
+### 自定义提示框
 
-Advanced styling of a marker's tooltip.
+为标记提示框添加高级样式。
 :::
 
 ::: item
 [![](/images/demos/hover-scale.jpg)](./markers/hover-scale.md)
 
-### Mouse hover scaling
+### 鼠标悬停缩放
 
-Enable global scaling and customize for each marker.
+启用全局悬停缩放，并为每个标记单独定制。
 :::
 
 ::: item
 [![](/images/demos/marker-layer.jpg)](./markers/layers.md)
 
-### Layers markers
+### 图层标记
 
-`imageLayer` and `videoLayer` markers.
+`imageLayer` 与 `videoLayer` 标记。
 :::
 
 ::: item
 [![](/images/demos/polygon-pattern.jpg)](./markers/polygon-pattern.md)
 
-### Polygon pattern
+### 多边形图案
 
-Use custom SVG patterns as polygon `fill`.
+使用自定义 SVG 图案作为多边形 `fill`。
 :::
 
 ::: item
 [![](/images/demos/marker-youtube.jpg)](./markers/youtube-element.md)
 
-### Youtube element
+### Youtube 元素
 
-`elementLayer` marker.
+`elementLayer` 标记。
 :::
 
 ::::
 
-## Overlays
+## 覆盖层
 
 :::: gallery
 
 ::: item
 [![](/images/demos/partial-overlay.jpg)](./overlays/partial-overlay.md)
 
-### Partial overlay
+### 局部覆盖层
 
-Display smaller image above the panorama.
+在全景图上方显示较小的图片。
 :::
 
 ::::
 
-## Plan
+## 平面图
 
 :::: gallery
 
 ::: item
 [![](/images/demos/plan-markers.jpg)](./plan/markers.md)
 
-### Markers on plan
+### 平面图上的标记
 
-Show markers on the plan.
+在平面图上显示标记。
 :::
 
 ::::

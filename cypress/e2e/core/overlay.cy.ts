@@ -13,7 +13,7 @@ describe('core: overlay', () => {
     const showOverlayHandler = listenViewerEvent('show-overlay');
     const hideOverlayHandler = listenViewerEvent('hide-overlay');
 
-    callOverlay('show overlay').then((overlay) => overlay.show('title'));
+    callOverlay('显示覆盖层').then((overlay) => overlay.show('标题'));
     checkEventHandler(showOverlayHandler, { overlayId: null });
     checkOverlayVisibleApi(true);
     cy.get('.psv-overlay').should('be.visible');
@@ -25,13 +25,13 @@ describe('core: overlay', () => {
   });
 
   it('should hide on click and esc key', () => {
-    callOverlay('show overlay').then((overlay) => overlay.show('title'));
+    callOverlay('显示覆盖层').then((overlay) => overlay.show('标题'));
     cy.get('.psv-overlay').should('be.visible');
 
     cy.get('.psv-overlay').click();
     cy.get('.psv-overlay').should('not.be.visible');
 
-    callOverlay('show overlay').then((overlay) => overlay.show('title'));
+    callOverlay('显示覆盖层').then((overlay) => overlay.show('标题'));
     cy.get('.psv-overlay').should('be.visible');
 
     triggerWindowKeydown('Escape');
@@ -39,9 +39,9 @@ describe('core: overlay', () => {
   });
 
   it('should not be dismissible', () => {
-    callOverlay('show overlay').then((overlay) =>
+    callOverlay('显示覆盖层').then((overlay) =>
       overlay.show({
-        title: 'title',
+        title: '标题',
         dismissible: false,
       }),
     );
@@ -59,7 +59,7 @@ describe('core: overlay', () => {
 
     callOverlay('show overlay a').then((overlay) =>
       overlay.show({
-        title: 'title',
+        title: '标题',
         id: 'overlay-a',
       }),
     );
@@ -79,7 +79,7 @@ describe('core: overlay', () => {
 
     callOverlay('show overlay b').then((overlay) =>
       overlay.show({
-        title: 'title',
+        title: '标题',
         id: 'overlay-b',
       }),
     );
@@ -92,7 +92,7 @@ describe('core: overlay', () => {
   });
 
   it('should show title/text/image', () => {
-    callOverlay('show overlay').then((overlay) =>
+    callOverlay('显示覆盖层').then((overlay) =>
       overlay.show({
         title: 'Welcome',
         text: 'This is a demo',

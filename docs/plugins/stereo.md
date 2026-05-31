@@ -6,7 +6,7 @@
 <ApiButton page="modules/StereoPlugin.html"/>
 Adds stereo view on mobile devices. **Requires the [Gyroscope plugin](./gyroscope.md).**
 
-This plugin is available in the [@photo-sphere-viewer/stereo-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/stereo-plugin) package.
+这个插件由 [@photo-sphere-viewer/stereo-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/stereo-plugin) 包提供。
 :::
 
 ## Usage

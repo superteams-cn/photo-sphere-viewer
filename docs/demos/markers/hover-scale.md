@@ -1,12 +1,12 @@
-# Mouse hover scaling
+# 鼠标悬停缩放
 
-Enable global [mouse hover scaling](../../plugins/markers.md#defaulthoverscale) and customize for each marker.
+启用全局[鼠标悬停缩放](../../plugins/markers.md#defaulthoverscale)，并为每个标记单独定制。
 
 ::: code-demo
 
 ```yaml
 autoload: true
-title: PSV Marker mouse hover scaling Demo
+title: PSV 标记悬停缩放示例
 packages:
   - name: markers-plugin
     style: true
@@ -33,7 +33,7 @@ const viewer = new Viewer({
                     image: baseUrl + 'pictos/pin-blue.png',
                     size: { width: 32, height: 32 },
                     anchor: 'bottom center',
-                    tooltip: 'Default scaling',
+                    tooltip: '默认缩放',
                 },
                 {
                     id: 'marker-2',
@@ -41,7 +41,7 @@ const viewer = new Viewer({
                     image: baseUrl + 'pictos/pin-red.png',
                     size: { width: 32, height: 32 },
                     anchor: 'bottom center',
-                    tooltip: 'Disable scaling',
+                    tooltip: '禁用缩放',
                     hoverScale: false,
                 },
                 {
@@ -50,7 +50,7 @@ const viewer = new Viewer({
                     image: baseUrl + 'pictos/pin-red.png',
                     size: { width: 32, height: 32 },
                     anchor: 'bottom center',
-                    tooltip: 'Custom scaling',
+                    tooltip: '自定义缩放',
                     hoverScale: { amount: 3, easing: 'ease-in-out', duration: 1000 },
                 },
             ],

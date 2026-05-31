@@ -1,12 +1,12 @@
-# Layers markers
+# 图层标记
 
-Example usage of `imageLayer` and `videoLayer` markers.
+展示 `imageLayer` 与 `videoLayer` 标记的用法。
 
 ::: code-demo
 
 ```yaml
 autoload: true
-title: PSV Marker layers Demo
+title: PSV 标记图层示例
 packages:
   - name: markers-plugin
     style: true
@@ -65,7 +65,7 @@ markers.addEventListener('select-marker', ({ marker }) => {
     }
 });
 
-// below is custom animation to make Rick's position change
+// 下面是让视频标记位置变化的自定义动画
 
 const positions = [
     [

@@ -1,7 +1,7 @@
 {
   "name": "@photo-sphere-viewer/cubemap-adapter",
   "version": "0.0.0",
-  "description": "Photo Sphere Viewer adapter to display cubemaps.",
+  "description": "Photo Sphere Viewer 立方体贴图适配器。",
   "homepage": "https://photo-sphere-viewer.js.org/guide/adapters/cubemap.html",
   "license": "MIT",
   "main": "./src/index.ts",
@@ -19,7 +19,7 @@
     "npm-link": "cd dist && npm link"
   },
   "psv": {
-    "title": "Photo Sphere Viewer / Cubemap Adapter",
+    "title": "Photo Sphere Viewer / 立方体贴图适配器",
     "budget": "15kb"
   }
 }

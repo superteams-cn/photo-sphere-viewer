@@ -1,12 +1,12 @@
-# Show markers on the plan
+# 在平面图上显示标记
 
-Configure [markers](../../plugins/markers.md) to be displayed on the [plan](../../plugins/plan.md).
+配置[标记](../../plugins/markers.md)，让它们显示在[平面图](../../plugins/plan.md)上。
 
 ::: code-demo
 
 ```yaml
 autoload: true
-title: PSV plan markers Demo
+title: PSV 平面图标记示例
 packages:
   - name: plan-plugin
     style: true

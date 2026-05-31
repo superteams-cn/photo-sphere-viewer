@@ -1,12 +1,12 @@
-# Description
+# 说明面板
 
-&laquo; i &raquo; button will display the [`description`](../../guide/config.md#description) in the side panel.
+&laquo; i &raquo; 按钮会在侧边面板中显示 [`description`](../../guide/config.md#description)。
 
 ::: code-demo
 
 ```yaml
 autoload: true
-title: PSV Description Demo
+title: PSV 说明面板示例
 ```
 
 ::: code-group
@@ -27,12 +27,7 @@ new Viewer({
 
 ```html [template.html]
 <script type="text/template" id="description">
-  <p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas.
-    Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
-    egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et
-    sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet,
-    wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac
-    dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
+  <p><strong>这是一段中文说明内容</strong>，用于展示面板中的富文本、链接、代码和中文排版效果。你可以把它替换成景点介绍、设备状态、巡检记录或任何业务信息。</p>
 
   <iframe
     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54469.108394396746!2d6.9617553450295855!3d44.151844842645815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdaf6678af879d%3A0xcabc15aee7b89386!2sParc%20national%20du%20Mercantour!5e0!3m2!1sfr!2sfr!4v1611498421096!5m2!1sfr!2sfr"

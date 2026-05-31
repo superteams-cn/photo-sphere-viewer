@@ -6,16 +6,16 @@
 <ApiButton page="modules/ResolutionPlugin.html"/>
 Adds a button to choose between multiple resolutions of the panorama. **Requires the [Settings plugin](./settings.md).**
 
-This plugin is available in the [@photo-sphere-viewer/resolution-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/resolution-plugin) package.
+这个插件由 [@photo-sphere-viewer/resolution-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/resolution-plugin) 包提供。
 :::
 
 ::: warning
 ResolutionPlugin is not compatible with GalleryPlugin.
 :::
 
-## Usage
+## 用法
 
-Once enabled the plugin will add a new setting the user can use to change the resolution of the panorama.
+启用后，插件会添加一个新的设置项，用户可以用它切换全景图分辨率。
 
 ```js:line-numbers
 import { SettingsPlugin } from '@photo-sphere-viewer/settings-plugin';
@@ -29,12 +29,12 @@ const viewer = new Viewer({
             resolutions: [
                 {
                     id: 'SD',
-                    label: 'Small',
+                    label: '小图',
                     panorama: 'sphere_small.jpg',
                 },
                 {
                     id: 'HD',
-                    label: 'Normal',
+                    label: '普通',
                     panorama: 'sphere.jpg',
                 },
             ],
@@ -43,9 +43,9 @@ const viewer = new Viewer({
 });
 ```
 
-## Example
+## 示例
 
-The following example provides two resolutions for the panorama, "small" is loaded by default.
+下面的示例为全景图提供两个分辨率，默认加载“小图”。
 
 ::: code-demo
 
@@ -100,7 +100,7 @@ lang: {
 }
 ```
 
-_Note: this option is not part of the plugin but is merged with the main [`lang`](../guide/config.md#lang) object._
+_注意：这个选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
 
 ## Methods
 

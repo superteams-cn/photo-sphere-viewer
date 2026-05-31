@@ -1,12 +1,12 @@
-# Fisheye
+# 鱼眼效果
 
-Display the panorama with a [fisheye](../../guide/config.md#fisheye) effect.
+用[鱼眼效果](../../guide/config.md#fisheye)展示全景图。
 
 ::: code-demo
 
 ```yaml
 autoload: true
-title: PSV Fisheye Demo
+title: PSV 鱼眼示例
 ```
 
 ```js:line-numbers{11}

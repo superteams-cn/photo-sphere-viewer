@@ -6,7 +6,7 @@
 <ApiButton page="modules/VirtualTourPlugin.html"/>
 Create virtual tours by linking multiple panoramas.
 
-This plugin is available in the [@photo-sphere-viewer/virtual-tour-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/virtual-tour-plugin) package.
+这个插件由 [@photo-sphere-viewer/virtual-tour-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/virtual-tour-plugin) 包提供。
 :::
 
 ## Usage

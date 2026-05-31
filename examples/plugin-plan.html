@@ -142,7 +142,7 @@
       const plan = viewer.getPlugin(PlanPlugin);
 
       plan.addEventListener('select-hotspot', ({ hotspotId }) => {
-        console.log(`Click hotspot ${hotspotId}`);
+        console.log(`点击热点 ${hotspotId}`);
       });
 
       plan.addEventListener('view-changed', ({ view }) => {
@@ -187,14 +187,14 @@
         },
       };
 
-      const gui = new GUI({ title: 'Plan Plugin Options' });
+      const gui = new GUI({ title: '平面图插件选项' });
 
       const position = gui.addFolder('Position');
       position.add(config.coordinates, 0).name('longitude');
       position.add(config.coordinates, 1).name('latitude');
       position.add(config, 'bearing', 0, 360, 1);
 
-      const display = gui.addFolder('Display');
+      const display = gui.addFolder('显示');
       display.add(config, 'position', ['top left', 'top right', 'bottom left', 'bottom right']);
       display.add(config.size, 'width').name('size.width');
       display.add(config.size, 'height').name('size.height');

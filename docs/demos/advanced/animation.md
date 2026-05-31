@@ -1,12 +1,12 @@
-# Intro animation
+# 入场动画
 
-Use the `Animation` helper and [autorotate plugin](../../plugins/autorotate.md) to create a cool intro.
+使用 `Animation` 辅助工具和[自动旋转插件](../../plugins/autorotate.md)创建入场动画。
 
 ::: code-demo
 
 ```yaml
 autoload: true
-title: PSV Intro Animation Demo
+title: PSV 入场动画示例
 packages:
   - name: autorotate-plugin
 ```
@@ -40,7 +40,7 @@ const viewer = new Viewer({
         'autorotate',
         'zoom',
         {
-            title: 'Rerun animation',
+            title: '重新播放动画',
             content: '🔄',
             onClick: reset,
         },
@@ -60,7 +60,7 @@ const autorotate = viewer.getPlugin(AutorotatePlugin);
 
 let isInit = true;
 
-// setup timer for automatic animation on startup
+// 设置启动后自动播放动画的计时器
 viewer.addEventListener('ready', () => {
     viewer.navbar.hide();
 
@@ -71,14 +71,14 @@ viewer.addEventListener('ready', () => {
     }, 5000);
 }, { once: true });
 
-// launch animation to clicked point
+// 播放动画到点击位置
 viewer.addEventListener('click', ({ data }) => {
     if (isInit) {
         intro(data.pitch, data.yaw);
     }
 });
 
-// perform the intro animation
+// 执行入场动画
 function intro(pitch, yaw) {
     isInit = false;
     autorotate.stop();
@@ -110,7 +110,7 @@ function intro(pitch, yaw) {
     });
 }
 
-// perform the reverse animation
+// 执行反向动画
 function reset() {
     isInit = true;
     autorotate.stop();

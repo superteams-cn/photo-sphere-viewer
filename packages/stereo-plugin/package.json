@@ -1,7 +1,7 @@
 {
   "name": "@photo-sphere-viewer/stereo-plugin",
   "version": "0.0.0",
-  "description": "Photo Sphere Viewer plugin to add a stereo view on mobile devices.",
+  "description": "Photo Sphere Viewer 立体视图插件，用于移动端沉浸式查看。",
   "homepage": "https://photo-sphere-viewer.js.org/plugins/stereo.html",
   "license": "MIT",
   "main": "./src/index.ts",
@@ -20,7 +20,7 @@
     "npm-link": "cd dist && npm link"
   },
   "psv": {
-    "title": "Photo Sphere Viewer / Stereo Plugin",
+    "title": "Photo Sphere Viewer / 立体视图插件",
     "budget": "15kb"
   }
 }

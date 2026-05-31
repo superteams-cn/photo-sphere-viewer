@@ -21,7 +21,7 @@ describe('core: navbar', () => {
     cy.get('.custom-button:eq(0)')
       .click()
       .then(() => {
-        expect(alertStub.getCall(0)).to.be.calledWith('Custom button clicked');
+        expect(alertStub.getCall(0)).to.be.calledWith('自定义按钮已点击');
       });
   });
 
@@ -29,10 +29,10 @@ describe('core: navbar', () => {
     cy.get('.psv-caption-content').should('have.text', 'Parc national du Mercantour © Damien Sorel');
 
     callViewer('change caption via options').then((viewer) =>
-      viewer.setOption('caption', '<strong>Name:</strong> Lorem Ipsum'),
+      viewer.setOption('caption', '<strong>名称：</strong>中文示例'),
     );
 
-    cy.get('.psv-caption-content').should('have.text', 'Name: Lorem Ipsum');
+    cy.get('.psv-caption-content').should('have.text', '名称：中文示例');
 
     cy.get('.psv-navbar').compareScreenshots('update-caption');
 
@@ -47,7 +47,7 @@ describe('core: navbar', () => {
     cy.get('.psv-panel')
       .should('be.visible')
       .should('include.text', 'Parc national du Mercantour © Damien Sorel')
-      .should('include.text', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit')
+      .should('include.text', '这是一段中文说明内容，用于验证说明面板的展示效果')
       .compareScreenshots('description');
 
     cy.get('.psv-description-button').click();
@@ -239,7 +239,7 @@ describe('core: navbar', () => {
       .find('custom-navbar-button')
       .shadow()
       .within(() => {
-        cy.get('#title').should('have.text', 'Custom element');
+        cy.get('#title').should('have.text', '自定义元素');
         cy.get('#value').should('have.text', '50');
       });
 

@@ -1,12 +1,12 @@
-# Show markers on the compass
+# 在指南针上显示标记
 
-Configure [markers](../../plugins/markers.md) to be displayed on the [compass](../../plugins/compass.md).
+配置[标记](../../plugins/markers.md)，让它们显示在[指南针](../../plugins/compass.md)上。
 
 ::: code-demo
 
 ```yaml
 autoload: true
-title: PSV compass markers Demo
+title: PSV 指南针标记示例
 packages:
   - name: compass-plugin
     style: true

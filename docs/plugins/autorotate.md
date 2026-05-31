@@ -6,16 +6,16 @@
 <ApiButton page="modules/AutorotatePlugin.html"/>
 Adds an automatic rotation of the panorama, which starts automatically on idle or with a click on a button. The rotation can also be configured to visit specific points.
 
-This plugin is available in the [@photo-sphere-viewer/autorotate-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/autorotate-plugin) package.
+这个插件由 [@photo-sphere-viewer/autorotate-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/autorotate-plugin) 包提供。
 :::
 
-## Usage
+## 用法
 
 :::: tabs
 
-::: tab Standard
+::: tab 标准用法
 
-In standard mode the panorama will simply rotate around, you can configure the `autorotatePitch` and `autorotateZoomLvl`.
+在标准模式下，全景图会持续旋转；你可以配置 `autorotatePitch` 与 `autorotateZoomLvl`。
 
 ```js:line-numbers
 import { AutorotatePlugin } from '@photo-sphere-viewer/autorotate-plugin';
@@ -66,9 +66,9 @@ const viewer = new Viewer({
 
 ::::
 
-## Example
+## 示例
 
-### Standard
+### 标准用法
 
 ::: code-demo
 
@@ -194,7 +194,7 @@ lang: {
 }
 ```
 
-_Note: this option is not part of the plugin but is merged with the main [`lang`](../guide/config.md#lang) object._
+_注意：这个选项不属于插件自身配置，而是会合并到主 [`lang`](../guide/config.md#lang) 对象中。_
 
 ## Methods
 

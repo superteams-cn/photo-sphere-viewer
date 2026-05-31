@@ -1,7 +1,7 @@
 {
   "name": "@photo-sphere-viewer/overlays-plugin",
   "version": "0.0.0",
-  "description": "Photo Sphere Viewer plugin to add various overlays over the panorama.",
+  "description": "Photo Sphere Viewer 覆盖层插件，用于在全景图上添加多种覆盖内容。",
   "homepage": "https://photo-sphere-viewer.js.org/plugins/overlays.html",
   "license": "MIT",
   "main": "./src/index.ts",
@@ -23,7 +23,7 @@
     "npm-link": "cd dist && npm link"
   },
   "psv": {
-    "title": "Photo Sphere Viewer / Overlays Plugin",
+    "title": "Photo Sphere Viewer / 覆盖层插件",
     "budget": "10kb"
   }
 }

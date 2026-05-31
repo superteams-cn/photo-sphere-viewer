@@ -1,12 +1,12 @@
-# Zero config
+# 零配置
 
-Simple panorama with minimal options.
+用最少配置展示简单全景图。
 
 ::: code-demo
 
 ```yaml
 autoload: true
-title: PSV Basic Demo
+title: PSV 基础示例
 ```
 
 ```js:line-numbers

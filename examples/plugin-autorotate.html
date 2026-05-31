@@ -41,12 +41,12 @@
         navbar: [
           'autorotate',
           {
-            content: 'Set keypoints',
+            content: '设置关键点',
             className: 'custom-button',
             onClick: randomPoints,
           },
           {
-            content: 'Clear keypoints',
+            content: '清除关键点',
             className: 'custom-button',
             onClick: clearPoints,
           },
@@ -115,7 +115,7 @@
         overrideZoomLvl: autorotate.config.autorotateZoomLvl !== null,
       };
 
-      const gui = new GUI({ title: 'Autorotate Plugin Options' });
+      const gui = new GUI({ title: '自动旋转插件选项' });
 
       gui.add(config, 'autostartDelay', 0, 10000, 500);
       gui.add(config, 'autostartOnIdle');

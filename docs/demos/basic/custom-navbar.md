@@ -1,12 +1,12 @@
-# Custom navbar
+# 自定义导航栏
 
-[Customize the navbar](../../guide/navbar.md) with default and custom buttons.
+使用默认按钮和自定义按钮[定制导航栏](../../guide/navbar.md)。
 
 :::: code-demo
 
 ```yaml
 autoload: true
-title: PSV Navbar Demo
+title: PSV 导航栏示例
 ```
 
 ::: code-group
@@ -25,7 +25,7 @@ new Viewer({
         'move',
         {
             id: 'change',
-            title: 'Change image',
+            title: '切换图片',
             content: document.querySelector('#icon').innerText,
             onClick(viewer) {
                 viewer.setPanorama(baseUrl + 'sphere-test.jpg', {

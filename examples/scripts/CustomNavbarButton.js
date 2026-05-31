@@ -1,6 +1,6 @@
 /**
- * Custom element used for the navbar demo
- * This example implements a custom zoom control
+ * 导航栏示例使用的自定义元素
+ * 这个示例实现了一个自定义缩放控件
  */
 export class CustomNavbarButton extends HTMLElement {
   constructor() {
@@ -14,7 +14,7 @@ export class CustomNavbarButton extends HTMLElement {
 
     const title = document.createElement('span');
     title.id = 'title';
-    title.innerText = 'Custom element';
+    title.innerText = '自定义元素';
     dom.appendChild(title);
 
     this.input = document.createElement('input');

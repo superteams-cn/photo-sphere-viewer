@@ -6,7 +6,7 @@
 <ApiButton page="modules/VisibleRangePlugin.html"/>
 Locks the visible area of the panorama.
 
-This plugin is available in the [@photo-sphere-viewer/visible-range-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/visible-range-plugin) package.
+这个插件由 [@photo-sphere-viewer/visible-range-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/visible-range-plugin) 包提供。
 :::
 
 ## Usage

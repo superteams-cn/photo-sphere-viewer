@@ -128,7 +128,7 @@
       const map = viewer.getPlugin(MapPlugin);
 
       map.addEventListener('select-hotspot', ({ hotspotId }) => {
-        console.log(`Click hotspot ${hotspotId}`);
+        console.log(`点击热点 ${hotspotId}`);
       });
 
       map.addEventListener('view-changed', ({ view }) => {
@@ -205,14 +205,14 @@
         },
       };
 
-      const gui = new GUI({ title: 'Map Plugin Options' });
+      const gui = new GUI({ title: '地图插件选项' });
 
       const position = gui.addFolder('Position');
       position.add(config.center, 'x', 0, 1600, 1).name('center.x');
       position.add(config.center, 'y', 0, 1200, 1).name('center.y');
       position.add(config, 'rotation', 0, 360, 1);
 
-      const display = gui.addFolder('Display');
+      const display = gui.addFolder('显示');
       display.add(config, 'shape', ['round', 'square']);
       display.add(config, 'size');
       display.add(config, 'position', ['top left', 'top right', 'bottom left', 'bottom right']);

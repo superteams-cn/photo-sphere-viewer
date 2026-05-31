@@ -1,13 +1,13 @@
-# Panorama transition
+# 全景图切换过渡
 
-This interactive demo shows the various possibilities of the [`defaultTransition`](../../guide/config.md#defaulttransition) option. Click the "Run" button to test the transition (with random orientation and zoom).
+这个交互示例展示 [`defaultTransition`](../../guide/config.md#defaulttransition) 选项的多种效果。点击“运行”按钮即可用随机方向和缩放测试过渡。
 
 ::: code-demo
 
 ```yaml
 autoload: true
 hideHeader: true
-title: PSV Transition Demo
+title: PSV 切换过渡示例
 packages:
   - name: lil-gui
     version: '0.20'
@@ -59,7 +59,7 @@ const config = {
   },
 };
 
-const gui = new GUI({ title: 'Transition Options' });
+const gui = new GUI({ title: '切换过渡选项' });
 
 gui.add(config, 'enabled');
 gui.add(config, 'rotation');
@@ -70,7 +70,7 @@ speed.add(config, 'speed_mode', ['duration', 'speed']).name('Mode');
 speed.add(config, 'speed_duration', 0.5, 10, 0.5).name('Duration (s)');
 speed.add(config, 'speed_speed', 0.5, 10, 0.5).name('Speed (rpm)');
 
-gui.add(config, 'run').name('Run');
+gui.add(config, 'run').name('运行');
 
 gui.onChange(() => {
   viewer.setOption(

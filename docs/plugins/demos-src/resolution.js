@@ -18,12 +18,12 @@ new Viewer({
       resolutions: [
         {
           id: 'SD',
-          label: 'Small',
+          label: '小图',
           panorama: baseUrl + 'sphere-small.jpg',
         },
         {
           id: 'HD',
-          label: 'Normal',
+          label: '普通',
           panorama: baseUrl + 'sphere.jpg',
         },
       ],

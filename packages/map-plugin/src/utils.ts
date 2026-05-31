@@ -93,7 +93,7 @@ export function drawImageCentered(context: CanvasRenderingContext2D, image: Imag
 }
 
 /**
- * Standard "drawImage" using devicePixelRatio
+ * 使用 devicePixelRatio 的标准 drawImage
  */
 export function drawImageHighDpi(
   context: CanvasRenderingContext2D,

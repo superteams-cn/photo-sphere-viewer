@@ -1,12 +1,12 @@
-# Custom element
+# 自定义元素
 
-Use a custom WebComponent as marker.
+使用自定义 WebComponent 作为标记。
 
 :::: code-demo
 
 ```yaml
 autoload: true
-title: PSV Marker element Demo
+title: PSV 标记元素示例
 packages:
   - name: markers-plugin
     style: true
@@ -15,7 +15,7 @@ packages:
 ::: code-group
 
 ```js:line-numbers [CustomMarkerElement.js]
-// declare the custom element
+// 声明自定义元素
 class CustomMarkerElement extends HTMLElement {
     constructor() {
         super();
@@ -165,7 +165,7 @@ viewerSize: ${viewerSize.width}px x ${viewerSize.height}px
     }
 }
 
-// register the custom element
+// 注册自定义元素
 customElements.define('custom-marker', CustomMarkerElement);
 ```
 
@@ -184,9 +184,9 @@ const viewer = new Viewer({
         MarkersPlugin.withConfig({
             markers: [{
                 id: 'element',
-                // get the custom element instance
+                // 获取自定义元素实例
                 element: document.querySelector('#custom-marker-element'),
-                listContent: 'Custom element',
+                listContent: '自定义元素',
                 position: { yaw: 0, pitch: -0.3 },
                 zIndex: 10,
             }],
@@ -198,8 +198,8 @@ const viewer = new Viewer({
 ```html [template.html]
 <custom-marker id="custom-marker-element" style="display: none">
   <img src="https://photo-sphere-viewer-data.netlify.app/assets/sphere-small.jpg" />
-  <h2>Custom element</h2>
-  <p>Use an existing element as marker. This WebComponent contains it's own animations and tooltip.</p>
+  <h2>自定义元素</h2>
+  <p>使用已有元素作为标记。这个 WebComponent 包含自己的动画和提示框。</p>
 </custom-marker>
 ```
 

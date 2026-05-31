@@ -6,7 +6,7 @@
 <ApiButton page="modules/OverlaysPlugin.html"/>
 Display additional images on top of the panorama.
 
-This plugin is available in the [@photo-sphere-viewer/overlays-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/overlays-plugin) package.
+这个插件由 [@photo-sphere-viewer/overlays-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/overlays-plugin) 包提供。
 :::
 
 ## Usage
