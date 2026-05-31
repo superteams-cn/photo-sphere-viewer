@@ -5,13 +5,13 @@ import type { AbstractVideoAdapterConfig, AbstractVideoPanorama } from '../../sh
  * Configuration of an equirectangular video
  */
 export type EquirectangularVideoPanorama = AbstractVideoPanorama & {
-    data?: PanoData | ((image: HTMLVideoElement) => PanoData);
+  data?: PanoData | ((image: HTMLVideoElement) => PanoData);
 };
 
 export type EquirectangularVideoAdapterConfig = AbstractVideoAdapterConfig & {
-    /**
+  /**
      * number of faces of the sphere geometry, higher values may decrease performances
      * @default 64
      */
-    resolution?: number;
+  resolution?: number;
 };

@@ -4,5 +4,8 @@
   "private": true,
   "scripts": {
     "lint": "tsc --noEmit && eslint . --fix"
+  },
+  "dependencies": {
+    "@photo-sphere-viewer/core": "workspace:*"
   }
 }

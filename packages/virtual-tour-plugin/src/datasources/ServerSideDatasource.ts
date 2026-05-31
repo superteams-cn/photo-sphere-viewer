@@ -5,37 +5,37 @@ import type { VirtualTourPlugin } from '../VirtualTourPlugin';
 import { AbstractDatasource } from './AbstractDataSource';
 
 export class ServerSideDatasource extends AbstractDatasource {
-    private readonly nodeResolver: VirtualTourPluginConfig['getNode'];
+  private readonly nodeResolver: VirtualTourPluginConfig['getNode'];
 
-    constructor(plugin: VirtualTourPlugin, viewer: Viewer) {
-        super(plugin, viewer);
+  constructor(plugin: VirtualTourPlugin, viewer: Viewer) {
+    super(plugin, viewer);
 
-        if (!plugin.config.getNode) {
-            throw new PSVError('Missing getNode() option.');
-        }
-
-        this.nodeResolver = plugin.config.getNode;
+    if (!plugin.config.getNode) {
+      throw new PSVError('Missing getNode() option.');
     }
 
-    async loadNode(nodeId: string) {
-        if (this.nodes[nodeId]) {
-            return this.nodes[nodeId];
-        } else {
-            const node = await this.nodeResolver(nodeId);
+    this.nodeResolver = plugin.config.getNode;
+  }
 
-            this.checkNode(node);
+  async loadNode(nodeId: string) {
+    if (this.nodes[nodeId]) {
+      return this.nodes[nodeId];
+    } else {
+      const node = await this.nodeResolver(nodeId);
 
-            node.links.forEach((link) => {
-                this.checkLink(node, link);
-            });
+      this.checkNode(node);
 
-            this.nodes[nodeId] = node;
+      node.links.forEach((link) => {
+        this.checkLink(node, link);
+      });
 
-            return node;
-        }
+      this.nodes[nodeId] = node;
+
+      return node;
     }
+  }
 
-    clearCache(): void {
-        this.nodes = {};
-    }
+  clearCache(): void {
+    this.nodes = {};
+  }
 }

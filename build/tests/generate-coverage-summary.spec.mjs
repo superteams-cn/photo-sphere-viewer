@@ -5,10 +5,10 @@ import path from 'path';
 const testDir = path.join(import.meta.dirname, 'fixtures/generate-coverage-summary');
 
 describe('generate-coverage-summary', () => {
-    it('should generate the summmary', () => {
-        const result = execSync(`node ${path.join(import.meta.dirname, '../generate-coverage-summary.mjs')}`, { cwd: testDir, encoding: 'utf-8' });
+  it('should generate the summmary', () => {
+    const result = execSync(`node ${path.join(import.meta.dirname, '../generate-coverage-summary.mjs')}`, { cwd: testDir, encoding: 'utf-8' });
 
-        const expected = `
+    const expected = `
 # \${\\textsf{\\color{#d3343c}59.4\\\\%}}$ lines, \${\\textsf{\\color{#d3b334}65.5\\\\%}}$ functions, \${\\textsf{\\color{#d3343c}44.2\\\\%}}$ branches
 
 | Package | Lines | Line Coverage | Functions | Function Coverage | Branches | Branch Coverage |
@@ -18,6 +18,6 @@ describe('generate-coverage-summary', () => {
 | **shared** | 1/26 | \${\\textsf{\\color{#d3343c}3.9\\\\%}}$ | 0/8 | \${\\textsf{\\color{#d3343c}0.0\\\\%}}$ | 0/17 | \${\\textsf{\\color{#d3343c}0.0\\\\%}}$ |
 `;
 
-        assert.strictEqual(result.trim(), expected.trim());
-    });
+    assert.strictEqual(result.trim(), expected.trim());
+  });
 });

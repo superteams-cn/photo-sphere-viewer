@@ -11,7 +11,8 @@
     "green-screen"
   ],
   "dependencies": {
-    "@photo-sphere-viewer/core": "0.0.0"
+    "@photo-sphere-viewer/core": "workspace:*",
+    "three": "^0.184.0"
   },
   "scripts": {
     "build": "tsup",

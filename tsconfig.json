@@ -11,6 +11,10 @@
     "isolatedModules": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@photo-sphere-viewer/*": ["packages/*/src"]
+    },
     "noImplicitOverride": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

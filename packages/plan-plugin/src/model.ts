@@ -7,177 +7,177 @@ import type { Layer, Map } from 'leaflet';
 export type GpsPosition = [number, number, number?];
 
 export type PlanHotspotStyle = {
-    /**
+  /**
      * Size of the hotspot
      * @default 15
      */
-    size?: number;
-    /**
+  size?: number;
+  /**
      * SVG or image URL used for hotspot
      */
-    image?: string;
-    /**
+  image?: string;
+  /**
      * Color of the hotspot when no image is provided
      * @default 'white'
      */
-    color?: string;
-    /**
+  color?: string;
+  /**
      * Size of the border
      * @default 0
      */
-    borderSize?: number;
-    /**
+  borderSize?: number;
+  /**
      * Color of the border
      * @default null
      */
-    borderColor?: string;
-    /**
+  borderColor?: string;
+  /**
      * Size on mouse hover
      * @default null
      */
-    hoverSize?: number;
-    /**
+  hoverSize?: number;
+  /**
      * SVG or image URL on mouse hover
      * @default null
      */
-    hoverImage?: string;
-    /**
+  hoverImage?: string;
+  /**
      * Color on mouse hover
      * @default null
      */
-    hoverColor?: string;
-    /**
+  hoverColor?: string;
+  /**
      * Size of the border on mouse hover
      * @default 4
      */
-    hoverBorderSize?: number;
-    /**
+  hoverBorderSize?: number;
+  /**
      * Color of the border on mouse hover
      * @default 'rgba(255, 255, 255, 0.8)'
      */
-    hoverBorderColor?: string;
+  hoverBorderColor?: string;
 };
 
 export type PlanHotspot = PlanHotspotStyle & {
-    /**
+  /**
      * GPS coordinates of the marker
      */
-    coordinates: GpsPosition;
+  coordinates: GpsPosition;
 
-    /**
+  /**
      * Unique identifier for the {@link SelectHotspot} event
      */
-    id?: string;
+  id?: string;
 
-    /**
+  /**
      * Tooltip visible on the map
      */
-    tooltip?: string | { content: string; className?: string };
+  tooltip?: string | { content: string; className?: string };
 };
 
 export type PlanLayer = {
-    urlTemplate?: string;
-    layer?: Layer;
-    name?: string;
-    attribution?: string;
+  urlTemplate?: string;
+  layer?: Layer;
+  name?: string;
+  attribution?: string;
 };
 
 export type PlanPluginConfig = {
-    /**
+  /**
      * GPS position of the current panorama
      */
-    coordinates?: GpsPosition;
+  coordinates?: GpsPosition;
 
-    /**
+  /**
      * Rotation offset to apply to the central pin
      * @default 0
      */
-    bearing?: string | number;
+  bearing?: string | number;
 
-    /**
+  /**
      * Size of the map
      * @default '300px * 200px'
      */
-    size?: CssSize;
+  size?: CssSize;
 
-    /**
+  /**
      * Position of the map
      * @default 'bottom left'
      */
-    position?: string | [string, string];
+  position?: string | [string, string];
 
-    /**
+  /**
      * Displays the map when loading the first panorama
      * @default true
      */
-    visibleOnLoad?: boolean;
+  visibleOnLoad?: boolean;
 
-    /**
+  /**
      * SVG or image URL used for the central pin (must be square)
      */
-    pinImage?: string;
+  pinImage?: string;
 
-    /**
+  /**
      * Size of the central pin
      * @default 35
      */
-    pinSize?: number;
+  pinSize?: number;
 
-    /**
+  /**
      * Default style of hotspots
      */
-    spotStyle?: PlanHotspotStyle;
+  spotStyle?: PlanHotspotStyle;
 
-    /**
+  /**
      * Default zoom level
      * @default 15
      */
-    defaultZoom?: number;
+  defaultZoom?: number;
 
-    /**
+  /**
      * Define the available layers
      * @default OpenStreetMap
      */
-    layers?: PlanLayer[];
+  layers?: PlanLayer[];
 
-    /**
+  /**
      * Let you configure Leaflet from scratch
      */
-    configureLeaflet?: (map: Map) => void;
+  configureLeaflet?: (map: Map) => void;
 
-    /**
+  /**
      * Points of interest on the map
      */
-    hotspots?: PlanHotspot[];
+  hotspots?: PlanHotspot[];
 
-    /**
+  /**
      * Always minimize the map when an hotspot/marker is clicked
      */
-    minimizeOnHotspotClick?: boolean;
+  minimizeOnHotspotClick?: boolean;
 
-    /**
+  /**
      * Configuration of map buttons
      */
-    buttons?: {
-        /** @default true */
-        maximize?: boolean;
-        /** @default true */
-        close?: boolean;
-        /** @default true */
-        reset?: boolean;
-    };
+  buttons?: {
+    /** @default true */
+    maximize?: boolean;
+    /** @default true */
+    close?: boolean;
+    /** @default true */
+    reset?: boolean;
+  };
 };
 
 export type ParsedPlanPluginConfig = Omit<PlanPluginConfig, 'position' | 'bearing'> & {
-    position: [string, string];
-    bearing: number;
+  position: [string, string];
+  bearing: number;
 };
 
 export type UpdatablePlanPluginConfig = Omit<
-    PlanPluginConfig,
-    | 'visibleOnLoad'
-    | 'defaultZoom'
-    | 'layers'
-    | 'configureLeaflet'
-    | 'buttons'
+  PlanPluginConfig,
+  | 'visibleOnLoad'
+  | 'defaultZoom'
+  | 'layers'
+  | 'configureLeaflet'
+  | 'buttons'
 >;

@@ -1,50 +1,50 @@
 import type { PanoramaOptions, Size } from '@photo-sphere-viewer/core';
 
 export type GalleryItem = {
-    /**
+  /**
      * Unique identifier of the item
      */
-    id: string | number;
-    /**
+  id: string | number;
+  /**
      * Panorama of the item
      */
-    panorama: any;
-    /**
+  panorama: any;
+  /**
      * URL of the thumbnail
      */
-    thumbnail?: string;
-    /**
+  thumbnail?: string;
+  /**
      * Text visible over the thumbnail
      */
-    name?: string;
-    /**
+  name?: string;
+  /**
      * Any option supported by the `setPanorama()` method
      */
-    options?: PanoramaOptions;
+  options?: PanoramaOptions;
 };
 
 export type GalleryPluginConfig = {
-    items?: GalleryItem[];
-    /**
+  items?: GalleryItem[];
+  /**
      * Displays arrows to navigate the gallery
      * @default true
      */
-    navigationArrows?: boolean;
-    /**
+  navigationArrows?: boolean;
+  /**
      * Displays the gallery when loading the first panorama
      * @default false
      */
-    visibleOnLoad?: boolean;
-    /**
+  visibleOnLoad?: boolean;
+  /**
      * Hides the gallery when the user clicks on an item
      * @default true
      */
-    hideOnClick?: boolean;
-    /**
+  hideOnClick?: boolean;
+  /**
      *  Size of thumbnails
      * @default 200x100
      */
-    thumbnailSize?: Size;
+  thumbnailSize?: Size;
 };
 
 export type UpdatableGalleryPluginConfig = Omit<GalleryPluginConfig, 'items' | 'navigationArrows' | 'visibleOnLoad'>;

@@ -5,60 +5,60 @@ import type { VideoPlugin } from './VideoPlugin';
  * @event Triggered when the video starts playing or is paused
  */
 export class PlayPauseEvent extends TypedEvent<VideoPlugin> {
-    static override readonly type = 'play-pause';
-    override type: 'play-pause';
+  static override readonly type = 'play-pause';
+  override type: 'play-pause';
 
-    /** @internal */
-    constructor(public readonly playing: boolean) {
-        super(PlayPauseEvent.type);
-    }
+  /** @internal */
+  constructor(public readonly playing: boolean) {
+    super(PlayPauseEvent.type);
+  }
 }
 
 /**
  * @event Triggered when the video volume changes
  */
 export class VolumeChangeEvent extends TypedEvent<VideoPlugin> {
-    static override readonly type = 'volume-change';
-    override type: 'volume-change';
+  static override readonly type = 'volume-change';
+  override type: 'volume-change';
 
-    /** @internal */
-    constructor(public readonly volume: number) {
-        super(VolumeChangeEvent.type);
-    }
+  /** @internal */
+  constructor(public readonly volume: number) {
+    super(VolumeChangeEvent.type);
+  }
 }
 
 /**
  * @event Triggered when the video play progression changes
  */
 export class ProgressEvent extends TypedEvent<VideoPlugin> {
-    static override readonly type = 'progress';
-    override type: 'progress';
+  static override readonly type = 'progress';
+  override type: 'progress';
 
-    /** @internal */
-    constructor(
-        public readonly time: number,
-        public readonly duration: number,
-        public readonly progress: number,
-    ) {
-        super(ProgressEvent.type);
-    }
+  /** @internal */
+  constructor(
+    public readonly time: number,
+    public readonly duration: number,
+    public readonly progress: number,
+  ) {
+    super(ProgressEvent.type);
+  }
 }
 
 /**
  * @event Triggered when the video buffer changes
  */
 export class BufferEvent extends TypedEvent<VideoPlugin> {
-    static override readonly type = 'buffer';
-    override type: 'buffer';
+  static override readonly type = 'buffer';
+  override type: 'buffer';
 
-    /** @internal */
-    constructor(public readonly maxBuffer: number) {
-        super(BufferEvent.type);
-    }
+  /** @internal */
+  constructor(public readonly maxBuffer: number) {
+    super(BufferEvent.type);
+  }
 }
 
 export type VideoPluginEvents =
-    | PlayPauseEvent
-    | VolumeChangeEvent
-    | ProgressEvent
-    | BufferEvent;
+  | PlayPauseEvent
+  | VolumeChangeEvent
+  | ProgressEvent
+  | BufferEvent;

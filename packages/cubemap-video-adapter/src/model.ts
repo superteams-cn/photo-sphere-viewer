@@ -4,19 +4,19 @@ import type { AbstractVideoAdapterConfig, AbstractVideoPanorama } from '../../sh
  * Configuration of a cubemap video
  */
 export type CubemapVideoPanorama = AbstractVideoPanorama & {
-    /**
+  /**
      * if the video is an equiangular cubemap (EAC)
      * @default true
      */
-    equiangular?: boolean;
+  equiangular?: boolean;
 };
 
 /**
  * Size information of a cubemap panorama
  */
 export type CubemapVideoData = {
-    isCubemap: true;
-    equiangular: boolean;
+  isCubemap: true;
+  equiangular: boolean;
 };
 
 export type CubemapVideoAdapterConfig = AbstractVideoAdapterConfig;

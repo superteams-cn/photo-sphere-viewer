@@ -4,33 +4,33 @@ import type { CustomPlugin } from './CustomPlugin';
 import icon from './icon.svg';
 
 export class CustomButton extends AbstractButton {
-    static override readonly id = 'custom-button';
+  static override readonly id = 'custom-button';
 
-    private plugin: CustomPlugin;
+  private plugin: CustomPlugin;
 
-    constructor(navbar: Navbar) {
-        super(navbar, {
-            className: 'custom-plugin__button',
-            icon: icon,
-            collapsable: true,
-            tabbable: true,
-        });
+  constructor(navbar: Navbar) {
+    super(navbar, {
+      className: 'custom-plugin__button',
+      icon: icon,
+      collapsable: true,
+      tabbable: true,
+    });
 
-        // do your initialisation logic here
-        // you will probably need the instance of your plugin
-        this.plugin = this.viewer.getPlugin('custom-plugin');
-    }
+    // do your initialisation logic here
+    // you will probably need the instance of your plugin
+    this.plugin = this.viewer.getPlugin('custom-plugin');
+  }
 
-    override destroy() {
-        // do your cleanup logic here
-        super.destroy();
-    }
+  override destroy() {
+    // do your cleanup logic here
+    super.destroy();
+  }
 
-    override isSupported() {
-        return !!this.plugin;
-    }
+  override isSupported() {
+    return !!this.plugin;
+  }
 
-    onClick() {
-        this.plugin.doSomething();
-    }
+  onClick() {
+    this.plugin.doSomething();
+  }
 }

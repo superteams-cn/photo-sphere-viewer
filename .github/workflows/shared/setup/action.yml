@@ -11,7 +11,11 @@ runs:
     - uses: actions/setup-node@v6
       with:
         node-version: '24'
-        cache: 'yarn'
+        cache: 'pnpm'
+
+    - name: enable corepack
+      shell: bash
+      run: corepack enable
 
     - name: env
       shell: bash
@@ -30,4 +34,4 @@ runs:
 
     - name: install
       shell: bash
-      run: yarn install
+      run: pnpm install --frozen-lockfile

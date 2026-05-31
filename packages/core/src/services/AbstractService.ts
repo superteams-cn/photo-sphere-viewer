@@ -6,21 +6,21 @@ import { ViewerState } from './ViewerState';
  * Base class for services
  */
 export abstract class AbstractService {
-    protected readonly config: ParsedViewerConfig;
-    protected readonly state: ViewerState;
+  protected readonly config: ParsedViewerConfig;
+  protected readonly state: ViewerState;
 
-    /**
+  /**
      * @internal
      */
-    constructor(protected readonly viewer: Viewer) {
-        this.config = viewer.config;
-        this.state = viewer.state;
-    }
+  constructor(protected readonly viewer: Viewer) {
+    this.config = viewer.config;
+    this.state = viewer.state;
+  }
 
-    /**
+  /**
      * Destroys the service
      * @internal
      */
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    destroy() {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  destroy() {}
 }

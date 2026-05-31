@@ -1,16 +1,16 @@
 import { Object3D } from 'three';
 
 export class DeviceOrientationControls {
-    object: Object3D;
-    deviceOrientation: any;
-    screenOrientation: number;
-    alphaOffset: number;
+  object: Object3D;
+  deviceOrientation: any;
+  screenOrientation: number;
+  alphaOffset: number;
 
-    constructor(object: Object3D, preferAbsolute: boolean);
+  constructor(object: Object3D, preferAbsolute: boolean);
 
-    connect();
+  connect();
 
-    disconnect();
+  disconnect();
 
-    update(): boolean;
+  update(): boolean;
 }

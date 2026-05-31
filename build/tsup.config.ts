@@ -10,65 +10,65 @@ import { packageJson } from './templates/package';
 import { readme } from './templates/readme';
 
 export default function createConfig(pkg: any) {
-    const banner = `/*!
+  const banner = `/*!
  * ${pkg.psv.title} ${pkg.version}
 ${
-    pkg.name === '@photo-sphere-viewer/core' ? ' * @copyright 2014-2015 Jérémy Heleine\n' : ''
+  pkg.name === '@photo-sphere-viewer/core' ? ' * @copyright 2014-2015 Jérémy Heleine\n' : ''
 } * @copyright 2015-${new Date().getFullYear()} Damien "Mistic" Sorel
  * @licence MIT (https://opensource.org/licenses/MIT)
  */`;
 
-    return defineConfig((options) => {
-        const e2e = options.env?.E2E;
-        const dev = e2e || options.watch;
+  return defineConfig((options) => {
+    const e2e = options.env?.E2E;
+    const dev = e2e || options.watch;
 
-        const plugins: Plugin[] = [
-            sassPlugin(),
-        ];
+    const plugins: Plugin[] = [
+      sassPlugin(),
+    ];
 
-        if (!e2e) {
-            plugins.push(
-                mapFixPlugin(),
-            );
-        }
+    if (!e2e) {
+      plugins.push(
+        mapFixPlugin(),
+      );
+    }
 
-        if (!dev) {
-            plugins.push(
-                budgetPlugin(pkg.psv.budget),
-                scssBundlePlugin(),
-                assetsPlugin({
-                    'LICENSE': license(),
-                    'README.md': readme(pkg),
-                    'package.json': packageJson(pkg),
-                }),
-            );
-        }
+    if (!dev) {
+      plugins.push(
+        budgetPlugin(pkg.psv.budget),
+        scssBundlePlugin(),
+        assetsPlugin({
+          'LICENSE': license(),
+          'README.md': readme(pkg),
+          'package.json': packageJson(pkg),
+        }),
+      );
+    }
 
-        return {
-            entryPoints: [pkg.main],
-            outDir: 'dist',
-            clean: true,
-            format: dev ? ['esm'] : ['esm', 'cjs'],
-            outExtension: ({ format }) => ({
-                js: { cjs: '.cjs', esm: '.module.js', iife: '.js' }[format],
-            }),
-            dts: !dev,
-            sourcemap: true,
-            external: ['three'],
-            noExternal: [/three\/examples\/.*/],
-            target: 'es2021',
-            define: {
-                PKG_VERSION: `'${pkg.version}'`,
-            },
-            loader: {
-                '.svg': 'text',
-                '.glsl': 'text',
-            },
-            banner: {
-                js: banner,
-                css: banner,
-            },
-            esbuildPlugins: plugins,
-        };
-    });
+    return {
+      entryPoints: [pkg.main],
+      outDir: 'dist',
+      clean: true,
+      format: dev ? ['esm'] : ['esm', 'cjs'],
+      outExtension: ({ format }) => ({
+        js: { cjs: '.cjs', esm: '.module.js', iife: '.js' }[format],
+      }),
+      dts: !dev,
+      sourcemap: true,
+      external: ['three'],
+      noExternal: [/three\/examples\/.*/],
+      target: 'es2021',
+      define: {
+        PKG_VERSION: `'${pkg.version}'`,
+      },
+      loader: {
+        '.svg': 'text',
+        '.glsl': 'text',
+      },
+      banner: {
+        js: banner,
+        css: banner,
+      },
+      esbuildPlugins: plugins,
+    };
+  });
 }

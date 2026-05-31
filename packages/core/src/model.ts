@@ -14,58 +14,58 @@ export type ResolvableBoolean = { initial: boolean; promise: Promise<boolean> };
  * Object defining a point
  */
 export type Point = {
-    x: number;
-    y: number;
+  x: number;
+  y: number;
 };
 
 /**
  * Object defining a size
  */
 export type Size = {
-    width: number;
-    height: number;
+  width: number;
+  height: number;
 };
 
 /**
  * Object defining a size in CSS
  */
 export type CssSize = {
-    width: string;
-    height: string;
+  width: string;
+  height: string;
 };
 
 /**
  * Object defining angular corrections to a sphere
  */
 export type SphereCorrection<T = number | string> = {
-    pan?: T;
-    tilt?: T;
-    roll?: T;
+  pan?: T;
+  tilt?: T;
+  roll?: T;
 };
 
 /**
  * Object defining a spherical position (radians)
  */
 export type Position = {
-    yaw: number;
-    pitch: number;
+  yaw: number;
+  pitch: number;
 };
 
 /**
  * Object defining a spherical position (radians or degrees)
  */
 export type SphericalPosition = {
-    yaw: number | string;
-    pitch: number | string;
+  yaw: number | string;
+  pitch: number | string;
 };
 
 /**
  * Object defining a position on the panorama image (pixels)
  */
 export type PanoramaPosition = {
-    textureX: number;
-    textureY: number;
-    textureFace?: string;
+  textureX: number;
+  textureY: number;
+  textureFace?: string;
 };
 
 /**
@@ -77,49 +77,49 @@ export type ExtendedPosition = SphericalPosition | PanoramaPosition;
  * Object defining options for {@link Viewer.animate}
  */
 export type AnimateOptions = Partial<ExtendedPosition> & {
-    /**
+  /**
      * Animation speed or duration in milliseconds
      */
-    speed: string | number;
-    /**
+  speed: string | number;
+  /**
      * New zoom level between 0 and 100
      */
-    zoom?: number;
-    /**
+  zoom?: number;
+  /**
      * Easing function used for the animation
      * @default 'inOutSine'
      */
-    easing?: AnimationOptions<any>['easing'];
+  easing?: AnimationOptions<any>['easing'];
 };
 
 /**
  * Configuration of an equirectangular panorama
  */
 export type EquirectangularPanorama = {
-    path: string;
-    data?: PanoData | PanoDataProvider;
+  path: string;
+  data?: PanoData | PanoDataProvider;
 };
 
 /**
  * Crop information of an equirectangular panorama
  */
 export type PanoData = {
-    isEquirectangular?: true;
-    fullWidth: number;
-    fullHeight?: number;
-    croppedWidth?: number;
-    croppedHeight?: number;
-    croppedX: number;
-    croppedY: number;
-    poseHeading?: number;
-    posePitch?: number;
-    poseRoll?: number;
-    /* @internal */
-    initialHeading?: number;
-    /* @internal */
-    initialPitch?: number;
-    /* @internal */
-    initialFov?: number;
+  isEquirectangular?: true;
+  fullWidth: number;
+  fullHeight?: number;
+  croppedWidth?: number;
+  croppedHeight?: number;
+  croppedX: number;
+  croppedY: number;
+  poseHeading?: number;
+  posePitch?: number;
+  poseRoll?: number;
+  /* @internal */
+  initialHeading?: number;
+  /* @internal */
+  initialPitch?: number;
+  /* @internal */
+  initialFov?: number;
 };
 
 /**
@@ -131,133 +131,133 @@ export type PanoDataProvider = (image: HTMLImageElement, xmpData?: PanoData) => 
  * Object defining options for {@link Viewer.setPanorama}
  */
 export type PanoramaOptions = {
-    /**
+  /**
      * new panorama position
      */
-    position?: ExtendedPosition;
-    /**
+  position?: ExtendedPosition;
+  /**
      * new navbar caption
      */
-    caption?: string;
-    /**
+  caption?: string;
+  /**
      * new panorama description
      */
-    description?: string;
-    /**
+  description?: string;
+  /**
      * new zoom level between 0 and 100
      */
-    zoom?: number;
-    /**
+  zoom?: number;
+  /**
      * enable transition (rotation + fading) between old and new panorama
      * @default true
      */
-    transition?: boolean | TransitionOptions;
-    /**
+  transition?: boolean | TransitionOptions;
+  /**
      * show the loader while loading the new panorama
      * @default true
      */
-    showLoader?: boolean;
-    /**
+  showLoader?: boolean;
+  /**
      * new sphere correction to apply to the panorama
      */
-    sphereCorrection?: SphereCorrection;
-    /**
+  sphereCorrection?: SphereCorrection;
+  /**
      * new data used for this panorama
      */
-    panoData?: PanoData | PanoDataProvider;
+  panoData?: PanoData | PanoDataProvider;
 };
 
 export type TransitionOptions = {
-    /** @default 1500 */
-    speed?: string | number;
-    /** @default true */
-    rotation?: boolean;
-    /** @default 'fade' */
-    effect?: 'fade' | 'black' | 'white';
+  /** @default 1500 */
+  speed?: string | number;
+  /** @default true */
+  rotation?: boolean;
+  /** @default 'fade' */
+  effect?: 'fade' | 'black' | 'white';
 };
 
 /**
  * Result of {@link AbstractAdapter.loadTexture}
  */
 export type TextureData<TTexture = Texture | Texture[] | Record<string, Texture>, TPanorama = any, TData = any> = {
-    /**
+  /**
      * Actual texture or list of textures
      */
-    texture: TTexture;
-    /**
+  texture: TTexture;
+  /**
      * Original panorama definition
      */
-    panorama: TPanorama;
-    /**
+  panorama: TPanorama;
+  /**
      * Panorama metadata
      */
-    panoData?: TData;
-    /**
+  panoData?: TData;
+  /**
      * Key used in the loader cache
      */
-    cacheKey?: string;
+  cacheKey?: string;
 };
 
 /**
  * Data of {@link events.ClickEvent}
  */
 export type ClickData = {
-    /**
+  /**
      * if it's a right click
      */
-    rightclick: boolean;
-    /**
+  rightclick: boolean;
+  /**
      * position in the browser window
      */
-    clientX: number;
-    /**
+  clientX: number;
+  /**
      * position in the browser window
      */
-    clientY: number;
-    /**
+  clientY: number;
+  /**
      * position in the viewer
      */
-    viewerX: number;
-    /**
+  viewerX: number;
+  /**
      * position in the viewer
      */
-    viewerY: number;
-    /**
+  viewerY: number;
+  /**
      * position in spherical coordinates
      */
-    yaw: number;
-    /**
+  yaw: number;
+  /**
      * position in spherical coordinates
      */
-    pitch: number;
-    /**
+  pitch: number;
+  /**
      * position on the texture, if applicable
      */
-    textureX?: number;
-    /**
+  textureX?: number;
+  /**
      * position on the texture, if applicable
      */
-    textureY?: number;
-    /**
+  textureY?: number;
+  /**
      * position on the texture, if applicable
      */
-    textureFace?: string;
-    /**
+  textureFace?: string;
+  /**
      * Original element which received the click
      */
-    target?: HTMLElement;
-    /**
+  target?: HTMLElement;
+  /**
      * Original event which triggered the click
      */
-    originalEvent?: Event;
-    /**
+  originalEvent?: Event;
+  /**
      * List of THREE scenes objects under the mouse
      */
-    objects: Object3D[];
-    /**
+  objects: Object3D[];
+  /**
      * clicked Marker
      */
-    marker?: any;
+  marker?: any;
 };
 
 /**
@@ -266,54 +266,54 @@ export type ClickData = {
  */
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 export interface NavbarButtonElement extends HTMLElement {
-    attachViewer?(viewer: Viewer): void;
+  attachViewer?(viewer: Viewer): void;
 }
 
 /**
  * Definition of a custom navbar button
  */
 export type NavbarCustomButton = {
-    /**
+  /**
      * Unique identifier of the button, usefull when using the {@link Navbar.getButton} method
      */
-    id?: string;
-    /**
+  id?: string;
+  /**
      * Tooltip displayed when the mouse is over the button
      * If can be a key in the global `lang` config
      */
-    title?: string;
-    /**
+  title?: string;
+  /**
      * Content of the button. Preferably a square image or SVG icon
      */
-    content: string | NavbarButtonElement;
-    /**
+  content: string | NavbarButtonElement;
+  /**
      * CSS class added to the button
      */
-    className?: string;
-    /**
+  className?: string;
+  /**
      * Function called when the button is clicked
      */
-    onClick?: (viewer: Viewer) => void;
-    /**
+  onClick?: (viewer: Viewer) => void;
+  /**
      * initial state of the button
      * @default false
      */
-    disabled?: boolean;
-    /**
+  disabled?: boolean;
+  /**
      * initial visibility of the button
      * @default true
      */
-    visible?: boolean;
-    /**
+  visible?: boolean;
+  /**
      * if the button can be moved to menu when the navbar is too small
      * @default true
      */
-    collapsable?: boolean;
-    /**
+  collapsable?: boolean;
+  /**
      * if the button is accessible with the keyboard
      * @default true
      */
-    tabbable?: boolean;
+  tabbable?: boolean;
 };
 
 /**
@@ -321,108 +321,108 @@ export type NavbarCustomButton = {
  * @see https://photo-sphere-viewer.js.org/guide/config.html
  */
 export type ViewerConfig = {
-    container: HTMLElement | string;
-    panorama?: any;
-    /** @default equirectangular */
-    adapter?: AdapterConstructor | [AdapterConstructor, any];
-    plugins?: Array<PluginConstructor | [PluginConstructor, any]>;
-    /** @default null */
-    caption?: string;
-    /** @default null */
-    description?: string;
-    /** @default null */
-    downloadUrl?: string;
-    /** @default null */
-    downloadName?: string;
-    /** @default null */
-    loadingImg?: string;
-    /** @default 'Loading...' */
-    loadingTxt?: string;
-    /** @default `container` size */
-    size?: CssSize;
-    /** @default false */
-    fisheye?: boolean | number;
-    /** @default 30 */
-    minFov?: number;
-    /** @default 90 */
-    maxFov?: number;
-    /** @default 50 */
-    defaultZoomLvl?: number;
-    /** @default 0 */
-    defaultYaw?: number | string;
-    /** @default 0 */
-    defaultPitch?: number | string;
-    /** @default `0,0,0` */
-    sphereCorrection?: SphereCorrection;
-    /** @default 1 */
-    moveSpeed?: number;
-    /** @default 1 */
-    zoomSpeed?: number;
-    /** @default 0.8 */
-    moveInertia?: boolean | number;
-    /** @default true */
-    mousewheel?: boolean;
-    /** @default true */
-    mousemove?: boolean;
-    /** @default false */
-    mousewheelCtrlKey?: boolean;
-    /** @default false */
-    touchmoveTwoFingers?: boolean;
-    /** @default null */
-    panoData?: PanoData | PanoDataProvider;
-    /** @default null */
-    requestHeaders?: Record<string, string> | ((url: string) => Record<string, string>);
-    /** @default '#000' */
-    canvasBackground?: string;
-    /** @default '{ speed: 1500, rotation: true, effect: "fade" }' */
-    defaultTransition?: TransitionOptions;
-    /** @default '{ alpha: true, antialias: true }' */
-    rendererParameters?: WebGLRendererParameters;
-    /** @default false */
-    withCredentials?: boolean | ((url: string) => boolean);
-    /** @default 'zoom move download description caption fullscreen' */
-    navbar?: boolean | string | Array<string | NavbarCustomButton>;
-    lang?: Record<string, string>;
-    /** @default 'fullscreen' */
-    keyboard?: boolean | 'always' | 'fullscreen';
-    keyboardActions?: Record<string, ACTIONS | ((viewer: Viewer, e: KeyboardEvent) => void)>;
+  container: HTMLElement | string;
+  panorama?: any;
+  /** @default equirectangular */
+  adapter?: AdapterConstructor | [AdapterConstructor, any];
+  plugins?: Array<PluginConstructor | [PluginConstructor, any]>;
+  /** @default null */
+  caption?: string;
+  /** @default null */
+  description?: string;
+  /** @default null */
+  downloadUrl?: string;
+  /** @default null */
+  downloadName?: string;
+  /** @default null */
+  loadingImg?: string;
+  /** @default 'Loading...' */
+  loadingTxt?: string;
+  /** @default `container` size */
+  size?: CssSize;
+  /** @default false */
+  fisheye?: boolean | number;
+  /** @default 30 */
+  minFov?: number;
+  /** @default 90 */
+  maxFov?: number;
+  /** @default 50 */
+  defaultZoomLvl?: number;
+  /** @default 0 */
+  defaultYaw?: number | string;
+  /** @default 0 */
+  defaultPitch?: number | string;
+  /** @default `0,0,0` */
+  sphereCorrection?: SphereCorrection;
+  /** @default 1 */
+  moveSpeed?: number;
+  /** @default 1 */
+  zoomSpeed?: number;
+  /** @default 0.8 */
+  moveInertia?: boolean | number;
+  /** @default true */
+  mousewheel?: boolean;
+  /** @default true */
+  mousemove?: boolean;
+  /** @default false */
+  mousewheelCtrlKey?: boolean;
+  /** @default false */
+  touchmoveTwoFingers?: boolean;
+  /** @default null */
+  panoData?: PanoData | PanoDataProvider;
+  /** @default null */
+  requestHeaders?: Record<string, string> | ((url: string) => Record<string, string>);
+  /** @default '#000' */
+  canvasBackground?: string;
+  /** @default '{ speed: 1500, rotation: true, effect: "fade" }' */
+  defaultTransition?: TransitionOptions;
+  /** @default '{ alpha: true, antialias: true }' */
+  rendererParameters?: WebGLRendererParameters;
+  /** @default false */
+  withCredentials?: boolean | ((url: string) => boolean);
+  /** @default 'zoom move download description caption fullscreen' */
+  navbar?: boolean | string | Array<string | NavbarCustomButton>;
+  lang?: Record<string, string>;
+  /** @default 'fullscreen' */
+  keyboard?: boolean | 'always' | 'fullscreen';
+  keyboardActions?: Record<string, ACTIONS | ((viewer: Viewer, e: KeyboardEvent) => void)>;
 };
 
 /**
  * Viewer configuration after applying parsers
  */
 export type ParsedViewerConfig = Omit<
-    ViewerConfig,
-    | 'adapter'
-    | 'plugins'
-    | 'defaultYaw'
-    | 'defaultPitch'
-    | 'moveInertia'
-    | 'fisheye'
-    | 'requestHeaders'
-    | 'withCredentials'
-    | 'navbar'
+  ViewerConfig,
+  | 'adapter'
+  | 'plugins'
+  | 'defaultYaw'
+  | 'defaultPitch'
+  | 'moveInertia'
+  | 'fisheye'
+  | 'requestHeaders'
+  | 'withCredentials'
+  | 'navbar'
 > & {
-    adapter?: [AdapterConstructor, any];
-    plugins?: Array<[PluginConstructor, any]>;
-    defaultYaw?: number;
-    defaultPitch?: number;
-    moveInertia?: number;
-    fisheye?: number;
-    requestHeaders?: (url: string) => Record<string, string>;
-    withCredentials?: (url: string) => boolean;
-    navbar?: Array<string | NavbarCustomButton>;
+  adapter?: [AdapterConstructor, any];
+  plugins?: Array<[PluginConstructor, any]>;
+  defaultYaw?: number;
+  defaultPitch?: number;
+  moveInertia?: number;
+  fisheye?: number;
+  requestHeaders?: (url: string) => Record<string, string>;
+  withCredentials?: (url: string) => boolean;
+  navbar?: Array<string | NavbarCustomButton>;
 };
 
 /**
  * Readonly viewer configuration
  */
 export type ReadonlyViewerConfig =
-    | 'panorama'
-    | 'panoData'
-    | 'container'
-    | 'adapter'
-    | 'plugins';
+  | 'panorama'
+  | 'panoData'
+  | 'container'
+  | 'adapter'
+  | 'plugins';
 
 /**
  * Updatable viewer configuration

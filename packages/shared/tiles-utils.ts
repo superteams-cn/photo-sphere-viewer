@@ -6,19 +6,19 @@ import { BufferGeometry, LineSegments, Material, MeshBasicMaterial, Object3D, Wi
  * @internal
  */
 export function buildErrorMaterial(): MeshBasicMaterial {
-    const canvas = new OffscreenCanvas(512, 512);
+  const canvas = new OffscreenCanvas(512, 512);
 
-    const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d');
 
-    ctx.fillStyle = '#333';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.font = `${canvas.width / 5}px serif`;
-    ctx.fillStyle = '#a22';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('⚠', canvas.width / 2, canvas.height / 2);
+  ctx.fillStyle = '#333';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.font = `${canvas.width / 5}px serif`;
+  ctx.fillStyle = '#a22';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('⚠', canvas.width / 2, canvas.height / 2);
 
-    return new MeshBasicMaterial({ map: utils.createTexture(canvas) });
+  return new MeshBasicMaterial({ map: utils.createTexture(canvas) });
 }
 
 /**
@@ -26,13 +26,13 @@ export function buildErrorMaterial(): MeshBasicMaterial {
  * @internal
  */
 export function createWireFrame(geometry: BufferGeometry): Object3D {
-    const wireframe = new WireframeGeometry(geometry);
-    const line = new LineSegments<WireframeGeometry, Material>(wireframe);
-    line.material.depthTest = false;
-    line.material.depthWrite = false;
-    line.material.opacity = 0.25;
-    line.material.transparent = true;
-    return line;
+  const wireframe = new WireframeGeometry(geometry);
+  const line = new LineSegments<WireframeGeometry, Material>(wireframe);
+  line.material.depthTest = false;
+  line.material.depthWrite = false;
+  line.material.opacity = 0.25;
+  line.material.transparent = true;
+  return line;
 }
 
 const DEBUG_COLORS = ['dodgerblue', 'limegreen', 'indianred'];
@@ -42,25 +42,25 @@ const DEBUG_COLORS = ['dodgerblue', 'limegreen', 'indianred'];
  * @internal
  */
 export function buildDebugTexture(image: HTMLImageElement, level: number, id: string): HTMLCanvasElement {
-    const canvas = document.createElement('canvas');
-    canvas.width = image.width;
-    canvas.height = image.height;
-    const ctx = canvas.getContext('2d');
+  const canvas = document.createElement('canvas');
+  canvas.width = image.width;
+  canvas.height = image.height;
+  const ctx = canvas.getContext('2d');
 
-    ctx.fillStyle = DEBUG_COLORS[level % DEBUG_COLORS.length];
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = DEBUG_COLORS[level % DEBUG_COLORS.length];
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.globalCompositeOperation = 'multiply';
-    ctx.drawImage(image, 0, 0);
+  ctx.globalCompositeOperation = 'multiply';
+  ctx.drawImage(image, 0, 0);
 
-    const fontSize = image.width / 7;
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.fillStyle = 'white';
-    ctx.font = `${fontSize}px monospace`;
-    ctx.textAlign = 'center';
-    id.split('\n').forEach((id2, i) => {
-        ctx.fillText(id2, image.width / 2, image.height / 2 + fontSize * (0.3 + i));
-    });
+  const fontSize = image.width / 7;
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.fillStyle = 'white';
+  ctx.font = `${fontSize}px monospace`;
+  ctx.textAlign = 'center';
+  id.split('\n').forEach((id2, i) => {
+    ctx.fillText(id2, image.width / 2, image.height / 2 + fontSize * (0.3 + i));
+  });
 
-    return canvas;
+  return canvas;
 }

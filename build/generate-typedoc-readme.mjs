@@ -13,41 +13,41 @@ const DIST_DIR = '.tmp/typedoc';
 const DIST_FILE = 'README.md';
 
 (async () => {
-    const packages = readdirSync(PACKAGES_DIR).filter(name => name !== 'shared');
+  const packages = readdirSync(PACKAGES_DIR).filter(name => name !== 'shared');
 
-    const plugins = [];
-    const adapters = [];
+  const plugins = [];
+  const adapters = [];
 
-    for (const name of packages) {
-        const pkgFile = path.join(PACKAGES_DIR, name, PKG_FILE);
-        const typedocFile = path.join(PACKAGES_DIR, name, TYPEDOC_FILE);
-        const distDir = path.join(PACKAGES_DIR, name, DIST_DIR);
-        const destFile = path.join(distDir, DIST_FILE);
+  for (const name of packages) {
+    const pkgFile = path.join(PACKAGES_DIR, name, PKG_FILE);
+    const typedocFile = path.join(PACKAGES_DIR, name, TYPEDOC_FILE);
+    const distDir = path.join(PACKAGES_DIR, name, DIST_DIR);
+    const destFile = path.join(distDir, DIST_FILE);
 
-        const pkg = JSON.parse(await readFile(pkgFile, { encoding: 'utf8' }));
-        const typedoc = JSON.parse(await readFile(typedocFile, { encoding: 'utf8' }));
+    const pkg = JSON.parse(await readFile(pkgFile, { encoding: 'utf8' }));
+    const typedoc = JSON.parse(await readFile(typedocFile, { encoding: 'utf8' }));
 
-        const content = `
+    const content = `
 NPM package : [${pkg.name}](https://www.npmjs.com/package/${pkg.name})
 
 Documentation : ${pkg.homepage}
 `.trim();
 
-        console.log(`create ${destFile}`);
-        await mkdir(distDir, { recursive: true });
-        await writeFile(destFile, content);
+    console.log(`create ${destFile}`);
+    await mkdir(distDir, { recursive: true });
+    await writeFile(destFile, content);
 
-        if (typedoc.name.endsWith('Plugin')) {
-            plugins.push(typedoc.name);
-        } else if (typedoc.name.endsWith('Adapter')) {
-            adapters.push(typedoc.name);
-        }
+    if (typedoc.name.endsWith('Plugin')) {
+      plugins.push(typedoc.name);
+    } else if (typedoc.name.endsWith('Adapter')) {
+      adapters.push(typedoc.name);
     }
+  }
 
-    const distDir = DIST_DIR;
-    const destFile = path.join(distDir, DIST_FILE);
+  const distDir = DIST_DIR;
+  const destFile = path.join(distDir, DIST_FILE);
 
-    const content = `
+  const content = `
 # Core
 
 - [Viewer](classes/Core.Viewer.html)
@@ -63,7 +63,7 @@ ${plugins.map(plugin => `- [${plugin}](modules/${plugin}.html)`).join('\n')}
 ${adapters.map(adapter => `- [${adapter}](modules/${adapter}.html)`).join('\n')}
 `.trim();
 
-    console.log(`create ${destFile}`);
-    await mkdir(distDir, { recursive: true });
-    await writeFile(destFile, content);
+  console.log(`create ${destFile}`);
+  await mkdir(distDir, { recursive: true });
+  await writeFile(destFile, content);
 })();

@@ -46,8 +46,8 @@ jobs:
 
       - name: build
         run: |
-          yarn ci:version ${{ env.RELEASE_VERSION }}
-          yarn ci:build
+          pnpm ci:version ${{ env.RELEASE_VERSION }}
+          pnpm ci:build
 
       - name: package
         if: ${{ github.ref_type == 'tag' }}
@@ -70,7 +70,7 @@ jobs:
 
       - name: npm publish
         run: |
-          yarn ci:publish ${{ github.event.inputs.dry && '-- --dry-run' || '' }}
+          pnpm ci:publish ${{ github.event.inputs.dry && '-- --dry-run' || '' }}
         env:
           NPM_TAG: ${{ env.RELEASE_TAG }}
 

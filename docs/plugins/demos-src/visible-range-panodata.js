@@ -4,17 +4,17 @@ import { VisibleRangePlugin } from '@photo-sphere-viewer/visible-range-plugin';
 const baseUrl = 'https://photo-sphere-viewer-data.netlify.app/assets/';
 
 new Viewer({
-    container: 'viewer',
-    panorama: baseUrl + 'sphere-cropped.jpg',
-    caption: 'Parc national du Mercantour <b>&copy; Damien Sorel</b>',
-    loadingImg: baseUrl + 'loader.gif',
-    touchmoveTwoFingers: true,
-    mousewheelCtrlKey: true,
-    defaultZoomLvl: 30,
+  container: 'viewer',
+  panorama: baseUrl + 'sphere-cropped.jpg',
+  caption: 'Parc national du Mercantour <b>&copy; Damien Sorel</b>',
+  loadingImg: baseUrl + 'loader.gif',
+  touchmoveTwoFingers: true,
+  mousewheelCtrlKey: true,
+  defaultZoomLvl: 30,
 
-    plugins: [
-        VisibleRangePlugin.withConfig({
-            usePanoData: true,
-        }),
-    ],
+  plugins: [
+    VisibleRangePlugin.withConfig({
+      usePanoData: true,
+    }),
+  ],
 });

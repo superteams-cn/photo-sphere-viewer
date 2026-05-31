@@ -6,25 +6,25 @@ import path from 'path';
 const testDir = path.join(import.meta.dirname, 'fixtures/generate-changelog');
 
 describe('generate-changelog', () => {
-    it('should generate the changelog', (done) => {
-        const gitLog = readFileSync(path.join(testDir, 'git-log.txt'), { encoding: 'utf8' });
+  it('should generate the changelog', (done) => {
+    const gitLog = readFileSync(path.join(testDir, 'git-log.txt'), { encoding: 'utf8' });
 
-        const proc = exec(`node ${path.join(import.meta.dirname, '../generate-changelog.mjs')} 5.7.4 5.8.0`, { cwd: testDir }, (err) => {
-            if (err) {
-                assert.fail(err);
-            }
-        });
+    const proc = exec(`node ${path.join(import.meta.dirname, '../generate-changelog.mjs')} 5.7.4 5.8.0`, { cwd: testDir }, (err) => {
+      if (err) {
+        assert.fail(err);
+      }
+    });
 
-        let actual = '';
-        proc.stdout.on('data', (data) => {
-            actual += data;
-        });
+    let actual = '';
+    proc.stdout.on('data', (data) => {
+      actual += data;
+    });
 
-        proc.stdin.write(gitLog);
-        proc.stdin.end();
+    proc.stdin.write(gitLog);
+    proc.stdin.end();
 
-        proc.on('exit', () => {
-            const expected = `
+    proc.on('exit', () => {
+      const expected = `
 Full changelog: [5.7.4...5.8.0](https://github.com/mistic100/Photo-Sphere-Viewer/compare/5.7.4...5.8.0)
 
 - Fix #1329 virtual-tour: cannot click on arrows
@@ -36,9 +36,9 @@ Full changelog: [5.7.4...5.8.0](https://github.com/mistic100/Photo-Sphere-Viewer
 - Close #1118 markers: add new "elementLayer" type
 - Remove LittlePlanetAdapter`;
 
-            assert.strictEqual(actual.trim(), expected.trim());
+      assert.strictEqual(actual.trim(), expected.trim());
 
-            done();
-        });
+      done();
     });
+  });
 });

@@ -60,7 +60,7 @@ jobs:
         uses: ./.github/workflows/shared/setup
 
       - name: build
-        run: yarn ci:build
+        run: pnpm ci:build
 
       - name: test summary
         uses: phoenix-actions/test-reporting@v16
@@ -87,7 +87,7 @@ jobs:
           turbo-cache: 'false'
 
       - name: e2e
-        run: yarn ci:e2e
+        run: pnpm ci:e2e
 
       - name: test summary
         uses: phoenix-actions/test-reporting@v16
@@ -137,4 +137,4 @@ jobs:
           turbo-cache: 'false'
 
       - name: build
-        run: yarn doc:build
+        run: pnpm doc:build

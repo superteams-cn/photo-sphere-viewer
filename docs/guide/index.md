@@ -8,12 +8,12 @@ Test Photo Sphere Viewer with you own panorama in the [Playground](../playground
 
 ## Install Photo Sphere Viewer
 
-#### With npm or yarn
+#### With a package manager
 
 ```bash
 npm install @photo-sphere-viewer/core
 
-yarn add @photo-sphere-viewer/core
+pnpm add @photo-sphere-viewer/core
 ```
 
 #### Via CDN

@@ -15,39 +15,39 @@ export type CubemapArray = string[];
  * Object defining a cubemap as separated files
  */
 export type CubemapSeparate = {
-    type: 'separate';
-    paths: Cubemap | CubemapArray;
-    /**
+  type: 'separate';
+  paths: Cubemap | CubemapArray;
+  /**
      * Set to true if the top and bottom faces are not correctly oriented
      * @default false
      */
-    flipTopBottom?: boolean;
+  flipTopBottom?: boolean;
 };
 
 /**
  * Object defining a cubemap as a single stripe file
  */
 export type CubemapStripe = {
-    type: 'stripe';
-    path: string;
-    /**
+  type: 'stripe';
+  path: string;
+  /**
      * Set to true if the top and bottom faces are not correctly oriented
      * @default false
      */
-    flipTopBottom?: boolean;
-    /**
+  flipTopBottom?: boolean;
+  /**
      * Order of the faces in the file
      * @default 'left, front, right, back, top, bottom'
      */
-    order?: CubemapFaces[];
+  order?: CubemapFaces[];
 };
 
 /**
  * Object defining a cubemap as a single net file (cross arrangement)
  */
 export type CubemapNet = {
-    type: 'net';
-    path: string;
+  type: 'net';
+  path: string;
 };
 
 /**
@@ -59,15 +59,15 @@ export type CubemapPanorama = Cubemap | CubemapArray | CubemapSeparate | Cubemap
  * Size information of a cubemap panorama
  */
 export type CubemapData = {
-    isCubemap: true;
-    flipTopBottom: boolean;
-    faceSize: number;
+  isCubemap: true;
+  flipTopBottom: boolean;
+  faceSize: number;
 };
 
 export type CubemapAdapterConfig = {
-    /**
+  /**
      * used for cubemap tiles adapter
      * @internal
      */
-    blur?: boolean;
+  blur?: boolean;
 };

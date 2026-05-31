@@ -1,11 +1,11 @@
 // *** MAIN ***
 $main-background-stops: #fff 0%,
-    #fdfdfd 16%,
-    #fbfbfb 33%,
-    #f8f8f8 49%,
-    #efefef 66%,
-    #dfdfdf 82%,
-    #bfbfbf 100% !default;
+  #fdfdfd 16%,
+  #fbfbfb 33%,
+  #f8f8f8 49%,
+  #efefef 66%,
+  #dfdfdf 82%,
+  #bfbfbf 100% !default;
 $main-background: radial-gradient($main-background-stops) !default;
 $element-focus-outline: 2px solid #007cff !default;
 
@@ -101,8 +101,8 @@ $overlay-title-color: black !default;
 $overlay-text-font: 20px sans-serif !default;
 $overlay-text-color: rgb(0, 0, 0, 0.8) !default;
 $overlay-image-size: (
-    portrait: 50%,
-    landscape: 33%,
+  portrait: 50%,
+  landscape: 33%,
 ) !default;
 
 // *** Z-INDEXES ***

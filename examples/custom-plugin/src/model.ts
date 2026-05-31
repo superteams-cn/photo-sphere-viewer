@@ -1,3 +1,3 @@
 export type CustomPluginConfig = {
-    foo: string;
+  foo: string;
 };

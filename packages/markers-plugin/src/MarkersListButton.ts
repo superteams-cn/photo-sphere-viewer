@@ -5,47 +5,47 @@ import type { MarkersPlugin } from './MarkersPlugin';
 import pinList from './icons/pin-list.svg';
 
 export class MarkersListButton extends AbstractButton {
-    static override readonly id = 'markersList';
+  static override readonly id = 'markersList';
 
-    private readonly plugin: MarkersPlugin;
+  private readonly plugin: MarkersPlugin;
 
-    constructor(navbar: Navbar) {
-        super(navbar, {
-            className: ' psv-markers-list-button',
-            icon: pinList,
-            hoverScale: true,
-            collapsable: true,
-            tabbable: true,
-        });
+  constructor(navbar: Navbar) {
+    super(navbar, {
+      className: ' psv-markers-list-button',
+      icon: pinList,
+      hoverScale: true,
+      collapsable: true,
+      tabbable: true,
+    });
 
-        this.plugin = this.viewer.getPlugin('markers');
+    this.plugin = this.viewer.getPlugin('markers');
 
-        if (this.plugin) {
-            this.viewer.addEventListener(events.ShowPanelEvent.type, this);
-            this.viewer.addEventListener(events.HidePanelEvent.type, this);
-        }
+    if (this.plugin) {
+      this.viewer.addEventListener(events.ShowPanelEvent.type, this);
+      this.viewer.addEventListener(events.HidePanelEvent.type, this);
     }
+  }
 
-    override destroy() {
-        this.viewer.removeEventListener(events.ShowPanelEvent.type, this);
-        this.viewer.removeEventListener(events.HidePanelEvent.type, this);
+  override destroy() {
+    this.viewer.removeEventListener(events.ShowPanelEvent.type, this);
+    this.viewer.removeEventListener(events.HidePanelEvent.type, this);
 
-        super.destroy();
+    super.destroy();
+  }
+
+  override isSupported() {
+    return !!this.plugin;
+  }
+
+  handleEvent(e: Event) {
+    if (e instanceof events.ShowPanelEvent) {
+      this.toggleActive(e.panelId === ID_PANEL_MARKERS_LIST);
+    } else if (e instanceof events.HidePanelEvent) {
+      this.toggleActive(false);
     }
+  }
 
-    override isSupported() {
-        return !!this.plugin;
-    }
-
-    handleEvent(e: Event) {
-        if (e instanceof events.ShowPanelEvent) {
-            this.toggleActive(e.panelId === ID_PANEL_MARKERS_LIST);
-        } else if (e instanceof events.HidePanelEvent) {
-            this.toggleActive(false);
-        }
-    }
-
-    onClick() {
-        this.plugin.toggleMarkersList();
-    }
+  onClick() {
+    this.plugin.toggleMarkersList();
+  }
 }

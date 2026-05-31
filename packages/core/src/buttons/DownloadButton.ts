@@ -5,62 +5,62 @@ import { ConfigChangedEvent, PanoramaLoadedEvent } from '../events';
 import { AbstractButton } from './AbstractButton';
 
 export class DownloadButton extends AbstractButton {
-    static override readonly id = 'download';
+  static override readonly id = 'download';
 
-    readonly link: HTMLAnchorElement;
+  readonly link: HTMLAnchorElement;
 
-    constructor(navbar: Navbar) {
-        super(navbar, {
-            tagName: 'a',
-            className: 'psv-download-button',
-            hoverScale: true,
-            collapsable: true,
-            tabbable: true,
-            icon: ICONS.download,
-        });
+  constructor(navbar: Navbar) {
+    super(navbar, {
+      tagName: 'a',
+      className: 'psv-download-button',
+      hoverScale: true,
+      collapsable: true,
+      tabbable: true,
+      icon: ICONS.download,
+    });
 
-        this.viewer.addEventListener(ConfigChangedEvent.type, this);
-        this.viewer.addEventListener(PanoramaLoadedEvent.type, this);
+    this.viewer.addEventListener(ConfigChangedEvent.type, this);
+    this.viewer.addEventListener(PanoramaLoadedEvent.type, this);
+  }
+
+  override destroy(): void {
+    this.viewer.removeEventListener(ConfigChangedEvent.type, this);
+    this.viewer.removeEventListener(PanoramaLoadedEvent.type, this);
+
+    super.destroy();
+  }
+
+  handleEvent(e: Event) {
+    if (e instanceof ConfigChangedEvent) {
+      e.containsOptions('downloadUrl') && this.checkSupported();
+      e.containsOptions('downloadUrl', 'downloadName') && this.__update();
+    } else if (e instanceof PanoramaLoadedEvent) {
+      this.__update();
     }
+  }
 
-    override destroy(): void {
-        this.viewer.removeEventListener(ConfigChangedEvent.type, this);
-        this.viewer.removeEventListener(PanoramaLoadedEvent.type, this);
+  onClick() {
+    // nothing
+  }
 
-        super.destroy();
+  override checkSupported() {
+    const adapter = this.viewer.adapter.constructor as typeof AbstractAdapter;
+    const supported = adapter.supportsDownload || this.viewer.config.downloadUrl;
+    if (supported) {
+      this.show();
+    } else {
+      this.hide();
     }
+  }
 
-    handleEvent(e: Event) {
-        if (e instanceof ConfigChangedEvent) {
-            e.containsOptions('downloadUrl') && this.checkSupported();
-            e.containsOptions('downloadUrl', 'downloadName') && this.__update();
-        } else if (e instanceof PanoramaLoadedEvent) {
-            this.__update();
-        }
+  private __update() {
+    const link = this.container as HTMLAnchorElement;
+    link.href = this.viewer.config.downloadUrl || this.viewer.config.panorama;
+    link.target = '_blank';
+    if (link.href.startsWith('data:') && !this.viewer.config.downloadName) {
+      link.download = 'panorama.' + link.href.substring(0, link.href.indexOf(';')).split('/').pop();
+    } else {
+      link.download = this.viewer.config.downloadName || link.href.split('/').pop();
     }
-
-    onClick() {
-        // nothing
-    }
-
-    override checkSupported() {
-        const adapter = this.viewer.adapter.constructor as typeof AbstractAdapter;
-        const supported = adapter.supportsDownload || this.viewer.config.downloadUrl;
-        if (supported) {
-            this.show();
-        } else {
-            this.hide();
-        }
-    }
-
-    private __update() {
-        const link = this.container as HTMLAnchorElement;
-        link.href = this.viewer.config.downloadUrl || this.viewer.config.panorama;
-        link.target = '_blank';
-        if (link.href.startsWith('data:') && !this.viewer.config.downloadName) {
-            link.download = 'panorama.' + link.href.substring(0, link.href.indexOf(';')).split('/').pop();
-        } else {
-            link.download = this.viewer.config.downloadName || link.href.split('/').pop();
-        }
-    }
+  }
 }

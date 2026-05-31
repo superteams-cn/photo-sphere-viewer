@@ -18,16 +18,16 @@ export const OPTION_DATA_KEY = utils.dasherize(OPTION_DATA);
  * Setting item template, by type
  */
 export const SETTINGS_TEMPLATE_: Record<Setting['type'], any> = {
-    options: (setting: OptionsSetting, lang: ViewerConfig['lang']) => {
-        const current = setting.current();
-        const option = setting.options().find(opt => opt.id === current);
-        return `
+  options: (setting: OptionsSetting, lang: ViewerConfig['lang']) => {
+    const current = setting.current();
+    const option = setting.options().find(opt => opt.id === current);
+    return `
 <span class="psv-settings-item-label">${lang[setting.label] ?? setting.label}</span>
 <span class="psv-settings-item-value">${option?.label ?? current}</span>
 <span class="psv-settings-item-icon">${chevron}</span>
 `;
-    },
-    toggle: (setting: ToggleSetting, lang: ViewerConfig['lang']) => `
+  },
+  toggle: (setting: ToggleSetting, lang: ViewerConfig['lang']) => `
 <span class="psv-settings-item-label">${lang[setting.label] ?? setting.label}</span>
 <span class="psv-settings-item-value">${setting.active() ? switchOn : switchOff}</span>
 `,
@@ -51,9 +51,9 @@ ${settings.map(setting => `
  * Settings options template
  */
 export const SETTING_OPTIONS_TEMPLATE = (setting: OptionsSetting, lang: ViewerConfig['lang']) => {
-    const current = setting.current();
+  const current = setting.current();
 
-    return `
+  return `
 <ul class="psv-settings-list">
     <li class="psv-settings-item psv-settings-item--header" tabindex="0"
         data-${SETTING_DATA_KEY}="${setting.id}" data-${OPTION_DATA_KEY}="${ID_BACK}">

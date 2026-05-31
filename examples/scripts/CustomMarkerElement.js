@@ -2,47 +2,47 @@
  * Custom element used for the markers demo
  */
 export class CustomMarkerElement extends HTMLElement {
-    constructor() {
-        super();
+  constructor() {
+    super();
 
-        this.fmt = new Intl.NumberFormat({ maximumSignificantDigits: 4 });
+    this.fmt = new Intl.NumberFormat({ maximumSignificantDigits: 4 });
 
-        const dom = this.attachShadow({ mode: 'closed' });
+    const dom = this.attachShadow({ mode: 'closed' });
 
-        const style = document.createElement('style');
-        dom.appendChild(style);
-        style.innerText = STYLE;
+    const style = document.createElement('style');
+    dom.appendChild(style);
+    style.innerText = STYLE;
 
-        const button = document.createElement('button');
-        dom.appendChild(button);
-        button.innerHTML = ICON;
+    const button = document.createElement('button');
+    dom.appendChild(button);
+    button.innerHTML = ICON;
 
-        this.tooltip = document.createElement('div');
-        this.tooltip.classList.add('tooltip');
-        dom.appendChild(this.tooltip);
-        this.tooltip.innerHTML = '<slot></slot>';
+    this.tooltip = document.createElement('div');
+    this.tooltip.classList.add('tooltip');
+    dom.appendChild(this.tooltip);
+    this.tooltip.innerHTML = '<slot></slot>';
 
-        this.legend = document.createElement('pre');
-        this.tooltip.appendChild(this.legend);
+    this.legend = document.createElement('pre');
+    this.tooltip.appendChild(this.legend);
 
-        button.addEventListener('mouseleave', () => {
-            this.tooltip.classList.add('hiding');
-        });
+    button.addEventListener('mouseleave', () => {
+      this.tooltip.classList.add('hiding');
+    });
 
-        dom.addEventListener('animationend', () => {
-            this.tooltip.classList.remove('hiding');
-        });
-    }
+    dom.addEventListener('animationend', () => {
+      this.tooltip.classList.remove('hiding');
+    });
+  }
 
-    updateMarker({ marker, position, viewerPosition, zoomLevel, viewerSize }) {
-        this.legend.innerText = `Params
+  updateMarker({ marker: _marker, position, viewerPosition, zoomLevel, viewerSize }) {
+    this.legend.innerText = `Params
 position: ${position.x}px x ${position.y}px
 viewerPosition: ${this.fmt.format(viewerPosition.yaw)}rad / ${this.fmt.format(viewerPosition.pitch)}rad
 zoomLevel: ${zoomLevel}%
 viewerSize: ${viewerSize.width}px x ${viewerSize.height}px
 `;
-        this.tooltip.classList.toggle('bottom', position.y < viewerSize.height / 3);
-    }
+    this.tooltip.classList.toggle('bottom', position.y < viewerSize.height / 3);
+  }
 }
 
 const STYLE = `

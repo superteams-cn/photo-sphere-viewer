@@ -14,7 +14,7 @@
     "watch": "tsup --watch",
     "instrument": "nyc instrument dist/index.module.js .",
     "lint": "tsc --noEmit && eslint . --fix && stylelint \"src/**/*.scss\" --fix",
-    "test": "mocha -r ts-node/register \"src/**/*.spec.ts\"",
+    "test": "NODE_OPTIONS='--import tsx' mocha \"src/**/*.spec.ts\"",
     "publish-dist": "cd dist && npm publish --tag=$NPM_TAG --access=public",
     "npm-link": "cd dist && npm link"
   },
@@ -22,5 +22,8 @@
     "title": "Photo Sphere Viewer",
     "style": true,
     "budget": "200kb"
+  },
+  "devDependencies": {
+    "tsx": "^4.22.3"
   }
 }

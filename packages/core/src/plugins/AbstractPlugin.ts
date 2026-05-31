@@ -7,33 +7,33 @@ import type { Viewer } from '../Viewer';
  * @template TEvents union of dispatched events
  */
 export abstract class AbstractPlugin<
-    TEvents extends TypedEvent<AbstractPlugin> = never,
+  TEvents extends TypedEvent<AbstractPlugin> = never,
 > extends TypedEventTarget<TEvents> {
-    /**
+  /**
      * Unique identifier of the plugin
      */
-    static readonly id: string;
-    /**
+  static readonly id: string;
+  /**
      * Expected version of the core
      * DO NOT USE on custom plugins
      */
-    static readonly VERSION: string;
+  static readonly VERSION: string;
 
-    constructor(protected viewer: Viewer) {
-        super();
-    }
+  constructor(protected viewer: Viewer) {
+    super();
+  }
 
-    /**
+  /**
      * Initializes the plugin
      */
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    init(): void {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  init(): void {}
 
-    /**
+  /**
      * Destroys the plugin
      */
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    destroy(): void {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  destroy(): void {}
 }
 
 /**
@@ -46,65 +46,65 @@ export abstract class AbstractPlugin<
  * @template TEvents union of dispatched events
  */
 export abstract class AbstractConfigurablePlugin<
-    TConfig extends Record<string, any>,
-    TParsedConfig extends TConfig = TConfig,
-    TUpdatableConfig extends TConfig = TConfig,
-    TEvents extends TypedEvent<AbstractPlugin> = never,
+  TConfig extends Record<string, any>,
+  TParsedConfig extends TConfig = TConfig,
+  TUpdatableConfig extends TConfig = TConfig,
+  TEvents extends TypedEvent<AbstractPlugin> = never,
 > extends AbstractPlugin<TEvents> {
-    static configParser: ConfigParser<any, any>;
-    static readonlyOptions: string[] = [];
+  static configParser: ConfigParser<any, any>;
+  static readonlyOptions: string[] = [];
 
-    readonly config: TParsedConfig;
+  readonly config: TParsedConfig;
 
-    constructor(viewer: Viewer, config: TConfig) {
-        super(viewer);
+  constructor(viewer: Viewer, config: TConfig) {
+    super(viewer);
 
-        this.config = (this.constructor as typeof AbstractConfigurablePlugin).configParser(config) as TParsedConfig;
-    }
+    this.config = (this.constructor as typeof AbstractConfigurablePlugin).configParser(config) as TParsedConfig;
+  }
 
-    /**
+  /**
      * Update options
      */
-    setOption<T extends keyof TUpdatableConfig>(option: T, value: TUpdatableConfig[T]) {
-        // @ts-ignore
-        this.setOptions({ [option]: value });
-    }
+  setOption<T extends keyof TUpdatableConfig>(option: T, value: TUpdatableConfig[T]) {
+    // @ts-ignore
+    this.setOptions({ [option]: value });
+  }
 
-    /**
+  /**
      * Update options
      */
-    setOptions(options: Partial<TUpdatableConfig>) {
-        const rawConfig: TConfig = {
-            ...this.config,
-            ...options,
-        };
+  setOptions(options: Partial<TUpdatableConfig>) {
+    const rawConfig: TConfig = {
+      ...this.config,
+      ...options,
+    };
 
-        const ctor = this.constructor as typeof AbstractConfigurablePlugin;
-        const parser: ConfigParser<TConfig, TParsedConfig> = ctor.configParser as any;
-        const readonly = ctor.readonlyOptions;
-        const id = ctor.id;
+    const ctor = this.constructor as typeof AbstractConfigurablePlugin;
+    const parser: ConfigParser<TConfig, TParsedConfig> = ctor.configParser as any;
+    const readonly = ctor.readonlyOptions;
+    const id = ctor.id;
 
-        for (let [key, value] of Object.entries(options) as Array<[keyof TConfig, any]>) {
-            if (!(key in parser.defaults)) {
-                logWarn(`${id}: Unknown option "${key as string}"`);
-                continue;
-            }
+    for (let [key, value] of Object.entries(options) as Array<[keyof TConfig, any]>) {
+      if (!(key in parser.defaults)) {
+        logWarn(`${id}: Unknown option "${key as string}"`);
+        continue;
+      }
 
-            if (readonly.includes(key as string)) {
-                logWarn(`${id}: Option "${key as string}" cannot be updated`);
-                continue;
-            }
+      if (readonly.includes(key as string)) {
+        logWarn(`${id}: Option "${key as string}" cannot be updated`);
+        continue;
+      }
 
-            if (key in parser.parsers) {
-                value = parser.parsers[key](value, {
-                    rawConfig: rawConfig,
-                    defValue: parser.defaults[key],
-                });
-            }
+      if (key in parser.parsers) {
+        value = parser.parsers[key](value, {
+          rawConfig: rawConfig,
+          defValue: parser.defaults[key],
+        });
+      }
 
-            this.config[key] = value;
-        }
+      this.config[key] = value;
     }
+  }
 }
 
 export type PluginConstructor = new (viewer: Viewer, config?: any) => AbstractPlugin<any>;
@@ -114,13 +114,13 @@ export type PluginConstructor = new (viewer: Viewer, config?: any) => AbstractPl
  * @internal
  */
 export function pluginInterop(plugin: any): PluginConstructor & typeof AbstractPlugin {
-    if (plugin) {
-        for (const [, p] of [['_', plugin], ...Object.entries(plugin)]) {
-            if (p.prototype instanceof AbstractPlugin) {
-                checkVersion(p.id, p.VERSION, PKG_VERSION);
-                return p;
-            }
-        }
+  if (plugin) {
+    for (const [, p] of [['_', plugin], ...Object.entries(plugin)]) {
+      if (p.prototype instanceof AbstractPlugin) {
+        checkVersion(p.id, p.VERSION, PKG_VERSION);
+        return p;
+      }
     }
-    return null;
+  }
+  return null;
 }
