@@ -10,7 +10,7 @@
 :::
 
 ::: tip 提示
-如果你需要地理地图（OpenStreetMap、Google 等），请改用 [Plan 插件](plan.md)。
+如果你需要地理地图（OpenStreetMap、Google 等），请改用[平面图插件](plan.md)。
 :::
 
 ## 用法
@@ -157,7 +157,7 @@ packages:
 ::: tip 提示
 通过定义标记的 `map` 数据，可以在地图上显示 [Markers](./markers.md)。该数据必须是一个热点对象（无需 `yaw`，因为它可从标记位置得知）。
 
-如果标记定义了提示框，会复用该提示框。在地图上点击标记时，viewer 会转向该标记。
+如果标记定义了提示框，会复用该提示框。在地图上点击标记时，查看器会转向该标记。
 
 <DemoButton href="/demos/map/markers.html"/>
 :::

@@ -31,7 +31,7 @@ visibleRangePlugin.setHorizontalRange(['0deg', '180deg']);
 visibleRangePlugin.setVerticalRange(null);
 ```
 
-另外，如果将 `usePanoData` 设为 `true`，可见范围会受传入 viewer 的[裁剪全景图数据](../guide/adapters/equirectangular.md#cropped-panorama)限制。
+另外，如果将 `usePanoData` 设为 `true`，可见范围会受传入查看器的[裁剪全景图数据](../guide/adapters/equirectangular.md#cropped-panorama)限制。
 
 ## 示例
 

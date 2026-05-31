@@ -1,7 +1,7 @@
 # 配置
 
 ::: tip 角度定义
-全景图查看器 的配置中会大量使用角度，其中大多数既可以用普通数字表示弧度（`3.5`），也可以用 `"deg"` 后缀表示角度（`'55deg'`）。
+全景图查看器的配置中会大量使用角度，其中大多数既可以用普通数字表示弧度（`3.5`），也可以用 `"deg"` 后缀表示角度（`'55deg'`）。
 :::
 
 ## 标准选项
@@ -14,8 +14,8 @@
 
 ```js
 container: document.querySelector('.viewer');
-container: '.viewer'; // will target [class="viewer"]
-container: 'viewer'; // will target [id="viewer"]
+container: '.viewer'; // 定位到 [class="viewer"]
+container: 'viewer'; // 定位到 [id="viewer"]
 ```
 
 #### `panorama` (必填)
@@ -203,7 +203,7 @@ lang: {
 - 类型：`boolean`
 - 默认值：`false`
 
-要求使用双指旋转全景图。这样在包含 viewer 的页面中仍可使用标准触摸滚动导航。启用后，如果只检测到一根手指，会显示一个覆盖层，提示用户使用双指。
+要求使用双指旋转全景图。这样在包含查看器的页面中仍可使用标准触摸滚动导航。启用后，如果只检测到一根手指，会显示一个覆盖层，提示用户使用双指。
 
 ## 高级选项
 
@@ -228,9 +228,9 @@ lang: {
 ```js:line-numbers
 panoData: {
   fullWidth: 6000,
-  fullHeight: 3000, // optional
-  croppedWidth: 4000, // optional
-  croppedHeight: 2000, // optional
+  fullHeight: 3000, // 可选
+  croppedWidth: 4000, // 可选
+  croppedHeight: 2000, // 可选
   croppedX: 1000,
   croppedY: 500,
 }
@@ -341,7 +341,7 @@ keyboardActions: {
 _注意：_ 当配置带修饰键的加号键时，请使用 `Plus` 而不是 `+`，例如 `Shift+Plus`。
 :::
 
-也可以为任意按键配置回调函数；回调会接收 viewer 自身和原始键盘事件作为参数。
+也可以为任意按键配置回调函数；回调会接收查看器实例和原始键盘事件作为参数。
 
 ```js:line-numbers
 import { DEFAULTS } from '@photo-sphere-viewer/core';
@@ -375,12 +375,12 @@ keyboardActions: {
 - 类型：[`WebGLRendererParameters`](https://threejs.org/docs/#api/en/renderers/WebGLRenderer)
 - 默认值：`{ alpha: true, antialias: true }`
 
-ThreeJS WebGLRenderer 的配置。
+Three.js `WebGLRenderer` 的配置。
 
 ## 缓存
 
-全景图查看器 包含一个缓存系统，用于在多个全景图之间来回切换时节省资源。
-该缓存是全局的，并在各个 viewer 之间共享（_注意：_ 它与 ThreeJS Cache 无关，后者不应启用）。
+全景图查看器包含一个缓存系统，用于在多个全景图之间来回切换时节省资源。
+该缓存是全局的，并在各个查看器之间共享（_注意：_ 它与 Three.js `Cache` 无关，后者不应启用）。
 
 要获取缓存实例，请从 `@photo-sphere-viewer/core` 导入它，然后即可进行配置。
 

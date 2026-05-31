@@ -16,7 +16,7 @@ export const Cache = {
 
   init() {
     if (ThreeCache.enabled) {
-      logWarn('ThreeJS cache should be disabled');
+      logWarn('应禁用 Three.js 缓存');
       ThreeCache.enabled = false;
     }
 

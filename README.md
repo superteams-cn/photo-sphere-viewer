@@ -6,7 +6,7 @@
 
 用于展示 360° 全景图的 JavaScript 库。当前仓库以中文体验优先：默认界面文案、示例页面和文档入口都会优先使用中文，同时保留原有英文 API 命名以兼容前端生态。
 
-本项目 fork 自 [JeremyHeleine/Photo-Sphere-Viewer](https://github.com/JeremyHeleine/Photo-Sphere-Viewer)。
+本项目基于 [JeremyHeleine/Photo-Sphere-Viewer](https://github.com/JeremyHeleine/Photo-Sphere-Viewer) 分叉而来。
 
 ## 文档
 

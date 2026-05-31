@@ -1,12 +1,12 @@
 # 插件介绍
 
-插件用于为 全景图查看器 添加新功能。它们可以访问 viewer 的内部 API，也可以访问 Three.js 渲染器，从而扩展更多能力。
+插件用于为全景图查看器添加新功能。它们可以访问查看器的内部 API，也可以访问 Three.js 渲染器，从而扩展更多能力。
 
 ## 导入官方插件
 
 官方插件（左侧菜单列出的项目）分别发布在不同的 `@photo-sphere-viewer/***-plugin` 包中。部分插件还会附带额外的 CSS 文件。
 
-**Markers 插件示例：**
+**标记插件示例：**
 
 ::::: tabs
 
@@ -14,14 +14,14 @@
 
 ```html:line-numbers
 <head>
-    <!-- PSV 核心样式 -->
+    <!-- 核心样式 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/markers-plugin/index.min.css" />
 </head>
 
 <script type="importmap">
     {
         "imports": {
-            // 导入 PSV 核心和 three
+            // 导入核心库和 Three.js
             "@photo-sphere-viewer/markers-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/markers-plugin/index.module.js"
         }
     }

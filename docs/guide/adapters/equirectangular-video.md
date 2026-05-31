@@ -99,7 +99,7 @@ panorama: {
     source: 'path/video.mp4',
     data: {
         fullWidth: 6000,
-        // "fullHeight" optional, always "fullWidth / 2"
+        // "fullHeight" 可选，始终等于 "fullWidth / 2"
         croppedX: 1000,
         croppedY: 500,
     },

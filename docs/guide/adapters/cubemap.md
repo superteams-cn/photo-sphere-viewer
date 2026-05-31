@@ -3,7 +3,7 @@
 <Badges module="cubemap-adapter"/>
 
 ::: module
-[立方体贴图](https://en.wikipedia.org/wiki/Cube_mapping)是一种投影方式，会把环境映射到围绕 viewer 的立方体六个面上。
+[立方体贴图](https://en.wikipedia.org/wiki/Cube_mapping)是一种投影方式，会把环境映射到围绕查看器的立方体六个面上。
 
 此适配器由 [@photo-sphere-viewer/cubemap-adapter](https://www.npmjs.com/package/@photo-sphere-viewer/cubemap-adapter) 包提供。
 :::
@@ -79,7 +79,7 @@ panorama: {
 panorama: {
   type: 'separate',
   paths: /* array or object */,
-  // optional, set to `true` if the top and bottom faces are not correctly oriented
+  // 可选：如果顶部和底部面方向不正确，可设为 `true`
   flipTopBottom: false,
 }
 ```
@@ -100,9 +100,9 @@ panorama: {
 panorama: {
   type: 'stripe',
   path: 'path/to/panorama.jpg',
-  // optional, set to `true` if the top and bottom faces are not correctly oriented
+  // 可选：如果顶部和底部面方向不正确，可设为 `true`
   flipTopBottom: false,
-  // optional, change order of the faces on the stripe
+  // 可选：调整条带中各面的顺序
   order: ['left', 'right', 'top', 'bottom', 'back', 'front'],
 }
 ```

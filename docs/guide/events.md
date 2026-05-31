@@ -55,12 +55,16 @@ viewer.addEventListener('position-updated', ({ position }) => {
 
 ### `ready`
 
-全景图加载完成且 viewer 准备好进行首次渲染时触发一次。
+全景图加载完成且查看器准备好进行首次渲染时触发一次。
 
 ```js:line-numbers
-viewer.addEventListener('ready', () => {
-    console.log(`viewer is ready`);
-}, { once: true });
+viewer.addEventListener(
+  'ready',
+  () => {
+    console.log(`查看器已就绪`);
+  },
+  { once: true },
+);
 ```
 
 ### `zoom-updated(zoomLevel)`

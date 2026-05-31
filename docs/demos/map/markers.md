@@ -39,7 +39,7 @@ const viewer = new Viewer({
             markers: [
                 {
                     id: 'mountain',
-                    tooltip: 'A mountain',
+                    tooltip: '一座山峰',
                     position: { yaw: 0.11, pitch: 0.32 },
                     image: baseUrl + 'pictos/pin-blue.png',
                     size: { width: 32, height: 32 },

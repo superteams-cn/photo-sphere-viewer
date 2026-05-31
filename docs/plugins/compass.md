@@ -79,7 +79,7 @@ packages:
 - 默认：`true`
 - 可更新：是
 
-使用指南针导航时，将 viewer 的俯仰角重置为 `defaultPitch`。
+使用指南针导航时，将查看器的俯仰角重置为 `defaultPitch`。
 
 #### `hotspots`
 

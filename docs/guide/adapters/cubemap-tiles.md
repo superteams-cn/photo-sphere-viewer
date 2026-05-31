@@ -120,7 +120,7 @@ packages:
 
 - 类型：`array`
 
-可用瓦片配置数组。每个元素都是包含 `faceSize` 和 `nbTiles` 的对象（见“单级”）。系统会根据当前缩放级别和 viewer 尺寸选择最合适的尺寸。
+可用瓦片配置数组。每个元素都是包含 `faceSize` 和 `nbTiles` 的对象（见“单级”）。系统会根据当前缩放级别和查看器尺寸选择最合适的尺寸。
 
 ```js:line-numbers
 levels: [

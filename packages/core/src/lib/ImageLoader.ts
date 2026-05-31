@@ -1,7 +1,7 @@
 import { ImageLoader } from 'three';
 
 /**
- * ThreeJS ImageLoader that can be aborted
+ * 可中止的 Three.js ImageLoader
  */
 export class AbortableImageLoader extends ImageLoader {
   private _abortController = new AbortController();

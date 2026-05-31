@@ -103,7 +103,7 @@ const node = {
 ::::
 
 ::: tip 提示
-[Gallery 插件](./gallery.md)、[Map 插件](./map.md)、[Plan 插件](./plan.md)和 [Compass 插件](./compass.md)都可以轻松集成到虚拟导览中。
+[图库插件](./gallery.md)、[地图插件](./map.md)、[平面图插件](./plan.md)和[指南针插件](./compass.md)都可以轻松集成到虚拟导览中。
 :::
 
 ## 示例
@@ -182,19 +182,19 @@ GalleryPlugin 节点列表中使用的缩略图。
 
 - 类型：`MarkerConfig[]`
 
-显示在此节点上的额外标记，需要 [Markers 插件](./markers.md)。
+显示在此节点上的额外标记，需要[标记插件](./markers.md)。
 
 标记可以使用经典的 `position` 选项（yaw + pitch）定位；如果 `positionMode=gps`，也可以使用 `gps` 选项（经度 + 纬度 + 高度）定位。
 
 #### `map`（仅客户端模式）
 
-使用 [Map 插件](map.md)时的热点配置。详见[全局配置](#map-client-mode-only-1)。
+使用[地图插件](map.md)时的热点配置。详见[全局配置](#map-client-mode-only-1)。
 
 设为 `false` 可在地图上隐藏该节点（注意：如果 `positionMode=manual`，这可能导致地图定位不符合预期）。
 
 #### `plan`（仅客户端 + GPS 模式）
 
-使用 [Plan 插件](plan.md)时的热点配置。节点会自动放置在地图上，但你可以自定义[热点样式](plan.md#hotspots-1)。
+使用[平面图插件](plan.md)时的热点配置。节点会自动放置在地图上，但你可以自定义[热点样式](plan.md#hotspots-1)。
 
 设为 `false` 可在 plan 中隐藏该节点。
 
@@ -367,7 +367,7 @@ GalleryPlugin 节点列表中使用的缩略图。
 - 默认：`true`
 - 可更新：否
 
-如果启用了 [Compass 插件](./compass.md)，则在指南针上显示链接。
+如果启用了[指南针插件](./compass.md)，则在指南针上显示链接。
 
 #### `showLinkTooltip`
 
@@ -387,14 +387,14 @@ GalleryPlugin 节点列表中使用的缩略图。
 
 #### `map`（仅客户端模式）
 
-使用 [Map 插件](./map.md)时的配置。
+使用[地图插件](./map.md)时的配置。
 
 ::::: dialog "查看详情" "虚拟导览地图"
 
-使用 Map 插件可以在地图上显示每个节点的位置。这需要一些额外配置，尤其是在使用 GPS 坐标时。
+使用地图插件可以在地图上显示每个节点的位置。这需要一些额外配置，尤其是在使用 GPS 坐标时。
 
 ::: warning 地图图片
-地图图片必须通过 VirtualTour 插件配置中的 `map.imageUrl` 设置。Map 插件中的 `imageUrl` 会被忽略。
+地图图片必须通过虚拟导览插件配置中的 `map.imageUrl` 设置。地图插件中的 `imageUrl` 会被忽略。
 :::
 
 :::: tabs
@@ -404,7 +404,7 @@ GalleryPlugin 节点列表中使用的缩略图。
 如果 `positionMode=manual`，此配置**必填**；它也可以与 `positionMode=gps` 一起使用。
 
 要定义节点在地图上的位置，必须在其 `map` 属性中配置 `x` 和 `y`。
-还可以配置 `color`、`image`、`size` 等内容。请参考 Map 插件的[热点部分](map.md#hotspots-1)。
+还可以配置 `color`、`image`、`size` 等内容。请参考地图插件的[热点部分](map.md#hotspots-1)。
 
 ```js:line-numbers{10}
 plugins: [
@@ -492,7 +492,7 @@ plugins: [
     maxPitch: Math.PI / 2,
     /* (3D mode) Make transparent links that are close to each other */
     linkOverlapAngle: Math.PI / 4,
-    /* (2D+GPS mode) vertical offset applied to link markers, to compensate for viewer height */
+    /* 2D + GPS 模式下应用到链接标记的垂直偏移，用于补偿查看器高度 */
     linkPitchOffset: -0.1,
 }
 ```
@@ -505,7 +505,7 @@ plugins: [
 
 #### `updateNode(node)`（仅客户端模式）
 
-更新单个节点。如果它是当前节点，viewer 会相应更新。除 `id` 外，所有属性都是可选的。
+更新单个节点。如果它是当前节点，查看器会同步更新。除 `id` 外，所有属性都是可选的。
 
 ```js:line-numbers
 virtualTourPlugin.updateNode({
@@ -534,7 +534,7 @@ virtualTourPlugin.gotoLink('2', '4rpm')
 
 #### `getLinkPosition(nodeId): Position`
 
-返回链接在 viewer 中的位置。
+返回链接在查看器中的位置。
 
 ## 事件
 

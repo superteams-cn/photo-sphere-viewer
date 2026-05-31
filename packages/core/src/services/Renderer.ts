@@ -134,7 +134,7 @@ export class Renderer extends AbstractService {
    * @internal
    */
   override destroy() {
-    // destroy ThreeJS
+    // 销毁 Three.js 资源
     this.renderer.setAnimationLoop(null);
     this.cleanScene(this.scene);
     this.renderer.dispose();

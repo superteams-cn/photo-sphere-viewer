@@ -3,10 +3,10 @@
 <Badges module="core"/>
 
 ::: tip 调试台
-你可以在 [调试台](../playground.md) 中使用自己的全景图测试 全景图查看器。
+你可以在 [调试台](../playground.md) 中使用自己的全景图测试全景图查看器。
 :::
 
-## 安装 全景图查看器
+## 安装全景图查看器
 
 #### 使用包管理器
 
@@ -16,7 +16,7 @@ pnpm add @photo-sphere-viewer/core
 
 #### 通过 CDN
 
-全景图查看器 可通过 [jsDelivr](https://www.jsdelivr.com/?query=@photo-sphere-viewer) 使用。
+你也可以通过 [jsDelivr](https://www.jsdelivr.com/?query=@photo-sphere-viewer) 使用全景图查看器。
 
 #### 手动下载
 

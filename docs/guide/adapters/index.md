@@ -26,7 +26,7 @@
 <script type="importmap">
     {
         "imports": {
-            // 导入 PSV 核心和 three
+            // 导入核心库和 Three.js
             "@photo-sphere-viewer/cubemap-adapter": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/cubemap-adapter/index.module.js"
         }
     }

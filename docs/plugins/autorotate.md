@@ -167,7 +167,7 @@ packages:
      */
     pause?: number;
     /**
-     * optional tooltip
+     * 可选提示框
      */
     tooltip?: string | { content: string; position?: string };
 }

@@ -135,7 +135,7 @@ require('rollup-plugin-postcss')({
 
 ### 创建按钮
 
-全景图查看器 按钮**必须**继承 `AbstractButton`。更多信息请查看 [API 参考](/api/classes/Core.AbstractButton.html){target=\_blank}。
+全景图查看器按钮**必须**继承 `AbstractButton`。更多信息请查看 [API 参考](/api/classes/Core.AbstractButton.html){target=\_blank}。
 
 **要求：**
 

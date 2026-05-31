@@ -32,7 +32,7 @@ features:
 ---
 
 ::: tip 致谢 Jéremy Heleine
-本项目 fork 自 [Jérémy Heleine](http://jeremyheleine.me) 创建的全景图查看器，并在此基础上提供更好的代码架构和更多功能。
+本项目基于 [Jérémy Heleine](http://jeremyheleine.me) 创建的全景图查看器分叉而来，并在此基础上提供更清晰的代码架构和更多功能。
 :::
 
 ## 赞助者

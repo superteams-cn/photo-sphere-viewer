@@ -5,7 +5,7 @@
 你可以在应用中使用许多方法来控制 viewer。完整方法列表见 [API 参考](/api/classes/Core.Viewer.html){target=\_blank}。
 
 ::: tip 模块化架构
-全景图查看器 内部拆分为多个组件，因此不同方法会分布在不同对象上。例如，控制导航栏的方法位于 `navbar` 对象中。
+全景图查看器内部拆分为多个组件，因此不同方法会分布在不同对象上。例如，控制导航栏的方法位于 `navbar` 对象中。
 
 更多信息见[可复用组件](./components/)。
 :::
@@ -81,7 +81,7 @@ viewer.rotate({
 
 ### `setOption(option, value)`
 
-更新 viewer 的某个选项。部分选项不可更改：`panorama`、`panoData`、`container`、`adapter` 和 `plugins`。
+更新查看器的某个选项。部分选项不可更改：`panorama`、`panoData`、`container`、`adapter` 和 `plugins`。
 
 ```js:line-numbers
 viewer.setOption('fisheye', true);
@@ -107,7 +107,7 @@ viewer.setOptions({
 
 ```js:line-numbers
 viewer.setPanorama('image.jpg')
-  .then(() => /* update complete */);
+  .then(() => /* 更新完成 */);
 
 viewer.setPanorama('image.jpg', { transition: false });
 
@@ -118,7 +118,7 @@ viewer.setPanorama('image.jpg', {
         rotation: false,
         effect: 'black',
     },
-    // more options in the API doc
+    // 更多选项请参阅 API 文档
 });
 ```
 

@@ -294,7 +294,7 @@ export class RollUpdatedEvent extends ViewerEvent {
 }
 
 /**
- * @event Triggered when the panorama image has been loaded and the viewer is ready to perform the first render
+ * @event 全景图加载完成且查看器准备好进行首次渲染时触发
  */
 export class ReadyEvent extends ViewerEvent {
   static override readonly type = 'ready';
