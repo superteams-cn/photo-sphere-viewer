@@ -1,4 +1,4 @@
-# StereoPlugin
+# 立体视图插件
 
 <Badges module="stereo-plugin"/>
 

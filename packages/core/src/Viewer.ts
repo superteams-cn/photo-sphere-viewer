@@ -467,7 +467,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Update options
+   * 更新配置项
    * @throws {@link PSVError} if the configuration is invalid
    */
   setOptions(options: Partial<UpdatableViewerConfig>) {
@@ -552,7 +552,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Update options
+   * 更新配置项
    * @throws {@link PSVError} if the configuration is invalid
    */
   setOption<T extends keyof UpdatableViewerConfig>(option: T, value: UpdatableViewerConfig[T]) {
@@ -560,7 +560,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   * Displays an error message over the viewer
+   * 在查看器上方显示错误消息
    */
   showError(message: string) {
     this.overlay.show({
@@ -572,7 +572,7 @@ export class Viewer extends TypedEventTarget<ViewerEvents> {
   }
 
   /**
-   *  Hides the error message
+   * 隐藏错误消息
    */
   hideError() {
     this.overlay.hide(IDS.ERROR);

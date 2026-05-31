@@ -1,4 +1,4 @@
-# ResolutionPlugin
+# 分辨率插件
 
 <Badges module="resolution-plugin"/>
 
@@ -10,7 +10,7 @@
 :::
 
 ::: warning 注意
-ResolutionPlugin 与 GalleryPlugin 不兼容。
+分辨率插件与图库插件不兼容。
 :::
 
 ## 用法
@@ -78,7 +78,7 @@ packages:
 默认加载的分辨率 id。未提供时会使用第一个分辨率。
 
 ::: warning 注意
-如果 viewer 初始配置了 `panorama`，此设置会被忽略。
+如果查看器初始配置了 `panorama`，此设置会被忽略。
 :::
 
 #### `showBadge`

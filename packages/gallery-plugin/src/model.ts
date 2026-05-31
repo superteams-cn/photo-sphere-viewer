@@ -2,23 +2,23 @@ import type { PanoramaOptions, Size } from '@photo-sphere-viewer/core';
 
 export type GalleryItem = {
   /**
-   * Unique identifier of the item
+   * 项目的唯一标识符
    */
   id: string | number;
   /**
-   * Panorama of the item
+   * 项目对应的全景图
    */
   panorama: any;
   /**
-   * URL of the thumbnail
+   * 缩略图 URL
    */
   thumbnail?: string;
   /**
-   * Text visible over the thumbnail
+   * 显示在缩略图上的文字
    */
   name?: string;
   /**
-   * Any option supported by the `setPanorama()` method
+   * `setPanorama()` 方法支持的任意选项
    */
   options?: PanoramaOptions;
 };
@@ -26,22 +26,22 @@ export type GalleryItem = {
 export type GalleryPluginConfig = {
   items?: GalleryItem[];
   /**
-   * Displays arrows to navigate the gallery
+   * 显示用于浏览图库的箭头
    * @default true
    */
   navigationArrows?: boolean;
   /**
-   * Displays the gallery when loading the first panorama
+   * 加载第一张全景图时显示图库
    * @default false
    */
   visibleOnLoad?: boolean;
   /**
-   * Hides the gallery when the user clicks on an item
+   * 用户点击项目后隐藏图库
    * @default true
    */
   hideOnClick?: boolean;
   /**
-   *  Size of thumbnails
+   * 缩略图尺寸
    * @default 200x100
    */
   thumbnailSize?: Size;

@@ -5,7 +5,7 @@ import { addClasses, cleanCssPosition, cssPositionIsOrdered, getStyleProperty } 
 import { AbstractComponent } from './AbstractComponent';
 
 /**
- * Object defining the tooltip position
+ * 工具提示位置定义
  */
 export type TooltipPosition = {
   /**
@@ -145,7 +145,7 @@ export class Tooltip extends AbstractComponent {
   }
 
   /**
-   * Displays the tooltip on the viewer
+   * 在查看器上显示提示框
    * @internal
    */
   override show(config: TooltipConfig) {
@@ -259,7 +259,7 @@ export class Tooltip extends AbstractComponent {
   }
 
   /**
-   * Hides the tooltip
+   * 隐藏提示框
    */
   override hide() {
     this.container.classList.remove('psv-tooltip--visible');

@@ -65,7 +65,7 @@ export default defineConfig({
             'src="app.js"',
             'src="https://cdn.jsdelivr.net/npm/@lcov-viewer/istanbul-report@1/lib/assets/app.js"',
           )
-          .replace(/<title>.*<\/title>/, '<title>Photo Sphere Viewer - E2E coverage</title>');
+          .replace(/<title>.*<\/title>/, '<title>全景图查看器 - E2E 覆盖率</title>');
 
         fs.writeFileSync(`${ROOT_DIR}html/coverage/index.html`, content, 'utf-8');
 
@@ -106,7 +106,7 @@ list.prepend(item);
     removeJsonsFolderAfterMerge: false,
     cdn: true,
     charts: true,
-    reportTitle: 'Photo Sphere Viewer',
-    reportPageTitle: 'Photo Sphere Viewer - E2E results',
+    reportTitle: '全景图查看器',
+    reportPageTitle: '全景图查看器 - E2E 结果',
   },
 });

@@ -256,7 +256,7 @@ export abstract class Marker {
   }
 
   /**
-   * Hides the tooltip of this marker
+   * 隐藏此标记的提示框
    * @internal
    */
   hideTooltip() {

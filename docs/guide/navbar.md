@@ -36,7 +36,7 @@
 
 ::: tip 自定义导航栏元素
 `content` 可以是 DOM 中已有的元素，也可以是 [Web Component](https://developer.mozilla.org/docs/Web/API/Web_components/Using_custom_elements)。
-如果组件提供了 `attachViewer()` 方法，它会以 viewer 实例作为第一个参数被调用。
+如果组件提供了 `attachViewer()` 方法，它会以查看器实例作为第一个参数被调用。
 
 <DemoButton href="/demos/advanced/navbar-element.html"></DemoButton>
 :::

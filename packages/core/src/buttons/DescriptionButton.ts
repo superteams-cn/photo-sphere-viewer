@@ -90,7 +90,7 @@ export class DescriptionButton extends AbstractButton {
   }
 
   /**
-   * This button can only be refreshed from NavbarCaption
+   * 此按钮只能由 NavbarCaption 刷新
    * @internal
    */
   override autoSize(refresh = false) {

@@ -57,7 +57,7 @@ export abstract class AbstractComponent {
   }
 
   /**
-   * Displays or hides the component
+   * 显示或隐藏组件
    */
   toggle(visible = !this.isVisible()) {
     if (!visible) {
@@ -68,7 +68,7 @@ export abstract class AbstractComponent {
   }
 
   /**
-   * Hides the component
+   * 隐藏组件
    */
   // @ts-ignore unused parameter
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -78,7 +78,7 @@ export abstract class AbstractComponent {
   }
 
   /**
-   * Displays the component
+   * 显示组件
    */
   // @ts-ignore unused parameter
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

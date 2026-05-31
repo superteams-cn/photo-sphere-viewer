@@ -180,14 +180,14 @@ export class Renderer extends AbstractService {
   }
 
   /**
-   * Hides the viewer
+   * 隐藏查看器
    */
   hide() {
     this.container.style.opacity = '0';
   }
 
   /**
-   * Shows the viewer
+   * 显示查看器
    */
   show() {
     this.container.style.opacity = '1';

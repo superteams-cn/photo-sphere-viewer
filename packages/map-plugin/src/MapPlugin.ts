@@ -169,14 +169,14 @@ export class MapPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Hides the map
+   * 隐藏地图
    */
   hide() {
     this.component.hide();
   }
 
   /**
-   * Shows the map
+   * 显示地图
    */
   show() {
     this.component.show();

@@ -2,7 +2,7 @@
 
 ::: module
 <ApiButton page="classes/Core.Overlay.html"/>
-在 viewer 上方显示一条带插图的消息。
+在查看器上方显示一条带插图的消息。
 :::
 
 ## 示例

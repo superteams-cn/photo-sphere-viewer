@@ -1,12 +1,12 @@
-# Photo Sphere Viewer Custom Plugin
+# 全景图查看器自定义插件
 
-This is an example of how to implement, build and publish a custom plugin for Photo Sphere Viewer.
+这是一个示例项目，用于演示如何为全景图查看器实现、构建并发布自定义插件。
 
-Features :
+功能：
 
 - TypeScript
 - SCSS
-- custom button with SVG icon
-- custom events
+- 带 SVG 图标的自定义按钮
+- 自定义事件
 
-For more informationn check https://photo-sphere-viewer.js.org/plugins/writing-a-plugin.html
+更多信息请查看 https://photo-sphere-viewer.js.org/plugins/writing-a-plugin.html

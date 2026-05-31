@@ -13,7 +13,7 @@ export function getElement(selector: string | HTMLElement): HTMLElement {
 }
 
 /**
- * Toggles a CSS class
+ * 切换 CSS 类
  */
 export function toggleClass(element: Element, className: string, active?: boolean) {
   if (active === undefined) {

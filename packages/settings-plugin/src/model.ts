@@ -1,71 +1,71 @@
 /**
- * Description of a setting
+ * 设置项说明
  */
 export type BaseSetting = {
   /**
-   * identifier of the setting
+   * 设置项标识符
    */
   id: string;
   /**
-   * label of the setting
-   * If can be a key in the global `lang` config
+   * 设置项标签
+   * 也可以是全局 `lang` 配置中的键
    */
   label: string;
   /**
-   * type of the setting
+   * 设置项类型
    */
   type: 'options' | 'toggle';
   /**
-   * function which returns the value of the button badge
+   * 返回按钮角标值的函数
    */
   badge?(): string;
 };
 
 /**
- * Description of a 'options' setting
+ * “选项”类设置说明
  */
 export type OptionsSetting = BaseSetting & {
   type: 'options';
   /**
-   * function which returns the current option id
+   * 返回当前选项 id 的函数
    */
   current(): string;
   /**
-   * function which the possible options
+   * 返回可选项的函数
    */
   options(): SettingOption[];
   /**
-   * function called with the id of the selected option
+   * 选择某个选项后调用的函数
    */
   apply(optionId: string): void;
 };
 
 /**
- * Description of a 'toggle' setting
+ * “开关”类设置说明
  */
 export type ToggleSetting = BaseSetting & {
   type: 'toggle';
   /**
-   * function which return whereas the setting is active or not
+   * 返回设置项是否启用的函数
    */
   active(): boolean;
   /**
-   * function called when the setting is toggled
+   * 切换设置项时调用的函数
    */
   toggle(): void;
 };
 
 /**
- * Option for an 'options' setting
+ * “选项”类设置的单个选项
  */
 export type SettingOption = {
   /**
-   * identifier of the option
+   * 选项标识符
    */
   id: string;
   /**
-   * label of the option
-   * If can be a key in the global `lang` config
+   * 选项标签
+   * 也可以是全局 `lang` 配置中的键
    */
   label: string;
 };
@@ -74,18 +74,18 @@ export type Setting = ToggleSetting | OptionsSetting;
 
 export type SettingsPluginConfig = {
   /**
-   * should the settings be saved accross sessions
+   * 是否跨会话保存设置
    * @default false
    */
   persist?: boolean;
   /**
-   * custom storage handler, defaults to LocalStorage
+   * 自定义存储处理器，默认使用 LocalStorage
    * @default LocalStorage
    */
   storage?: {
     set(settingId: string, value: boolean | string): void;
     /**
-     * return `undefined` or `null` if the option does not exist
+     * 如果选项不存在，返回 `undefined` 或 `null`
      */
     get(settingId: string): boolean | string | Promise<boolean> | Promise<string>;
   };

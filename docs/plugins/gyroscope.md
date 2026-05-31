@@ -1,4 +1,4 @@
-# GyroscopePlugin
+# 陀螺仪插件
 
 <Badges module="gyroscope-plugin"/>
 

@@ -708,7 +708,7 @@ export class VirtualTourPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Hides the tooltip
+   * 隐藏提示框
    */
   private __hideTooltip() {
     this.state.currentTooltip?.hide();

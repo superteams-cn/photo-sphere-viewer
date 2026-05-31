@@ -2,7 +2,7 @@
 
 ## 介绍
 
-你可以在应用中使用许多方法来控制 viewer。完整方法列表见 [API 参考](/api/classes/Core.Viewer.html){target=\_blank}。
+你可以在应用中调用多种方法来控制查看器。完整方法列表见 [API 参考](/api/classes/Core.Viewer.html){target=\_blank}。
 
 ::: tip 模块化架构
 全景图查看器内部拆分为多个组件，因此不同方法会分布在不同对象上。例如，控制导航栏的方法位于 `navbar` 对象中。
@@ -48,12 +48,12 @@ viewer.animate({
     zoom: 50,
     speed: '2rpm',
 })
-    .then(() => /* animation complete */);
+    .then(() => /* 动画完成 */);
 ```
 
 ### `destroy()`
 
-从页面中移除 viewer，并释放 Three.js 使用的内存。
+从页面中移除查看器，并释放 Three.js 占用的内存。
 
 ### `getPlugin(pluginId): PluginInstance`
 
@@ -72,7 +72,7 @@ viewer.animate({
 立即旋转视图，不使用动画。
 
 ```js:line-numbers
-// you can also use yaw and pitch
+// 也可以使用 yaw 和 pitch
 viewer.rotate({
     textureX: 1500,
     textureY: 600,

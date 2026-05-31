@@ -23,7 +23,7 @@
 
 | 变量                   | 默认值               | 说明                                     |
 | ---------------------- | -------------------- | ---------------------------------------- |
-| $main-background       | radial-gradient(...) | viewer 背景，在未设置全景图时可见        |
+| $main-background       | radial-gradient(...) | 查看器背景，在未设置全景图时可见         |
 | $element-focus-outline | 2px solid #007cff    | 应用于可聚焦元素的轮廓（导航栏、面板等） |
 
 ## 加载器

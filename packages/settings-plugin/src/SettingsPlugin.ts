@@ -165,7 +165,7 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
   }
 
   /**
-   * Toggles the settings menu
+   * 切换设置菜单
    */
   toggleSettings() {
     if (this.component.isVisible()) {
@@ -176,7 +176,7 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
   }
 
   /**
-   * Hides the settings menu
+   * 隐藏设置菜单
    */
   hideSettings() {
     const button = this.__getButton();
@@ -185,7 +185,7 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
   }
 
   /**
-   * Shows the settings menu
+   * 显示设置菜单
    */
   showSettings() {
     const button = this.__getButton();
@@ -208,7 +208,7 @@ export class SettingsPlugin extends AbstractPlugin<SettingsPluginEvents> {
   }
 
   /**
-   * Toggles a setting
+   * 切换设置项
    * @internal
    */
   toggleSettingValue(setting: ToggleSetting) {

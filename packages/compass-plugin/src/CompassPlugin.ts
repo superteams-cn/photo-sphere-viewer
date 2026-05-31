@@ -107,14 +107,14 @@ export class CompassPlugin extends AbstractConfigurablePlugin<CompassPluginConfi
   }
 
   /**
-   * Hides the compass
+   * 隐藏指南针
    */
   hide() {
     this.component.hide();
   }
 
   /**
-   * Shows the compass
+   * 显示指南针
    */
   show() {
     this.component.show();

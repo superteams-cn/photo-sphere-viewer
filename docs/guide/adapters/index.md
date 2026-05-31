@@ -37,13 +37,13 @@
     import { CubemapAdapter } from '@photo-sphere-viewer/cubemap-adapter';
 
     new Viewer({
-       adapter: CubemapAdapter,
-       // 或者
-       adapter: CubemapAdapter.withConfig({
-           // 可选的适配器配置
-       }),
-       panorama: // 适配器专属的全景图配置,
-   });
+        adapter: CubemapAdapter,
+        // 或者
+        adapter: CubemapAdapter.withConfig({
+            // 可选的适配器配置
+        }),
+        panorama: // 适配器专属的全景图配置,
+    });
 </script>
 ```
 

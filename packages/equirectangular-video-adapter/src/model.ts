@@ -2,7 +2,7 @@ import type { PanoData } from '@photo-sphere-viewer/core';
 import type { AbstractVideoAdapterConfig, AbstractVideoPanorama } from '../../shared/AbstractVideoAdapter';
 
 /**
- * Configuration of an equirectangular video
+ * 等距柱状视频配置
  */
 export type EquirectangularVideoPanorama = AbstractVideoPanorama & {
   data?: PanoData | ((image: HTMLVideoElement) => PanoData);

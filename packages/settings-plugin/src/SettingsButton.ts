@@ -31,7 +31,7 @@ export class SettingsButton extends AbstractButton {
   }
 
   /**
-   * Toggles settings
+   * 切换设置
    */
   onClick() {
     this.plugin.toggleSettings();

@@ -3,19 +3,19 @@ import { checkVersion, ConfigParser, logWarn } from '../utils';
 import type { Viewer } from '../Viewer';
 
 /**
- * Base class for plugins
- * @template TEvents union of dispatched events
+ * 插件基类
+ * @template TEvents 派发事件的联合类型
  */
 export abstract class AbstractPlugin<
   TEvents extends TypedEvent<AbstractPlugin> = never,
 > extends TypedEventTarget<TEvents> {
   /**
-   * Unique identifier of the plugin
+   * 插件的唯一标识符
    */
   static readonly id: string;
   /**
-   * Expected version of the core
-   * DO NOT USE on custom plugins
+   * 期望的核心版本
+   * 自定义插件请勿使用
    */
   static readonly VERSION: string;
 
@@ -63,7 +63,7 @@ export abstract class AbstractConfigurablePlugin<
   }
 
   /**
-   * Update options
+   * 更新配置项
    */
   setOption<T extends keyof TUpdatableConfig>(option: T, value: TUpdatableConfig[T]) {
     // @ts-ignore
@@ -71,7 +71,7 @@ export abstract class AbstractConfigurablePlugin<
   }
 
   /**
-   * Update options
+   * 更新配置项
    */
   setOptions(options: Partial<TUpdatableConfig>) {
     const rawConfig: TConfig = {

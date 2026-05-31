@@ -1,27 +1,27 @@
 import type { Cubemap, CubemapAdapterConfig, CubemapData, CubemapPanorama } from '@photo-sphere-viewer/cubemap-adapter';
 
 /**
- * Configuration of a tiled cubemap
+ * 立方体瓦片配置
  */
 export type CubemapTilesPanorama = {
   /**
-   * low resolution panorama loaded before tiles
+   * 瓦片加载前显示的低分辨率全景图
    */
   baseUrl?: CubemapPanorama;
   /**
-   * size of a face in pixels
+   * 单个面的像素尺寸
    */
   faceSize: number;
   /**
-   * number of tiles on a side of a face
+   * 单个面每边的瓦片数量
    */
   nbTiles: number;
   /**
-   * function to build a tile url
+   * 构建瓦片 URL 的函数
    */
   tileUrl: (face: keyof Cubemap, col: number, row: number) => string | null;
   /**
-   * Set to true if the top and bottom faces are not correctly oriented
+   * 如果顶面和底面方向不正确，请设为 true
    * @default false
    */
   flipTopBottom?: boolean;
@@ -33,33 +33,33 @@ export type CubemapTileLevel = {
    */
   zoomRange?: never;
   /**
-   * size of a face in pixels
+   * 单个面的像素尺寸
    */
   faceSize: number;
   /**
-   * number of tiles on a side of a face
+   * 单个面每边的瓦片数量
    */
   nbTiles: number;
 };
 
 /**
- * Configuration of a tiled cubemap with multiple tiles configurations
+ * 包含多级瓦片配置的立方体瓦片配置
  */
 export type CubemapMultiTilesPanorama = {
   /**
-   * low resolution panorama loaded before tiles
+   * 瓦片加载前显示的低分辨率全景图
    */
   baseUrl?: CubemapPanorama;
   /**
-   * Configuration of tiles by zoom level
+   * 按缩放级别划分的瓦片配置
    */
   levels: CubemapTileLevel[];
   /**
-   * function to build a tile url
+   * 构建瓦片 URL 的函数
    */
   tileUrl: (face: keyof Cubemap, col: number, row: number, level: number) => string | null;
   /**
-   * Set to true if the top and bottom faces are not correctly oriented
+   * 如果顶面和底面方向不正确，请设为 true
    * @default false
    */
   flipTopBottom?: boolean;
@@ -67,22 +67,22 @@ export type CubemapMultiTilesPanorama = {
 
 export type CubemapTilesAdapterConfig = CubemapAdapterConfig & {
   /**
-   * shows a warning sign on tiles that cannot be loaded
+   * 在无法加载的瓦片上显示警告标记
    * @default true
    */
   showErrorTile?: boolean;
   /**
-   * applies a blur effect to the low resolution panorama
+   * 对低分辨率全景图应用模糊效果
    * @default true
    */
   baseBlur?: boolean;
   /**
-   * applies antialiasing to high resolutions tiles
+   * 对高分辨率瓦片应用抗锯齿
    * @default true
    */
   antialias?: boolean;
   /**
-   * shows debug helpers
+   * 显示调试辅助信息
    * @default false
    * @internal
    */

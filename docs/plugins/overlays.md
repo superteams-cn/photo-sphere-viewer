@@ -1,4 +1,4 @@
-# OverlaysPlugin
+# 覆盖层插件
 
 <Badges module="overlays-plugin"/>
 
@@ -11,7 +11,7 @@
 
 ## 用法
 
-覆盖层是“贴”在全景图上的图片。与[标记](./markers.md)不同，它们属于 3D 场景的一部分，而不是绘制在 viewer 上方。
+覆盖层是“贴”在全景图上的图片。与[标记](./markers.md)不同，它们属于 3D 场景的一部分，而不是绘制在查看器上方。
 同时支持等距柱状图（完整或裁剪）与立方体贴图。
 
 ```js:line-numbers

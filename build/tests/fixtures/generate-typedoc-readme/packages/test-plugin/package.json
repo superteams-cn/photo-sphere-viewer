@@ -1,7 +1,7 @@
 {
   "name": "@photo-sphere-viewer/test-plugin",
   "version": "0.0.0",
-  "description": "Photo Sphere Viewer plugin for tests.",
+  "description": "全景图查看器测试插件。",
   "homepage": "https://photo-sphere-viewer.js.org/plugins/test.html",
   "license": "MIT"
 }

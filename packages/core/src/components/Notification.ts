@@ -67,7 +67,7 @@ export class Notification extends AbstractComponent {
   }
 
   /**
-   * Displays a notification on the viewer
+   * 在查看器上显示通知
    *
    * @example
    * viewer.showNotification({ content: 'Hello world', timeout: 5000 })
@@ -98,7 +98,7 @@ export class Notification extends AbstractComponent {
   }
 
   /**
-   * Hides the notification
+   * 隐藏通知
    */
   override hide(id?: string) {
     if (this.isVisible(id)) {

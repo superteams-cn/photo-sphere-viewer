@@ -1,10 +1,10 @@
-# MarkersPlugin <Badge text="样式"/>
+# 标记插件 <Badge text="样式"/>
 
 <Badges module="markers-plugin"/>
 
 ::: module
 <ApiButton page="modules/MarkersPlugin.html"/>
-在 viewer 上显示各种形状、图片和文字。
+在查看器上显示各种形状、图片和文字。
 
 这个插件由 [@photo-sphere-viewer/markers-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/markers-plugin) 包提供。
 :::
@@ -133,7 +133,7 @@ packages:
 
 ::: tip “image”和“imageLayer”有什么区别？
 `image` 与 `imageLayer` 都能显示图片，区别在于渲染方式。
-`image` 标记会以平面形式绘制在 viewer 上方，而 `imageLayer` 会渲染在全景图内部，因此移动和缩放效果更自然。
+`image` 标记会以平面形式绘制在查看器上方，而 `imageLayer` 会渲染在全景图内部，因此移动和缩放效果更自然。
 :::
 
 #### `videoLayer`
@@ -229,7 +229,7 @@ _**注意：** 内容会以 HTML 渲染。如果内容可能包含不受信任�
     id: 'marker-2',
     polygon: [
         [[0.2, 0.4], [0.9, 1.1], [1.5, 0.7]],
-        [[0.3, 0.5], [1.4, 0.8], [0.8, 1.0]], // holes coordinates must be in reverse order
+        [[0.3, 0.5], [1.4, 0.8], [0.8, 1.0]], // 孔洞坐标必须使用相反顺序
     ],
 }
 ```
@@ -678,7 +678,7 @@ tooltip: { // 点击后显示且带自定义 class 的提示框
 - 默认：`false`
 - 可更新：是
 
-是否在 `select-marker` 事件之外，同时在 viewer 上触发 `click` 事件。
+是否在 `select-marker` 事件之外，同时在查看器上触发 `click` 事件。
 
 #### `lang`
 
@@ -698,7 +698,7 @@ _注意：这个选项不属于插件自身配置，而是会合并到主 [`lang
 
 #### `addMarker(properties)`
 
-向 viewer 添加新标记。
+向查看器添加新标记。
 
 ```js:line-numbers
 markersPlugin.addMarker({

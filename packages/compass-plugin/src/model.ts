@@ -2,66 +2,66 @@ import { ExtendedPosition } from '@photo-sphere-viewer/core';
 
 export type CompassHotspot = ExtendedPosition & {
   /**
-   * override the global "hotspotColor"
+   * 覆盖全局 `hotspotColor`
    */
   color?: string;
 };
 
 export type CompassPluginConfig = {
   /**
-   * size of the compass
+   * 指南针尺寸
    * @default '120px'
    */
   size?: string;
 
   /**
-   * position of the compass
+   * 指南针位置
    * @default 'top left'
    */
   position?: string | [string, string];
 
   /**
-   * SVG used as background of the compass
+   * 指南针背景使用的 SVG
    */
   backgroundSvg?: string;
 
   /**
-   * color of the cone of the compass
+   * 指南针视锥颜色
    * @default 'rgba(255, 255, 255, 0.5)'
    */
   coneColor?: string;
 
   /**
-   * allows to click on the compass to rotate the viewer
+   * 是否允许点击指南针来旋转查看器
    * @default true
    */
   navigation?: boolean;
 
   /**
-   * Reset viewer pitch to `defaultPitch` when using the compass navigation
+   * 使用指南针导航时，将查看器俯仰角重置为 `defaultPitch`
    * @default false
    */
   resetPitch?: boolean;
 
   /**
-   * color of the navigation cone
+   * 导航视锥颜色
    * @default 'rgba(255, 0, 0, 0.2)'
    */
   navigationColor?: string;
 
   /**
-   * small dots visible on the compass (will contain every marker with the "compass" data)
+   * 指南针上可见的小点（会包含所有带有 `compass` 数据的标记）
    */
   hotspots?: CompassHotspot[];
 
   /**
-   * default color of hotspots
+   * 热点默认颜色
    * @default 'rgba(0, 0, 0, 0.5)'
    */
   hotspotColor?: string;
 
   /**
-   * CSS class(es) added to the compass element.
+   * 添加到指南针元素上的 CSS 类。
    */
   className?: string;
 };

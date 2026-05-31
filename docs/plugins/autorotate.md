@@ -1,4 +1,4 @@
-# AutorotatePlugin
+# 自动旋转插件
 
 <Badges module="autorotate-plugin"/>
 
@@ -159,11 +159,11 @@ packages:
 {
     position?: ExtendedPosition;
     /**
-     * use the position and tooltip of a marker
+     * 使用标记的位置和提示框
      */
     markerId?: string;
     /**
-     * pause the animation when reaching this point, will display the tooltip if available
+     * 到达此关键点时暂停动画；如果有提示框，也会一并显示
      */
     pause?: number;
     /**

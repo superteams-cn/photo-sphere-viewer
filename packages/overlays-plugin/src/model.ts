@@ -12,13 +12,13 @@ export type BaseOverlayConfig = {
    */
   zIndex?: number;
   /**
-   * Sphere correction applied to this overlay. If defined, overrides the global inheritSphereCorrection setting.
+   * 应用于此覆盖层的球面校正。定义后会覆盖全局 inheritSphereCorrection 设置。
    */
   sphereCorrection?: SphereCorrection;
 };
 
 /**
- * Overlay applied on a sphere, complete or partial
+ * 应用于球面的覆盖层，可为完整或局部球面
  */
 export type SphereOverlayConfig = BaseOverlayConfig & {
   path: string;
@@ -26,7 +26,7 @@ export type SphereOverlayConfig = BaseOverlayConfig & {
 };
 
 /**
- * Overlay applied on a whole cube (6 images)
+ * 应用于完整立方体的覆盖层（6 张图片）
  */
 export type CubeOverlayConfig = BaseOverlayConfig & {
   path: CubemapPanorama;
@@ -36,21 +36,21 @@ export type OverlayConfig = SphereOverlayConfig | CubeOverlayConfig;
 
 export type OverlaysPluginConfig = {
   /**
-   * Initial overlays
+   * 初始覆盖层
    */
   overlays?: OverlayConfig[];
   /**
-   * Automatically remove all overlays when the panorama changes
+   * 全景图变化时自动移除所有覆盖层
    * @default true
    */
   autoclear?: boolean;
   /**
-   * Applies the global "sphereCorrection" to each overlay
+   * 将全局 `sphereCorrection` 应用于每个覆盖层
    * @default true
    */
   inheritSphereCorrection?: boolean;
   /**
-   * Used to display cubemap overlays on equirectangular panoramas
+   * 用于在等距柱状全景图上显示立方体覆盖层
    */
   cubemapAdapter?: AdapterConstructor;
 };

@@ -1,16 +1,16 @@
-# GalleryPlugin <Badge text="样式"/>
+# 图库插件 <Badge text="样式"/>
 
 <Badges module="gallery-plugin"/>
 
 ::: module
 <ApiButton page="modules/GalleryPlugin.html"/>
-在 viewer 底部添加图库，用于在多个全景图之间导航。
+在查看器底部添加图库，用于在多个全景图之间导航。
 
 这个插件由 [@photo-sphere-viewer/gallery-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/gallery-plugin) 包提供。
 :::
 
 ::: warning 注意
-GalleryPlugin 与 ResolutionPlugin 不兼容。
+图库插件与分辨率插件不兼容。
 :::
 
 ## 用法
@@ -26,13 +26,13 @@ const viewer = new Viewer({
             items: [
                 {
                     id: 'pano-1',
-                    name: 'Panorama 1',
+                    name: '全景图 1',
                     panorama: 'path/to/pano-1.jpg',
                     thumbnail: 'path/to/pano-1-thumb.jpg',
                 },
                 {
                     id: 'pano-2',
-                    name: 'Panorama 2',
+                    name: '全景图 2',
                     panorama: 'path/to/pano-2.jpg',
                     thumbnail: 'path/to/pano-2-thumb.jpg',
                 },

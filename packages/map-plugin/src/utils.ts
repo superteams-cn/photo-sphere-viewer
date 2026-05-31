@@ -7,7 +7,7 @@ export function loadImage(src: string): HTMLImageElement {
   if (!src.includes('<svg')) {
     image.src = src;
   } else {
-    // the SVG must have it's own size, use the viewBox if not defined
+    // SVG 必须有自身尺寸；未定义时使用 viewBox
     if (!/<svg[^>]*width="/.test(src) && src.includes('viewBox')) {
       const [, , , width, height] = /viewBox="([0-9-]+) ([0-9-]+) ([0-9]+) ([0-9]+)"/.exec(src);
       src = src.replace('<svg', `<svg width="${width}px" height="${height}px"`);

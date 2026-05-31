@@ -50,7 +50,7 @@ export class GyroscopeButton extends AbstractButton {
   }
 
   /**
-   * Toggles gyroscope control
+   * 切换陀螺仪控制
    */
   onClick() {
     this.plugin.toggle();

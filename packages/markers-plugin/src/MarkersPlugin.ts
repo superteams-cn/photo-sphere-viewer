@@ -92,7 +92,7 @@ function getMarkerCtor(config: MarkerConfig): typeof Marker {
 }
 
 /**
- * Displays various markers on the viewer
+ * 在查看器上显示各类标记
  */
 export class MarkersPlugin extends AbstractConfigurablePlugin<
   MarkersPluginConfig,
@@ -261,7 +261,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Toggles all markers
+   * 切换所有标记
    */
   toggleAllMarkers() {
     if (this.state.allVisible) {
@@ -272,7 +272,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Shows all markers
+   * 显示所有标记
    */
   showAllMarkers() {
     this.state.allVisible = true;
@@ -284,7 +284,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Hides all markers
+   * 隐藏所有标记
    */
   hideAllMarkers() {
     this.state.allVisible = false;
@@ -296,7 +296,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Toggles the visibility of all tooltips
+   * 切换所有提示框的可见性
    */
   toggleAllTooltips() {
     if (this.state.showAllTooltips) {
@@ -307,7 +307,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   *  Displays all tooltips
+   * 显示所有提示框
    */
   showAllTooltips() {
     this.state.showAllTooltips = true;
@@ -318,7 +318,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Hides all tooltips
+   * 隐藏所有提示框
    */
   hideAllTooltips() {
     this.state.showAllTooltips = false;
@@ -515,14 +515,14 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Hides a marker
+   * 隐藏标记
    */
   hideMarker(markerId: string | MarkerConfig) {
     this.toggleMarker(markerId, false);
   }
 
   /**
-   * Shows a marker
+   * 显示标记
    */
   showMarker(markerId: string | MarkerConfig) {
     this.toggleMarker(markerId, true);
@@ -538,7 +538,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Hides the tooltip of a marker
+   * 隐藏标记的提示框
    */
   hideMarkerTooltip(markerId: string | MarkerConfig) {
     const marker = this.getMarker(markerId);
@@ -547,7 +547,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Toggles a marker visibility
+   * 切换标记可见性
    */
   toggleMarker(markerId: string | MarkerConfig, visible?: boolean) {
     const marker = this.getMarker(markerId);
@@ -579,7 +579,7 @@ export class MarkersPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Toggles the visibility of the list of markers
+   * 切换标记列表的可见性
    */
   toggleMarkersList() {
     if (this.viewer.panel.isVisible(ID_PANEL_MARKERS_LIST)) {

@@ -65,7 +65,7 @@ export type PlanHotspot = PlanHotspotStyle & {
   coordinates: GpsPosition;
 
   /**
-   * Unique identifier for the {@link SelectHotspot} event
+   * {@link SelectHotspot} 事件使用的唯一标识符
    */
   id?: string;
 
@@ -107,7 +107,7 @@ export type PlanPluginConfig = {
   position?: string | [string, string];
 
   /**
-   * Displays the map when loading the first panorama
+   * 加载第一张全景图时显示地图
    * @default true
    */
   visibleOnLoad?: boolean;
@@ -129,7 +129,7 @@ export type PlanPluginConfig = {
   spotStyle?: PlanHotspotStyle;
 
   /**
-   * Default zoom level
+   * 默认缩放级别
    * @default 15
    */
   defaultZoom?: number;
@@ -156,7 +156,7 @@ export type PlanPluginConfig = {
   minimizeOnHotspotClick?: boolean;
 
   /**
-   * Configuration of map buttons
+   * 地图按钮配置
    */
   buttons?: {
     /** @default true */

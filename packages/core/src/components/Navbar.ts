@@ -108,7 +108,7 @@ export class Navbar extends AbstractComponent {
   }
 
   /**
-   * Shows the navbar
+   * 显示导航栏
    */
   override show() {
     this.viewer.container.classList.add('psv--has-navbar');
@@ -117,7 +117,7 @@ export class Navbar extends AbstractComponent {
   }
 
   /**
-   * Hides the navbar
+   * 隐藏导航栏
    */
   override hide() {
     this.viewer.container.classList.remove('psv--has-navbar');

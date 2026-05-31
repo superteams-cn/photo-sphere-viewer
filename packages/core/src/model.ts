@@ -6,12 +6,12 @@ import { Viewer } from './Viewer';
 import { AnimationOptions } from './utils';
 
 /**
- * A wrapper around a Promise with an initial value before resolution
+ * Promise 包装对象，可在 Promise 完成前提供初始值
  */
 export type ResolvableBoolean = { initial: boolean; promise: Promise<boolean> };
 
 /**
- * Object defining a point
+ * 点坐标定义
  */
 export type Point = {
   x: number;
@@ -19,7 +19,7 @@ export type Point = {
 };
 
 /**
- * Object defining a size
+ * 尺寸定义
  */
 export type Size = {
   width: number;
@@ -27,7 +27,7 @@ export type Size = {
 };
 
 /**
- * Object defining a size in CSS
+ * CSS 尺寸定义
  */
 export type CssSize = {
   width: string;
@@ -35,7 +35,7 @@ export type CssSize = {
 };
 
 /**
- * Object defining angular corrections to a sphere
+ * 球面角度校正定义
  */
 export type SphereCorrection<T = number | string> = {
   pan?: T;
@@ -44,7 +44,7 @@ export type SphereCorrection<T = number | string> = {
 };
 
 /**
- * Object defining a spherical position (radians)
+ * 球面位置定义（弧度）
  */
 export type Position = {
   yaw: number;
@@ -52,7 +52,7 @@ export type Position = {
 };
 
 /**
- * Object defining a spherical position (radians or degrees)
+ * 球面位置定义（弧度或角度）
  */
 export type SphericalPosition = {
   yaw: number | string;
@@ -60,7 +60,7 @@ export type SphericalPosition = {
 };
 
 /**
- * Object defining a position on the panorama image (pixels)
+ * 全景图图片上的位置定义（像素）
  */
 export type PanoramaPosition = {
   textureX: number;
@@ -69,31 +69,31 @@ export type PanoramaPosition = {
 };
 
 /**
- * Object defining a spherical or panorama position
+ * 球面位置或全景图位置定义
  */
 export type ExtendedPosition = SphericalPosition | PanoramaPosition;
 
 /**
- * Object defining options for {@link Viewer.animate}
+ * {@link Viewer.animate} 的选项定义
  */
 export type AnimateOptions = Partial<ExtendedPosition> & {
   /**
-   * Animation speed or duration in milliseconds
+   * 动画速度或持续时间（毫秒）
    */
   speed: string | number;
   /**
-   * New zoom level between 0 and 100
+   * 新的缩放级别，范围为 0 到 100
    */
   zoom?: number;
   /**
-   * Easing function used for the animation
+   * 动画使用的缓动函数
    * @default 'inOutSine'
    */
   easing?: AnimationOptions<any>['easing'];
 };
 
 /**
- * Configuration of an equirectangular panorama
+ * 等距柱状全景图配置
  */
 export type EquirectangularPanorama = {
   path: string;
@@ -101,7 +101,7 @@ export type EquirectangularPanorama = {
 };
 
 /**
- * Crop information of an equirectangular panorama
+ * 等距柱状全景图的裁剪信息
  */
 export type PanoData = {
   isEquirectangular?: true;
@@ -123,46 +123,46 @@ export type PanoData = {
 };
 
 /**
- * Function to compute panorama data once the image is loaded
+ * 图片加载完成后计算全景图数据的函数
  */
 export type PanoDataProvider = (image: HTMLImageElement, xmpData?: PanoData) => PanoData;
 
 /**
- * Object defining options for {@link Viewer.setPanorama}
+ * {@link Viewer.setPanorama} 的选项定义
  */
 export type PanoramaOptions = {
   /**
-   * new panorama position
+   * 新的全景图位置
    */
   position?: ExtendedPosition;
   /**
-   * new navbar caption
+   * 新的导航栏标题
    */
   caption?: string;
   /**
-   * new panorama description
+   * 新的全景图说明
    */
   description?: string;
   /**
-   * new zoom level between 0 and 100
+   * 新的缩放级别，范围为 0 到 100
    */
   zoom?: number;
   /**
-   * enable transition (rotation + fading) between old and new panorama
+   * 在新旧全景图之间启用过渡效果（旋转 + 淡入淡出）
    * @default true
    */
   transition?: boolean | TransitionOptions;
   /**
-   * show the loader while loading the new panorama
+   * 加载新全景图时显示加载器
    * @default true
    */
   showLoader?: boolean;
   /**
-   * new sphere correction to apply to the panorama
+   * 应用于全景图的新球面校正
    */
   sphereCorrection?: SphereCorrection;
   /**
-   * new data used for this panorama
+   * 此全景图使用的新数据
    */
   panoData?: PanoData | PanoDataProvider;
 };
@@ -189,79 +189,79 @@ export type TextureData<TTexture = Texture | Texture[] | Record<string, Texture>
    */
   panorama: TPanorama;
   /**
-   * Panorama metadata
+   * 全景图元数据
    */
   panoData?: TData;
   /**
-   * Key used in the loader cache
+   * 加载器缓存使用的键
    */
   cacheKey?: string;
 };
 
 /**
- * Data of {@link events.ClickEvent}
+ * {@link events.ClickEvent} 的数据
  */
 export type ClickData = {
   /**
-   * if it's a right click
+   * 是否为右键点击
    */
   rightclick: boolean;
   /**
-   * position in the browser window
+   * 在浏览器窗口中的位置
    */
   clientX: number;
   /**
-   * position in the browser window
+   * 在浏览器窗口中的位置
    */
   clientY: number;
   /**
-   * position in the viewer
+   * 在查看器中的位置
    */
   viewerX: number;
   /**
-   * position in the viewer
+   * 在查看器中的位置
    */
   viewerY: number;
   /**
-   * position in spherical coordinates
+   * 球面坐标中的位置
    */
   yaw: number;
   /**
-   * position in spherical coordinates
+   * 球面坐标中的位置
    */
   pitch: number;
   /**
-   * position on the texture, if applicable
+   * 纹理上的位置（如适用）
    */
   textureX?: number;
   /**
-   * position on the texture, if applicable
+   * 纹理上的位置（如适用）
    */
   textureY?: number;
   /**
-   * position on the texture, if applicable
+   * 纹理上的位置（如适用）
    */
   textureFace?: string;
   /**
-   * Original element which received the click
+   * 接收点击的原始元素
    */
   target?: HTMLElement;
   /**
-   * Original event which triggered the click
+   * 触发点击的原始事件
    */
   originalEvent?: Event;
   /**
-   * List of THREE scenes objects under the mouse
+   * 鼠标下方的 THREE 场景对象列表
    */
   objects: Object3D[];
   /**
-   * clicked Marker
+   * 被点击的标记
    */
   marker?: any;
 };
 
 /**
- * Custom Web Component interface for navbar buttons
+ * 导航栏按钮使用的自定义 Web Component 接口
  * @noInheritDoc
  */
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
@@ -270,37 +270,37 @@ export interface NavbarButtonElement extends HTMLElement {
 }
 
 /**
- * Definition of a custom navbar button
+ * 自定义导航栏按钮定义
  */
 export type NavbarCustomButton = {
   /**
-   * Unique identifier of the button, usefull when using the {@link Navbar.getButton} method
+   * 按钮的唯一标识符，调用 {@link Navbar.getButton} 方法时会用到
    */
   id?: string;
   /**
-   * Tooltip displayed when the mouse is over the button
-   * If can be a key in the global `lang` config
+   * 鼠标悬停在按钮上时显示的提示文本
+   * 也可以是全局 `lang` 配置中的键
    */
   title?: string;
   /**
-   * Content of the button. Preferably a square image or SVG icon
+   * 按钮内容，建议使用正方形图片或 SVG 图标
    */
   content: string | NavbarButtonElement;
   /**
-   * CSS class added to the button
+   * 添加到按钮上的 CSS 类
    */
   className?: string;
   /**
-   * Function called when the button is clicked
+   * 点击按钮时调用的函数
    */
   onClick?: (viewer: Viewer) => void;
   /**
-   * initial state of the button
+   * 按钮的初始状态
    * @default false
    */
   disabled?: boolean;
   /**
-   * initial visibility of the button
+   * 按钮的初始可见性
    * @default true
    */
   visible?: boolean;

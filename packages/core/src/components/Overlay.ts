@@ -116,7 +116,7 @@ export class Overlay extends AbstractComponent {
   }
 
   /**
-   * Displays an overlay on the viewer
+   * 在查看器上显示覆盖层
    */
   override show(config: string | OverlayConfig) {
     if (typeof config === 'string') {
@@ -135,7 +135,7 @@ export class Overlay extends AbstractComponent {
   }
 
   /**
-   * Hides the overlay
+   * 隐藏覆盖层
    */
   override hide(id?: string) {
     if (this.isVisible(id)) {

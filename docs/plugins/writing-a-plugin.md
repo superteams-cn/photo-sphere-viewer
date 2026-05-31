@@ -13,10 +13,10 @@
 - 插件类的第一个参数**必须**是 `Viewer` 对象，并将其传给 `super` 构造函数。
 - 它**必须**包含 `static id` 属性。
 - 它**必须**实现 `init` 方法，用于执行初始化，例如订阅事件。
-- 它**必须**实现 `destroy` 方法，用于在 viewer 卸载时清理插件。
+- 它**必须**实现 `destroy` 方法，用于在查看器卸载时清理插件。
 - 构造函数**可以**接收 `config` 对象作为第二个参数。
 
-在插件中可以访问 `this.viewer`，它是 viewer 实例。更多信息请查看 [API 参考](/api/classes/Core.Viewer.html){target=\_blank}。
+在插件中可以访问 `this.viewer`，它是查看器实例。更多信息请查看 [API 参考](/api/classes/Core.Viewer.html){target=\_blank}。
 
 插件本身也是一个 `EventTarget`，包含 `addEventListener`、`removeEventListener` 和 `dispatchEvent` 方法。
 
@@ -141,9 +141,9 @@ require('rollup-plugin-postcss')({
 
 - 按钮类的第一个参数**必须**是 `Navbar` 对象，并将其传给 `super` 构造函数。
 - 它**必须**包含 `static id` 属性。
-- 它**必须**实现 `destroy` 方法，用于在 viewer 卸载时清理按钮。
+- 它**必须**实现 `destroy` 方法，用于在查看器卸载时清理按钮。
 - 它**必须**实现 `onClick` 方法来执行操作。
-- 它**可以**实现 `isSupported` 方法，用于根据环境告知 viewer 该操作是否可用。
+- 它**可以**实现 `isSupported` 方法，用于根据环境告知查看器该操作是否可用。
 - 它**必须**向 `super` 提供按钮配置：
   - `className`：应用到按钮上的 CSS 类名
   - `icon`：图标 SVG

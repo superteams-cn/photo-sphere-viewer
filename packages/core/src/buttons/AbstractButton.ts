@@ -5,7 +5,7 @@ import { ResolvableBoolean } from '../model';
 import { addClasses, getConfigParser, resolveBoolean, toggleClass } from '../utils';
 
 /**
- * Configuration for {@link AbstractButton}
+ * {@link AbstractButton} 配置
  */
 export type ButtonConfig = {
   id?: string;
@@ -13,26 +13,26 @@ export type ButtonConfig = {
   className?: string;
   title?: string;
   /**
-   * if the button has an mouse hover effect
+   * 按钮是否带鼠标悬停效果
    * @default false
    */
   hoverScale?: boolean;
   /**
-   * if the button can be moved to menu when the navbar is too small
+   * 导航栏空间不足时，按钮是否可以移入菜单
    * @default false
    */
   collapsable?: boolean;
   /**
-   * if the button is accessible with the keyboard
+   * 按钮是否可通过键盘访问
    * @default true
    */
   tabbable?: boolean;
   /**
-   * icon of the button
+   * 按钮图标
    */
   icon?: string;
   /**
-   * override icon when the button is active
+   * 按钮激活时使用的覆盖图标
    */
   iconActive?: string;
 };
@@ -50,21 +50,21 @@ const getConfig = getConfigParser<ButtonConfig>({
 });
 
 /**
- * Base class for navbar buttons
+ * 导航栏按钮基类
  */
 export abstract class AbstractButton extends AbstractComponent {
   /**
-   * Unique identifier of the button
+   * 按钮的唯一标识符
    */
   static readonly id: string;
 
   /**
-   * Identifier to declare a group of buttons
+   * 用于声明按钮组的标识符
    */
   static readonly groupId?: string;
 
   /**
-   * Internal properties
+   * 内部属性
    */
   protected override readonly state = {
     visible: true,
@@ -167,7 +167,7 @@ export abstract class AbstractButton extends AbstractComponent {
   }
 
   /**
-   * Hides/shows the button depending of the result of {@link isSupported}
+   * 根据 {@link isSupported} 的结果隐藏或显示按钮
    * @internal
    */
   checkSupported() {

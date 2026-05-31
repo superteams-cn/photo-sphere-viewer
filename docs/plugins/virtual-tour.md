@@ -1,4 +1,4 @@
-# VirtualTourPlugin <Badge text="样式"/>
+# 虚拟导览插件 <Badge text="样式"/>
 
 <Badges module="virtual-tour-plugin"/>
 
@@ -163,20 +163,20 @@ packages:
 
 - 类型：`string`
 
-此节点的短名称，用于链接提示框和 GalleryPlugin。
+此节点的短名称，用于链接提示框和图库插件。
 
 #### `showInGallery`
 
 - 类型：`boolean`
 - 默认：`true`
 
-在 GalleryPlugin 中显示此节点。
+在图库插件中显示此节点。
 
 #### `thumbnail`
 
 - 类型：`string`
 
-GalleryPlugin 节点列表中使用的缩略图。
+图库插件节点列表中使用的缩略图。
 
 #### `markers`
 
@@ -196,7 +196,7 @@ GalleryPlugin 节点列表中使用的缩略图。
 
 使用[平面图插件](plan.md)时的热点配置。节点会自动放置在地图上，但你可以自定义[热点样式](plan.md#hotspots-1)。
 
-设为 `false` 可在 plan 中隐藏该节点。
+设为 `false` 可在平面图中隐藏该节点。
 
 #### `data`
 
@@ -228,7 +228,7 @@ GalleryPlugin 节点列表中使用的缩略图。
 
 - 类型：`{ yaw?, pitch?, depth? }`
 
-添加到最终链接位置的偏移量，用于移动标记/箭头，同时不影响进入下一个节点前 viewer 旋转到的位置。
+添加到最终链接位置的偏移量，用于移动标记/箭头，同时不影响进入下一个节点前查看器旋转到的位置。
 
 `depth` 仅在 3D 渲染模式下用于处理重叠箭头。注意，重叠箭头会自动变透明（取决于 `arrowsPosition.linkOverlapAngle`）。
 
@@ -347,13 +347,13 @@ GalleryPlugin 节点列表中使用的缩略图。
     speed?: string | number;
     rotation?: boolean;
     /**
-     * Define where to rotate the current panorama before switching to the next
-     * if not defined it will use the link's position
+     * 定义切换到下一个节点前当前全景图应旋转到的位置
+     * 若未定义，将使用链接自身的位置
      */
     rotateTo?: Position;
     /**
-     * Define the new zoom level
-     * if not defined it will keep the current zoom level
+     * 定义新的缩放级别
+     * 若未定义，将保持当前缩放级别
      */
     zoomTo?: number;
 })

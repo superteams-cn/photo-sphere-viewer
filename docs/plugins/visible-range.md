@@ -1,4 +1,4 @@
-# VisibleRangePlugin
+# 可视范围插件
 
 <Badges module="visible-range-plugin"/>
 

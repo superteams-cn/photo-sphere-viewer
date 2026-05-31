@@ -150,7 +150,7 @@ export class Panel extends AbstractComponent {
   }
 
   /**
-   * Shows the panel
+   * 显示面板
    */
   override show(config: string | PanelConfig) {
     if (typeof config === 'string') {
@@ -206,7 +206,7 @@ export class Panel extends AbstractComponent {
   }
 
   /**
-   * Hides the panel
+   * 隐藏面板
    */
   override hide(id?: string) {
     if (this.isVisible(id)) {

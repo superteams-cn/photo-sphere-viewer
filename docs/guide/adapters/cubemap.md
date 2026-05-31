@@ -9,7 +9,7 @@
 :::
 
 ```js:line-numbers
-import {  CubemapAdapter } from '@photo-sphere-viewer/cubemap-adapter';
+import { CubemapAdapter } from '@photo-sphere-viewer/cubemap-adapter';
 
 const viewer = new Viewer({
     adapter: CubemapAdapter,
@@ -53,7 +53,7 @@ packages:
 ::: code-group
 
 ```js:line-numbers [array]
-// order is important
+// 顺序很重要
 panorama: [
   'path/to/left.jpg',
   'path/to/front.jpg',

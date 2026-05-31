@@ -122,7 +122,7 @@ export class GalleryPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Shows the gallery
+   * 显示图库
    */
   show() {
     this.map?.minimize();
@@ -133,7 +133,7 @@ export class GalleryPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Hides the carousem
+   * 隐藏轮播图库
    */
   hide() {
     this.dispatchEvent(new HideGalleryEvent());
@@ -141,7 +141,7 @@ export class GalleryPlugin extends AbstractConfigurablePlugin<
   }
 
   /**
-   * Hides or shows the gallery
+   * 隐藏或显示图库
    */
   toggle() {
     if (this.gallery.isVisible()) {

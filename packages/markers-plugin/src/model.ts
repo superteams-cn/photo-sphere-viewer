@@ -10,7 +10,7 @@ import { ColorRepresentation } from 'three';
 import type { Marker } from './markers/Marker';
 
 /**
- * Custom Web Component interface for `element` markers
+ * `element` 标记使用的自定义 Web Component 接口
  * @noInheritDoc
  */
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
@@ -25,56 +25,56 @@ export interface MarkerElement extends HTMLElement {
 }
 
 /**
- * Configuration of a marker
+ * 标记配置
  */
 export type MarkerConfig = {
   /**
-   * Path to an image
+   * 图片路径
    */
   image?: string;
   /**
-   * Path to an image
+   * 图片路径
    */
   imageLayer?: string;
   /**
-   * Path to a video
+   * 视频路径
    */
   videoLayer?: string;
   /**
-   * HTML content of the marker
+   * 标记的 HTML 内容
    */
   html?: string;
   /**
-   * Exiting DOM element
+   * 已存在的 DOM 元素
    */
   element?: MarkerElement;
   /**
-   * Exiting DOM element
+   * 已存在的 DOM 元素
    */
   elementLayer?: MarkerElement;
   /**
-   * Size of the square
+   * 正方形尺寸
    */
   square?: number;
   /**
-   * Size of the rectangle
+   * 矩形尺寸
    */
   rect?: [number, number] | { width: number; height: number };
   /**
-   * Radius of the circle
+   * 圆形半径
    */
   circle?: number;
   /**
-   * Radiuses of the ellipse
+   * 椭圆半径
    */
   ellipse?: [number, number] | { rx: number; ry: number };
   /**
-   * Definition of the path
+   * 路径定义
    */
   path?: string;
   /**
-   * Array of points defining the polygon in spherical coordinates
-   * Nested arrays are used to define holes
+   * 以球面坐标定义多边形的点数组
+   * 嵌套数组用于定义孔洞
    */
   polygon?:
     | Array<[number, number]>
@@ -84,74 +84,74 @@ export type MarkerConfig = {
     | SphericalPosition[]
     | SphericalPosition[][];
   /**
-   * Array of points defining the polygon in pixel coordinates on the panorama image
-   * Nested arrays are used to define holes
+   * 以全景图像素坐标定义多边形的点数组
+   * 嵌套数组用于定义孔洞
    */
   polygonPixels?: Array<[number, number]> | Array<Array<[number, number]>> | PanoramaPosition[] | PanoramaPosition[][];
   /**
-   * Array of points defining the polyline in spherical coordinates
+   * 以球面坐标定义折线的点数组
    */
   polyline?: Array<[number, number]> | Array<[string, string]> | SphericalPosition[];
   /**
-   * Array of points defining the polyline in pixel coordinates on the panorama image
+   * 以全景图像素坐标定义折线的点数组
    */
   polylinePixels?: Array<[number, number]> | PanoramaPosition[];
 
   /**
-   * Unique identifier of the marker
+   * 标记的唯一标识符
    */
   id: string;
   /**
-   * Position of the marker (required but for `polygon` and `polyline`)
-   * The array form is used for `imageLayer` and `videoLayer`
+   * 标记位置（除 `polygon` 和 `polyline` 外必填）
+   * 数组形式用于 `imageLayer` 和 `videoLayer`
    */
   position?: ExtendedPosition | [ExtendedPosition, ExtendedPosition, ExtendedPosition, ExtendedPosition];
   /**
-   * Size of the marker (required for `image`, recommended for `html`, ignored for others)
+   * 标记尺寸（`image` 必填，`html` 建议填写，其他类型会忽略）
    */
   size?: Size;
   /**
-   * Rotation applied to the marker (ignored for `polygon` and `polyline`)
-   * If defined as a scalar, it applies to the `roll` (Z axis)
-   * Only 3D markers (`imageLayer`, `videoLayer`, `elementLayer`) support `yaw` and `pitch`
+   * 应用于标记的旋转（`polygon` 和 `polyline` 会忽略）
+   * 如果定义为单个数值，则应用到 `roll`（Z 轴）
+   * 只有 3D 标记（`imageLayer`、`videoLayer`、`elementLayer`）支持 `yaw` 和 `pitch`
    */
   rotation?: string | number | { yaw?: number | string; pitch?: number | string; roll?: number | string };
   /**
-   * Configures the scale of the marker depending on the zoom level and/or the horizontal offset (ignored for `polygon`, `polyline`, `imageLayer`, `videoLayer`)
+   * 根据缩放级别和/或水平偏移配置标记缩放（`polygon`、`polyline`、`imageLayer`、`videoLayer` 会忽略）
    */
   scale?:
     | [number, number]
     | { zoom?: [number, number]; yaw?: [number, number] }
     | ((zoomLevel: number, position: Position) => number);
   /**
-   * Overrides the global `defaultHoverScale`
+   * 覆盖全局 `defaultHoverScale`
    * @default null
    */
   hoverScale?: boolean | number | { amount?: number; duration?: number; easing?: string };
   /**
-   * Opacity of the marker
+   * 标记透明度
    * @default 1
    */
   opacity?: number;
   /**
-   * Drawing order
+   * 绘制顺序
    * @default 1
    */
   zIndex?: number;
   /**
-   * CSS class(es) added to the marker element (ignored for `imageLayer`, `videoLayer`)
+   * 添加到标记元素上的 CSS 类（`imageLayer`、`videoLayer` 会忽略）
    */
   className?: string;
   /**
-   * CSS properties to set on the marker (background, border, etc.) (ignored for `imagerLayer`, `videoLayer`)
+   * 设置到标记上的 CSS 属性（背景、边框等；`imageLayer`、`videoLayer` 会忽略）
    */
   style?: Record<string, string>;
   /**
-   * SVG properties to set on the marker (fill, stroke, etc.) (only for SVG markers)
+   * 设置到标记上的 SVG 属性（填充、描边等；仅适用于 SVG 标记）
    */
   svgStyle?: Record<string, string>;
   /**
-   * Will make a color of the image/video transparent (only for `imagerLayer`, `videoLayer`)
+   * 将图片/视频中的某种颜色设为透明（仅适用于 `imageLayer`、`videoLayer`）
    */
   chromaKey?: {
     /** @default false */
@@ -164,46 +164,46 @@ export type MarkerConfig = {
     smoothness?: number;
   };
   /**
-   * Defines where the marker is placed toward its defined position
+   * 定义标记相对于其位置的锚点
    * @default 'center center'
    */
   anchor?: string;
   /**
-   * The zoom level which will be applied when calling `gotoMarker()` method or when clicking on the marker in the list
+   * 调用 `gotoMarker()` 方法或在列表中点击标记时应用的缩放级别
    * @default `current zoom level`
    */
   zoomLvl?: number;
   /**
-   * Initial visibility of the marker
+   * 标记的初始可见性
    * @default true
    */
   visible?: boolean;
   /**
-   * Configuration of the marker tooltip
+   * 标记提示框配置
    * @default `{content: null, position: 'top center', className: null, trigger: 'hover'}`
    */
   tooltip?: string | { content: string; position?: string; className?: string; trigger?: 'hover' | 'click' };
   /**
-   * HTML content that will be displayed on the side panel when the marker is clicked
+   * 点击标记时在侧边面板中显示的 HTML 内容
    */
   content?: string;
   /**
-   * The name that appears in the list of markers
+   * 标记列表中显示的名称
    * @default `tooltip.content`
    */
   listContent?: string;
   /**
-   * Hide the marker in the markers list
+   * 在标记列表中隐藏此标记
    * @default false
    */
   hideList?: boolean;
   /**
-   * Autoplay of `videoLayer` markers
+   * `videoLayer` 标记是否自动播放
    * @default true
    */
   autoplay?: boolean;
   /**
-   * Any custom data you want to attach to the marker
+   * 附加到标记上的任意自定义数据
    */
   data?: any;
 };
@@ -217,21 +217,21 @@ export type ParsedMarkerConfig = Omit<MarkerConfig, 'rotation' | 'scale' | 'tool
 
 export type MarkersPluginConfig = {
   /**
-   * If a `click` event is triggered on the viewer additionally to the `select-marker` event
+   * 是否在 `select-marker` 事件之外，同时在查看器上触发 `click` 事件
    * @default false
    */
   clickEventOnMarker?: boolean;
   /**
-   * initial markers
+   * 初始标记
    */
   markers?: MarkerConfig[];
   /**
-   * Default animation speed for {@link MarkersPlugin#gotoMarker} and when a marker in clicked in the list/map
+   * {@link MarkersPlugin#gotoMarker} 以及在列表/地图中点击标记时使用的默认动画速度
    * @default '8rpm'
    */
   gotoMarkerSpeed?: string | number;
   /**
-   * Default mouse hover scaling parameters applied to all markers
+   * 应用于所有标记的默认鼠标悬停缩放参数
    * (`true` = `{ amount: 2, duration: 100, easing: 'linear' }`)
    * @default null
    */

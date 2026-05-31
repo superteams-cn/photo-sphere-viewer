@@ -1,4 +1,4 @@
-# VideoPlugin <Badge text="样式"/>
+# 视频插件 <Badge text="样式"/>
 
 <Badges module="video-plugin"/>
 
@@ -111,7 +111,7 @@ _注意：这个选项不属于插件自身配置，而是会合并到主 [`lang
 
 ### 多分辨率
 
-你可以通过 [ResolutionPlugin](./resolution.md) 为视频提供多个分辨率。
+你可以通过[分辨率插件](./resolution.md)为视频提供多个分辨率。
 
 ```js:line-numbers
 const viewer = new Viewer({

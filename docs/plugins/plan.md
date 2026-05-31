@@ -1,10 +1,10 @@
-# PlanPlugin <Badge text="样式"/>
+# 平面图插件 <Badge text="样式"/>
 
 <Badges module="plan-plugin"/>
 
 ::: module
 <ApiButton page="modules/PlanPlugin.html"/>
-在 viewer 上添加 [Leaflet](https://leafletjs.com) 地图，用于显示全景图位置和可选热点。默认使用 OpenStreetMap。
+在查看器上添加 [Leaflet](https://leafletjs.com) 地图，用于显示全景图位置和可选热点。默认使用 OpenStreetMap。
 
 这个插件由 [@photo-sphere-viewer/plan-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/plan-plugin) 包提供。
 :::
@@ -151,7 +151,7 @@ configureLeaflet(map) {
 地图上可见的标记，见下文。也可以使用 `setHotspots()` 方法设置。
 
 ::: tip 提示
-通过定义标记的 `plan` 数据，可以在地图上显示 [Markers](./markers.md)。该数据必须是热点对象。
+通过定义标记的 `plan` 数据，可以在地图上显示[标记](./markers.md)。该数据必须是热点对象。
 
 如果标记定义了提示框，会复用该提示框。在地图上点击标记时，查看器会转向该标记。
 

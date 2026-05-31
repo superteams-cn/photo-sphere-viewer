@@ -1,6 +1,6 @@
 {
   "$schema": "https://typedoc.org/schema.json",
-  "name": "Photo Sphere Viewer",
+  "name": "全景图查看器",
   "includeVersion": false,
   "githubPages": false,
   "cleanOutputDir": false,
@@ -13,7 +13,7 @@
     "notExported": false
   },
   "navigationLinks": {
-    "Main documentation": "https://photo-sphere-viewer.js.org",
+    "中文文档": "https://photo-sphere-viewer.js.org",
     "GitHub": "https://github.com/mistic100/Photo-Sphere-Viewer"
   },
   "visibilityFilters": {

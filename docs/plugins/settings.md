@@ -1,4 +1,4 @@
-# SettingsPlugin <Badge text="样式"/>
+# 设置插件 <Badge text="样式"/>
 
 <Badges module="settings-plugin"/>
 

@@ -1,10 +1,10 @@
-# MapPlugin <Badge text="样式"/>
+# 地图插件 <Badge text="样式"/>
 
 <Badges module="map-plugin"/>
 
 ::: module
 <ApiButton page="modules/MapPlugin.html"/>
-在 viewer 上添加一张交互式地图，支持缩放、平移以及可选热点。
+在查看器上添加一张交互式地图，支持缩放、平移以及可选热点。
 
 这个插件由 [@photo-sphere-viewer/map-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/map-plugin) 包提供。
 :::
@@ -155,7 +155,7 @@ packages:
 地图上可见的小点，见下文。你也可以使用 `setHotspots()` 方法设置。
 
 ::: tip 提示
-通过定义标记的 `map` 数据，可以在地图上显示 [Markers](./markers.md)。该数据必须是一个热点对象（无需 `yaw`，因为它可从标记位置得知）。
+通过定义标记的 `map` 数据，可以在地图上显示[标记](./markers.md)。该数据必须是一个热点对象（无需 `yaw`，因为它可从标记位置得知）。
 
 如果标记定义了提示框，会复用该提示框。在地图上点击标记时，查看器会转向该标记。
 

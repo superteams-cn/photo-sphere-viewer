@@ -44,7 +44,7 @@ export class StereoButton extends AbstractButton {
   }
 
   /**
-   * Toggles stereo control
+   * 切换立体视图控制
    */
   onClick() {
     this.plugin.toggle();

@@ -145,7 +145,7 @@ export class SettingsComponent extends AbstractComponent {
   }
 
   /**
-   * Shows the list of options
+   * 显示选项列表
    */
   private __showSettings(focus: boolean) {
     this.container.innerHTML = SETTINGS_TEMPLATE(this.plugin.settings, this.viewer.config.lang);
@@ -157,7 +157,7 @@ export class SettingsComponent extends AbstractComponent {
   }
 
   /**
-   * Shows setting options panel
+   * 显示设置选项面板
    */
   private __showOptions(setting: OptionsSetting) {
     this.container.innerHTML = SETTING_OPTIONS_TEMPLATE(setting, this.viewer.config.lang);

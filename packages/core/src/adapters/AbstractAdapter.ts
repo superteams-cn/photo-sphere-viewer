@@ -5,32 +5,32 @@ import { PanoData, PanoDataProvider, PanoramaPosition, Position, TextureData } f
 import { checkVersion } from '../utils';
 
 /**
- * Base class for adapters
- * @template TPanorama type of the panorama object
- * @template TData type of the panorama metadata
- * @template TTexture type of the loaded texture
- * @template TMesh type of the mesh
+ * 适配器基类
+ * @template TPanorama 全景图对象类型
+ * @template TData 全景图元数据类型
+ * @template TTexture 已加载纹理类型
+ * @template TMesh 网格类型
  */
 export abstract class AbstractAdapter<TPanorama, TData, TTexture, TMesh extends Object3D> {
   /**
-   * Unique identifier of the adapter
+   * 适配器的唯一标识符
    */
   static readonly id: string;
   /**
-   * Expected version of the core
-   * DO NOT USE on custom adapters
+   * 期望的核心版本
+   * 自定义适配器请勿使用
    */
   static readonly VERSION: string;
 
   /**
-   * Indicates if the adapter supports panorama download natively
+   * 表示适配器是否原生支持全景图下载
    */
   static readonly supportsDownload: boolean = false;
 
   constructor(protected readonly viewer: Viewer) {}
 
   /**
-   * Initializes the adapter
+   * 初始化适配器
    */
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   init(): void {}

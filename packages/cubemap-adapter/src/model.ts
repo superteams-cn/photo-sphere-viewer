@@ -1,49 +1,49 @@
 export type CubemapFaces = 'left' | 'front' | 'right' | 'back' | 'top' | 'bottom';
 
 /**
- * Object defining a cubemap as separated files
+ * 以独立文件定义立方体贴图
  */
 export type Cubemap = Record<CubemapFaces, string>;
 
 /**
- * Object defining a cubemap as separated files
- * images order is : left, front, right, back, top, bottom
+ * 以独立文件定义立方体贴图
+ * 图片顺序为：left、front、right、back、top、bottom
  */
 export type CubemapArray = string[];
 
 /**
- * Object defining a cubemap as separated files
+ * 以独立文件定义立方体贴图
  */
 export type CubemapSeparate = {
   type: 'separate';
   paths: Cubemap | CubemapArray;
   /**
-   * Set to true if the top and bottom faces are not correctly oriented
+   * 如果顶面和底面方向不正确，请设为 true
    * @default false
    */
   flipTopBottom?: boolean;
 };
 
 /**
- * Object defining a cubemap as a single stripe file
+ * 以单条纹文件定义立方体贴图
  */
 export type CubemapStripe = {
   type: 'stripe';
   path: string;
   /**
-   * Set to true if the top and bottom faces are not correctly oriented
+   * 如果顶面和底面方向不正确，请设为 true
    * @default false
    */
   flipTopBottom?: boolean;
   /**
-   * Order of the faces in the file
+   * 文件中各面的顺序
    * @default 'left, front, right, back, top, bottom'
    */
   order?: CubemapFaces[];
 };
 
 /**
- * Object defining a cubemap as a single net file (cross arrangement)
+ * 以单张网格图定义立方体贴图（十字排列）
  */
 export type CubemapNet = {
   type: 'net';
@@ -51,12 +51,12 @@ export type CubemapNet = {
 };
 
 /**
- * Configuration of a cubemap
+ * 立方体贴图配置
  */
 export type CubemapPanorama = Cubemap | CubemapArray | CubemapSeparate | CubemapStripe | CubemapNet;
 
 /**
- * Size information of a cubemap panorama
+ * 立方体全景图的尺寸信息
  */
 export type CubemapData = {
   isCubemap: true;
@@ -66,7 +66,7 @@ export type CubemapData = {
 
 export type CubemapAdapterConfig = {
   /**
-   * used for cubemap tiles adapter
+   * 供立方体瓦片适配器使用
    * @internal
    */
   blur?: boolean;

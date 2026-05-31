@@ -1,10 +1,10 @@
-# CompassPlugin <Badge text="样式"/>
+# 指南针插件 <Badge text="样式"/>
 
 <Badges module="compass-plugin"/>
 
 ::: module
 <ApiButton page="modules/CompassPlugin.html"/>
-在 viewer 上添加指南针，用于表示当前可见的球面区域。
+在查看器上添加指南针，用于表示当前可见的球面区域。
 
 这个插件由 [@photo-sphere-viewer/compass-plugin](https://www.npmjs.com/package/@photo-sphere-viewer/compass-plugin) 包提供。
 :::
@@ -71,7 +71,7 @@ packages:
 - 默认：`true`
 - 可更新：是
 
-允许点击指南针来旋转 viewer。
+允许点击指南针来旋转查看器。
 
 #### `resetPitch`
 
@@ -90,7 +90,7 @@ packages:
 指南针上可见的小点。每个点包含一个位置（`yaw`/`pitch` 或 `textureX`/`textureY`）以及可选的 `color`，它会覆盖全局 `hotspotColor`。
 
 ::: tip 提示
-通过定义标记的 `compass` 数据，可以在指南针上显示 [Markers](./markers.md)。该值可以是 `true` 或指定颜色。
+通过定义标记的 `compass` 数据，可以在指南针上显示[标记](./markers.md)。该值可以是 `true` 或指定颜色。
 
 <DemoButton href="/demos/compass/markers.html"/>
 :::

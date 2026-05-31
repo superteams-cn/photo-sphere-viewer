@@ -2,7 +2,7 @@
 
 ::: module
 <ApiButton page="classes/Core.Panel.html"/>
-在 viewer 右侧边栏显示 HTML 内容。
+在查看器右侧边栏显示 HTML 内容。
 :::
 
 ## 示例

@@ -57,7 +57,7 @@ export class NavbarCaption extends AbstractButton {
   }
 
   /**
-   * Toggles content and icon depending on available space
+   * 根据可用空间切换内容和图标
    */
   override autoSize() {
     this.toggle(this.container.offsetWidth >= this.contentWidth);

@@ -18,195 +18,195 @@ import type { PlanHotspot } from '@photo-sphere-viewer/plan-plugin';
 export type GpsPosition = [number, number, number?];
 
 /**
- * Style of the arrow in 3D mode
+ * 3D 模式下的箭头样式
  */
 export type VirtualTourArrowStyle = {
   /**
-   * URL of an image used for the arrow
+   * 箭头使用的图片 URL
    */
   image?: string;
   /**
-   * Use a custom element for the arrow
+   * 为箭头使用自定义元素
    */
   element?: HTMLElement | ((link: VirtualTourLink) => HTMLElement);
   /**
-   * CSS classes added to the element
+   * 添加到元素上的 CSS 类
    */
   className?: string;
   /**
-   * Size of the arrow
+   * 箭头尺寸
    */
   size?: Size;
   /**
-   * CSS properties to set on the arrow
+   * 设置到箭头上的 CSS 属性
    */
   style?: Record<string, string>;
 };
 
 /**
- * Behaviour of the transition between nodes
+ * 节点之间的过渡行为
  */
 export type VirtualTourTransitionOptions = {
   /**
-   * Show the loader while loading the new panorama
+   * 加载新全景图时显示加载器
    * @default true
    */
   showLoader?: boolean;
   /**
-   * Enable transition between nodes
+   * 启用节点之间的过渡效果
    * @default 'fade'
    */
   effect?: 'none' | TransitionOptions['effect'];
   /**
-   * Speed or duration of the transition between nodes
+   * 节点过渡的速度或持续时间
    * @default '20rpm'
    */
   speed?: string | number;
   /**
-   * Enable rotation in the direction of the next node
+   * 启用朝向下一个节点方向的旋转
    * @default true
    */
   rotation?: boolean;
   /**
-   * Define where to rotate the current panorama before switching to the next
-   * if not defined it will use the link's position
+   * 定义切换到下一个节点前当前全景图应旋转到的位置
+   * 若未定义，将使用链接自身的位置
    */
   rotateTo?: Position;
   /**
-   * Define the new zoom level
-   * if not defined it will keep the current zoom level
+   * 定义新的缩放级别
+   * 若未定义，将保持当前缩放级别
    */
   zoomTo?: number;
 };
 
 /**
- * Definition of a link between two nodes
+ * 两个节点之间的链接定义
  */
 export type VirtualTourLink = Partial<ExtendedPosition> & {
   /**
-   * identifier of the target node
+   * 目标节点的标识符
    */
   nodeId: string;
   /**
-   * define the position of the link (manual mode)
+   * 定义链接位置（手动模式）
    */
   position?: ExtendedPosition;
   /**
-   * offset added to the final link position in order to move the marker/arrow
-   * without affecting where the viewer is rotated before going to the next node
+   * 添加到最终链接位置的偏移量，用于移动标记/箭头
+   * 不影响进入下一个节点前查看器旋转到的位置
    */
   linkOffset?: { yaw?: number; pitch?: number; depth?: number };
   /**
-   * define the GPS position of the node (GPS mode)
+   * 定义节点的 GPS 位置（GPS 模式）
    */
   gps?: [number, number, number?];
   /**
-   * override global arrow style
+   * 覆盖全局箭头样式
    */
   arrowStyle?: VirtualTourArrowStyle;
   /**
-   * Any custom data you want to attach to the link
+   * 附加到链接上的任意自定义数据
    */
   data?: any;
 };
 
 /**
- * Definition of a single node in the tour
+ * 导览中的单个节点定义
  */
 export type VirtualTourNode = {
   id: string;
   panorama: any;
   /**
-   * short name of the node (links tooltip, gallery)
+   * 节点短名称（用于链接提示框和图库）
    */
   name?: string;
   /**
-   * caption visible in the navbar
+   * 导航栏中显示的标题
    */
   caption?: string;
   /**
-   * description visible in the side panel
+   * 侧边面板中显示的说明
    */
   description?: string;
   /**
-   * data used for this panorama
+   * 此全景图使用的数据
    */
   panoData?: PanoData | PanoDataProvider;
   /**
-   * sphere correction to apply to this panorama
+   * 应用于此全景图的球面校正
    */
   sphereCorrection?: SphereCorrection;
   /**
-   * links to other nodes
+   * 指向其他节点的链接
    */
   links?: VirtualTourLink[];
   /**
-   * GPS position
+   * GPS 位置
    */
   gps?: GpsPosition;
   /**
-   * display this node in the gallery (if the plugin is loaded)
+   * 在图库中显示此节点（如果已加载图库插件）
    * @default true
    */
   showInGallery?: boolean;
   /**
-   * thumbnail for the gallery, also use in the tooltip
+   * 图库使用的缩略图，也会用于提示框
    */
   thumbnail?: string;
   /**
-   * additional markers to use on this node
+   * 此节点上使用的额外标记
    */
   markers?: Array<MarkerConfig & { gps?: GpsPosition }>;
   /**
-   * configuration of the hotspot when using the MapPlugin
-   * set to `false` to hide this node from the map
+   * 使用地图插件时的热点配置
+   * 设为 `false` 可在地图上隐藏此节点
    */
   map?: false | (Partial<Point> & Omit<MapHotspot, 'id' | 'yaw' | 'distance'>);
   /**
-   * configuration of the hotspot when using the PlanPlugin
-   * set to `false` to hide this node from the plan
+   * 使用平面图插件时的热点配置
+   * 设为 `false` 可在平面图中隐藏此节点
    */
   plan?: false | Omit<PlanHotspot, 'id' | 'coordinates'>;
   /**
-   * Any custom data you want to attach to the node
+   * 附加到节点上的任意自定义数据
    */
   data?: any;
 };
 
 export type VirtualTourPluginConfig = {
   /**
-   * configure data mode
+   * 配置数据模式
    * @default 'client'
    */
   dataMode?: 'client' | 'server';
   /**
-   * configure positioning mode
+   * 配置定位模式
    * @default 'manual'
    */
   positionMode?: 'manual' | 'gps';
   /**
-   * configure rendering mode of links
+   * 配置链接渲染模式
    * @default '3d'
    */
   renderMode?: '3d' | '2d';
   /**
-   * initial nodes (client mode)
+   * 初始节点（客户端模式）
    */
   nodes?: VirtualTourNode[];
   /**
-   * function to fetch a node (server mode)
+   * 获取节点的函数（服务端模式）
    */
   getNode?: (nodeId: string) => VirtualTourNode | Promise<VirtualTourNode>;
   /**
-   * id of the initial node, if not defined the first node will be used
+   * 初始节点 id；未定义时使用第一个节点
    */
   startNodeId?: string;
   /**
-   * preload linked panoramas
+   * 预加载链接的全景图
    */
   preload?: boolean | ((node: VirtualTourNode, link: VirtualTourLink) => boolean);
   /**
-   * Configuration of the transition between nodes. Can be a callback.
+   * 节点之间的过渡配置，也可以是回调函数。
    * @default `{ showLoader: true, speed: '20rpm', effect: 'fade', rotation: true }`
    */
   transitionOptions?:
@@ -217,25 +217,25 @@ export type VirtualTourPluginConfig = {
         fromLink?: VirtualTourLink,
       ) => VirtualTourTransitionOptions);
   /**
-   * if the Compass plugin is enabled, displays the links on the compass
+   * 如果启用了指南针插件，则在指南针上显示链接
    * @default true
    */
   linksOnCompass?: boolean;
   /**
-   * display a tooltip on each link, by default it contains "name" + "thumbnail" + "caption"
+   * 在每个链接上显示提示框，默认包含“name” + “thumbnail” + “caption”
    * @default true
    */
   showLinkTooltip?: boolean;
   /**
-   * callback to modify the content of the tooltip
+   * 用于修改提示框内容的回调函数
    */
   getLinkTooltip?: (content: string, link: VirtualTourLink, node: VirtualTourNode) => string;
   /**
-   * global arrow style
+   * 全局箭头样式
    */
   arrowStyle?: VirtualTourArrowStyle;
   /**
-   * configuration of the arrows container
+   * 箭头容器配置
    */
   arrowsPosition?: {
     /**
